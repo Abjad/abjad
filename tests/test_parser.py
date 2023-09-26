@@ -867,6 +867,124 @@ def test_LilyPondParser__indicators__BarLine_01():
     assert 1 == len(items) and isinstance(items[0], abjad.BarLine)
 
 
+def test_LilyPondParser__indicators__Beam_01():
+    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 8)]))
+    abjad.beam(target[0:3])
+    abjad.beam(target[3:], beam_lone_notes=True)
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'8
+            [
+            c'8
+            c'8
+            ]
+            c'8
+            [
+            ]
+        }
+        """
+    )
+
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__Beam_02():
+    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 8)]))
+    abjad.beam(target[:])
+    abjad.beam(target[1:3])
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'8
+            [
+            c'8
+            [
+            c'8
+            ]
+            c'8
+            ]
+        }
+        """
+    )
+
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(abjad.lilypond(target))
+
+
+def test_LilyPondParser__indicators__Beam_03():
+    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 8)]))
+    abjad.beam(target[:3])
+    abjad.beam(target[2:])
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'8
+            [
+            c'8
+            c'8
+            [
+            ]
+            c'8
+            ]
+        }
+        """
+    )
+
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(abjad.lilypond(target))
+
+
+def test_LilyPondParser__indicators__Beam_04():
+    string = "{ c'8 [ c'8 c'8 c'8 }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Beam_05():
+    """
+    With direction.
+    """
+
+    target = abjad.Voice(abjad.makers.make_notes(4 * [0], [(1, 8)]))
+    start_beam = abjad.StartBeam()
+    abjad.attach(start_beam, target[0], direction=abjad.UP)
+    stop_beam = abjad.StopBeam()
+    abjad.attach(stop_beam, target[2])
+    start_beam = abjad.StartBeam()
+    abjad.attach(start_beam, target[3], direction=abjad.DOWN)
+    stop_beam = abjad.StopBeam()
+    abjad.attach(stop_beam, target[3])
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'8
+            ^ [
+            c'8
+            c'8
+            ]
+            c'8
+            _ [
+            ]
+        }
+        """
+    )
+
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
 def test_LilyPondParser__indicators__Clef_01():
     target = abjad.Staff([abjad.Note(0, 1)])
     clef = abjad.Clef("bass")
@@ -931,6 +1049,240 @@ def test_LilyPondParser__indicators__Dynamic_01():
     for leaf in result:
         dynamics = abjad.get.indicators(leaf, abjad.Dynamic)
         assert len(dynamics) == 1
+
+
+def test_LilyPondParser__indicators__Glissando_01():
+    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
+    abjad.glissando(target[:])
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__Glissando_02():
+    string = r"{ c \glissando }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Glissando_03():
+    string = r"{ \glissando c }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Hairpin_01():
+    target = abjad.Voice(abjad.makers.make_notes([0] * 5, [(1, 4)]))
+    abjad.hairpin("< !", target[:3])
+    abjad.hairpin("> ppp", target[2:])
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'4
+            \<
+            c'4
+            c'4
+            \!
+            \>
+            c'4
+            c'4
+            \ppp
+        }
+        """
+    )
+
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__Hairpin_02():
+    """
+    Dynamics can terminate hairpins.
+    """
+
+    target = abjad.Voice(abjad.makers.make_notes([0] * 3, [(1, 4)]))
+    abjad.hairpin("<", target[0:2])
+    abjad.hairpin("p > f", target[1:])
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'4
+            \<
+            c'4
+            \p
+            \>
+            c'4
+            \f
+        }
+        """
+    )
+
+    string = r"\new Voice \relative c' { c \< c \p \> c \f }"
+    parser = abjad.parser.LilyPondParser()
+    result = parser(string)
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__Hairpin_03():
+    """
+    Unterminated.
+    """
+
+    string = r"{ c \< c c c }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Hairpin_04():
+    """
+    Unbegun is okay.
+    """
+
+    string = r"{ c c c c \! }"
+    abjad.parser.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Hairpin_05():
+    """
+    No double dynamic spans permitted.
+    """
+
+    string = r"{ c \< \> c c c \! }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Hairpin_06():
+    """
+    With direction.
+    """
+
+    target = abjad.Voice(abjad.makers.make_notes([0] * 5, [(1, 4)]))
+    start_hairpin = abjad.StartHairpin("<")
+    abjad.attach(start_hairpin, target[0], direction=abjad.UP)
+    stop_hairpin = abjad.StopHairpin()
+    abjad.attach(stop_hairpin, target[2])
+    hairpin = abjad.StartHairpin(">")
+    abjad.attach(hairpin, target[2], direction=abjad.DOWN)
+    dynamic = abjad.Dynamic("ppp")
+    abjad.attach(dynamic, target[-1])
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'4
+            ^ \<
+            c'4
+            c'4
+            \!
+            _ \>
+            c'4
+            c'4
+            \ppp
+        }
+        """
+    )
+
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__Hairpin_07():
+    string = r"\new Staff { c'4 ( \p \< d'4 e'4 f'4 ) \! }"
+    parser = abjad.parser.LilyPondParser()
+    result = parser(string)
+    assert abjad.lilypond(result) == abjad.string.normalize(
+        r"""
+        \new Staff
+        {
+            c'4
+            \p
+            (
+            \<
+            d'4
+            e'4
+            f'4
+            )
+            \!
+        }
+        """
+    )
+
+
+def test_LilyPondParser__indicators__HorizontalBracket_01():
+    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    abjad.horizontal_bracket(target[:])
+    abjad.horizontal_bracket(target[:2])
+    abjad.horizontal_bracket(target[2:])
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'4
+            \startGroup
+            \startGroup
+            c'4
+            \stopGroup
+            c'4
+            \startGroup
+            c'4
+            \stopGroup
+            \stopGroup
+        }
+        """
+    )
+
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__HorizontalBracket_02():
+    """
+    Starting and stopping on the same leaf.
+    """
+
+    string = r"""{ c \startGroup \stopGroup c c c }"""
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__HorizontalBracket_03():
+    """
+    One group stopping on a leaf, while another begins on the same leaf.
+    """
+
+    string = r"""{ c \startGroup c \stopGroup \startGroup c c \stopGroup }"""
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__HorizontalBracket_04():
+    """
+    Unterminated.
+    """
+
+    string = r"""{ c \startGroup c c c }"""
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__HorizontalBracket_05():
+    """
+    Unstarted.
+    """
+
+    string = r"""{ c c c c \stopGroup }"""
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__indicators__KeySignature_01():
@@ -1189,6 +1541,250 @@ def test_LilyPondParser__indicators__MetronomeMark_05():
     assert len(marksn) == 1
 
 
+def test_LilyPondParser__indicators__PhrasingSlur_01():
+    """
+    Successful slurs, showing single leaf overlap.
+    """
+
+    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    abjad.phrasing_slur(target[2:])
+    abjad.phrasing_slur(target[:3])
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'4
+            \(
+            c'4
+            c'4
+            \)
+            \(
+            c'4
+            \)
+        }
+        """
+    )
+
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__PhrasingSlur_02():
+    """
+    Swapped start and stop.
+    """
+
+    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    abjad.phrasing_slur(target[2:])
+    abjad.phrasing_slur(target[:3])
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'4
+            \(
+            c'4
+            c'4
+            \)
+            \(
+            c'4
+            \)
+        }
+        """
+    )
+
+    string = r"\new Voice \relative c' { c \( c c \( \) c \) }"
+
+    parser = abjad.parser.LilyPondParser()
+    result = parser(string)
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__PhrasingSlur_03():
+    """
+    Single leaf.
+    """
+
+    string = r"{ c \( \) c c c }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__PhrasingSlur_04():
+    """
+    Unterminated.
+    """
+
+    string = r"{ c \( c c c }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__PhrasingSlur_05():
+    """
+    Unstarted.
+    """
+
+    string = r"{ c c c c \) }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__PhrasingSlur_06():
+    """
+    Nested.
+    """
+
+    string = r"{ c \( c \( c \) c \) }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__RepeatTie_01():
+    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
+    repeat_tie = abjad.RepeatTie()
+    abjad.attach(repeat_tie, target[-1])
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__Slur_01():
+    """
+    Successful slurs, showing single leaf overlap.
+    """
+
+    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    abjad.slur(target[2:])
+    abjad.slur(target[:3])
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'4
+            (
+            c'4
+            c'4
+            )
+            (
+            c'4
+            )
+        }
+        """
+    )
+
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__Slur_02():
+    """
+    Swapped start and stop.
+    """
+
+    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    abjad.slur(target[2:])
+    abjad.slur(target[:3])
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'4
+            (
+            c'4
+            c'4
+            )
+            (
+            c'4
+            )
+        }
+        """
+    )
+
+    string = r"\new Voice \relative c' { c ( c c () c ) }"
+    parser = abjad.parser.LilyPondParser()
+    result = parser(string)
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__Slur_03():
+    """
+    Single leaf.
+    """
+
+    string = "{ c () c c c }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Slur_04():
+    """
+    Unterminated.
+    """
+
+    string = "{ c ( c c c }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Slur_05():
+    """
+    Unstarted.
+    """
+
+    string = "{ c c c c ) }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Slur_06():
+    """
+    Nested.
+    """
+
+    string = "{ c ( c ( c ) c ) }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Slur_07():
+    """
+    With direction.
+    """
+
+    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    start_slur = abjad.StartSlur()
+    abjad.slur(target[:3], direction=abjad.DOWN, start_slur=start_slur)
+    start_slur = abjad.StartSlur()
+    abjad.slur(target[2:], direction=abjad.UP, start_slur=start_slur)
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'4
+            _ (
+            c'4
+            c'4
+            )
+            ^ (
+            c'4
+            )
+        }
+        """
+    )
+
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
 def test_LilyPondParser__indicators__StemTremolo_01():
     target = abjad.Staff([abjad.Note(0, 1)])
     stem_tremolo = abjad.StemTremolo(4)
@@ -1209,6 +1805,156 @@ def test_LilyPondParser__indicators__StemTremolo_01():
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
     stem_tremolos = abjad.get.indicators(result[0], abjad.StemTremolo)
     assert 1 == len(stem_tremolos)
+
+
+def test_LilyPondParser__indicators__Text_01():
+    """
+    Successful text spanners, showing single leaf overlap.
+    """
+
+    container = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    abjad.text_spanner(container[2:])
+    abjad.text_spanner(container[:3])
+
+    assert abjad.lilypond(container) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'4
+            \startTextSpan
+            c'4
+            c'4
+            \stopTextSpan
+            \startTextSpan
+            c'4
+            \stopTextSpan
+        }
+        """
+    )
+
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(container))
+    assert (
+        abjad.lilypond(container) == abjad.lilypond(result) and container is not result
+    )
+
+
+def test_LilyPondParser__indicators__Text_02():
+    """
+    Swapped start and stop.
+    """
+
+    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    abjad.text_spanner(target[2:])
+    abjad.text_spanner(target[:3])
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'4
+            \startTextSpan
+            c'4
+            c'4
+            \stopTextSpan
+            \startTextSpan
+            c'4
+            \stopTextSpan
+        }
+        """
+    )
+
+    string = (
+        r"\new Voice \relative c' { c \startTextSpan c c \startTextSpan \stopTextSpan c"
+        r" \stopTextSpan }"
+    )
+    parser = abjad.parser.LilyPondParser()
+    result = parser(string)
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__Text_03():
+    """
+    Single leaf.
+    """
+
+    string = r"{ c \startTextSpan \stopTextSpan c c c }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Text_04():
+    """
+    Unterminated.
+    """
+
+    string = r"{ c \startTextSpan c c c }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Text_05():
+    """
+    Unstarted.
+    """
+
+    string = r"{ c c c c \stopTextSpan }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Text_06():
+    """
+    Nested.
+    """
+
+    string = r"{ c \startTextSpan c \startTextSpan c \stopTextSpan c \stopTextSpan }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Tie_01():
+    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
+    abjad.tie(target[:])
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__Tie_02():
+    string = r"{ c ~ }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Tie_03():
+    string = r"{ ~ c }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Tie_04():
+    """
+    With direction.
+    """
+
+    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
+    abjad.tie(target[:], direction=abjad.UP)
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__Tie_05():
+    """
+    With direction.
+    """
+
+    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
+    abjad.tie(target[:], direction=abjad.DOWN)
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
 
 
 def test_LilyPondParser__indicators__TimeSignature_01():
@@ -1236,6 +1982,114 @@ def test_LilyPondParser__indicators__TimeSignature_01():
     leaf = leaves[0]
     time_signatures = abjad.get.indicators(leaf, abjad.TimeSignature)
     assert len(time_signatures) == 1
+
+
+def test_LilyPondParser__indicators__Trill_01():
+    """
+    Successful trills, showing single leaf overlap.
+    """
+
+    notes = abjad.makers.make_notes(4 * [0], [(1, 4)])
+    target = abjad.Voice(notes)
+    abjad.trill_spanner(target[2:])
+    abjad.trill_spanner(target[:3])
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'4
+            \startTrillSpan
+            c'4
+            c'4
+            \stopTrillSpan
+            \startTrillSpan
+            c'4
+            \stopTrillSpan
+        }
+        """
+    )
+
+    parser = abjad.parser.LilyPondParser()
+    result = parser(abjad.lilypond(target))
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__Trill_02():
+    """
+    Swapped start and stop.
+    """
+
+    notes = abjad.makers.make_notes(4 * [0], [(1, 4)])
+    target = abjad.Voice(notes)
+    abjad.trill_spanner(target[2:])
+    abjad.trill_spanner(target[:3])
+
+    assert abjad.lilypond(target) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            c'4
+            \startTrillSpan
+            c'4
+            c'4
+            \stopTrillSpan
+            \startTrillSpan
+            c'4
+            \stopTrillSpan
+        }
+        """
+    )
+
+    string = (
+        r"\new Voice \relative c' { c \startTrillSpan c c \startTrillSpan \stopTrillSpan c"
+        r" \stopTrillSpan }"
+    )
+    parser = abjad.parser.LilyPondParser()
+    result = parser(string)
+    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
+
+
+def test_LilyPondParser__indicators__Trill_03():
+    """
+    Single leaf.
+    """
+
+    string = r"{ c \startTrillSpan \stopTrillSpan c c c }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Trill_04():
+    """
+    Unterminated.
+    """
+
+    string = r"{ c \startTrillSpan c c c }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Trill_05():
+    """
+    Unstarted.
+    """
+
+    string = r"{ c c c c \stopTrillSpan }"
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
+
+
+def test_LilyPondParser__indicators__Trill_06():
+    """
+    Nested.
+    """
+
+    string = (
+        r"{ c \startTrillSpan c \startTrillSpan c \stopTrillSpan c \stopTrillSpan }"
+    )
+    with pytest.raises(Exception):
+        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser__leaves__Chord_01():
@@ -1516,851 +2370,6 @@ def test_LilyPondParser__misc__version_string_01():
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Beam_01():
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 8)]))
-    abjad.beam(target[0:3])
-    abjad.beam(target[3:], beam_lone_notes=True)
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'8
-            [
-            c'8
-            c'8
-            ]
-            c'8
-            [
-            ]
-        }
-        """
-    )
-
-    parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(target))
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Beam_02():
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 8)]))
-    abjad.beam(target[:])
-    abjad.beam(target[1:3])
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'8
-            [
-            c'8
-            [
-            c'8
-            ]
-            c'8
-            ]
-        }
-        """
-    )
-
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(abjad.lilypond(target))
-
-
-def test_LilyPondParser__spanners__Beam_03():
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 8)]))
-    abjad.beam(target[:3])
-    abjad.beam(target[2:])
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'8
-            [
-            c'8
-            c'8
-            [
-            ]
-            c'8
-            ]
-        }
-        """
-    )
-
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(abjad.lilypond(target))
-
-
-def test_LilyPondParser__spanners__Beam_04():
-    string = "{ c'8 [ c'8 c'8 c'8 }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Beam_05():
-    """
-    With direction.
-    """
-
-    target = abjad.Voice(abjad.makers.make_notes(4 * [0], [(1, 8)]))
-    start_beam = abjad.StartBeam()
-    abjad.attach(start_beam, target[0], direction=abjad.UP)
-    stop_beam = abjad.StopBeam()
-    abjad.attach(stop_beam, target[2])
-    start_beam = abjad.StartBeam()
-    abjad.attach(start_beam, target[3], direction=abjad.DOWN)
-    stop_beam = abjad.StopBeam()
-    abjad.attach(stop_beam, target[3])
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'8
-            ^ [
-            c'8
-            c'8
-            ]
-            c'8
-            _ [
-            ]
-        }
-        """
-    )
-
-    parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(target))
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Glissando_01():
-    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
-    abjad.glissando(target[:])
-    parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(target))
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Glissando_02():
-    string = r"{ c \glissando }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Glissando_03():
-    string = r"{ \glissando c }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Hairpin_01():
-    target = abjad.Voice(abjad.makers.make_notes([0] * 5, [(1, 4)]))
-    abjad.hairpin("< !", target[:3])
-    abjad.hairpin("> ppp", target[2:])
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'4
-            \<
-            c'4
-            c'4
-            \!
-            \>
-            c'4
-            c'4
-            \ppp
-        }
-        """
-    )
-
-    parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(target))
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Hairpin_02():
-    """
-    Dynamics can terminate hairpins.
-    """
-
-    target = abjad.Voice(abjad.makers.make_notes([0] * 3, [(1, 4)]))
-    abjad.hairpin("<", target[0:2])
-    abjad.hairpin("p > f", target[1:])
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'4
-            \<
-            c'4
-            \p
-            \>
-            c'4
-            \f
-        }
-        """
-    )
-
-    string = r"\new Voice \relative c' { c \< c \p \> c \f }"
-    parser = abjad.parser.LilyPondParser()
-    result = parser(string)
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Hairpin_03():
-    """
-    Unterminated.
-    """
-
-    string = r"{ c \< c c c }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Hairpin_04():
-    """
-    Unbegun is okay.
-    """
-
-    string = r"{ c c c c \! }"
-    abjad.parser.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Hairpin_05():
-    """
-    No double dynamic spans permitted.
-    """
-
-    string = r"{ c \< \> c c c \! }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Hairpin_06():
-    """
-    With direction.
-    """
-
-    target = abjad.Voice(abjad.makers.make_notes([0] * 5, [(1, 4)]))
-    start_hairpin = abjad.StartHairpin("<")
-    abjad.attach(start_hairpin, target[0], direction=abjad.UP)
-    stop_hairpin = abjad.StopHairpin()
-    abjad.attach(stop_hairpin, target[2])
-    hairpin = abjad.StartHairpin(">")
-    abjad.attach(hairpin, target[2], direction=abjad.DOWN)
-    dynamic = abjad.Dynamic("ppp")
-    abjad.attach(dynamic, target[-1])
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'4
-            ^ \<
-            c'4
-            c'4
-            \!
-            _ \>
-            c'4
-            c'4
-            \ppp
-        }
-        """
-    )
-
-    parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(target))
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Hairpin_07():
-    string = r"\new Staff { c'4 ( \p \< d'4 e'4 f'4 ) \! }"
-    parser = abjad.parser.LilyPondParser()
-    result = parser(string)
-    assert abjad.lilypond(result) == abjad.string.normalize(
-        r"""
-        \new Staff
-        {
-            c'4
-            \p
-            (
-            \<
-            d'4
-            e'4
-            f'4
-            )
-            \!
-        }
-        """
-    )
-
-
-def test_LilyPondParser__spanners__HorizontalBracket_01():
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
-    abjad.horizontal_bracket(target[:])
-    abjad.horizontal_bracket(target[:2])
-    abjad.horizontal_bracket(target[2:])
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'4
-            \startGroup
-            \startGroup
-            c'4
-            \stopGroup
-            c'4
-            \startGroup
-            c'4
-            \stopGroup
-            \stopGroup
-        }
-        """
-    )
-
-    parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(target))
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__HorizontalBracket_02():
-    """
-    Starting and stopping on the same leaf.
-    """
-
-    string = r"""{ c \startGroup \stopGroup c c c }"""
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__HorizontalBracket_03():
-    """
-    One group stopping on a leaf, while another begins on the same leaf.
-    """
-
-    string = r"""{ c \startGroup c \stopGroup \startGroup c c \stopGroup }"""
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__HorizontalBracket_04():
-    """
-    Unterminated.
-    """
-
-    string = r"""{ c \startGroup c c c }"""
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__HorizontalBracket_05():
-    """
-    Unstarted.
-    """
-
-    string = r"""{ c c c c \stopGroup }"""
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__PhrasingSlur_01():
-    """
-    Successful slurs, showing single leaf overlap.
-    """
-
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
-    abjad.phrasing_slur(target[2:])
-    abjad.phrasing_slur(target[:3])
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'4
-            \(
-            c'4
-            c'4
-            \)
-            \(
-            c'4
-            \)
-        }
-        """
-    )
-
-    parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(target))
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__PhrasingSlur_02():
-    """
-    Swapped start and stop.
-    """
-
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
-    abjad.phrasing_slur(target[2:])
-    abjad.phrasing_slur(target[:3])
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'4
-            \(
-            c'4
-            c'4
-            \)
-            \(
-            c'4
-            \)
-        }
-        """
-    )
-
-    string = r"\new Voice \relative c' { c \( c c \( \) c \) }"
-
-    parser = abjad.parser.LilyPondParser()
-    result = parser(string)
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__PhrasingSlur_03():
-    """
-    Single leaf.
-    """
-
-    string = r"{ c \( \) c c c }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__PhrasingSlur_04():
-    """
-    Unterminated.
-    """
-
-    string = r"{ c \( c c c }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__PhrasingSlur_05():
-    """
-    Unstarted.
-    """
-
-    string = r"{ c c c c \) }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__PhrasingSlur_06():
-    """
-    Nested.
-    """
-
-    string = r"{ c \( c \( c \) c \) }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Slur_01():
-    """
-    Successful slurs, showing single leaf overlap.
-    """
-
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
-    abjad.slur(target[2:])
-    abjad.slur(target[:3])
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'4
-            (
-            c'4
-            c'4
-            )
-            (
-            c'4
-            )
-        }
-        """
-    )
-
-    parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(target))
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Slur_02():
-    """
-    Swapped start and stop.
-    """
-
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
-    abjad.slur(target[2:])
-    abjad.slur(target[:3])
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'4
-            (
-            c'4
-            c'4
-            )
-            (
-            c'4
-            )
-        }
-        """
-    )
-
-    string = r"\new Voice \relative c' { c ( c c () c ) }"
-    parser = abjad.parser.LilyPondParser()
-    result = parser(string)
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Slur_03():
-    """
-    Single leaf.
-    """
-
-    string = "{ c () c c c }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Slur_04():
-    """
-    Unterminated.
-    """
-
-    string = "{ c ( c c c }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Slur_05():
-    """
-    Unstarted.
-    """
-
-    string = "{ c c c c ) }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Slur_06():
-    """
-    Nested.
-    """
-
-    string = "{ c ( c ( c ) c ) }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Slur_07():
-    """
-    With direction.
-    """
-
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
-    start_slur = abjad.StartSlur()
-    abjad.slur(target[:3], direction=abjad.DOWN, start_slur=start_slur)
-    start_slur = abjad.StartSlur()
-    abjad.slur(target[2:], direction=abjad.UP, start_slur=start_slur)
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'4
-            _ (
-            c'4
-            c'4
-            )
-            ^ (
-            c'4
-            )
-        }
-        """
-    )
-
-    parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(target))
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Text_01():
-    """
-    Successful text spanners, showing single leaf overlap.
-    """
-
-    container = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
-    abjad.text_spanner(container[2:])
-    abjad.text_spanner(container[:3])
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'4
-            \startTextSpan
-            c'4
-            c'4
-            \stopTextSpan
-            \startTextSpan
-            c'4
-            \stopTextSpan
-        }
-        """
-    )
-
-    parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(container))
-    assert (
-        abjad.lilypond(container) == abjad.lilypond(result) and container is not result
-    )
-
-
-def test_LilyPondParser__spanners__Text_02():
-    """
-    Swapped start and stop.
-    """
-
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
-    abjad.text_spanner(target[2:])
-    abjad.text_spanner(target[:3])
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'4
-            \startTextSpan
-            c'4
-            c'4
-            \stopTextSpan
-            \startTextSpan
-            c'4
-            \stopTextSpan
-        }
-        """
-    )
-
-    string = (
-        r"\new Voice \relative c' { c \startTextSpan c c \startTextSpan \stopTextSpan c"
-        r" \stopTextSpan }"
-    )
-    parser = abjad.parser.LilyPondParser()
-    result = parser(string)
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Text_03():
-    """
-    Single leaf.
-    """
-
-    string = r"{ c \startTextSpan \stopTextSpan c c c }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Text_04():
-    """
-    Unterminated.
-    """
-
-    string = r"{ c \startTextSpan c c c }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Text_05():
-    """
-    Unstarted.
-    """
-
-    string = r"{ c c c c \stopTextSpan }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Text_06():
-    """
-    Nested.
-    """
-
-    string = r"{ c \startTextSpan c \startTextSpan c \stopTextSpan c \stopTextSpan }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Tie_01():
-    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
-    abjad.tie(target[:])
-    parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(target))
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Tie_02():
-    string = r"{ c ~ }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Tie_03():
-    string = r"{ ~ c }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Tie_04():
-    """
-    With direction.
-    """
-
-    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
-    abjad.tie(target[:], direction=abjad.UP)
-    parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(target))
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Tie_05():
-    """
-    With direction.
-    """
-
-    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
-    abjad.tie(target[:], direction=abjad.DOWN)
-    parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(target))
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Trill_01():
-    """
-    Successful trills, showing single leaf overlap.
-    """
-
-    notes = abjad.makers.make_notes(4 * [0], [(1, 4)])
-    target = abjad.Voice(notes)
-    abjad.trill_spanner(target[2:])
-    abjad.trill_spanner(target[:3])
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'4
-            \startTrillSpan
-            c'4
-            c'4
-            \stopTrillSpan
-            \startTrillSpan
-            c'4
-            \stopTrillSpan
-        }
-        """
-    )
-
-    parser = abjad.parser.LilyPondParser()
-    result = parser(abjad.lilypond(target))
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Trill_02():
-    """
-    Swapped start and stop.
-    """
-
-    notes = abjad.makers.make_notes(4 * [0], [(1, 4)])
-    target = abjad.Voice(notes)
-    abjad.trill_spanner(target[2:])
-    abjad.trill_spanner(target[:3])
-
-    assert abjad.lilypond(target) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'4
-            \startTrillSpan
-            c'4
-            c'4
-            \stopTrillSpan
-            \startTrillSpan
-            c'4
-            \stopTrillSpan
-        }
-        """
-    )
-
-    string = (
-        r"\new Voice \relative c' { c \startTrillSpan c c \startTrillSpan \stopTrillSpan c"
-        r" \stopTrillSpan }"
-    )
-    parser = abjad.parser.LilyPondParser()
-    result = parser(string)
-    assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
-
-
-def test_LilyPondParser__spanners__Trill_03():
-    """
-    Single leaf.
-    """
-
-    string = r"{ c \startTrillSpan \stopTrillSpan c c c }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Trill_04():
-    """
-    Unterminated.
-    """
-
-    string = r"{ c \startTrillSpan c c c }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Trill_05():
-    """
-    Unstarted.
-    """
-
-    string = r"{ c c c c \stopTrillSpan }"
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
-
-
-def test_LilyPondParser__spanners__Trill_06():
-    """
-    Nested.
-    """
-
-    string = (
-        r"{ c \startTrillSpan c \startTrillSpan c \stopTrillSpan c \stopTrillSpan }"
-    )
-    with pytest.raises(Exception):
-        abjad.LilyPondParser()(string)
 
 
 def test_LilyPondParser_accidentals_cautionary_01():
