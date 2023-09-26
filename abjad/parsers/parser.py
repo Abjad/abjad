@@ -2964,6 +2964,7 @@ class LilyPondParser(Parser):
             _indicators.Glissando,
             _indicators.LilyPondLiteral,
             _indicators.Markup,
+            _indicators.RepeatTie,
             _indicators.StartBeam,
             _indicators.StartGroup,
             _indicators.StartHairpin,
@@ -3075,6 +3076,8 @@ class LilyPondParser(Parser):
                 return _indicators.StartPhrasingSlur()
             else:
                 return _indicators.StopPhrasingSlur()
+        elif name == "RepeatTieEvent":
+            return _indicators.RepeatTie()
         elif name == "SlurEvent":
             if lookup["span-direction"] == -1:
                 return _indicators.StartSlur()
