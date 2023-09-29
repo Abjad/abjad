@@ -73,10 +73,8 @@ def components(
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -295,10 +293,8 @@ def leaves(
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -534,10 +530,8 @@ def logical_ties(
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -1005,10 +999,8 @@ def timeline(
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])

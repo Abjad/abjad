@@ -241,22 +241,6 @@ def _get_leaf_from_leaf(leaf, n):
             return component
 
 
-def _get_on_beat_anchor_voice(container):
-    container_ = container._parent
-    if container_ is None:
-        return None
-    if not container_.simultaneous:
-        return None
-    if not len(container_) == 2:
-        return None
-    index = container_.index(container)
-    if index == 0 and container_[1].__class__.__name__ == "OnBeatGraceContainer":
-        return container_[1]
-    if index == 1 and container_[0].__class__.__name__ == "OnBeatGraceContainer":
-        return container_[0]
-    return None
-
-
 def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=None):
     wrappers = {}
     for wrapper in dependent_wrappers:
@@ -281,13 +265,11 @@ def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=Non
             key = str(type(wrapper.unbundle_indicator()))
         if key not in wrappers:
             wrappers[key] = wrapper
-        # elif wrappers[key].start_offset < wrapper.start_offset:
         elif (
             wrappers[key].site_adjusted_start_offset
             < wrapper.site_adjusted_start_offset
         ):
             wrappers[key] = wrapper
-        # elif wrappers[key].start_offset == wrapper.start_offset:
         elif (
             wrappers[key].site_adjusted_start_offset
             == wrapper.site_adjusted_start_offset
@@ -303,85 +285,6 @@ def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=Non
             ):
                 wrappers[key] = wrapper
     return wrappers
-
-
-def _get_sibling_with_graces(component, n):
-    assert n in (-1, 0, 1), repr(component, n)
-    if n == 0:
-        return component
-    if component._parent is None:
-        return None
-    if component._parent.simultaneous:
-        return None
-    if (
-        n == 1
-        and getattr(component._parent, "_main_leaf", None)
-        and component._parent._main_leaf._before_grace_container is component._parent
-        and component is component._parent[-1]
-    ):
-        return component._parent._main_leaf
-    # last leaf in on-beat grace redo
-    if (
-        n == 1
-        and component is component._parent[-1]
-        and component._parent.__class__.__name__ == "OnBeatGraceContainer"
-    ):
-        return component._parent.get_anchor_leaf()
-    if (
-        n == 1
-        and getattr(component._parent, "_main_leaf", None)
-        and component._parent._main_leaf._after_grace_container is component._parent
-        and component is component._parent[-1]
-    ):
-        main_leaf = component._parent._main_leaf
-        if main_leaf is main_leaf._parent[-1]:
-            return None
-        index = main_leaf._parent.index(main_leaf)
-        return main_leaf._parent[index + 1]
-    if n == 1 and getattr(component, "_after_grace_container", None):
-        return component._after_grace_container[0]
-    if (
-        n == -1
-        and getattr(component._parent, "_main_leaf", None)
-        and component._parent._main_leaf._after_grace_container is component._parent
-        and component is component._parent[0]
-    ):
-        return component._parent._main_leaf
-    if (
-        n == -1
-        and getattr(component._parent, "_main_leaf", None)
-        and component._parent._main_leaf._before_grace_container is component._parent
-        and component is component._parent[0]
-    ):
-        main_leaf = component._parent._main_leaf
-        if main_leaf is main_leaf._parent[0]:
-            return None
-        index = main_leaf._parent.index(main_leaf)
-        return main_leaf._parent[index - 1]
-    # component is main leaf in main voice (simultaneous with on-beat graces)
-    if (
-        n == -1
-        and component is component._parent[0]
-        and _get_on_beat_anchor_voice(component._parent) is not None
-    ):
-        on_beat = _get_on_beat_anchor_voice(component._parent)
-        return on_beat[-1]
-    if n == -1 and hasattr(component, "_get_on_beat_anchor_voice"):
-        raise Exception(repr(component))
-        on_beat = _get_on_beat_anchor_voice(component)
-        if on_beat is not None:
-            return on_beat[-1]
-    if n == -1 and getattr(component, "_before_grace_container", None):
-        return component._before_grace_container[-1]
-    index = component._parent.index(component) + n
-    if not (0 <= index < len(component._parent)):
-        return None
-    candidate = component._parent[index]
-    if n == 1 and getattr(candidate, "_before_grace_container", None):
-        return candidate._before_grace_container[0]
-    if n == -1 and getattr(candidate, "_after_grace_container", None):
-        return candidate._after_grace_container[-1]
-    return candidate
 
 
 def _get_sounding_pitch(note):

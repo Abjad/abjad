@@ -3,9 +3,9 @@ Updates start offsets, stop offsets and indicators everywhere in score.
 
 ..  note:: This is probably the most important part of Abjad to optimize. Use the
     profiler to figure out how many unnecessary updates are happening. Then reimplement.
-    As a hint, the update manager implements a weird version of the "observer pattern."
+    As a hint, _updatelib.py implements a weird version of the "observer pattern."
     It may make sense to revisit a textbook example of the observer pattern and review
-    the implementation of the update manager.
+    the implementation of _updatelib.py.
 
 """
 import fractions
@@ -106,25 +106,28 @@ def _get_measure_start_offsets(component):
     return measure_start_offsets
 
 
-def _get_on_beat_grace_leaf_offsets(leaf):
-    container = leaf._parent
-    anchor_leaf = container.get_anchor_leaf()
-    anchor_leaf_start_offset = anchor_leaf._start_offset
-    assert anchor_leaf_start_offset is not None
-    anchor_leaf_start_offset = _duration.Offset(anchor_leaf_start_offset.pair)
+def _get_obgc_leaf_offsets(leaf):
+    obgc = leaf._parent
+    assert type(obgc).__name__ == "OnBeatGraceContainer", repr(obgc)
+    first_nongrace_leaf = obgc.get_first_nongrace_leaf()
+    first_nongrace_leaf_start_offset = first_nongrace_leaf._start_offset
+    assert first_nongrace_leaf_start_offset is not None
+    first_nongrace_leaf_start_offset = _duration.Offset(
+        first_nongrace_leaf_start_offset.pair
+    )
     start_displacement = _duration.Duration(0)
     sibling = leaf._sibling(-1)
-    while sibling is not None and sibling._parent is container:
+    while sibling is not None and sibling._parent is obgc:
         start_displacement += sibling._get_duration()
         sibling = sibling._sibling(-1)
     stop_displacement = start_displacement + leaf._get_duration()
     if start_displacement == 0:
         start_displacement = None
     start_offset = _duration.Offset(
-        anchor_leaf_start_offset.pair, displacement=start_displacement
+        first_nongrace_leaf_start_offset.pair, displacement=start_displacement
     )
     stop_offset = _duration.Offset(
-        anchor_leaf_start_offset.pair, displacement=stop_displacement
+        first_nongrace_leaf_start_offset.pair, displacement=stop_displacement
     )
     return start_offset, stop_offset
 
@@ -245,16 +248,16 @@ def _update_all_offsets(root):
     Updating offsets does not update indicators.
     Updating offsets does not update offsets in seconds.
     """
-    on_beat_grace_music = []
+    obgc_components = []
     for component in _iterate_entire_score(root):
         if isinstance(component, _obgc.OnBeatGraceContainer) or isinstance(
             component._parent, _obgc.OnBeatGraceContainer
         ):
-            on_beat_grace_music.append(component)
+            obgc_components.append(component)
         else:
             _update_component_offsets(component)
             component._offsets_are_current = True
-    for component in on_beat_grace_music:
+    for component in obgc_components:
         _update_component_offsets(component)
         component._offsets_are_current = True
 
@@ -307,12 +310,12 @@ def _update_component_offsets(component):
         pair = _get_before_grace_leaf_offsets(component)
         start_offset, stop_offset = pair
     elif isinstance(component, _obgc.OnBeatGraceContainer):
-        pair = _get_on_beat_grace_leaf_offsets(component[0])
+        pair = _get_obgc_leaf_offsets(component[0])
         start_offset = pair[0]
-        pair = _get_on_beat_grace_leaf_offsets(component[-1])
+        pair = _get_obgc_leaf_offsets(component[-1])
         stop_offset = pair[-1]
     elif isinstance(component._parent, _obgc.OnBeatGraceContainer):
-        pair = _get_on_beat_grace_leaf_offsets(component)
+        pair = _get_obgc_leaf_offsets(component)
         start_offset, stop_offset = pair
     elif isinstance(component, _score.AfterGraceContainer):
         pair = _get_after_grace_leaf_offsets(component[0])
@@ -331,22 +334,23 @@ def _update_component_offsets(component):
         # on-beat anchor leaf:
         if (
             component._parent is not None
-            and _obgc.OnBeatGraceContainer._is_on_beat_anchor_voice(component._parent)
+            and _obgc._is_obgc_nongrace_voice(component._parent)
             and component is component._parent[0]
         ):
-            anchor_voice = component._parent
-            assert _obgc.OnBeatGraceContainer._is_on_beat_anchor_voice(anchor_voice)
-            on_beat_grace_container = None
-            on_beat_wrapper = anchor_voice._parent
-            assert _obgc.OnBeatGraceContainer._is_on_beat_wrapper(on_beat_wrapper)
-            index = on_beat_wrapper.index(anchor_voice)
+            nongrace_voice = component._parent
+            assert _obgc._is_obgc_nongrace_voice(nongrace_voice)
+            obgc = None
+            polyphony_container = nongrace_voice._parent
+            assert _obgc._is_obgc_polyphony_container(polyphony_container)
+            index = polyphony_container.index(nongrace_voice)
+            # TODO: limit OBGC to index 0 (not index 1) in polyphony container
             if index == 0:
-                on_beat_grace_container = on_beat_wrapper[1]
+                obgc = polyphony_container[1]
             else:
-                on_beat_grace_container = on_beat_wrapper[0]
-            if on_beat_grace_container is not None:
-                durations = [_._get_duration() for _ in on_beat_grace_container]
-                start_displacement = sum(durations)
+                obgc = polyphony_container[0]
+            if obgc is not None:
+                grace_leaf_durations = [_._get_duration() for _ in obgc]
+                start_displacement = sum(grace_leaf_durations)
                 start_offset = _duration.Offset(
                     start_offset, displacement=start_displacement
                 )
