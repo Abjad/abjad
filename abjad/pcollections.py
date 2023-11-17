@@ -232,6 +232,9 @@ class PitchClassSegment:
         return type(self)(items)
 
 
+collections.abc.Sequence.register(PitchClassSegment)
+
+
 class PitchClassSet(frozenset):
     """
     Numbered pitch-class set.
@@ -569,6 +572,9 @@ class PitchClassSet(frozenset):
 
         """
         return type(self)(_ + n for _ in self)
+
+
+collections.abc.Sequence.register(PitchClassSet)
 
 
 PitchClassSet._wrap_methods(
@@ -1714,6 +1720,9 @@ class PitchSegment:
         return type(self)(items)
 
 
+collections.abc.Sequence.register(PitchSegment)
+
+
 class PitchSet(frozenset):
     """
     Numbered pitch set.
@@ -1927,6 +1936,9 @@ class PitchSet(frozenset):
         """
         string = ", ".join([str(_.number) for _ in sorted(self)])
         return f"{{{string}}}"
+
+
+collections.abc.Sequence.register(PitchSet)
 
 
 PitchSet._wrap_methods(

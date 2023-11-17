@@ -1390,14 +1390,14 @@ def logical_tie_to_tuplet(
     return tuplet
 
 
-def replace(argument, recipients, wrappers=False):
+def replace(argument, recipients, *, wrappers: bool = False) -> None:
     r"""
     Replaces ``argument`` (and contents of ``argument``) with ``recipients``.
 
-    ..  container:: example
+    Replaces in-score tuplet (and children of tuplet) with notes. Functions
+    exactly the same as container setitem:
 
-        Replaces in-score tuplet (and children of tuplet) with notes.
-        Functions exactly the same as container setitem:
+    ..  container:: example
 
         >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
         >>> tuplet_2 = abjad.Tuplet((2, 3), "d'4 e'4 f'4")
@@ -1593,7 +1593,6 @@ def replace(argument, recipients, wrappers=False):
             c'2
         }
 
-    Returns none.
     """
     if isinstance(argument, _score.Component):
         donors = [argument]
@@ -1608,20 +1607,19 @@ def replace(argument, recipients, wrappers=False):
     assert _are_contiguous_same_parent(recipients)
     if not donors:
         return
+    wrappers_ = []
     if wrappers is True:
         if 1 < len(donors) or not isinstance(donors[0], _score.Leaf):
             raise Exception(f"set wrappers only with single leaf: {donors!r}.")
         if 1 < len(recipients) or not isinstance(recipients[0], _score.Leaf):
             raise Exception(f"set wrappers only with single leaf: {recipients!r}.")
         donor = donors[0]
-        wrappers = _get.wrappers(donor)
+        wrappers_ = _get.wrappers(donor)
         recipient = recipients[0]
     parent, start, stop = _get_parent_and_start_stop_indices(donors)
     assert parent is not None, repr(donors)
     parent.__setitem__(slice(start, stop + 1), recipients)
-    if not wrappers:
-        return
-    for wrapper in wrappers:
+    for wrapper in wrappers_:
         # bypass Wrapper._bind_component()
         # to avoid full-score update / traversal;
         # this works because one-to-one leaf replacement

@@ -388,7 +388,8 @@ class Wrapper:
     def _bind_effective_context(self, correct_effective_context):
         self._unbind_effective_context()
         if correct_effective_context is not None:
-            correct_effective_context._dependent_wrappers.append(self)
+            if self not in correct_effective_context._dependent_wrappers:
+                correct_effective_context._dependent_wrappers.append(self)
         self._effective_context = correct_effective_context
         self._update_effective_context()
         if isinstance(self.indicator, _tweaks.Bundle):

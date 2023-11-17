@@ -835,13 +835,13 @@ class Container(Component):
             else:
                 return False
 
-    def __delitem__(self, i):
+    def __delitem__(self, i) -> None:
         r"""
         Deletes components(s) at index ``i`` in container.
 
-        ..  container:: example
+        Deletes first tuplet in voice:
 
-            Deletes first tuplet in voice:
+        ..  container:: example
 
             >>> voice = abjad.Voice()
             >>> voice.append(abjad.Tuplet((4, 6), "c'4 d'4 e'4"))
@@ -880,7 +880,7 @@ class Container(Component):
 
             First tuplet no longer appears in voice:
 
-                >>> abjad.show(voice) # doctest: +SKIP
+            >>> abjad.show(voice) # doctest: +SKIP
 
             ..  docs::
 
@@ -922,14 +922,19 @@ class Container(Component):
             >>> abjad.wf.wellformed(tuplet_1)
             True
 
-        Returns none.
         """
         result = self[i]
+        wrappers = []
+        for component in self._get_components(result):
+            wrappers_ = component._get_indicators(unwrap=False)
+            wrappers.extend(wrappers_)
         if isinstance(result, Component):
             result._set_parent(None)
-            return
-        for component in result:
-            component._set_parent(None)
+        else:
+            for component in result:
+                component._set_parent(None)
+        for wrapper in wrappers:
+            wrapper._update_effective_context()
 
     @typing.overload
     def __getitem__(self, argument: typing.SupportsIndex | str) -> Component:
