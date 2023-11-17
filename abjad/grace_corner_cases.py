@@ -9,10 +9,10 @@ r"""
     >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
     >>> container = abjad.BeforeGraceContainer("gs'16")
     >>> abjad.attach(container, music_voice[1])
-    >>> container = abjad.on_beat_grace_container(
+    >>> obgc = abjad.on_beat_grace_container(
     ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=(1, 24)
     ... )
-    >>> abjad.attach(abjad.Articulation(">"), container[0])
+    >>> abjad.attach(abjad.Articulation(">"), obgc[0])
     >>> staff = abjad.Staff([music_voice])
     >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
     >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -66,10 +66,10 @@ r"""
     is attached first:
 
     >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
-    >>> container = abjad.on_beat_grace_container(
+    >>> obgc = abjad.on_beat_grace_container(
     ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=(1, 24)
     ... )
-    >>> abjad.attach(abjad.Articulation(">"), container[0])
+    >>> abjad.attach(abjad.Articulation(">"), obgc[0])
     >>> container = abjad.BeforeGraceContainer("gs'16")
     >>> abjad.attach(container, music_voice[1][1][0])
     >>> staff = abjad.Staff([music_voice])
@@ -128,10 +128,10 @@ r"""
     >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
     >>> container = abjad.AfterGraceContainer("cs'16")
     >>> abjad.attach(container, music_voice[1])
-    >>> container = abjad.on_beat_grace_container(
+    >>> obgc = abjad.on_beat_grace_container(
     ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=(1, 24)
     ... )
-    >>> abjad.attach(abjad.Articulation(">"), container[0])
+    >>> abjad.attach(abjad.Articulation(">"), obgc[0])
     >>> staff = abjad.Staff([music_voice])
     >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
     >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -237,10 +237,10 @@ r"""
     >>> music_voice = abjad.Voice("b4 d' e' f'", name="MusicVoice")
     >>> container = abjad.AfterGraceContainer("c'16")
     >>> abjad.attach(container, music_voice[0])
-    >>> container = abjad.on_beat_grace_container(
+    >>> obgc = abjad.on_beat_grace_container(
     ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=(1, 24)
     ... )
-    >>> abjad.attach(abjad.Articulation(">"), container[0])
+    >>> abjad.attach(abjad.Articulation(">"), obgc[0])
     >>> staff = abjad.Staff([music_voice])
     >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
     >>> abjad.show(lilypond_file) # doctest: +SKIP

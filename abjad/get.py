@@ -26,10 +26,8 @@ def after_grace_container(argument):
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -269,10 +267,8 @@ def before_grace_container(argument):
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -364,10 +360,8 @@ def contents(argument) -> list[_score.Component]:
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -558,10 +552,8 @@ def descendants(argument) -> list[_score.Component]:
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -727,10 +719,8 @@ def duration(
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -934,11 +924,9 @@ def effective(
         >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Clef("alto"), container[0])
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Clef("alto"), obgc[0])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1437,10 +1425,8 @@ def effective_staff(argument) -> typing.Optional["_score.Staff"]:
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -1569,11 +1555,9 @@ def effective_wrapper(
         >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Clef("alto"), container[0])
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Clef("alto"), obgc[0])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1688,10 +1672,8 @@ def grace(argument) -> bool:
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -1789,11 +1771,9 @@ def has_effective_indicator(
         >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Clef("alto"), container[0])
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Clef("alto"), obgc[0])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1942,11 +1922,9 @@ def has_indicator(
         >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Clef("alto"), container[0])
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Clef("alto"), obgc[0])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2141,11 +2119,9 @@ def indicator(
         >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Clef("alto"), container[0])
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Clef("alto"), obgc[0])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2292,11 +2268,9 @@ def indicators(
         >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Clef("alto"), container[0])
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Clef("alto"), obgc[0])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> for note in abjad.select.notes(staff):
@@ -2542,11 +2516,9 @@ def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
         >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Clef("alto"), container[0])
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Clef("alto"), obgc[0])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2726,10 +2698,8 @@ def lineage(argument) -> "Lineage":
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -2932,10 +2902,8 @@ def logical_tie(argument) -> "_select.LogicalTie":
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -3124,10 +3092,8 @@ def measure_number(argument) -> int:
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -3298,10 +3264,8 @@ def parentage(argument) -> "_parentage.Parentage":
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -3513,10 +3477,8 @@ def pitches(argument) -> set[_pitch.NamedPitch]:
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -3772,10 +3734,8 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -3953,11 +3913,9 @@ def wrapper(
         >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Clef("alto"), container[0])
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Clef("alto"), obgc[0])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> for note in abjad.select.notes(staff):
@@ -4091,11 +4049,9 @@ def wrappers(
         >>> staff = abjad.Staff([music_voice])
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Clef("alto"), container[0])
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Clef("alto"), obgc[0])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> for note in abjad.select.notes(staff):

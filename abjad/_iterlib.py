@@ -19,12 +19,26 @@ def _coerce_exclude(exclude):
     return exclude
 
 
-def _is_unpitched(leaf):
-    if hasattr(leaf, "written_pitch"):
-        return False
-    if hasattr(leaf, "written_pitches"):
-        return False
-    return True
+def _get_leaf(argument, n: int = 0):
+    if n not in (-1, 0, 1):
+        message = "n must be -1, 0 or 1:\n"
+        message += f"   {repr(n)}"
+        raise Exception(message)
+    if isinstance(argument, _score.Leaf):
+        candidate = _get_sibling_with_graces(argument, n)
+        if isinstance(candidate, _score.Leaf):
+            return candidate
+        return _getlib._get_leaf_from_leaf(argument, n)
+    if 0 <= n:
+        reverse = False
+    else:
+        reverse = True
+        n = abs(n) - 1
+    leaves = _public_iterate_leaves(argument, reverse=reverse)
+    for i, leaf in enumerate(leaves):
+        if i == n:
+            return leaf
+    return None
 
 
 def _get_logical_tie_leaves(leaf):
@@ -61,6 +75,100 @@ def _get_logical_tie_leaves(leaf):
         current_leaf = next_leaf
     leaves = leaves_before + [leaf] + leaves_after
     return leaves
+
+
+def _is_obgc_nongrace_voice(argument):
+    if (
+        type(argument).__name__ == "Voice"
+        and type(argument._parent).__name__ == "Container"
+        and type(argument._parent[0]).__name__ == "OnBeatGraceContainer"
+    ):
+        return True
+    return False
+
+
+def _get_sibling_with_graces(component, n):
+    assert n in (-1, 0, 1), repr(component, n)
+    if n == 0:
+        return component
+    if component._parent is None:
+        return None
+    if component._parent.simultaneous:
+        return None
+    if (
+        n == 1
+        and getattr(component._parent, "_main_leaf", None)
+        and component._parent._main_leaf._before_grace_container is component._parent
+        and component is component._parent[-1]
+    ):
+        return component._parent._main_leaf
+    # component is final leaf in obgc
+    if (
+        n == 1
+        and component is component._parent[-1]
+        and component._parent.__class__.__name__ == "OnBeatGraceContainer"
+    ):
+        return component._parent.get_first_nongrace_leaf()
+    if (
+        n == 1
+        and getattr(component._parent, "_main_leaf", None)
+        and component._parent._main_leaf._after_grace_container is component._parent
+        and component is component._parent[-1]
+    ):
+        main_leaf = component._parent._main_leaf
+        if main_leaf is main_leaf._parent[-1]:
+            return None
+        index = main_leaf._parent.index(main_leaf)
+        return main_leaf._parent[index + 1]
+    if n == 1 and getattr(component, "_after_grace_container", None):
+        return component._after_grace_container[0]
+    if (
+        n == -1
+        and getattr(component._parent, "_main_leaf", None)
+        and component._parent._main_leaf._after_grace_container is component._parent
+        and component is component._parent[0]
+    ):
+        return component._parent._main_leaf
+    if (
+        n == -1
+        and getattr(component._parent, "_main_leaf", None)
+        and component._parent._main_leaf._before_grace_container is component._parent
+        and component is component._parent[0]
+    ):
+        main_leaf = component._parent._main_leaf
+        if main_leaf is main_leaf._parent[0]:
+            return None
+        index = main_leaf._parent.index(main_leaf)
+        return main_leaf._parent[index - 1]
+    # component is first leaf in obgc nongrace voice
+    if (
+        n == -1
+        and component is component._parent[0]
+        and type(component._parent).__name__ == "Voice"
+        and type(component._parent._parent).__name__ == "Container"
+        and type(component._parent._parent[0]).__name__ == "OnBeatGraceContainer"
+    ):
+        obgc = component._parent._parent[0]
+        return obgc[-1]
+    if n == -1 and getattr(component, "_before_grace_container", None):
+        return component._before_grace_container[-1]
+    index = component._parent.index(component) + n
+    if not (0 <= index < len(component._parent)):
+        return None
+    candidate = component._parent[index]
+    if n == 1 and getattr(candidate, "_before_grace_container", None):
+        return candidate._before_grace_container[0]
+    if n == -1 and getattr(candidate, "_after_grace_container", None):
+        return candidate._after_grace_container[-1]
+    return candidate
+
+
+def _is_unpitched(leaf):
+    if hasattr(leaf, "written_pitch"):
+        return False
+    if hasattr(leaf, "written_pitches"):
+        return False
+    return True
 
 
 def _iterate_components(
@@ -219,28 +327,6 @@ def _iterate_logical_ties(
             if logical_tie not in yielded_logical_ties:
                 yielded_logical_ties.add(logical_tie)
                 yield logical_tie
-
-
-def _get_leaf(argument, n: int = 0):
-    if n not in (-1, 0, 1):
-        message = "n must be -1, 0 or 1:\n"
-        message += f"   {repr(n)}"
-        raise Exception(message)
-    if isinstance(argument, _score.Leaf):
-        candidate = _getlib._get_sibling_with_graces(argument, n)
-        if isinstance(candidate, _score.Leaf):
-            return candidate
-        return _getlib._get_leaf_from_leaf(argument, n)
-    if 0 <= n:
-        reverse = False
-    else:
-        reverse = True
-        n = abs(n) - 1
-    leaves = _public_iterate_leaves(argument, reverse=reverse)
-    for i, leaf in enumerate(leaves):
-        if i == n:
-            return leaf
-    return None
 
 
 def _public_iterate_components(

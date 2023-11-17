@@ -5988,10 +5988,8 @@ def runs(
         ... )
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[4])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[5:7]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[5:7])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[-1])
         >>> staff = abjad.Staff([music_voice])
@@ -6621,10 +6619,8 @@ def with_next_leaf(argument, *, grace: bool | None = None) -> list[_score.Leaf]:
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])
@@ -6832,10 +6828,8 @@ def with_previous_leaf(argument) -> list[_score.Leaf]:
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
         >>> abjad.attach(container, music_voice[1])
-        >>> container = abjad.on_beat_grace_container(
-        ...     "g'16 gs' a' as'", music_voice[2:3]
-        ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> container = abjad.AfterGraceContainer("fs'16")
         >>> abjad.attach(container, music_voice[3])
         >>> staff = abjad.Staff([music_voice])

@@ -16,6 +16,27 @@ from . import tweaks as _tweaks
 from . import typings as _typings
 
 
+def _is_obgc_nongrace_voice(component):
+    if not isinstance(component, _score.Voice):
+        return False
+    component = _get.parentage(component).parent
+    return _is_obgc_polyphony_container(component)
+
+
+def _is_obgc_polyphony_container(container):
+    if type(container) is not _score.Container:
+        return False
+    if not container.simultaneous:
+        return False
+    if len(container) != 2:
+        return False
+    if isinstance(container[0], OnBeatGraceContainer) and isinstance(
+        container[1], _score.Voice
+    ):
+        return True
+    return False
+
+
 class OnBeatGraceContainer(_score.Container):
     r"""
     On-beat grace container.
@@ -28,10 +49,10 @@ class OnBeatGraceContainer(_score.Container):
 
         >>> music_voice = abjad.Voice("c'4 d'4 e'4 f'4", name="MusicVoice")
         >>> string = "<d' g'>8 a' b' c'' d'' c'' b' a' b' c'' d''"
-        >>> container = abjad.on_beat_grace_container(
+        >>> obgc = abjad.on_beat_grace_container(
         ...     string, music_voice[1:3], grace_leaf_duration=(1, 24)
         ... )
-        >>> abjad.attach(abjad.Articulation(">"), container[0])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> staff = abjad.Staff([music_voice])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -119,28 +140,6 @@ class OnBeatGraceContainer(_score.Container):
 
     ### PRIVATE METHODS ###
 
-    def _attach_lilypond_one_voice(self):
-        anchor_leaf = self.get_anchor_leaf()
-        anchor_voice = _parentage.Parentage(anchor_leaf).get(_score.Voice)
-        final_anchor_leaf = _iterlib._get_leaf(anchor_voice, -1)
-        next_leaf = _iterlib._get_leaf(final_anchor_leaf, 1)
-        if next_leaf is None:
-            return
-        command = _indicators.VoiceNumber()
-        if _get.has_indicator(next_leaf, command):
-            return
-        next_leaf_parent = _get.parentage(next_leaf).parent
-        if isinstance(next_leaf_parent, OnBeatGraceContainer):
-            return
-        if self._is_on_beat_anchor_voice(next_leaf_parent):
-            return
-        tag = self.tag
-        tag = tag.append(
-            _tag.Tag("abjad.OnBeatGraceContainer._attach_lilypond_one_voice()")
-        )
-        tag = tag.append(_tag.Tag("ONE_VOICE_COMMAND"))
-        _bind.attach(command, next_leaf, tag=tag)
-
     def _format_invocation(self):
         return r'\context Voice = "On_Beat_Grace_Container"'
 
@@ -176,66 +175,6 @@ class OnBeatGraceContainer(_score.Container):
             result.extend(contributions)
         return result
 
-    @staticmethod
-    def _is_on_beat_anchor_voice(container):
-        wrapper = _get.parentage(container).parent
-        if wrapper is None:
-            return False
-        if not isinstance(container, _score.Voice):
-            return False
-        return OnBeatGraceContainer._is_on_beat_wrapper(wrapper)
-
-    @staticmethod
-    def _is_on_beat_wrapper(container):
-        if not container.simultaneous:
-            return False
-        if len(container) != 2:
-            return False
-        if isinstance(container[0], OnBeatGraceContainer) and isinstance(
-            container[1], _score.Voice
-        ):
-            return True
-        if isinstance(container[0], _score.Voice) and isinstance(
-            container[1], OnBeatGraceContainer
-        ):
-            return True
-        return False
-
-    def _match_anchor_leaf(self):
-        string = "abjad.OnBeatGraceContainer._match_anchor_leaf()"
-        tag = self.tag.append(_tag.Tag(string))
-        first_grace = _iterlib._get_leaf(self, 0)
-        if not isinstance(first_grace, _score.Note | _score.Chord):
-            message = "must start with note or chord:\n"
-            message += f"    {repr(self)}"
-            raise Exception(message)
-        anchor_leaf = self.get_anchor_leaf()
-        if not isinstance(anchor_leaf, _score.Note | _score.Chord):
-            return
-        if not isinstance(first_grace, _score.Note | _score.Chord):
-            return
-        if isinstance(first_grace, _score.Note):
-            chord = _score.Chord(first_grace, tag=tag)
-            _mutate.replace(first_grace, chord)
-            first_grace = chord
-        generator = _iterate.pitches(anchor_leaf)
-        anchor_pitches = list(generator)
-        highest_pitch = list(sorted(anchor_pitches))[-1]
-        if highest_pitch not in first_grace.note_heads:
-            first_grace.note_heads.append(highest_pitch)
-        grace_mate_head = first_grace.note_heads.get(highest_pitch)
-        _tweaks.tweak(grace_mate_head, r"\tweak font-size 0", tag=tag)
-        _tweaks.tweak(grace_mate_head, r"\tweak transparent ##t", tag=tag)
-
-    def _set_leaf_durations(self):
-        if self.grace_leaf_duration is None:
-            return
-        for leaf in _select.leaves(self):
-            duration = _get.duration(leaf)
-            if duration != self.grace_leaf_duration:
-                multiplier = self.grace_leaf_duration / duration
-                leaf.multiplier = _duration.pair(multiplier)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -247,22 +186,103 @@ class OnBeatGraceContainer(_score.Container):
 
     ### PUBLIC METHODS ###
 
-    def get_anchor_leaf(self):
+    def attach_lilypond_one_voice(self) -> None:
+        r"""
+        Attaches LilyPond ``\oneVoice`` command.
         """
-        Gets anchor leaf.
+        nongrace_voice = self.get_nongrace_voice()
+        final_nongrace_leaf = _select.leaf(nongrace_voice, -1, grace=False)
+        next_leaf = _iterlib._get_leaf(final_nongrace_leaf, 1)
+        if next_leaf is None:
+            return
+        if _get.has_indicator(next_leaf, _indicators.VoiceNumber):
+            return
+        next_leaf_parent = _get.parentage(next_leaf).parent
+        if isinstance(next_leaf_parent, OnBeatGraceContainer):
+            return
+        if _is_obgc_nongrace_voice(next_leaf_parent):
+            return
+        tag = self.tag
+        assert tag is not None, repr(tag)
+        tag = tag.append(
+            _tag.Tag("abjad.OnBeatGraceContainer._attach_lilypond_one_voice()")
+        )
+        tag = tag.append(_tag.Tag("ONE_VOICE_COMMAND"))
+        command = _indicators.VoiceNumber()
+        _bind.attach(command, next_leaf, tag=tag)
+
+    def get_first_nongrace_leaf(self) -> _score.Leaf:
         """
-        container = _get.parentage(self).parent
-        if container is None:
-            return None
-        if len(container) != 2:
-            raise Exception("Combine on-beat grace container with one other voice.")
-        if container.index(self) == 0:
-            anchor_voice = container[-1]
-        else:
-            assert container.index(self) == 1
-            anchor_voice = container[0]
-        anchor_leaf = _select.leaf(anchor_voice, 0, grace=False)
-        return anchor_leaf
+        Gets first nongrace leaf.
+        """
+        polyphony_container = _get.parentage(self).parent
+        assert type(polyphony_container) is _score.Container
+        assert len(polyphony_container) == 2, repr(polyphony_container)
+        nongrace_voice = polyphony_container[1]
+        first_nongrace_leaf = _select.leaf(nongrace_voice, 0, grace=False)
+        return first_nongrace_leaf
+
+    def get_nongrace_voice(self) -> _score.Voice:
+        """
+        Gets nongrace voice.
+        """
+        polyphony_container = _get.parentage(self).parent
+        assert type(polyphony_container) is _score.Container
+        assert len(polyphony_container) == 2, repr(polyphony_container)
+        nongrace_voice = polyphony_container[1]
+        assert isinstance(nongrace_voice, _score.Voice)
+        return nongrace_voice
+
+    def get_polyphony_container(self) -> _score.Container:
+        """
+        Gets polyphony container.
+        """
+        polyphony_container = _get.parentage(self).parent
+        assert type(polyphony_container) is _score.Container
+        assert len(polyphony_container) == 2, repr(polyphony_container)
+        return polyphony_container
+
+    def match_first_nongrace_leaf(self) -> None:
+        """
+        Matches first nongrace leaf.
+        """
+        string = "abjad.OnBeatGraceContainer.match_first_nongrace_leaf()"
+        assert self.tag is not None, repr(self.tag)
+        tag = self.tag.append(_tag.Tag(string))
+        first_obgc_leaf = _iterlib._get_leaf(self, 0)
+        if not isinstance(first_obgc_leaf, _score.Note | _score.Chord):
+            message = "must start with note or chord:\n"
+            message += f"    {repr(self)}"
+            raise Exception(message)
+        first_nongrace_leaf = self.get_first_nongrace_leaf()
+        if not isinstance(first_nongrace_leaf, _score.Note | _score.Chord):
+            return
+        if not isinstance(first_obgc_leaf, _score.Note | _score.Chord):
+            return
+        if isinstance(first_obgc_leaf, _score.Note):
+            chord = _score.Chord(first_obgc_leaf, tag=tag)
+            _mutate.replace(first_obgc_leaf, chord)
+            first_obgc_leaf = chord
+        generator = _iterate.pitches(first_nongrace_leaf)
+        nongrace_pitches = list(generator)
+        highest_pitch = list(sorted(nongrace_pitches))[-1]
+        if highest_pitch not in first_obgc_leaf.note_heads:
+            first_obgc_leaf.note_heads.append(highest_pitch)
+        grace_mate_head = first_obgc_leaf.note_heads.get(highest_pitch)
+        _tweaks.tweak(grace_mate_head, r"\tweak font-size 0", tag=tag)
+        _tweaks.tweak(grace_mate_head, r"\tweak transparent ##t", tag=tag)
+
+    def set_grace_leaf_multipliers(self) -> None:
+        """
+        Sets grace leaf multipliers.
+        """
+        if self.grace_leaf_duration is None:
+            return
+        for leaf in _select.leaves(self):
+            duration = _get.duration(leaf)
+            if duration != self.grace_leaf_duration:
+                multiplier = self.grace_leaf_duration / duration
+                leaf.multiplier = _duration.pair(multiplier)
 
 
 def on_beat_grace_container(
@@ -278,22 +298,24 @@ def on_beat_grace_container(
     grace_polyphony_command: _indicators.VoiceNumber = _indicators.VoiceNumber(1),
     nongrace_polyphony_command: _indicators.VoiceNumber = _indicators.VoiceNumber(2),
     tag: _tag.Tag = _tag.Tag(),
-) -> "OnBeatGraceContainer":
+) -> OnBeatGraceContainer:
     r"""
-    Makes on-beat grace container (with ``grace_leaves``) and attaches to
-    ``nongrace_leaves``.
+    Wraps ``grace_leaves`` in on-beat grace container;
+    wraps ``nongrace_leaves`` in voice ("nongrace voice");
+    wraps on-beat grace container and nongrace voice in container ("polyphony
+    container").
 
     ..  container:: example
 
-        >>> def make_lilypond_file(anchor_voice_string, obgc_string, *, below=False):
-        ...     music_voice = abjad.Voice(anchor_voice_string, name="MusicVoice")
+        >>> def make_lilypond_file(nongrace_leaves_string, obgc_string, *, below=False):
+        ...     music_voice = abjad.Voice(nongrace_leaves_string, name="MusicVoice")
         ...     if below is False:
         ...         nongrace_polyphony_command = abjad.VoiceNumber(2)
         ...         grace_polyphony_command = abjad.VoiceNumber(1)
         ...     else:
         ...         nongrace_polyphony_command = abjad.VoiceNumber(1)
         ...         grace_polyphony_command = abjad.VoiceNumber(2)
-        ...     result = abjad.on_beat_grace_container(
+        ...     obgc = abjad.on_beat_grace_container(
         ...         obgc_string,
         ...         music_voice[1:3],
         ...         grace_leaf_duration=abjad.Duration(1, 30),
@@ -776,7 +798,7 @@ def on_beat_grace_container(
                 }
             }
 
-        ..  TODO:: Fix stem-alignment in final example.
+        ..  TODO:: Fix stem-alignment in two examples, above.
 
     """
     if not isinstance(grace_leaves, str):
@@ -799,56 +821,58 @@ def on_beat_grace_container(
         message = "nongrace leaves must be contiguous in same parent:\n"
         message += f"   {repr(nongrace_leaves)}"
         raise Exception(message)
-    on_beat_grace_container = OnBeatGraceContainer(
+    first_nongrace_leaf = _iterlib._get_leaf(nongrace_leaves, 0)
+    music_voice = _parentage.Parentage(first_nongrace_leaf).get(_score.Voice)
+    assert isinstance(music_voice, _score.Voice), repr(music_voice)
+    if music_voice.name is None:
+        message = "nongrace leaves must reside in named voice:\n"
+        message += f"   {repr(music_voice)}"
+        raise Exception(message)
+    obgc = OnBeatGraceContainer(
         grace_leaves, grace_leaf_duration=grace_leaf_duration, tag=tag
     )
-    anchor_leaf = _iterlib._get_leaf(nongrace_leaves, 0)
-    anchor_voice = _parentage.Parentage(anchor_leaf).get(_score.Voice)
-    assert isinstance(anchor_voice, _score.Voice), repr(anchor_voice)
-    if anchor_voice.name is None:
-        raise Exception(f"anchor voice must be named:\n   {repr(anchor_voice)}")
-    anchor_voice_insert = _score.Voice(name=anchor_voice.name, tag=tag)
-    _mutate.wrap(nongrace_leaves, anchor_voice_insert)
-    container = _score.Container(simultaneous=True, tag=tag)
-    _mutate.wrap(anchor_voice_insert, container)
-    container.insert(0, on_beat_grace_container)
-    on_beat_grace_container._match_anchor_leaf()
-    on_beat_grace_container._set_leaf_durations()
-    insert_duration = _get.duration(anchor_voice_insert)
-    grace_container_duration = _get.duration(on_beat_grace_container)
-    if insert_duration < grace_container_duration:
-        message = f"grace {repr(grace_container_duration)}"
-        message += f" exceeds anchor {repr(insert_duration)}."
+    nongrace_voice = _score.Voice(name=music_voice.name, tag=tag)
+    _mutate.wrap(nongrace_leaves, nongrace_voice)
+    polyphony_container = _score.Container(simultaneous=True, tag=tag)
+    _mutate.wrap(nongrace_voice, polyphony_container)
+    polyphony_container.insert(0, obgc)
+    obgc.match_first_nongrace_leaf()
+    obgc.set_grace_leaf_multipliers()
+    nongrace_voice_duration = _get.duration(nongrace_voice)
+    obgc_duration = _get.duration(obgc)
+    if nongrace_voice_duration < obgc_duration:
+        message = f"OBGC duration {repr(obgc_duration)}"
+        message += f" exceeds nongrace voice duration {repr(nongrace_voice_duration)}."
         raise Exception(message)
     literal = _indicators.LilyPondLiteral(
         rf"\set fontSize = #{grace_font_size}",
         site="before",
     )
-    _bind.attach(literal, on_beat_grace_container[0], tag=tag)
+    _bind.attach(literal, obgc[0], tag=tag)
     if not do_not_beam:
-        _spanners.beam(on_beat_grace_container[:], tag=tag)
+        _spanners.beam(obgc[:], tag=tag)
     if not do_not_slash:
         literal = _indicators.LilyPondLiteral(r"\slash", site="before")
-        _bind.attach(literal, on_beat_grace_container[0], tag=tag)
+        _bind.attach(literal, obgc[0], tag=tag)
     if not do_not_slur:
-        _spanners.slur(on_beat_grace_container[:], tag=tag)
-    first_grace = _iterlib._get_leaf(on_beat_grace_container, 0)
-    _bind.detach(_indicators.VoiceNumber(), anchor_leaf)
+        _spanners.slur(obgc[:], tag=tag)
+    first_obgc_leaf = _iterlib._get_leaf(obgc, 0)
+    _bind.detach(_indicators.VoiceNumber(), first_nongrace_leaf)
     _bind.attach(
         grace_polyphony_command,
-        first_grace,
+        first_obgc_leaf,
         tag=tag,
     )
-    _bind.detach(_indicators.VoiceNumber(), anchor_leaf)
+    _bind.detach(_indicators.VoiceNumber(), first_nongrace_leaf)
     _bind.attach(
         nongrace_polyphony_command,
-        anchor_leaf,
+        first_nongrace_leaf,
         tag=tag,
     )
     if not do_not_attach_one_voice_command:
-        last_anchor_leaf = _iterlib._get_leaf(nongrace_leaves, -1)
-        next_leaf = _iterlib._get_leaf(last_anchor_leaf, 1)
+        final_nongrace_leaf = _iterlib._get_leaf(nongrace_leaves, -1)
+        next_leaf = _iterlib._get_leaf(final_nongrace_leaf, 1)
         if next_leaf is not None:
             command = _indicators.VoiceNumber()
             _bind.attach(command, next_leaf, tag=tag)
-    return on_beat_grace_container
+    return obgc

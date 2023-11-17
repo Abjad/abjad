@@ -2,7 +2,7 @@ import collections
 import copy as python_copy
 import itertools
 
-from . import _getlib
+from . import _iterlib
 from . import bind as _bind
 from . import duration as _duration
 from . import enums as _enums
@@ -406,13 +406,13 @@ def _immediately_precedes(component_1, component_2, ignore_before_after_grace=No
     # OnBeatGraceContainer is a proper container
     grace_prototype = (_score.AfterGraceContainer, _score.BeforeGraceContainer)
     while current is not None:
-        sibling = _getlib._get_sibling_with_graces(current, 1)
+        sibling = _iterlib._get_sibling_with_graces(current, 1)
         while (
             ignore_before_after_grace
             and sibling is not None
             and isinstance(sibling._parent, grace_prototype)
         ):
-            sibling = _getlib._get_sibling_with_graces(sibling, 1)
+            sibling = _iterlib._get_sibling_with_graces(sibling, 1)
         if sibling is None:
             current = current._parent
         else:
@@ -1827,17 +1827,19 @@ def scale(argument, multiplier) -> None:
 # TODO: add tests of tupletted notes and rests.
 # TODO: add examples that show indicator handling.
 # TODO: add example showing grace and after grace handling.
-def split(argument, durations, *, cyclic=False, tag=None):
+def split(
+    argument, durations, *, cyclic: bool = False, tag: _tag.Tag | None = None
+) -> list[list[_score.Component]]:
     r"""
     Splits ``argument`` by ``durations``.
 
+    Splits leaves cyclically and ties split notes:
+
     ..  container:: example
 
-        Splits leaves cyclically and ties split notes:
-
         >>> voice = abjad.Voice("c'1 d'1")
-        >>> abjad.hairpin('p < f', voice[:])
-        >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 3
+        >>> abjad.hairpin("p < f", voice[:])
+        >>> abjad.override(voice).DynamicLineSpanner.staff_padding = 4
         >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -1847,7 +1849,7 @@ def split(argument, durations, *, cyclic=False, tag=None):
             \new Voice
             \with
             {
-                \override DynamicLineSpanner.staff-padding = 3
+                \override DynamicLineSpanner.staff-padding = 4
             }
             {
                 c'1
@@ -1872,7 +1874,7 @@ def split(argument, durations, *, cyclic=False, tag=None):
             \new Voice
             \with
             {
-                \override DynamicLineSpanner.staff-padding = 3
+                \override DynamicLineSpanner.staff-padding = 4
             }
             {
                 c'2.
@@ -2211,7 +2213,6 @@ def split(argument, durations, *, cyclic=False, tag=None):
                 d'2
             }
 
-    Returns list of selections.
     """
     components = argument
     if isinstance(components, _score.Component):
@@ -2325,8 +2326,10 @@ def split(argument, durations, *, cyclic=False, tag=None):
     # partition split components according to input durations
     result = _sequence.flatten(result, depth=-1)
     result = _select.partition_by_durations(result, durations_copy, fill=_enums.EXACT)
-    # return list of shards
-    assert all(isinstance(_, list) for _ in result)
+    # return list of component lists
+    for list_ in result:
+        assert isinstance(list_, list), repr(list_)
+        assert all(isinstance(_, _score.Component) for _ in list_), repr(list_)
     return result
 
 
