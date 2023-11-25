@@ -24,7 +24,7 @@ class ContextManager:
     __slots__ = ()
     _is_abstract = True
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
@@ -50,11 +50,9 @@ class FilesystemState(ContextManager):
         remove = tuple([str(_) for _ in remove])
         self._remove = remove
 
-    def __enter__(self):
+    def __enter__(self) -> "FilesystemState":
         """
         Backs up filesystem assets.
-
-        Returns none.
         """
         for path in self.remove:
             assert not os.path.exists(path), repr(path)
@@ -70,13 +68,11 @@ class FilesystemState(ContextManager):
                 shutil.copytree(path, backup_path)
             else:
                 raise TypeError(f"neither file nor directory: {path}.")
+        return self
 
-    def __exit__(self, exg_type, exc_value, trackeback):
+    def __exit__(self, exg_type, exc_value, trackeback) -> None:
         """
-        Restores filesytem assets and removes backups;
-        also removes paths in remove list.
-
-        Returns none.
+        Restores filesytem assets and removes backups; also removes paths in remove list.
         """
         backup_paths = (_ + ".backup" for _ in self.keep)
         for path in backup_paths:
@@ -183,14 +179,14 @@ class ForbidUpdate(ContextManager):
 
     ### SPECIAL METHODS ###
 
-    def __enter__(self):
+    def __enter__(self) -> "ForbidUpdate":
         r"""
         Enters context manager.
 
-        ..  container:: example
+        REGRESSION. Indicators need to be updated after swap; context manager
+        updates indicators before forbidding further updates:
 
-            REGRESSION. Indicators need to be updated after swap; context
-            manager updates indicators before forbidding further updates:
+        ..  container:: example
 
             >>> staff = abjad.Staff(r"\times 1/1 { c'4 d' }")
             >>> abjad.attach(abjad.Clef("alto"), staff[0][0])
@@ -206,7 +202,6 @@ class ForbidUpdate(ContextManager):
             Note("d'4")
             Clef(name='alto', hide=False)
 
-        Returns context manager.
         """
         if self.component is not None:
             for component_ in _iterate.components(self.component):
@@ -216,11 +211,9 @@ class ForbidUpdate(ContextManager):
             self.component._is_forbidden_to_update = True
         return self
 
-    def __exit__(self, exc_type, exc_value, traceback):
+    def __exit__(self, exc_type, exc_value, traceback) -> None:
         """
         Exits context manager.
-
-        Returns none.
         """
         if self.component is not None:
             self.component._is_forbidden_to_update = False
@@ -247,24 +240,20 @@ class ForbidUpdate(ContextManager):
         return self._component
 
     @property
-    def update_on_enter(self):
+    def update_on_enter(self) -> bool | None:
         """
         Is true when context manager should update offsets on enter.
 
         Set to true, false or none.
-
-        Returns true, false or none.
         """
         return self._update_on_enter
 
     @property
-    def update_on_exit(self):
+    def update_on_exit(self) -> bool | None:
         """
         Is true when context manager should update offsets on exit.
 
         Set to true, false or none.
-
-        Returns true, false or none.
         """
         return self._update_on_exit
 
@@ -281,13 +270,13 @@ class NullContextManager(ContextManager):
     def __init__(self):
         pass
 
-    def __enter__(self):
+    def __enter__(self) -> None:
         """
         Enters context manager and does nothing.
         """
         pass
 
-    def __exit__(self, exc_type, exc_value, traceback):
+    def __exit__(self, exc_type, exc_value, traceback) -> None:
         """
         Exits context manager and does nothing.
         """
@@ -319,21 +308,21 @@ class ProgressIndicator(ContextManager):
 
     ### SPECIAL METHODS ###
 
-    def __enter__(self):
+    def __enter__(self) -> "ProgressIndicator":
         """
         Enters progress indicator.
         """
         self._print()
         return self
 
-    def __exit__(self, exc_type, exc_value, traceback):
+    def __exit__(self, exc_type, exc_value, traceback) -> None:
         """
         Exits progress indicator.
         """
         if self.verbose:
             print()
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets interpreter representation of context manager.
 
@@ -343,7 +332,6 @@ class ProgressIndicator(ContextManager):
             >>> context_manager
             <ProgressIndicator()>
 
-        Returns string.
         """
         return f"<{type(self).__name__}()>"
 
@@ -378,48 +366,37 @@ class ProgressIndicator(ContextManager):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def is_warning(self):
+    def is_warning(self) -> bool:
         """
-        Is true if progress indicator prints in red when its progress goes
-        above zero.
-
-        Returns true or false.
+        Is true if progress indicator prints in red when its progress goes above zero.
         """
         return self._is_warning
 
     @property
-    def message(self):
+    def message(self) -> str:
         """
         Gets message of progress indicator.
-
-        Returns string.
         """
         return self._message
 
     @property
-    def progress(self):
+    def progress(self) -> int:
         """
         Gets progress.
-
-        Returns integer.
         """
         return self._progress
 
     @property
-    def total(self):
+    def total(self) -> int | None:
         """
         Gets total count.
-
-        Returns integer or none.
         """
         return self._total
 
     @property
-    def verbose(self):
+    def verbose(self) -> bool:
         """
         Is true if progress indicator prints status.
-
-        Returns true or false.
         """
         return self._verbose
 
@@ -460,11 +437,9 @@ class RedirectedStreams(ContextManager):
 
     ### SPECIAL METHODS ###
 
-    def __enter__(self):
+    def __enter__(self) -> "RedirectedStreams":
         """
         Enters redirected streams context manager.
-
-        Returns none.
         """
         self._old_stdout, self._old_stderr = sys.stdout, sys.stderr
         self._old_stdout.flush()
@@ -472,11 +447,9 @@ class RedirectedStreams(ContextManager):
         sys.stdout, sys.stderr = self._stdout, self._stderr
         return self
 
-    def __exit__(self, exc_type, exc_value, traceback):
+    def __exit__(self, exc_type, exc_value, traceback) -> None:
         """
         Exits redirected streams context manager.
-
-        Returns none.
         """
         try:
             self._stdout.flush()
@@ -486,7 +459,7 @@ class RedirectedStreams(ContextManager):
         sys.stdout = self._old_stdout
         sys.stderr = self._old_stderr
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets interpreter representation of context manager.
 
@@ -496,7 +469,6 @@ class RedirectedStreams(ContextManager):
             >>> context_manager
             <RedirectedStreams()>
 
-        Returns string.
         """
         return super().__repr__()
 
@@ -543,7 +515,7 @@ class TemporaryDirectory(ContextManager):
         self._temporary_directory = tempfile.mkdtemp(dir=self.parent_directory)
         return self._temporary_directory
 
-    def __exit__(self, exc_type, exc_value, traceback):
+    def __exit__(self, exc_type, exc_value, traceback) -> None:
         """
         Exits context manager.
 
@@ -554,28 +526,23 @@ class TemporaryDirectory(ContextManager):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def parent_directory(self):
+    def parent_directory(self) -> str:
         """
         Gets parent directory.
-
-        Returns string.
         """
         return self._parent_directory
 
     @property
-    def temporary_directory(self):
+    def temporary_directory(self) -> str:
         """
         Gets temporary directory.
-
-        Returns string.
         """
         return self._temporary_directory
 
 
 class TemporaryDirectoryChange(ContextManager):
     """
-    A context manager for temporarily changing the current working
-    directory.
+    A context manager for temporarily changing the current working directory.
     """
 
     ### CLASS VARIABLES ###
@@ -603,7 +570,7 @@ class TemporaryDirectoryChange(ContextManager):
 
     ### SPECIAL METHODS ###
 
-    def __enter__(self):
+    def __enter__(self) -> "TemporaryDirectoryChange":
         """
         Enters context manager and changes to ``directory``.
         """
@@ -615,7 +582,7 @@ class TemporaryDirectoryChange(ContextManager):
                 print(message)
         return self
 
-    def __exit__(self, exc_type, exc_value, traceback):
+    def __exit__(self, exc_type, exc_value, traceback) -> None:
         """
         Exits context manager and returns to original working directory.
         """
@@ -626,41 +593,32 @@ class TemporaryDirectoryChange(ContextManager):
                 print(message)
         self._original_directory = None
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets interpreter representation of context manager.
-
-        Returns string.
         """
         return f"<{type(self).__name__}()>"
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def directory(self):
+    def directory(self) -> str:
         """
         Gets temporary directory of context manager.
-
-        Returns string.
         """
         return self._directory
 
     @property
-    def original_directory(self):
+    def original_directory(self) -> str:
         """
         Gets original directory of context manager.
-
-        Returns string.
         """
         return self._original_directory
 
     @property
-    def verbose(self):
+    def verbose(self) -> bool:
         """
-        Is true if context manager prints verbose messages on entrance and
-        exit.
-
-        Returns true or false.
+        Is true if context manager prints verbose messages on entrance and exit.
         """
         return self._verbose
 
@@ -736,11 +694,9 @@ class Timer(ContextManager):
 
     ### SPECIAL METHODS ###
 
-    def __enter__(self):
+    def __enter__(self) -> "Timer":
         """
         Enters context manager.
-
-        Returns context manager.
         """
         if self.enter_message and self.verbose:
             print(self.enter_message)
@@ -753,11 +709,9 @@ class Timer(ContextManager):
             self._process = process
         return self
 
-    def __exit__(self, exc_type, exc_value, traceback):
+    def __exit__(self, exc_type, exc_value, traceback) -> None:
         """
         Exit context manager.
-
-        Returns none.
         """
         self._stop_time = time.time()
         if self._process is not None:
@@ -768,11 +722,9 @@ class Timer(ContextManager):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def elapsed_time(self):
+    def elapsed_time(self) -> float | None:
         """
         Elapsed time.
-
-        Return float or none.
         """
         if self.start_time is not None:
             if self.stop_time is not None:
@@ -781,29 +733,23 @@ class Timer(ContextManager):
         return None
 
     @property
-    def enter_message(self):
+    def enter_message(self) -> str:
         """
         Timer enter message.
-
-        Returns string.
         """
         return self._enter_message
 
     @property
-    def exit_message(self):
+    def exit_message(self) -> str:
         """
         Timer exit message.
-
-        Returns string.
         """
         return self._exit_message
 
     @property
-    def print_continuously_from_background(self):
+    def print_continuously_from_background(self) -> bool:
         """
         Is true when timer should print continuously from background.
-
-        Returns true or false.
         """
         return self._print_continuously_from_background
 
@@ -826,23 +772,20 @@ class Timer(ContextManager):
         return self._stop_time
 
     @property
-    def total_time_message(self):
+    def total_time_message(self) -> str:
         """
         Gets total time message.
 
         Truncated to the nearest second.
-
-        Returns string.
         """
-        identifier = _string.string.pluralize("second", int(self.elapsed_time))
+        assert self.elapsed_time is not None
+        identifier = _string.pluralize("second", int(self.elapsed_time))
         message = f"total time {int(self.elapsed_time)} {identifier} ..."
         return message
 
     @property
-    def verbose(self):
+    def verbose(self) -> bool:
         """
         Is true if timer should print messages.
-
-        Returns true or false.
         """
         return self._verbose

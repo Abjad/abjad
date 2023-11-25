@@ -292,6 +292,56 @@ def check_notes_on_wrong_clef(argument) -> tuple[list, int]:
     return violators, len(total)
 
 
+def check_orphaned_dependent_wrappers(argument) -> tuple[list, int]:
+    r"""
+    Checks orphaned dependent wrappers.
+
+    This should normally never happen because Abjad manages dependent wrappers
+    behind the scenes.
+
+    This check exists to make sure that any new code added to Abjad doesn't
+    accidentally mangle dependent-wrapper handling.
+
+    ..  container:: example
+
+        >>> voice = abjad.Voice("c'8 [ d' e' f'")
+        >>> assert len(voice._dependent_wrappers) == 1
+        >>> wrapper = voice._dependent_wrappers[0]
+        >>> wrapper
+        Wrapper(annotation=None, context='Voice', deactivate=False, direction=None, indicator=StartBeam(), synthetic_offset=None, tag=Tag(string=''))
+
+        >>> wrapper.component
+        Note("c'8")
+
+        >>> abjad.wf.check_orphaned_dependent_wrappers(voice)
+        ([], 1)
+
+        >>> voice[0:1] = [abjad.Note("cs'8")]
+        >>> voice._dependent_wrappers
+        []
+
+        >>> abjad.wf.check_orphaned_dependent_wrappers(voice)
+        ([], 0)
+
+        >>> voice._dependent_wrappers.append(wrapper)
+        >>> assert len(voice._dependent_wrappers) == 1
+        >>> assert wrapper.component not in voice
+
+        >>> abjad.wf.check_orphaned_dependent_wrappers(voice)
+        ([Wrapper(annotation=None, context='Voice', deactivate=False, direction=None, indicator=StartBeam(), synthetic_offset=None, tag=Tag(string=''))], 1)
+
+    """
+    violators, total = [], 0
+    for context in _iterate.components(argument, _score.Context):
+        assert isinstance(context, _score.Context)
+        for wrapper in context._dependent_wrappers:
+            total += 1
+            parentage = _get.parentage(wrapper.component)
+            if context not in parentage:
+                violators.append(wrapper)
+    return violators, total
+
+
 def check_out_of_range_pitches(
     argument, *, allow_indicators: typing.Sequence[str | enum.Enum] = ()
 ) -> tuple[list, int]:
@@ -899,6 +949,7 @@ def _call_functions(
     check_empty_containers: bool = True,
     check_missing_parents: bool = True,
     check_notes_on_wrong_clef: bool = True,
+    check_orphaned_dependent_wrappers: bool = True,
     check_out_of_range_pitches: bool = True,
     check_overlapping_beams: bool = True,
     check_overlapping_text_spanners: bool = True,
@@ -929,6 +980,10 @@ def _call_functions(
         triples.append((violators, count, name))
     if check_notes_on_wrong_clef:
         name = "check_notes_on_wrong_clef"
+        violators, count = _globals[name](component)
+        triples.append((violators, count, name))
+    if check_orphaned_dependent_wrappers:
+        name = "check_orphaned_dependent_wrappers"
         violators, count = _globals[name](component)
         triples.append((violators, count, name))
     if check_out_of_range_pitches:
@@ -966,6 +1021,7 @@ def tabulate_wellformedness(
     check_empty_containers: bool = True,
     check_missing_parents: bool = True,
     check_notes_on_wrong_clef: bool = True,
+    check_orphaned_dependent_wrappers: bool = True,
     check_out_of_range_pitches: bool = True,
     check_overlapping_beams: bool = True,
     check_overlapping_text_spanners: bool = True,
@@ -984,6 +1040,7 @@ def tabulate_wellformedness(
         check_empty_containers=check_empty_containers,
         check_missing_parents=check_missing_parents,
         check_notes_on_wrong_clef=check_notes_on_wrong_clef,
+        check_orphaned_dependent_wrappers=check_orphaned_dependent_wrappers,
         check_out_of_range_pitches=check_out_of_range_pitches,
         check_overlapping_beams=check_overlapping_beams,
         check_overlapping_text_spanners=check_overlapping_text_spanners,
@@ -1011,6 +1068,7 @@ def wellformed(
     check_empty_containers: bool = True,
     check_missing_parents: bool = True,
     check_notes_on_wrong_clef: bool = True,
+    check_orphaned_dependent_wrappers: bool = True,
     check_out_of_range_pitches: bool = True,
     check_overlapping_beams: bool = True,
     check_overlapping_text_spanners: bool = True,
@@ -1029,6 +1087,7 @@ def wellformed(
         check_empty_containers=check_empty_containers,
         check_missing_parents=check_missing_parents,
         check_notes_on_wrong_clef=check_notes_on_wrong_clef,
+        check_orphaned_dependent_wrappers=check_orphaned_dependent_wrappers,
         check_out_of_range_pitches=check_out_of_range_pitches,
         check_overlapping_beams=check_overlapping_beams,
         check_overlapping_text_spanners=check_overlapping_text_spanners,

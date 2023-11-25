@@ -54,8 +54,6 @@ def test_Container___delitem___01():
     """
 
     voice = abjad.Voice("{ c'8 ( d'8 ) } { e'8 ( f'8 ) }")
-    leaves = abjad.select.leaves(voice)
-    abjad.beam(leaves)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -63,7 +61,6 @@ def test_Container___delitem___01():
         {
             {
                 c'8
-                [
                 (
                 d'8
                 )
@@ -73,7 +70,6 @@ def test_Container___delitem___01():
                 (
                 f'8
                 )
-                ]
             }
         }
         """
@@ -92,7 +88,6 @@ def test_Container___delitem___01():
                 (
                 f'8
                 )
-                ]
             }
         }
         """
@@ -105,7 +100,6 @@ def test_Container___delitem___01():
         r"""
         {
             c'8
-            [
             (
             d'8
             )
@@ -302,6 +296,44 @@ def test_Container___delitem___08():
 
     assert abjad.wf.wellformed(voice)
     assert abjad.wf.wellformed(leaf)
+
+
+def test_Container___delitem___09():
+    """
+    REGRESSION. Container deletion does not orphan dependent wrappers.
+    """
+
+    voice = abjad.Voice("{ c'4 [ } d'4")
+
+    assert abjad.lilypond(voice) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            {
+                c'4
+                [
+            }
+            d'4
+        }
+        """
+    )
+
+    assert len(voice._dependent_wrappers) == 1
+
+    del voice[0]
+
+    assert abjad.lilypond(voice) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            d'4
+        }
+        """
+    ), print(abjad.lilypond(voice))
+
+    assert len(voice._dependent_wrappers) == 0
+
+    assert abjad.wf.wellformed(voice)
 
 
 def test_Container___getitem___01():
@@ -1417,7 +1449,7 @@ def test_Container___setitem___20():
 
 def test_Container_append_01():
     """
-    Append sequential to voice.
+    Append container to voice.
     """
 
     voice = abjad.Voice("c'8 d'8")
@@ -2104,8 +2136,7 @@ def test_Container_insert_08():
 
 def test_Container_is_simultaneous_01():
     """
-    Is true when container encloses contents in LilyPond << >> brackets,
-    otherwise False.
+    Is true when container encloses contents in LilyPond << >> brackets, otherwise false.
     """
 
     assert not abjad.Container().simultaneous
@@ -2119,8 +2150,7 @@ def test_Container_is_simultaneous_01():
 
 def test_Container_is_simultaneous_02():
     """
-    Is true when container encloses contents in LilyPond << >> brackets,
-    otherwise False.
+    Is true when container encloses contents in LilyPond << >> brackets, otherwise false.
     """
 
     container = abjad.Container([])
@@ -2130,7 +2160,7 @@ def test_Container_is_simultaneous_02():
 
 def test_Container_is_simultaneous_03():
     """
-    Container 'simultaneous' is settable.
+    ``Container.simultaneous`` is settable.
     """
 
     container = abjad.Container([])
@@ -2142,7 +2172,7 @@ def test_Container_is_simultaneous_03():
 
 def test_Container_is_simultaneous_04():
     """
-    A simultaneous container can hold Contexts.
+    Simultaneous container can hold contexts.
     """
 
     container = abjad.Container([abjad.Voice("c'8 cs'8"), abjad.Voice("d'8 ef'8")])
@@ -2171,12 +2201,10 @@ def test_Container_is_simultaneous_05():
     Simultaneous containers must contain only other containers.
     """
 
-    # allowed
     container = abjad.Container(
         [abjad.Container("c'8 c'8 c'8 c'8"), abjad.Container("c'8 c'8 c'8 c'8")]
     )
 
-    # not allowed
     container = abjad.Container("c'8 c'8 c'8 c'8")
     with pytest.raises(Exception):
         container.simultaneous = True
@@ -2258,7 +2286,7 @@ def test_Container_pop_02():
         """
     ), print(abjad.lilypond(voice))
 
-    sequential = voice.pop()
+    container = voice.pop()
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -2275,7 +2303,7 @@ def test_Container_pop_02():
 
     assert abjad.wf.wellformed(voice)
 
-    assert abjad.lilypond(sequential) == abjad.string.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             e'8
@@ -2283,9 +2311,9 @@ def test_Container_pop_02():
             ]
         }
         """
-    ), print(abjad.lilypond(sequential))
+    ), print(abjad.lilypond(container))
 
-    assert abjad.wf.wellformed(sequential)
+    assert abjad.wf.wellformed(container)
 
 
 def test_Container_remove_01():
@@ -2342,14 +2370,12 @@ def test_Container_remove_01():
 def test_Container_remove_02():
     """
     Containers remove nested containers correctly.
-    abjad.Container abjad.detaches from parentage.
-    abjad.Container returns after removal.
+    Container detaches from parentage.
+    Container returns after removal.
     """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = abjad.select.leaves(voice)
-    sequential = voice[0]
-    abjad.beam(leaves)
+    container = voice[0]
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -2357,19 +2383,17 @@ def test_Container_remove_02():
         {
             {
                 c'8
-                [
                 d'8
             }
             {
                 e'8
                 f'8
-                ]
             }
         }
         """
     )
 
-    voice.remove(sequential)
+    voice.remove(container)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -2378,7 +2402,6 @@ def test_Container_remove_02():
             {
                 e'8
                 f'8
-                ]
             }
         }
         """
@@ -2386,17 +2409,16 @@ def test_Container_remove_02():
 
     assert abjad.wf.wellformed(voice)
 
-    assert abjad.lilypond(sequential) == abjad.string.normalize(
+    assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
             c'8
-            [
             d'8
         }
         """
     )
 
-    assert abjad.wf.wellformed(sequential)
+    assert abjad.wf.wellformed(container)
 
 
 def test_Container_remove_03():
