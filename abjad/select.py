@@ -1241,10 +1241,10 @@ def get(
         pattern = indices
     elif isinstance(indices, tuple):
         assert len(indices) == 2, repr(indices)
-        indices, period = indices
-        assert isinstance(indices, list), repr(indices)
+        indices_, period = indices
+        assert isinstance(indices_, list), repr(indices_)
         assert isinstance(period, int), repr(period)
-        pattern = _pattern.Pattern(indices, period=period)
+        pattern = _pattern.Pattern(indices_, period=period)
     else:
         pattern = _pattern.Pattern(indices, period=period)
     if invert is True:
