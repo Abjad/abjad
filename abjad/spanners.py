@@ -77,6 +77,68 @@ def beam(
                 ]
             }
 
+        Does not beam rests:
+
+        >>> voice = abjad.Voice("c'8 r e' f'")
+        >>> abjad.beam(voice[:], beam_rests=False)
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                c'8
+                r8
+                e'8
+                [
+                f'8
+                ]
+            }
+
+        Does beam rests:
+
+        >>> voice = abjad.Voice("c'8 r e' f'")
+        >>> abjad.beam(voice[:], beam_rests=True)
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                c'8
+                [
+                r8
+                e'8
+                f'8
+                ]
+            }
+
+        Beams rests and sets stemlet length:
+
+        >>> voice = abjad.Voice("c'8 r e' f'")
+        >>> abjad.beam(voice[:], beam_rests=True, stemlet_length=1)
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                \override Staff.Stem.stemlet-length = 1
+                c'8
+                [
+                r8
+                e'8
+                f'8
+                ]
+                \revert Staff.Stem.stemlet-length
+            }
+
     """
     assert callable(selector)
     argument = selector(argument)
