@@ -948,10 +948,10 @@ def effective(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \clef "alto"
                             \set fontSize = #-3
                             \slash
                             \voiceOne
-                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -1579,10 +1579,10 @@ def effective_wrapper(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \clef "alto"
                             \set fontSize = #-3
                             \slash
                             \voiceOne
-                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -1795,10 +1795,10 @@ def has_effective_indicator(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \clef "alto"
                             \set fontSize = #-3
                             \slash
                             \voiceOne
-                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -1946,10 +1946,10 @@ def has_indicator(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \clef "alto"
                             \set fontSize = #-3
                             \slash
                             \voiceOne
-                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -2143,10 +2143,10 @@ def indicator(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \clef "alto"
                             \set fontSize = #-3
                             \slash
                             \voiceOne
-                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -2298,10 +2298,10 @@ def indicators(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \clef "alto"
                             \set fontSize = #-3
                             \slash
                             \voiceOne
-                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -2540,10 +2540,10 @@ def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \clef "alto"
                             \set fontSize = #-3
                             \slash
                             \voiceOne
-                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -3943,10 +3943,10 @@ def wrapper(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \clef "alto"
                             \set fontSize = #-3
                             \slash
                             \voiceOne
-                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t
@@ -4079,10 +4079,10 @@ def wrappers(
                     <<
                         \context Voice = "On_Beat_Grace_Container"
                         {
+                            \clef "alto"
                             \set fontSize = #-3
                             \slash
                             \voiceOne
-                            \clef "alto"
                             <
                                 \tweak font-size 0
                                 \tweak transparent ##t

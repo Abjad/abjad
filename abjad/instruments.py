@@ -168,9 +168,10 @@ class Instrument:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         strings = self._get_lilypond_format()
         assert isinstance(strings, list), repr(strings)
-        contributions.opening.commands.extend(strings)
+        site.commands.extend(strings)
         return contributions
 
     def _get_lilypond_format(self, context=None):

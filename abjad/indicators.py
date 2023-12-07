@@ -93,6 +93,7 @@ class Arpeggio:
     direction: _enums.Vertical | None = None
 
     post_event: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
 
     def __post_init__(self):
         if self.direction is not None:
@@ -103,7 +104,8 @@ class Arpeggio:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        contributions.after.articulations.append(r"\arpeggio")
+        site = getattr(contributions, self.site)
+        site.articulations.append(r"\arpeggio")
         if self.direction in (_enums.UP, _enums.DOWN):
             if self.direction is _enums.UP:
                 command = r"\arpeggioArrowUp"
@@ -175,6 +177,7 @@ class Articulation:
         ".": "staccato",
         "_": "portato",
     }
+    site: typing.ClassVar[str] = "after"
 
     def __post_init__(self):
         assert isinstance(self.name, str), repr(self.name)
@@ -197,8 +200,9 @@ class Articulation:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = self._get_lilypond_format(wrapper=wrapper)
-        contributions.after.articulations.append(string)
+        site.articulations.append(string)
         return contributions
 
 
@@ -309,7 +313,8 @@ class BarLine:
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
-        site.commands.append(self._get_lilypond_format())
+        string = self._get_lilypond_format()
+        site.commands.append(string)
         return contributions
 
 
@@ -328,12 +333,15 @@ class BeamCount:
     left: int = 0
     right: int = 0
 
+    site: typing.ClassVar[str] = "before"
+
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = rf"\set stemLeftBeamCount = {self.left}"
-        contributions.before.commands.append(string)
+        site.commands.append(string)
         string = rf"\set stemRightBeamCount = {self.right}"
-        contributions.before.commands.append(string)
+        site.commands.append(string)
         return contributions
 
 
@@ -411,8 +419,9 @@ class BendAfter:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
-        contributions.after.articulations.append(string)
+        site.articulations.append(string)
         return contributions
 
 
@@ -516,8 +525,9 @@ class BreathMark:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
-        contributions.after.commands.append(string)
+        site.commands.append(string)
         return contributions
 
 
@@ -630,8 +640,8 @@ class Clef:
                     \consists Clef_engraver
                 }
                 {
-                    \voiceOne
                     \clef "treble"
+                    \voiceOne
                     e'8
                     g'8
                     f'8
@@ -645,8 +655,8 @@ class Clef:
                     \consists Clef_engraver
                 }
                 {
-                    \voiceTwo
                     \clef "treble"
+                    \voiceTwo
                     c'4.
                     \clef "bass"
                     c,8
@@ -802,7 +812,9 @@ class Clef:
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
         if not self.hide:
-            contributions.opening.commands.append(self._get_lilypond_format())
+            site = getattr(contributions, self.site)
+            string = self._get_lilypond_format()
+            site.commands.append(string)
         return contributions
 
     @classmethod
@@ -1334,7 +1346,9 @@ class Fermata:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        contributions.after.articulations.append(self._get_lilypond_format())
+        site = getattr(contributions, self.site)
+        string = self._get_lilypond_format()
+        site.articulations.append(string)
         return contributions
 
 
@@ -1373,17 +1387,19 @@ class Glissando:
     # find_context_on_attach: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
 
     def __post_init__(self):
         assert isinstance(self.zero_padding, bool), repr(self.zero_padding)
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         strings = []
         if self.zero_padding:
             strings.append(r"- \abjad-zero-padding-glissando")
         strings.append(r"\glissando")
-        contributions.after.spanner_starts.extend(strings)
+        site.spanner_starts.extend(strings)
         return contributions
 
 
@@ -1503,7 +1519,8 @@ class InstrumentName:
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
-        site.commands.extend(self._get_lilypond_format())
+        strings = self._get_lilypond_format()
+        site.commands.extend(strings)
         return contributions
 
 
@@ -1592,6 +1609,7 @@ class KeyCluster:
     include_natural_markup: bool = True
 
     directed: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
 
     def __post_init__(self):
         assert isinstance(self.include_flat_markup, bool), repr(
@@ -1603,6 +1621,7 @@ class KeyCluster:
 
     def _get_contributions(self, wrapper=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         contributions.grob_overrides.append(
             "\\once \\override Accidental.stencil = ##f\n"
             "\\once \\override AccidentalCautionary.stencil = ##f\n"
@@ -1622,7 +1641,7 @@ class KeyCluster:
             string = rf"^ {string}"
         elif wrapper.direction is _enums.DOWN:
             string = rf"_ {string}"
-        contributions.after.markup.append(string)
+        site.markup.append(string)
         return contributions
 
 
@@ -2057,6 +2076,7 @@ class KeySignature:
     # find_context_on_attach: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
     redraw: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "before"
 
     def __post_init__(self):
         assert isinstance(self.tonic, _pitch.NamedPitchClass), repr(self.tonic)
@@ -2068,8 +2088,9 @@ class KeySignature:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
-        contributions.before.commands.append(string)
+        site.commands.append(string)
         return contributions
 
     @property
@@ -2142,7 +2163,9 @@ class LaissezVibrer:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        contributions.after.articulations.append(self._get_lilypond_format())
+        site = getattr(contributions, self.site)
+        string = self._get_lilypond_format()
+        site.articulations.append(string)
         return contributions
 
 
@@ -2274,14 +2297,16 @@ class Markup:
 
     directed: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
 
     def __post_init__(self):
         assert isinstance(self.string, str), repr(self.string)
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = self._get_lilypond_format(wrapper=wrapper)
-        contributions.after.markup.append(string)
+        site.markup.append(string)
         return contributions
 
     def _get_lilypond_format(self, *, wrapper=None):
@@ -2668,8 +2693,10 @@ class MetronomeMark:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         if not self.hide:
-            contributions.before.commands.append(self._get_lilypond_format())
+            string = self._get_lilypond_format()
+            site.commands.append(string)
         return contributions
 
     def _get_markup(self):
@@ -2950,13 +2977,10 @@ class Ottava:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         n = self.n or 0
         string = rf"\ottava {n}"
-        if self.site in ("before", None):
-            contributions.before.commands.append(string)
-        else:
-            assert self.site == "after"
-            contributions.after.commands.append(string)
+        site.commands.append(string)
         return contributions
 
 
@@ -3026,6 +3050,8 @@ class RehearsalMark:
 
     markup: Markup | str | None = None
     number: int | None = None
+    _: dataclasses.KW_ONLY
+    site: str = "before"
 
     # find_context_on_attach: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Score"
@@ -3047,8 +3073,9 @@ class RehearsalMark:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
-        contributions.opening.commands.append(string)
+        site.commands.append(string)
         return contributions
 
     @staticmethod
@@ -3059,27 +3086,27 @@ class RehearsalMark:
         ..  container:: example
 
             >>> abjad.RehearsalMark.from_string("A")
-            RehearsalMark(markup=None, number=1)
+            RehearsalMark(markup=None, number=1, site='before')
 
         ..  container:: example
 
             >>> abjad.RehearsalMark.from_string("AA")
-            RehearsalMark(markup=None, number=27)
+            RehearsalMark(markup=None, number=27, site='before')
 
         ..  container:: example
 
             >>> abjad.RehearsalMark.from_string("AB")
-            RehearsalMark(markup=None, number=28)
+            RehearsalMark(markup=None, number=28, site='before')
 
         ..  container:: example
 
             >>> abjad.RehearsalMark.from_string("BA")
-            RehearsalMark(markup=None, number=53)
+            RehearsalMark(markup=None, number=53, site='before')
 
         ..  container:: example
 
             >>> abjad.RehearsalMark.from_string("BB")
-            RehearsalMark(markup=None, number=54)
+            RehearsalMark(markup=None, number=54, site='before')
 
         """
         number = 0
@@ -3174,7 +3201,9 @@ class Repeat:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        contributions.before.commands.append(self._get_lilypond_format())
+        site = getattr(contributions, self.site)
+        string = self._get_lilypond_format()
+        site.commands.append(string)
         return contributions
 
 
@@ -3311,6 +3340,7 @@ class RepeatTie:
 
     directed: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
 
     def _attachment_test_all(self, argument):
         if not (
@@ -3322,12 +3352,13 @@ class RepeatTie:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         strings = []
         if wrapper.direction is not None:
             string = _string.to_tridirectional_lilypond_symbol(wrapper.direction)
             strings.append(string)
         strings.append(r"\repeatTie")
-        contributions.after.spanner_starts.extend(strings)
+        site.spanner_starts.extend(strings)
         return contributions
 
 
@@ -3397,7 +3428,8 @@ class ShortInstrumentName:
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
-        site.commands.extend(self._get_lilypond_format())
+        strings = self._get_lilypond_format()
+        site.commands.extend(strings)
         return contributions
 
     def _get_lilypond_format(self, context=None):
@@ -3483,7 +3515,9 @@ class StaffChange:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        contributions.opening.commands.append(self._get_lilypond_format())
+        site = getattr(contributions, self.site)
+        string = self._get_lilypond_format()
+        site.commands.append(string)
         return contributions
 
 
@@ -3551,6 +3585,7 @@ class StartBeam:
     parameter: typing.ClassVar[str] = "BEAM"
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_start: typing.ClassVar[bool] = True
 
     def _add_direction(self, string, wrapper):
@@ -3602,12 +3637,14 @@ class StartGroup:
     nestable_spanner: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_start: typing.ClassVar[bool] = True
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = r"\startGroup"
-        contributions.after.spanner_starts.append(string)
+        site.spanner_starts.append(string)
         return contributions
 
 
@@ -4026,8 +4063,9 @@ class StartHairpin:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         strings = self._get_lilypond_format(wrapper=wrapper)
-        contributions.after.spanner_starts.extend(strings)
+        site.spanner_starts.extend(strings)
         return contributions
 
 
@@ -4068,6 +4106,7 @@ class StartPhrasingSlur:
     parameter: typing.ClassVar[str] = "PHRASING_SLUR"
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_start: typing.ClassVar[bool] = True
 
     def _add_direction(self, string, *, wrapper=None):
@@ -4078,8 +4117,9 @@ class StartPhrasingSlur:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = self._add_direction(r"\(", wrapper=wrapper)
-        contributions.after.spanner_starts.append(string)
+        site.spanner_starts.append(string)
         return contributions
 
 
@@ -4153,6 +4193,7 @@ class StartPianoPedal:
     parameter: typing.ClassVar[str] = "PEDAL"
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_start: typing.ClassVar[bool] = True
 
     def __post_init__(self):
@@ -4160,6 +4201,7 @@ class StartPianoPedal:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         if self.kind == "corda":
             string = r"\unaCorda"
         elif self.kind == "sostenuto":
@@ -4167,7 +4209,7 @@ class StartPianoPedal:
         else:
             assert self.kind == "sustain"
             string = r"\sustainOn"
-        contributions.after.spanner_starts.append(string)
+        site.spanner_starts.append(string)
         return contributions
 
 
@@ -4297,6 +4339,7 @@ class StartSlur:
     parameter: typing.ClassVar[str] = "SLUR"
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_start: typing.ClassVar[bool] = True
 
     def _add_direction(self, string, *, wrapper=None):
@@ -4307,8 +4350,9 @@ class StartSlur:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = self._add_direction("(", wrapper=wrapper)
-        contributions.after.spanner_starts.append(string)
+        site.spanner_starts.append(string)
         return contributions
 
 
@@ -4688,6 +4732,7 @@ class StartTextSpan:
     parameter: typing.ClassVar[str] = "TEXT_SPANNER"
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_start: typing.ClassVar[bool] = True
 
     def __post_init__(self):
@@ -4696,22 +4741,23 @@ class StartTextSpan:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         if self.style is not None:
-            contributions.after.spanner_starts.append(rf"- {self.style}")
+            site.spanner_starts.append(rf"- {self.style}")
         if self.left_text:
             string = self._get_left_text_directive()
-            contributions.after.spanner_starts.append(string)
+            site.spanner_starts.append(string)
         if self.left_broken_text is not None:
             string = self._get_left_broken_text_tweak()
-            contributions.after.spanner_starts.append(string)
+            site.spanner_starts.append(string)
         if self.right_text:
             string = self._get_right_text_tweak()
-            contributions.after.spanner_starts.append(string)
+            site.spanner_starts.append(string)
         if self.right_padding:
             string = self._get_right_padding_tweak()
-            contributions.after.spanner_starts.append(string)
+            site.spanner_starts.append(string)
         string = self._add_direction(self.command, wrapper=wrapper)
-        contributions.after.spanner_starts.append(string)
+        site.spanner_starts.append(string)
         return contributions
 
     def _add_direction(self, string, *, wrapper=None):
@@ -4879,6 +4925,7 @@ class StartTrillSpan:
     parameter: typing.ClassVar[str] = "TRILL"
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_start: typing.ClassVar[bool] = True
 
     def __post_init__(self):
@@ -4889,16 +4936,17 @@ class StartTrillSpan:
 
     def _get_contributions(self, *, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = r"\startTrillSpan"
         if self.interval or self.pitch:
-            contributions.opening.pitched_trill.append(r"\pitchedTrill")
+            contributions.before.pitched_trill.append(r"\pitchedTrill")
             if self.pitch:
                 pitch = self.pitch
             else:
                 pitch = component.written_pitch + self.interval
             string = string + f" {pitch.name}"
-        # NOTE: crucial to use after.trill_spanner_starts here:
-        contributions.after.trill_spanner_starts.append(string)
+        # crucial to use "after" format slot here:
+        site.trill_spanner_starts.append(string)
         return contributions
 
 
@@ -4993,7 +5041,9 @@ class StemTremolo:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
-        contributions.after.stem_tremolos.append(self._get_lilypond_format())
+        site = getattr(contributions, self.site)
+        string = self._get_lilypond_format()
+        site.stem_tremolos.append(string)
         return contributions
 
 
@@ -5063,16 +5113,18 @@ class StopBeam:
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "BEAM"
     persistent: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_stop: typing.ClassVar[bool] = True
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = "]"
         if self.leak:
-            contributions.after.leak.append(_EMPTY_CHORD)
-            contributions.after.leaks.append(string)
+            site.leak.append(_EMPTY_CHORD)
+            site.leaks.append(string)
         else:
-            contributions.after.stop_beam.append(string)
+            site.stop_beam.append(string)
         return contributions
 
 
@@ -5175,17 +5227,19 @@ class StopGroup:
     context: typing.ClassVar[str] = "Voice"
     nestable_spanner: typing.ClassVar[bool] = True
     persistent: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_stop: typing.ClassVar[bool] = True
     time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = r"\stopGroup"
         if self.leak:
-            contributions.after.leak.append(_EMPTY_CHORD)
-            contributions.after.leaks.append(string)
+            site.leak.append(_EMPTY_CHORD)
+            site.leaks.append(string)
         else:
-            contributions.after.spanner_stops.append(string)
+            site.spanner_stops.append(string)
         return contributions
 
 
@@ -5255,16 +5309,18 @@ class StopHairpin:
     # TODO: should these be uncommented?
     # parameter: typing.ClassVar[str] = "DYNAMIC"
     # persistent: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_stop: typing.ClassVar[bool] = True
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = r"\!"
         if self.leak:
-            contributions.after.leak.append(_EMPTY_CHORD)
-            contributions.after.leaks.append(string)
+            site.leak.append(_EMPTY_CHORD)
+            site.leaks.append(string)
         else:
-            contributions.after.spanner_stops.append(string)
+            site.spanner_stops.append(string)
         return contributions
 
 
@@ -5367,16 +5423,18 @@ class StopPhrasingSlur:
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "PHRASING_SLUR"
     persistent: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_stop: typing.ClassVar[bool] = True
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = r"\)"
         if self.leak:
-            contributions.after.leak.append(_EMPTY_CHORD)
-            contributions.after.leaks.append(string)
+            site.leak.append(_EMPTY_CHORD)
+            site.leaks.append(string)
         else:
-            contributions.after.spanner_stops.append(string)
+            site.spanner_stops.append(string)
         return contributions
 
 
@@ -5474,7 +5532,7 @@ class StopPianoPedal:
 
     """
 
-    # TODO: change "kind" to "command"
+    # TODO: change "kind" to "command" with "\treCorde", "\sostenutoOff", "\sustainOff"
     kind: str = "sustain"
     leak: bool = dataclasses.field(default=False, compare=False)
 
@@ -5483,6 +5541,7 @@ class StopPianoPedal:
     parameter: typing.ClassVar[str] = "PEDAL"
     persistent: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_stop: typing.ClassVar[bool] = True
 
     def __post_init__(self):
@@ -5491,6 +5550,7 @@ class StopPianoPedal:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         if self.kind == "corda":
             command = r"\treCorde"
         elif self.kind == "sostenuto":
@@ -5499,10 +5559,10 @@ class StopPianoPedal:
             assert self.kind == "sustain"
             command = r"\sustainOff"
         if self.leak:
-            contributions.after.leak.append(_EMPTY_CHORD)
-            contributions.after.leaks.append(command)
+            site.leak.append(_EMPTY_CHORD)
+            site.leaks.append(command)
         else:
-            contributions.after.spanner_stops.append(command)
+            site.spanner_stops.append(command)
         return contributions
 
 
@@ -5606,6 +5666,7 @@ class StopSlur:
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "SLUR"
     persistent: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_stop: typing.ClassVar[bool] = True
 
     def __post_init__(self):
@@ -5613,12 +5674,13 @@ class StopSlur:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = ")"
         if self.leak:
-            contributions.after.leak.append(_EMPTY_CHORD)
-            contributions.after.leaks.append(string)
+            site.leak.append(_EMPTY_CHORD)
+            site.leaks.append(string)
         else:
-            contributions.after.spanner_stops.append(string)
+            site.spanner_stops.append(string)
         return contributions
 
 
@@ -5706,6 +5768,7 @@ class StopTextSpan:
     nestable_spanner: typing.ClassVar[bool] = True
     parameter: typing.ClassVar[str] = "TEXT_SPANNER"
     persistent: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_stop: typing.ClassVar[bool] = True
 
     def __post_init__(self):
@@ -5715,12 +5778,13 @@ class StopTextSpan:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = self.command
         if self.leak:
-            contributions.after.leak.append(_EMPTY_CHORD)
-            contributions.after.leaks.append(string)
+            site.leak.append(_EMPTY_CHORD)
+            site.leaks.append(string)
         else:
-            contributions.after.spanner_stops.append(string)
+            site.spanner_stops.append(string)
         return contributions
 
 
@@ -5790,6 +5854,7 @@ class StopTrillSpan:
     context: typing.ClassVar[str] = "Voice"
     parameter: typing.ClassVar[str] = "TRILL"
     persistent: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
     spanner_stop: typing.ClassVar[bool] = True
 
     def __post_init__(self):
@@ -5797,12 +5862,13 @@ class StopTrillSpan:
 
     def _get_contributions(self, component=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = r"\stopTrillSpan"
         if self.leak:
-            contributions.after.leak.append(_EMPTY_CHORD)
-            contributions.after.leaks.append(string)
+            site.leak.append(_EMPTY_CHORD)
+            site.leaks.append(string)
         else:
-            contributions.after.spanner_stops.append(string)
+            site.spanner_stops.append(string)
         return contributions
 
 
@@ -5911,6 +5977,7 @@ class Tie:
 
     directed: typing.ClassVar[bool] = True
     post_event: typing.ClassVar[bool] = True
+    site: typing.ClassVar[str] = "after"
 
     def _add_direction(self, string, *, wrapper=None):
         if wrapper.direction is not None:
@@ -5928,9 +5995,10 @@ class Tie:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         string = self._add_direction("~", wrapper=wrapper)
         strings = [string]
-        contributions.after.spanner_starts.extend(strings)
+        site.spanner_starts.extend(strings)
         return contributions
 
 
@@ -6095,11 +6163,12 @@ class TimeSignature:
 
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
         if self.is_non_dyadic_rational and not self.hide:
             string = '#(ly:expect-warning "strange time signature found")'
-            contributions.before.commands.append(string)
+            site.commands.append(string)
         strings = self._get_lilypond_format()
-        contributions.opening.commands.extend(strings)
+        site.commands.extend(strings)
         return contributions
 
     def _get_lilypond_format(self):

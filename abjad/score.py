@@ -583,7 +583,7 @@ class Leaf(Component):
         if strings:
             result.append(f"% {_contributions.Types.COMMANDS.name}:")
             result.extend(strings)
-        strings = contributions.alphabetize(contributions.opening.pitched_trill)
+        strings = contributions.alphabetize(contributions.before.pitched_trill)
         if strings:
             result.append(f"% {_contributions.Types.PITCHED_TRILL.name}:")
             result.extend(strings)
