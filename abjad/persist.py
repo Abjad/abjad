@@ -46,7 +46,7 @@ def as_ly(
     return ly_file_path, abjad_formatting_time
 
 
-def as_midi(argument, midi_file_path, **keywords):
+def as_midi(argument, midi_file_path, *, flags: str = "", **keywords):
     """
     Persists ``argument`` as MIDI file.
 
@@ -65,7 +65,7 @@ def as_midi(argument, midi_file_path, **keywords):
     ly_file_path, abjad_formatting_time = as_ly(argument, ly_file_path, **keywords)
     timer = _contextmanagers.Timer()
     with timer:
-        success = _io.run_lilypond(ly_file_path)
+        success = _io.run_lilypond(ly_file_path, flags=flags)
     lilypond_rendering_time = timer.elapsed_time
     if os.name == "nt":
         extension = "mid"
@@ -85,6 +85,7 @@ def as_pdf(
     argument,
     pdf_file_path,
     *,
+    flags: str = "",
     illustrate_function=None,
     tags=False,
     **keywords,
@@ -110,11 +111,12 @@ def as_pdf(
         **keywords,
     )
     ly_file_path, abjad_formatting_time = result
+    assert isinstance(ly_file_path, str)
     without_extension = os.path.splitext(ly_file_path)[0]
     pdf_file_path = f"{without_extension}.pdf"
     timer = _contextmanagers.Timer()
     with timer:
-        success = _io.run_lilypond(ly_file_path)
+        success = _io.run_lilypond(ly_file_path, flags=flags)
     lilypond_rendering_time = timer.elapsed_time
     return (
         pdf_file_path,
@@ -128,11 +130,11 @@ def as_png(
     argument,
     png_file_path,
     *,
-    flags="--png",
+    flags: str = "--png",
     illustrate_function=None,
-    preview=False,
+    preview: bool = False,
     resolution=False,
-    tags=False,
+    tags: bool = False,
     **keywords,
 ):
     """
@@ -142,6 +144,7 @@ def as_png(
 
     Returns output path(s), elapsed formatting time and elapsed rendering time.
     """
+    assert isinstance(flags, str), repr(flags)
     if png_file_path is not None:
         png_file_path = os.path.expanduser(png_file_path)
         without_extension = os.path.splitext(png_file_path)[0]
@@ -156,16 +159,17 @@ def as_png(
         **keywords,
     )
     ly_file_path, abjad_formatting_time = result
+    assert isinstance(ly_file_path, str)
     original_directory = os.path.split(ly_file_path)[0]
     original_ly_file_path = ly_file_path
     temporary_directory = tempfile.mkdtemp()
+    assert isinstance(temporary_directory, str)
     temporary_ly_file_path = os.path.join(
         temporary_directory, os.path.split(ly_file_path)[1]
     )
     shutil.copy(original_ly_file_path, temporary_ly_file_path)
-    # render lilypond flags
     if preview:
-        flags = "-dpreview"
+        flags += " -dpreview"
     if resolution and isinstance(resolution, int):
         flags += f" -dresolution={resolution}"
     timer = _contextmanagers.Timer()
@@ -183,7 +187,14 @@ def as_png(
     shutil.rmtree(temporary_directory)
     if 1 < len(png_file_paths):
         _png_page_pattern = re.compile(r".+page(\d+)\.png")
-        png_file_paths.sort(key=lambda x: int(_png_page_pattern.match(x).groups()[0]))
+
+        def _key(path):
+            match = _png_page_pattern.match(path)
+            assert match is not None
+            group = match.groups()[0]
+            return group
+
+        png_file_paths.sort(key=_key)
     return (
         tuple(png_file_paths),
         abjad_formatting_time,

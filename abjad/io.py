@@ -621,7 +621,7 @@ def graph(
         return format_time, render_time
 
 
-def show(illustrable, return_timing=False, **keywords):
+def show(illustrable, *, flags: str = "", return_timing: bool = False, **keywords):
     r"""
     Shows ``argument``.
 
@@ -668,7 +668,7 @@ def show(illustrable, return_timing=False, **keywords):
     Returns pair of ``abjad_formatting_time`` and ``lilypond_rendering_time``
     when ``return_timing`` is true.
     """
-    illustrator = Illustrator(illustrable, **keywords)
+    illustrator = Illustrator(illustrable, flags=flags.split(), **keywords)
     result = illustrator()
     if not result:
         return

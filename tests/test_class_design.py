@@ -22,6 +22,7 @@ class_to_default_values = {
     abjad.Markup: (r"\markup Allegro",),
     abjad.MetricModulation: (abjad.Note("c'4"), abjad.Note("c'4.")),
     abjad.MetronomeMark: (abjad.Duration(1, 4), 90),
+    abjad.TextMark: (r'\textMark \markup \italic "V.S."',),
     abjad.ShortInstrumentName: (r"\markup Vc.",),
     abjad.StaffChange: ("RH_Staff",),
     abjad.TimeSignature: ((4, 4),),
