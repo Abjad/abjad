@@ -809,16 +809,15 @@ def partition_by_ratio_of_weights(sequence, weights: typing.Sequence[int]) -> li
 
     Returns list of ``sequence`` types.
     """
-    list_weight = _math.weight(sequence)
-    weights_parts = _math.partition_integer_by_ratio(list_weight, weights)
-    cumulative_weights = _math.cumulative_sums(weights_parts, start=None)
+    assert all(isinstance(_, int | float | fractions.Fraction) for _ in sequence)
+    sequence_weight = _math.weight(sequence)
+    partitioned_weights = _math.partition_integer_by_ratio(sequence_weight, weights)
+    cumulative_weights = _math.cumulative_sums(partitioned_weights, start=None)
     items = []
     sublist: list[typing.Any] = []
     items.append(sublist)
     current_cumulative_weight = cumulative_weights.pop(0)
     for item in sequence:
-        if not isinstance(item, int | float | fractions.Fraction):
-            raise TypeError(f"must be number: {item!r}.")
         sublist.append(item)
         while current_cumulative_weight <= _math.weight(flatten(items, depth=-1)):
             try:

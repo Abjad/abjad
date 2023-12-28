@@ -1,6 +1,7 @@
 """
 Tools for modeling IRCAM-style rhythm trees.
 """
+
 import fractions
 
 import uqbar.containers

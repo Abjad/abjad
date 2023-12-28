@@ -41,7 +41,6 @@ from .contextmanagers import (
 from .contributions import ContributionsBySite
 from .cyclictuple import CyclicTuple
 from .duration import Duration, Offset, durations
-from .dynamic import Dynamic
 from .enums import (
     CENTER,
     DOWN,
@@ -79,6 +78,7 @@ from .indicators import (
     BreathMark,
     Clef,
     ColorFingering,
+    Dynamic,
     Fermata,
     Glissando,
     InstrumentName,

@@ -1,6 +1,7 @@
 """
 Tools for modeling musical meter.
 """
+
 import bisect
 import collections
 import fractions

@@ -414,7 +414,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.cyclictuple.CyclicTuple'>
         <class 'abjad.duration.Duration'>
         <class 'abjad.duration.Offset'>
-        <class 'abjad.dynamic.Dynamic'>
         <class 'abjad.exceptions.AssignabilityError'>
         <class 'abjad.exceptions.ImpreciseMetronomeMarkError'>
         <class 'abjad.exceptions.LilyPondParserError'>
@@ -434,6 +433,7 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.indicators.BreathMark'>
         <class 'abjad.indicators.Clef'>
         <class 'abjad.indicators.ColorFingering'>
+        <class 'abjad.indicators.Dynamic'>
         <class 'abjad.indicators.Fermata'>
         <class 'abjad.indicators.Glissando'>
         <class 'abjad.indicators.InstrumentName'>

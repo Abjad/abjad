@@ -170,7 +170,7 @@ def format_component(component) -> str:
     return string
 
 
-def remove_site_comments(string) -> str:
+def remove_site_comments(string: str) -> str:
     """
     Removes site comments from ``string``.
     """

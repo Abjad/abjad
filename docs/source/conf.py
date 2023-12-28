@@ -5,7 +5,7 @@ import abjad
 ### GENERAL SPHINX SETTINGS ###
 ### https://www.sphinx-doc.org/en/master/usage/configuration.html ###
 
-copyright = "2008-2022, Trevor Bača & Josiah Wolf Oberholtzer."
+copyright = "2008-2024, Trevor Bača & Josiah Wolf Oberholtzer."
 extensions = [
     "abjad.ext.sphinx",
     "sphinx.ext.autodoc",
