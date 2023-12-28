@@ -467,6 +467,7 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.indicators.StopSlur'>
         <class 'abjad.indicators.StopTextSpan'>
         <class 'abjad.indicators.StopTrillSpan'>
+        <class 'abjad.indicators.TextMark'>
         <class 'abjad.indicators.Tie'>
         <class 'abjad.indicators.TimeSignature'>
         <class 'abjad.indicators.VoiceNumber'>

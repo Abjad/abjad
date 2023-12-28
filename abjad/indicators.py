@@ -2987,7 +2987,7 @@ class Ottava:
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class RehearsalMark:
     r"""
-    Rehearsal mark.
+    LilyPond ``\mark`` command.
 
     ..  container:: example
 
@@ -5869,6 +5869,112 @@ class StopTrillSpan:
             site.leaks.append(string)
         else:
             site.spanner_stops.append(string)
+        return contributions
+
+
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
+class TextMark:
+    r"""
+    LilyPond ``\textMark``, ``\textEndMark`` commands.
+
+    Text mark:
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> score = abjad.Score([staff])
+        >>> mark = abjad.TextMark(r'\textMark \markup \italic "V.S."')
+        >>> abjad.attach(mark, staff[-1])
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
+            \new Score
+            <<
+                \new Staff
+                {
+                    c'4
+                    d'4
+                    e'4
+                    \textMark \markup \italic "V.S."
+                    f'4
+                }
+            >>
+
+        Tweaks:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> score = abjad.Score([staff])
+        >>> mark = abjad.TextMark(r'\textMark \markup \italic "V.S."')
+        >>> bundle = abjad.bundle(mark, r"\tweak color #blue")
+        >>> abjad.attach(bundle, staff[-1])
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
+            \new Score
+            <<
+                \new Staff
+                {
+                    c'4
+                    d'4
+                    e'4
+                    \tweak color #blue
+                    \textMark \markup \italic "V.S."
+                    f'4
+                }
+            >>
+
+    ..  container:: example
+
+        Text end mark:
+
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> score = abjad.Score([staff])
+        >>> mark = abjad.TextMark(r'\textEndMark \markup \italic "V.S."', site="after")
+        >>> abjad.attach(mark, staff[-1])
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
+            \new Score
+            <<
+                \new Staff
+                {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                    \textEndMark \markup \italic "V.S."
+                }
+            >>
+
+    """
+
+    string: str
+    _: dataclasses.KW_ONLY
+    site: str = "before"
+
+    # find_context_on_attach: typing.ClassVar[bool] = True
+    context: typing.ClassVar[str] = "Score"
+
+    def __post_init__(self):
+        assert isinstance(self.string, str), repr(self.string)
+
+    def _get_lilypond_format(self):
+        return self.string
+
+    def _get_contributions(self, component=None):
+        contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
+        string = self._get_lilypond_format()
+        site.commands.append(string)
         return contributions
 
 
