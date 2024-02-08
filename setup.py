@@ -17,7 +17,7 @@ def get_abjad_version():
 
 def check_python_version(abjad_version):
     CURRENT_PYTHON = sys.version_info[:2]
-    SUPPORTED_PYTHONS = [(3, 10), (3, 11)]
+    SUPPORTED_PYTHONS = [(3, 10), (3, 11), (3, 12)]
     if CURRENT_PYTHON not in SUPPORTED_PYTHONS:
         current_python = ".".join([str(_) for _ in CURRENT_PYTHON])
         supported_pythons = ", ".join([f"{_[0]}.{_[1]}" for _ in SUPPORTED_PYTHONS])
