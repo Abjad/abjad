@@ -799,6 +799,48 @@ def duration(
 
     ..  container:: example
 
+        REGRESSION. Duration of independent after-grace containers defined equal to 0:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> lilypond_file = abjad.LilyPondFile([staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
+        >>> for component in abjad.select.components(staff):
+        ...     duration = abjad.get.duration(component)
+        ...     print(f"{repr(component):30} {repr(duration)}")
+        Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }") Duration(1, 1)
+        Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice') Duration(1, 1)
+        Note("c'4")                    Duration(1, 4)
+        Note("d'4")                    Duration(1, 4)
+        Note("e'4")                    Duration(1, 4)
+        IndependentAfterGraceContainer("gf'16") Duration(0, 1)
+        Note("gf'16")                  Duration(1, 16)
+        Note("f'4")                    Duration(1, 4)
+
+    ..  container:: example
+
         REGRESSSION. Works with tremolo containers:
 
         >>> staff = abjad.Staff()
@@ -1002,6 +1044,50 @@ def effective(
         Note("f'4")                    Clef(name='alto', hide=False)
         AfterGraceContainer("fs'16")   Clef(name='alto', hide=False)
         Note("fs'16")                  Clef(name='alto', hide=False)
+
+    ..  container:: example
+
+        REGRESSION. Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.attach(abjad.Clef("alto"), container[0])
+        >>> lilypond_file = abjad.LilyPondFile([staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        \clef "alto"
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
+        >>> for component in abjad.select.components(staff):
+        ...     clef = abjad.get.effective(component, abjad.Clef)
+        ...     print(f"{repr(component):30} {repr(clef)}")
+        Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }") None
+        Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice') None
+        Note("c'4")                    None
+        Note("d'4")                    None
+        Note("e'4")                    None
+        IndependentAfterGraceContainer("gf'16") Clef(name='alto', hide=False)
+        Note("gf'16")                  Clef(name='alto', hide=False)
+        Note("f'4")                    Clef(name='alto', hide=False)
 
     ..  container:: example
 
@@ -1750,8 +1836,55 @@ def grace(argument) -> bool:
         AfterGraceContainer("fs'16")   True
         Note("fs'16")                  True
 
+    ..  container:: example
+
+        REGRESSION. Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> lilypond_file = abjad.LilyPondFile([staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
+        >>> for component in abjad.select.components(staff):
+        ...     result = abjad.get.grace(component)
+        ...     print(f"{repr(component):30} {repr(result)}")
+        Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }") False
+        Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice') False
+        Note("c'4")                    False
+        Note("d'4")                    False
+        Note("e'4")                    False
+        IndependentAfterGraceContainer("gf'16") True
+        Note("gf'16")                  True
+        Note("f'4")                    False
+
     """
-    return _getlib._get_grace_container(argument)
+    if _getlib._get_grace_container(argument) is True:
+        return True
+    for component in argument._get_parentage():
+        if isinstance(component, _score.IndependentAfterGraceContainer):
+            return True
+    return False
 
 
 def has_effective_indicator(
@@ -1850,6 +1983,51 @@ def has_effective_indicator(
         Note("f'4")                    True
         AfterGraceContainer("fs'16")   True
         Note("fs'16")                  True
+
+    ..  container:: example
+
+        REGRESSION. Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.attach(abjad.Clef("alto"), container[0])
+        >>> lilypond_file = abjad.LilyPondFile([staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        \clef "alto"
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
+        >>> for component in abjad.select.components(staff):
+        ...     function = abjad.get.has_effective_indicator
+        ...     result = function(component, abjad.Clef)
+        ...     print(f"{repr(component):30} {repr(result)}")
+        Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }") False
+        Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice') False
+        Note("c'4")                    False
+        Note("d'4")                    False
+        Note("e'4")                    False
+        IndependentAfterGraceContainer("gf'16") True
+        Note("gf'16")                  True
+        Note("f'4")                    True
 
     ..  container:: example
 
@@ -2000,6 +2178,50 @@ def has_indicator(
         Note("f'4")                    False
         AfterGraceContainer("fs'16")   False
         Note("fs'16")                  False
+
+    ..  container:: example
+
+        REGRESSION. Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.attach(abjad.Clef("alto"), container[0])
+        >>> lilypond_file = abjad.LilyPondFile([staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        \clef "alto"
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
+        >>> for component in abjad.select.components(staff):
+        ...     result = abjad.get.has_indicator(component, abjad.Clef)
+        ...     print(f"{repr(component):30} {repr(result)}")
+        Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }") False
+        Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice') False
+        Note("c'4")                    False
+        Note("d'4")                    False
+        Note("e'4")                    False
+        IndependentAfterGraceContainer("gf'16") False
+        Note("gf'16")                  True
+        Note("f'4")                    False
 
     ..  container:: example
 
@@ -2624,6 +2846,64 @@ def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
 
     ..  container:: example
 
+        REGRESSION. Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> lilypond_file = abjad.LilyPondFile([staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
+        >>> for current_leaf in abjad.select.leaves(staff):
+        ...     previous_leaf = abjad.get.leaf(current_leaf, -1)
+        ...     next_leaf = abjad.get.leaf(current_leaf, 1)
+        ...     print(f"previous leaf: {repr(previous_leaf)}")
+        ...     print(f"current leaf:  {repr(current_leaf)}")
+        ...     print(f"next leaf:     {repr(next_leaf)}")
+        ...     print("---")
+        previous leaf: None
+        current leaf:  Note("c'4")
+        next leaf:     Note("d'4")
+        ---
+        previous leaf: Note("c'4")
+        current leaf:  Note("d'4")
+        next leaf:     Note("e'4")
+        ---
+        previous leaf: Note("d'4")
+        current leaf:  Note("e'4")
+        next leaf:     Note("gf'16")
+        ---
+        previous leaf: Note("e'4")
+        current leaf:  Note("gf'16")
+        next leaf:     Note("f'4")
+        ---
+        previous leaf: Note("gf'16")
+        current leaf:  Note("f'4")
+        next leaf:     None
+        ---
+
+    ..  container:: example
+
         REGRESSSION. Works with tremolo containers:
 
         >>> staff = abjad.Staff()
@@ -3172,6 +3452,48 @@ def measure_number(argument) -> int:
 
     ..  container:: example
 
+        REGRESSION. Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> lilypond_file = abjad.LilyPondFile([staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
+        >>> for component in abjad.select.components(staff):
+        ...     measure_number = abjad.get.measure_number(component)
+        ...     print(f"{repr(component):30} {measure_number}")
+        Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }") 1
+        Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice') 1
+        Note("c'4")                    1
+        Note("d'4")                    1
+        Note("e'4")                    1
+        IndependentAfterGraceContainer("gf'16") 1
+        Note("gf'16")                  1
+        Note("f'4")                    1
+
+    ..  container:: example
+
         REGRESSION. Measure number of score-initial grace notes is set equal to 0:
 
         >>> voice = abjad.Voice("c'4 d' e' f'")
@@ -3405,6 +3727,72 @@ def parentage(argument) -> "_parentage.Parentage":
             AfterGraceContainer("fs'16")
             Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
+
+    ..  container:: example
+
+        REGRESSION. Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> lilypond_file = abjad.LilyPondFile([staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
+        >>> for component in abjad.select.components(staff):
+        ...     parentage = abjad.get.parentage(component)
+        ...     print(f"{repr(component)}:")
+        ...     for component_ in parentage[:]:
+        ...         print(f"    {repr(component_)}")
+        Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }"):
+            Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }")
+        Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice'):
+            Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice')
+            Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }")
+        Note("c'4"):
+            Note("c'4")
+            Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice')
+            Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }")
+        Note("d'4"):
+            Note("d'4")
+            Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice')
+            Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }")
+        Note("e'4"):
+            Note("e'4")
+            Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice')
+            Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }")
+        IndependentAfterGraceContainer("gf'16"):
+            IndependentAfterGraceContainer("gf'16")
+            Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice')
+            Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }")
+        Note("gf'16"):
+            Note("gf'16")
+            IndependentAfterGraceContainer("gf'16")
+            Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice')
+            Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }")
+        Note("f'4"):
+            Note("f'4")
+            Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice')
+            Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }")
 
     ..  container:: example
 
@@ -3829,6 +4217,57 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
             Timespan(Offset((1, 1), displacement=Duration(-1, 16)), Offset((1, 1)))
         Note("fs'16"):
             Timespan(Offset((1, 1), displacement=Duration(-1, 16)), Offset((1, 1)))
+
+    ..  container:: example
+
+        REGRESSION. Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> lilypond_file = abjad.LilyPondFile([staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
+        >>> for component in abjad.select.components(staff):
+        ...     timespan = abjad.get.timespan(component)
+        ...     print(f"{component!r}:")
+        ...     print(f"    {timespan!r}")
+        Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }"):
+            Timespan(Offset((0, 1)), Offset((1, 1)))
+        Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice'):
+            Timespan(Offset((0, 1)), Offset((1, 1)))
+        Note("c'4"):
+            Timespan(Offset((0, 1)), Offset((1, 4)))
+        Note("d'4"):
+            Timespan(Offset((1, 4)), Offset((1, 2)))
+        Note("e'4"):
+            Timespan(Offset((1, 2)), Offset((3, 4)))
+        IndependentAfterGraceContainer("gf'16"):
+            Timespan(Offset((3, 4), displacement=Duration(-1, 16)), Offset((3, 4)))
+        Note("gf'16"):
+            Timespan(Offset((3, 4), displacement=Duration(-1, 16)), Offset((3, 4)))
+        Note("f'4"):
+            Timespan(Offset((3, 4)), Offset((1, 1)))
 
     ..  container:: example
 

@@ -158,8 +158,12 @@ def _get_sibling_with_graces(component, n):
     candidate = component._parent[index]
     if n == 1 and getattr(candidate, "_before_grace_container", None):
         return candidate._before_grace_container[0]
+    if n == 1 and candidate.__class__.__name__ == "IndependentAfterGraceContainer":
+        return candidate[0]
     if n == -1 and getattr(candidate, "_after_grace_container", None):
         return candidate._after_grace_container[-1]
+    if n == -1 and candidate.__class__.__name__ == "IndependentAfterGraceContainer":
+        return candidate[-1]
     return candidate
 
 

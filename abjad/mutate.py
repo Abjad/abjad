@@ -2211,6 +2211,68 @@ def split(
                 d'2
             }
 
+    ..  container:: example
+
+        REGRESSION. Leaf independent after-grace leaves unchanged:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("af'4 gf'4")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> lilypond_file = abjad.LilyPondFile([staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        af'4
+                        gf'4
+                    }
+                    f'4
+                }
+            }
+
+        >>> result = abjad.mutate.split(music_voice[:], [(1, 8)], cyclic=True)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'8
+                    ~
+                    c'8
+                    d'8
+                    ~
+                    d'8
+                    e'8
+                    ~
+                    \afterGrace
+                    e'8
+                    {
+                        af'4
+                        gf'4
+                    }
+                    f'8
+                    ~
+                    f'8
+                }
+            }
+
     """
     components = argument
     if isinstance(components, _score.Component):

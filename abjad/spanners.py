@@ -324,7 +324,6 @@ def glissando(
     parenthesize_repeats: bool = False,
     right_broken: bool = False,
     right_broken_show_next: bool = False,
-    style: str | None = None,
     tag: _tag.Tag | None = None,
     zero_padding: bool = False,
 ):
@@ -1112,7 +1111,7 @@ def glissando(
             ]
             literal = _indicators.LilyPondLiteral(strings, site="before")
             _bind.attach(literal, leaf, tag=tag.append(_tag.Tag("abjad.glissando(-1)")))
-        if hide_middle_note_heads:
+        if hide_middle_note_heads and 3 <= len(leaves):
             if leaf is not leaves[0]:
                 should_attach_glissando = False
             if not left_broken and leaf is leaves[1]:

@@ -65,6 +65,35 @@ def _get_before_grace_leaf_offsets(leaf):
     return start_offset, stop_offset
 
 
+def _get_independent_after_grace_leaf_offsets(leaf):
+    container = leaf._parent
+    main_leaf = container._sibling(-1)
+    main_leaf_stop_offset = main_leaf._stop_offset
+    assert main_leaf_stop_offset is not None
+    displacement = -leaf._get_duration()
+    sibling = leaf._sibling(1)
+    while sibling is not None and sibling._parent is container:
+        displacement -= sibling._get_duration()
+        sibling = sibling._sibling(1)
+    """
+    if leaf._parent is not None and leaf._parent._sibling(-1) is not None:
+        main_leaf = leaf._parent._sibling(-1)
+        sibling = main_leaf._sibling(1)
+        if (
+            sibling is not None
+            and hasattr(sibling, "_before_grace_container")
+            and sibling._before_grace_container is not None
+        ):
+            before_grace_container = sibling._before_grace_container
+            duration = before_grace_container._get_duration()
+            displacement -= duration
+    """
+    start_offset = _duration.Offset(main_leaf_stop_offset, displacement=displacement)
+    displacement += leaf._get_duration()
+    stop_offset = _duration.Offset(main_leaf_stop_offset, displacement=displacement)
+    return start_offset, stop_offset
+
+
 def _get_measure_start_offsets(component):
     wrappers = []
     prototype = _indicators.TimeSignature
@@ -323,8 +352,16 @@ def _update_component_offsets(component):
         start_offset = pair[0]
         pair = _get_after_grace_leaf_offsets(component[-1])
         stop_offset = pair[-1]
+    elif isinstance(component, _score.IndependentAfterGraceContainer):
+        pair = _get_independent_after_grace_leaf_offsets(component[0])
+        start_offset = pair[0]
+        pair = _get_independent_after_grace_leaf_offsets(component[-1])
+        stop_offset = pair[-1]
     elif isinstance(component._parent, _score.AfterGraceContainer):
         pair = _get_after_grace_leaf_offsets(component)
+        start_offset, stop_offset = pair
+    elif isinstance(component._parent, _score.IndependentAfterGraceContainer):
+        pair = _get_independent_after_grace_leaf_offsets(component)
         start_offset, stop_offset = pair
     else:
         previous = component._sibling(-1)

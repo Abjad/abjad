@@ -2390,8 +2390,15 @@ class Meter:
         if initial_offset is None:
             initial_offset = _duration.Offset(0)
         initial_offset = _duration.Offset(initial_offset)
-        first_start_offset = components[0]._get_timespan().start_offset
-        last_start_offset = components[-1]._get_timespan().start_offset
+        nongrace_components = [
+            _
+            for _ in components
+            if not isinstance(_, _score.IndependentAfterGraceContainer)
+        ]
+        # first_start_offset = components[0]._get_timespan().start_offset
+        # last_start_offset = components[-1]._get_timespan().start_offset
+        first_start_offset = nongrace_components[0]._get_timespan().start_offset
+        last_start_offset = nongrace_components[-1]._get_timespan().start_offset
         difference = last_start_offset - first_start_offset + initial_offset
         assert difference < meter.implied_time_signature.duration
         # Build offset inventory, adjusted for initial offset and prolation.

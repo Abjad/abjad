@@ -6,6 +6,7 @@ from . import _getlib, _iterlib, _updatelib
 from . import cyclictuple as _cyclictuple
 from . import duration as _duration
 from . import enums as _enums
+from . import get as _get
 from . import iterate as _iterate
 from . import math as _math
 from . import parentage as _parentage
@@ -571,6 +572,56 @@ def components(
                 f'8
             }
 
+        Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.setting(staff).autoBeaming = False
+
+        >>> result = abjad.select.components(staff, abjad.Leaf, grace=None)
+        >>> for item in result:
+        ...     item
+        ...
+        Note("c'4")
+        Note("d'4")
+        Note("e'4")
+        Note("gf'16")
+        Note("f'4")
+
+        >>> abjad.label.by_selector(result, True)
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                autoBeaming = ##f
+            }
+            {
+                \context Voice = "MusicVoice"
+                {
+                    \abjad-color-music #'red
+                    c'4
+                    \abjad-color-music #'blue
+                    d'4
+                    \abjad-color-music #'red
+                    \afterGrace
+                    e'4
+                    {
+                        \abjad-color-music #'blue
+                        gf'16
+                    }
+                    \abjad-color-music #'red
+                    f'4
+                }
+            }
+
     ..  container:: example
 
         Excludes grace notes when ``grace=False``:
@@ -622,6 +673,54 @@ def components(
                 e'8
                 \abjad-color-music #'blue
                 f'8
+            }
+
+        Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.setting(staff).autoBeaming = False
+
+        >>> result = abjad.select.components(staff, abjad.Leaf, grace=False)
+        >>> for item in result:
+        ...     item
+        ...
+        Note("c'4")
+        Note("d'4")
+        Note("e'4")
+        Note("f'4")
+
+        >>> abjad.label.by_selector(result, True)
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                autoBeaming = ##f
+            }
+            {
+                \context Voice = "MusicVoice"
+                {
+                    \abjad-color-music #'red
+                    c'4
+                    \abjad-color-music #'blue
+                    d'4
+                    \abjad-color-music #'red
+                    \afterGrace
+                    e'4
+                    {
+                        gf'16
+                    }
+                    \abjad-color-music #'blue
+                    f'4
+                }
             }
 
     ..  container:: example
@@ -677,11 +776,64 @@ def components(
                 f'8
             }
 
+        Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.setting(staff).autoBeaming = False
+
+        >>> result = abjad.select.components(staff, abjad.Leaf, grace=True)
+        >>> for item in result:
+        ...     item
+        ...
+        Note("gf'16")
+
+        >>> abjad.label.by_selector(result, True)
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                autoBeaming = ##f
+            }
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        \abjad-color-music #'red
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
     """
     generator = _iterlib._public_iterate_components(
-        argument, prototype=prototype, exclude=exclude, grace=grace, reverse=reverse
+        argument, prototype=prototype, exclude=exclude, grace=None, reverse=reverse
     )
-    return list(generator)
+    result = []
+    for component in generator:
+        if (
+            grace is None
+            or (grace is True and _get.grace(component))
+            or (grace is False and not _get.grace(component))
+        ):
+            result.append(component)
+    return result
+
+
+_components_alias = components
 
 
 def exclude(argument, indices: typing.Sequence[int], period: int | None = None) -> list:
@@ -3215,6 +3367,56 @@ def leaves(
                 f'8
             }
 
+        Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.setting(staff).autoBeaming = False
+
+        >>> result = abjad.select.leaves(staff, grace=None)
+        >>> for item in result:
+        ...     item
+        ...
+        Note("c'4")
+        Note("d'4")
+        Note("e'4")
+        Note("gf'16")
+        Note("f'4")
+
+        >>> abjad.label.by_selector(result, True)
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                autoBeaming = ##f
+            }
+            {
+                \context Voice = "MusicVoice"
+                {
+                    \abjad-color-music #'red
+                    c'4
+                    \abjad-color-music #'blue
+                    d'4
+                    \abjad-color-music #'red
+                    \afterGrace
+                    e'4
+                    {
+                        \abjad-color-music #'blue
+                        gf'16
+                    }
+                    \abjad-color-music #'red
+                    f'4
+                }
+            }
+
     ..  container:: example
 
         Excludes grace notes when ``grace=False``:
@@ -3266,6 +3468,54 @@ def leaves(
                 e'8
                 \abjad-color-music #'blue
                 f'8
+            }
+
+        Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.setting(staff).autoBeaming = False
+
+        >>> result = abjad.select.leaves(staff, grace=False)
+        >>> for item in result:
+        ...     item
+        ...
+        Note("c'4")
+        Note("d'4")
+        Note("e'4")
+        Note("f'4")
+
+        >>> abjad.label.by_selector(result, True)
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                autoBeaming = ##f
+            }
+            {
+                \context Voice = "MusicVoice"
+                {
+                    \abjad-color-music #'red
+                    c'4
+                    \abjad-color-music #'blue
+                    d'4
+                    \abjad-color-music #'red
+                    \afterGrace
+                    e'4
+                    {
+                        gf'16
+                    }
+                    \abjad-color-music #'blue
+                    f'4
+                }
             }
 
     ..  container:: example
@@ -3321,6 +3571,48 @@ def leaves(
                 f'8
             }
 
+        Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.setting(staff).autoBeaming = False
+
+        >>> result = abjad.select.leaves(staff, grace=True)
+        >>> for item in result:
+        ...     item
+        ...
+        Note("gf'16")
+
+        >>> abjad.label.by_selector(result, True)
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                autoBeaming = ##f
+            }
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        \abjad-color-music #'red
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
     '''
     assert trim in (True, False, _enums.LEFT, None)
     if pitched:
@@ -3331,10 +3623,9 @@ def leaves(
     if not isinstance(prototype, tuple):
         prototype = (prototype,)
     result = []
-    generator = _iterlib._public_iterate_components(
-        argument, prototype, exclude=exclude, grace=grace
+    components = _components_alias(
+        argument, prototype=prototype, exclude=exclude, grace=grace, reverse=reverse
     )
-    components = list(generator)
     if components:
         if trim in (True, _enums.LEFT):
             components = _trim_subresult(components, trim)
@@ -3739,6 +4030,56 @@ def logical_ties(
                 f'8
             }
 
+        Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.setting(staff).autoBeaming = False
+
+        >>> result = abjad.select.logical_ties(staff, grace=None)
+        >>> for item in result:
+        ...     item
+        ...
+        LogicalTie(items=[Note("c'4")])
+        LogicalTie(items=[Note("d'4")])
+        LogicalTie(items=[Note("e'4")])
+        LogicalTie(items=[Note("gf'16")])
+        LogicalTie(items=[Note("f'4")])
+
+        >>> abjad.label.by_selector(result, True)
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                autoBeaming = ##f
+            }
+            {
+                \context Voice = "MusicVoice"
+                {
+                    \abjad-color-music #'red
+                    c'4
+                    \abjad-color-music #'blue
+                    d'4
+                    \abjad-color-music #'red
+                    \afterGrace
+                    e'4
+                    {
+                        \abjad-color-music #'blue
+                        gf'16
+                    }
+                    \abjad-color-music #'red
+                    f'4
+                }
+            }
+
     ..  container:: example
 
         Excludes grace notes when ``grace=False``:
@@ -3790,6 +4131,54 @@ def logical_ties(
                 e'8
                 \abjad-color-music #'blue
                 f'8
+            }
+
+        Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.setting(staff).autoBeaming = False
+
+        >>> result = abjad.select.logical_ties(staff, grace=False)
+        >>> for item in result:
+        ...     item
+        ...
+        LogicalTie(items=[Note("c'4")])
+        LogicalTie(items=[Note("d'4")])
+        LogicalTie(items=[Note("e'4")])
+        LogicalTie(items=[Note("f'4")])
+
+        >>> abjad.label.by_selector(result, True)
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                autoBeaming = ##f
+            }
+            {
+                \context Voice = "MusicVoice"
+                {
+                    \abjad-color-music #'red
+                    c'4
+                    \abjad-color-music #'blue
+                    d'4
+                    \abjad-color-music #'red
+                    \afterGrace
+                    e'4
+                    {
+                        gf'16
+                    }
+                    \abjad-color-music #'blue
+                    f'4
+                }
             }
 
     ..  container:: example
@@ -3846,16 +4235,66 @@ def logical_ties(
                 f'8
             }
 
+        Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.setting(staff).autoBeaming = False
+
+        >>> result = abjad.select.logical_ties(staff, grace=True)
+        >>> for item in result:
+        ...     item
+        ...
+        LogicalTie(items=[Note("gf'16")])
+
+        >>> abjad.label.by_selector(result, True)
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                autoBeaming = ##f
+            }
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        \abjad-color-music #'red
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
     '''
     generator = _iterlib._iterate_logical_ties(
         argument,
         exclude=exclude,
-        grace=grace,
+        grace=None,
         nontrivial=nontrivial,
         pitched=pitched,
         reverse=reverse,
     )
-    return list(generator)
+    result = []
+    for logical_tie in generator:
+        if (
+            grace is None
+            or (grace is True and _get.grace(logical_tie.head))
+            or (grace is False and not _get.grace(logical_tie.head))
+        ):
+            result.append(logical_tie)
+    return result
 
 
 def nontrivial(argument) -> list:
@@ -6701,6 +7140,94 @@ def with_next_leaf(argument, *, grace: bool | None = None) -> list[_score.Leaf]:
                 }
             }
 
+        Works with independent after-grace containers (grace-to-main):
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.setting(staff).autoBeaming = False
+
+        >>> leaves = abjad.select.leaves(staff)
+        >>> result = [abjad.select.with_next_leaf(_) for _ in [leaves[2:3]]]
+        >>> for item in result:
+        ...     item
+        ...
+        [Note("e'4"), Note("gf'16")]
+
+        >>> abjad.label.by_selector(result, True)
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                autoBeaming = ##f
+            }
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \abjad-color-music #'red
+                    \afterGrace
+                    e'4
+                    {
+                        \abjad-color-music #'red
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
+        Works with independent after-grace containers (grace-to-main):
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.setting(staff).autoBeaming = False
+
+        >>> leaves = abjad.select.leaves(staff)
+        >>> result = [abjad.select.with_next_leaf(_) for _ in [leaves[3:4]]]
+        >>> for item in result:
+        ...     item
+        ...
+        [Note("gf'16"), Note("f'4")]
+
+        >>> abjad.label.by_selector(result, True)
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                autoBeaming = ##f
+            }
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        \abjad-color-music #'red
+                        gf'16
+                    }
+                    \abjad-color-music #'red
+                    f'4
+                }
+            }
+
     """
     items = leaves(argument)
     previous_leaf = items[-1]
@@ -6908,6 +7435,94 @@ def with_previous_leaf(argument) -> list[_score.Leaf]:
                         \abjad-color-music #'red
                         fs'16
                     }
+                }
+            }
+
+        Works with independent after-grace containers (grace-to-main):
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.setting(staff).autoBeaming = False
+
+        >>> leaves = abjad.select.leaves(staff)
+        >>> result = [abjad.select.with_previous_leaf(_) for _ in [leaves[3:4]]]
+        >>> for item in result:
+        ...     item
+        ...
+        [Note("e'4"), Note("gf'16")]
+
+        >>> abjad.label.by_selector(result, True)
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                autoBeaming = ##f
+            }
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \abjad-color-music #'red
+                    \afterGrace
+                    e'4
+                    {
+                        \abjad-color-music #'red
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
+        Works with independent after-grace containers (main-to-grace):
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> abjad.setting(staff).autoBeaming = False
+
+        >>> leaves = abjad.select.leaves(staff)
+        >>> result = [abjad.select.with_previous_leaf(_) for _ in [leaves[-1:]]]
+        >>> for item in result:
+        ...     item
+        ...
+        [Note("gf'16"), Note("f'4")]
+
+        >>> abjad.label.by_selector(result, True)
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            \with
+            {
+                autoBeaming = ##f
+            }
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        \abjad-color-music #'red
+                        gf'16
+                    }
+                    \abjad-color-music #'red
+                    f'4
                 }
             }
 

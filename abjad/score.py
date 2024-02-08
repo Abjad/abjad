@@ -591,6 +591,12 @@ class Leaf(Component):
         # IMPORTANT: LilyPond \afterGrace must appear immediately before leaf!
         # TODO: figure out \pitchedTrill, \afterGrace ordering
         if self._after_grace_container is not None:
+            assert not self._is_followed_by_after_grace_container()
+            result.append(r"\afterGrace")
+        if self._is_followed_by_after_grace_container():
+            assert self._after_grace_container is None, repr(
+                self._after_grace_container
+            )
             result.append(r"\afterGrace")
         return result
 
@@ -627,6 +633,18 @@ class Leaf(Component):
         if self._after_grace_container is not None:
             result.extend(self._after_grace_container._get_subtree())
         return result
+
+    def _is_followed_by_after_grace_container(self):
+        if self._parent is not None:
+            index = self._parent.index(self)
+            try:
+                component = self._parent[index + 1]
+            except IndexError:
+                component = None
+            if isinstance(component, IndependentAfterGraceContainer):
+                return True
+            else:
+                return False
 
     def _process_contribution_packet(self, contribution_packet):
         result = ""
@@ -2577,7 +2595,7 @@ class Chord(Leaf):
             if isinstance(written_pitches, str):
                 written_pitches = [_ for _ in written_pitches.split() if _]
             elif isinstance(written_pitches, type(self)):
-                written_pitches = written_pitches.written_pitches
+                written_pitches = list(written_pitches.written_pitches)
         elif len(arguments) == 0:
             written_pitches = [_pitch.NamedPitch(_) for _ in [0, 4, 7]]
             written_duration = _duration.Duration(1, 4)
@@ -3216,6 +3234,82 @@ class Context(Container):
     @tag.setter
     def tag(self, argument) -> None:
         self._tag = argument
+
+
+class IndependentAfterGraceContainer(Container):
+    r"""
+    Independent after grace container.
+
+    ..  container:: example
+
+        After grace notes:
+
+        >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
+        >>> string = '#(define afterGraceFraction (cons 15 16))'
+        >>> literal = abjad.LilyPondLiteral(string, site="before")
+        >>> abjad.attach(literal, voice[0])
+        >>> notes = [abjad.Note("c'16"), abjad.Note("d'16")]
+        >>> after_grace_container = abjad.IndependentAfterGraceContainer(notes)
+        >>> voice.insert(2, after_grace_container)
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            {
+                #(define afterGraceFraction (cons 15 16))
+                c'4
+                \afterGrace
+                d'4
+                {
+                    c'16
+                    d'16
+                }
+                e'4
+                f'4
+            }
+
+        LilyPond positions after grace notes at a point 3/4 of the way
+        after the note they follow. The resulting spacing is usually too
+        loose.
+
+        Customize ``afterGraceFraction`` as shown above.
+
+    After grace notes are played in the last moments of the duration of the
+    note they follow.
+
+    Use after grace notes when you need to end a piece of music with grace
+    notes.
+
+    Fill grace containers with notes, rests or chords.
+
+    """
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = "Containers"
+
+    ### SPECIAL METHODS ###
+
+    def __getnewargs__(self):
+        """
+        Gets new after grace container arguments.
+
+        Returns tuple of single empty list.
+        """
+        return ([],)
+
+    ### PRIVATE METHODS ###
+
+    def _format_open_brackets_site(self, contributions):
+        result = []
+        result.extend(["{"])
+        return result
+
+    def _get_preprolated_duration(self):
+        return _duration.Duration(0)
 
 
 class MultimeasureRest(Leaf):

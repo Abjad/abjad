@@ -578,6 +578,7 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.score.Container'>
         <class 'abjad.score.Context'>
         <class 'abjad.score.DrumNoteHead'>
+        <class 'abjad.score.IndependentAfterGraceContainer'>
         <class 'abjad.score.Leaf'>
         <class 'abjad.score.MultimeasureRest'>
         <class 'abjad.score.Note'>

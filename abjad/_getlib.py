@@ -177,6 +177,8 @@ def _get_effective(
 
 
 def _get_grace_container(component):
+    # _score.IndependentAfterGraceContainer is excluded here;
+    # exclusion allows iteration to work correctly
     prototype = (
         _score.AfterGraceContainer,
         _score.BeforeGraceContainer,
