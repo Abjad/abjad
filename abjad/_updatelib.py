@@ -8,6 +8,7 @@ Updates start offsets, stop offsets and indicators everywhere in score.
     the implementation of _updatelib.py.
 
 """
+
 import fractions
 
 from . import duration as _duration

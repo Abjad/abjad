@@ -5,7 +5,6 @@ import typing
 
 from . import _updatelib
 from . import duration as _duration
-from . import dynamic as _dynamic
 from . import exceptions as _exceptions
 from . import indicators as _indicators
 from . import instruments as _instruments
@@ -276,7 +275,7 @@ def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=Non
         ):
             if isinstance(
                 wrappers[key].unbundle_indicator(), _indicators.StartHairpin
-            ) and isinstance(wrapper.unbundle_indicator(), _dynamic.Dynamic):
+            ) and isinstance(wrapper.unbundle_indicator(), _indicators.Dynamic):
                 pass
             elif (
                 getattr(wrapper.unbundle_indicator(), "spanner_start", False) is True

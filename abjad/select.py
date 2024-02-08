@@ -2401,7 +2401,7 @@ def leaves(
     tail: bool | None = None,
     trim: bool | _enums.Horizontal | None = None,
 ) -> list[_score.Leaf]:
-    ...
+    pass
 
 
 @typing.overload
@@ -2417,7 +2417,7 @@ def leaves(
     tail: bool | None = None,
     trim: bool | _enums.Horizontal | None = None,
 ) -> list[_score.Chord]:
-    ...
+    pass
 
 
 @typing.overload
@@ -2433,7 +2433,7 @@ def leaves(
     tail: bool | None = None,
     trim: bool | _enums.Horizontal | None = None,
 ) -> list[_score.MultimeasureRest]:
-    ...
+    pass
 
 
 @typing.overload
@@ -2449,7 +2449,7 @@ def leaves(
     tail: bool | None = None,
     trim: bool | _enums.Horizontal | None = None,
 ) -> list[_score.Note]:
-    ...
+    pass
 
 
 def leaves(

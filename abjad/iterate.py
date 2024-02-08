@@ -16,7 +16,7 @@ def components(
     grace=None,
     reverse=None,
 ) -> typing.Iterator[_score.Component]:
-    ...
+    pass
 
 
 @typing.overload
@@ -28,7 +28,7 @@ def components(
     grace=None,
     reverse=None,
 ) -> typing.Iterator[_score.Tuplet]:
-    ...
+    pass
 
 
 @typing.overload
@@ -40,7 +40,7 @@ def components(
     grace=None,
     reverse=None,
 ) -> typing.Iterator[_score.Container]:
-    ...
+    pass
 
 
 @typing.overload
@@ -52,7 +52,7 @@ def components(
     grace=None,
     reverse=None,
 ) -> typing.Iterator[_score.Leaf]:
-    ...
+    pass
 
 
 def components(

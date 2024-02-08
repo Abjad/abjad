@@ -1,6 +1,7 @@
 """
 Type aliases.
 """
+
 import enum
 import typing
 

@@ -228,13 +228,14 @@ def transpose_from_sounding_pitch(argument) -> None:
         sounding_pitch = instrument.middle_c_sounding_pitch
         interval = _pitch.NamedPitch("C4") - sounding_pitch
         interval *= -1
-        if hasattr(leaf, "written_pitch"):
+        if hasattr(leaf, "note_head"):
             pitch = leaf.written_pitch
             pitch = interval.transpose(pitch)
             leaf.written_pitch = pitch
-        elif hasattr(leaf, "written_pitches"):
+        elif hasattr(leaf, "note_heads"):
             pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
-            leaf.written_pitches = pitches
+            for note_head, pitch in zip(leaf.note_heads, pitches, strict=True):
+                note_head.written_pitch = pitch
         wrapper = _get.indicator(leaf, _indicators.StartTrillSpan, unwrap=False)
         if wrapper is not None:
             start_trill_span = wrapper.unbundle_indicator()
@@ -298,13 +299,14 @@ def transpose_from_written_pitch(argument) -> None:
             continue
         sounding_pitch = instrument.middle_c_sounding_pitch
         interval = _pitch.NamedPitch("C4") - sounding_pitch
-        if hasattr(leaf, "written_pitch"):
+        if hasattr(leaf, "note_head"):
             written_pitch = leaf.written_pitch
             written_pitch = interval.transpose(written_pitch)
             leaf.written_pitch = written_pitch
-        elif hasattr(leaf, "written_pitches"):
+        elif hasattr(leaf, "note_heads"):
             pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
-            leaf.written_pitches = pitches
+            for note_head, pitch in zip(leaf.note_heads, pitches, strict=True):
+                note_head.written_pitch = pitch
         wrapper = _get.indicator(leaf, _indicators.StartTrillSpan, unwrap=False)
         if wrapper is not None:
             start_trill_span = wrapper.unbundle_indicator()

@@ -18,7 +18,6 @@ from ply.yacc import (  # type: ignore
 from .. import _indentlib
 from .. import bind as _bind
 from .. import duration as _duration
-from .. import dynamic as _dynamic
 from .. import exceptions as _exceptions
 from .. import indicators as _indicators
 from .. import lilypondfile as _lilypondfile
@@ -2958,9 +2957,9 @@ class LilyPondParser(Parser):
 
     def _process_post_events(self, leaf, post_events):
         prototype = (
-            _dynamic.Dynamic,
             _indicators.Articulation,
             _indicators.BarLine,
+            _indicators.Dynamic,
             _indicators.Glissando,
             _indicators.LilyPondLiteral,
             _indicators.Markup,
@@ -3044,7 +3043,7 @@ class LilyPondParser(Parser):
         if name == "ArticulationEvent":
             return _indicators.Articulation(lookup["articulation-type"])
         elif name == "AbsoluteDynamicEvent":
-            return _dynamic.Dynamic(lookup["text"])
+            return _indicators.Dynamic(lookup["text"])
         elif name == "BeamEvent":
             if lookup["span-direction"] == -1:
                 return _indicators.StartBeam()

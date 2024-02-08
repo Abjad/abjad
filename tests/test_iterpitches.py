@@ -32,6 +32,47 @@ def test_transpose_from_sounding_pitch_01():
     )
 
 
+def test_transpose_from_sounding_pitch_02():
+    """
+    REGRESSION #1577. Do not lose note-head tweaks on chords during transposition.
+    """
+    staff = abjad.Staff("<d'' fs''>8 e'4")
+    abjad.attach(abjad.Violin(), staff[0])
+    abjad.tweak(staff[0].note_heads[1], r"\tweak color #red")
+    abjad.tweak(staff[1].note_head, r"\tweak color #blue")
+    string = abjad.lilypond(staff)
+    assert string == abjad.string.normalize(
+        r"""
+        \new Staff
+        {
+            <
+                d''
+                \tweak color #red
+                fs''
+            >8
+            \tweak color #blue
+            e'4
+        }
+        """
+    )
+    abjad.iterpitches.transpose_from_sounding_pitch(staff)
+    string = abjad.lilypond(staff)
+    assert string == abjad.string.normalize(
+        r"""
+        \new Staff
+        {
+            <
+                d''
+                \tweak color #red
+                fs''
+            >8
+            \tweak color #blue
+            e'4
+        }
+        """
+    )
+
+
 def test_transpose_from_written_pitch_01():
     voice = abjad.Voice("a'4 a'4 a'4 a'4")
     staff = abjad.Staff([voice])
@@ -58,6 +99,47 @@ def test_transpose_from_written_pitch_01():
                 \stopTrillSpan
                 c'4
             }
+        }
+        """
+    )
+
+
+def test_transpose_from_written_pitch_02():
+    """
+    REGRESSION #1577. Do not lose note-head tweaks on chords during transposition.
+    """
+    staff = abjad.Staff("<d'' fs''>8 e'4")
+    abjad.attach(abjad.Violin(), staff[0])
+    abjad.tweak(staff[0].note_heads[1], r"\tweak color #red")
+    abjad.tweak(staff[1].note_head, r"\tweak color #blue")
+    string = abjad.lilypond(staff)
+    assert string == abjad.string.normalize(
+        r"""
+        \new Staff
+        {
+            <
+                d''
+                \tweak color #red
+                fs''
+            >8
+            \tweak color #blue
+            e'4
+        }
+        """
+    )
+    abjad.iterpitches.transpose_from_written_pitch(staff)
+    string = abjad.lilypond(staff)
+    assert string == abjad.string.normalize(
+        r"""
+        \new Staff
+        {
+            <
+                d''
+                \tweak color #red
+                fs''
+            >8
+            \tweak color #blue
+            e'4
         }
         """
     )

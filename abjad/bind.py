@@ -895,7 +895,7 @@ def attach(
     tag: _tag.Tag | None = None,
     wrapper: typing.Literal[True] = True,
 ) -> Wrapper:
-    ...
+    pass
 
 
 @typing.overload
@@ -912,7 +912,7 @@ def attach(
     tag: _tag.Tag | None = None,
     wrapper: typing.Literal[False],
 ) -> None:
-    ...
+    pass
 
 
 def attach(

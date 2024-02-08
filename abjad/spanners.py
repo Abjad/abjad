@@ -1,12 +1,12 @@
 """
 Classes and functions for modeling spanners: beams, hairpins, slurs, etc.
 """
+
 import typing
 
 from . import _iterlib
 from . import bind as _bind
 from . import duration as _duration
-from . import dynamic as _dynamic
 from . import enums as _enums
 from . import indicators as _indicators
 from . import iterate as _iterate
@@ -1288,11 +1288,10 @@ def hairpin(
         With dynamic objects:
 
         >>> voice = abjad.Voice("c'4 d' e' f'")
-        >>> start_dynamic = abjad.Dynamic("niente", command=r"\!")
         >>> start_hairpin = abjad.StartHairpin("o<|")
         >>> bundle = abjad.bundle(start_hairpin, r"- \tweak color #blue")
         >>> stop_dynamic = abjad.Dynamic('"f"')
-        >>> abjad.hairpin([start_dynamic, bundle, stop_dynamic], voice[:])
+        >>> abjad.hairpin([bundle, stop_dynamic], voice[:])
         >>> abjad.override(voice[0]).DynamicLineSpanner.staff_padding = 4
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', voice])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -1305,7 +1304,6 @@ def hairpin(
             {
                 \once \override DynamicLineSpanner.staff-padding = 4
                 c'4
-                \!
                 - \tweak circled-tip ##t
                 - \tweak stencil #abjad-flared-hairpin
                 - \tweak color #blue
@@ -1329,9 +1327,9 @@ def hairpin(
 
     """
     indicators: list = []
-    start_dynamic: _dynamic.Dynamic | None
+    start_dynamic: _indicators.Dynamic | None
     hairpin: _indicators.StartHairpin | None
-    stop_dynamic: _dynamic.Dynamic | None
+    stop_dynamic: _indicators.Dynamic | None
     known_shapes = _indicators.StartHairpin("<").known_shapes
     if isinstance(descriptor, str):
         for string in descriptor.split():
@@ -1342,7 +1340,7 @@ def hairpin(
                 stop_hairpin = _indicators.StopHairpin()
                 indicators.append(stop_hairpin)
             else:
-                dynamic = _dynamic.Dynamic(string)
+                dynamic = _indicators.Dynamic(string)
                 indicators.append(dynamic)
     else:
         assert isinstance(descriptor, list), repr(descriptor)
@@ -1350,12 +1348,12 @@ def hairpin(
 
     start_dynamic, hairpin, stop_dynamic = None, None, None
     if len(indicators) == 1:
-        if isinstance(indicators[0], _dynamic.Dynamic):
+        if isinstance(indicators[0], _indicators.Dynamic):
             start_dynamic = indicators[0]
         else:
             hairpin = indicators[0]
     elif len(indicators) == 2:
-        if isinstance(indicators[0], _dynamic.Dynamic):
+        if isinstance(indicators[0], _indicators.Dynamic):
             start_dynamic = indicators[0]
             hairpin = indicators[1]
         else:
@@ -1367,7 +1365,7 @@ def hairpin(
         raise Exception(indicators)
 
     if start_dynamic is not None:
-        assert isinstance(start_dynamic, _dynamic.Dynamic), repr(start_dynamic)
+        assert isinstance(start_dynamic, _indicators.Dynamic), repr(start_dynamic)
 
     assert callable(selector)
     argument = selector(argument)

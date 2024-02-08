@@ -327,3 +327,33 @@ def test_BarLine_01():
     with pytest.raises(Exception) as e:
         abjad.BarLine("foo")
     assert "unknown bar-line abbreviation" in str(e)
+
+
+def test_StartTrillSpan_01():
+    """
+    Set force_trill_pitch_head_accidental=True to force trill pitch head accidental.
+    """
+
+    voice = abjad.Voice("c'4 d' e' f'")
+    start_trill_span = abjad.StartTrillSpan(
+        pitch=abjad.NamedPitch("D4"),
+        force_trill_pitch_head_accidental=True,
+    )
+    abjad.attach(start_trill_span, voice[0])
+    stop_trill_span = abjad.StopTrillSpan()
+    abjad.attach(stop_trill_span, voice[-1])
+
+    assert abjad.lilypond(voice) == abjad.string.normalize(
+        r"""
+        \new Voice
+        {
+            \pitchedTrill
+            c'4
+            \startTrillSpan d'!
+            d'4
+            e'4
+            f'4
+            \stopTrillSpan
+        }
+        """
+    )

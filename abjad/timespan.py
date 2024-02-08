@@ -1,6 +1,7 @@
 """
 Tools for modeling and manipulating timespans.
 """
+
 import collections
 import copy
 import dataclasses
