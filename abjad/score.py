@@ -2577,7 +2577,7 @@ class Chord(Leaf):
             if isinstance(written_pitches, str):
                 written_pitches = [_ for _ in written_pitches.split() if _]
             elif isinstance(written_pitches, type(self)):
-                written_pitches = written_pitches.written_pitches
+                written_pitches = list(written_pitches.written_pitches)
         elif len(arguments) == 0:
             written_pitches = [_pitch.NamedPitch(_) for _ in [0, 4, 7]]
             written_duration = _duration.Duration(1, 4)
