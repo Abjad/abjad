@@ -80,7 +80,7 @@ mypy:
 project = abjad
 
 pytest:
-	pytest tests
+	pytest abjad tests
 
 pytest-coverage:
 	rm -Rf htmlcov/
@@ -88,10 +88,10 @@ pytest-coverage:
 	--cov-config=.coveragerc \
 	--cov-report=html \
 	--cov=${project} \
-	tests
+	abjad tests
 
 pytest-x:
-	pytest -x tests
+	pytest -x abjad tests
 
 reformat:
 	make black-reformat
