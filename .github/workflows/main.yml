@@ -46,6 +46,7 @@ jobs:
       run: |
         export PATH=/tmp/lilypond-2.25.3/bin:/home/runner/bin:$PATH
         export PYTHONUNBUFFERED=TRUE
+        pip install defusedxml
         pip install -e .[dev]
         # echo the configuration file path to debug read-only-filesystem handling
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
