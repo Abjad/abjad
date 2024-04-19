@@ -583,25 +583,43 @@ class Leaf(Component):
         if strings:
             result.append(f"% {_contributions.Types.COMMANDS.name}:")
             result.extend(strings)
-        strings = contributions.alphabetize(contributions.before.pitched_trill)
-        if strings:
-            result.append(f"% {_contributions.Types.PITCHED_TRILL.name}:")
-            result.extend(strings)
-        # IMPORTANT: LilyPond \pitchedTrill must appear immediately before leaf!
-        # IMPORTANT: LilyPond \afterGrace must appear immediately before leaf!
-        # TODO: figure out \pitchedTrill, \afterGrace ordering
         if self._after_grace_container is not None:
             assert not self._is_followed_by_after_grace_container()
-            result.append(r"\afterGrace")
+            string = r"\afterGrace"
+            if self._after_grace_container.fraction is not None:
+                n, d = self._after_grace_container.fraction
+                string = f"{string} {n}/{d}"
+            result.append(string)
         if self._is_followed_by_after_grace_container():
             assert self._after_grace_container is None, repr(
                 self._after_grace_container
             )
-            result.append(r"\afterGrace")
+            string = r"\afterGrace"
+            container = self._get_following_after_grace_container()
+            if container.fraction is not None:
+                n, d = container.fraction
+                string = f"{string} {n}/{d}"
+            result.append(string)
+        strings = contributions.alphabetize(contributions.before.pitched_trill)
+        if strings:
+            result.append(f"% {_contributions.Types.PITCHED_TRILL.name}:")
+            result.extend(strings)
         return result
 
     def _get_compact_representation(self):
         return f"({self._get_formatted_duration()})"
+
+    def _get_following_after_grace_container(self):
+        if self._parent is not None:
+            index = self._parent.index(self)
+            try:
+                component = self._parent[index + 1]
+            except IndexError:
+                component = None
+            if isinstance(component, IndependentAfterGraceContainer):
+                return component
+            else:
+                return False
 
     def _get_formatted_duration(self):
         strings = []
@@ -1830,14 +1848,9 @@ class AfterGraceContainer(Container):
 
     ..  container:: example
 
-        After grace notes:
-
         >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-        >>> string = '#(define afterGraceFraction (cons 15 16))'
-        >>> literal = abjad.LilyPondLiteral(string, site="before")
-        >>> abjad.attach(literal, voice[0])
         >>> notes = [abjad.Note("c'16"), abjad.Note("d'16")]
-        >>> after_grace_container = abjad.AfterGraceContainer(notes)
+        >>> after_grace_container = abjad.AfterGraceContainer(notes, fraction=(15, 16))
         >>> abjad.attach(after_grace_container, voice[1])
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1847,9 +1860,8 @@ class AfterGraceContainer(Container):
             >>> print(string)
             \new Voice
             {
-                #(define afterGraceFraction (cons 15 16))
                 c'4
-                \afterGrace
+                \afterGrace 15/16
                 d'4
                 {
                     c'16
@@ -1859,19 +1871,14 @@ class AfterGraceContainer(Container):
                 f'4
             }
 
-        LilyPond positions after grace notes at a point 3/4 of the way
-        after the note they follow. The resulting spacing is usually too
-        loose.
-
-        Customize ``afterGraceFraction`` as shown above.
+        LilyPond positions after grace notes at a point 3/4 of the way after
+        the note they follow. The resulting spacing is usually too loose.
+        Customize ``fraction`` as shown here.
 
     After grace notes are played in the last moments of duration of the note
     they follow.
 
-    Use after grace notes when you need to end a piece of music with grace
-    notes.
-
-    Fill grace containers with notes, rests or chords.
+    Fill after grace containers with notes, rests or chords.
 
     Attach after grace containers to notes, rests or chords.
 
@@ -1881,11 +1888,8 @@ class AfterGraceContainer(Container):
         articulations and markup:
 
         >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-        >>> string = '#(define afterGraceFraction (cons 15 16))'
-        >>> literal = abjad.LilyPondLiteral(string, site="before")
-        >>> abjad.attach(literal, voice[0])
-        >>> after_grace_container = abjad.AfterGraceContainer("c'16 d'16")
-        >>> abjad.attach(after_grace_container, voice[1])
+        >>> container = abjad.AfterGraceContainer("c'16 d'16", fraction=(15, 16))
+        >>> abjad.attach(container, voice[1])
         >>> leaves = abjad.select.leaves(voice, grace=None)
         >>> markup = abjad.Markup(r'\markup Allegro')
         >>> abjad.attach(markup, leaves[1], direction=abjad.UP)
@@ -1898,9 +1902,8 @@ class AfterGraceContainer(Container):
             >>> print(string)
             \new Voice
             {
-                #(define afterGraceFraction (cons 15 16))
                 c'4
-                \afterGrace
+                \afterGrace 15/16
                 d'4
                 - \staccato
                 ^ \markup Allegro
@@ -1919,11 +1922,8 @@ class AfterGraceContainer(Container):
         appear lexically after the ``\override`` command:
 
         >>> voice = abjad.Voice("c'4 <d' f'>4 e'4 f'4")
-        >>> string = '#(define afterGraceFraction (cons 15 16))'
-        >>> literal = abjad.LilyPondLiteral(string, site="before")
-        >>> abjad.attach(literal, voice[0])
-        >>> after_grace_container = abjad.AfterGraceContainer("c'16 d'16")
-        >>> abjad.attach(after_grace_container, voice[1])
+        >>> container = abjad.AfterGraceContainer("c'16 d'16", fraction=(15, 16))
+        >>> abjad.attach(container, voice[1])
         >>> abjad.override(voice[1]).NoteHead.color = "#red"
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1933,10 +1933,9 @@ class AfterGraceContainer(Container):
             >>> print(string)
             \new Voice
             {
-                #(define afterGraceFraction (cons 15 16))
                 c'4
                 \once \override NoteHead.color = #red
-                \afterGrace
+                \afterGrace 15/16
                 <d' f'>4
                 {
                     c'16
@@ -1952,26 +1951,36 @@ class AfterGraceContainer(Container):
 
     __documentation_section__ = "Containers"
 
-    __slots__ = ("_main_leaf",)
+    __slots__ = ("_fraction", "_main_leaf")
 
     ### INITIALIZER ###
 
     def __init__(
-        self, components=None, *, language: str = "english", tag: _tag.Tag | None = None
+        self,
+        components=None,
+        *,
+        fraction: tuple[int, int] | None = None,
+        language: str = "english",
+        tag: _tag.Tag | None = None,
     ) -> None:
-        # _main_leaf must be initialized before container initialization
+        # NOTE: _main_leaf must be initialized before container initialization
         self._main_leaf = None
         Container.__init__(self, components, language=language, tag=tag)
+        self.fraction = fraction
 
     ### SPECIAL METHODS ###
 
-    def __getnewargs__(self):
+    def __getnewargs__(self) -> tuple[tuple[int, int] | None]:
         """
         Gets new after grace container arguments.
 
-        Returns tuple of single empty list.
+        ..  container:: example
+
+            >>> abjad.AfterGraceContainer("d'8", fraction=(15, 16)).__getnewargs__()
+            ((15, 16),)
+
         """
-        return ([],)
+        return (self.fraction,)
 
     ### PRIVATE METHODS ###
 
@@ -1992,6 +2001,23 @@ class AfterGraceContainer(Container):
         result = []
         result.extend(["{"])
         return result
+
+    @property
+    def fraction(self) -> tuple[int, int] | None:
+        r"""
+        Gets LilyPond `\afterGraceFraction`.
+        """
+        return self._fraction
+
+    @fraction.setter
+    def fraction(self, fraction: tuple[int, int] | None):
+        if fraction is not None:
+            assert isinstance(fraction, tuple), repr(fraction)
+            assert len(fraction) == 2, repr(fraction)
+            assert isinstance(fraction[0], int), repr(fraction)
+            assert isinstance(fraction[0], int), repr(fraction)
+            assert isinstance(fraction[1], int), repr(fraction)
+        self._fraction = fraction
 
 
 class BeforeGraceContainer(Container):
@@ -3245,12 +3271,9 @@ class IndependentAfterGraceContainer(Container):
         After grace notes:
 
         >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
-        >>> string = '#(define afterGraceFraction (cons 15 16))'
-        >>> literal = abjad.LilyPondLiteral(string, site="before")
-        >>> abjad.attach(literal, voice[0])
         >>> notes = [abjad.Note("c'16"), abjad.Note("d'16")]
-        >>> after_grace_container = abjad.IndependentAfterGraceContainer(notes)
-        >>> voice.insert(2, after_grace_container)
+        >>> container = abjad.IndependentAfterGraceContainer(notes, fraction=(15, 16))
+        >>> voice.insert(2, container)
         >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -3259,9 +3282,8 @@ class IndependentAfterGraceContainer(Container):
             >>> print(string)
             \new Voice
             {
-                #(define afterGraceFraction (cons 15 16))
                 c'4
-                \afterGrace
+                \afterGrace 15/16
                 d'4
                 {
                     c'16
@@ -3273,25 +3295,32 @@ class IndependentAfterGraceContainer(Container):
 
         LilyPond positions after grace notes at a point 3/4 of the way
         after the note they follow. The resulting spacing is usually too
-        loose.
-
-        Customize ``afterGraceFraction`` as shown above.
+        loose. Customize ``fraction`` as shown above.
 
     After grace notes are played in the last moments of the duration of the
     note they follow.
 
-    Use after grace notes when you need to end a piece of music with grace
-    notes.
-
     Fill grace containers with notes, rests or chords.
-
     """
 
     ### CLASS VARIABLES ###
 
     __documentation_section__ = "Containers"
 
-    ### SPECIAL METHODS ###
+    __slots__ = ("_fraction",)
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        components=None,
+        *,
+        fraction: tuple[int, int] | None = None,
+        language: str = "english",
+        tag: _tag.Tag | None = None,
+    ) -> None:
+        Container.__init__(self, components, language=language, tag=tag)
+        self.fraction = fraction
 
     def __getnewargs__(self):
         """
@@ -3301,8 +3330,6 @@ class IndependentAfterGraceContainer(Container):
         """
         return ([],)
 
-    ### PRIVATE METHODS ###
-
     def _format_open_brackets_site(self, contributions):
         result = []
         result.extend(["{"])
@@ -3310,6 +3337,23 @@ class IndependentAfterGraceContainer(Container):
 
     def _get_preprolated_duration(self):
         return _duration.Duration(0)
+
+    @property
+    def fraction(self) -> tuple[int, int] | None:
+        r"""
+        Gets LilyPond `\afterGraceFraction`.
+        """
+        return self._fraction
+
+    @fraction.setter
+    def fraction(self, fraction: tuple[int, int] | None):
+        if fraction is not None:
+            assert isinstance(fraction, tuple), repr(fraction)
+            assert len(fraction) == 2, repr(fraction)
+            assert isinstance(fraction[0], int), repr(fraction)
+            assert isinstance(fraction[0], int), repr(fraction)
+            assert isinstance(fraction[1], int), repr(fraction)
+        self._fraction = fraction
 
 
 class MultimeasureRest(Leaf):
