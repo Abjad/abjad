@@ -488,12 +488,14 @@ def contents(argument) -> list[_score.Component]:
             >>> print(string)
             \new Staff
             {
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     c'16
                     e'16
                 }
                 cs'4
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     d'16
                     f'16
                 }
@@ -856,12 +858,14 @@ def duration(
             >>> print(string)
             \new Staff
             {
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     c'16
                     e'16
                 }
                 cs'4
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     d'16
                     f'16
                 }
@@ -1107,12 +1111,14 @@ def effective(
             >>> print(string)
             \new Staff
             {
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     c'16
                     e'16
                 }
                 cs'4
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     \clef "alto"
                     d'16
                     f'16
@@ -2047,12 +2053,14 @@ def has_effective_indicator(
             >>> print(string)
             \new Staff
             {
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     c'16
                     e'16
                 }
                 cs'4
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     \clef "alto"
                     d'16
                     f'16
@@ -2241,12 +2249,14 @@ def has_indicator(
             >>> print(string)
             \new Staff
             {
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     c'16
                     e'16
                 }
                 cs'4
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     \clef "alto"
                     d'16
                     f'16
@@ -2438,12 +2448,14 @@ def indicator(
             >>> print(string)
             \new Staff
             {
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     c'16
                     e'16
                 }
                 cs'4
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     \clef "alto"
                     d'16
                     f'16
@@ -2620,7 +2632,8 @@ def indicators(
             >>> print(string)
             \new Staff
             {
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     c'16
                     - \staccato
                     e'16
@@ -2628,7 +2641,8 @@ def indicators(
                 }
                 cs'4
                 - \staccato
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     \clef "alto"
                     d'16
                     - \staccato
@@ -2919,12 +2933,14 @@ def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
             >>> print(string)
             \new Staff
             {
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     c'16
                     e'16
                 }
                 cs'4
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     d'16
                     f'16
                 }
@@ -3270,12 +3286,14 @@ def logical_tie(argument) -> "_select.LogicalTie":
             >>> print(string)
             \new Staff
             {
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     c'16
                     e'16
                 }
                 cs'4
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     d'16
                     f'16
                 }
@@ -3544,12 +3562,14 @@ def measure_number(argument) -> int:
             >>> print(string)
             \new Staff
             {
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     c'16
                     e'16
                 }
                 cs'4
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     d'16
                     f'16
                 }
@@ -3811,12 +3831,14 @@ def parentage(argument) -> "_parentage.Parentage":
             >>> print(string)
             \new Staff
             {
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     c'16
                     e'16
                 }
                 cs'4
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     d'16
                     f'16
                 }
@@ -4286,12 +4308,14 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
             >>> print(string)
             \new Staff
             {
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     c'16
                     e'16
                 }
                 cs'4
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     d'16
                     f'16
                 }
