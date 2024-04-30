@@ -4939,12 +4939,14 @@ class TremoloContainer(Container):
             >>> print(string)
             \new Staff
             {
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     c'16
                     e'16
                 }
                 cs'4
-                \repeat tremolo 2 {
+                \repeat tremolo 2
+                {
                     d'16
                     f'16
                 }
@@ -4989,8 +4991,8 @@ class TremoloContainer(Container):
 
     def _format_open_brackets_site(self, contributions):
         result = []
-        string = rf"\repeat tremolo {self.count} {{"
-        result.append(string)
+        result.append(rf"\repeat tremolo {self.count}")
+        result.append("{")
         return result
 
     def _get_preprolated_duration(self):
