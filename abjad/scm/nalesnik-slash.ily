@@ -1,3 +1,5 @@
+\version "2.25.16"
+
 % FROM DAVID NALESNIK:
 %
 % http://lilypond.1069038.n5.nabble.com/So-slashed-beamed-grace-notes-td152817.html
@@ -7,7 +9,7 @@
 %    \slash
 
 slash = { 
-  #(remove-grace-property 'Voice 'Stem 'direction) 
+  $(remove-grace-property 'Voice 'Stem 'direction) 
   \once \override Stem.stencil = 
   #(lambda (grob) 
     (let* ((x-parent (ly:grob-parent grob X)) 

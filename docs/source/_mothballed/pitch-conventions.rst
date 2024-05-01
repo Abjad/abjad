@@ -45,7 +45,7 @@ Abjad numbers pitches like this:
     ...         \override Stem.stencil = ##f
     ...         \override TextScript.staff-padding = #6
     ...         \override TimeSignature.stencil = ##f
-    ...         proportionalNotationDuration = #(ly:make-moment 1 56)
+    ...         proportionalNotationDuration = \musicLength 1*1/56
     ...     }
     ... }"""
 

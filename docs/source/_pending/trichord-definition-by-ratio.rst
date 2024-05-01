@@ -138,7 +138,7 @@ Define helper functions:
     ...     abjad.override(score).Rest.stencil = False
     ...     abjad.override(score).SpacingSpanner.strict_note_spacing = True
     ...     abjad.override(score).TimeSignature.stencil = False
-    ...     abjad.setting(score).proportionalNotationDuration = "#(ly:make-moment 1 5)"
+    ...     abjad.setting(score).proportionalNotationDuration = r"\musicLength 1*1/5"
     ...     items = [score, abjad.Block(name="layout"), abjad.Block(name="paper")]
     ...     string = "#(set-global-staff-size 16)"
     ...     items.insert(0, string)

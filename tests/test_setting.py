@@ -10,14 +10,14 @@ def test_setting_01():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     score = abjad.Score([staff])
-    abjad.setting(score).tempoWholesPerMinute = "#(ly:make-moment 24 1)"
+    abjad.setting(score).tempoWholesPerMinute = r"\musicLength 1*24"
 
     assert abjad.lilypond(score) == abjad.string.normalize(
         r"""
         \new Score
         \with
         {
-            tempoWholesPerMinute = #(ly:make-moment 24 1)
+            tempoWholesPerMinute = \musicLength 1*24
         }
         <<
             \new Staff
@@ -42,7 +42,7 @@ def test_setting_02():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     score = abjad.Score([staff])
     leaves = abjad.select.leaves(score)
-    abjad.setting(leaves[1]).Score.tempoWholesPerMinute = "#(ly:make-moment 24 1)"
+    abjad.setting(leaves[1]).Score.tempoWholesPerMinute = r"\musicLength 1*24"
 
     assert abjad.lilypond(score) == abjad.string.normalize(
         r"""
@@ -51,7 +51,7 @@ def test_setting_02():
             \new Staff
             {
                 c'8
-                \set Score.tempoWholesPerMinute = #(ly:make-moment 24 1)
+                \set Score.tempoWholesPerMinute = \musicLength 1*24
                 d'8
                 e'8
                 f'8

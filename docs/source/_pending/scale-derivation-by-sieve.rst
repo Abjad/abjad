@@ -26,7 +26,7 @@ First we define a function to illustrate the examples that follow:
     ...     abjad.override(score).SpanBar.stencil = False
     ...     abjad.override(score).Stem.stencil = False
     ...     abjad.override(score).TimeSignature.stencil = False
-    ...     abjad.setting(score).proportionalNotationDuration = "#(ly:make-moment 1 25)"
+    ...     abjad.setting(score).proportionalNotationDuration = r"\musicLength 1*1/25"
     ...     lilypond_file = abjad.LilyPondFile(
     ...         items=[
     ...             "#(set-global-staff-size 16)",

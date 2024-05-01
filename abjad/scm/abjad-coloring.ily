@@ -1,4 +1,6 @@
-%%% COLORED MUSIC %%%
+\version "2.25.16"
+
+% COLORED MUSIC
 
 abjad-color-music = #(
     define-music-function (color music) (symbol? ly:music?)

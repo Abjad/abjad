@@ -278,35 +278,6 @@ class BarLine:
 
     context: typing.ClassVar[str] = "Score"
     # find_context_on_attach: typing.ClassVar[bool] = True
-    known_abbreviations: typing.ClassVar[tuple[str, ...]] = (
-        "",
-        "|",
-        ".",
-        "||",
-        ".|",
-        "..",
-        "|.|",
-        "|.",
-        ";",
-        "!",
-        ".|:",
-        ":..:",
-        ":|.|:",
-        ":|.:",
-        ":.|.:",
-        "[|:",
-        ":|][|:",
-        ":|]",
-        ":|.",
-        "'",
-    )
-
-    def __post_init__(self):
-        """
-        LilyPond fails to error on unknown bar-line abbreviation, so we check here.
-        """
-        if self.abbreviation not in self.known_abbreviations:
-            raise Exception(f"unknown bar-line abbreviation: {self.abbreviation!r}.")
 
     def _get_lilypond_format(self):
         return rf'\bar "{self.abbreviation}"'
@@ -2642,7 +2613,7 @@ class KeyCluster:
                 \once \override NoteHead.text =
                 \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \concat { \natural \flat }
+                ^ \markup \center-column { \natural \flat }
             }
 
     ..  container:: example
@@ -2668,7 +2639,7 @@ class KeyCluster:
                 \once \override NoteHead.text =
                 \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \concat { \natural \flat }
+                ^ \markup \center-column { \natural \flat }
             }
 
     ..  container:: example
@@ -2687,7 +2658,7 @@ class KeyCluster:
         \once \override NoteHead.text =
         \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
         <c' e' g' b' d'' f''>8
-        ^ \markup \center-align \concat { \natural \flat }
+        ^ \markup \center-column { \natural \flat }
 
         The reason for this is that chords contain multiple note-heads: if key cluster
         formatted tweaks instead of overrides, the five format commands shown above would
@@ -2721,11 +2692,11 @@ class KeyCluster:
             "\\markup \\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25"
         )
         if self.include_flat_markup and self.include_natural_markup:
-            string = r"\center-align \concat { \natural \flat }"
+            string = r"\center-column { \natural \flat }"
         elif self.include_flat_markup:
-            string = r"\center-align \flat"
+            string = r"\center-column \flat"
         else:
-            string = r"\center-align \natural"
+            string = r"\center-column \natural"
         string = rf"\markup {string}"
         if wrapper.direction is _enums.UP:
             string = rf"^ {string}"
@@ -4328,7 +4299,7 @@ class RepeatTie:
 
         >>> wrapper = abjad.get.indicator(voice[1], abjad.RepeatTie, unwrap=False)
         >>> wrapper.get_item()
-        Bundle(indicator=RepeatTie(), tweaks=(Tweak(string='- \\tweak color #blue', tag=None),))
+        Bundle(indicator=RepeatTie(), tweaks=(Tweak(string='- \\tweak color #blue', i=None, tag=None),))
 
         >>> for leaf in voice:
         ...     leaf, abjad.get.logical_tie(leaf)
