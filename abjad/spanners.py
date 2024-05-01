@@ -27,7 +27,13 @@ def _apply_tweaks(argument, tweaks, i=None, total=None):
         assert isinstance(total, int), repr(total)
     tweak_objects = []
     for item in tweaks:
-        if isinstance(item, tuple):
+        if isinstance(item, _tweaks.Tweak) and item.i is not None:
+            item, index = item, item.i
+            if 0 <= index and index != i:
+                continue
+            if index < 0 and index != -(total - i):
+                continue
+        elif isinstance(item, tuple):
             assert len(item) == 2
             item, index = item
             if 0 <= index and index != i:

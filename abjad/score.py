@@ -3475,7 +3475,7 @@ class NoteHead:
         >>> note_head = abjad.NoteHead("cs''")
         >>> abjad.tweak(note_head, r"\tweak color #red")
         >>> note_head.tweaks
-        (Tweak(string='\\tweak color #red', tag=None),)
+        (Tweak(string='\\tweak color #red', i=None, tag=None),)
 
         >>> string = abjad.lilypond(note_head)
         >>> print(string)

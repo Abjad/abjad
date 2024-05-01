@@ -11,10 +11,13 @@ class Tweak:
     """
 
     string: str
+    i: int | None = None
     tag: _tag.Tag | None = None
 
     def __post_init__(self):
         assert isinstance(self.string, str), repr(self.string)
+        if self.i is not None:
+            assert isinstance(self.i, int), repr(self.i)
         if self.tag is not None:
             assert isinstance(self.tag, _tag.Tag), repr(self.tag)
         self._parse()
@@ -125,7 +128,7 @@ class Bundle:
             ...     r"- \tweak font-size 3",
             ... )
             >>> bundle.get_attribute("color")
-            Tweak(string='- \\tweak color #red', tag=None)
+            Tweak(string='- \\tweak color #red', i=None, tag=None)
 
             >>> bundle.get_attribute("style") is None
             True
@@ -154,7 +157,7 @@ class Bundle:
 
             >>> bundle_3 = abjad.bundle(bundle_2, r"- \tweak color #blue")
             >>> bundle_3.tweaks
-            (Tweak(string='- \\tweak color #blue', tag=None),)
+            (Tweak(string='- \\tweak color #blue', i=None, tag=None),)
 
         """
         assert tweak in self.tweaks, repr(tweak)
@@ -236,8 +239,8 @@ def bundle(
         Traceback (most recent call last):
             ...
         Exception: duplicate 'color' attribute:
-        Tweak(string='- \\tweak color #blue', tag=None)
-        Tweak(string='- \\tweak color #red', tag=None)
+        Tweak(string='- \\tweak color #blue', i=None, tag=None)
+        Tweak(string='- \\tweak color #red', i=None, tag=None)
 
         Unless ``overwrite=True``:
 
@@ -248,7 +251,7 @@ def bundle(
         ...     overwrite=True,
         ... )
         >>> for _ in bundle.tweaks: _
-        Tweak(string='- \\tweak color #red', tag=None)
+        Tweak(string='- \\tweak color #red', i=None, tag=None)
 
     ..  container:: example
 
@@ -265,8 +268,8 @@ def bundle(
         Traceback (most recent call last):
             ...
         Exception: duplicate 'color' attribute:
-        OLD: Tweak(string='- \\tweak color #blue', tag=None)
-        NEW: Tweak(string='- \\tweak color #red', tag=None)
+        OLD: Tweak(string='- \\tweak color #blue', i=None, tag=None)
+        NEW: Tweak(string='- \\tweak color #red', i=None, tag=None)
 
         Unless ``overwrite=True``:
 
@@ -280,7 +283,7 @@ def bundle(
         ...     overwrite=True,
         ... )
         >>> for _ in bundle.tweaks: _
-        Tweak(string='- \\tweak color #red', tag=None)
+        Tweak(string='- \\tweak color #red', i=None, tag=None)
 
     """
     input_tweaks: list[Tweak] = []
