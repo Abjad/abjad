@@ -165,7 +165,7 @@ def test_mutate__set_leaf_duration_04():
             c'8
             [
             \tweak edge-height #'(0.7 . 0)
-            \times 2/3
+            \tuplet 3/2
             {
                 d'8
                 ~
@@ -213,7 +213,7 @@ def test_mutate__set_leaf_duration_05():
             c'8
             [
             \tweak edge-height #'(0.7 . 0)
-            \times 2/3
+            \tuplet 3/2
             {
                 d'8
                 ]
@@ -467,7 +467,7 @@ def test_mutate__split_container_by_duration_02():
                 [
                 (
                 \tweak edge-height #'(0.7 . 0)
-                \times 4/5
+                \tuplet 5/4
                 {
                     d'16.
                     ~
@@ -475,7 +475,7 @@ def test_mutate__split_container_by_duration_02():
             }
             {
                 \tweak edge-height #'(0.7 . 0)
-                \times 4/5
+                \tuplet 5/4
                 {
                     d'16
                     ]
@@ -548,7 +548,7 @@ def test_mutate__split_leaf_by_durations_02():
     This test comes from #272 in GitHub.
     """
 
-    voice = abjad.Voice(r"\times 2/3 { c'8 [ d'8 e'8 ] }")
+    voice = abjad.Voice(r"\tuplet 3/2 { c'8 [ d'8 e'8 ] }")
     leaf = abjad.get.leaf(voice, 0)
     abjad.mutate._split_leaf_by_durations(leaf, [abjad.Duration(1, 20)])
 
@@ -556,9 +556,9 @@ def test_mutate__split_leaf_by_durations_02():
         r"""
         \new Voice
         {
-            \times 2/3
+            \tuplet 3/2
             {
-                \times 4/5
+                \tuplet 5/4
                 {
                     c'16.
                     [
@@ -1315,7 +1315,7 @@ def test_mutate_split_07():
         r"""
         \new Voice
         {
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 [
@@ -1323,12 +1323,12 @@ def test_mutate_split_07():
                 e'8
             }
             \tweak edge-height #'(0.7 . 0)
-            \times 2/3
+            \tuplet 3/2
             {
                 f'8
             }
             \tweak edge-height #'(0.7 . 0)
-            \times 2/3
+            \tuplet 3/2
             {
                 g'8
                 a'8
@@ -1580,7 +1580,7 @@ def test_mutate_split_12():
     assert abjad.lilypond(left) == abjad.string.normalize(
         r"""
         \tweak edge-height #'(0.7 . 0)
-        \times 4/5
+        \tuplet 5/4
         {
             c'8
             [
@@ -1592,7 +1592,7 @@ def test_mutate_split_12():
     assert abjad.lilypond(right) == abjad.string.normalize(
         r"""
         \tweak edge-height #'(0.7 . 0)
-        \times 4/5
+        \tuplet 5/4
         {
             c'8
             c'8
@@ -1604,7 +1604,7 @@ def test_mutate_split_12():
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
-        \times 4/5
+        \tuplet 5/4
         {
         }
         """
@@ -1615,14 +1615,14 @@ def test_mutate_split_12():
         \new Voice
         {
             \tweak edge-height #'(0.7 . 0)
-            \times 4/5
+            \tuplet 5/4
             {
                 c'8
                 [
                 c'8
             }
             \tweak edge-height #'(0.7 . 0)
-            \times 4/5
+            \tuplet 5/4
             {
                 c'8
                 c'8
@@ -1640,14 +1640,14 @@ def test_mutate_split_12():
             \new Voice
             {
                 \tweak edge-height #'(0.7 . 0)
-                \times 4/5
+                \tuplet 5/4
                 {
                     c'8
                     [
                     c'8
                 }
                 \tweak edge-height #'(0.7 . 0)
-                \times 4/5
+                \tuplet 5/4
                 {
                     c'8
                     c'8
@@ -1800,7 +1800,7 @@ def test_mutate_split_15():
         r"""
         \new Staff
         {
-            \times 2/3
+            \tuplet 3/2
             {
                 c'4
                 ~

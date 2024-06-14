@@ -104,13 +104,13 @@ class ReducedLyParser(Parser):
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak edge-height #'(0.7 . 0)
-            \times 2/3
+            \tuplet 3/2
             {
                 c'4
                 c'4
                 \tweak text #tuplet-number::calc-fraction-text
                 \tweak edge-height #'(0.7 . 0)
-                \times 3/5
+                \tuplet 5/3
                 {
                     c'8
                     c'8

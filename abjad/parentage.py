@@ -591,7 +591,8 @@ class Parentage(collections.abc.Sequence):
                 {
                     \context Voice = "MusicVoice"
                     {
-                        \times 2/3 {
+                        \tuplet 3/2
+                        {
                             c'4
                             \grace {
                                 cs'16
@@ -599,7 +600,8 @@ class Parentage(collections.abc.Sequence):
                             d'4
                             e'4
                         }
-                        \times 2/3 {
+                        \tuplet 3/2
+                        {
                             <<
                                 \context Voice = "On_Beat_Grace_Container"
                                 {
@@ -779,15 +781,18 @@ class Parentage(collections.abc.Sequence):
                 >>> print(string)
                 \new Staff
                 {
-                    \times 2/3 {
+                    \tuplet 3/2
+                    {
                         c'2
-                        \times 2/3 {
+                        \tuplet 3/2
+                        {
                             d'8
                             e'8
                             f'8
                         }
                     }
-                    \times 2/3 {
+                    \tuplet 3/2
+                    {
                         c'4
                         d'4
                         e'4
@@ -1369,7 +1374,8 @@ class Parentage(collections.abc.Sequence):
                 <<
                     \new Staff
                     {
-                        \times 2/3 {
+                        \tuplet 3/2
+                        {
                             c''2
                             b'2
                             a'2

@@ -231,7 +231,7 @@ def test_Container___delitem___07():
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak edge-height #'(0.7 . 0)
-        \times 2/3
+        \tuplet 3/2
         {
             c'8
             [
@@ -645,7 +645,7 @@ def test_Container___setitem___04():
                 [
                 d'8
             }
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 d'8
@@ -1487,7 +1487,7 @@ def test_Container_append_02():
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
-        \times 4/7
+        \tuplet 7/4
         {
             c'8
             [

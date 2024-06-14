@@ -952,7 +952,7 @@ def extract(argument):
                 \new Voice
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/2
+                    \tuplet 2/3
                     {
                         \time 3/4
                         c'4
@@ -961,7 +961,7 @@ def extract(argument):
                         e'4
                     }
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/2
+                    \tuplet 2/3
                     {
                         d'4
                         f'4
@@ -1017,7 +1017,7 @@ def extract(argument):
                 \new Voice
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/2
+                    \tuplet 2/3
                     {
                         \time 3/4
                         c'4
@@ -1026,7 +1026,7 @@ def extract(argument):
                         e'4
                     }
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/2
+                    \tuplet 2/3
                     {
                         d'4
                         f'4
@@ -1073,7 +1073,7 @@ def extract(argument):
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/2
+            \tuplet 2/3
             {
                 c'4
                 e'4
@@ -1089,7 +1089,7 @@ def extract(argument):
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/2
+            \tuplet 2/3
             {
                 c'4
                 e'4
@@ -1146,7 +1146,7 @@ def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
             {
                 \new Voice
                 {
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'8
                         [
@@ -1154,7 +1154,7 @@ def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
                         e'8
                         ]
                     }
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'16
                         (
@@ -1178,7 +1178,7 @@ def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
             {
                 \new Voice
                 {
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'8
                         [
@@ -1320,7 +1320,7 @@ def logical_tie_to_tuplet(
                     \p
                     \<
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/5
+                    \tuplet 5/3
                     {
                         c'8
                         c'16
@@ -1413,7 +1413,7 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
             >>> print(string)
             \new Voice
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'4
                     \p
@@ -1422,7 +1422,7 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
                     d'4
                     e'4
                 }
-                \times 2/3
+                \tuplet 3/2
                 {
                     d'4
                     e'4
@@ -1454,7 +1454,7 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
                 d'16
                 e'16
                 f'16
-                \times 2/3
+                \tuplet 3/2
                 {
                     d'4
                     e'4
@@ -1760,7 +1760,7 @@ def scale(argument, multiplier) -> None:
             >>> print(string)
             \new Staff
             {
-                \times 4/5
+                \tuplet 5/4
                 {
                     \time 4/8
                     c'8
@@ -1780,7 +1780,7 @@ def scale(argument, multiplier) -> None:
             >>> print(string)
             \new Staff
             {
-                \times 4/5
+                \tuplet 5/4
                 {
                     \time 4/8
                     c'4
@@ -2449,7 +2449,7 @@ def swap(argument, container):
             >>> print(string)
             \new Voice
             {
-                \times 4/6
+                \tuplet 6/4
                 {
                     \time 3/4
                     c'4
@@ -2616,7 +2616,7 @@ def wrap(argument, container):
                 e'8
                 )
                 ]
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'8
                     [
@@ -2641,7 +2641,7 @@ def wrap(argument, container):
 
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 d'8
@@ -2699,22 +2699,22 @@ def wrap(argument, container):
             \new Staff
             {
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'1
                 }
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3
+                \tuplet 3/2
                 {
                     cs'1
                 }
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3
+                \tuplet 3/2
                 {
                     d'1
                 }
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3
+                \tuplet 3/2
                 {
                     ef'1
                 }

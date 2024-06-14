@@ -922,14 +922,14 @@ def duration(
             \new Staff
             {
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'4
                     ~
                     c'4
                 }
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3
+                \tuplet 3/2
                 {
                     d'4
                     ~
@@ -4107,7 +4107,8 @@ def sustained(argument) -> bool:
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/2 {
+            \tuplet 2/3
+            {
                 c'4
                 ~
                 c'4

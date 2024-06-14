@@ -504,7 +504,7 @@ def logical_ties(
             {
                 c'4
                 ~
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'16
                     d'8
@@ -668,7 +668,7 @@ def logical_ties(
             {
                 c'4
                 ~
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'8
                     d'4
@@ -676,7 +676,7 @@ def logical_ties(
                 e'4
                 ~
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3
+                \tuplet 3/2
                 {
                     e'8
                     f'8
@@ -741,14 +741,14 @@ def logical_ties(
             {
                 c'4
                 ~
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'8
                     r4
                 }
                 d'4
                 ~
-                \times 2/3
+                \tuplet 3/2
                 {
                     d'8
                     r4
