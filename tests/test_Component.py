@@ -21,14 +21,14 @@ def test_Component__sibling_02():
 
 
 def test_Component__sibling_03():
-    staff = abjad.Staff(r"c'4 \times 2/3 { d'8 e'8 f'8 } g'2")
+    staff = abjad.Staff(r"c'4 \tuplet 3/2 { d'8 e'8 f'8 } g'2")
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
             c'4
-            \times 2/3
+            \tuplet 3/2
             {
                 d'8
                 e'8

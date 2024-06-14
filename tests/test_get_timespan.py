@@ -351,7 +351,7 @@ def test_get_timespan_26():
 
 
 def test_Tuplet_timespan_01():
-    staff = abjad.Staff(r"c'4 d'4 \times 2/3 { e'4 f'4 g'4 }")
+    staff = abjad.Staff(r"c'4 d'4 \tuplet 3/2 { e'4 f'4 g'4 }")
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
@@ -359,7 +359,7 @@ def test_Tuplet_timespan_01():
         {
             c'4
             d'4
-            \times 2/3
+            \tuplet 3/2
             {
                 e'4
                 f'4

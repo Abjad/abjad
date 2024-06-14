@@ -297,7 +297,7 @@ def chord(
                     \context Voice = "Voice"
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \time 7/4
                             r16
@@ -308,7 +308,7 @@ def chord(
                             ~
                             <d' e'>16
                         }
-                        \times 8/9
+                        \tuplet 9/8
                         {
                             r16
                             bf'16
@@ -319,7 +319,7 @@ def chord(
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             r16
                             bf'16
@@ -397,7 +397,7 @@ def chords(
                     \context Voice = "Voice"
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \time 7/4
                             r16
@@ -411,7 +411,7 @@ def chords(
                             \abjad-color-music #'red
                             <d' e'>16
                         }
-                        \times 8/9
+                        \tuplet 9/8
                         {
                             r16
                             bf'16
@@ -425,7 +425,7 @@ def chords(
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             r16
                             bf'16
@@ -1095,7 +1095,7 @@ def flatten(argument, depth: int = 1) -> list:
                     \context Voice = "Voice"
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \abjad-color-music #'red
                             \time 7/4
@@ -1108,7 +1108,7 @@ def flatten(argument, depth: int = 1) -> list:
                             ~
                             <d' e'>16
                         }
-                        \times 8/9
+                        \tuplet 9/8
                         {
                             \abjad-color-music #'blue
                             r16
@@ -1121,7 +1121,7 @@ def flatten(argument, depth: int = 1) -> list:
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \abjad-color-music #'red
                             r16
@@ -1188,7 +1188,7 @@ def flatten(argument, depth: int = 1) -> list:
                     \context Voice = "Voice"
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \abjad-color-music #'red
                             \time 7/4
@@ -1201,7 +1201,7 @@ def flatten(argument, depth: int = 1) -> list:
                             ~
                             <d' e'>16
                         }
-                        \times 8/9
+                        \tuplet 9/8
                         {
                             \abjad-color-music #'red
                             r16
@@ -1214,7 +1214,7 @@ def flatten(argument, depth: int = 1) -> list:
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \abjad-color-music #'red
                             r16
@@ -1584,7 +1584,7 @@ def group_by_contiguity(argument) -> list[list]:
                 \abjad-color-music #'red
                 d'8
                 r8
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'blue
                     e'8
@@ -2490,7 +2490,7 @@ def leaf(
                     \context Voice = "Voice"
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \time 7/4
                             r16
@@ -2501,7 +2501,7 @@ def leaf(
                             ~
                             <d' e'>16
                         }
-                        \times 8/9
+                        \tuplet 9/8
                         {
                             r16
                             bf'16
@@ -2512,7 +2512,7 @@ def leaf(
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             r16
                             bf'16
@@ -2658,7 +2658,7 @@ def leaves(
                 autoBeaming = ##f
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     r8
@@ -2675,7 +2675,7 @@ def leaves(
                 r8
                 \abjad-color-music #'red
                 f'8
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'blue
                     e'8
@@ -2721,7 +2721,7 @@ def leaves(
                 autoBeaming = ##f
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     r8
                     \abjad-color-music #'red
@@ -2735,7 +2735,7 @@ def leaves(
                 r8
                 \abjad-color-music #'blue
                 f'8
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     e'8
@@ -2785,7 +2785,7 @@ def leaves(
                 autoBeaming = ##f
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     r8
                     \abjad-color-music #'red
@@ -2802,7 +2802,7 @@ def leaves(
                 r8
                 \abjad-color-music #'blue
                 f'8
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     e'8
@@ -2853,7 +2853,7 @@ def leaves(
                 autoBeaming = ##f
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     r8
                     \abjad-color-music #'red
@@ -2870,7 +2870,7 @@ def leaves(
                 r8
                 \abjad-color-music #'blue
                 f'8
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     e'8
@@ -2921,7 +2921,7 @@ def leaves(
                 autoBeaming = ##f
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     c'8
@@ -2938,7 +2938,7 @@ def leaves(
                 r8
                 \abjad-color-music #'red
                 f'8
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'blue
                     e'8
@@ -2985,7 +2985,7 @@ def leaves(
                 autoBeaming = ##f
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     r8
@@ -2998,7 +2998,7 @@ def leaves(
                 r8
                 r8
                 f'8
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'blue
                     e'8
@@ -3043,7 +3043,7 @@ def leaves(
                 autoBeaming = ##f
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     r8
                     \abjad-color-music #'red
@@ -3055,7 +3055,7 @@ def leaves(
                 r8
                 r8
                 f'8
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     e'8
@@ -3101,7 +3101,7 @@ def leaves(
                 autoBeaming = ##f
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     c'8
@@ -3114,7 +3114,7 @@ def leaves(
                 r8
                 r8
                 e'8
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     d'8
@@ -3161,7 +3161,7 @@ def leaves(
                 autoBeaming = ##f
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     c'8
@@ -3174,7 +3174,7 @@ def leaves(
                 r8
                 r8
                 e'8
-                \times 2/3
+                \tuplet 3/2
                 {
                     d'8
                     ~
@@ -3219,7 +3219,7 @@ def leaves(
                 autoBeaming = ##f
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     <c' e' g'>8
@@ -3231,7 +3231,7 @@ def leaves(
                 r8
                 r8
                 <g d' fs'>8
-                \times 2/3
+                \tuplet 3/2
                 {
                     e'8
                     \abjad-color-music #'blue
@@ -3280,7 +3280,7 @@ def leaves(
                 autoBeaming = ##f
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     r8
@@ -3297,7 +3297,7 @@ def leaves(
                 r8
                 \abjad-color-music #'red
                 f'8
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'blue
                     e'8
@@ -3866,7 +3866,7 @@ def logical_ties(
                 autoBeaming = ##f
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     c'8
@@ -3880,7 +3880,7 @@ def logical_ties(
                 e'8
                 f'8
                 ~
-                \times 2/3
+                \tuplet 3/2
                 {
                     f'8
                     \abjad-color-music #'blue
@@ -3893,7 +3893,7 @@ def logical_ties(
                 a'8
                 b'8
                 ~
-                \times 2/3
+                \tuplet 3/2
                 {
                     b'8
                     \abjad-color-music #'red
@@ -3936,7 +3936,7 @@ def logical_ties(
                 autoBeaming = ##f
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'8
                     d'8
@@ -3946,7 +3946,7 @@ def logical_ties(
                 e'8
                 f'8
                 ~
-                \times 2/3
+                \tuplet 3/2
                 {
                     f'8
                     \abjad-color-music #'red
@@ -3959,7 +3959,7 @@ def logical_ties(
                 a'8
                 b'8
                 ~
-                \times 2/3
+                \tuplet 3/2
                 {
                     b'8
                     \abjad-color-music #'blue
@@ -4403,7 +4403,7 @@ def note(
                     \context Voice = "Voice"
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \time 7/4
                             r16
@@ -4414,7 +4414,7 @@ def note(
                             ~
                             <d' e'>16
                         }
-                        \times 8/9
+                        \tuplet 9/8
                         {
                             r16
                             bf'16
@@ -4425,7 +4425,7 @@ def note(
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             r16
                             bf'16
@@ -4500,7 +4500,7 @@ def notes(
                     \context Voice = "Voice"
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \time 7/4
                             r16
@@ -4513,7 +4513,7 @@ def notes(
                             ~
                             <d' e'>16
                         }
-                        \times 8/9
+                        \tuplet 9/8
                         {
                             r16
                             \abjad-color-music #'red
@@ -4526,7 +4526,7 @@ def notes(
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             r16
                             \abjad-color-music #'red
@@ -5946,7 +5946,7 @@ def partition_by_ratio(argument, ratio: tuple[int, ...]) -> list[list]:
                 d'8
                 \abjad-color-music #'red
                 r8
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     e'8
@@ -6000,7 +6000,7 @@ def partition_by_ratio(argument, ratio: tuple[int, ...]) -> list[list]:
                 d'8
                 \abjad-color-music #'red
                 r8
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'blue
                     e'8
@@ -6078,7 +6078,7 @@ def rest(
                     \context Voice = "Voice"
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \time 7/4
                             r16
@@ -6089,7 +6089,7 @@ def rest(
                             ~
                             <d' e'>16
                         }
-                        \times 8/9
+                        \tuplet 9/8
                         {
                             r16
                             bf'16
@@ -6100,7 +6100,7 @@ def rest(
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \abjad-color-music #'green
                             r16
@@ -6172,7 +6172,7 @@ def rests(
                     \context Voice = "Voice"
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \abjad-color-music #'red
                             \time 7/4
@@ -6184,7 +6184,7 @@ def rests(
                             ~
                             <d' e'>16
                         }
-                        \times 8/9
+                        \tuplet 9/8
                         {
                             \abjad-color-music #'blue
                             r16
@@ -6196,7 +6196,7 @@ def rests(
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \abjad-color-music #'red
                             r16
@@ -6269,7 +6269,7 @@ def run(
                     \context Voice = "Voice"
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \time 7/4
                             r16
@@ -6280,7 +6280,7 @@ def run(
                             ~
                             <d' e'>16
                         }
-                        \times 8/9
+                        \tuplet 9/8
                         {
                             r16
                             d'16
@@ -6291,7 +6291,7 @@ def run(
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             r16
                             \abjad-color-music #'green
@@ -6367,7 +6367,7 @@ def runs(
                     \context Voice = "Voice"
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \time 7/4
                             r16
@@ -6383,7 +6383,7 @@ def runs(
                             \abjad-color-music #'red
                             <d' e'>16
                         }
-                        \times 8/9
+                        \tuplet 9/8
                         {
                             r16
                             \abjad-color-music #'blue
@@ -6399,7 +6399,7 @@ def runs(
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             r16
                             \abjad-color-music #'red
@@ -6561,7 +6561,7 @@ def top(argument, *, exclude: _typings.Exclude | None = None) -> list[_score.Com
                 d'8
                 \abjad-color-music #'red
                 r8
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'blue
                     e'8
@@ -6643,7 +6643,7 @@ def tuplet(
                     \context Voice = "Voice"
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \time 7/4
                             r16
@@ -6654,7 +6654,7 @@ def tuplet(
                             ~
                             <d' e'>16
                         }
-                        \times 8/9
+                        \tuplet 9/8
                         {
                             r16
                             bf'16
@@ -6665,7 +6665,7 @@ def tuplet(
                             <e' fs'>16
                         }
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 10/9
+                        \tuplet 9/10
                         {
                             \abjad-color-music #'green
                             r16
@@ -6721,11 +6721,11 @@ def tuplets(
             >>> print(string)
             \new Staff
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     c'2
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         \abjad-color-music #'blue
                         \abjad-color-music #'red
@@ -6738,7 +6738,7 @@ def tuplets(
                         f'8
                     }
                 }
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     c'4
@@ -6774,10 +6774,10 @@ def tuplets(
             >>> print(string)
             \new Staff
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'2
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         \abjad-color-music #'red
                         d'8
@@ -6787,7 +6787,7 @@ def tuplets(
                         f'8
                     }
                 }
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'blue
                     c'4
@@ -6826,11 +6826,11 @@ def tuplets(
             >>> print(string)
             \new Staff
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'red
                     c'2
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         \abjad-color-music #'red
                         d'8
@@ -6840,7 +6840,7 @@ def tuplets(
                         f'8
                     }
                 }
-                \times 2/3
+                \tuplet 3/2
                 {
                     \abjad-color-music #'blue
                     c'4

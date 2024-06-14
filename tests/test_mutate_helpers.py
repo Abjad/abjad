@@ -404,7 +404,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_07():
     Fuse leaves in logical tie with same immediate parent.
     """
 
-    voice = abjad.Voice(r"\times 8/13 { \time 4/4 c'8 ~ c'8 ~ c'16 ~ c'32 r16 } r4 r2")
+    voice = abjad.Voice(r"\tuplet 13/8 { \time 4/4 c'8 ~ c'8 ~ c'16 ~ c'32 r16 } r4 r2")
     logical_tie = abjad.get.logical_tie(voice[0][0])
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
     staff = abjad.Staff([voice])
@@ -416,7 +416,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_07():
         {
             \new Voice
             {
-                \times 8/13
+                \tuplet 13/8
                 {
                     \time 4/4
                     c'4
@@ -649,19 +649,19 @@ def test_mutate__immediately_precedes_05():
 
 
 def test_mutate__immediately_precedes_06():
-    voice = abjad.Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 e'8 d'8 }")
+    voice = abjad.Voice(r"\tuplet 3/2 { c'8 d'8 e'8 } \tuplet 3/2 { f'8 e'8 d'8 }")
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 d'8
                 e'8
             }
-            \times 2/3
+            \tuplet 3/2
             {
                 f'8
                 e'8

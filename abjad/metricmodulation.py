@@ -272,7 +272,7 @@ class MetricModulation:
                         }
                         {
                             \tweak edge-height #'(0.7 . 0)
-                            \times 2/3
+                            \tuplet 3/2
                             {
                                 c'4
                                 ~

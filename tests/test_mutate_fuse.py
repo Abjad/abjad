@@ -119,7 +119,7 @@ def test_mutate_fuse_06():
 
     assert abjad.lilypond(tuplet_1) == abjad.string.normalize(
         r"""
-        \times 2/3
+        \tuplet 3/2
         {
             c'8
             [
@@ -132,7 +132,7 @@ def test_mutate_fuse_06():
 
     assert abjad.lilypond(tuplet_2) == abjad.string.normalize(
         r"""
-        \times 2/3
+        \tuplet 3/2
         {
             c'16
             (
@@ -148,7 +148,7 @@ def test_mutate_fuse_06():
 
     assert abjad.lilypond(new) == abjad.string.normalize(
         r"""
-        \times 2/3
+        \tuplet 3/2
         {
             c'8
             [
@@ -186,7 +186,7 @@ def test_mutate_fuse_07():
         r"""
         \new Voice
         {
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 [
@@ -194,7 +194,7 @@ def test_mutate_fuse_07():
                 e'8
                 ]
             }
-            \times 2/3
+            \tuplet 3/2
             {
                 c'16
                 (
@@ -213,7 +213,7 @@ def test_mutate_fuse_07():
         r"""
         \new Voice
         {
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 [
@@ -248,7 +248,7 @@ def test_mutate_fuse_08():
         r"""
         \new Voice
         {
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 [
@@ -257,7 +257,7 @@ def test_mutate_fuse_08():
                 ]
             }
             \tweak edge-height #'(0.7 . 0)
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 (
@@ -279,7 +279,7 @@ def test_mutate_fuse_08():
         \new Voice
         {
             \tweak edge-height #'(0.7 . 0)
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 [
@@ -326,13 +326,13 @@ def test_mutate_fuse_10():
         \new Voice
         {
             \tweak edge-height #'(0.7 . 0)
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 (
             }
             \tweak edge-height #'(0.7 . 0)
-            \times 2/3
+            \tuplet 3/2
             {
                 c'4
             }
@@ -349,7 +349,7 @@ def test_mutate_fuse_10():
         r"""
         \new Voice
         {
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 (

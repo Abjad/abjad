@@ -132,7 +132,7 @@ def test_get_leaf_05():
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
-        \times 2/3
+        \tuplet 3/2
         {
             c'8
             cs'8
@@ -203,13 +203,13 @@ def test_get_leaf_07():
         r"""
         \new Voice
         {
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 cs'8
                 d'8
             }
-            \times 2/3
+            \tuplet 3/2
             {
                 ef'8
                 e'8
@@ -661,14 +661,14 @@ def test_get_leaf_17():
         r"""
         \new Voice
         {
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 cs'8
                 d'8
             }
             ef'8
-            \times 2/3
+            \tuplet 3/2
             {
                 e'8
                 f'8
@@ -696,10 +696,10 @@ def test_get_leaf_18():
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
-        \times 2/3
+        \tuplet 3/2
         {
             c'4
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 c'8
@@ -1052,7 +1052,7 @@ def test__inspect_are_logical_voice_03():
     tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
 
     r"""
-    \times 2/3
+    \tuplet 3/2
     {
         c'8
         d'8
@@ -1157,13 +1157,13 @@ def test__inspect_are_logical_voice_07():
 
     voice = abjad.Voice(
         r"""
-        \times 2/3
+        \tuplet 3/2
         {
             c'8
             d'8
             e'8
         }
-        \times 2/3
+        \tuplet 3/2
         {
             f'8
             g'8
@@ -1176,13 +1176,13 @@ def test__inspect_are_logical_voice_07():
         r"""
         \new Voice
         {
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 d'8
                 e'8
             }
-            \times 2/3
+            \tuplet 3/2
             {
                 f'8
                 g'8

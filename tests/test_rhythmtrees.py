@@ -14,10 +14,10 @@ def test_RhythmTreeContainer___call___01():
     assert len(result) == 1
     assert abjad.lilypond(result[0]) == abjad.string.normalize(
         r"""
-        \times 4/5
+        \tuplet 5/4
         {
             c'16
-            \times 2/3
+            \tuplet 3/2
             {
                 c'16
                 c'16
@@ -40,7 +40,7 @@ def test_RhythmTreeContainer___call___02():
         \new Staff
         {
             \tweak text #tuplet-number::calc-fraction-text
-            \times 1/1
+            \tuplet 1/1
             {
                 c'16
                 c'32
@@ -406,10 +406,10 @@ def test_RhythmTreeNode___call___02():
     assert len(result) == 1
     assert abjad.lilypond(result[0]) == abjad.string.normalize(
         r"""
-        \times 4/5
+        \tuplet 5/4
         {
             c'16
-            \times 2/3
+            \tuplet 3/2
             {
                 c'16
                 c'16
@@ -427,7 +427,7 @@ def test_RhythmTreeNode___call___03():
     result = tree((1, 4))
     assert abjad.lilypond(result[0]) == abjad.string.normalize(
         r"""
-        \times 4/5
+        \tuplet 5/4
         {
             c'16
             c'32

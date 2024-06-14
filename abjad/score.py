@@ -892,14 +892,14 @@ class Container(Component):
                 >>> print(string)
                 \new Voice
                 {
-                    \times 4/6
+                    \tuplet 6/4
                     {
                         c'4
                         (
                         d'4
                         e'4
                     }
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         e'4
                         d'4
@@ -924,7 +924,7 @@ class Container(Component):
                 >>> print(string)
                 \new Voice
                 {
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         e'4
                         (
@@ -948,7 +948,7 @@ class Container(Component):
 
                 >>> string = abjad.lilypond(tuplet_1)
                 >>> print(string)
-                \times 4/6
+                \tuplet 6/4
                 {
                     c'4
                     d'4
@@ -4795,7 +4795,7 @@ class Staff(Context):
             {
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 9/10
+                    \tuplet 10/9
                     {
                         r8
                         c'16
@@ -4808,7 +4808,7 @@ class Staff(Context):
                 }
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 9/10
+                    \tuplet 10/9
                     {
                         bf'16
                         e''16
@@ -4821,7 +4821,7 @@ class Staff(Context):
                     }
                 }
                 {
-                    \times 4/5
+                    \tuplet 5/4
                     {
                         a'16
                         r4
@@ -5047,7 +5047,7 @@ class Tuplet(Container):
 
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
-            \times 4/6
+            \tuplet 6/4
             {
                 c'8
                 d'8
@@ -5067,10 +5067,10 @@ class Tuplet(Container):
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak edge-height #'(0.7 . 0)
-            \times 4/6
+            \tuplet 6/4
             {
                 c'8
-                \times 4/7
+                \tuplet 7/4
                 {
                     g'4.
                     (
@@ -5096,15 +5096,15 @@ class Tuplet(Container):
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak edge-height #'(0.7 . 0)
-            \times 4/6
+            \tuplet 6/4
             {
                 c'8
                 \tweak edge-height #'(0.7 . 0)
-                \times 4/7
+                \tuplet 7/4
                 {
                     g'4.
                     (
-                    \times 4/5
+                    \tuplet 5/4
                     {
                         e''32
                         [
@@ -5141,7 +5141,7 @@ class Tuplet(Container):
             >>> print(string)
             \new Voice
             {
-                \times 4/6
+                \tuplet 6/4
                 {
                     c'4
                     d'4
@@ -5158,7 +5158,7 @@ class Tuplet(Container):
             >>> print(string)
             \new Voice
             {
-                \times 4/6
+                \tuplet 6/4
                 {
                     c'4
                     d'4
@@ -5202,11 +5202,11 @@ class Tuplet(Container):
                 \tweak text #tuplet-number::calc-fraction-text
                 \tweak color #blue
                 \tweak staff-padding 4
-                \times 5/4
+                \tuplet 4/5
                 {
                     \tweak color #red
                     \tweak staff-padding 2
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         \time 5/4
                         c'4
@@ -5217,7 +5217,7 @@ class Tuplet(Container):
                     }
                     \tweak color #green
                     \tweak staff-padding 2
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'4
                         (
@@ -5372,8 +5372,8 @@ class Tuplet(Container):
                 for tweak in sorted(self.tweaks):
                     strings = tweak._list_contributions()
                     contributions.extend(strings)
-                times_command_string = self._get_times_command_string()
-                contributions.append(times_command_string)
+                tuplet_command_string = self._get_tuplet_command_string()
+                contributions.append(tuplet_command_string)
                 contributions.append("{")
             if self.tag is not None:
                 contributions = _tag.double_tag(contributions, self.tag)
@@ -5442,6 +5442,15 @@ class Tuplet(Container):
         string = rf"\times {self._get_multiplier_fraction_string()}"
         return string
 
+    def _get_tuplet_command_string(self):
+        numerator, denominator = self.multiplier
+        if self.denominator is not None:
+            inverse_multiplier = fractions.Fraction(denominator, numerator)
+            pair = _duration.with_denominator(inverse_multiplier, self.denominator)
+            denominator, numerator = pair
+        string = rf"\tuplet {denominator}/{numerator}"
+        return string
+
     def _scale(self, multiplier):
         multiplier = fractions.Fraction(multiplier)
         for component in self[:]:
@@ -5465,7 +5474,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'4
                     d'4
@@ -5497,7 +5506,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'8
                     d'8
@@ -5515,7 +5524,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'8
                     d'8
@@ -5529,7 +5538,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 4/6
+                \tuplet 6/4
                 {
                     c'8
                     d'8
@@ -5577,19 +5586,19 @@ class Tuplet(Container):
                     \override TupletNumber.text = #tuplet-number::calc-denominator-text
                 }
                 {
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'4
                         d'4
                         e'4
                     }
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'4
                         d'4
                         e'4
                     }
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'4
                         d'4
@@ -5614,20 +5623,20 @@ class Tuplet(Container):
                     \override TupletNumber.text = #tuplet-number::calc-denominator-text
                 }
                 {
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'4
                         d'4
                         e'4
                     }
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'4
                         d'4
                         e'4
                     }
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'4
                         d'4
@@ -5690,7 +5699,7 @@ class Tuplet(Container):
                                 ragged-right = ##t
                             }
                         } }
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'8
                         d'8
@@ -5723,7 +5732,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'8
                     d'8
@@ -5746,13 +5755,13 @@ class Tuplet(Container):
                 >>> print(string)
                 \new Staff
                 {
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'4
                         d'4
                         e'4
                     }
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         d'4
                         e'4
@@ -5775,7 +5784,7 @@ class Tuplet(Container):
                         d'4
                         e'4
                     }
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         d'4
                         e'4
@@ -5854,7 +5863,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 4/3
+                \tuplet 3/4
                 {
                     c'8
                     d'8
@@ -5888,14 +5897,14 @@ class Tuplet(Container):
 
             >>> string = abjad.lilypond(tuplet, tags=True)
             >>> print(string)
-            %! RED
-            \times 2/3
-            %! RED
+              %! RED
+            \tuplet 3/2
+              %! RED
             {
                 c'4
                 d'4
                 e'4
-            %! RED
+              %! RED
             }
 
         """
@@ -5928,7 +5937,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'4
                     (
@@ -5945,7 +5954,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'4
                     (
@@ -5966,7 +5975,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'4
                     (
@@ -5982,7 +5991,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 1/2
+                \tuplet 2/1
                 {
                     c'4
                     (
@@ -6099,7 +6108,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'4
                     (
@@ -6117,7 +6126,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak edge-height #'(0.7 . 0)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'4
                     (
@@ -6140,7 +6149,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'4
                     (
@@ -6157,7 +6166,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 4/7
+                \tuplet 7/4
                 {
                     c'4
                     (
@@ -6197,7 +6206,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'8
                     d'8
@@ -6227,7 +6236,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 1/3
+                \tuplet 3/1
                 {
                     c'4
                     d'4
@@ -6244,7 +6253,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'8
                     d'8
@@ -6264,7 +6273,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 8/3
+                \tuplet 3/8
                 {
                     c'32
                     d'32
@@ -6282,7 +6291,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 4/3
+                \tuplet 3/4
                 {
                     c'16
                     d'16
@@ -6302,7 +6311,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 5/12
+                \tuplet 12/5
                 {
                     c'4
                     d'4
@@ -6320,7 +6329,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 5/6
+                \tuplet 6/5
                 {
                     c'8
                     d'8
@@ -6362,7 +6371,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2
+                \tuplet 2/3
                 {
                     r4
                     r4
@@ -6391,7 +6400,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 1/1
+                \tuplet 1/1
                 {
                     c'8.
                     c'8.
@@ -6405,7 +6414,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2
+                \tuplet 2/3
                 {
                     c'8
                     c'8
@@ -6423,7 +6432,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 1/1
+                \tuplet 1/1
                 {
                     c'8..
                     c'8..
@@ -6437,7 +6446,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 7/4
+                \tuplet 4/7
                 {
                     c'8
                     c'8
@@ -6455,7 +6464,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 1/1
+                \tuplet 1/1
                 {
                     c'8.
                     d'8.
@@ -6470,7 +6479,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 1/1
+                \tuplet 1/1
                 {
                     c'8.
                     d'8.
@@ -6489,7 +6498,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2
+                \tuplet 2/3
                 {
                     c'8
                     d'8
@@ -6504,7 +6513,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/2
+                \tuplet 2/3
                 {
                     c'8
                     d'8
@@ -6548,7 +6557,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/5
+                \tuplet 5/3
                 {
                     c'4
                     d'8
@@ -6565,7 +6574,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 6/10
+                \tuplet 10/6
                 {
                     c'4
                     d'8
@@ -6601,7 +6610,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 4/3
+                \tuplet 3/4
                 {
                     c'8
                     d'8
@@ -6615,7 +6624,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'4
                     d'4
@@ -6636,7 +6645,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'4
                     d'4
@@ -6651,7 +6660,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 4/3
+                \tuplet 3/4
                 {
                     c'8
                     d'8
@@ -6673,7 +6682,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 1/1
+                \tuplet 1/1
                 {
                     c'4
                     d'4
@@ -6688,7 +6697,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 1/1
+                \tuplet 1/1
                 {
                     c'4
                     d'4
@@ -6729,7 +6738,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 1/1
+                \tuplet 1/1
                 {
                     c'8
                     d'8
@@ -6753,7 +6762,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 1/1
+                \tuplet 1/1
                 {
                     c'8 * 3/2
                     d'8
@@ -6793,7 +6802,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/4
+                \tuplet 4/3
                 {
                     \time 3/8
                     c'4
@@ -6838,7 +6847,7 @@ class Tuplet(Container):
                 \new Staff
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/5
+                    \tuplet 5/3
                     {
                         \time 3/4
                         c'4
@@ -6871,7 +6880,7 @@ class Tuplet(Container):
                 \new Staff
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/4
+                    \tuplet 4/3
                     {
                         \time 3/4
                         c'2.
@@ -6907,7 +6916,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/4
+                \tuplet 4/3
                 {
                     c'2
                 }
@@ -6923,7 +6932,7 @@ class Tuplet(Container):
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 1/1
+                \tuplet 1/1
                 {
                     c'4.
                 }

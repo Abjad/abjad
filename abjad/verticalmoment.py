@@ -144,7 +144,7 @@ class VerticalMoment:
                     \new Staff
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 4/3
+                        \tuplet 3/4
                         {
                             d''8
                             c''8
@@ -243,7 +243,7 @@ class VerticalMoment:
                     \new Staff
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 4/3
+                        \tuplet 3/4
                         {
                             d''8
                             c''8
@@ -345,7 +345,7 @@ class VerticalMoment:
                     \new Staff
                     {
                         \tweak text #tuplet-number::calc-fraction-text
-                        \times 4/3
+                        \tuplet 3/4
                         {
                             d''8
                             c''8
@@ -517,7 +517,7 @@ def iterate_vertical_moments(components, reverse=None):
                 \new Staff
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 4/3
+                    \tuplet 3/4
                     {
                         d''8
                         c''8
@@ -583,7 +583,7 @@ def iterate_vertical_moments(components, reverse=None):
                 \new Staff
                 {
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 4/3
+                    \tuplet 3/4
                     {
                         d''8
                         c''8

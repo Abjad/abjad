@@ -10,7 +10,7 @@ def test_Tuplet___copy___01():
     assert abjad.lilypond(tuplet_1) == abjad.string.normalize(
         r"""
         \override NoteHead.color = #red
-        \times 2/3
+        \tuplet 3/2
         {
             c'8
             d'8
@@ -25,7 +25,7 @@ def test_Tuplet___copy___01():
     assert abjad.lilypond(tuplet_2) == abjad.string.normalize(
         r"""
         \override NoteHead.color = #red
-        \times 2/3
+        \tuplet 3/2
         {
         }
         \revert NoteHead.color
@@ -42,14 +42,14 @@ def test_Tuplet___init___01():
 
     tuplet = abjad.Tuplet()
 
-    assert abjad.lilypond(tuplet) == "\\times 2/3\n{\n}"
+    assert abjad.lilypond(tuplet) == "\\tuplet 3/2\n{\n}"
     assert tuplet.multiplier == (2, 3)
     assert not len(tuplet)
 
 
 # TODO: move to test_get_timespan.py
 def test_Tuplet_get_timespan_01():
-    staff = abjad.Staff(r"c'4 d'4 \times 2/3 { e'4 f'4 g'4 }")
+    staff = abjad.Staff(r"c'4 d'4 \tuplet 3/2 { e'4 f'4 g'4 }")
     leaves = abjad.select.leaves(staff)
     score = abjad.Score([staff])
     mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
@@ -64,7 +64,7 @@ def test_Tuplet_get_timespan_01():
                 \tempo 4=60
                 c'4
                 d'4
-                \times 2/3
+                \tuplet 3/2
                 {
                     e'4
                     f'4
@@ -88,7 +88,7 @@ def test_Tuplet_set_minimum_denominator_01():
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
-        \times 6/10
+        \tuplet 10/6
         {
             c'4
             d'8
@@ -109,7 +109,7 @@ def test_Tuplet_set_minimum_denominator_02():
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
-        \times 12/20
+        \tuplet 20/12
         {
             c'4
             d'8
@@ -130,7 +130,7 @@ def test_Tuplet_set_minimum_denominator_03():
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
-        \times 3/5
+        \tuplet 5/3
         {
             c'4
             d'8

@@ -2010,11 +2010,13 @@ class Meter:
                         c'4
                         d'8.
                         ~
-                        \times 2/3 {
+                        \tuplet 3/2
+                        {
                             d'8.
                             ~
                             \tweak text #tuplet-number::calc-fraction-text
-                            \times 3/5 {
+                            \tuplet 5/3
+                            {
                                 d'16
                                 e'8.
                                 f'16
@@ -2055,13 +2057,15 @@ class Meter:
                         c'16
                         d'8.
                         ~
-                        \times 2/3 {
+                        \tuplet 3/2
+                        {
                             d'8
                             ~
                             d'16
                             ~
                             \tweak text #tuplet-number::calc-fraction-text
-                            \times 3/5 {
+                            \tuplet 5/3
+                            {
                                 d'16
                                 e'8
                                 ~
@@ -2175,12 +2179,14 @@ class Meter:
                     ~
                     c'8
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
+                    \tuplet 7/6
+                    {
                         c'4.
                         r16
                     }
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
+                    \tuplet 7/6
+                    {
                         r16
                         c'4.
                     }
@@ -2208,7 +2214,8 @@ class Meter:
                     \time 6/4
                     c'4.
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
+                    \tuplet 7/6
+                    {
                         c'8.
                         ~
                         c'8
@@ -2217,7 +2224,8 @@ class Meter:
                         r16
                     }
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
+                    \tuplet 7/6
+                    {
                         r16
                         c'8
                         ~
@@ -2251,12 +2259,14 @@ class Meter:
                     ~
                     c'8
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
+                    \tuplet 7/6
+                    {
                         c'4.
                         r16
                     }
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
+                    \tuplet 7/6
+                    {
                         r16
                         c'4.
                     }
@@ -2285,12 +2295,14 @@ class Meter:
                     \time 6/4
                     c'4.
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
+                    \tuplet 7/6
+                    {
                         c'4.
                         r16
                     }
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 6/7 {
+                    \tuplet 7/6
+                    {
                         r16
                         c'4.
                     }
@@ -3215,7 +3227,8 @@ class _MeterManager:
                     r8.
                     e'16
                     ~
-                    \times 2/3 {
+                    \tuplet 3/2
+                    {
                         e'8
                         ~
                         e'8

@@ -42,7 +42,7 @@ def test_Mutation_swap_01():
         \new Voice
         {
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/4
+            \tuplet 4/3
             {
                 c'8
                 [
@@ -168,7 +168,7 @@ def test_Mutation_swap_03():
                 d'8
             }
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/4
+            \tuplet 4/3
             {
                 e'8
                 f'8

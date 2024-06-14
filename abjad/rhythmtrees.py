@@ -456,10 +456,10 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
 
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
-                \times 4/5
+                \tuplet 5/4
                 {
                     c'8.
                     c'8
@@ -540,10 +540,10 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
                 >>> print(string)
                 \new Staff
                 {
-                    \times 4/5
+                    \tuplet 5/4
                     {
                         c'16
-                        \times 2/3
+                        \tuplet 3/2
                         {
                             c'16
                             c'16
@@ -754,12 +754,12 @@ class RhythmTreeParser(Parser):
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/4
+            \tuplet 4/3
             {
                 c'2
-                \times 4/7
+                \tuplet 7/4
                 {
-                    \times 2/3
+                    \tuplet 3/2
                     {
                         c'8
                         c'8
@@ -976,13 +976,13 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
                 c'4
                 c'8
                 \tweak edge-height #'(0.7 . 0)
-                \times 8/12
+                \tuplet 12/8
                 {
                     c'8
                 }
                 c'16
                 \tweak edge-height #'(0.7 . 0)
-                \times 16/20
+                \tuplet 20/16
                 {
                     c'16
                 }
@@ -1003,12 +1003,12 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
             {
                 c'4
                 \tweak edge-height #'(0.7 . 0)
-                \times 4/6
+                \tuplet 6/4
                 {
                     c'4
                 }
                 \tweak edge-height #'(0.7 . 0)
-                \times 16/20
+                \tuplet 20/16
                 {
                     c'8.
                 }
@@ -1062,7 +1062,7 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
 
             >>> string = abjad.lilypond(result)
             >>> print(string)
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 c'4
@@ -1116,7 +1116,7 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
 
             >>> string = abjad.lilypond(result)
             >>> print(string)
-            \times 2/3
+            \tuplet 3/2
             {
                 c'4
                 c'2
@@ -1142,7 +1142,7 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
                 c'4
                 c'8
                 c'8
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'8
                     c'4
@@ -1161,7 +1161,7 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
 
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
-            \times 2/3
+            \tuplet 3/2
             {
                 c'8
                 c'16
@@ -1182,12 +1182,12 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \times 9/17
+            \tuplet 17/9
             {
                 c'8
                 c'16
                 \tweak edge-height #'(0.7 . 0)
-                \times 8/15
+                \tuplet 15/8
                 {
                     c'8
                     r16

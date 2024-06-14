@@ -983,7 +983,7 @@ def with_indices(argument, direction=_enums.UP, prototype=None) -> None:
                 \override TextScript.staff-padding = 2
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'8
                     ^ \markup 0
@@ -992,7 +992,7 @@ def with_indices(argument, direction=_enums.UP, prototype=None) -> None:
                     e'8
                     ]
                 }
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'8
                     ^ \markup 1
@@ -1001,7 +1001,7 @@ def with_indices(argument, direction=_enums.UP, prototype=None) -> None:
                     e'8
                     ]
                 }
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'8
                     ^ \markup 2
@@ -1010,7 +1010,7 @@ def with_indices(argument, direction=_enums.UP, prototype=None) -> None:
                     e'8
                     ]
                 }
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'8
                     ^ \markup 3
@@ -1755,7 +1755,7 @@ def with_start_offsets(
                 \override TupletBracket.staff-padding = 0
             }
             {
-                \times 2/3
+                \tuplet 3/2
                 {
                     c'4
                     ^ \markup { 0 }

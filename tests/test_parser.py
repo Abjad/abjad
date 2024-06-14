@@ -29,7 +29,7 @@ def test_LilyPondParser__containers__Tuplet_01():
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
-        \times 2/3
+        \tuplet 3/2
         {
             c'8
             d'8
@@ -2415,19 +2415,19 @@ def test_parse_rtm_syntax_01():
     assert abjad.lilypond(result) == abjad.string.normalize(
         r"""
         \tweak text #tuplet-number::calc-fraction-text
-        \times 3/4
+        \tuplet 4/3
         {
             c'4
             \tweak text #tuplet-number::calc-fraction-text
-            \times 3/4
+            \tuplet 4/3
             {
                 c'4
                 \tweak text #tuplet-number::calc-fraction-text
-                \times 3/4
+                \tuplet 4/3
                 {
                     c'4
                     \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/4
+                    \tuplet 4/3
                     {
                         c'4
                         c'4
