@@ -2613,7 +2613,7 @@ class KeyCluster:
                 \once \override NoteHead.text =
                 \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \concat { \natural \flat }
+                ^ \markup \center-column { \natural \flat }
             }
 
     ..  container:: example
@@ -2639,7 +2639,7 @@ class KeyCluster:
                 \once \override NoteHead.text =
                 \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
                 <c' e' g' b' d'' f''>8
-                ^ \markup \center-align \concat { \natural \flat }
+                ^ \markup \center-column { \natural \flat }
             }
 
     ..  container:: example
@@ -2658,7 +2658,7 @@ class KeyCluster:
         \once \override NoteHead.text =
         \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
         <c' e' g' b' d'' f''>8
-        ^ \markup \center-align \concat { \natural \flat }
+        ^ \markup \center-column { \natural \flat }
 
         The reason for this is that chords contain multiple note-heads: if key cluster
         formatted tweaks instead of overrides, the five format commands shown above would
@@ -2692,11 +2692,11 @@ class KeyCluster:
             "\\markup \\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25"
         )
         if self.include_flat_markup and self.include_natural_markup:
-            string = r"\center-align \concat { \natural \flat }"
+            string = r"\center-column { \natural \flat }"
         elif self.include_flat_markup:
-            string = r"\center-align \flat"
+            string = r"\center-column \flat"
         else:
-            string = r"\center-align \natural"
+            string = r"\center-column \natural"
         string = rf"\markup {string}"
         if wrapper.direction is _enums.UP:
             string = rf"^ {string}"
