@@ -319,16 +319,6 @@ def test_allowable_sites():
     assert "allows only" in str(e)
 
 
-def test_BarLine_01():
-    """
-    Errors on unknown abbreviation.
-    """
-
-    with pytest.raises(Exception) as e:
-        abjad.BarLine("foo")
-    assert "unknown bar-line abbreviation" in str(e)
-
-
 def test_StartTrillSpan_01():
     """
     Set force_trill_pitch_head_accidental=True to force trill pitch head accidental.

@@ -278,35 +278,6 @@ class BarLine:
 
     context: typing.ClassVar[str] = "Score"
     # find_context_on_attach: typing.ClassVar[bool] = True
-    known_abbreviations: typing.ClassVar[tuple[str, ...]] = (
-        "",
-        "|",
-        ".",
-        "||",
-        ".|",
-        "..",
-        "|.|",
-        "|.",
-        ";",
-        "!",
-        ".|:",
-        ":..:",
-        ":|.|:",
-        ":|.:",
-        ":.|.:",
-        "[|:",
-        ":|][|:",
-        ":|]",
-        ":|.",
-        "'",
-    )
-
-    def __post_init__(self):
-        """
-        LilyPond fails to error on unknown bar-line abbreviation, so we check here.
-        """
-        if self.abbreviation not in self.known_abbreviations:
-            raise Exception(f"unknown bar-line abbreviation: {self.abbreviation!r}.")
 
     def _get_lilypond_format(self):
         return rf'\bar "{self.abbreviation}"'
