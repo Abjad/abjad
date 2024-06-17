@@ -24,7 +24,7 @@ First we define functions to illustrate the examples that follow:
     ...     abjad.override(treble_staff).SpanBar.stencil = False
     ...     abjad.override(treble_staff).Stem.stencil = False
     ...     abjad.override(treble_staff).TimeSignature.stencil = False
-    ...     string = "#(ly:make-moment 1 25)"
+    ...     string = r"\musicLength 1*1/25"
     ...     abjad.setting(treble_staff).proportionalNotationDuration = string
     ...     string = "#(set-global-staff-size 16)"
     ...     lilypond_file = abjad.LilyPondFile([string, treble_staff])

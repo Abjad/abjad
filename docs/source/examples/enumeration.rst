@@ -90,7 +90,7 @@ The following functions recreate Malt's results in Abjad:
     ...         \override TextScript.staff-padding = #6
     ...         \override TimeSignature.stencil = ##f
     ...         \override TupletNumber.text = #tuplet-number::calc-fraction-text
-    ...         proportionalNotationDuration = #(ly:make-moment 1 40)
+    ...         proportionalNotationDuration = \musicLength 1*1/40
     ...         tupletFullLength = ##t
     ...     }
     ... }

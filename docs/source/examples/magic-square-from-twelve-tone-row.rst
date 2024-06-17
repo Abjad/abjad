@@ -67,7 +67,7 @@ example:
     ...         \override TextScript.color = #blue
     ...         \override TextScript.staff-padding = 5
     ...         \override TimeSignature.transparent = ##t
-    ...         proportionalNotationDuration = #(ly:make-moment 1 16)
+    ...         proportionalNotationDuration = \musicLength 16
     ...     }
     ... }
     ... """

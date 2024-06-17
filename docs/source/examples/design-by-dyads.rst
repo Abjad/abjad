@@ -58,7 +58,7 @@ LilyPond settings to format examples:
     ...         \override SpanBar.stencil = ##f
     ...         \override Stem.stencil = ##f
     ...         \override TimeSignature.transparent = ##t
-    ...         proportionalNotationDuration = #(ly:make-moment 1 16)
+    ...         proportionalNotationDuration = \musicLength 16
     ...     }
     ... }
     ... """

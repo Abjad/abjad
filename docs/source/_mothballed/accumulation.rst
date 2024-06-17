@@ -121,7 +121,7 @@ The functions we'll use:
     ...         \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
     ...         \override TupletNumber.text = #tuplet-number::calc-fraction-text
     ...         autoBeaming = ##f
-    ...         proportionalNotationDuration = #(ly:make-moment 1 8)
+    ...         proportionalNotationDuration = \musicLength 8
     ...         tupletFullLength = ##t
     ...     }
     ...     \context {

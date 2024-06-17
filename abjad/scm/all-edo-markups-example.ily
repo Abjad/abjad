@@ -21,7 +21,7 @@
     \override SpacingSpanner.uniform-stretching = ##t
 \context {
 	\Score
-	proportionalNotationDuration = #(ly:make-moment 1 30)
+	proportionalNotationDuration = \musicLength 1*1/30
 	barNumberVisibility = ##f
 }
 }

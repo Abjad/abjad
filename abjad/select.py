@@ -2221,7 +2221,7 @@ def group_by_measure(argument) -> list[list]:
         >>> staff = abjad.Staff("c'4 d' e' f' g' a' b' c''")
         >>> abjad.setting(staff).autoBeaming = False
         >>> score = abjad.Score([staff])
-        >>> string = "#(ly:make-moment 1 16)"
+        >>> string = r"\musicLength 16"
         >>> abjad.setting(score).proportionalNotationDuration = string
 
         >>> result = abjad.select.leaves(score)

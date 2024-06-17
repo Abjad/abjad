@@ -84,7 +84,7 @@ Rotation, by row index
     ...             (basic-distance . 10) (minimum-distance . 10) (padding . 2))
     ...         \override Stem.stencil = ##f
     ...         \override TimeSignature.stencil = ##f
-    ...         proportionalNotationDuration = #(ly:make-moment 1 25)
+    ...         proportionalNotationDuration = \musicLength 1*1/25
     ...     }
     ... }"""
 
