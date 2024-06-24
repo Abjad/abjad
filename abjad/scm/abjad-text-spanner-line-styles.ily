@@ -1,3 +1,4 @@
+\version "2.25.16"
 %%% GLISSANDO LINE STYLES %%%
 
 abjad-zero-padding-glissando = #(define-music-function (music) (ly:music?)

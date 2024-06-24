@@ -1,3 +1,4 @@
+\version "2.25.16"
 %%% GLISSANDO OVERRIDES %%%
 
 abjad-continuous-glissando = #(

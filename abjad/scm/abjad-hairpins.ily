@@ -1,3 +1,4 @@
+\version "2.25.16"
 %{
 
   LilyPond includes a \flared-hairpin command. The length of the flares created

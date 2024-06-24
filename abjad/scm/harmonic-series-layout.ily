@@ -1,8 +1,9 @@
+\version "2.25.16"
 \layout {
 	indent = #1
 	ragged-last = ##t
     ragged-right = ##t
-	\accidentalStyle "dodecaphonic"
+	\accidentalStyle dodecaphonic
 	\override Beam.transparent = ##t
 	\override Stem.transparent = ##t
 	\override Staff.BarLine.stencil = ##f

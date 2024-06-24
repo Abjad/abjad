@@ -1,3 +1,4 @@
+\version "2.25.16"
 %%% COLORED MUSIC %%%
 
 abjad-color-music = #(

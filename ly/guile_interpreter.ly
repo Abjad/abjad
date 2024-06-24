@@ -1,4 +1,4 @@
-\version "2.19.24"
+\version "2.25.16"
 
 #(module-define! (resolve-module '(guile-user))
                  'lilypond-module (current-module))

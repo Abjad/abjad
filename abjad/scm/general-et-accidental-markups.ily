@@ -1,30 +1,30 @@
-\version "2.19.84"
+\version "2.25.16"
 
 
 abjad-natural-markup = \markup
-    \musicglyph #"accidentals.natural"
+    \musicglyph "accidentals.natural"
 
 abjad-sharp-markup = \markup
-    \musicglyph #"accidentals.sharp"
+    \musicglyph "accidentals.sharp"
 
 abjad-flat-markup = \markup
-    \musicglyph #"accidentals.flat"
+    \musicglyph "accidentals.flat"
 
 double-sharp-markup = \markup
-    \musicglyph #"accidentals.doublesharp"
+    \musicglyph "accidentals.doublesharp"
 
 double-flat-markup = \markup
-    \musicglyph #"accidentals.flatflat"
+    \musicglyph "accidentals.flatflat"
 
 one-quarter-sharp-markup = \markup
-    \musicglyph #"accidentals.sharp.slashslash.stem"
+    \musicglyph "accidentals.sharp.slashslash.stem"
 
 three-quarters-sharp-markup = \markup
-    \musicglyph #"accidentals.sharp.slashslash.stemstemstem"
+    \musicglyph "accidentals.sharp.slashslash.stemstemstem"
 
 one-eighth-sharp-markup = \markup
     \combine
-    \musicglyph #"accidentals.natural"
+    \musicglyph "accidentals.natural"
     \path #0.15
       #'(
           (moveto -0.22 0.9)
@@ -34,7 +34,7 @@ one-eighth-sharp-markup = \markup
 
 three-eighths-sharp-markup = \markup
     \combine
-    \musicglyph #"accidentals.sharp.slashslash.stem"
+    \musicglyph "accidentals.sharp.slashslash.stem"
     \path #0.15
       #'(
           (moveto 0.35 1.15)
@@ -46,7 +46,7 @@ three-eighths-sharp-markup = \markup
 
 five-eighths-sharp-markup = \markup
     \combine
-    \musicglyph #"accidentals.sharp"
+    \musicglyph "accidentals.sharp"
     \path #0.15
       #'(
           (moveto 0.8 1.15)
@@ -58,7 +58,7 @@ five-eighths-sharp-markup = \markup
 
 seven-eighths-sharp-markup = \markup
     \combine
-    \musicglyph #"accidentals.sharp.slashslash.stemstemstem"
+    \musicglyph "accidentals.sharp.slashslash.stemstemstem"
     \path #0.15
       #'(
           (moveto 1.25 1.15)
@@ -70,7 +70,7 @@ seven-eighths-sharp-markup = \markup
 
 one-eighth-flat-markup = \markup
     \combine
-    \musicglyph #"accidentals.natural"
+    \musicglyph "accidentals.natural"
     \path #0.15
       #'(
           (moveto 0.6 -0.95)
@@ -82,7 +82,7 @@ one-eighth-flat-markup = \markup
 
 five-eighths-flat-markup = \markup
     \combine
-    \musicglyph #"accidentals.flat"
+    \musicglyph "accidentals.flat"
     \path #0.15
       #'(
           (moveto 0.03 -0.65)

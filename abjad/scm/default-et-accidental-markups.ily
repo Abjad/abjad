@@ -1,17 +1,17 @@
-\version "2.19.84"
+\version "2.25.16"
 \include "fraction-accidental-markups.ily"
 \include "general-et-accidental-markups.ily"
 
 %%% one quarter tone down %%%
-one-quarter-flat-markup = \markup \musicglyph #"accidentals.mirroredflat"
+one-quarter-flat-markup = \markup \musicglyph "accidentals.mirroredflat"
 
 %%% three quarter tones down %%%
-three-quarters-flat-markup = \markup \musicglyph #"accidentals.mirroredflat.flat"
+three-quarters-flat-markup = \markup \musicglyph "accidentals.mirroredflat.flat"
 
 %%% three eighth tones down %%%
 three-eighths-flat-markup = \markup
     \combine
-    \musicglyph #"accidentals.mirroredflat"
+    \musicglyph "accidentals.mirroredflat"
     \path #0.15
       #'(
           (moveto 0.6 -0.65)
@@ -24,7 +24,7 @@ three-eighths-flat-markup = \markup
 %%% seven eighth tones down %%%
 seven-eighths-flat-markup = \markup
     \combine
-    \musicglyph #"accidentals.mirroredflat.flat"
+    \musicglyph "accidentals.mirroredflat.flat"
     \path #0.15
       #'(
           (moveto 0.79 -0.65)

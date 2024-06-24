@@ -1,4 +1,4 @@
-\version "2.19.84"
+\version "2.25.16"
 
 
 #(define-markup-command
@@ -19,7 +19,7 @@
 	\translate #'(0 . 2/3)
 	#den
 	\translate #'(0 . 25/16)
-	\musicglyph #"arrowheads.close.1M1"
+	\musicglyph "arrowheads.close.1M1"
 	}
     #}))
 
@@ -38,7 +38,7 @@
     \translate #'(-1 . 2)
 	\center-column {
 	\translate #'(0 . -1/12)
-	\musicglyph #"arrowheads.close.11"
+	\musicglyph "arrowheads.close.11"
     #num
 	\translate #'(0 . 2/3)
 	#den
