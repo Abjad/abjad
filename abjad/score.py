@@ -4715,7 +4715,7 @@ class Skip(Leaf):
 
     __documentation_section__ = "Leaves"
 
-    __slots__ = ()
+    __slots__ = ("_hide_body",)
 
     def __init__(
         self,
@@ -4748,7 +4748,8 @@ class Skip(Leaf):
 
     def _get_body(self):
         result = []
-        result.append(f"s{self._get_formatted_duration()}")
+        if getattr(self, "_hide_body", False) is not True:
+            result.append(f"s{self._get_formatted_duration()}")
         return result
 
     def _get_compact_representation(self):
