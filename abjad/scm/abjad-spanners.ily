@@ -1,5 +1,6 @@
 \version "2.25.16"
-%%% GLISSANDO OVERRIDES %%%
+
+% GLISSANDO OVERRIDES
 
 abjad-continuous-glissando = #(
     define-music-function (music) (ly:music?)

@@ -1,5 +1,6 @@
 \version "2.25.16"
-%%% GLISSANDO LINE STYLES %%%
+
+% GLISSANDO LINE STYLES
 
 abjad-zero-padding-glissando = #(define-music-function (music) (ly:music?)
     #{
@@ -10,7 +11,7 @@ abjad-zero-padding-glissando = #(define-music-function (music) (ly:music?)
     #}
     )
 
-%%% TEXT SPANNER LINE STYLES %%%
+% TEXT SPANNER LINE STYLES
 
 abjad-dashed-line-with-arrow = #(define-music-function (music) (ly:music?)
     #{

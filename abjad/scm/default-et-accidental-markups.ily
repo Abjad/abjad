@@ -2,13 +2,13 @@
 \include "fraction-accidental-markups.ily"
 \include "general-et-accidental-markups.ily"
 
-%%% one quarter tone down %%%
+% one quarter tone down
 one-quarter-flat-markup = \markup \musicglyph "accidentals.mirroredflat"
 
-%%% three quarter tones down %%%
+% three quarter tones down
 three-quarters-flat-markup = \markup \musicglyph "accidentals.mirroredflat.flat"
 
-%%% three eighth tones down %%%
+% three eighth tones down
 three-eighths-flat-markup = \markup
     \combine
     \musicglyph "accidentals.mirroredflat"
@@ -21,7 +21,7 @@ three-eighths-flat-markup = \markup
           (lineto 0.9 -0.7)
           )
 
-%%% seven eighth tones down %%%
+% seven eighth tones down
 seven-eighths-flat-markup = \markup
     \combine
     \musicglyph "accidentals.mirroredflat.flat"

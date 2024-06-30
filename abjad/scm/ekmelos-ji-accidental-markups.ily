@@ -14,7 +14,7 @@ font-name = "ekmelos"
     #markup
     #}))
 
-% tempered accidentals %
+% tempered accidentals
 tempered-double-flat = \markup
     \combine
     \musicglyph "accidentals.flatflat"

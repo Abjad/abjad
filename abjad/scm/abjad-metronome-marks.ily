@@ -1,5 +1,6 @@
 \version "2.25.16"
-%%% METRONOME MARK FUNCTIONS %%%
+
+% METRONOME MARK FUNCTIONS
 
 #(define-markup-command
     (abjad-metronome-mark-markup layout props

@@ -2,7 +2,8 @@
 font-name = "HEJI2"
 \include "markup-functions.ily"
 
-% tempered accidentals %
+% tempered accidentals
+
 tempered-double-flat = \markup \letter-heji-accidental-markup #"A"
 tempered-three-quarters-flat = \markup \letter-heji-accidental-markup #"ia"
 tempered-flat = \markup \letter-heji-accidental-markup #"a"
