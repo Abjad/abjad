@@ -4715,7 +4715,7 @@ class Skip(Leaf):
 
     __documentation_section__ = "Leaves"
 
-    __slots__ = ("_hide_body",)
+    __slots__ = ("_hide_body", "_measure_initial_grace_note")
 
     def __init__(
         self,
@@ -4749,6 +4749,10 @@ class Skip(Leaf):
     def _get_body(self):
         result = []
         if getattr(self, "_hide_body", False) is not True:
+            if getattr(self, "_measure_initial_grace_note", None) is not None:
+                grace_string = self._measure_initial_grace_note
+                assert "grace" in grace_string, repr(grace_string)
+                result.append(grace_string)
             result.append(f"s{self._get_formatted_duration()}")
         return result
 
