@@ -4299,7 +4299,7 @@ class RepeatTie:
 
         >>> wrapper = abjad.get.indicator(voice[1], abjad.RepeatTie, unwrap=False)
         >>> wrapper.get_item()
-        Bundle(indicator=RepeatTie(), tweaks=(Tweak(string='- \\tweak color #blue', i=None, tag=None),))
+        Bundle(indicator=RepeatTie(), tweaks=(Tweak(string='- \\tweak color #blue', i=None, tag=None),), comment=None)
 
         >>> for leaf in voice:
         ...     leaf, abjad.get.logical_tie(leaf)

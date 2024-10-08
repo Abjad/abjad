@@ -48,9 +48,8 @@ def beam(
     beam_rests: bool | None = True,
     direction: _enums.Vertical | None = None,
     durations: typing.Sequence[_duration.Duration] | None = None,
-    selector: typing.Callable = lambda _: _select.leaves(_),
     span_beam_count: int | None = None,
-    start_beam: _indicators.StartBeam | None = None,
+    start_beam: _indicators.StartBeam | _tweaks.Bundle | None = None,
     stemlet_length: int | float | None = None,
     stop_beam: _indicators.StopBeam | None = None,
     tag: _tag.Tag | None = None,
@@ -141,8 +140,6 @@ def beam(
             }
 
     """
-    assert callable(selector)
-    argument = selector(argument)
     original_leaves = list(_iterate.leaves(argument))
     silent_prototype = (_score.MultimeasureRest, _score.Rest, _score.Skip)
 
@@ -320,7 +317,6 @@ def glissando(
     allow_ties: bool = False,
     hide_middle_note_heads: bool = False,
     hide_middle_stems: bool = False,
-    hide_stem_selector: typing.Callable | None = None,
     left_broken: bool = False,
     parenthesize_repeats: bool = False,
     right_broken: bool = False,
@@ -1073,10 +1069,6 @@ def glissando(
             return False
         return True
 
-    should_hide_stem = []
-    if hide_stem_selector is not None:
-        should_hide_stem = hide_stem_selector(argument)
-
     leaves = _select.leaves(argument)
     total = len(leaves) - 1
     for i, leaf in enumerate(leaves):
@@ -1105,13 +1097,6 @@ def glissando(
             if _next_leaf_changes_current_pitch(leaf):
                 if _is_last_in_tie_chain(leaf):
                     should_attach_glissando = True
-        if leaf in should_hide_stem:
-            strings = [
-                r"\once \override Dots.transparent = ##t",
-                r"\once \override Stem.transparent = ##t",
-            ]
-            literal = _indicators.LilyPondLiteral(strings, site="before")
-            _bind.attach(literal, leaf, tag=tag.append(_tag.Tag("abjad.glissando(-1)")))
         if hide_middle_note_heads and 3 <= len(leaves):
             if leaf is not leaves[0]:
                 should_attach_glissando = False
@@ -1228,7 +1213,6 @@ def hairpin(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
     direction: _enums.Vertical | None = None,
-    selector: typing.Callable = lambda _: _select.leaves(_),
     tag: _tag.Tag | None = None,
 ) -> None:
     r"""
@@ -1367,8 +1351,6 @@ def hairpin(
     if start_dynamic is not None:
         assert isinstance(start_dynamic, _indicators.Dynamic), repr(start_dynamic)
 
-    assert callable(selector)
-    argument = selector(argument)
     leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
@@ -1384,8 +1366,7 @@ def hairpin(
 def horizontal_bracket(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
-    selector: typing.Callable = lambda _: _select.leaves(_),
-    start_group: _indicators.StartGroup | None = None,
+    start_group: _indicators.StartGroup | _tweaks.Bundle | None = None,
     stop_group: _indicators.StopGroup | None = None,
     tag: _tag.Tag | None = None,
 ) -> None:
@@ -1395,6 +1376,7 @@ def horizontal_bracket(
     ..  container:: example
 
         >>> voice = abjad.Voice("c'4 d' e' f'")
+        >>> voice.consists_commands.append("Horizontal_bracket_engraver")
         >>> abjad.horizontal_bracket(voice[:])
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1403,6 +1385,10 @@ def horizontal_bracket(
             >>> string = abjad.lilypond(voice)
             >>> print(string)
             \new Voice
+            \with
+            {
+                \consists Horizontal_bracket_engraver
+            }
             {
                 c'4
                 \startGroup
@@ -1412,11 +1398,77 @@ def horizontal_bracket(
                 \stopGroup
             }
 
+    ..  container:: example
+
+        Bundle start-group indicators to tweak the padding and outside-staff priority
+        of nested analysis brackets:
+
+        >>> voice = abjad.Voice("c'4 d' e' f' c' d' e' f'")
+        >>> voice.consists_commands.append("Horizontal_bracket_engraver")
+        >>> bundle = abjad.bundle(
+        ...     abjad.StartGroup(),
+        ...     r"- \tweak color #red",
+        ...     r"- \tweak padding 1.5",
+        ...     comment="% lexical order 1"
+        ... )
+        >>> abjad.horizontal_bracket(voice[:4], start_group=bundle)
+        >>> bundle = abjad.bundle(
+        ...     abjad.StartGroup(),
+        ...     r"- \tweak color #red",
+        ...     r"- \tweak padding 1.5",
+        ...     comment="% lexical order 1"
+        ... )
+        >>> abjad.horizontal_bracket(voice[4:], start_group=bundle)
+        >>> bundle = abjad.bundle(
+        ...     abjad.StartGroup(),
+        ...     r"- \tweak color #blue",
+        ...     r"- \tweak outside-staff-priority 801",
+        ...     r"- \tweak padding 1.5",
+        ...     comment="% lexical order 0"
+        ... )
+        >>> abjad.horizontal_bracket(voice[:], start_group=bundle)
+
+        >>> abjad.show(voice) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(voice)
+            >>> print(string)
+            \new Voice
+            \with
+            {
+                \consists Horizontal_bracket_engraver
+            }
+            {
+                c'4
+                % lexical order 0
+                - \tweak color #blue
+                - \tweak outside-staff-priority 801
+                - \tweak padding 1.5
+                \startGroup
+                % lexical order 1
+                - \tweak color #red
+                - \tweak padding 1.5
+                \startGroup
+                d'4
+                e'4
+                f'4
+                \stopGroup
+                c'4
+                % lexical order 1
+                - \tweak color #red
+                - \tweak padding 1.5
+                \startGroup
+                d'4
+                e'4
+                f'4
+                \stopGroup
+                \stopGroup
+            }
+
     """
     start_group = start_group or _indicators.StartGroup()
     stop_group = stop_group or _indicators.StopGroup()
-    assert callable(selector)
-    argument = selector(argument)
     leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
@@ -1427,7 +1479,6 @@ def horizontal_bracket(
 def ottava(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
-    selector: typing.Callable = lambda _: _select.leaves(_),
     start_ottava: _indicators.Ottava = _indicators.Ottava(n=1),
     stop_ottava: _indicators.Ottava = _indicators.Ottava(n=0, site="after"),
     tag: _tag.Tag | None = None,
@@ -1458,8 +1509,6 @@ def ottava(
     """
     assert isinstance(start_ottava, _indicators.Ottava), repr(start_ottava)
     assert isinstance(stop_ottava, _indicators.Ottava), repr(stop_ottava)
-    assert callable(selector)
-    argument = selector(argument)
     leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
@@ -1471,8 +1520,7 @@ def phrasing_slur(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
     direction: _enums.Vertical | None = None,
-    selector: typing.Callable = lambda _: _select.leaves(_),
-    start_phrasing_slur: _indicators.StartPhrasingSlur | None = None,
+    start_phrasing_slur: _indicators.StartPhrasingSlur | _tweaks.Bundle | None = None,
     stop_phrasing_slur: _indicators.StopPhrasingSlur | None = None,
     tag: _tag.Tag | None = None,
 ) -> None:
@@ -1503,8 +1551,6 @@ def phrasing_slur(
     """
     start_phrasing_slur = _indicators.StartPhrasingSlur()
     stop_phrasing_slur = _indicators.StopPhrasingSlur()
-    assert callable(selector)
-    argument = selector(argument)
     leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
@@ -1518,8 +1564,7 @@ def piano_pedal(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
     context: str | None = None,
-    selector: typing.Callable = lambda _: _select.leaves(_),
-    start_piano_pedal: _indicators.StartPianoPedal | None = None,
+    start_piano_pedal: _indicators.StartPianoPedal | _tweaks.Bundle | None = None,
     stop_piano_pedal: _indicators.StopPianoPedal | None = None,
     tag: _tag.Tag | None = None,
 ) -> None:
@@ -1556,8 +1601,6 @@ def piano_pedal(
     """
     start_piano_pedal = start_piano_pedal or _indicators.StartPianoPedal()
     stop_piano_pedal = stop_piano_pedal or _indicators.StopPianoPedal()
-    assert callable(selector)
-    argument = selector(argument)
     leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
@@ -1569,8 +1612,7 @@ def slur(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
     direction: _enums.Vertical | None = None,
-    selector: typing.Callable = lambda _: _select.leaves(_),
-    start_slur: _indicators.StartSlur | None = None,
+    start_slur: _indicators.StartSlur | _tweaks.Bundle | None = None,
     stop_slur: _indicators.StopSlur | None = None,
     tag: _tag.Tag | None = None,
 ) -> None:
@@ -1601,8 +1643,6 @@ def slur(
     """
     start_slur = start_slur or _indicators.StartSlur()
     stop_slur = stop_slur or _indicators.StopSlur()
-    assert callable(selector)
-    argument = selector(argument)
     leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
@@ -1614,8 +1654,7 @@ def text_spanner(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
     direction: _enums.Vertical | None = None,
-    selector: typing.Callable = lambda _: _select.leaves(_),
-    start_text_span: _indicators.StartTextSpan | None = None,
+    start_text_span: _indicators.StartTextSpan | _tweaks.Bundle | None = None,
     stop_text_span: _indicators.StopTextSpan | None = None,
     tag: _tag.Tag | None = None,
 ) -> None:
@@ -1746,8 +1785,6 @@ def text_spanner(
     """
     start_text_span = start_text_span or _indicators.StartTextSpan()
     stop_text_span = stop_text_span or _indicators.StopTextSpan()
-    assert callable(selector)
-    argument = selector(argument)
     leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
@@ -1760,7 +1797,6 @@ def tie(
     *,
     direction: _enums.Vertical | None = None,
     repeat: bool | tuple[int, int] | typing.Callable = False,
-    selector: typing.Callable = lambda _: _select.leaves(_),
     tag: _tag.Tag | None = None,
 ) -> None:
     r"""
@@ -1964,8 +2000,6 @@ def tie(
         def inequality(item):
             return item >= _duration.Duration(repeat)
 
-    assert callable(selector)
-    argument = selector(argument)
     leaves = _select.leaves(argument)
     if len(leaves) < 2:
         raise Exception(f"must be two or more notes (not {leaves!r}).")
@@ -1989,8 +2023,7 @@ def tie(
 def trill_spanner(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
-    selector: typing.Callable = lambda _: _select.leaves(_),
-    start_trill_span: _indicators.StartTrillSpan | None = None,
+    start_trill_span: _indicators.StartTrillSpan | _tweaks.Bundle | None = None,
     stop_trill_span: _indicators.StopTrillSpan | None = None,
     tag: _tag.Tag | None = None,
 ) -> None:
@@ -2020,8 +2053,6 @@ def trill_spanner(
     """
     start_trill_span = start_trill_span or _indicators.StartTrillSpan()
     stop_trill_span = stop_trill_span or _indicators.StopTrillSpan()
-    assert callable(selector)
-    argument = selector(argument)
     leaves = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
