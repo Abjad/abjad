@@ -52,26 +52,6 @@ pc_number_to_color = {
 }
 
 
-def by_selector(
-    argument, selector=None, colors=None, lone=False, *, deactivate=False, tag=None
-) -> None:
-    """
-    Colors leaves in ``argument`` by ``selector``.
-    """
-    if lone is True or (
-        hasattr(selector, "_is_singular_get_item") and selector._is_singular_get_item()
-    ):
-        colors = colors or ["#green"]
-        color = colors[0]
-        color_leaves(argument, color, deactivate=deactivate, tag=tag)
-    else:
-        colors = colors or ["#red", "#blue"]
-        colors = _cyclictuple.CyclicTuple(colors)
-        for i, item in enumerate(argument):
-            color = colors[i]
-            color_leaves(item, color, deactivate=deactivate, tag=tag)
-
-
 def color_container(container, color="#red") -> None:
     r"""
     Colors contents of ``container``.
@@ -145,8 +125,15 @@ def color_leaves(argument, color="#red", *, deactivate=False, tag=None) -> None:
             }
 
     """
-    for leaf in _iterate.leaves(argument):
-        _color_leaf(leaf, color, deactivate=deactivate, tag=tag)
+    if isinstance(color, str):
+        for leaf in _iterate.leaves(argument):
+            _color_leaf(leaf, color, deactivate=deactivate, tag=tag)
+    else:
+        assert isinstance(color, typing.Sequence)
+        colors = _cyclictuple.CyclicTuple(color)
+        for i, item in enumerate(argument):
+            color = colors[i]
+            color_leaves(item, color, deactivate=deactivate, tag=tag)
 
 
 def color_note_heads(argument, color_map=pc_number_to_color) -> None:
