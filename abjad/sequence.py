@@ -2084,7 +2084,7 @@ def replace_at(sequence, indices, new_material):
     assert len(indices) == 2
     index_values, index_period = indices
     assert isinstance(index_values, collections.abc.Sequence)
-    index_values = list(index_values)
+    index_values = set(index_values)
     assert isinstance(index_period, int | type(None))
     assert isinstance(new_material, collections.abc.Sequence)
     assert len(new_material) == 2

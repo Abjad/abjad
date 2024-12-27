@@ -1942,8 +1942,8 @@ class ColorMap:
         for pitch_iterable, color in zip(self.pitch_iterables, self.colors):
             for pitch in pitch_iterable:
                 pc = _pitch.NumberedPitchClass(pitch)
-                keys = self._color_dictionary.keys()
-                if pc.number in list(keys):
+                keys = set(self._color_dictionary.keys())
+                if pc.number in keys:
                     print(pc, list(self._color_dictionary.keys()))
                     raise KeyError("duplicated pitch-class in color map: {pc!r}.")
                 self._color_dictionary[pc.number] = color
