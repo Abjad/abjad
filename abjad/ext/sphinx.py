@@ -392,7 +392,7 @@ def install_lightbox_static_files(app):
             relative_file_paths.append(relative_file_path)
     if os.path.exists(target_lightbox_path):
         shutil.rmtree(target_lightbox_path)
-    for relative_file_path in sphinx.util.status_iterator(
+    for relative_file_path in sphinx.util.display.status_iterator(
         relative_file_paths,
         "installing lightbox files... ",
         brown,
@@ -411,7 +411,7 @@ def install_lightbox_static_files(app):
 
 
 def on_html_collect_pages(app):
-    for path in sphinx.util.status_iterator(
+    for path in sphinx.util.display.status_iterator(
         app.env.thumbnails,
         "copying gallery thumbnails...",
         "brown",
