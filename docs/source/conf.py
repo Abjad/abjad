@@ -1,5 +1,3 @@
-import sphinx_rtd_theme
-
 import abjad
 
 ### GENERAL SPHINX SETTINGS ###
@@ -31,14 +29,12 @@ html_static_path = ["_static"]
 html_theme = "sphinx_rtd_theme"
 html_theme_options = {
     "canonical_url": "https://abjad.github.io",
-    "display_version": False,
     # most important setting:
     # navigation_depth=1 makes sidebar completely flat;
     # leave flat navigation in place forever:
     "navigation_depth": 1,
     "style_nav_header_background": "#ddaa77",
 }
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 project = "Abjad"
 release = abjad.__version__
 rst_epilog = """
@@ -114,7 +110,7 @@ autodoc_member_order = "groupwise"
 graphviz_dot_args = ["-s32"]
 graphviz_output_format = "svg"
 intersphinx_mapping = {
-    "http://www.sphinx-doc.org/en/master/": None,
-    "https://docs.python.org/3.10/": None,
+    "python": ("https://docs.python.org/3", None),
+    "sphinx": ("http://www.sphinx-doc.org/en/master/", None),
 }
 todo_include_todos = True
