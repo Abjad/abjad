@@ -39,6 +39,7 @@ project = "Abjad"
 release = abjad.__version__
 rst_epilog = """
 ..  _Bača: https://github.com/trevorbaca
+..  _Florian Hollerweger: https://www.hfmt-koeln.de/musik/lehrende-musik/prof-dr-florian-hollerweger/
 ..  _Fredrik Wallberg: http://quesebifurcan.github.io/music
 ..  _Gilberto Agostinho: https://soundcloud.com/gilberto-agostinho
 ..  _Jeffrey Treviño: https://soundcloud.com/jefftrevino
