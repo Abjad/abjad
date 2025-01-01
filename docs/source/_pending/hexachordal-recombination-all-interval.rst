@@ -75,7 +75,7 @@ this. Then we write some LilyPond code to beautify the example:
     ... \layout {
     ...     \context {
     ...         \Score
-    ...         proportionalNotationDuration = #(ly:make-moment 1 16)
+    ...         proportionalNotationDuration = \musicLength 16
     ...         \override SpacingSpanner.uniform-stretching = ##t
     ...     }
     ... }"""

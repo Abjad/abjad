@@ -1,3 +1,5 @@
+\version "2.25.16"
+
 % FROM DAVID NALESNIK:
 %
 % https://lists.gnu.org/archive/html/lilypond-user/2015-10/msg00545.html
@@ -13,8 +15,6 @@
 %    \stopTextSpanOne
 %    \stopTextSpanTwo
 %    \stopTextSpanThre
-
-\version "2.23.6"
 
 %% Incorporating some code from the rewrite in scheme of
 %% Text_spanner_engraver in input/regression/scheme-text-spanner.ly

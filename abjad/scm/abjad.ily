@@ -1,3 +1,4 @@
+\version "2.25.16"
 \include "abjad-coloring.ily"
 \include "abjad-hairpins.ily"
 \include "abjad-metric-modulations.ily"

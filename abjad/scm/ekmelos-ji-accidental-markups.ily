@@ -1,3 +1,4 @@
+\version "2.25.16"
 font-name = "ekmelos"
 \include "markup-functions.ily"
 
@@ -13,10 +14,10 @@ font-name = "ekmelos"
     #markup
     #}))
 
-% tempered accidentals %
+% tempered accidentals
 tempered-double-flat = \markup
     \combine
-    \musicglyph #"accidentals.flatflat"
+    \musicglyph "accidentals.flatflat"
     \path #0.15
       #'(
           (moveto 0.4 1.85)
@@ -38,7 +39,7 @@ tempered-three-quarters-flat = \markup
 
 tempered-flat = \markup
     \combine
-    \musicglyph #"accidentals.flat"
+    \musicglyph "accidentals.flat"
     \path #0.15
       #'(
           (moveto -0.25 1.85)
@@ -59,7 +60,7 @@ tempered-quarter-flat = \markup
 
 tempered-natural = \markup
     \combine
-    \musicglyph #"accidentals.natural"
+    \musicglyph "accidentals.natural"
     \path #0.15
       #'(
           (moveto -0.18 1.5)
@@ -69,7 +70,7 @@ tempered-natural = \markup
 
 tempered-quarter-sharp = \markup
     \combine
-    \musicglyph #"accidentals.sharp.slashslash.stem"
+    \musicglyph "accidentals.sharp.slashslash.stem"
     \path #0.15
       #'(
           (moveto 0.1 1.25)
@@ -79,7 +80,7 @@ tempered-quarter-sharp = \markup
 
 tempered-sharp = \markup
     \combine
-    \musicglyph #"accidentals.sharp"
+    \musicglyph "accidentals.sharp"
     \path #0.15
       #'(
           (moveto 0.55 1.5)
@@ -89,7 +90,7 @@ tempered-sharp = \markup
 
 tempered-three-quarters-sharp = \markup
     \combine
-    \musicglyph #"accidentals.sharp.slashslash.stemstemstem"
+    \musicglyph "accidentals.sharp.slashslash.stemstemstem"
     \path #0.15
       #'(
           (moveto 1 1.5)
@@ -99,7 +100,7 @@ tempered-three-quarters-sharp = \markup
 
 tempered-double-sharp = \markup
     \combine
-    \musicglyph #"accidentals.doublesharp"
+    \musicglyph "accidentals.doublesharp"
     \path #0.15
       #'(
           (moveto 0.5 0)

@@ -1,3 +1,5 @@
+\version "2.25.16"
+
 % Use these functions to make music inside markup functions.
 % Note that these are music functions and not markup functions.
 % But you can use these music functions within markup functions.

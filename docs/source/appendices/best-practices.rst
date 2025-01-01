@@ -85,7 +85,7 @@ than defining them with Abjad.
 
     Not so good: ::
 
-        abjad.setting(score).proportional_notation_duration = "#(ly:make-moment 1 32)"
+        abjad.setting(score).proportional_notation_duration = r"\musicLength 32"
         abjad.setting(score).spacing_spanner.strict_grace_spacing = True
         abjad.setting(score).spacing_spanner.strict_note_spacing = True
         abjad.setting(score).spacing_spanner.uniform_stretching = True
@@ -94,7 +94,7 @@ than defining them with Abjad.
 
         \context {
             \Score
-            proportionalNotationDuration = #(ly:make-moment 1 32)
+            proportionalNotationDuration = \musicLength 32
             \override SpacingSpanner.strict-grace-spacing = ##t
             \override SpacingSpanner.strict-note-spacing = ##t
             \override SpacingSpanner.uniform-stretching = ##t

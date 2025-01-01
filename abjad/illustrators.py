@@ -174,7 +174,7 @@ def _illustrate_pitch_class_segment(
         \override Flag.stencil = ##f
         \override Stem.stencil = ##f
         \override TimeSignature.stencil = ##f
-        proportionalNotationDuration = #(ly:make-moment 1 12)
+        proportionalNotationDuration = \musicLength 1*1/12
     }
 }
 
@@ -280,7 +280,7 @@ def components(
     \context
     {
         \Score
-        proportionalNotationDuration = #(ly:make-moment 1 24)
+        proportionalNotationDuration = \musicLength 1*1/24
     }
 }
 """

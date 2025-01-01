@@ -3475,7 +3475,7 @@ class NoteHead:
         >>> note_head = abjad.NoteHead("cs''")
         >>> abjad.tweak(note_head, r"\tweak color #red")
         >>> note_head.tweaks
-        (Tweak(string='\\tweak color #red', tag=None),)
+        (Tweak(string='\\tweak color #red', i=None, tag=None),)
 
         >>> string = abjad.lilypond(note_head)
         >>> print(string)
@@ -4715,7 +4715,7 @@ class Skip(Leaf):
 
     __documentation_section__ = "Leaves"
 
-    __slots__ = ()
+    __slots__ = ("_hide_body", "_measure_initial_grace_note")
 
     def __init__(
         self,
@@ -4748,7 +4748,13 @@ class Skip(Leaf):
 
     def _get_body(self):
         result = []
-        result.append(f"s{self._get_formatted_duration()}")
+        if getattr(self, "_hide_body", False) is not True:
+            if getattr(self, "_measure_initial_grace_note", None) is not None:
+                grace_strings = self._measure_initial_grace_note
+                assert isinstance(grace_strings, list), repr(grace_strings)
+                assert "grace" in repr(grace_strings), repr(grace_strings)
+                result.extend(grace_strings)
+            result.append(f"s{self._get_formatted_duration()}")
         return result
 
     def _get_compact_representation(self):

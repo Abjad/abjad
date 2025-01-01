@@ -1,3 +1,4 @@
+\version "2.25.16"
 \include "abjad-make-music-functions.ily"
 \include "abjad-metronome-marks.ily"
 

@@ -27,13 +27,14 @@ def _apply_tweaks(argument, tweaks, i=None, total=None):
         assert isinstance(total, int), repr(total)
     tweak_objects = []
     for item in tweaks:
-        if isinstance(item, tuple):
-            assert len(item) == 2
-            item, index = item
+        if isinstance(item, _tweaks.Tweak) and item.i is not None:
+            item, index = item, item.i
             if 0 <= index and index != i:
                 continue
             if index < 0 and index != -(total - i):
                 continue
+        elif isinstance(item, tuple):
+            raise Exception(f"use abjad.Tweak.i instead of tuple: {item}")
         assert isinstance(item, _tweaks.Tweak), repr(item)
         tweak_objects.append(item)
     bundle = _tweaks.bundle(argument, *tweak_objects)
@@ -982,8 +983,8 @@ def glissando(
         >>> voice = abjad.Voice("d'4 d' d' d'", name="Voice")
         >>> abjad.glissando(
         ...     voice[:],
-        ...     (abjad.Tweak(r"- \tweak color #red"), 0),
-        ...     (abjad.Tweak(r"- \tweak color #red"), -1),
+        ...     abjad.Tweak(r"- \tweak color #red", i=0),
+        ...     abjad.Tweak(r"- \tweak color #red", i=-1),
         ...     allow_repeats=True,
         ...     zero_padding=True,
         ... )
