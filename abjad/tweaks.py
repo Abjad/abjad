@@ -81,6 +81,7 @@ class Bundle:
 
     indicator: typing.Any
     tweaks: tuple[Tweak, ...] = ()
+    comment: str | None = None
 
     def __post_init__(self):
         assert not isinstance(self.indicator, Bundle), repr(self.indicator)
@@ -90,6 +91,7 @@ class Bundle:
         for attribute in attributes:
             if 1 < attributes.count(attribute):
                 raise Exception(f"duplicate {attribute!r} attribute.")
+        assert isinstance(self.comment, str | None), repr(self.comment)
 
     def _get_contributions(self, *, component=None, wrapper=None):
         try:
@@ -107,6 +109,8 @@ class Bundle:
         assert len(lists) == 1, repr(lists)
         list_ = lists[0]
         strings = []
+        if self.comment is not None:
+            strings.append(self.comment)
         for tweak in sorted(self.tweaks):
             strings.extend(tweak._list_contributions())
         if 2 <= len(list_) and list_[-2] in ("^", "_", "-"):
@@ -153,7 +157,7 @@ class Bundle:
 
             >>> bundle_2 = bundle_1.remove(tweak)
             >>> bundle_2
-            Bundle(indicator=Markup(string='\\markup Allegro'), tweaks=())
+            Bundle(indicator=Markup(string='\\markup Allegro'), tweaks=(), comment=None)
 
             >>> bundle_3 = abjad.bundle(bundle_2, r"- \tweak color #blue")
             >>> bundle_3.tweaks
@@ -170,8 +174,9 @@ class Bundle:
 def bundle(
     indicator: typing.Any,
     *tweaks: str | Tweak,
-    tag: _tag.Tag | None = None,
+    comment: str | None = None,
     overwrite: bool = False,
+    tag: _tag.Tag | None = None,
 ) -> Bundle:
     r"""
     Bundles ``indicator`` with ``tweaks``.
@@ -321,7 +326,7 @@ def bundle(
         indicator = indicator.indicator
         input_tweaks = bundle_tweaks
     input_tweaks.sort()
-    return Bundle(indicator, tweaks=tuple(input_tweaks))
+    return Bundle(indicator, tweaks=tuple(input_tweaks), comment=comment)
 
 
 def tweak(
