@@ -3,7 +3,7 @@ import abjad
 ### GENERAL SPHINX SETTINGS ###
 ### https://www.sphinx-doc.org/en/master/usage/configuration.html ###
 
-copyright = "2008-2024, Trevor Bača & Josiah Wolf Oberholtzer."
+copyright = "2008-2025, Trevor Bača & Joséphine Oberholtzer."
 extensions = [
     "abjad.ext.sphinx",
     "sphinx.ext.autodoc",
@@ -33,7 +33,7 @@ html_theme_options = {
     # navigation_depth=1 makes sidebar completely flat;
     # leave flat navigation in place forever:
     "navigation_depth": 1,
-    "style_nav_header_background": "#ddaa77",
+    "style_nav_header_background": "#eeccaa",
 }
 project = "Abjad"
 release = abjad.__version__

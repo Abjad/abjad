@@ -1,6 +1,5 @@
 #! /usr/bin/env python
 import os
-import sys
 
 import setuptools
 
@@ -15,27 +14,12 @@ def get_abjad_version():
     return __version__
 
 
-def check_python_version(abjad_version):
-    CURRENT_PYTHON = sys.version_info[:2]
-    SUPPORTED_PYTHONS = [(3, 10), (3, 11), (3, 12)]
-    if CURRENT_PYTHON not in SUPPORTED_PYTHONS:
-        current_python = ".".join([str(_) for _ in CURRENT_PYTHON])
-        supported_pythons = ", ".join([f"{_[0]}.{_[1]}" for _ in SUPPORTED_PYTHONS])
-        string = f"This is Abjad {abjad_version},"
-        string += f" which supports Python {supported_pythons}.\n"
-        string += "\n"
-        string += "But it looks like you're trying to install Abjad"
-        string += f" with Python {current_python}."
-        sys.stderr.write(string)
-        sys.exit(1)
-
-
 description = "Abjad is a Python API for building LilyPond files."
 
 with open("README.rst", "r") as file_pointer:
     long_description = file_pointer.read()
 
-author = ["Trevor Bača", "Josiah Wolf Oberholtzer"]
+author = ["Trevor Bača", "Joséphine Oberholtzer"]
 
 author_email = [
     "trevor.baca@gmail.com",
@@ -80,7 +64,6 @@ install_requires = [
 
 if __name__ == "__main__":
     version = get_abjad_version()
-    check_python_version(version)
     setuptools.setup(
         author=", ".join(author),
         author_email=", ".join(author_email),
