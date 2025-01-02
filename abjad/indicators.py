@@ -565,7 +565,7 @@ class Clef:
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff, tags=True)
+        >>> string = abjad.lilypond(staff, keep_tags=True)
         >>> print(string)
         \new Staff
         {
@@ -2783,7 +2783,7 @@ class LilyPondLiteral:
         >>> abjad.attach(literal, voice[0], tag=abjad.Tag("+PARTS"))
         >>> abjad.show(voice) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(voice, tags=True)
+        >>> string = abjad.lilypond(voice, keep_tags=True)
         >>> print(string)
         \new Voice
         {
@@ -2812,7 +2812,7 @@ class LilyPondLiteral:
         >>> abjad.attach(literal, voice[2], tag=abjad.Tag("+PARTS"))
         >>> abjad.show(voice) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(voice, tags=True)
+        >>> string = abjad.lilypond(voice, keep_tags=True)
         >>> print(string)
         \new Voice
         {
@@ -3288,7 +3288,7 @@ class Markup:
         >>> abjad.attach(markup, staff[0], direction=abjad.UP, tag=abjad.Tag("RED:M1"))
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff, tags=True)
+        >>> string = abjad.lilypond(staff, keep_tags=True)
         >>> print(string)
         \new Staff
         {
@@ -3314,7 +3314,7 @@ class Markup:
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff, tags=True)
+        >>> string = abjad.lilypond(staff, keep_tags=True)
         >>> print(string)
         \new Staff
         {
@@ -7262,7 +7262,7 @@ class TimeSignature:
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(score, tags=True)
+        >>> string = abjad.lilypond(score, keep_tags=True)
         >>> print(string)
         \context Score = "Score"
         <<

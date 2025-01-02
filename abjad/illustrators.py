@@ -342,16 +342,24 @@ def illustrate(item, **keywords):
     return method(item, **keywords)
 
 
-def lilypond(argument, *, site_comments=False, tags=False):
+def lilypond(
+    argument, *, keep_site_comments: bool = False, keep_tags: bool = False
+) -> str:
     """
     Gets LilyPond format of ``argument``.
+
+    Calls ``abjad.tag.remove_tags()`` when ``keep_tags`` is false.
+
+    Calls ``abjad.format.remove_site_comments()`` when ``keep_site_comments`` is false.
     """
     if not hasattr(argument, "_get_lilypond_format"):
         raise Exception(f"no LilyPond format defined for {argument!r}.")
+    assert isinstance(keep_site_comments, bool), repr(keep_site_comments)
+    assert isinstance(keep_tags, bool), repr(keep_tags)
     string = argument._get_lilypond_format()
-    if site_comments is False:
+    if keep_site_comments is False:
         string = _format.remove_site_comments(string)
-    if tags is False:
+    if keep_tags is False:
         string = _tag.remove_tags(string)
     return string
 
