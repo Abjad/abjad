@@ -23,7 +23,7 @@ def parse(string: str, language: str = "english", *, tag=None):
         Tags output:
 
         >>> container = abjad.parse("{c'4 d'4 e'4 f'4}", tag=abjad.Tag("FOO"))
-        >>> string = abjad.lilypond(container, tags=True)
+        >>> string = abjad.lilypond(container, keep_tags=True)
         >>> print(string)
           %! FOO
         {

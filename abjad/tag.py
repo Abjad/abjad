@@ -261,7 +261,7 @@ def activate(text: str, tag: Tag | typing.Callable) -> tuple[str, int, int]:
         ...     tag=abjad.Tag("RED_MARKUP"),
         ... )
 
-        >>> text = abjad.lilypond(staff, tags=True)
+        >>> text = abjad.lilypond(staff, keep_tags=True)
         >>> text = abjad.tag.left_shift_tags(text)
         >>> print(text)
         \new Staff
@@ -412,7 +412,7 @@ def deactivate(
         ...     tag=abjad.Tag("RED_MARKUP"),
         ... )
 
-        >>> text = abjad.lilypond(staff, tags=True)
+        >>> text = abjad.lilypond(staff, keep_tags=True)
         >>> text = abjad.tag.left_shift_tags(text)
         >>> print(text)
         \new Staff
@@ -429,7 +429,7 @@ def deactivate(
 
         Deactivates tag:
 
-        >>> text = abjad.lilypond(staff, tags=True)
+        >>> text = abjad.lilypond(staff, keep_tags=True)
         >>> text, count, skipped = abjad.deactivate(text, abjad.Tag("RED_MARKUP"))
         >>> print(text)
         \new Staff
