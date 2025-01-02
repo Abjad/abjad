@@ -947,7 +947,7 @@ def run_command(command: str) -> list[str]:
 
 
 def run_lilypond(
-    ly_path: str,
+    ly_path: str | pathlib.Path,
     *,
     flags: str = "",
     lilypond_log_file_path: pathlib.Path | None = None,

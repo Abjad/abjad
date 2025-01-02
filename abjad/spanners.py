@@ -661,7 +661,7 @@ def glissando(
 
         LilyPond output looks like this:
 
-        >>> string = abjad.lilypond(voice, tags=True)
+        >>> string = abjad.lilypond(voice, keep_tags=True)
         >>> print(string)
         \context Voice = "Voice"
         {
@@ -694,7 +694,7 @@ def glissando(
 
         LilyPond output looks like this:
 
-        >>> string = abjad.lilypond(voice, tags=True)
+        >>> string = abjad.lilypond(voice, keep_tags=True)
         >>> print(string)
         \context Voice = "Voice"
         {
@@ -754,7 +754,7 @@ def glissando(
 
         LilyPond output looks like this:
 
-        >>> string = abjad.lilypond(voice, tags=True)
+        >>> string = abjad.lilypond(voice, keep_tags=True)
         >>> print(string)
         \context Voice = "Voice"
         {
@@ -828,7 +828,7 @@ def glissando(
 
         LilyPond output looks like this:
 
-        >>> string = abjad.lilypond(voice, tags=True)
+        >>> string = abjad.lilypond(voice, keep_tags=True)
         >>> print(string)
         \context Voice = "Voice"
         {

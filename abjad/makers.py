@@ -621,7 +621,7 @@ def make_leaves(
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff, tags=True)
+            >>> string = abjad.lilypond(staff, keep_tags=True)
             >>> print(string)
             \new Staff
             {
@@ -855,7 +855,7 @@ def make_notes(
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff, tags=True)
+            >>> string = abjad.lilypond(staff, keep_tags=True)
             >>> print(string)
             \new Staff
             {
