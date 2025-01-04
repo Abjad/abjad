@@ -45,7 +45,6 @@ extras_require = {
         "pytest>=8.1.1",
         "pytest-cov>=4.1.0",
         "pytest-helpers-namespace>=2021.12.29",
-        "sphinx-autodoc-typehints>=1.22.0",
         "sphinx-rtd-theme>=1.0.0",
     ],
 }
