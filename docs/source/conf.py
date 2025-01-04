@@ -1,9 +1,11 @@
-import abjad
-
-### GENERAL SPHINX SETTINGS ###
 ### https://www.sphinx-doc.org/en/master/usage/configuration.html ###
 
+import abjad
+
+autodoc_member_order = "groupwise"
+
 copyright = "2008-2025, Trevor Bača & Joséphine Oberholtzer."
+
 extensions = [
     "abjad.ext.sphinx",
     "sphinx.ext.autodoc",
@@ -19,6 +21,10 @@ extensions = [
     "uqbar.sphinx.inheritance",
     "uqbar.sphinx.style",
 ]
+
+graphviz_dot_args = ["-s32"]
+graphviz_output_format = "svg"
+
 html_favicon = "_static/favicon.ico"
 html_logo = "_static/abjad-logo.png"
 html_show_copyright = False
@@ -32,9 +38,19 @@ html_theme_options = {
     # navigation_depth=1 makes sidebar completely flat;
     # leave flat navigation in place forever:
     "navigation_depth": 1,
+    "sticky_navigation": False,
+    "style_external_links": True,
     "style_nav_header_background": "#eeccaa",
 }
+
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3", None),
+    "sphinx": ("http://www.sphinx-doc.org/en/master/", None),
+}
+
 project = "Abjad"
+pygments_style = "sphinx"
+
 release = abjad.__version__
 rst_epilog = """
 ..  _Bača: https://github.com/trevorbaca
@@ -50,11 +66,11 @@ rst_epilog = """
 rst_prolog = """
 ..  role:: author
 """
-smartquotes = True
-templates_path = ["_templates"]
-version = abjad.__version__
 
-### UQBAR ###
+smartquotes = True
+
+templates_path = ["_templates"]
+todo_include_todos = True
 
 uqbar_api_title = "Abjad API"
 uqbar_api_source_paths = ["abjad"]
@@ -104,13 +120,4 @@ try:
 except ImportError:
     pass
 
-### OTHER EXTENSIONS ###
-
-autodoc_member_order = "groupwise"
-graphviz_dot_args = ["-s32"]
-graphviz_output_format = "svg"
-intersphinx_mapping = {
-    "python": ("https://docs.python.org/3", None),
-    "sphinx": ("http://www.sphinx-doc.org/en/master/", None),
-}
-todo_include_todos = True
+version = abjad.__version__
