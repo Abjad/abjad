@@ -68,18 +68,18 @@ class CyclicTuple:
         """
         Gets item or slice identified by ``argument``.
 
-        Gets slice open at right:
-
         ..  container:: example
+
+            Gets slice open at right:
 
             >>> items = [0, 1, 2, 3, 4, 5]
             >>> tuple_ = abjad.CyclicTuple(items=items)
             >>> tuple_[2:]
             (2, 3, 4, 5)
 
-        Gets slice closed at right:
-
         ..  container:: example
+
+            Gets slice closed at right:
 
             >>> items = [0, 1, 2, 3, 4, 5]
             >>> tuple_ = abjad.CyclicTuple(items=items)

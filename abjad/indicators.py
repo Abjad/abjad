@@ -952,9 +952,9 @@ class Clef:
         r"""
         Changes ``pitch`` to staff position.
 
-        Changes C#5 to absolute staff position:
-
         ..  container:: example
+
+            Changes C#5 to absolute staff position:
 
             >>> pitch = abjad.NamedPitch("C#5")
 

@@ -1105,9 +1105,9 @@ def split(
     r"""
     Splits ``sequence`` by ``weights``.
 
-    Splits sequence cyclically by weights with overhang:
-
     ..  container:: example
+
+        Splits sequence cyclically by weights with overhang:
 
         >>> sequence = list([10, -10, 10, -10])
 

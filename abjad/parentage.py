@@ -766,9 +766,9 @@ class Parentage(collections.abc.Sequence):
         r"""
         Gets number of ``prototype`` in parentage.
 
-        Gets tuplet count:
-
         ..  container:: example
+
+            Gets tuplet count:
 
             >>> staff = abjad.Staff(
             ...     r"\times 2/3 { c'2 \times 2/3 { d'8 e' f' } } \times 2/3 { c'4 d' e' }"
@@ -1254,9 +1254,9 @@ class Parentage(collections.abc.Sequence):
         r"""
         Gets logical voice.
 
-        Gets logical voice of note:
-
         ..  container:: example
+
+            Gets logical voice of note:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4", name="MusicVoice")
             >>> staff = abjad.Staff([voice], name="Music_Staff")

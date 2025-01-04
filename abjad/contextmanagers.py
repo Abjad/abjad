@@ -183,10 +183,10 @@ class ForbidUpdate(ContextManager):
         r"""
         Enters context manager.
 
-        REGRESSION. Indicators need to be updated after swap; context manager
-        updates indicators before forbidding further updates:
-
         ..  container:: example
+
+            REGRESSION. Indicators need to be updated after swap; context
+            manager updates indicators before forbidding further updates:
 
             >>> staff = abjad.Staff(r"\times 1/1 { c'4 d' }")
             >>> abjad.attach(abjad.Clef("alto"), staff[0][0])

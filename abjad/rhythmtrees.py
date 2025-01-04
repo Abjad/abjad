@@ -139,11 +139,12 @@ class RhythmTreeMixin:
         A sequence describing the relative durations of the nodes in a node's improper
         parentage.
 
-        The first item in the sequence is the preprolated_duration of the root node, and
-        subsequent items are pairs of the preprolated duration of the next node in the
-        parentage and the total preprolated_duration of that node and its siblings:
-
         ..  container:: example
+
+            The first item in the sequence is the preprolated_duration of the
+            root node, and subsequent items are pairs of the preprolated
+            duration of the next node in the parentage and the total
+            preprolated_duration of that node and its siblings:
 
             >>> a = abjad.rhythmtrees.RhythmTreeContainer(preprolated_duration=abjad.Duration(1))
             >>> b = abjad.rhythmtrees.RhythmTreeContainer(preprolated_duration=abjad.Duration(2))
@@ -488,7 +489,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         RhythmTreeContainer c with the content of both a and b, and a
         preprolated_duration equal to the sum of the durations of a and b. The operation
         is non-commutative: the content of the first operand will be placed before the
-        content of the second operand:
+        content of the second operand.
 
         ..  container:: example
 
@@ -901,9 +902,9 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
     Creates rhythm tree from RTM ``string``; then calls rhythm tree on
     quarter-note pulse duration.
 
-    A single quarter note:
-
     ..  container:: example
+
+        A single quarter note:
 
         >>> result = abjad.rhythmtrees.parse_rtm_syntax("1")
         >>> result

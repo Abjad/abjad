@@ -9,9 +9,9 @@ def capitalize_start(string: str) -> str:
     """
     Capitalizes start of string.
 
-    Capitalizes only ``string[0]``; leaves noninitial characters unchanged:
-
     ..  container:: example
+
+        Capitalizes only ``string[0]``; leaves noninitial characters unchanged:
 
         >>> abjad.string.capitalize_start("violin I")
         'Violin I'

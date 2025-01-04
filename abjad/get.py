@@ -1757,9 +1757,9 @@ def grace(argument) -> bool:
     Grace music defined equal to grace container, after-grace container and
     contents of those containers.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
@@ -1902,9 +1902,9 @@ def has_effective_indicator(
     r"""
     Is true when ``argument`` has effective indicator.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> staff = abjad.Staff([music_voice])
@@ -2100,9 +2100,9 @@ def has_indicator(
     r"""
     Is true when ``argument`` has one or more indicators.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> staff = abjad.Staff([music_voice])
@@ -2343,9 +2343,9 @@ def indicator(
     r"""
     Gets indicator.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> staff = abjad.Staff([music_voice])
@@ -2494,9 +2494,9 @@ def indicators(
     r"""
     Get indicators.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> staff = abjad.Staff([music_voice])
@@ -2987,9 +2987,9 @@ def lineage(argument) -> "Lineage":
     r"""
     Gets lineage.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
@@ -3191,9 +3191,9 @@ def logical_tie(argument) -> "_select.LogicalTie":
     r"""
     Gets logical tie.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
@@ -3383,9 +3383,9 @@ def measure_number(argument) -> int:
     r"""
     Gets measure number.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
@@ -3880,9 +3880,9 @@ def pitches(argument) -> set[_pitch.NamedPitch]:
     r"""
     Gets pitches.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
@@ -4138,9 +4138,9 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
     r"""
     Gets timespan.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")

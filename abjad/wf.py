@@ -32,9 +32,9 @@ def check_beamed_lone_notes(argument) -> tuple[list, int]:
     r"""
     Checks beamed lone notes.
 
-    Beamed single notes are not wellformed:
-
     ..  container:: example
+
+        Beamed single notes are not wellformed:
 
         >>> voice = abjad.Voice("c'8 d' e' f'")
         >>> abjad.attach(abjad.StartBeam(), voice[0])
@@ -74,9 +74,9 @@ def check_beamed_long_notes(argument) -> tuple[list, int]:
     r"""
     Checks beamed long notes.
 
-    Beamed quarter notes are not wellformed:
-
     ..  container:: example
+
+        Beamed quarter notes are not wellformed:
 
         >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
         >>> abjad.attach(abjad.StartBeam(), voice[0])
@@ -348,9 +348,9 @@ def check_out_of_range_pitches(
     r"""
     Checks out-of-range notes.
 
-    Out of range:
-
     ..  container:: example
+
+        Out of range:
 
         >>> staff = abjad.Staff("c'8 r8 <d fs>8 r8")
         >>> violin = abjad.Violin()
@@ -657,9 +657,9 @@ def check_unmatched_stop_text_spans(argument) -> tuple[list, int]:
     r"""
     Checks unmatched stop text spans.
 
-    Unmatched stop text span is not wellformed:
-
     ..  container:: example
+
+        Unmatched stop text span is not wellformed:
 
         >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
         >>> stop_text_span = abjad.StopTextSpan()
@@ -734,9 +734,9 @@ def check_unterminated_hairpins(argument) -> tuple[list, int]:
     r"""
     Checks unterminated hairpins.
 
-    Unterminated crescendo is not wellformed:
-
     ..  container:: example
+
+        Unterminated crescendo is not wellformed:
 
         >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
         >>> start_hairpin = abjad.StartHairpin('<')
@@ -859,9 +859,9 @@ def check_unterminated_text_spanners(argument) -> tuple[list, int]:
     r"""
     Checks unterminated text spanners.
 
-    Unterminated text spanner is not wellformed:
-
     ..  container:: example
+
+        Unterminated text spanner is not wellformed:
 
         >>> voice = abjad.Voice("c'4 c'4 c'4 c'4")
         >>> start_text_span = abjad.StartTextSpan()
