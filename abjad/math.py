@@ -583,9 +583,9 @@ def integer_equivalent_number_to_integer(number) -> int | float:
     """
     Changes integer-equivalent ``number`` to integer.
 
-    Returns integer-equivalent number as integer:
-
     ..  container:: example
+
+        Returns integer-equivalent number as integer:
 
         >>> abjad.math.integer_equivalent_number_to_integer(17.0)
         17
@@ -608,9 +608,9 @@ def integer_to_base_k_tuple(n, k) -> tuple[int, ...]:
     """
     Changes nonnegative integer ``n`` to base-`k` tuple.
 
-    Gets base-10 digits of 1066:
-
     ..  container:: example
+
+        Gets base-10 digits of 1066:
 
         >>> abjad.math.integer_to_base_k_tuple(1066, 10)
         (1, 0, 6, 6)
@@ -1148,9 +1148,9 @@ def sign(n) -> int:
     """
     Gets sign of ``n``.
 
-    Returns -1 on negative ``n``:
-
     ..  container:: example
+
+        Returns -1 on negative ``n``:
 
         >>> abjad.math.sign(-96.2)
         -1

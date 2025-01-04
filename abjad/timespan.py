@@ -309,9 +309,9 @@ class Timespan:
         """
         Is true when timespan contains ``argument``.
 
-        Works with offsets:
-
         ..  container:: example
+
+            Works with offsets:
 
             >>> timespan = abjad.Timespan(0, (1, 4))
 
@@ -1011,9 +1011,9 @@ class Timespan:
         """
         Reflects timespan about ``axis``.
 
-        Reverse timespan about timespan axis:
-
         ..  container:: example
+
+            Reverse timespan about timespan axis:
 
             >>> abjad.Timespan(3, 6).reflect()
             Timespan(Offset((3, 1)), Offset((6, 1)))
@@ -1080,6 +1080,8 @@ class Timespan:
     def scale(self, multiplier, anchor=_enums.LEFT) -> "Timespan":
         """
         Scales timespan by ``multiplier``.
+
+        ..  container:: example
 
             >>> timespan = abjad.Timespan(3, 6)
 
@@ -1176,7 +1178,7 @@ class Timespan:
 
     def split_at_offset(self, offset) -> "TimespanList":
         """
-        Split into two parts when ``offset`` happens during timespan:
+        Split into two parts when ``offset`` happens during timespan.
 
         ..  container:: example
 
@@ -1213,7 +1215,7 @@ class Timespan:
 
     def split_at_offsets(self, offsets) -> "TimespanList":
         """
-        Split into one or more parts when ``offsets`` happens during timespan:
+        Split into one or more parts when ``offsets`` happens during timespan.
 
         ..  container:: example
 
@@ -1252,9 +1254,9 @@ class Timespan:
         """
         Stretches timespan by ``multiplier`` relative to ``anchor``.
 
-        Stretch relative to timespan start offset:
-
         .. container:: example
+
+            Stretch relative to timespan start offset:
 
             >>> abjad.Timespan(3, 10).stretch(abjad.Fraction(2))
             Timespan(Offset((3, 1)), Offset((17, 1)))
@@ -1448,9 +1450,9 @@ class TimespanList(list):
         """
         Keeps material that intersects ``timespan``.
 
-        Keeps material that intersects timespan:
-
         ..  container:: example
+
+            Keeps material that intersects timespan:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 16),
@@ -1811,9 +1813,9 @@ class TimespanList(list):
         """
         Inverts timespans.
 
-        Inverts timespans:
-
         ..  container:: example
+
+            Inverts timespans:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(-2, 8),
@@ -1827,7 +1829,6 @@ class TimespanList(list):
             >>> for _ in ~timespans: _
             Timespan(Offset((8, 1)), Offset((15, 1)))
             Timespan(Offset((20, 1)), Offset((24, 1)))
-
 
         ..  container:: example
 
@@ -1854,9 +1855,9 @@ class TimespanList(list):
         """
         Deletes material that intersects ``timespan``.
 
-        Deletes material that intersects timespan:
-
         ..  container:: example
+
+            Deletes material that intersects timespan:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 16),
@@ -2367,9 +2368,9 @@ class TimespanList(list):
         """
         Clips timespan durations.
 
-        Clips timespan durations:
-
         ..  container:: example
+
+            Clips timespan durations:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 1),
@@ -2383,7 +2384,6 @@ class TimespanList(list):
             >>> for _ in timespans: _
             Timespan(Offset((0, 1)), Offset((5, 1)))
             Timespan(Offset((0, 1)), Offset((10, 1)))
-
 
         ..  container:: example
 
@@ -2401,7 +2401,6 @@ class TimespanList(list):
             >>> for _ in timespans: _
             Timespan(Offset((0, 1)), Offset((1, 1)))
             Timespan(Offset((0, 1)), Offset((5, 1)))
-
 
         ..  container:: example
 
@@ -2422,7 +2421,6 @@ class TimespanList(list):
             >>> for _ in timespans: _
             Timespan(Offset((0, 1)), Offset((3, 1)))
             Timespan(Offset((0, 1)), Offset((7, 1)))
-
 
         ..  container:: example
 
@@ -2485,9 +2483,9 @@ class TimespanList(list):
         """
         Computes logical AND of timespans.
 
-        Computes logical AND:
-
         ..  container:: example
+
+            Computes logical AND:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 10),
@@ -2499,7 +2497,6 @@ class TimespanList(list):
 
             >>> for _ in timespans: _
             Timespan(Offset((0, 1)), Offset((10, 1)))
-
 
         ..  container:: example
 
@@ -2516,7 +2513,6 @@ class TimespanList(list):
 
             >>> for _ in timespans: _
             Timespan(Offset((5, 1)), Offset((10, 1)))
-
 
         ..  container:: example
 
@@ -2760,9 +2756,9 @@ class TimespanList(list):
         """
         Computes overlap factor of timespans.
 
-        Example timespan list:
-
         ..  container:: example
+
+            Example timespan list:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 10),
@@ -2983,9 +2979,9 @@ class TimespanList(list):
         Explodes timespans into timespan lists, avoiding overlap, and
         distributing density as evenly as possible.
 
-        Example timespan list:
-
         ..  container:: example
+
+            Example timespan list:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 3),
@@ -3317,9 +3313,9 @@ class TimespanList(list):
         """
         Reflects timespans.
 
-        Reflects timespans about timespan list axis:
-
         ..  container:: example
+
+            Reflects timespans about timespan list axis:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 3),
@@ -3437,9 +3433,9 @@ class TimespanList(list):
         """
         Rotates by ``count`` contiguous timespans.
 
-        Rotates by one timespan to the left:
-
         ..  container:: example
+
+            Rotates by one timespan to the left:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 3),
@@ -3601,9 +3597,9 @@ class TimespanList(list):
         """
         Scales timespan by ``multiplier`` relative to ``anchor``.
 
-        Scales timespans relative to timespan list start offset:
-
         ..  container:: example
+
+            Scales timespans relative to timespan list start offset:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 3),
@@ -3833,9 +3829,9 @@ class TimespanList(list):
         """
         Translates timespans by ``translation``.
 
-        Translates timespan by offset ``50``:
-
         ..  container:: example
+
+            Translates timespan by offset ``50``:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 3),
@@ -3863,9 +3859,9 @@ class TimespanList(list):
         Translates timespans by ``start_offset_translation`` and
         ``stop_offset_translation``.
 
-        Translates timespan start- and stop-offsets equally:
-
         ..  container:: example
+
+            Translates timespan start- and stop-offsets equally:
 
             >>> timespans = abjad.TimespanList([
             ...     abjad.Timespan(0, 3),

@@ -248,9 +248,9 @@ def activate(text: str, tag: Tag | typing.Callable) -> tuple[str, int, int]:
     r"""
     Activates ``tag`` in ``text``.
 
-    Writes (deactivated) tag with ``"%@%"`` prefix into LilyPond input:
-
     ..  container:: example
+
+        Writes (deactivated) tag with ``"%@%"`` prefix into LilyPond input:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> markup = abjad.Markup(r"\markup { \with-color #red Allegro }")
@@ -399,9 +399,9 @@ def deactivate(
     r"""
     Deactivates ``tag`` in ``text``.
 
-    Writes (active) tag into LilyPond input:
-
     ..  container:: example
+
+        Writes (active) tag into LilyPond input:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> string = r"\markup { \with-color #red Allegro }"

@@ -620,7 +620,6 @@ class Accidental:
         >>> abjad.Accidental("ss").semitones
         2
 
-
     ..  container:: example
 
         >>> abjad.Accidental("ff").name
@@ -5190,9 +5189,9 @@ class NamedPitch(Pitch):
         """
         Transposes named pitch by index ``n``.
 
-        Transposes C4 up a minor second:
-
         ..  container:: example
+
+            Transposes C4 up a minor second:
 
             >>> abjad.NamedPitch("c'").transpose(n="m2")
             NamedPitch("df'")
@@ -5615,9 +5614,9 @@ class NumberedPitch(Pitch):
         """
         Interpolates between numbered pitch and ``stop_pitch`` by ``fraction``.
 
-        Interpolates from C4 to C5:
-
         ..  container:: example
+
+            Interpolates from C4 to C5:
 
             >>> start_pitch = abjad.NumberedPitch(0)
             >>> stop_pitch = abjad.NumberedPitch(12)
@@ -5677,9 +5676,9 @@ class NumberedPitch(Pitch):
         """
         Inverts numbered pitch around ``axis``.
 
-        Inverts pitch-class about pitch-class 0 explicitly:
-
         ..  container:: example
+
+            Inverts pitch-class about pitch-class 0 explicitly:
 
             >>> abjad.NumberedPitch(2).invert(0)
             NumberedPitch(-2)

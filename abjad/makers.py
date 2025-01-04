@@ -706,10 +706,10 @@ def make_notes(
 
     Set ``durations`` to a single duration or a list of durations.
 
-    Cycles through ``pitches`` when the length of ``pitches`` is less than the length
-    of ``durations``:
-
     ..  container:: example
+
+        Cycles through ``pitches`` when the length of ``pitches`` is less than
+        the length of ``durations``:
 
         >>> pitches = [0]
         >>> durations = [(1, 16), (1, 8), (1, 8)]
@@ -930,9 +930,9 @@ def tuplet_from_duration_and_ratio(
     r"""
     Makes tuplet from ``duration`` and ``ratio``.
 
-    Makes tupletted leaves strictly without dots when all ``ratio`` equal ``1``:
-
     ..  container:: example
+
+        Makes tupletted leaves strictly without dots when all ``ratio`` equal ``1``:
 
         >>> tuplet = abjad.makers.tuplet_from_duration_and_ratio(
         ...     abjad.Duration(3, 16),

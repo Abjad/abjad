@@ -283,9 +283,9 @@ class Duration(fractions.Fraction):
 
         See https://bugs.python.org/issue4395#msg89533.
 
-        REGRESSION:
-
         ..  container:: example
+
+            REGRESSION:
 
             >>> offset_1 = abjad.Offset(1)
             >>> offset_2 = abjad.Offset(1, displacement=(-1, 16))
@@ -1066,9 +1066,9 @@ class Duration(fractions.Fraction):
         r"""
         Changes duration to clock string.
 
-        Changes duration to clock string:
-
         ..  container:: example
+
+            Changes duration to clock string:
 
             >>> note = abjad.Note("c'4")
             >>> duration = abjad.Duration(117)
@@ -1292,9 +1292,9 @@ class Offset(Duration):
         """
         Is true when offset equals ``argument``.
 
-        With equal numerators, denominators and displacement:
-
         ..  container:: example
+
+            With equal numerators, denominators and displacement:
 
             >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
             >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
@@ -1351,9 +1351,9 @@ class Offset(Duration):
         """
         Is true when offset is greater than or equal to ``argument``.
 
-        With equal numerators, denominators and displacement:
-
         ..  container:: example
+
+            With equal numerators, denominators and displacement:
 
             >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
             >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
@@ -1410,9 +1410,9 @@ class Offset(Duration):
         """
         Is true when offset is greater than ``argument``.
 
-        With equal numerators, denominators and displacement:
-
         ..  container:: example
+
+            With equal numerators, denominators and displacement:
 
             >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
             >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
@@ -1475,9 +1475,9 @@ class Offset(Duration):
         """
         Is true when offset is less than or equal to ``argument``.
 
-        With equal numerators, denominators and displacement:
-
         ..  container:: example
+
+            With equal numerators, denominators and displacement:
 
             >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
             >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))

@@ -254,9 +254,9 @@ def chord(
     r"""
     Selects chord ``n`` in ``argument``.
 
-    Selects chord -1:
-
     ..  container:: example
+
+        Selects chord -1:
 
         >>> tuplets = [
         ...     "r16 bf'16 <a'' b''>16 c'16 <d' e'>4 ~ <d' e'>16",
@@ -344,9 +344,9 @@ def chords(
     r"""
     Selects chords in ``argument``.
 
-    Selects chords:
-
     ..  container:: example
+
+        Selects chords:
 
         >>> tuplets = [
         ...     "r16 bf'16 <a'' b''>16 c'16 <d' e'>4 ~ <d' e'>16",
@@ -462,9 +462,9 @@ def components(
     r"""
     Selects components.
 
-    Selects notes:
-
     ..  container:: example
+
+        Selects notes:
 
         >>> staff = abjad.Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 r4 g'8")
         >>> abjad.setting(staff).autoBeaming = False
@@ -840,9 +840,9 @@ def exclude(argument, indices: typing.Sequence[int], period: int | None = None) 
     r"""
     Excludes items at ``indices`` by ``period``.
 
-    Excludes every other leaf:
-
     ..  container:: example
+
+        Excludes every other leaf:
 
         >>> string = r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8"
         >>> staff = abjad.Staff(string)
@@ -995,9 +995,9 @@ def filter(argument, predicate=None) -> list:
     r"""
     Filters ``argument`` by ``predicate``.
 
-    Selects runs with duration equal to 2/8:
-
     ..  container:: example
+
+        Selects runs with duration equal to 2/8:
 
         >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
         >>> abjad.setting(staff).autoBeaming = False
@@ -1048,9 +1048,9 @@ def flatten(argument, depth: int = 1) -> list:
     r"""
     Flattens ``argument``.
 
-    Selects first two leaves of each tuplet:
-
     ..  container:: example
+
+        Selects first two leaves of each tuplet:
 
         >>> tuplets = [
         ...     "r16 bf'16 <a'' b''>16 c'16 <d' e'>4 ~ <d' e'>16",
@@ -1245,9 +1245,9 @@ def get(
     r"""
     Gets items in ``argument`` at ``indices`` according to ``period``.
 
-    Gets every other leaf:
-
     ..  container:: example
+
+        Gets every other leaf:
 
         >>> string = r"c'8 d'8 ~ d'8 e'8 ~ e'8 ~ e'8 r8 f'8"
         >>> staff = abjad.Staff(string)
@@ -1472,9 +1472,9 @@ def group_by(argument, predicate=None) -> list[list]:
     r'''
     Groups items in ``argument`` by ``predicate``.
 
-    Wraps selection in selection when ``predicate`` is none:
-
     ..  container:: example
+
+        Wraps selection in selection when ``predicate`` is none:
 
         >>> staff = abjad.Staff(r"""
         ...     c'8 ~ c'16 c'16 r8 c'16 c'16
@@ -1546,9 +1546,9 @@ def group_by_contiguity(argument) -> list[list]:
     r'''
     Groups items in ``argument`` by contiguity.
 
-    Groups pitched leaves by contiguity:
-
     ..  container:: example
+
+        Groups pitched leaves by contiguity:
 
         >>> string = r"c'8 d' r \times 2/3 { e' r f' } g' a' r"
         >>> staff = abjad.Staff(string)
@@ -1853,9 +1853,9 @@ def group_by_duration(argument) -> list[list]:
     r"""
     Groups items in ``argument`` by duration.
 
-    Groups logical ties by duration:
-
     ..  container:: example
+
+        Groups logical ties by duration:
 
         >>> string = "c'4 ~ c'16 d' ~ d' d' e'4 ~ e'16 f' ~ f' f'"
         >>> staff = abjad.Staff(string)
@@ -1925,9 +1925,9 @@ def group_by_length(argument) -> list[list]:
     r"""
     Groups items in ``argument`` by length.
 
-    Groups logical ties by length:
-
     ..  container:: example
+
+        Groups logical ties by length:
 
         >>> string = "c'4 ~ c'16 d' ~ d' d' e'4 ~ e'16 f' ~ f' f'"
         >>> staff = abjad.Staff(string)
@@ -1997,9 +1997,9 @@ def group_by_measure(argument) -> list[list]:
     r"""
     Groups items in ``argument`` by measure.
 
-    Groups leaves by measure:
-
     ..  container:: example
+
+        Groups leaves by measure:
 
         >>> staff = abjad.Staff("c'8 d' e' f' g' a' b' c''")
         >>> score = abjad.Score([staff], name="Score")
@@ -2364,9 +2364,9 @@ def group_by_pitch(argument) -> list[list]:
     r"""
     Groups items in ``argument`` by pitch.
 
-    Groups logical ties by pitches:
-
     ..  container:: example
+
+        Groups logical ties by pitches:
 
         >>> string = "c'4 ~ c'16 d' ~ d' d' e'4 ~ e'16 f' ~ f' f'"
         >>> staff = abjad.Staff(string)
@@ -2447,9 +2447,9 @@ def leaf(
     r"""
     Selects leaf ``n` in ``argument``.
 
-    Selects leaf -1:
-
     ..  container:: example
+
+        Selects leaf -1:
 
         >>> tuplets = [
         ...     "r16 bf'16 <a'' b''>16 c'16 <d' e'>4 ~ <d' e'>16",
@@ -3679,9 +3679,9 @@ def logical_ties(
     r'''
     Selects logical ties in ``argument``.
 
-    Selects logical ties:
-
     ..  container:: example
+
+        Selects logical ties:
 
         >>> staff = abjad.Staff("c'8 d' ~ { d' e' r f'~ } f' r")
         >>> abjad.setting(staff).autoBeaming = False
@@ -4301,9 +4301,9 @@ def nontrivial(argument) -> list:
     r"""
     Selects nontrivial items in ``argument``.
 
-    Selects nontrivial runs:
-
     ..  container:: example
+
+        Selects nontrivial runs:
 
         >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
         >>> abjad.setting(staff).autoBeaming = False
@@ -4360,9 +4360,9 @@ def note(
     r"""
     Selects note ``n`` in ``argument``.
 
-    Selects note -1:
-
     ..  container:: example
+
+        Selects note -1:
 
         >>> tuplets = [
         ...     "r16 bf'16 <a'' b''>16 c'16 <d' e'>4 ~ <d' e'>16",
@@ -4450,9 +4450,9 @@ def notes(
     r"""
     Selects notes in ``argument``.
 
-    Selects notes:
-
     ..  container:: example
+
+        Selects notes:
 
         >>> tuplets = [
         ...     "r16 bf'16 <a'' b''>16 c'16 <d' e'>4 ~ <d' e'>16",
@@ -4563,9 +4563,9 @@ def partition_by_counts(
     r"""
     Partitions items in ``argument`` by ``counts``.
 
-    Partitions leaves into a single part of length 3; truncates overhang:
-
     ..  container:: example
+
+        Partitions leaves into a single part of length 3; truncates overhang:
 
         >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
         >>> abjad.setting(staff).autoBeaming = False
@@ -5044,10 +5044,10 @@ def partition_by_durations(
     r"""
     Partitions items in ``argument`` by ``durations``.
 
-    Cyclically partitions leaves into parts equal to exactly 3/8; returns
-    overhang at end:
-
     ..  container:: example
+
+        Cyclically partitions leaves into parts equal to exactly 3/8; returns
+        overhang at end:
 
         >>> staff = abjad.Staff([
         ...     abjad.Container("c'8 d'"),
@@ -5910,9 +5910,9 @@ def partition_by_ratio(argument, ratio: tuple[int, ...]) -> list[list]:
     r"""
     Partitions items in ``argument`` by ``ratio``.
 
-    Partitions leaves by a ratio of 1:1:
-
     ..  container:: example
+
+        Partitions leaves by a ratio of 1:1:
 
         >>> string = r"c'8 d' r \times 2/3 { e' r f' } g' a' r"
         >>> staff = abjad.Staff(string)
@@ -6035,9 +6035,9 @@ def rest(
     r"""
     Selects rest ``n`` in ``argument``.
 
-    Selects rest -1:
-
     ..  container:: example
+
+        Selects rest -1:
 
         >>> tuplets = [
         ...     "r16 bf'16 <a'' b''>16 c'16 <d' e'>4 ~ <d' e'>16",
@@ -6125,9 +6125,9 @@ def rests(
     r"""
     Selects rests in ``argument``.
 
-    Selects rests:
-
     ..  container:: example
+
+        Selects rests:
 
         >>> tuplets = [
         ...     "r16 bf'16 <a'' b''>16 c'16 <d' e'>4 ~ <d' e'>16",
@@ -6226,9 +6226,9 @@ def run(
     r"""
     Selects run ``n`` in ``argument``.
 
-    Selects run -1:
-
     ..  container:: example
+
+        Selects run -1:
 
         >>> tuplets = [
         ...     "r16 c'16 c'16 c'16 <d' e'>4 ~ <d' e'>16",
@@ -6320,9 +6320,9 @@ def runs(
     r"""
     Selects runs in ``argument``.
 
-    Selects runs:
-
     ..  container:: example
+
+        Selects runs:
 
         >>> tuplets = [
         ...     "r16 c'16 c'16 c'16 <d' e'>4 ~ <d' e'>16",
@@ -6520,9 +6520,9 @@ def top(argument, *, exclude: _typings.Exclude | None = None) -> list[_score.Com
     r"""
     Selects top components in ``argument``.
 
-    Selects top components (up from leaves):
-
     ..  container:: example
+
+        Selects top components (up from leaves):
 
         >>> string = r"c'8 d' r \times 2/3 { e' r f' } g' a' r"
         >>> staff = abjad.Staff(string)
@@ -6600,9 +6600,9 @@ def tuplet(
     r"""
     Selects tuplet ``n`` in ``argument``.
 
-    Selects tuplet -1:
-
     ..  container:: example
+
+        Selects tuplet -1:
 
         >>> tuplets = [
         ...     "r16 bf'16 <a'' b''>16 c'16 <d' e'>4 ~ <d' e'>16",
@@ -6695,9 +6695,9 @@ def tuplets(
     r"""
     Selects tuplets in ``argument``.
 
-    Selects tuplets at every level:
-
     ..  container:: example
+
+        Selects tuplets at every level:
 
         >>> staff = abjad.Staff(
         ...     r"\times 2/3 { c'2 \times 2/3 { d'8 e' f' } } \times 2/3 { c'4 d' e' }"
@@ -6882,9 +6882,9 @@ def with_next_leaf(argument, *, grace: bool | None = None) -> list[_score.Leaf]:
     r"""
     Extends ``argument`` with next leaf.
 
-    Selects runs (each with next leaf):
-
     ..  container:: example
+
+        Selects runs (each with next leaf):
 
         >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
         >>> abjad.setting(staff).autoBeaming = False
@@ -7250,9 +7250,9 @@ def with_previous_leaf(argument) -> list[_score.Leaf]:
     r"""
     Extends ``argument`` with previous leaf.
 
-    Selects runs (each with previous leaf):
-
     ..  container:: example
+
+        Selects runs (each with previous leaf):
 
         >>> staff = abjad.Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
         >>> abjad.setting(staff).autoBeaming = False
