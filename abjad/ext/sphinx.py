@@ -135,7 +135,9 @@ class ThumbnailDirective(Directive):
         name, suffix = os.path.splitext(node["uri"])
         environment.images.add_file(environment.docname, node["uri"])
         thumbnail_uri = name + "-thumbnail" + suffix
-        environment.thumbnails.add_file(environment.docname, thumbnail_uri)
+        environment.thumbnails[thumbnail_uri] = environment.docname
+        # this may also work:
+        # environment.thumbnails[environment.docname] = thumbnail_uri
         return [node]
 
 
