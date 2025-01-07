@@ -3,7 +3,7 @@
 Colophon
 ========
 
-We are composers `Trevor Bača`_, `Josiah Wolf Oberholtzer`_ and `Víctor Adán
+We are composers `Trevor Bača`_, `Joséphine Wolf Oberholtzer`_ and `Víctor Adán
 <http://www.victoradan.net>`_, creators of Abjad. Our earliest collaborative work dates
 back to shared undergraduate years in Austin. It was the mid- to late-90s and we found
 ourselves interested in ways of building up ever larger sets of musical materials in our

@@ -99,9 +99,9 @@ Invisible Cities (iii): Ersilia (2015)
 ``````````````````````````````````````
 
 - For chamber orchestra.
-- Composed by `Josiah Wolf Oberholtzer`_.
+- Composed by `Joséphine Wolf Oberholtzer`_.
 - Written for Ensemble Dal Niente.
-- Source available from https://github.com/josiah-wolf-oberholtzer/ersilia/.
+- Source available from https://github.com/josephine-wolf-oberholtzer/ersilia/.
 
 ..  raw:: html
 
@@ -115,13 +115,13 @@ Invisible Cities (iii): Ersilia (2015)
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 9 of Invisible Cities (iii): Ersilia,
-                by Josiah Wolf Oberholtzer.
+                by Joséphine Wolf Oberholtzer.
 
     ..  thumbnail:: gallery/oberholtzer-ersilia-page-10.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 10 of Invisible Cities (iii): Ersilia,
-                by Josiah Wolf Oberholtzer.
+                by Joséphine Wolf Oberholtzer.
 
 ----
 
@@ -160,9 +160,9 @@ Invisible Cities (ii): Armilla (2015)
 `````````````````````````````````````
 
 - For two violas.
-- Composed by `Josiah Wolf Oberholtzer`_.
+- Composed by `Joséphine Wolf Oberholtzer`_.
 - Written for John Pickford Richards and Elizabeth Weisser.
-- Source available from https://github.com/josiah-wolf-oberholtzer/armilla/.
+- Source available from https://github.com/josephine-wolf-oberholtzer/armilla/.
 
 ..  raw:: html
 
@@ -176,13 +176,13 @@ Invisible Cities (ii): Armilla (2015)
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 8 of Invisible Cities (ii): Armilla,
-                by Josiah Wolf Oberholtzer.
+                by Joséphine Wolf Oberholtzer.
 
     ..  thumbnail:: gallery/oberholtzer-armilla-page-9.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 9 of Invisible Cities (ii): Armilla,
-                by Josiah Wolf Oberholtzer.
+                by Joséphine Wolf Oberholtzer.
 
 ----
 
@@ -250,9 +250,9 @@ Invisible Cities (i): Zaira (2014)
 ``````````````````````````````````
 
 - For chamber orchestra.
-- Composed by `Josiah Wolf Oberholtzer`_.
+- Composed by `Joséphine Wolf Oberholtzer`_.
 - Written for Ensemble Mosaik.
-- Source available from https://github.com/josiah-wolf-oberholtzer/zaira/.
+- Source available from https://github.com/josephine-wolf-oberholtzer/zaira/.
 
 ..  raw:: html
 
@@ -266,13 +266,13 @@ Invisible Cities (i): Zaira (2014)
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 16 of Invisible Cities (i): Zaira,
-                by Josiah Wolf Oberholtzer.
+                by Joséphine Wolf Oberholtzer.
 
     ..  thumbnail:: gallery/oberholtzer-zaira-page-17.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 17 of Invisible Cities (i): Zaira,
-                by Josiah Wolf Oberholtzer.
+                by Joséphine Wolf Oberholtzer.
 
 ----
 
@@ -310,9 +310,9 @@ Plague Water (2014)
 ```````````````````
 
 - For baritone saxophone, electric guitar, piano and percussion.
-- Composed by `Josiah Wolf Oberholtzer`_.
+- Composed by `Joséphine Wolf Oberholtzer`_.
 - Written for Ensemble Nikel.
-- Source available from https://github.com/josiah-wolf-oberholtzer/plague_water/.
+- Source available from https://github.com/josephine-wolf-oberholtzer/plague_water/.
 
 ..  raw:: html
 
@@ -326,13 +326,13 @@ Plague Water (2014)
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 12 of Plague Water,
-                by Josiah Wolf Oberholtzer.
+                by Joséphine Wolf Oberholtzer.
 
     ..  thumbnail:: gallery/oberholtzer-plague-water-page-13.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 13 of Plague Water,
-                by Josiah Wolf Oberholtzer.
+                by Joséphine Wolf Oberholtzer.
 
 ----
 
@@ -418,9 +418,9 @@ Aurora (2011)
 `````````````
 
 - For string orchestra.
-- Composed by `Josiah Wolf Oberholtzer`_.
+- Composed by `Joséphine Wolf Oberholtzer`_.
 - Written for Ensemble Kaleidoskop.
-- Source available from https://github.com/josiah-wolf-oberholtzer/aurora/.
+- Source available from https://github.com/josephine-wolf-oberholtzer/aurora/.
 
 ..  container:: table-row
 
@@ -428,13 +428,13 @@ Aurora (2011)
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 6 of Aurora,
-                by Josiah Wolf Oberholtzer.
+                by Joséphine Wolf Oberholtzer.
 
     ..  thumbnail:: gallery/oberholtzer-aurora-page-7.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 7 of Aurora,
-                by Josiah Wolf Oberholtzer.
+                by Joséphine Wolf Oberholtzer.
 
 ----
 

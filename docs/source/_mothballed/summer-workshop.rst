@@ -27,7 +27,7 @@ Topics covered include:
 * understanding the document structure of complex scores
 * controlling the details of musical typography programmatically
 
-Taught by Jeff Treviño, Trevor Bača and Josiah Wolf Oberholtzer.
+Taught by Jeff Treviño, Trevor Bača and Joséphine Wolf Oberholtzer.
 
 Visit the `CCRMA`_ website for the most up-to-date scheduling information about this
 annual course.

@@ -40,7 +40,7 @@ Lagartija (2010)
 ````````````````
 
 - For piccolo, percussion, violin and cello.
-- Composed by `Josiah Wolf Oberholtzer`_.
+- Composed by `Joséphine Wolf Oberholtzer`_.
 - Written for White Rabbit.
 
 ..  container:: table-row
@@ -49,13 +49,13 @@ Lagartija (2010)
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 4 of Lagartija,
-                by Josiah Wolf Oberholtzer.
+                by Joséphine Wolf Oberholtzer.
 
     ..  thumbnail:: gallery/oberholtzer-lagartija-page-5.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 5 of Lagartija,
-                by Josiah Wolf Oberholtzer.
+                by Joséphine Wolf Oberholtzer.
 
 ----
 

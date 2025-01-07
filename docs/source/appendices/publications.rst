@@ -3,7 +3,7 @@ Publications
 
 A number of publications discussing Abjad are available for download here:
 
-* Bača, Trevor, Josiah Wolf Oberholtzer, Jeffrey Treviño and Víctor Adán.
+* Bača, Trevor, Joséphine Wolf Oberholtzer, Jeffrey Treviño and Víctor Adán.
   `"Abjad: An Open-Software System For Formalized Score Control."
   <https://github.com/Abjad/tenor2015/blob/master/abjad.pdf>`_
   Proceedings of the First International Conference on Technologies for Music
@@ -23,7 +23,7 @@ A number of publications discussing Abjad are available for download here:
   University of Miami.
   2019.
 
-* Oberholtzer, Josiah Wolf.
+* Oberholtzer, Joséphine Wolf.
   `A Computational Model of Music Composition.
   <http://dash.harvard.edu/handle/1/17463123>`_
   Doctoral dissertation,

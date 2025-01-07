@@ -304,10 +304,10 @@ Demarest/Lloyd (2016)
 `````````````````````
 
 - For eleven percussionists
-- Composed by `Josiah Wolf Oberholtzer`_.
+- Composed by `Joséphine Wolf Oberholtzer`_.
 - Written for the 50th anniversary of the Boston University Tanglewood
   Institute.
-- Source available from https://github.com/josiah-wolf-oberholtzer/demarest/.
+- Source available from https://github.com/josephine-wolf-oberholtzer/demarest/.
 
 ..  container:: table-row
 
@@ -315,13 +315,13 @@ Demarest/Lloyd (2016)
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 19 of Demarest/Lloyd,
-                by Josiah Wolf Oberholtzer.
+                by Joséphine Wolf Oberholtzer.
 
     ..  thumbnail:: gallery/oberholtzer-demarest-page-28.png
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 28 of Demarest/Lloyd,
-                by Josiah Wolf Oberholtzer.
+                by Joséphine Wolf Oberholtzer.
 
 ----
 
