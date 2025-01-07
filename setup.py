@@ -19,7 +19,7 @@ description = "Abjad is a Python API for building LilyPond files."
 with open("README.rst", "r") as file_pointer:
     long_description = file_pointer.read()
 
-author = ["Trevor Bača", "Joséphine Oberholtzer"]
+author = ["Trevor Bača", "Joséphine Wolf Oberholtzer"]
 
 author_email = [
     "trevor.baca@gmail.com",
@@ -45,6 +45,7 @@ extras_require = {
         "pytest>=8.1.1",
         "pytest-cov>=4.1.0",
         "pytest-helpers-namespace>=2021.12.29",
+        "sphinx>=8.1.3",
         "sphinx-rtd-theme>=1.0.0",
     ],
 }

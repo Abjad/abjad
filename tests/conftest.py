@@ -3,7 +3,6 @@ import pathlib
 import shutil
 
 import pytest
-from sphinx.testing.path import path
 
 pytest_plugins = "sphinx.testing.fixtures"
 
@@ -25,5 +24,5 @@ def remove_sphinx_projects(sphinx_test_tempdir):
 
 @pytest.fixture()
 def rootdir(remove_sphinx_projects):
-    roots = path(os.path.dirname(__file__) or ".").abspath() / "roots"
+    roots = pathlib.Path(os.path.dirname(__file__) or ".").absolute() / "roots"
     yield roots

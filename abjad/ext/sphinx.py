@@ -16,7 +16,7 @@ from docutils.nodes import (
     literal_block,
 )
 from docutils.parsers.rst import Directive, directives
-from sphinx.util import FilenameUniqDict, logging
+from sphinx.util import logging
 from sphinx.util.console import brown  # type: ignore
 from sphinx.util.nodes import set_source_info
 from sphinx.util.osutil import copyfile, ensuredir
@@ -181,7 +181,7 @@ def visit_thumbnail_block_latex(self, node):
 
 
 def on_builder_inited(app):
-    app.env.thumbnails = FilenameUniqDict()  # separate so Sphinx doesn't purge it
+    app.env.thumbnails = {}  # separate so Sphinx doesn't purge it
     install_lightbox_static_files(app)
     (pathlib.Path(app.builder.outdir) / "_images").mkdir(exist_ok=True)
 
