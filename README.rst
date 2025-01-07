@@ -26,12 +26,12 @@ Abjad's documentation is available here: https://abjad.github.io
 
 Abjad's install instructions are tested on macOS and Linux.
 
-Abjad requires Python 3.10 or later:
+Abjad requires Python 3.12 or later:
 
 ..  code-block::
 
     ~$ python --version
-    Python 3.11.0
+    Python 3.12.8
 
 Abjad requires LilyPond 2.23.6 or later.
 
