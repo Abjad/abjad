@@ -8,9 +8,6 @@ programming language, you can use Abjad to make systematic changes to music as y
 Because Abjad wraps the LilyPond music notation package, you can use Abjad to control the
 typographic detail of symbols on the page.
 
-..  image:: https://img.shields.io/travis/Abjad/abjad/master.svg?style=flat-square
-    :target: https://travis-ci.org/Abjad/abjad
-
 ..  image:: https://img.shields.io/pypi/v/abjad.svg?style=flat-square
     :target: https://pypi.python.org/pypi/abjad
 
@@ -42,9 +39,18 @@ Make sure LilyPond is callable from the commandline:
 ..  code-block::
 
     $ lilypond --version
-    GNU LilyPond 2.23.80 (running Guile 2.2)
+    Copyright (c) 1996--2023 by
+      Han-Wen Nienhuys <hanwen@xs4all.nl>
+      Jan Nieuwenhuizen <janneke@gnu.org>
+      and others.
 
-Create a Python 3 virtual environment for Abjad: https://docs.python.org/3/tutorial/venv.html
+    This program is free software.  It is covered by the GNU General Public
+    License and you are welcome to change it and/or distribute copies of it
+    under certain conditions.  Invoke as `lilypond --warranty' for more
+    information.
+
+Create a Python 3 virtual environment for Abjad:
+https://docs.python.org/3/tutorial/venv.html
 
 Activate the virtual environment and then use pip to install Abjad:
 
@@ -61,7 +67,8 @@ Start Python, import Abjad, start making music notation:
     >>> note = abjad.Note("c'4")
     >>> abjad.show(note)
 
-..  image:: hello.png
+..
+    ..  image:: hello.png
 
 ----
 
