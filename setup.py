@@ -23,7 +23,7 @@ author = ["Trevor Bača", "Joséphine Oberholtzer"]
 
 author_email = [
     "trevor.baca@gmail.com",
-    "josiah.oberholtzer@gmail.com",
+    "josephine.wolf.oberholtzer@gmail.com",
 ]
 
 classifiers = [

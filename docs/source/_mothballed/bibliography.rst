@@ -31,7 +31,7 @@ Bibliography
     two approaches to the formalized control of musical score."
     Draft June 7, 2007.
 
-*   Trevor Bača, Josiah Wolf Oberholtzer,
+*   Trevor Bača, Joséphine Wolf Oberholtzer,
     Jeffrey Treviño & Víctor Adán.
     "Abjad: An Open-Software System For Formalized Score Control."
     2015.
@@ -81,7 +81,7 @@ Bibliography
     `Proceedings of the XIV Colloquium on Musical Informatics`.
     Firenze, Italy. May 8 - 10, 2003.
 
-*   Josiah Wolf Oberholtzer.
+*   Joséphine Wolf Oberholtzer.
     `A Computational Model of Music Composition`.
     Doctoral Dissertation.
     Harvard University, Graduate School of Arts and Sciences.

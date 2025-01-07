@@ -58,9 +58,9 @@ rst_epilog = """
 ..  _Fredrik Wallberg: http://quesebifurcan.github.io/music
 ..  _Gilberto Agostinho: https://soundcloud.com/gilberto-agostinho
 ..  _Jeffrey Treviño: https://soundcloud.com/jefftrevino
-..  _Josiah Wolf Oberholtzer: http://josiahwolfoberholtzer.com
+..  _Joséphine Wolf Oberholtzer: http://josephine-wolf-oberholtzer.com
 ..  _Gregory Rowland Evans: http://www.gregoryrowlandevans.com
-..  _Oberholtzer: https://github.com/josiah-wolf-oberholtzer
+..  _Oberholtzer: https://github.com/josephine-wolf-oberholtzer
 ..  _Trevor Bača: http://www.trevorbaca.com
 """
 rst_prolog = """
