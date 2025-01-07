@@ -34,7 +34,7 @@ jobs:
         echo $PYTHONPATH
     - name: Install LilyPond
       run: |
-        lilypond_version=2.25.3
+        lilypond_version=2.25.22
         lilypond_archive=lilypond-${lilypond_version}-linux-x86_64.tar.gz
         lilypond_url=https://gitlab.com/lilypond/lilypond/-/releases/
         lilypond_url=${lilypond_url}/v${lilypond_version}/downloads/${lilypond_archive}
@@ -44,7 +44,7 @@ jobs:
         tar -xf ${lilypond_archive}
     - name: Install Abjad
       run: |
-        export PATH=/tmp/lilypond-2.25.3/bin:/home/runner/bin:$PATH
+        export PATH=/tmp/lilypond-2.25.22/bin:/home/runner/bin:$PATH
         export PYTHONUNBUFFERED=TRUE
         pip install defusedxml
         pip install -e .[dev]
@@ -60,7 +60,7 @@ jobs:
         lilypond --version
     - name: Run checks and tests
       run: |
-        export PATH=/tmp/lilypond-2.25.3/bin:/home/runner/bin:$PATH
+        export PATH=/tmp/lilypond-2.25.22/bin:/home/runner/bin:$PATH
         export PYTHONUNBUFFERED=TRUE
         make black-check
         make flake8
