@@ -29,8 +29,8 @@ author_email = [
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "License :: OSI Approved :: GNU General Public License (GPL)",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Topic :: Artistic Software",
 ]
 
@@ -78,7 +78,7 @@ if __name__ == "__main__":
         name="abjad",
         packages=["abjad"],
         platforms="Any",
-        python_requires=">=3.10",
+        python_requires=">=3.12",
         url="https://abjad.github.io",
         version=version,
     )
