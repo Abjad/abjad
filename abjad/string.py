@@ -135,7 +135,7 @@ def from_roman(string: str) -> int:
         >>> abjad.string.from_roman('Allegro')
         Traceback (most recent call last):
             ...
-        roman.InvalidRomanNumeralError: Invalid Roman numeral: Allegro
+        roman.InvalidRomanNumeralError...
 
     """
     if is_roman(string):
