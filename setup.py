@@ -58,7 +58,7 @@ keywords = [
 
 install_requires = [
     "ply>=3.11",
-    "roman>=4.2",
+    "roman>=5.0",
     "uqbar>=0.7.4",
 ]
 
