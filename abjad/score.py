@@ -2943,6 +2943,7 @@ class Context(Container):
     __slots__ = (
         "_lilypond_type",
         "_consists_commands",
+        "_with_commands"
         "_dependent_wrappers",
         "_remove_commands",
     )
@@ -2985,6 +2986,7 @@ class Context(Container):
         tag: _tag.Tag | None = None,
     ) -> None:
         self._consists_commands: list[str] = []
+        self._with_commands: list[str] = []
         self._dependent_wrappers: list = []
         self._remove_commands: list[str] = []
         self.lilypond_type = lilypond_type
@@ -3011,6 +3013,7 @@ class Context(Container):
         """
         new_context = Container.__copy__(self)
         new_context._consists_commands = copy.copy(self.consists_commands)
+        new_context._with_commands = copy.copy(self.with_commands)
         new_context._remove_commands = copy.copy(self.remove_commands)
         return new_context
 
@@ -3067,6 +3070,13 @@ class Context(Container):
             result.append(string)
         return result
 
+    def _format_with_commands(self):
+        result = []
+        for engraver in self.with_commands:
+            string = rf"{engraver}"
+            result.append(string)
+        return result
+    
     def _format_invocation(self):
         if self.name is not None:
             string = rf'\context {self.lilypond_type} = "{self.name}"'
@@ -3089,9 +3099,10 @@ class Context(Container):
         brackets_open = [open_bracket]
         remove_commands = self._format_remove_commands()
         consists_commands = self._format_consists_commands()
+        with_commands = self._format_with_commands()
         overrides = contributions.grob_overrides
         settings = contributions.context_settings
-        if remove_commands or consists_commands or overrides or settings:
+        if remove_commands or consists_commands or with_commands or overrides or settings:
             contributions = [self._format_invocation(), r"\with", "{"]
             contributions = self._tag_strings(contributions)
             result.extend(contributions)
@@ -3099,6 +3110,9 @@ class Context(Container):
             contributions = self._tag_strings(contributions)
             result.extend(contributions)
             contributions = [_indentlib.INDENT + _ for _ in consists_commands]
+            contributions = self._tag_strings(contributions)
+            result.extend(contributions)
+            contributions = [_indentlib.INDENT + _ for _ in with_commands]
             contributions = self._tag_strings(contributions)
             result.extend(contributions)
             contributions = [_indentlib.INDENT + _ for _ in overrides]
@@ -3161,6 +3175,25 @@ class Context(Container):
 
         """
         return self._consists_commands
+
+    @property
+    def with_commands(self):
+        r"""
+        Unordered set of LilyPond engravers to include in context definition.
+
+        ..  container:: example
+
+            Tipically insert instrumentName variable directly into Staff
+
+            >>> staff = abjad.Staff([])
+            >>> instrument_name = 'violin'
+            >>> staff.with_commands.extend([
+            >>>     f'instrumentName = "{instrument_name}"',
+            >>>     f'shortInstrumentName = "{instrument_name[:2]}"'
+            >>> ])
+
+        """        
+        return self._with_commands
 
     @property
     def lilypond_context(self):
