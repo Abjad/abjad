@@ -43,7 +43,7 @@ jobs:
             echo "File download failed!" >&2
             exit 1
         fi
-        checksum="f0e6e441bd336b8f37d1021ad1365b3fd188e310820d"
+        checksum="3e837e811aaa72323863925f0a4b5bd1aff1ed9b997e6c70dbe5c008e47872e7"
         echo "${checksum}  ${lilypond_archive}" > checksum.txt
         if ! sha256sum -c checksum.txt --status; then
             echo "Checksum verification failed!" >&2
