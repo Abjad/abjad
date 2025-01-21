@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.12", "3.13", "3.14-dev"]
+        python-version: ["3.12", "3.13"]
 
     steps:
     - uses: actions/checkout@v2
@@ -40,6 +40,11 @@ jobs:
         echo ${lilypond_url}
         cd /tmp
         wget -q ${lilypond_url}
+        checksum="f0e6e441bd336b8f37d1021ad1365b3fd188e310820d"
+        if ! echo "${checksum}  ${lilypond_archive}" | sha256sum -c --status; then
+          echo "Checksum verification failed!" >&2
+          exit 1
+        fi
         tar -xf ${lilypond_archive}
     - name: Install Abjad
       run: |
