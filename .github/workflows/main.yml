@@ -23,7 +23,6 @@ jobs:
     - name: Log environment variable(s)
       run: |
         python --version
-        python -m pip install --upgrade pip coverage
         echo HOME:
         echo $HOME
         echo GITHUB_WORKSPACE:
@@ -46,8 +45,14 @@ jobs:
       run: |
         export PATH=/tmp/lilypond-2.25.22/bin:/home/runner/bin:$PATH
         export PYTHONUNBUFFERED=TRUE
-        pip install defusedxml
-        pip install -e .[dev]
+        python -m pip install --upgrade pip coverage
+        python -m pip install defusedxml
+        python -m pip install -e .[dev]
+        python -m pip install black==24.10.0
+        python -m pip install flake8==7.1.1
+        python -m pip install isort==5.13.2
+        python -m pip install mypy==1.14.1
+        python -m pip install pytest==8.3.4
         # echo the configuration file path to debug read-only-filesystem handling
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
         scr/prime-parser-tables
