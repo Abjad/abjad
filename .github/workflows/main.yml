@@ -8,19 +8,21 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ["3.12", "3.13"]
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Log environment variable(s)
+    - name: Set environment variables
+      run: |
+        echo "PATH=/tmp/lilypond-2.25.22/bin:/home/runner/bin:$PATH" >> $GITHUB_ENV
+        echo "PYTHONUNBUFFERED=TRUE" >> $GITHUB_ENV
+    - name: Log environment variables
       run: |
         python --version
         echo HOME:
@@ -35,7 +37,8 @@ jobs:
       run: |
         lilypond_version=2.25.22
         lilypond_archive="lilypond-${lilypond_version}-linux-x86_64.tar.gz"
-        lilypond_url="https://gitlab.com/lilypond/lilypond/-/releases/v${lilypond_version}/downloads/${lilypond_archive}"
+        base_url="https://gitlab.com/lilypond/lilypond/-/releases"
+        lilypond_url="${base_url}/v${lilypond_version}/downloads/${lilypond_archive}"
         echo "Downloading LilyPond from: ${lilypond_url}"
         cd /tmp || { echo "Failed to change directory to /tmp"; exit 1; }
         wget -q ${lilypond_url}
@@ -54,8 +57,6 @@ jobs:
         tar -xf "${lilypond_archive}"
     - name: Install Abjad
       run: |
-        export PATH=/tmp/lilypond-2.25.22/bin:/home/runner/bin:$PATH
-        export PYTHONUNBUFFERED=TRUE
         python -m pip install --upgrade pip coverage
         python -m pip install defusedxml
         python -m pip install -e .[dev]
@@ -64,9 +65,10 @@ jobs:
         python -m pip install isort==5.13.2
         python -m pip install mypy==1.14.1
         python -m pip install pytest==8.3.4
-        # echo the configuration file path to debug read-only-filesystem handling
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
         scr/prime-parser-tables
+    - name: Log dependency versions
+      run: |
         black --version
         flake8 --version
         isort --version
@@ -76,8 +78,6 @@ jobs:
         lilypond --version
     - name: Run checks and tests
       run: |
-        export PATH=/tmp/lilypond-2.25.22/bin:/home/runner/bin:$PATH
-        export PYTHONUNBUFFERED=TRUE
         make black-check
         make flake8
         make isort-check
