@@ -57,7 +57,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip coverage
         python -m pip install defusedxml
-        python -m pip install -e .[dev]
+        python -m pip install .[dev]
         python -m pip install black==24.10.0
         python -m pip install flake8==7.1.1
         python -m pip install isort==5.13.2
