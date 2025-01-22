@@ -27,14 +27,10 @@ jobs:
     - name: Log environment variables
       run: |
         python --version
-        echo HOME:
-        echo $HOME
-        echo GITHUB_WORKSPACE:
-        echo $GITHUB_WORKSPACE
-        echo PATH:
-        echo $PATH
-        echo PYTHONPATH:
-        echo $PYTHONPATH
+        echo HOME: $HOME
+        echo GITHUB_WORKSPACE: $GITHUB_WORKSPACE
+        echo PATH: $PATH
+        echo PYTHONPATH: $PYTHONPATH
     - name: Install LilyPond
       run: |
         lilypond_archive="lilypond-${LILYPOND_VERSION}-linux-x86_64.tar.gz"
