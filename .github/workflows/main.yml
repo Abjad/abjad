@@ -37,10 +37,9 @@ jobs:
         echo $PYTHONPATH
     - name: Install LilyPond
       run: |
-        lilypond_version=2.25.22
-        lilypond_archive="lilypond-${lilypond_version}-linux-x86_64.tar.gz"
+        lilypond_archive="lilypond-${LILYPOND_VERSION}-linux-x86_64.tar.gz"
         base_url="https://gitlab.com/lilypond/lilypond/-/releases"
-        lilypond_url="${base_url}/v${lilypond_version}/downloads/${lilypond_archive}"
+        lilypond_url="${base_url}/v${LILYPOND_VERSION}/downloads/${lilypond_archive}"
         echo "Downloading LilyPond from: ${lilypond_url}"
         cd /tmp || { echo "Failed to change directory to /tmp"; exit 1; }
         wget -q ${lilypond_url}
