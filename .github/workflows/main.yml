@@ -22,7 +22,8 @@ jobs:
       run: |
         export LILYPOND_VERSION=2.25.22
         echo "LILYPOND_VERSION=${LILYPOND_VERSION}" >> $GITHUB_ENV
-        echo "PATH=/tmp/lilypond-${LILYPOND_VERSION}/bin:/home/runner/bin:$PATH" >> $GITHUB_ENV
+        echo "PATH=/tmp/lilypond-${LILYPOND_VERSION}/bin:/home/runner/bin:$PATH" \
+          >> $GITHUB_ENV
         echo "PYTHONUNBUFFERED=TRUE" >> $GITHUB_ENV
     - name: Log environment variables
       run: |
