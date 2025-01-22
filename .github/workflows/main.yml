@@ -18,7 +18,7 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Set environment variables
+    - name: Write environment variables
       run: |
         export LILYPOND_VERSION=2.25.22
         echo "LILYPOND_VERSION=${LILYPOND_VERSION}" >> $GITHUB_ENV
@@ -27,7 +27,6 @@ jobs:
         echo "PYTHONUNBUFFERED=TRUE" >> $GITHUB_ENV
     - name: Log environment variables
       run: |
-        python --version
         echo HOME: $HOME
         echo GITHUB_WORKSPACE: $GITHUB_WORKSPACE
         echo PATH: $PATH
@@ -53,19 +52,18 @@ jobs:
         rm checksum.txt
         echo "Checksum verified successfully."
         tar -xf "${lilypond_archive}"
-    - name: Install Abjad
+        lilypond --version
+    - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip coverage
-        python -m pip install defusedxml
-        python -m pip install -e .[dev]
-        python -m pip install black==24.10.0
-        python -m pip install flake8==7.1.1
-        python -m pip install isort==5.13.2
-        python -m pip install mypy==1.14.1
-        python -m pip install pytest==8.3.4
-        python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
-        scr/prime-parser-tables
-    - name: Log dependency versions
+        python -m pip install --upgrade pip \
+          coverage \
+          defusedxml \
+          black==24.10.0 \
+          flake8==7.1.1 \
+          isort==5.13.2 \
+          mypy==1.14.1 \
+          pytest==8.3.4
+    - name: Log dependencies
       run: |
         black --version
         flake8 --version
@@ -73,11 +71,17 @@ jobs:
         mypy --version
         pip --version
         pytest --version
-        lilypond --version
-    - name: Run checks and tests
+    - name: Install Abjad
+      run: |
+        python -m pip install .[dev]
+        python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
+        scr/prime-parser-tables
+    - name: Run checks
       run: |
         make black-check
         make flake8
         make isort-check
         make mypy
+    - name: Run tests
+      run: |
         make pytest
