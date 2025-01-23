@@ -96,12 +96,13 @@ jobs:
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
         scr/prime-parser-tables
 
-    - name: Run checks
+    - name: Run checks (parallel)
       run: |
-        make black-check
-        make flake8
-        make isort-check
-        make mypy
+        make black-check & 
+        make flake8 & 
+        make isort-check & 
+        make mypy & 
+        wait
 
     - name: Run tests
       run: |
