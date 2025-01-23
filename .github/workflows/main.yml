@@ -62,14 +62,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip \
-          coverage \
-          defusedxml \
-          black==24.10.0 \
-          flake8==7.1.1 \
-          isort==5.13.2 \
-          mypy==1.14.1 \
-          pytest==8.3.4
+        python -m pip install --upgrade pip coverage defusedxml
+        python -m pip install -r ci/requirements.txt
 
     - name: Log dependencies
       run: |
