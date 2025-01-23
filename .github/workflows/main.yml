@@ -44,10 +44,10 @@ jobs:
 
     - name: Log environment variables
       run: |
-        echo HOME: $HOME
-        echo GITHUB_WORKSPACE: $GITHUB_WORKSPACE
-        echo PATH: $PATH
-        echo PYTHONPATH: $PYTHONPATH
+        echo "HOME: $HOME"
+        echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+        echo "PATH: $PATH"
+        echo "PYTHONPATH: ${PYTHONPATH:-not set}"
 
     - name: Install LilyPond
       run: |
