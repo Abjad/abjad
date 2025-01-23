@@ -88,15 +88,17 @@ jobs:
 
     - name: Create Python virtual environment
       run: |
-        python -m venv venv && source venv/bin/activate
+        python -m venv venv
 
     - name: Install dependencies
       run: |
+        source venv/bin/activate
         python -m pip install --upgrade pip coverage defusedxml
         python -m pip install -r ci/requirements.txt
 
     - name: Log dependencies
       run: |
+        source venv/bin/activate
         black --version
         flake8 --version
         isort --version
@@ -106,12 +108,14 @@ jobs:
 
     - name: Install Abjad
       run: |
+        source venv/bin/activate
         python -m pip install .[dev]
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
         scr/prime-parser-tables
 
     - name: Run checks
       run: |
+        source venv/bin/activate
         make black-check & 
         make flake8 & 
         make isort-check & 
@@ -120,4 +124,5 @@ jobs:
 
     - name: Run tests
       run: |
+        source venv/bin/activate
         make pytest
