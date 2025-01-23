@@ -22,6 +22,14 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: $HOME/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
     - name: Write environment variables
       run: |
         export LILYPOND_VERSION=2.25.22
