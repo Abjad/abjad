@@ -9,15 +9,18 @@ on:
 jobs:
   ci-tests:
     runs-on: ubuntu-latest
+
     strategy:
-      matrix:
-        python-version: ["3.12", "3.13"]
+      matrix: { python-version: ["3.12", "3.13"] }
+
     steps:
-    - uses: actions/checkout@v4
+    - name: Check out repository
+      uses: actions/checkout@v4
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
+      with: { python-version: ${{ matrix.python-version }} }
+
     - name: Write environment variables
       run: |
         export LILYPOND_VERSION=2.25.22
@@ -25,12 +28,14 @@ jobs:
         echo "PATH=/tmp/lilypond-${LILYPOND_VERSION}/bin:/home/runner/bin:$PATH" \
           >> $GITHUB_ENV
         echo "PYTHONUNBUFFERED=TRUE" >> $GITHUB_ENV
+
     - name: Log environment variables
       run: |
         echo HOME: $HOME
         echo GITHUB_WORKSPACE: $GITHUB_WORKSPACE
         echo PATH: $PATH
         echo PYTHONPATH: $PYTHONPATH
+
     - name: Install LilyPond
       run: |
         lilypond_archive="lilypond-${LILYPOND_VERSION}-linux-x86_64.tar.gz"
@@ -53,6 +58,7 @@ jobs:
         echo "Checksum verified successfully."
         tar -xf "${lilypond_archive}"
         lilypond --version
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip \
@@ -63,6 +69,7 @@ jobs:
           isort==5.13.2 \
           mypy==1.14.1 \
           pytest==8.3.4
+
     - name: Log dependencies
       run: |
         black --version
@@ -71,17 +78,20 @@ jobs:
         mypy --version
         pip --version
         pytest --version
+
     - name: Install Abjad
       run: |
         python -m pip install .[dev]
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
         scr/prime-parser-tables
+
     - name: Run checks
       run: |
         make black-check
         make flake8
         make isort-check
         make mypy
+
     - name: Run tests
       run: |
         make pytest
