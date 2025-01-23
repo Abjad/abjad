@@ -41,15 +41,25 @@ jobs:
       run: |
         export LILYPOND_VERSION=2.25.22
         echo "LILYPOND_VERSION=${LILYPOND_VERSION}" >> $GITHUB_ENV
-        echo "PATH=/tmp/lilypond-${LILYPOND_VERSION}/bin:/home/runner/bin:$PATH" \
-          >> $GITHUB_ENV
+        new_path="/tmp/lilypond-${LILYPOND_VERSION}/bin:/home/runner/bin:$PATH"
+        echo "PATH=${new_path}" >> $GITHUB_ENV
         echo "PYTHONUNBUFFERED=TRUE" >> $GITHUB_ENV
+
+    - name: Validate environment variables
+      run: |
+        if [ -z "${LILYPOND_VERSION}" ]; then
+          echo "LILYPOND_VERSION is not set!" >&2
+          exit 1
+        fi
 
     - name: Log environment variables
       run: |
         echo "HOME: $HOME"
+        echo "GITHUB_ENV: $GITHUB_ENV"
         echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+        echo "LILYPOND_VERSION: $LILYPOND_VERSION"
         echo "PATH: $PATH"
+        echo "PYTHONBUFFERED: $PYTHONBUFFERED"
         echo "PYTHONPATH: ${PYTHONPATH:-not set}"
 
     - name: Install LilyPond
@@ -76,6 +86,10 @@ jobs:
         tar -xf "${lilypond_archive}"
         lilypond --version
 
+    - name: Create Python virtual environment
+      run: |
+        python -m venv venv && source venv/bin/activate
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip coverage defusedxml
@@ -96,13 +110,13 @@ jobs:
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
         scr/prime-parser-tables
 
-    - name: Run checks (parallel)
+    - name: Run checks
       run: |
         make black-check & 
         make flake8 & 
         make isort-check & 
         make mypy & 
-        wait
+        wait || { echo "Some checks failed"; exit 1; }
 
     - name: Run tests
       run: |
