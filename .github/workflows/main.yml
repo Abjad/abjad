@@ -28,7 +28,10 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('ci/requirements.txt') }}
+        key: >
+          ${{ runner.os }}-pip-
+          ${{ matrix.python-version }}-
+          ${{ hashFiles('ci/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-${{ matrix.python-version }}-
           ${{ runner.os }}-pip-
@@ -56,7 +59,8 @@ jobs:
         lilypond_url="${base_url}/v${LILYPOND_VERSION}/downloads/${lilypond_archive}"
         echo "Downloading LilyPond from: ${lilypond_url}"
         cd /tmp || { echo "Failed to change directory to /tmp"; exit 1; }
-        wget -q ${lilypond_url}
+        wget -q --tries=3 --timeout=30 ${lilypond_url} || \
+          { echo "Download failed after 3 attempts"; exit 1; }
         if [ ! -f "${lilypond_archive}" ]; then
             echo "File download failed!" >&2
             exit 1
