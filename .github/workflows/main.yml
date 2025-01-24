@@ -6,7 +6,6 @@ on:
   pull_request:
     branches: [ main ]
 
-
 jobs:
   ci-tests:
     runs-on: ubuntu-latest
@@ -20,7 +19,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
 
@@ -54,22 +53,21 @@ jobs:
 
     - name: Install LilyPond
       run: |
+        set -e
         lilypond_archive="lilypond-${LILYPOND_VERSION}-linux-x86_64.tar.gz"
         base_url="https://gitlab.com/lilypond/lilypond/-/releases"
         lilypond_url="${base_url}/v${LILYPOND_VERSION}/downloads/${lilypond_archive}"
         echo "Downloading LilyPond from: ${lilypond_url}"
-        cd /tmp || { echo "Failed to change directory to /tmp"; exit 1; }
+        cd /tmp || { echo "Failed to change directory to /tmp"; }
         wget -q --tries=3 --timeout=30 ${lilypond_url} || \
-          { echo "Download failed after 3 attempts"; exit 1; }
+          { echo "Download failed after 3 attempts"; }
         if [ ! -f "${lilypond_archive}" ]; then
             echo "File download failed!" >&2
-            exit 1
         fi
         checksum="3e837e811aaa72323863925f0a4b5bd1aff1ed9b997e6c70dbe5c008e47872e7"
         echo "${checksum}  ${lilypond_archive}" > checksum.txt
         if ! sha256sum -c checksum.txt --status; then
             echo "Checksum verification failed!" >&2
-            exit 1
         fi
         rm checksum.txt
         echo "Checksum verified successfully."
@@ -78,7 +76,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip coverage defusedxml
+        python -m pip install --upgrade pip
         python -m pip install -r ci/requirements.txt
 
     - name: Log dependencies
@@ -94,15 +92,14 @@ jobs:
       run: |
         python -m pip install .[dev]
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
-        scr/prime-parser-tables
+        python scr/prime-parser-tables
 
-    - name: Run checks (parallel)
+    - name: Run checks
       run: |
-        make black-check & 
-        make flake8 & 
-        make isort-check & 
-        make mypy & 
-        wait
+        make black-check
+        make flake8
+        make isort-check
+        make mypy
 
     - name: Run tests
       run: |
