@@ -77,6 +77,7 @@ jobs:
 
     - name: Install dependencies
       run: |
+        python -m pip install --upgrade pip
         python -m pip install -r ci/requirements.txt
 
     - name: Log dependencies
@@ -94,13 +95,12 @@ jobs:
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
         scr/prime-parser-tables
 
-    - name: Run checks (parallel)
+    - name: Run checks
       run: |
-        make black-check & 
-        make flake8 & 
-        make isort-check & 
-        make mypy & 
-        wait
+        make black-check
+        make flake8
+        make isort-check
+        make mypy
 
     - name: Run tests
       run: |
