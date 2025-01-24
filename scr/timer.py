@@ -1,4 +1,9 @@
 #! /usr/bin/env python
+
+"""
+Called by abjad.contextmanager.Timer on __enter__().
+"""
+
 import sys
 import time
 

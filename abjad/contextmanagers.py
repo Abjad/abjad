@@ -703,7 +703,7 @@ class Timer(ContextManager):
         self._stop_time = None
         self._start_time = time.time()
         if self.print_continuously_from_background:
-            path = configuration.abjad_directory.parent / "scr" / "timer"
+            path = configuration.abjad_directory.parent / "scr" / "timer.py"
             interval = str(int(self.print_continuously_from_background))
             process = subprocess.Popen([path, interval], shell=False)
             self._process = process
