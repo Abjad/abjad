@@ -11,7 +11,7 @@ def usage():
     result.append("Usage:")
     result.append("")
     result.append(
-        "write-parser-syntax-skeleton PARSER_output_PATH PARSER_TAB_HH_PATH SKELETON_PATH"
+        "write_parser_syntax_skeleton.py PARSER_output_PATH PARSER_TAB_HH_PATH SKELETON_PATH"
     )
     result.append("")
     result.append(
@@ -29,7 +29,9 @@ def write(parser_output_path, parser_tab_hh_path, skeleton_path):
     assert os.path.exists(parser_output_path)
     assert os.path.exists(parser_tab_hh_path)
     LilyPondGrammarGenerator()._write_parser_syntax_skeleton(
-        skeleton_path, parser_output_path, parser_tab_hh_path,
+        skeleton_path,
+        parser_output_path,
+        parser_tab_hh_path,
     )
 
 
