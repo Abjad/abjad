@@ -87,7 +87,7 @@ jobs:
       run: |
         python -m pip install .[dev]
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
-        python scr/prime-parser-tables
+        python scr/prime_parser_tables.py
 
     - name: Run checks
       run: |
