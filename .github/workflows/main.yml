@@ -59,7 +59,7 @@ jobs:
         lilypond_url="${base_url}/v${LILYPOND_VERSION}/downloads/${lilypond_archive}"
         echo "Downloading LilyPond from: ${lilypond_url}"
         cd /tmp
-        wget -q --tries=3 --timeout=30 ${lilypond_url}
+        wget --quiet --timeout=30 ${lilypond_url}
         test -f "${lilypond_archive}"
         checksum="3e837e811aaa72323863925f0a4b5bd1aff1ed9b997e6c70dbe5c008e47872e7"
         echo "${checksum}  ${lilypond_archive}" > checksum.txt
@@ -87,7 +87,7 @@ jobs:
       run: |
         python -m pip install .
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
-        python scr/prime_parser_tables.py
+        python scr/prime_parser_tables.py 2>/dev/null
 
     - name: Run checks
       run: |
