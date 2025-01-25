@@ -52,22 +52,7 @@ jobs:
         echo "PYTHONPATH: ${PYTHONPATH:-not set}"
 
     - name: Install LilyPond
-      run: |
-        set -e
-        lilypond_archive="lilypond-${LILYPOND_VERSION}-linux-x86_64.tar.gz"
-        base_url="https://gitlab.com/lilypond/lilypond/-/releases"
-        lilypond_url="${base_url}/v${LILYPOND_VERSION}/downloads/${lilypond_archive}"
-        echo "Downloading LilyPond from: ${lilypond_url}"
-        cd /tmp
-        wget --quiet --timeout=30 ${lilypond_url}
-        test -f "${lilypond_archive}"
-        checksum="3e837e811aaa72323863925f0a4b5bd1aff1ed9b997e6c70dbe5c008e47872e7"
-        echo "${checksum}  ${lilypond_archive}" > checksum.txt
-        sha256sum -c checksum.txt --status
-        rm checksum.txt
-        echo "Checksum verified successfully."
-        tar -xf "${lilypond_archive}"
-        lilypond --version
+      uses: trevorbaca/install-lilypond@v2.25.22
 
     - name: Install dependencies
       run: |
