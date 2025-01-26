@@ -45,6 +45,7 @@ extras_require = {
         "pytest>=8.3.4",
         "pytest-cov>=6.0.0",
         "pytest-helpers-namespace>=2021.12.29",
+        "setuptools>=75.8.0",
         "sphinx>=8.1.3",
         "sphinx-rtd-theme>=3.0.2",
     ],
