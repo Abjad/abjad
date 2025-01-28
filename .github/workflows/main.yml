@@ -53,7 +53,7 @@ jobs:
         echo "PYTHONPATH: ${PYTHONPATH:-not set}"
 
     - name: Install LilyPond
-      uses: trevorbaca/install-lilypond@v2.25.22
+      uses: Abjad/install-lilypond@v2.25.22
 
     - name: Install dependencies
       run: |
