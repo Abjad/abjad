@@ -39,7 +39,7 @@ jobs:
 
     - name: Write environment variables
       run: |
-        export LILYPOND_VERSION=2.25.22
+        export LILYPOND_VERSION=2.25.23
         echo "LILYPOND_VERSION=${LILYPOND_VERSION}" >> $GITHUB_ENV
         string="PATH=/tmp/lilypond-${LILYPOND_VERSION}/bin:/home/runner/bin:$PATH"
         echo $string >> $GITHUB_ENV
@@ -53,7 +53,7 @@ jobs:
         echo "PYTHONPATH: ${PYTHONPATH:-not set}"
 
     - name: Install LilyPond
-      uses: Abjad/install-lilypond@v2.25.22
+      uses: Abjad/install-lilypond@v2.25.23
 
     - name: Install dependencies
       run: |
