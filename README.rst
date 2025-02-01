@@ -39,6 +39,8 @@ Make sure LilyPond is callable from the commandline:
 ..  code-block::
 
     $ lilypond --version
+    GNU LilyPond 2.25.23 (running Guile 3.0)
+
     Copyright (c) 1996--2023 by
       Han-Wen Nienhuys <hanwen@xs4all.nl>
       Jan Nieuwenhuizen <janneke@gnu.org>
