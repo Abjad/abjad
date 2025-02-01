@@ -32,8 +32,8 @@ if __name__ == "__main__":
         ],
         description="Abjad is a Python API for building LilyPond files.",
         extras_require={
-            "nauert": ["abjad-ext-nauert>=3.20"],
-            "rmakers": ["abjad-ext-rmakers>=3.20"],
+            "nauert": ["abjad-ext-nauert>=3.21"],
+            "rmakers": ["abjad-ext-rmakers>=3.21"],
             "dev": [
                 "black>=25.1.0",
                 "flake8>=7.1.1",
