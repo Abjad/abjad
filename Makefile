@@ -101,7 +101,7 @@ release:
 	make -C docs/ clean html
 	make clean
 	make build
-	pip install -U twine
+	python -m pip install -U twine
 	twine upload dist/*.tar.gz
 	make gh-pages
 
