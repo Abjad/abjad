@@ -40,7 +40,7 @@ html_theme_options = {
     "navigation_depth": 1,
     "sticky_navigation": False,
     "style_external_links": True,
-    "style_nav_header_background": "#eeccaa",
+    "style_nav_header_background": "#ffeedd",
 }
 
 intersphinx_mapping = {
