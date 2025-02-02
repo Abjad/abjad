@@ -45,6 +45,7 @@ if __name__ == "__main__":
                 "setuptools>=75.8.0",
                 "sphinx>=8.1.3",
                 "sphinx-rtd-theme>=3.0.2",
+                "twine>=6.1.0",
             ],
         },
         include_package_data=True,
