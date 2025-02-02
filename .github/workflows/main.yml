@@ -40,15 +40,14 @@ jobs:
 
     - name: Write environment variables
       run: |
-        string="PATH=/tmp/lilypond-${{ matrix.lilypond-version }}/bin:/home/runner/bin:$PATH"
-        echo $string >> $GITHUB_ENV
+        PATH="/tmp/lilypond-${{ matrix.lilypond-version }}/bin:home/runner/bin:$PATH"
+        echo "PATH=$PATH" >> $GITHUB_ENV
         echo "PYTHONUNBUFFERED=TRUE" >> $GITHUB_ENV
 
     - name: Log environment variables
       run: |
         echo "HOME: $HOME"
         echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
-        echo "LILYPOND_VERSION: $LILYPOND_VERSION"
         echo "PATH: $PATH"
         echo "PYTHONUNBUFFERED: $PYTHONUNBUFFERED"
         echo "PYTHONPATH: ${PYTHONPATH:-not set}"
