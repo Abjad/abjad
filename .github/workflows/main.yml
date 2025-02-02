@@ -49,7 +49,7 @@ jobs:
         echo "HOME: $HOME"
         echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
         echo "PATH: $PATH"
-        echo "PYTHONUNBUFFERED: $PYTHONUNBUFFERED"
+        echo "PYTHONUNBUFFERED: ${PYTHONUNBUFFERED:-not set}"
         echo "PYTHONPATH: ${PYTHONPATH:-not set}"
 
     - name: Install LilyPond
