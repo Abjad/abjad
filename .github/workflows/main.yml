@@ -55,7 +55,7 @@ jobs:
     - name: Install LilyPond
       uses: Abjad/install-lilypond@main
       with:
-        version: ${{ matrix.lilypond-version }}
+        lilypond-version: ${{ matrix.lilypond-version }}
 
     - name: Install Python dependencies
       run: |
