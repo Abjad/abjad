@@ -56,7 +56,7 @@ jobs:
         echo "PYTHONPATH: ${PYTHONPATH:-not set}"
 
     - name: Install LilyPond
-      uses: Abjad/install-lilypond@main
+      uses: Abjad/install-lilypond@v2.25.22
       with:
         version: ${{ matrix.lilypond-version }}
 
