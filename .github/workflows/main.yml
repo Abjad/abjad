@@ -49,18 +49,20 @@ jobs:
       run: |
         echo "HOME: $HOME"
         echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
+        echo "LILYPOND_VERSION: $LILYPOND_VERSION"
         echo "PATH: $PATH"
+        echo "PYTHONBUFFERED: $PYTHONBUFFERED"
         echo "PYTHONPATH: ${PYTHONPATH:-not set}"
 
     - name: Install LilyPond
-      uses: Abjad/install-lilypond@v2.25.23
+      uses: Abjad/install-lilypond@v$LILYPOND_VERSION
 
-    - name: Install dependencies
+    - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
         python -m pip install -r ci/requirements.txt --no-cache-dir
 
-    - name: Log dependencies
+    - name: Log Python dependencies
       run: |
         black --version
         flake8 --version
@@ -69,7 +71,7 @@ jobs:
         pip --version
         pytest --version
 
-    - name: Install Abjad
+    - name: Install this repo
       run: |
         python -m pip install .
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
