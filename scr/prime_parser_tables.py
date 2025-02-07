@@ -24,6 +24,8 @@ parsers = (
     ReducedLyParser,
 )
 
+print("FOO!")
 for parser in parsers:
     print(f"Priming {parser.__name__} parser tables.")
     parser()
+print("BAR!")
