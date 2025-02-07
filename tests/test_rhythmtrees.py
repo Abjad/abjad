@@ -136,7 +136,7 @@ def test_RhythmTreeContainer___getitem___01():
 def test_RhythmTreeContainer___init___01():
     container = abjad.rhythmtrees.RhythmTreeContainer()
     assert container.children == ()
-    assert container.preprolated_duration == 1
+    assert container.preprolated_duration == (1, 1)
     assert container.start_offset == 0
     assert container.parent is None
 
