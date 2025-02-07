@@ -2,6 +2,7 @@ include LICENSE
 include README.rst
 include conftest.py
 include pytest.ini
+include setup.py
 
 recursive-include abjad/scm/ *
 prune docs/
