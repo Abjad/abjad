@@ -55,14 +55,14 @@ def test_RhythmTreeContainer___call___02():
 
 
 def test_RhythmTreeContainer___contains___01():
-    leaf_a = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(1, 1))
-    leaf_b = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(1, 1))
-    leaf_c = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(1, 1))
+    leaf_a = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(1, 1))
+    leaf_b = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(1, 1))
+    leaf_c = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(1, 1))
     subcontainer = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=abjad.Duration(1, 1), children=[leaf_b]
+        preprolated_duration=(1, 1), children=[leaf_b]
     )
     container = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=abjad.Duration(1, 1), children=[leaf_a, subcontainer]
+        preprolated_duration=(1, 1), children=[leaf_a, subcontainer]
     )
     assert leaf_a in container
     assert leaf_b not in container
@@ -143,18 +143,18 @@ def test_RhythmTreeContainer___init___01():
 
 def test_RhythmTreeContainer___init___02():
     container = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=abjad.Duration(2), children=[]
+        preprolated_duration=(2, 1), children=[]
     )
     assert container.children == ()
-    assert container.preprolated_duration == 2
+    assert container.preprolated_duration == (2, 1)
     assert container.start_offset == 0
     assert container.parent is None
 
 
 def test_RhythmTreeContainer___init___03():
-    leaf_a = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(1))
-    leaf_b = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(2))
-    leaf_c = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(1))
+    leaf_a = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(1, 1))
+    leaf_b = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(2, 1))
+    leaf_c = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(1, 1))
     assert leaf_a.start_offset == 0
     assert leaf_a.parent is None
     assert leaf_b.start_offset == 0
@@ -162,10 +162,10 @@ def test_RhythmTreeContainer___init___03():
     assert leaf_c.start_offset == 0
     assert leaf_c.parent is None
     container = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=abjad.Duration(4), children=[leaf_a, leaf_b, leaf_c]
+        preprolated_duration=(4, 1), children=[leaf_a, leaf_b, leaf_c]
     )
     assert container.children == (leaf_a, leaf_b, leaf_c)
-    assert container.preprolated_duration == 4
+    assert container.preprolated_duration == (4, 1)
     assert container.start_offset == 0
     assert container.parent is None
     assert leaf_a.start_offset == 0
@@ -234,15 +234,15 @@ def test_RhythmTreeContainer_children_01():
 
 
 def test_RhythmTreeContainer_contents_duration_01():
-    leaf_a = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(3))
-    leaf_b = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(3))
-    leaf_c = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(2))
+    leaf_a = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(3, 1))
+    leaf_b = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(3, 1))
+    leaf_c = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(2, 1))
     subcontainer = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=abjad.Duration(2), children=[leaf_b, leaf_c]
+        preprolated_duration=(2, 1), children=[leaf_b, leaf_c]
     )
-    leaf_d = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(1))
+    leaf_d = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(1, 1))
     container = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=abjad.Duration(1), children=[leaf_a, subcontainer, leaf_d]
+        preprolated_duration=(1, 1), children=[leaf_a, subcontainer, leaf_d]
     )
     assert container._get_contents_duration() == 6
     assert subcontainer._get_contents_duration() == 5
@@ -338,15 +338,15 @@ def test_RhythmTreeContainer_remove_01():
 
 
 def test_RhythmTreeContainer_rtm_format_01():
-    leaf_a = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(3, 1))
-    leaf_b = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(3, 1))
-    leaf_c = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(2, 1))
+    leaf_a = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(3, 1))
+    leaf_b = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(3, 1))
+    leaf_c = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(2, 1))
     subcontainer = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=abjad.Duration(2, 1), children=[leaf_b, leaf_c]
+        preprolated_duration=(2, 1), children=[leaf_b, leaf_c]
     )
-    leaf_d = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(1, 1))
+    leaf_d = abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(1, 1))
     container = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=abjad.Duration(1, 1),
+        preprolated_duration=(1, 1),
         children=[leaf_a, subcontainer, leaf_d],
     )
     assert subcontainer.rtm_format == "(2 (3 2))"
@@ -504,21 +504,17 @@ def test_RhythmTreeNode_duration_01():
 
 def test_RhythmTreeNode_offset_01():
     tree = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=abjad.Duration(1),
+        preprolated_duration=(1, 1),
         children=[
-            abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(1)),
+            abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(1, 1)),
             abjad.rhythmtrees.RhythmTreeContainer(
-                preprolated_duration=abjad.Duration(2),
+                preprolated_duration=(2, 1),
                 children=[
-                    abjad.rhythmtrees.RhythmTreeLeaf(
-                        preprolated_duration=abjad.Duration(3)
-                    ),
-                    abjad.rhythmtrees.RhythmTreeLeaf(
-                        preprolated_duration=abjad.Duration(2)
-                    ),
+                    abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(3, 1)),
+                    abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(2, 1)),
                 ],
             ),
-            abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(2)),
+            abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(2, 1)),
         ],
     )
     assert tree.start_offset == abjad.Offset(0)
