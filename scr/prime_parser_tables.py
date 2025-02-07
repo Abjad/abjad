@@ -16,7 +16,6 @@ from abjad.parsers.parser import LilyPondParser
 from abjad.parsers.reduced import ReducedLyParser
 from abjad.parsers.scheme import SchemeParser
 
-print("AAA!")
 parsers = (
     LilyPondParser,
     SchemeParser,
@@ -24,8 +23,6 @@ parsers = (
     ReducedLyParser,
 )
 
-print("FOO!")
 for parser in parsers:
     print(f"Priming {parser.__name__} parser tables.")
     parser()
-print("BAR!")
