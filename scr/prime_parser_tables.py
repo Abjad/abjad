@@ -17,6 +17,7 @@ from abjad.parsers.parser import LilyPondParser
 from abjad.parsers.reduced import ReducedLyParser
 from abjad.parsers.scheme import SchemeParser
 
+print("AAA!")
 parsers = (
     LilyPondParser,
     SchemeParser,
