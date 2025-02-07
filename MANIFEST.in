@@ -6,5 +6,5 @@ include setup.py
 
 # recursive-include abjad/ *
 # recursive-include scr/
-recursive-include abjad/parsers
+recursive-include abjad/parsers/ *
 prune docs/
