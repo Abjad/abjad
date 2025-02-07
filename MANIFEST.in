@@ -5,4 +5,5 @@ include pytest.ini
 include setup.py
 
 recursive-include abjad/scm/ *
+recursive-include scr/
 prune docs/
