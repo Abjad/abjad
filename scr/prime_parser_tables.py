@@ -11,7 +11,6 @@ This script simply finds each Parser subclass in Abjad and instantiates it,
 thereby causing PLY to create and persist the appropriate parser tables.
 """
 
-print("HELLO!")
 import abjad
 from abjad.parsers.parser import LilyPondParser
 from abjad.parsers.reduced import ReducedLyParser
