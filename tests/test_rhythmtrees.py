@@ -463,43 +463,39 @@ def test_RhythmTreeNode_depth_01():
 
 def test_RhythmTreeNode_duration_01():
     tree = abjad.rhythmtrees.RhythmTreeContainer(
-        preprolated_duration=abjad.Duration(1),
+        preprolated_duration=(1, 1),
         children=[
-            abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(1)),
+            abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(1, 1)),
             abjad.rhythmtrees.RhythmTreeContainer(
-                preprolated_duration=abjad.Duration(2),
+                preprolated_duration=(2, 1),
                 children=[
-                    abjad.rhythmtrees.RhythmTreeLeaf(
-                        preprolated_duration=abjad.Duration(3)
-                    ),
-                    abjad.rhythmtrees.RhythmTreeLeaf(
-                        preprolated_duration=abjad.Duration(2)
-                    ),
+                    abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(3, 1)),
+                    abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(2, 1)),
                 ],
             ),
-            abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=abjad.Duration(2)),
+            abjad.rhythmtrees.RhythmTreeLeaf(preprolated_duration=(2, 1)),
         ],
     )
-    assert tree.duration == abjad.Duration(1)
-    assert tree[0].duration == abjad.Duration(1, 5)
-    assert tree[1].duration == abjad.Duration(2, 5)
-    assert tree[1][0].duration == abjad.Duration(6, 25)
-    assert tree[1][1].duration == abjad.Duration(4, 25)
-    assert tree[2].duration == abjad.Duration(2, 5)
+    assert tree.duration == (1, 1)
+    assert tree[0].duration == (1, 5)
+    assert tree[1].duration == (2, 5)
+    assert tree[1][0].duration == (6, 25)
+    assert tree[1][1].duration == (4, 25)
+    assert tree[2].duration == (2, 5)
     tree[1].append(tree.pop())
-    assert tree.duration == abjad.Duration(1)
-    assert tree[0].duration == abjad.Duration(1, 3)
-    assert tree[1].duration == abjad.Duration(2, 3)
-    assert tree[1][0].duration == abjad.Duration(2, 7)
-    assert tree[1][1].duration == abjad.Duration(4, 21)
-    assert tree[1][2].duration == abjad.Duration(4, 21)
-    tree.preprolated_duration = abjad.Duration(19)
-    assert tree.duration == abjad.Duration(19)
-    assert tree[0].duration == abjad.Duration(19, 3)
-    assert tree[1].duration == abjad.Duration(38, 3)
-    assert tree[1][0].duration == abjad.Duration(38, 7)
-    assert tree[1][1].duration == abjad.Duration(76, 21)
-    assert tree[1][2].duration == abjad.Duration(76, 21)
+    assert tree.duration == (1, 1)
+    assert tree[0].duration == (1, 3)
+    assert tree[1].duration == (2, 3)
+    assert tree[1][0].duration == (6, 21)
+    assert tree[1][1].duration == (4, 21)
+    assert tree[1][2].duration == (4, 21)
+    tree.preprolated_duration = (19, 1)
+    assert tree.duration == (19, 1)
+    assert tree[0].duration == (19, 3)
+    assert tree[1].duration == (38, 3)
+    assert tree[1][0].duration == (114, 21)
+    assert tree[1][1].duration == (76, 21)
+    assert tree[1][2].duration == (76, 21)
 
 
 def test_RhythmTreeNode_offset_01():
@@ -532,7 +528,7 @@ def test_RhythmTreeNode_offset_01():
     assert tree[1][0].start_offset == abjad.Offset(1, 3)
     assert tree[1][1].start_offset == abjad.Offset(13, 21)
     assert tree[1][2].start_offset == abjad.Offset(17, 21)
-    tree.preprolated_duration = abjad.Duration(19)
+    tree.preprolated_duration = (19, 1)
     assert tree.start_offset == abjad.Offset(0)
     assert tree[0].start_offset == abjad.Offset(0)
     assert tree[1].start_offset == abjad.Offset(19, 3)

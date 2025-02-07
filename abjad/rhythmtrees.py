@@ -201,13 +201,13 @@ class RhythmTreeMixin:
 
         ..  container:: example
 
-            >>> node = abjad.rhythmtrees.RhythmTreeLeaf(abjad.Duration(1))
+            >>> node = abjad.rhythmtrees.RhythmTreeLeaf((1, 1))
             >>> node.preprolated_duration
-            Duration(1, 1)
+            (1, 1)
 
-            >>> node.preprolated_duration = abjad.Duration(2)
+            >>> node.preprolated_duration = (2, 1)
             >>> node.preprolated_duration
-            Duration(2, 1)
+            (2, 1)
 
             >>> node = abjad.rhythmtrees.RhythmTreeLeaf((2, 4))
             >>> node.preprolated_duration
@@ -225,6 +225,7 @@ class RhythmTreeMixin:
         else:
             assert isinstance(argument, _duration.Duration)
             assert 0 < argument
+            raise Exception(argument)
         self._preprolated_duration = argument
         self._mark_entire_tree_for_later_update()
 
