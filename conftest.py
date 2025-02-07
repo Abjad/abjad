@@ -3,7 +3,9 @@ import pytest
 import abjad
 
 
-# tell pytest about Abjad
 @pytest.fixture(autouse=True)
-def add_libraries(doctest_namespace):
+def inject_abjad_into_doctest_namespace(doctest_namespace):
+    """
+    Inject Abjad into doctest namespace.
+    """
     doctest_namespace["abjad"] = abjad

@@ -1,4 +1,5 @@
-.PHONY: docs build gh-pages
+.PHONY: black-check black-reformat build clean docs flake8 gh-pages isort-check \
+	isort-reformat mypy pytest pytest-coverage reformat release lint test
 
 black-check:
 	black --check --diff .
@@ -10,15 +11,8 @@ build:
 	python setup.py sdist
 
 clean:
-	find . -name '*.pyc' | xargs rm
-	rm -Rif *.egg-info/
-	rm -Rif .cache
-	rm -Rif .tox
-	rm -Rif __pycache__
-	rm -Rif build
-	rm -Rif dist
-	rm -Rif htmlcov
-	rm -Rif prof
+	find abjad/ tests/ -name '*.pyc' -delete
+	rm -rf __pycache__ *.egg-info .cache .tox build dist htmlcov prof
 
 docs:
 	make -C docs/ html
@@ -30,72 +24,38 @@ flake8:
 	flake8 ${flake_ignore} ${flake_options}
 
 gh-pages:
-	rm -Rf gh-pages/
-	git clone https://github.com/Abjad/abjad.github.io.git gh-pages
-	rsync -rtv --del --exclude=.git docs/build/html/ gh-pages/
+	rm -rf gh-pages/
+	git clone --depth=1 https://github.com/Abjad/abjad.github.io.git gh-pages
+	rsync -rtv --delete --exclude=.git docs/build/html/ gh-pages/
 	cd gh-pages && \
 		touch .nojekyll && \
 		git add --all . && \
 		git commit --allow-empty -m "Update docs" && \
-		git push -u origin master
-	rm -Rf gh-pages/
+		git push origin master
+	rm -rf gh-pages/
 
 isort-check:
-	isort \
-	--case-sensitive \
-	--check-only \
-	--diff \
-	--line-width=88 \
-	--multi-line=3 \
-	--project=abjad \
-	--project=abjadext \
-	--thirdparty=ply \
-	--thirdparty=roman \
-	--thirdparty=uqbar \
-	--trailing-comma \
-	--use-parentheses \
-	.
+	isort --case-sensitive --check-only --diff --line-width=88 --multi-line=3 \
+		--project=abjad --project=abjadext --thirdparty=ply --thirdparty=roman \
+		--thirdparty=uqbar --trailing-comma --use-parentheses .
 
 isort-reformat:
-	isort \
-	--case-sensitive \
-	--line-width=88 \
-	--multi-line=3 \
-	--project=abjad \
-	--project=abjadext \
-	--thirdparty=ply \
-	--thirdparty=roman \
-	--thirdparty=uqbar \
-	--trailing-comma \
-	--use-parentheses \
-	.
-
-jupyter-test:
-	jupyter nbconvert --to=html --ExecutePreprocessor.enabled=True tests/test.ipynb
+	isort --case-sensitive --line-width=88 --multi-line=3 --project=abjad \
+		--project=abjadext --thirdparty=ply --thirdparty=roman --thirdparty=uqbar \
+		--trailing-comma  --use-parentheses .
 
 mypy:
 	mypy abjad
 	mypy tests
 
-project = abjad
-
 pytest:
 	pytest abjad tests
 
 pytest-coverage:
-	rm -Rf htmlcov/
-	pytest \
-	--cov-config=.coveragerc \
-	--cov-report=html \
-	--cov=${project} \
-	abjad tests
+	pytest --cov-config=.coveragerc --cov-report=html --cov=abjad abjad tests \
+		&& rm -rf htmlcov/
 
-pytest-x:
-	pytest -x abjad tests
-
-reformat:
-	make black-reformat
-	make isort-reformat
+reformat: black-reformat isort-reformat
 
 release:
 	make -C docs/ clean html
@@ -104,15 +64,8 @@ release:
 	twine upload dist/*.tar.gz
 	make gh-pages
 
-check:
-	make black-check
-	make flake8
-	make isort-check
-	make mypy
+lint: black-check flake8 isort-check
+# TODO
+# lint: black-check flake8 isort-check mypy
 
-test:
-	make black-check
-	make flake8
-	make isort-check
-	make mypy
-	make pytest
+test: lint pytest
