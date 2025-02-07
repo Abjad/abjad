@@ -1,8 +1,7 @@
 include LICENSE
-include MANIFEST.in
 include README.rst
 include conftest.py
 include pytest.ini
-include setup.py
-recursive-include abjad/ *
-recursive-exclude docs/ *
+
+recursive-include abjad/scm/ *
+prune docs/

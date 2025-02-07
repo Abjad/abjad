@@ -1,3 +1,9 @@
+# builds
+*.tar.gz
+*.whl
+build/
+dist/
+
 # docs
 docs/build
 docs/source/api
@@ -7,20 +13,20 @@ docs/source/_static/uqbar.css
 .DS_Store
 
 # mypy
-.mypy_cache
-
-# pip
-pip-log.txt
-pip-delete-this-directory.txt
+.mypy_cache/
 
 # pytest
+.cache/
 .coverage
-.pytest_cache
-htmlcov
+.pytest_cache/
+htmlcov/
 
 # python
 *.egg
 *.egg-info
+*.manifest
 *.py[cod]
+*.spec
 __pycache__
-
+.env/
+venv/
