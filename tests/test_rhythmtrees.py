@@ -9,7 +9,7 @@ import abjad
 def test_RhythmTreeContainer___call___01():
     rtm = "(1 (1 (2 (1 1 1)) 2))"
     tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
-    result = tree((1, 4))
+    result = tree(abjad.Duration(1, 4))
     assert isinstance(result, list)
     assert len(result) == 1
     assert abjad.lilypond(result[0]) == abjad.string.normalize(
@@ -32,7 +32,7 @@ def test_RhythmTreeContainer___call___01():
 def test_RhythmTreeContainer___call___02():
     rtm = "(1 (1 (2 (1 1 1 1)) 1))"
     tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
-    components = tree((1, 4))
+    components = tree(abjad.Duration(1, 4))
     tuplet = components[0]._parent
     staff = abjad.Staff([tuplet])
     assert abjad.lilypond(staff) == abjad.string.normalize(
@@ -390,7 +390,7 @@ def test_RhythmTreeLeaf___eq___02():
 def test_RhythmTreeNode___call___01():
     rtm = "(1 (1 1 1 1))"
     tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
-    components = tree((1, 4))
+    components = tree(abjad.Duration(1, 4))
     assert len(components) == 4
     assert all(isinstance(_, abjad.Note) for _ in components)
     assert all(_.written_duration == abjad.Duration(1, 16) for _ in components)
@@ -399,7 +399,7 @@ def test_RhythmTreeNode___call___01():
 def test_RhythmTreeNode___call___02():
     rtm = "(1 (1 (2 (1 1 1)) 2))"
     tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
-    result = tree((1, 4))
+    result = tree(abjad.Duration(1, 4))
     assert isinstance(result, list)
     assert len(result) == 1
     assert abjad.lilypond(result[0]) == abjad.string.normalize(
@@ -422,7 +422,7 @@ def test_RhythmTreeNode___call___02():
 def test_RhythmTreeNode___call___03():
     rtm = "(1 (1 (2 (1 (2 (1 1)) 1)) 2))"
     tree = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
-    result = tree((1, 4))
+    result = tree(abjad.Duration(1, 4))
     assert abjad.lilypond(result[0]) == abjad.string.normalize(
         r"""
         \tuplet 5/4

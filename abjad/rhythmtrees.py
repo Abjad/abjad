@@ -29,10 +29,11 @@ class RhythmTreeNode:
 
     ### INITIALIZER ###
 
-    def __init__(self, preprolated_pair=(1, 1)):
+    def __init__(self, preprolated_pair: tuple[int, int]) -> None:
+        assert isinstance(preprolated_pair, tuple), repr(preprolated_pair)
         self._offset = _duration.Offset(0)
         self._offsets_are_current = False
-        self._preprolated_pair = 0
+        self._preprolated_pair = (0, 1)
         self.preprolated_pair = preprolated_pair
 
     ### PRIVATE METHODS ###
@@ -112,7 +113,7 @@ class RhythmTreeNode:
         return _duration.Duration((numerator, denominator))
 
     @property
-    def parentage_ratios(self) -> tuple:
+    def parentage_ratios(self) -> tuple[tuple[int, int], ...]:
         """
         A sequence describing the relative durations of the nodes in a node's improper
         parentage.
@@ -235,11 +236,12 @@ class RhythmTreeNode:
         return _math.cumulative_products(self.prolations)[-1]
 
     @property
-    def prolations(self):
+    def prolations(self) -> tuple[fractions.Fraction, ...]:
         """
         Prolations of rhythm tree node.
         """
         prolations = [fractions.Fraction(1)]
+        assert hasattr(self, "parentage")
         pairs = _sequence.nwise(self.parentage)
         for child, parent in pairs:
             parent_contents_duration = parent._get_contents_duration()
@@ -290,7 +292,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         Pitched rhythm-tree leaf makes notes:
 
         >>> leaf = abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_pitched=True)
-        >>> leaf((1, 8))
+        >>> leaf(abjad.Duration(1, 8))
         [Note("c'2"), Note("c'8")]
 
     ..  container:: example
@@ -298,29 +300,28 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         Unpitched rhythm-tree leaf makes rests:
 
         >>> leaf = abjad.rhythmtrees.RhythmTreeLeaf((7, 1), is_pitched=False)
-        >>> leaf((1, 16))
+        >>> leaf(abjad.Duration(1, 16))
         [Rest('r4..')]
 
     """
 
     def __init__(
         self,
-        preprolated_pair,
+        preprolated_pair: tuple[int, int],
         *,
-        is_pitched=True,
-        name=None,
-    ):
+        is_pitched: bool = True,
+        name: str | None = None,
+    ) -> None:
         assert isinstance(preprolated_pair, tuple), repr(preprolated_pair)
         uqbar.containers.UniqueTreeNode.__init__(self, name=name)
         RhythmTreeNode.__init__(self, preprolated_pair=preprolated_pair)
         self.is_pitched = is_pitched
 
-    def __call__(self, pulse_pair) -> list[_score.Leaf | _score.Tuplet]:
+    def __call__(self, pulse_duration) -> list[_score.Leaf | _score.Tuplet]:
         """
         Makes list of leaves and / or tuplets equal to ``pulse_duration``.
         """
-        assert isinstance(pulse_pair, tuple), repr(pulse_pair)
-        pulse_duration = _duration.Duration(pulse_pair)
+        assert isinstance(pulse_duration, _duration.Duration), repr(pulse_duration)
         total_duration = pulse_duration * _duration.Duration(self.preprolated_pair)
         if self.is_pitched:
             return _makers.make_leaves(0, total_duration)
@@ -423,7 +424,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
         Call ``RhythmTreeContainer`` with a duration to make tuplets:
 
-        >>> components = container((1, 4))
+        >>> components = container(abjad.Duration(1, 4))
         >>> tuplet = components[0]
         >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -497,17 +498,16 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
         container.extend(argument[:])
         return container
 
-    def __call__(self, pulse_pair) -> list[_score.Leaf | _score.Tuplet]:
+    def __call__(self, pulse_duration) -> list[_score.Leaf | _score.Tuplet]:
         r"""
-        Makes list of leaves and / or tuplets equal to ``pulse_pair`` taken as
-        a duration.
+        Makes list of leaves and / or tuplets equal to ``pulse_duration``.
 
         ..  container:: example
 
             >>> string = '(1 (1 (2 (1 1 1)) 2))'
             >>> tree = abjad.rhythmtrees.RhythmTreeParser()(string)[0]
 
-            >>> components = tree((1, 4))
+            >>> components = tree(abjad.Duration(1, 4))
             >>> components
             [Tuplet('5:4', "c'16 { 2/3 c'16 c'16 c'16 } c'8")]
 
@@ -534,8 +534,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
                 }
 
         """
-        assert isinstance(pulse_pair, tuple), repr(pulse_pair)
-        pulse_duration = _duration.Duration(pulse_pair)
+        assert isinstance(pulse_duration, _duration.Duration), repr(pulse_duration)
 
         def recurse(node, tuplet_duration):
             assert isinstance(tuplet_duration, _duration.Duration)
@@ -555,7 +554,8 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
                     components = recurse(child, tuplet_duration_)
                     tuplet.extend(components)
                 else:
-                    leaves = child(basic_written_duration.pair)
+                    # leaves = child(basic_written_duration.pair)
+                    leaves = child(basic_written_duration)
                     tuplet.extend(leaves)
                     if 1 < len(leaves):
                         _spanners.tie(leaves)
@@ -570,6 +570,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
         assert 0 < pulse_duration
         tuplet_duration_ = pulse_duration * _duration.Duration(self.preprolated_pair)
+        assert isinstance(tuplet_duration_, _duration.Duration)
         components = recurse(self, tuplet_duration_)
         for component in components[:]:
             if isinstance(component, _score.Tuplet):
@@ -727,8 +728,7 @@ class RhythmTreeParser(Parser):
         RhythmTreeLeaf(preprolated_pair=(1, 1), is_pitched=True)
         RhythmTreeContainer((1, 1))
 
-        >>> base_duration = (1, 4)
-        >>> component_list = rhythm_tree_container(base_duration)
+        >>> component_list = rhythm_tree_container(abjad.Duration(1, 4))
         >>> tuplet = component_list[0]
         >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -1186,7 +1186,7 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
     prototype = (RhythmTreeLeaf, RhythmTreeContainer)
     for node in rtm_containers:
         assert isinstance(node, prototype), repr(node)
-        components = node((1, 4))
+        components = node(_duration.Duration(1, 4))
         container.extend(components)
     if len(container) == 1:
         result = container[0]
