@@ -389,7 +389,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
         Initializes rhythm-tree container:
 
-        >>> container = abjad.rhythmtrees.RhythmTreeContainer([], (1, 1))
+        >>> container = abjad.rhythmtrees.RhythmTreeContainer((1, 1))
         >>> container
         RhythmTreeContainer((1, 1))
 
@@ -446,10 +446,12 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
     def __init__(
         self,
+        preprolated_pair,
         children=None,
-        preprolated_pair=(1, 1),
+        *,
         name=None,
     ):
+        assert isinstance(preprolated_pair, tuple), repr(preprolated_pair)
         uqbar.containers.UniqueTreeList.__init__(self, name=name)
         RhythmTreeNode.__init__(self, preprolated_pair=preprolated_pair)
         if isinstance(children, list | str | tuple):
