@@ -20,7 +20,7 @@ from .parsers.base import Parser
 # TODO: change RhythmTreeMixin to RhythmTreeNode
 class RhythmTreeMixin:
     """
-    Abstract rhythm-tree mix-in.
+    Abstract rhythm-tree node.
     """
 
     ### CLASS VARIABLES ###
