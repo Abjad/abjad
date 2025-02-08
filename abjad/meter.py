@@ -24,10 +24,11 @@ from . import timespan as _timespan
 
 class Meter:
     """
-    Meter models a common practice understanding of beats and other levels of rhythmic
-    organization structured as a tree. Meter structure corresponds to the monotonically
-    increasing sequence of factors in the numerator of a given time signature.
-    Successively deeper levels of the tree divide time by successive factors.
+    Meter models a common practice understanding of beats and other levels of
+    rhythmic organization structured as a tree. Meter structure corresponds to
+    the monotonically increasing sequence of factors in the numerator of a
+    given time signature. Successively deeper levels of the tree divide time by
+    successive factors.
 
     ..  container:: example
 
@@ -143,8 +144,8 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        ``5/4`` comprises two unequal beats. By default unequal beats
-        are arranged from greatest to least.
+        ``5/4`` comprises two unequal beats. By default unequal beats are
+        arranged from greatest to least.
 
     ..  container:: example
 
@@ -166,8 +167,8 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        ``7/4`` comprises three unequal beats. Beats are arranged from
-        greatest to least by default.
+        ``7/4`` comprises three unequal beats. Beats are arranged from greatest
+        to least by default.
 
     ..  container:: example
 
@@ -217,9 +218,12 @@ class Meter:
         Same meter customized to contain four compound beats:
 
         >>> parser = abjad.rhythmtrees.RhythmTreeParser()
-        >>> meter = abjad.Meter('(6/4 ((3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))))')
-        >>> meter
-        Meter('(6/4 ((3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))))')
+        >>> string = '(6/4 ((3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))'
+        >>> string += ' (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))))'
+        >>> list_ = parser(string)
+        >>> assert len(list_) == 1
+        >>> rtcontainer = list_[0]
+        >>> meter = abjad.Meter.from_rtcontainer(rtcontainer)
         >>> print(meter.pretty_rtm_format)
         (6/4 (
             (3/8 (
@@ -241,9 +245,10 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-    Prime divisions greater than ``3`` are converted to sequences of ``2`` and ``3``
-    summing to that prime. Summands are arranged from greatest to least by default. This
-    means that ``5`` becomes ``3+2`` and ``7`` becomes ``3+2+2`` in the examples above.
+    Prime divisions greater than 3 are converted to sequences of 2 and 3
+    summing to that prime. Summands are arranged from greatest to least by
+    default. This means that 5 becomes 3+2 and 7 becomes 3+2+2 in the examples
+    above.
     """
 
     ### CLASS VARIABLES ###
@@ -258,36 +263,46 @@ class Meter:
 
     ### INITIALIZER ###
 
+    # TODO: typehint
     def __init__(
         self,
-        argument=(4, 4),
-        increase_monotonic=None,
+        input_pair=(4, 4),
+        *,
+        increase_monotonic=False,
         preferred_boundary_depth=None,
     ):
-        assert isinstance(preferred_boundary_depth, int | type(None))
+        assert isinstance(input_pair, tuple), repr(input_pair)
+        assert isinstance(increase_monotonic, bool), repr(increase_monotonic)
+        if preferred_boundary_depth is not None:
+            assert isinstance(preferred_boundary_depth, int)
         self._preferred_boundary_depth = preferred_boundary_depth
 
-        def recurse(node, factors, denominator, increase_monotonic):
+        def recurse(rtcontainer, factors, denominator, increase_monotonic):
+            assert isinstance(rtcontainer, _rhythmtrees.RhythmTreeContainer)
+            assert all(isinstance(_, int) for _ in factors)
+            assert isinstance(denominator, int)
+            assert isinstance(increase_monotonic, bool)
             if factors:
                 factor, factors = factors[0], factors[1:]
-                assert isinstance(factor, int), repr(factor)
-                assert isinstance(node.preprolated_pair, tuple)
-                pair = _duration.divide_pair(node.preprolated_pair, factor)
+                pair = _duration.divide_pair(rtcontainer.preprolated_pair, factor)
                 if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
-                            child = _rhythmtrees.RhythmTreeContainer(
+                            rtcontainer_ = _rhythmtrees.RhythmTreeContainer(
                                 preprolated_pair=pair
                             )
-                            node.append(child)
-                            recurse(child, factors, denominator, increase_monotonic)
+                            rtcontainer.append(rtcontainer_)
+                            recurse(
+                                rtcontainer_,
+                                factors,
+                                denominator,
+                                increase_monotonic,
+                            )
                     else:
                         for _ in range(factor):
-                            node.append(
-                                _rhythmtrees.RhythmTreeLeaf(
-                                    preprolated_pair=(1, denominator)
-                                )
-                            )
+                            pair_ = (1, denominator)
+                            rtleaf = _rhythmtrees.RhythmTreeLeaf(preprolated_pair=pair_)
+                            rtcontainer.append(rtleaf)
                 else:
                     parts = [3]
                     total = 3
@@ -299,76 +314,46 @@ class Meter:
                         total += 2
                     for part in parts:
                         assert isinstance(part, int)
+                        pair_ = (part * pair[0], pair[1])
                         grouping = _rhythmtrees.RhythmTreeContainer(
-                            preprolated_pair=(part * pair[0], pair[1])
+                            preprolated_pair=pair_
                         )
                         if factors:
                             for _ in range(part):
-                                child = _rhythmtrees.RhythmTreeContainer(
+                                rtcontainer_ = _rhythmtrees.RhythmTreeContainer(
                                     preprolated_pair=pair
                                 )
-                                grouping.append(child)
+                                grouping.append(rtcontainer_)
                                 recurse(
-                                    child,
+                                    rtcontainer_,
                                     factors,
                                     denominator,
                                     increase_monotonic,
                                 )
                         else:
                             for _ in range(part):
-                                grouping.append(
-                                    _rhythmtrees.RhythmTreeLeaf(
-                                        preprolated_pair=(1, denominator)
-                                    )
+                                pair_ = (1, denominator)
+                                rtleaf = _rhythmtrees.RhythmTreeLeaf(
+                                    preprolated_pair=pair_
                                 )
-                        node.append(grouping)
+                                grouping.append(rtleaf)
+                        rtcontainer.append(grouping)
             else:
-                node.extend(
-                    [
-                        _rhythmtrees.RhythmTreeLeaf(preprolated_pair=(1, denominator))
-                        for _ in range(node.pair[0])
-                    ]
-                )
+                pair_ = (1, denominator)
+                for _ in range(rtcontainer.pair[0]):
+                    rtleaf = _rhythmtrees.RhythmTreeLeaf(preprolated_pair=pair_)
+                    rtcontainer.append(rtleaf)
 
-        increase_monotonic = bool(increase_monotonic)
-        try:
-            numerator = argument.numerator
-            denominator = argument.denominator
-            is_fraction_like = True
-        except AttributeError:
-            is_fraction_like = False
-        if isinstance(argument, type(self)):
-            root = argument.root_node
-            numerator, denominator = argument.numerator, argument.denominator
-            increase_monotonic = argument.increase_monotonic
-        elif isinstance(argument, str | _rhythmtrees.RhythmTreeContainer):
-            if isinstance(argument, str):
-                parsed = _rhythmtrees.RhythmTreeParser()(argument)
-                assert len(parsed) == 1
-                root = parsed[0]
-            else:
-                root = argument
-            for node in [root] + list(root.depth_first()):
-                assert node.prolation == 1
-            numerator, denominator = root.pair
-        elif is_fraction_like or isinstance(argument, tuple):
-            if isinstance(argument, tuple):
-                numerator, denominator = argument
-            else:
-                numerator, denominator = argument.pair
-            pair = (numerator, denominator)
-            factors = _math.factors(numerator)
-            # group two nested levels of 2s into a 4
-            if 1 < len(factors) and factors[0] == factors[1] == 2:
-                factors[0:2] = [4]
-            root = _rhythmtrees.RhythmTreeContainer(preprolated_pair=pair)
-            recurse(root, factors, denominator, increase_monotonic)
-        else:
-            name = type(self).__name__
-            raise ValueError(f"can not initialize {name}: {argument!r}.")
-        self._root_node = root
-        self._numerator = numerator
-        self._denominator = denominator
+        factors = _math.factors(input_pair[0])
+        # group two nested levels of 2s into a 4
+        if 1 < len(factors) and factors[0] == factors[1] == 2:
+            factors[0:2] = [4]
+        root_node = _rhythmtrees.RhythmTreeContainer(preprolated_pair=input_pair)
+        recurse(root_node, factors, input_pair[1], increase_monotonic)
+        assert isinstance(root_node, _rhythmtrees.RhythmTreeContainer), repr(root_node)
+        self._root_node = root_node
+        self._numerator = input_pair[0]
+        self._denominator = input_pair[1]
         self._increase_monotonic = increase_monotonic
 
     ### SPECIAL METHODS ###
@@ -560,8 +545,8 @@ class Meter:
             node_attributes={"fontname": "Arial", "fontsize": 12, "penwidth": 2},
         )
         node_mapping = {}
-        root = self._root_node
-        nodes = [root] + list(root.depth_first())
+        root_node = self._root_node
+        nodes = [root_node] + list(root_node.depth_first())
         leaves = [_ for _ in nodes if not hasattr(_, "children")]
         for node in nodes:
             graphviz_node = uqbar.graphs.Node()
@@ -589,11 +574,9 @@ class Meter:
         make_offset_node(offset, leaves[-1], is_last=True)
         return graph
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes meter.
-
-        Returns integer.
         """
         return super().__hash__()
 
@@ -605,35 +588,36 @@ class Meter:
 
             Iterates ``5/4``:
 
+            >>> meter = abjad.Meter((5, 4))
+            >>> for pair in meter:
+            ...    pair
+            ...
+            ((0, 4), (1, 4))
+            ((1, 4), (2, 4))
+            ((2, 4), (3, 4))
+            ((0, 4), (3, 4))
+            ((3, 4), (4, 4))
+            ((4, 4), (5, 4))
+            ((3, 4), (5, 4))
+            ((0, 4), (5, 4))
 
-                >>> meter = abjad.Meter((5, 4))
-                >>> for pair in meter:
-                ...    pair
-                ...
-                ((0, 4), (1, 4))
-                ((1, 4), (2, 4))
-                ((2, 4), (3, 4))
-                ((0, 4), (3, 4))
-                ((3, 4), (4, 4))
-                ((4, 4), (5, 4))
-                ((3, 4), (5, 4))
-                ((0, 4), (5, 4))
-
-        Yields pairs.
+        Yields pairs of pairs.
         """
 
         def recurse(node):
-            result = []
+            nodes = []
             for child in node:
                 if isinstance(child, _rhythmtrees.RhythmTreeLeaf):
-                    result.append(child)
+                    nodes.append(child)
                 else:
-                    result.extend(recurse(child))
-            result.append(node)
-            return result
+                    assert isinstance(child, _rhythmtrees.RhythmTreeContainer)
+                    nodes.extend(recurse(child))
+            nodes.append(node)
+            return nodes
 
-        result = recurse(self.root_node)
-        for node in result:
+        nodes = recurse(self.root_node)
+        assert isinstance(nodes, list)
+        for node in nodes:
             pair = _duration.with_denominator(node.start_offset, self.denominator)
             start_offset = pair
             pair = _duration.with_denominator(node.stop_offset, self.denominator)
@@ -973,7 +957,7 @@ class Meter:
         return self._preferred_boundary_depth
 
     @property
-    def pretty_rtm_format(self):
+    def pretty_rtm_format(self) -> str:
         """
         Gets pretty RTM format of meter.
 
@@ -993,7 +977,6 @@ class Meter:
                     1/4
                     1/4))))
 
-        Returns string.
         """
         return self.root_node.pretty_rtm_format
 
@@ -1005,7 +988,8 @@ class Meter:
         ..  container:: example
 
             >>> meter = abjad.Meter((7, 4))
-            >>> for _ in meter.root_node: _
+            >>> for item in meter.root_node:
+            ...     item
             RhythmTreeContainer((3, 4))
             RhythmTreeContainer((2, 4))
             RhythmTreeContainer((2, 4))
@@ -1015,7 +999,7 @@ class Meter:
         return self._root_node
 
     @property
-    def rtm_format(self):
+    def rtm_format(self) -> str:
         """
         Gets RTM format of meter.
 
@@ -1025,7 +1009,6 @@ class Meter:
             >>> meter.rtm_format
             '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
 
-        Returns string.
         """
         return self._root_node.rtm_format
 
@@ -1089,6 +1072,19 @@ class Meter:
         meters = session()
         return meters
 
+    @staticmethod
+    def from_rtcontainer(rtcontainer):
+        assert isinstance(rtcontainer, _rhythmtrees.RhythmTreeContainer)
+        for node in [rtcontainer] + list(rtcontainer.depth_first()):
+            assert node.prolation == 1
+        # numerator, denominator = rtcontainer.pair
+        meter = Meter(rtcontainer.pair)
+        meter._root_node = rtcontainer
+        # self._numerator = numerator
+        # self._denominator = denominator
+        # self._increase_monotonic = increase_monotonic
+        return meter
+
     def generate_offset_kernel_to_denominator(self, denominator, normalize=True):
         r"""
         Generates a dictionary of all offsets in a meter up to ``denominator``.
@@ -1143,6 +1139,7 @@ class Meter:
                 kernel[offset] = fractions.Fraction(response, total)
         return MetricAccentKernel(kernel)
 
+    # TODO: typehint
     @staticmethod
     def rewrite_meter(
         components,
@@ -1270,8 +1267,10 @@ class Meter:
                     }
                 }
 
-            >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
-            >>> meter = abjad.Meter(rtm)
+            >>> parser = abjad.rhythmtrees.RhythmTreeParser()
+            >>> string = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
+            >>> rtcontainer = parser(string)[0]
+            >>> meter = abjad.Meter.from_rtcontainer(rtcontainer)
             >>> print(meter.pretty_rtm_format) # doctest: +SKIP
             (4/4 (
                 (2/4 (
@@ -1339,11 +1338,9 @@ class Meter:
             Without constraining the ``maximum_dot_count``:
 
             >>> measure = staff[0]
-            >>> time_signature = abjad.get.indicator(
-            ...     measure[0],
-            ...     abjad.TimeSignature
-            ...     )
-            >>> abjad.Meter.rewrite_meter(measure[:], time_signature)
+            >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
+            >>> meter = abjad.Meter(time_signature.pair)
+            >>> abjad.Meter.rewrite_meter(measure[:], meter)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1365,7 +1362,7 @@ class Meter:
                     }
                 }
 
-            Constraining the ``maximum_dot_count`` to ``2``:
+            Constraining the ``maximum_dot_count`` to 2:
 
             >>> lily_string = "| 3/4 c'32 d'8 e'8 fs'4... |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
@@ -1373,15 +1370,13 @@ class Meter:
             >>> staff.append(container)
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
-            >>> time_signature = abjad.get.indicator(
-            ...     measure[0],
-            ...     abjad.TimeSignature
-            ...     )
+            >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
+            >>> meter = abjad.Meter(time_signature.pair)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
-            ...     time_signature,
+            ...     meter,
             ...     maximum_dot_count=2,
-            ...     )
+            ... )
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1405,7 +1400,7 @@ class Meter:
                     }
                 }
 
-            Constraining the ``maximum_dot_count`` to ``1``:
+            Constraining the ``maximum_dot_count`` to 1:
 
             >>> lily_string = "| 3/4 c'32 d'8 e'8 fs'4... |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
@@ -1413,15 +1408,13 @@ class Meter:
             >>> staff.append(container)
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
-            >>> time_signature = abjad.get.indicator(
-            ...     measure[0],
-            ...     abjad.TimeSignature
-            ...     )
+            >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
+            >>> meter = abjad.Meter(time_signature.pair)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
-            ...     time_signature,
+            ...     meter,
             ...     maximum_dot_count=1,
-            ...     )
+            ... )
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1447,7 +1440,7 @@ class Meter:
                     }
                 }
 
-            Constraining the ``maximum_dot_count`` to ``0``:
+            Constraining the ``maximum_dot_count`` to 0:
 
             >>> lily_string = "| 3/4 c'32 d'8 e'8 fs'4... |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
@@ -1455,15 +1448,13 @@ class Meter:
             >>> staff.append(container)
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
-            >>> time_signature = abjad.get.indicator(
-            ...     measure[0],
-            ...     abjad.TimeSignature
-            ...     )
+            >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
+            >>> meter = abjad.Meter(time_signature.pair)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
-            ...     time_signature,
+            ...     meter,
             ...     maximum_dot_count=0,
-            ...     )
+            ... )
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1543,11 +1534,9 @@ class Meter:
                 }
 
             >>> measure = staff[0]
-            >>> time_signature = abjad.get.indicator(
-            ...     measure[0],
-            ...     abjad.TimeSignature
-            ...     )
-            >>> abjad.Meter.rewrite_meter(measure[:], time_signature)
+            >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
+            >>> meter = abjad.Meter(time_signature.pair)
+            >>> abjad.Meter.rewrite_meter(measure[:], meter)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1566,10 +1555,10 @@ class Meter:
                     }
                 }
 
-            With a ``boundary_depth`` of ``1`` logical ties which cross any offsets
-            created by nodes with a depth of ``1`` in this Meter's rhythm tree - i.e.
-            ``0/8`` ``3/8`` ``6/8`` and ``9/8`` - which do not also begin and end at any
-            of those offsets, will be split:
+            With a ``boundary_depth`` of 1 logical ties which cross any offsets
+            created by nodes with a depth of 1 in this Meter's rhythm tree --
+            i.e. 0/8,  3/8, 6/8 and 9/8 -- which do not also begin and end at
+            any of those offsets, will be split:
 
             >>> lily_string = "| 9/8 c'2 d'2 e'8 |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
@@ -1577,13 +1566,11 @@ class Meter:
             >>> staff.append(container)
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
-            >>> time_signature = abjad.get.indicator(
-            ...     measure[0],
-            ...     abjad.TimeSignature
-            ... )
+            >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
+            >>> meter = abjad.Meter(time_signature.pair)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
-            ...     time_signature,
+            ...     meter,
             ...     boundary_depth=1,
             ... )
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1606,9 +1593,9 @@ class Meter:
                     }
                 }
 
-            For this ``9/8`` meter, and this input notation, A ``boundary_depth`` of
-            ``2`` causes no change, as all logical ties already align to multiples of
-            ``1/8``
+            For this ``9/8`` meter, and this input notation, a ``boundary_depth`` of
+            2 causes no change, as all logical ties already align to multiples of
+            1/8:
 
             >>> lily_string = "| 9/8 c'2 d'2 e'8 |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(lily_string)
@@ -1616,15 +1603,13 @@ class Meter:
             >>> staff.append(container)
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
-            >>> time_signature = abjad.get.indicator(
-            ...     measure[0],
-            ...     abjad.TimeSignature
-            ...     )
+            >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
+            >>> meter = abjad.Meter(time_signature.pair)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
-            ...     time_signature,
+            ...     meter,
             ...     boundary_depth=2,
-            ...     )
+            ... )
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1767,11 +1752,9 @@ class Meter:
             >>> for staff in score:
             ...     for container in staff:
             ...         leaf = abjad.get.leaf(container, 0)
-            ...         time_signature = abjad.get.indicator(
-            ...             leaf,
-            ...             abjad.TimeSignature
-            ...             )
-            ...         abjad.Meter.rewrite_meter(container[:], time_signature)
+            ...         time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
+            ...         meter = abjad.Meter(time_signature.pair)
+            ...         abjad.Meter.rewrite_meter(container[:], meter)
             ...
             >>> abjad.show(score) # doctest: +SKIP
 
@@ -1865,20 +1848,18 @@ class Meter:
                     }
                 >>
 
-            Here we reestablish meter at a boundary depth of ``1``
+            Here we reestablish meter at a boundary depth of 1:
 
             >>> for staff in score:
             ...     for container in staff:
             ...         leaf = abjad.get.leaf(container, 0)
-            ...         time_signature = abjad.get.indicator(
-            ...             leaf,
-            ...             abjad.TimeSignature
-            ...             )
+            ...         time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
+            ...         meter = abjad.Meter(time_signature.pair)
             ...         abjad.Meter.rewrite_meter(
             ...             container[:],
-            ...             time_signature,
+            ...             meter,
             ...             boundary_depth=1,
-            ...             )
+            ...         )
             ...
             >>> abjad.show(score) # doctest: +SKIP
 
@@ -2025,21 +2006,20 @@ class Meter:
                     }
                 }
 
-            When establishing a meter on a selection of components which contain
-            containers, like tuplets or containers, ``rewrite_meter()`` will recurse into
-            those containers, treating them as measures whose time signature is derived
-            from the preprolated preprolated_pair of the container's contents:
+            When establishing a meter on a selection of components which
+            contain containers, like tuplets or containers, ``rewrite_meter()``
+            will recurse into those containers, treating them as measures whose
+            time signature is derived from the preprolated duration of the
+            container's contents:
 
             >>> measure = staff[0]
-            >>> time_signature = abjad.get.indicator(
-            ...     measure[0],
-            ...     abjad.TimeSignature
-            ...     )
+            >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
+            >>> meter = abjad.Meter(time_signature.pair)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
-            ...     time_signature,
+            ...     meter,
             ...     boundary_depth=1,
-            ...     )
+            ... )
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2309,6 +2289,15 @@ class Meter:
 
         Operates in place and returns none.
         """
+        assert all(isinstance(_, _score.Component) for _ in components)
+        assert isinstance(meter, Meter), repr(meter)
+        if boundary_depth is not None:
+            assert isinstance(boundary_depth, int)
+        if initial_offset is not None:
+            assert isinstance(initial_offset, _duration.Offset), repr(initial_offset)
+        if maximum_dot_count is not None:
+            assert isinstance(maximum_dot_count, int)
+        assert isinstance(rewrite_tuplets, bool)
 
         def recurse(
             boundary_depth=None,
@@ -2443,12 +2432,12 @@ class Meter:
             elif isinstance(item, _score.Tuplet) and not rewrite_tuplets:
                 pass
             else:
-                preprolated_pair = sum([_._get_preprolated_duration() for _ in item])
-                if preprolated_pair.numerator == 1:
-                    pair = _duration.with_denominator(
-                        preprolated_pair, 4 * preprolated_pair.denominator
-                    )
-                    preprolated_pair = pair
+                duration = sum([_._get_preprolated_duration() for _ in item])
+                if duration.numerator == 1:
+                    denominator = 4 * duration.denominator
+                    preprolated_pair = _duration.with_denominator(duration, denominator)
+                else:
+                    preprolated_pair = duration.pair
                 sub_metrical_hierarchy = Meter(preprolated_pair)
                 sub_boundary_depth = 1
                 if boundary_depth is None:
@@ -2928,6 +2917,8 @@ class _MeterFittingSession:
         meters=None,
         offset_counter=None,
     ):
+        if meters is not None:
+            assert all(isinstance(_, Meter) for _ in meters), repr(meters)
         self._cached_offset_counters = {}
         if maximum_run_length is not None:
             maximum_run_length = int(maximum_run_length)
@@ -2939,7 +2930,7 @@ class _MeterFittingSession:
             self._offset_counter = {}
         self._ordered_offsets = tuple(sorted(self.offset_counter.items))
         meters = meters or ()
-        self._meters = tuple(Meter(_) for _ in meters)
+        self._meters = tuple(meters)
         self._kernel_denominator = _duration.Duration(kernel_denominator)
         self._kernels = {}
         for meter in self._meters:
