@@ -78,10 +78,10 @@ def test_RhythmTreeContainer___eq___01():
 
 def test_RhythmTreeContainer___eq___02():
     a = abjad.rhythmtrees.RhythmTreeContainer(
-        (1, 1), children=[abjad.rhythmtrees.RhythmTreeLeaf()]
+        (1, 1), children=[abjad.rhythmtrees.RhythmTreeLeaf((1, 1))]
     )
     b = abjad.rhythmtrees.RhythmTreeContainer(
-        (1, 1), children=[abjad.rhythmtrees.RhythmTreeLeaf()]
+        (1, 1), children=[abjad.rhythmtrees.RhythmTreeLeaf((1, 1))]
     )
     assert repr(a) == repr(b)
     assert a != b
@@ -441,7 +441,7 @@ def test_RhythmTreeNode___call___03():
 def test_RhythmTreeNode_depth_01():
     container = abjad.rhythmtrees.RhythmTreeContainer((1, 1))
     assert container.depth == 0
-    leaf = abjad.rhythmtrees.RhythmTreeLeaf()
+    leaf = abjad.rhythmtrees.RhythmTreeLeaf((1, 1))
     assert leaf.depth == 0
     container.append(leaf)
     assert leaf.depth == 1
@@ -536,7 +536,7 @@ def test_RhythmTreeNode_offset_01():
 
 
 def test_RhythmTreeNode_parent_01():
-    leaf = abjad.rhythmtrees.RhythmTreeLeaf()
+    leaf = abjad.rhythmtrees.RhythmTreeLeaf((1, 1))
     container = abjad.rhythmtrees.RhythmTreeContainer((1, 1))
     subcontainer = abjad.rhythmtrees.RhythmTreeContainer((1, 1))
     assert leaf.parent is None
@@ -577,7 +577,7 @@ def test_RhythmTreeNode_pickle_01():
 
 
 def test_RhythmTreeNode_root_01():
-    leaf = abjad.rhythmtrees.RhythmTreeLeaf()
+    leaf = abjad.rhythmtrees.RhythmTreeLeaf((1, 1))
     subsubcontainer = abjad.rhythmtrees.RhythmTreeContainer((1, 1))
     subcontainer = abjad.rhythmtrees.RhythmTreeContainer((1, 1))
     container = abjad.rhythmtrees.RhythmTreeContainer((1, 1))

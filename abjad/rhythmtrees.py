@@ -305,11 +305,12 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
 
     def __init__(
         self,
-        preprolated_pair=(1, 1),
+        preprolated_pair,
         *,
         is_pitched=True,
         name=None,
     ):
+        assert isinstance(preprolated_pair, tuple), repr(preprolated_pair)
         uqbar.containers.UniqueTreeNode.__init__(self, name=name)
         RhythmTreeNode.__init__(self, preprolated_pair=preprolated_pair)
         self.is_pitched = is_pitched
