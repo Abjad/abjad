@@ -271,13 +271,13 @@ class Meter:
             if factors:
                 factor, factors = factors[0], factors[1:]
                 assert isinstance(factor, int), repr(factor)
-                assert isinstance(node.preprolated_duration, tuple)
-                pair = _duration.divide_pair(node.preprolated_duration, factor)
+                assert isinstance(node.preprolated_pair, tuple)
+                pair = _duration.divide_pair(node.preprolated_pair, factor)
                 if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
                             child = _rhythmtrees.RhythmTreeContainer(
-                                preprolated_duration=pair
+                                preprolated_pair=pair
                             )
                             node.append(child)
                             recurse(child, factors, denominator, increase_monotonic)
@@ -285,7 +285,7 @@ class Meter:
                         for _ in range(factor):
                             node.append(
                                 _rhythmtrees.RhythmTreeLeaf(
-                                    preprolated_duration=(1, denominator)
+                                    preprolated_pair=(1, denominator)
                                 )
                             )
                 else:
@@ -300,12 +300,12 @@ class Meter:
                     for part in parts:
                         assert isinstance(part, int)
                         grouping = _rhythmtrees.RhythmTreeContainer(
-                            preprolated_duration=(part * pair[0], pair[1])
+                            preprolated_pair=(part * pair[0], pair[1])
                         )
                         if factors:
                             for _ in range(part):
                                 child = _rhythmtrees.RhythmTreeContainer(
-                                    preprolated_duration=pair
+                                    preprolated_pair=pair
                                 )
                                 grouping.append(child)
                                 recurse(
@@ -318,16 +318,14 @@ class Meter:
                             for _ in range(part):
                                 grouping.append(
                                     _rhythmtrees.RhythmTreeLeaf(
-                                        preprolated_duration=(1, denominator)
+                                        preprolated_pair=(1, denominator)
                                     )
                                 )
                         node.append(grouping)
             else:
                 node.extend(
                     [
-                        _rhythmtrees.RhythmTreeLeaf(
-                            preprolated_duration=(1, denominator)
-                        )
+                        _rhythmtrees.RhythmTreeLeaf(preprolated_pair=(1, denominator))
                         for _ in range(node.pair[0])
                     ]
                 )
@@ -363,7 +361,7 @@ class Meter:
             # group two nested levels of 2s into a 4
             if 1 < len(factors) and factors[0] == factors[1] == 2:
                 factors[0:2] = [4]
-            root = _rhythmtrees.RhythmTreeContainer(preprolated_duration=pair)
+            root = _rhythmtrees.RhythmTreeContainer(preprolated_pair=pair)
             recurse(root, factors, denominator, increase_monotonic)
         else:
             name = type(self).__name__
@@ -725,7 +723,7 @@ class Meter:
 
         Returns time signature.
         """
-        duration = self.root_node.preprolated_duration
+        duration = self.root_node.preprolated_pair
         if hasattr(duration, "pair"):
             pair = duration.pair
         else:
@@ -2030,7 +2028,7 @@ class Meter:
             When establishing a meter on a selection of components which contain
             containers, like tuplets or containers, ``rewrite_meter()`` will recurse into
             those containers, treating them as measures whose time signature is derived
-            from the preprolated preprolated_duration of the container's contents:
+            from the preprolated preprolated_pair of the container's contents:
 
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(
@@ -2445,15 +2443,13 @@ class Meter:
             elif isinstance(item, _score.Tuplet) and not rewrite_tuplets:
                 pass
             else:
-                preprolated_duration = sum(
-                    [_._get_preprolated_duration() for _ in item]
-                )
-                if preprolated_duration.numerator == 1:
+                preprolated_pair = sum([_._get_preprolated_duration() for _ in item])
+                if preprolated_pair.numerator == 1:
                     pair = _duration.with_denominator(
-                        preprolated_duration, 4 * preprolated_duration.denominator
+                        preprolated_pair, 4 * preprolated_pair.denominator
                     )
-                    preprolated_duration = pair
-                sub_metrical_hierarchy = Meter(preprolated_duration)
+                    preprolated_pair = pair
+                sub_metrical_hierarchy = Meter(preprolated_pair)
                 sub_boundary_depth = 1
                 if boundary_depth is None:
                     sub_boundary_depth = None
