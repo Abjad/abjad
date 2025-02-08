@@ -176,6 +176,7 @@ class RhythmTreeMixin:
         """
         result = []
         node = self
+        assert hasattr(node, "parent"), repr(node)
         while node.parent is not None:
             preprolated_pair = _duration.Duration(node.preprolated_pair)
             parent_contents_duration = node.parent._get_contents_duration()
@@ -237,6 +238,7 @@ class RhythmTreeMixin:
                     1))))
 
         """
+        assert hasattr(self, "_pretty_rtm_format_pieces"), repr(self)
         return "\n".join(self._pretty_rtm_format_pieces())
 
     @property
