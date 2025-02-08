@@ -17,8 +17,8 @@ from . import spanners as _spanners
 from .parsers.base import Parser
 
 
-# TODO: change RhythmTreeMixin to RhythmTreeNode
-class RhythmTreeMixin:
+# TODO: change RhythmTreeNode to RhythmTreeNode
+class RhythmTreeNode:
     """
     Abstract rhythm-tree node.
     """
@@ -290,7 +290,7 @@ class RhythmTreeMixin:
         return self.start_offset + _duration.Duration(self.duration)
 
 
-class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
+class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
     """
     Rhythm-tree leaf.
 
@@ -320,7 +320,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
         name=None,
     ):
         uqbar.containers.UniqueTreeNode.__init__(self, name=name)
-        RhythmTreeMixin.__init__(self, preprolated_pair=preprolated_pair)
+        RhythmTreeNode.__init__(self, preprolated_pair=preprolated_pair)
         self.is_pitched = is_pitched
 
     def __call__(self, pulse_pair) -> list[_score.Leaf | _score.Tuplet]:
@@ -390,7 +390,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, uqbar.containers.UniqueTreeNode):
         return f"-{string!s}"
 
 
-class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
+class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
     r"""
     Rhythm-tree container.
 
@@ -405,7 +405,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
     ..  container:: example
 
         Similar to Abjad containers, ``RhythmTreeContainer`` supports a list interface,
-        and can be appended, extended, indexed and so forth by other ``RhythmTreeMixin``
+        and can be appended, extended, indexed and so forth by other ``RhythmTreeNode``
         subclasses:
 
         >>> leaf_a = abjad.rhythmtrees.RhythmTreeLeaf((1, 1))
@@ -460,7 +460,7 @@ class RhythmTreeContainer(RhythmTreeMixin, uqbar.containers.UniqueTreeList):
         name=None,
     ):
         uqbar.containers.UniqueTreeList.__init__(self, name=name)
-        RhythmTreeMixin.__init__(self, preprolated_pair=preprolated_pair)
+        RhythmTreeNode.__init__(self, preprolated_pair=preprolated_pair)
         if isinstance(children, list | str | tuple):
             self.extend(children)
         elif children is not None:
