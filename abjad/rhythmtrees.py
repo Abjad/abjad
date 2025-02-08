@@ -126,8 +126,8 @@ class RhythmTreeNode:
             duration of the next node in the parentage and the total
             preprolated_pair of that node and its siblings:
 
-            >>> a = abjad.rhythmtrees.RhythmTreeContainer(preprolated_pair=(1, 1))
-            >>> b = abjad.rhythmtrees.RhythmTreeContainer(preprolated_pair=(2, 1))
+            >>> a = abjad.rhythmtrees.RhythmTreeContainer((1, 1))
+            >>> b = abjad.rhythmtrees.RhythmTreeContainer((2, 1))
             >>> c = abjad.rhythmtrees.RhythmTreeLeaf((3, 1))
             >>> d = abjad.rhythmtrees.RhythmTreeLeaf((4, 1))
             >>> e = abjad.rhythmtrees.RhythmTreeLeaf((5, 1))
@@ -315,7 +315,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
     ) -> None:
         assert isinstance(preprolated_pair, tuple), repr(preprolated_pair)
         uqbar.containers.UniqueTreeNode.__init__(self, name=name)
-        RhythmTreeNode.__init__(self, preprolated_pair=preprolated_pair)
+        RhythmTreeNode.__init__(self, preprolated_pair)
         self.is_pitched = is_pitched
 
     def __call__(
@@ -345,7 +345,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         Gets interpreter representation of rhythm-tree leaf.
         """
         properties = [
-            f"preprolated_pair={self.preprolated_pair!r}",
+            f"{self.preprolated_pair!r}",
             f"is_pitched={self.is_pitched!r}",
         ]
         if self.name is not None:
@@ -409,18 +409,16 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
         >>> container.extend([leaf_a, leaf_b])
         >>> for item in container:
         ...     item
-        RhythmTreeLeaf(preprolated_pair=(1, 1), is_pitched=True)
-        RhythmTreeLeaf(preprolated_pair=(2, 1), is_pitched=True)
+        RhythmTreeLeaf((1, 1), is_pitched=True)
+        RhythmTreeLeaf((2, 1), is_pitched=True)
 
-        >>> another_container = abjad.rhythmtrees.RhythmTreeContainer(
-        ...     preprolated_pair=(2, 1)
-        ... )
+        >>> another_container = abjad.rhythmtrees.RhythmTreeContainer((2, 1))
         >>> another_container.append(abjad.rhythmtrees.RhythmTreeLeaf((3, 1)))
         >>> another_container.append(container[1])
         >>> container.append(another_container)
         >>> for item in container:
         ...     item
-        RhythmTreeLeaf(preprolated_pair=(1, 1), is_pitched=True)
+        RhythmTreeLeaf((1, 1), is_pitched=True)
         RhythmTreeContainer((2, 1))
 
     ..  container:: example
@@ -458,7 +456,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
     ):
         assert isinstance(preprolated_pair, tuple), repr(preprolated_pair)
         uqbar.containers.UniqueTreeList.__init__(self, name=name)
-        RhythmTreeNode.__init__(self, preprolated_pair=preprolated_pair)
+        RhythmTreeNode.__init__(self, preprolated_pair)
         self.extend(children)
 
     ### SPECIAL METHODS ###
@@ -481,17 +479,17 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
             >>> for node in rtcontainer_c:
             ...     node
-            RhythmTreeLeaf(preprolated_pair=(1, 1), is_pitched=True)
-            RhythmTreeLeaf(preprolated_pair=(1, 1), is_pitched=True)
-            RhythmTreeLeaf(preprolated_pair=(1, 1), is_pitched=True)
-            RhythmTreeLeaf(preprolated_pair=(3, 1), is_pitched=True)
-            RhythmTreeLeaf(preprolated_pair=(4, 1), is_pitched=True)
+            RhythmTreeLeaf((1, 1), is_pitched=True)
+            RhythmTreeLeaf((1, 1), is_pitched=True)
+            RhythmTreeLeaf((1, 1), is_pitched=True)
+            RhythmTreeLeaf((3, 1), is_pitched=True)
+            RhythmTreeLeaf((4, 1), is_pitched=True)
 
         """
         assert isinstance(rtcontainer, RhythmTreeContainer), repr(rtcontainer)
         new_duration = _duration.Duration(self.duration)
         new_duration += _duration.Duration(rtcontainer.duration)
-        container = type(self)(preprolated_pair=new_duration.pair)
+        container = RhythmTreeContainer(new_duration.pair)
         container.extend(self[:])
         container.extend(rtcontainer[:])
         return container
@@ -720,7 +718,7 @@ class RhythmTreeParser(Parser):
 
         >>> for node in rtcontainer:
         ...     node
-        RhythmTreeLeaf(preprolated_pair=(1, 1), is_pitched=True)
+        RhythmTreeLeaf((1, 1), is_pitched=True)
         RhythmTreeContainer((1, 1))
 
         >>> component_list = rtcontainer(abjad.Duration(1, 4))
@@ -808,7 +806,7 @@ class RhythmTreeParser(Parser):
         else:
             assert isinstance(p[2], _duration.Duration)
             pair = p[2].pair
-        p[0] = RhythmTreeContainer(children=p[3], preprolated_pair=pair)
+        p[0] = RhythmTreeContainer(pair, children=p[3])
 
     def p_error(self, p):
         if p:
@@ -825,7 +823,7 @@ class RhythmTreeParser(Parser):
         else:
             assert isinstance(p[1], _duration.Duration), repr(p[1])
             pair = abs(p[1]).pair
-        p[0] = RhythmTreeLeaf(preprolated_pair=pair, is_pitched=0 < p[1])
+        p[0] = RhythmTreeLeaf(pair, is_pitched=0 < p[1])
 
     def p_node__container(self, p):
         """

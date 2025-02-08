@@ -288,9 +288,7 @@ class Meter:
                 if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
-                            rtcontainer_ = _rhythmtrees.RhythmTreeContainer(
-                                preprolated_pair=pair
-                            )
+                            rtcontainer_ = _rhythmtrees.RhythmTreeContainer(pair)
                             rtcontainer.append(rtcontainer_)
                             recurse(
                                 rtcontainer_,
@@ -301,7 +299,7 @@ class Meter:
                     else:
                         for _ in range(factor):
                             pair_ = (1, denominator)
-                            rtleaf = _rhythmtrees.RhythmTreeLeaf(preprolated_pair=pair_)
+                            rtleaf = _rhythmtrees.RhythmTreeLeaf(pair_)
                             rtcontainer.append(rtleaf)
                 else:
                     parts = [3]
@@ -315,14 +313,10 @@ class Meter:
                     for part in parts:
                         assert isinstance(part, int)
                         pair_ = (part * pair[0], pair[1])
-                        grouping = _rhythmtrees.RhythmTreeContainer(
-                            preprolated_pair=pair_
-                        )
+                        grouping = _rhythmtrees.RhythmTreeContainer(pair_)
                         if factors:
                             for _ in range(part):
-                                rtcontainer_ = _rhythmtrees.RhythmTreeContainer(
-                                    preprolated_pair=pair
-                                )
+                                rtcontainer_ = _rhythmtrees.RhythmTreeContainer(pair)
                                 grouping.append(rtcontainer_)
                                 recurse(
                                     rtcontainer_,
@@ -333,22 +327,20 @@ class Meter:
                         else:
                             for _ in range(part):
                                 pair_ = (1, denominator)
-                                rtleaf = _rhythmtrees.RhythmTreeLeaf(
-                                    preprolated_pair=pair_
-                                )
+                                rtleaf = _rhythmtrees.RhythmTreeLeaf(pair_)
                                 grouping.append(rtleaf)
                         rtcontainer.append(grouping)
             else:
                 pair_ = (1, denominator)
                 for _ in range(rtcontainer.preprolated_pair[0]):
-                    rtleaf = _rhythmtrees.RhythmTreeLeaf(preprolated_pair=pair_)
+                    rtleaf = _rhythmtrees.RhythmTreeLeaf(pair_)
                     rtcontainer.append(rtleaf)
 
         factors = _math.factors(input_pair[0])
         # group two nested levels of 2s into a 4
         if 1 < len(factors) and factors[0] == factors[1] == 2:
             factors[0:2] = [4]
-        root_node = _rhythmtrees.RhythmTreeContainer(preprolated_pair=input_pair)
+        root_node = _rhythmtrees.RhythmTreeContainer(input_pair)
         recurse(root_node, factors, input_pair[1], increase_monotonic)
         assert isinstance(root_node, _rhythmtrees.RhythmTreeContainer), repr(root_node)
         self._root_node = root_node
