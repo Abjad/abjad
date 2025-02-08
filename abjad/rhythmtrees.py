@@ -121,14 +121,9 @@ class RhythmTreeMixin:
     @property
     def pair(self) -> tuple[int, int]:
         """
-        Gets preprolated duration as pair.
+        Gets preprolated duration as integer pair.
         """
-        if isinstance(self.preprolated_duration, tuple):
-            pair = self.preprolated_duration
-        else:
-            assert isinstance(self.preprolated_duration, _duration.Duration)
-            pair = self.preprolated_duration.pair
-        return pair
+        return self.preprolated_duration
 
     @property
     def parentage_ratios(self) -> tuple:
@@ -195,9 +190,9 @@ class RhythmTreeMixin:
         return tuple(reversed(result))
 
     @property
-    def preprolated_duration(self) -> _duration.Duration:
+    def preprolated_duration(self) -> tuple[int, int]:
         """
-        Gets node duration in pulses.
+        Gets node preprolated duration.
 
         ..  container:: example
 
@@ -217,20 +212,14 @@ class RhythmTreeMixin:
         return self._preprolated_duration
 
     @preprolated_duration.setter
-    def preprolated_duration(self, argument):
-        assert isinstance(argument, tuple | _duration.Duration), repr(argument)
-        if isinstance(argument, tuple):
-            argument = argument
-            assert 0 < fractions.Fraction(*argument)
-        else:
-            assert isinstance(argument, _duration.Duration)
-            assert 0 < argument
-            raise Exception(argument)
-        self._preprolated_duration = argument
+    def preprolated_duration(self, pair):
+        assert isinstance(pair, tuple), repr(pair)
+        assert 0 < fractions.Fraction(*pair)
+        self._preprolated_duration = pair
         self._mark_entire_tree_for_later_update()
 
     @property
-    def pretty_rtm_format(self):
+    def pretty_rtm_format(self) -> str:
         """
         Gets pretty-printed RTM format of node.
 
@@ -247,7 +236,6 @@ class RhythmTreeMixin:
                     1
                     1))))
 
-        Returns string.
         """
         return "\n".join(self._pretty_rtm_format_pieces())
 
