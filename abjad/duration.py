@@ -1,6 +1,7 @@
 import fractions
 import math
 import re
+import typing
 
 from . import exceptions as _exceptions
 from . import math as _math
@@ -228,6 +229,7 @@ class Duration(fractions.Fraction):
         """
         return fractions.Fraction.__gt__(self, argument)
 
+    @typing.no_type_check
     def __hash__(self) -> int:
         """
         Hashes duration.
@@ -1465,11 +1467,12 @@ class Offset(Duration):
             return self._get_displacement() > argument._get_displacement()
         return Duration.__gt__(self, argument)
 
+    @typing.no_type_check
     def __hash__(self) -> int:
         """
         Hashes offset.
         """
-        return super().__hash__()
+        return hash((self.pair, self._get_displacement()))
 
     def __le__(self, argument) -> bool:
         """
