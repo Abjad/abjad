@@ -30,12 +30,12 @@ class RhythmTreeNode:
 
     ### INITIALIZER ###
 
-    def __init__(self, preprolated_pair: tuple[int, int]) -> None:
-        assert isinstance(preprolated_pair, tuple), repr(preprolated_pair)
+    def __init__(self, pair: tuple[int, int]) -> None:
+        assert isinstance(pair, tuple), repr(pair)
         self._offset = _duration.Offset(0)
         self._offsets_are_current = False
-        self._preprolated_pair = (0, 1)
-        self.preprolated_pair = preprolated_pair
+        self._pair = (0, 1)
+        self.pair = pair
 
     ### PRIVATE METHODS ###
 
@@ -53,7 +53,7 @@ class RhythmTreeNode:
         return inventory
 
     def _get_fraction_string(self):
-        n, d = self.preprolated_pair
+        n, d = self.pair
         if d == 1:
             string = str(n)
         else:
@@ -109,8 +109,8 @@ class RhythmTreeNode:
             Duration(1, 4)
 
         """
-        numerator = self.prolation.numerator * self.preprolated_pair[0]
-        denominator = self.prolation.denominator * self.preprolated_pair[1]
+        numerator = self.prolation.numerator * self.pair[0]
+        denominator = self.prolation.denominator * self.pair[1]
         return _duration.Duration((numerator, denominator))
 
     @property
@@ -121,10 +121,10 @@ class RhythmTreeNode:
 
         ..  container:: example
 
-            The first item in the sequence is the preprolated_pair of the
+            The first item in the sequence is the pair of the
             root node, and subsequent items are pairs of the preprolated
             duration of the next node in the parentage and the total
-            preprolated_pair of that node and its siblings:
+            pair of that node and its siblings:
 
             >>> a = abjad.rhythmtrees.RhythmTreeContainer((1, 1))
             >>> b = abjad.rhythmtrees.RhythmTreeContainer((2, 1))
@@ -166,45 +166,45 @@ class RhythmTreeNode:
         node = self
         assert hasattr(node, "parent"), repr(node)
         while node.parent is not None:
-            preprolated_pair = _duration.Duration(node.preprolated_pair)
+            pair = _duration.Duration(node.pair)
             parent_contents_duration = node.parent._get_contents_duration()
-            fraction = preprolated_pair / parent_contents_duration
+            fraction = pair / parent_contents_duration
             assert isinstance(fraction, fractions.Fraction), repr(fraction)
             duration = _duration.Duration(fraction)
             assert isinstance(duration, _duration.Duration), repr(duration)
             result.append(duration.pair)
             node = node.parent
-        preprolated_pair = _duration.Duration(node.preprolated_pair)
-        result.append(preprolated_pair.pair)
+        pair = _duration.Duration(node.pair)
+        result.append(pair.pair)
         return tuple(reversed(result))
 
     @property
-    def preprolated_pair(self) -> tuple[int, int]:
+    def pair(self) -> tuple[int, int]:
         """
         Gets node preprolated duration.
 
         ..  container:: example
 
             >>> node = abjad.rhythmtrees.RhythmTreeLeaf((1, 1))
-            >>> node.preprolated_pair
+            >>> node.pair
             (1, 1)
 
-            >>> node.preprolated_pair = (2, 1)
-            >>> node.preprolated_pair
+            >>> node.pair = (2, 1)
+            >>> node.pair
             (2, 1)
 
             >>> node = abjad.rhythmtrees.RhythmTreeLeaf((2, 4))
-            >>> node.preprolated_pair
+            >>> node.pair
             (2, 4)
 
         """
-        return self._preprolated_pair
+        return self._pair
 
-    @preprolated_pair.setter
-    def preprolated_pair(self, pair):
+    @pair.setter
+    def pair(self, pair):
         assert isinstance(pair, tuple), repr(pair)
         assert 0 < fractions.Fraction(*pair)
-        self._preprolated_pair = pair
+        self._pair = pair
         self._mark_entire_tree_for_later_update()
 
     @property
@@ -247,7 +247,7 @@ class RhythmTreeNode:
         for child, parent in pairs:
             parent_contents_duration = parent._get_contents_duration()
             assert isinstance(parent_contents_duration, _duration.Duration)
-            parent_preprolated_duration = _duration.Duration(parent.preprolated_pair)
+            parent_preprolated_duration = _duration.Duration(parent.pair)
             duration = parent_preprolated_duration / parent_contents_duration
             prolation = fractions.Fraction(duration)
             prolations.append(prolation)
@@ -308,14 +308,14 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
 
     def __init__(
         self,
-        preprolated_pair: tuple[int, int],
+        pair: tuple[int, int],
         *,
         is_pitched: bool = True,
         name: str | None = None,
     ) -> None:
-        assert isinstance(preprolated_pair, tuple), repr(preprolated_pair)
+        assert isinstance(pair, tuple), repr(pair)
         uqbar.containers.UniqueTreeNode.__init__(self, name=name)
-        RhythmTreeNode.__init__(self, preprolated_pair)
+        RhythmTreeNode.__init__(self, pair)
         self.is_pitched = is_pitched
 
     def __call__(
@@ -325,7 +325,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         Makes list of leaves and / or tuplets equal to ``pulse_duration``.
         """
         assert isinstance(pulse_duration, _duration.Duration), repr(pulse_duration)
-        total_duration = pulse_duration * _duration.Duration(self.preprolated_pair)
+        total_duration = pulse_duration * _duration.Duration(self.pair)
         if self.is_pitched:
             return _makers.make_leaves(0, total_duration)
         return _makers.make_leaves([None], total_duration)
@@ -335,7 +335,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         Gets Graphviz graph of rhythm tree leaf.
         """
         graph = uqbar.graphs.Graph(name="G")
-        label = str(_duration.Duration(self.preprolated_pair))
+        label = str(_duration.Duration(self.pair))
         node = uqbar.graphs.Node(attributes={"label": label, "shape": "box"})
         graph.append(node)
         return graph
@@ -345,7 +345,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         Gets interpreter representation of rhythm-tree leaf.
         """
         properties = [
-            f"{self.preprolated_pair!r}",
+            f"{self.pair!r}",
             f"is_pitched={self.is_pitched!r}",
         ]
         if self.name is not None:
@@ -449,14 +449,14 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
     def __init__(
         self,
-        preprolated_pair: tuple[int, int],
+        pair: tuple[int, int],
         children: typing.Sequence[RhythmTreeNode] = (),
         *,
         name: str = "",
     ):
-        assert isinstance(preprolated_pair, tuple), repr(preprolated_pair)
+        assert isinstance(pair, tuple), repr(pair)
         uqbar.containers.UniqueTreeList.__init__(self, name=name)
-        RhythmTreeNode.__init__(self, preprolated_pair)
+        RhythmTreeNode.__init__(self, pair)
         self.extend(children)
 
     ### SPECIAL METHODS ###
@@ -465,7 +465,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
         r"""
         Concatenate containers self and ``rtcontainer``. The operation a + b = c
         returns a new RhythmTreeContainer c with the content of both a and b,
-        and a preprolated_pair equal to the sum of the durations of a and
+        and a pair equal to the sum of the durations of a and
         b. The operation is non-commutative: the content of the first operand
         will be placed before the content of the second operand.
 
@@ -474,7 +474,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             >>> rtcontainer_a = abjad.rhythmtrees.RhythmTreeParser()('(1 (1 1 1))')[0]
             >>> rtcontainer_b = abjad.rhythmtrees.RhythmTreeParser()('(2 (3 4))')[0]
             >>> rtcontainer_c = rtcontainer_a + rtcontainer_b
-            >>> rtcontainer_c.preprolated_pair
+            >>> rtcontainer_c.pair
             (3, 1)
 
             >>> for node in rtcontainer_c:
@@ -547,7 +547,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             tuplet = _score.Tuplet((1, 1), [])
             for child in node.children:
                 if isinstance(child, type(self)):
-                    tuplet_duration_ = _duration.Duration(child.preprolated_pair)
+                    tuplet_duration_ = _duration.Duration(child.pair)
                     tuplet_duration_ *= basic_written_duration
                     components = recurse(child, tuplet_duration_)
                     tuplet.extend(components)
@@ -566,7 +566,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             return [tuplet]
 
         assert 0 < pulse_duration
-        tuplet_duration_ = pulse_duration * _duration.Duration(self.preprolated_pair)
+        tuplet_duration_ = pulse_duration * _duration.Duration(self.pair)
         assert isinstance(tuplet_duration_, _duration.Duration)
         components = recurse(self, tuplet_duration_)
         for component in components[:]:
@@ -622,7 +622,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
         nodes.extend(self.depth_first())
         for node in nodes:
             graphviz_node = uqbar.graphs.Node()
-            label = str(_duration.Duration(node.preprolated_pair))
+            label = str(_duration.Duration(node.pair))
             graphviz_node.attributes["label"] = label
             if isinstance(node, type(self)):
                 graphviz_node.attributes["shape"] = "triangle"
@@ -647,12 +647,12 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
         """
         Gets interpreter representation of rhythm-tree container.
         """
-        return f"{type(self).__name__}({self.preprolated_pair})"
+        return f"{type(self).__name__}({self.pair})"
 
     ### PRIVATE METHODS ###
 
     def _get_contents_duration(self):
-        durations = [_duration.Duration(_.preprolated_pair) for _ in self]
+        durations = [_duration.Duration(_.pair) for _ in self]
         duration = sum(durations)
         return duration
 

@@ -284,7 +284,7 @@ class Meter:
             assert isinstance(increase_monotonic, bool)
             if factors:
                 factor, factors = factors[0], factors[1:]
-                pair = _duration.divide_pair(rtcontainer.preprolated_pair, factor)
+                pair = _duration.divide_pair(rtcontainer.pair, factor)
                 if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
@@ -332,7 +332,7 @@ class Meter:
                         rtcontainer.append(grouping)
             else:
                 pair_ = (1, denominator)
-                for _ in range(rtcontainer.preprolated_pair[0]):
+                for _ in range(rtcontainer.pair[0]):
                     rtleaf = _rhythmtrees.RhythmTreeLeaf(pair_)
                     rtcontainer.append(rtleaf)
 
@@ -699,7 +699,7 @@ class Meter:
 
         Returns time signature.
         """
-        duration = self.root_node.preprolated_pair
+        duration = self.root_node.pair
         if hasattr(duration, "pair"):
             pair = duration.pair
         else:
@@ -1068,7 +1068,7 @@ class Meter:
         assert isinstance(rtcontainer, _rhythmtrees.RhythmTreeContainer)
         for node in [rtcontainer] + list(rtcontainer.depth_first()):
             assert node.prolation == 1
-        meter = Meter(rtcontainer.preprolated_pair)
+        meter = Meter(rtcontainer.pair)
         meter._root_node = rtcontainer
         return meter
 
@@ -2422,10 +2422,10 @@ class Meter:
                 duration = sum([_._get_preprolated_duration() for _ in item])
                 if duration.numerator == 1:
                     denominator = 4 * duration.denominator
-                    preprolated_pair = _duration.with_denominator(duration, denominator)
+                    pair = _duration.with_denominator(duration, denominator)
                 else:
-                    preprolated_pair = duration.pair
-                sub_metrical_hierarchy = Meter(preprolated_pair)
+                    pair = duration.pair
+                sub_metrical_hierarchy = Meter(pair)
                 sub_boundary_depth = 1
                 if boundary_depth is None:
                     sub_boundary_depth = None

@@ -134,7 +134,7 @@ def test_RhythmTreeContainer___getitem___01():
 def test_RhythmTreeContainer___init___01():
     container = abjad.rhythmtrees.RhythmTreeContainer((1, 1))
     assert container.children == ()
-    assert container.preprolated_pair == (1, 1)
+    assert container.pair == (1, 1)
     assert container.start_offset == 0
     assert container.parent is None
 
@@ -142,7 +142,7 @@ def test_RhythmTreeContainer___init___01():
 def test_RhythmTreeContainer___init___02():
     container = abjad.rhythmtrees.RhythmTreeContainer((2, 1), children=[])
     assert container.children == ()
-    assert container.preprolated_pair == (2, 1)
+    assert container.pair == (2, 1)
     assert container.start_offset == 0
     assert container.parent is None
 
@@ -161,7 +161,7 @@ def test_RhythmTreeContainer___init___03():
         (4, 1), children=[leaf_a, leaf_b, leaf_c]
     )
     assert container.children == (leaf_a, leaf_b, leaf_c)
-    assert container.preprolated_pair == (4, 1)
+    assert container.pair == (4, 1)
     assert container.start_offset == 0
     assert container.parent is None
     assert leaf_a.start_offset == 0
@@ -483,7 +483,7 @@ def test_RhythmTreeNode_duration_01():
     assert rtcontainer[1][0].duration == abjad.Duration(6, 21)
     assert rtcontainer[1][1].duration == abjad.Duration(4, 21)
     assert rtcontainer[1][2].duration == abjad.Duration(4, 21)
-    rtcontainer.preprolated_pair = (19, 1)
+    rtcontainer.pair = (19, 1)
     assert rtcontainer.duration == abjad.Duration(19, 1)
     assert rtcontainer[0].duration == abjad.Duration(19, 3)
     assert rtcontainer[1].duration == abjad.Duration(38, 3)
@@ -522,7 +522,7 @@ def test_RhythmTreeNode_offset_01():
     assert rtcontainer[1][0].start_offset == abjad.Offset(1, 3)
     assert rtcontainer[1][1].start_offset == abjad.Offset(13, 21)
     assert rtcontainer[1][2].start_offset == abjad.Offset(17, 21)
-    rtcontainer.preprolated_pair = (19, 1)
+    rtcontainer.pair = (19, 1)
     assert rtcontainer.start_offset == abjad.Offset(0)
     assert rtcontainer[0].start_offset == abjad.Offset(0)
     assert rtcontainer[1].start_offset == abjad.Offset(19, 3)
