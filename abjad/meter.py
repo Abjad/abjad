@@ -340,7 +340,7 @@ class Meter:
                         rtcontainer.append(grouping)
             else:
                 pair_ = (1, denominator)
-                for _ in range(rtcontainer.pair[0]):
+                for _ in range(rtcontainer.preprolated_pair[0]):
                     rtleaf = _rhythmtrees.RhythmTreeLeaf(preprolated_pair=pair_)
                     rtcontainer.append(rtleaf)
 
@@ -1076,12 +1076,8 @@ class Meter:
         assert isinstance(rtcontainer, _rhythmtrees.RhythmTreeContainer)
         for node in [rtcontainer] + list(rtcontainer.depth_first()):
             assert node.prolation == 1
-        # numerator, denominator = rtcontainer.pair
-        meter = Meter(rtcontainer.pair)
+        meter = Meter(rtcontainer.preprolated_pair)
         meter._root_node = rtcontainer
-        # self._numerator = numerator
-        # self._denominator = denominator
-        # self._increase_monotonic = increase_monotonic
         return meter
 
     def generate_offset_kernel_to_denominator(self, denominator, normalize=True):

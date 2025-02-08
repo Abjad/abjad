@@ -17,16 +17,14 @@ from . import spanners as _spanners
 from .parsers.base import Parser
 
 
-# TODO: change RhythmTreeNode to RhythmTreeNode
 class RhythmTreeNode:
     """
-    Abstract rhythm-tree node.
+    Rhythm-tree node.
     """
 
     ### CLASS VARIABLES ###
 
     _is_abstract = True
-
     _state_flag_names: tuple[str, ...] = ("_offsets_are_current",)
 
     ### INITIALIZER ###
@@ -53,7 +51,7 @@ class RhythmTreeNode:
         return inventory
 
     def _get_fraction_string(self):
-        n, d = self.pair
+        n, d = self.preprolated_pair
         if d == 1:
             string = str(n)
         else:
@@ -112,13 +110,6 @@ class RhythmTreeNode:
         numerator = self.prolation.numerator * self.preprolated_pair[0]
         denominator = self.prolation.denominator * self.preprolated_pair[1]
         return _duration.Duration((numerator, denominator))
-
-    @property
-    def pair(self) -> tuple[int, int]:
-        """
-        Gets preprolated duration as integer pair.
-        """
-        return self.preprolated_pair
 
     @property
     def parentage_ratios(self) -> tuple:
