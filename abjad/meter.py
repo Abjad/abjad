@@ -981,7 +981,7 @@ class Meter:
         return self.root_node.pretty_rtm_format
 
     @property
-    def root_node(self):
+    def root_node(self) -> _rhythmtrees.RhythmTreeContainer:
         """
         Gets root node of meter.
 
@@ -994,7 +994,6 @@ class Meter:
             RhythmTreeContainer((2, 4))
             RhythmTreeContainer((2, 4))
 
-        Returns rhythm tree node.
         """
         return self._root_node
 
