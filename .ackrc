@@ -1,7 +1,8 @@
---ignore-dir=.mypy_cache
---ignore-dir=.pytest_cache
---ignore-dir=match:/.*.egg-info/
---ignore-dir=docs/build
---ignore-dir=docs/source/api
---ignore-dir=htmlcov
-
+--ignore-directory=*.egg-info
+--ignore-directory=.mypy_cache
+--ignore-directory=.pytest_cache
+--ignore-directory=build
+--ignore-directory=dist
+--ignore-directory=docs/build
+--ignore-directory=docs/source/api
+--ignore-directory=htmlcov
