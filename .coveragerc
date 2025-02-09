@@ -1,10 +1,13 @@
-[run]
-branch = False
-cover_pylib = False
-source =
-    abjad/
+[html]
+directory = htmlcov
 
 [report]
 exclude_lines = 
     raise NotImplementedError
+    pragma: no cover
+    if TYPE_CHECKING:
 
+[run]
+branch = True
+cover_pylib = False
+source = abjad/
