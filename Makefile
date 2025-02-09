@@ -64,8 +64,6 @@ release:
 	twine upload dist/*.tar.gz
 	make gh-pages
 
-lint: black-check flake8 isort-check
-# TODO
-# lint: black-check flake8 isort-check mypy
+lint: black-check flake8 isort-check mypy
 
 test: lint pytest

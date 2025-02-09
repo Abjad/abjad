@@ -568,7 +568,7 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.pitch.StaffPosition'>
         <class 'abjad.rhythmtrees.RhythmTreeContainer'>
         <class 'abjad.rhythmtrees.RhythmTreeLeaf'>
-        <class 'abjad.rhythmtrees.RhythmTreeMixin'>
+        <class 'abjad.rhythmtrees.RhythmTreeNode'>
         <class 'abjad.rhythmtrees.RhythmTreeParser'>
         <class 'abjad.score.AfterGraceContainer'>
         <class 'abjad.score.BeforeGraceContainer'>
