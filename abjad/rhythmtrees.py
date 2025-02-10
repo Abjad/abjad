@@ -116,15 +116,15 @@ class RhythmTreeNode:
     @property
     def parentage_ratios(self) -> tuple[tuple[int, int], ...]:
         """
-        A sequence describing the relative durations of the nodes in a node's improper
+        A tuple describing the relative durations of the nodes in a node's improper
         parentage.
 
         ..  container:: example
 
-            The first item in the sequence is the pair of the
-            root node, and subsequent items are pairs of the preprolated
-            duration of the next node in the parentage and the total
-            pair of that node and its siblings:
+            The first item in the sequence is the pair of the root node, and
+            subsequent items are pairs of the preprolated duration of the next
+            node in the parentage and the total pair of that node and its
+            siblings:
 
             >>> a = abjad.rhythmtrees.RhythmTreeContainer((1, 1))
             >>> b = abjad.rhythmtrees.RhythmTreeContainer((2, 1))
@@ -181,7 +181,7 @@ class RhythmTreeNode:
     @property
     def pair(self) -> tuple[int, int]:
         """
-        Gets node preprolated duration.
+        Gets node pair.
 
         ..  container:: example
 
@@ -239,7 +239,7 @@ class RhythmTreeNode:
     @property
     def prolations(self) -> tuple[fractions.Fraction, ...]:
         """
-        Prolations of rhythm tree node.
+        Gets node prolations.
         """
         prolations = [fractions.Fraction(1)]
         assert hasattr(self, "parentage")
@@ -280,6 +280,21 @@ class RhythmTreeNode:
     def stop_offset(self) -> _duration.Offset:
         """
         Gets node stop offset.
+
+        ..  container:: example
+
+            >>> string = '(1 ((1 (1 1)) (1 (1 1))))'
+            >>> tree = abjad.rhythmtrees.RhythmTreeParser()(string)[0]
+
+            >>> tree.stop_offset
+            Offset((1, 1))
+
+            >>> tree[1].stop_offset
+            Offset((1, 1))
+
+            >>> tree[0][1].stop_offset
+            Offset((1, 2))
+
         """
         return self.start_offset + _duration.Duration(self.duration)
 
@@ -374,9 +389,12 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
 
         ..  container:: example
 
-            >>> abjad.rhythmtrees.RhythmTreeLeaf((1, 1), is_pitched=True).rtm_format
+            >>> rtleaf = abjad.rhythmtrees.RhythmTreeLeaf((1, 1), is_pitched=True)
+            >>> rtleaf.rtm_format
             '1'
-            >>> abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_pitched=False).rtm_format
+
+            >>> rtleaf = abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_pitched=False)
+            >>> rtleaf.rtm_format
             '-5'
 
         """
@@ -463,11 +481,11 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
     def __add__(self, rtcontainer: "RhythmTreeContainer") -> "RhythmTreeContainer":
         r"""
-        Concatenate containers self and ``rtcontainer``. The operation a + b = c
-        returns a new RhythmTreeContainer c with the content of both a and b,
-        and a pair equal to the sum of the durations of a and
-        b. The operation is non-commutative: the content of the first operand
-        will be placed before the content of the second operand.
+        Concatenate ``self`` and ``rtcontainer``. The operation ``a + b = c``
+        returns a new rhythm-tree container ``c`` with the content of both
+        ``a`` and ``b``, and a pair equal to the sum of the durations of ``a``
+        and ``b``. The operation is non-commutative: the content of the first
+        operand will be placed before the content of the second operand.
 
         ..  container:: example
 
@@ -638,7 +656,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
     def __radd__(self, rtcontainer) -> "RhythmTreeContainer":
         """
-        Concatenates containers ``rtcontainer`` and self.
+        Add ``rtcontainer`` and ``self``.
         """
         assert isinstance(rtcontainer, type(self))
         return rtcontainer.__add__(self)
@@ -1103,8 +1121,8 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
 
     ..  container:: example
 
-        Divides three successive quarter-note durations, according
-        to ratios of ``1``, ``1:1``, ``1:2``:
+        Divides three successive quarter-note durations, according to ratios of
+        ``1``, ``1:1``, ``1:2``:
 
         >>> string = "(1 (1)) (1 (1 1)) (1 (1 2))"
         >>> result = abjad.rhythmtrees.parse_rtm_syntax(string)

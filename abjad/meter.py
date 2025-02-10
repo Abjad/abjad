@@ -5,6 +5,7 @@ Tools for modeling musical meter.
 import bisect
 import collections
 import fractions
+import typing
 
 import uqbar.graphs
 
@@ -263,14 +264,13 @@ class Meter:
 
     ### INITIALIZER ###
 
-    # TODO: typehint
     def __init__(
         self,
-        input_pair=(4, 4),
+        input_pair: tuple[int, int] = (4, 4),
         *,
-        increase_monotonic=False,
-        preferred_boundary_depth=None,
-    ):
+        increase_monotonic: bool = False,
+        preferred_boundary_depth: int | None = None,
+    ) -> None:
         assert isinstance(input_pair, tuple), repr(input_pair)
         assert isinstance(increase_monotonic, bool), repr(increase_monotonic)
         if preferred_boundary_depth is not None:
@@ -337,7 +337,6 @@ class Meter:
                     rtcontainer.append(rtleaf)
 
         factors = _math.factors(input_pair[0])
-        # group two nested levels of 2s into a 4
         if 1 < len(factors) and factors[0] == factors[1] == 2:
             factors[0:2] = [4]
         root_node = _rhythmtrees.RhythmTreeContainer(input_pair)
@@ -350,7 +349,7 @@ class Meter:
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Compares ``numerator``, ``denominator``, ``increase_monotonic``,
         ``preferred_boundary_depth``.
@@ -364,7 +363,7 @@ class Meter:
             )
         return False
 
-    def __graph__(self, **keywords):
+    def __graph__(self, **keywords) -> uqbar.graphs.Graph:
         """
         Gets Graphviz format of meter.
 
@@ -490,11 +489,10 @@ class Meter:
                     node_10 -> node_11_7 [style=dotted];
                 }
 
-        Returns Graphviz graph.
         """
 
         def make_offset_node(offset, leaf_one=None, leaf_two=None, is_last=False):
-            offset = _duration.Offset(offset)
+            assert isinstance(offset, _duration.Offset), repr(offset)
             if not is_last:
                 offset_node = uqbar.graphs.Node(
                     attributes={
@@ -572,7 +570,7 @@ class Meter:
         """
         return super().__hash__()
 
-    def __iter__(self):
+    def __iter__(self) -> typing.Iterator[tuple[tuple[int, int], tuple[int, int]]]:
         """
         Iterates meter.
 
@@ -593,7 +591,6 @@ class Meter:
             ((3, 4), (5, 4))
             ((0, 4), (5, 4))
 
-        Yields pairs of pairs.
         """
 
         def recurse(node):
@@ -625,7 +622,7 @@ class Meter:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def denominator(self):
+    def denominator(self) -> int:
         """
         Gets denominator of meter.
 
@@ -635,12 +632,11 @@ class Meter:
             >>> meter.denominator
             4
 
-        Returns positive integer.
         """
         return self._denominator
 
     @property
-    def depthwise_offset_inventory(self):
+    def depthwise_offset_inventory(self) -> tuple:
         """
         Gets depthwise offset inventory of meter.
 
@@ -654,7 +650,6 @@ class Meter:
             1 (Offset((0, 1)), Offset((3, 4)), Offset((5, 4)), Offset((7, 4)))
             2 (Offset((0, 1)), Offset((1, 4)), Offset((1, 2)), Offset((3, 4)), Offset((1, 1)), Offset((5, 4)), Offset((3, 2)), Offset((7, 4)))
 
-        Returns dictionary.
         """
         inventory = []
         all_offsets = set()
@@ -666,7 +661,7 @@ class Meter:
         return tuple(inventory)
 
     @property
-    def duration(self):
+    def duration(self) -> _duration.Duration:
         """
         Gets duration of meter.
 
@@ -676,19 +671,18 @@ class Meter:
             >>> meter.duration
             Duration(7, 4)
 
-        Returns duration.
         """
         return _duration.Duration(self.numerator, self.denominator)
 
     @property
-    def fraction_string(self):
+    def fraction_string(self) -> str:
         """
         Gets fraction string.
         """
         return f"{self.pair[0]}/{self.pair[1]}"
 
     @property
-    def implied_time_signature(self):
+    def implied_time_signature(self) -> _indicators.TimeSignature:
         """
         Gets implied time signature of meter.
 
@@ -697,30 +691,21 @@ class Meter:
             >>> abjad.Meter((4, 4)).implied_time_signature
             TimeSignature(pair=(4, 4), hide=False, partial=None)
 
-        Returns time signature.
         """
-        duration = self.root_node.pair
-        if hasattr(duration, "pair"):
-            pair = duration.pair
-        else:
-            pair = duration
+        pair = self.root_node.pair
         return _indicators.TimeSignature(pair)
 
     @property
-    def increase_monotonic(self) -> bool | None:
+    def increase_monotonic(self) -> bool:
         """
-        Is true when meter divides large primes into collections of ``2``
-        and ``3`` that increase monotonically.
+        Is true when meter divides large primes into collections of ``2`` and
+        ``3`` that increase monotonically.
 
         ..  container:: example
 
             An asymmetric meter with beats arranged greatest to least:
 
-            >>> meter = abjad.Meter(
-            ...     (7, 4),
-            ...     increase_monotonic=False,
-            ...     )
-
+            >>> meter = abjad.Meter((7, 4), increase_monotonic=False)
             >>> meter.increase_monotonic
             False
 
@@ -744,11 +729,7 @@ class Meter:
             The same asymmetric meter with unequal beats arranged least to
             greatest:
 
-            >>> meter = abjad.Meter(
-            ...     (7, 4),
-            ...     increase_monotonic=True
-            ...     )
-
+            >>> meter = abjad.Meter((7, 4), increase_monotonic=True)
             >>> meter.increase_monotonic
             True
 
@@ -769,7 +750,7 @@ class Meter:
         return self._increase_monotonic
 
     @property
-    def is_compound(self):
+    def is_compound(self) -> bool:
         """
         Is true when meter is compound.
 
@@ -819,8 +800,6 @@ class Meter:
 
         Compound meters defined equal to those meters with a numerator divisible by ``3``
         (but not equal to ``3``).
-
-        Returns true or false.
         """
         if 3 in _math.divisors(self.numerator):
             if not self.numerator == 3:
@@ -828,7 +807,7 @@ class Meter:
         return False
 
     @property
-    def is_simple(self):
+    def is_simple(self) -> bool:
         """
         Is true when meter is simple.
 
@@ -880,13 +859,11 @@ class Meter:
         ``3``.
 
         Meters with numerator equal to ``3`` are also defined as simple.
-
-        Returns true or false.
         """
         return not self.is_compound
 
     @property
-    def numerator(self):
+    def numerator(self) -> int:
         """
         Gets numerator of meter.
 
@@ -896,12 +873,11 @@ class Meter:
             >>> meter.numerator
             7
 
-        Returns positive integer.
         """
         return self._numerator
 
     @property
-    def pair(self):
+    def pair(self) -> tuple[int, int]:
         """
         Gets pair of numerator and denominator of meter.
 
@@ -911,12 +887,11 @@ class Meter:
             >>> meter.pair
             (6, 4)
 
-        Returns pair.
         """
         return (self.numerator, self.denominator)
 
     @property
-    def preferred_boundary_depth(self):
+    def preferred_boundary_depth(self) -> int | None:
         """
         Gets preferred boundary depth of meter.
 
@@ -931,20 +906,11 @@ class Meter:
 
             Customized preferred boundary depth:
 
-            >>> meter = abjad.Meter(
-            ...     (6, 8),
-            ...     preferred_boundary_depth=1,
-            ...     )
+            >>> meter = abjad.Meter((6, 8), preferred_boundary_depth=1)
             >>> meter.preferred_boundary_depth
             1
 
         Used by ``abjad.Meter.rewrite_meter()``.
-
-        Defaults to none.
-
-        Set to integer or none.
-
-        Returns integer or none.
         """
         return self._preferred_boundary_depth
 
@@ -1009,11 +975,11 @@ class Meter:
     def fit_meters(
         argument,
         meters,
-        denominator=32,
+        denominator: int = 32,
         discard_final_orphan_downbeat=True,
         maximum_run_length=None,
         starting_offset=None,
-    ):
+    ) -> list["Meter"]:
         """
         Finds the best-matching sequence of meters for the offsets contained in
         ``argument``.
@@ -1051,8 +1017,6 @@ class Meter:
             TimeSignature(pair=(5, 4), hide=False, partial=None)
 
         Coerces offsets from ``argument`` via ``MetricAccentKernel.count_offsets()``.
-
-        Returns list.
         """
         session = _MeterFittingSession(
             kernel_denominator=denominator,
@@ -1061,10 +1025,10 @@ class Meter:
             offset_counter=argument,
         )
         meters = session()
-        return meters
+        return list(meters)
 
     @staticmethod
-    def from_rtcontainer(rtcontainer):
+    def from_rtcontainer(rtcontainer) -> "Meter":
         assert isinstance(rtcontainer, _rhythmtrees.RhythmTreeContainer)
         for node in [rtcontainer] + list(rtcontainer.depth_first()):
             assert node.prolation == 1
@@ -2855,7 +2819,6 @@ class MetricAccentKernel:
             (Offset((15, 1)), 2)
             (Offset((20, 1)), 1)
 
-        Returns counter.
         """
         return _timespan.OffsetCounter(argument)
 
@@ -2899,25 +2862,25 @@ class _MeterFittingSession:
 
     def __init__(
         self,
-        kernel_denominator=32,
-        maximum_run_length=None,
-        meters=None,
+        kernel_denominator: int = 32,
+        maximum_run_length: int | None = None,
+        meters: typing.Sequence[Meter] = (),
         offset_counter=None,
-    ):
-        if meters is not None:
-            assert all(isinstance(_, Meter) for _ in meters), repr(meters)
-        self._cached_offset_counters = {}
+    ) -> None:
+        assert isinstance(kernel_denominator, int), repr(kernel_denominator)
         if maximum_run_length is not None:
-            maximum_run_length = int(maximum_run_length)
+            assert isinstance(maximum_run_length, int), repr(maximum_run_length)
             assert 0 < maximum_run_length
-        self._maximum_run_length = maximum_run_length
+        assert all(isinstance(_, Meter) for _ in meters), repr(meters)
         if offset_counter:
-            self._offset_counter = MetricAccentKernel.count_offsets(offset_counter)
+            offset_counter = MetricAccentKernel.count_offsets(offset_counter)
         else:
-            self._offset_counter = {}
-        self._ordered_offsets = tuple(sorted(self.offset_counter.items))
-        meters = meters or ()
+            offset_counter = {}
+        self._cached_offset_counters: dict = {}
+        self._maximum_run_length = maximum_run_length
         self._meters = tuple(meters)
+        self._offset_counter = offset_counter
+        self._ordered_offsets = tuple(sorted(self.offset_counter.items))
         self._kernel_denominator = _duration.Duration(kernel_denominator)
         self._kernels = {}
         for meter in self._meters:
@@ -2932,13 +2895,11 @@ class _MeterFittingSession:
 
     ### SPECIAL METHODS ###
 
-    def __call__(self):
+    def __call__(self) -> list[Meter]:
         """
         Fits meters.
-
-        Returns meter list.
         """
-        selected_kernels = []
+        selected_kernels: list[Meter] = []
         current_offset = _duration.Offset(0)
         while current_offset < self.ordered_offsets[-1]:
             kernel_scores = []
@@ -2971,7 +2932,7 @@ class _MeterFittingSession:
             selected_kernels.append(winning_kernel)
             current_offset += winning_kernel.duration
         selected_meters = (self.kernels[_] for _ in selected_kernels)
-        return selected_meters
+        return list(selected_meters)
 
     ### PRIVATE METHODS ###
 
@@ -2984,7 +2945,7 @@ class _MeterFittingSession:
         lookahead_offset_counter = self._get_offset_counter_at(lookahead_offset)
         for lookahead_kernel in kernels:
             lookahead_scores.append(lookahead_kernel(lookahead_offset_counter))
-        lookahead_score = sum(lookahead_scores)  # / len(lookahead_scores)
+        lookahead_score = sum(lookahead_scores)
         return lookahead_score
 
     def _get_offset_counter_at(self, start_offset):
@@ -3009,29 +2970,23 @@ class _MeterFittingSession:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def cached_offset_counters(self):
+    def cached_offset_counters(self) -> dict:
         """
         Gets cached offset counters
-
-        Returns dictionary.
         """
         return self._cached_offset_counters
 
     @property
-    def kernel_denominator(self):
+    def kernel_denominator(self) -> _duration.Duration:
         """
         Gets kernel denominator.
-
-        Returns duration.
         """
         return self._kernel_denominator
 
     @property
-    def kernels(self):
+    def kernels(self) -> dict:
         """
         Gets kernels-to-meter dictionary.
-
-        Returns dictionary.
         """
         return self._kernels
 
@@ -3039,8 +2994,6 @@ class _MeterFittingSession:
     def longest_kernel(self):
         """
         Gets longest kernel.
-
-        Returns kernel.
         """
         return self._longest_kernel
 
