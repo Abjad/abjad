@@ -971,30 +971,31 @@ class Meter:
 
     ### PUBLIC METHODS ###
 
+    # TODO: remove .count_offsets
     @staticmethod
     def fit_meters(
-        argument,
-        meters,
+        offset_counter: _timespan.OffsetCounter,
+        meters: typing.Sequence["Meter"],
         denominator: int = 32,
-        discard_final_orphan_downbeat=True,
-        maximum_run_length=None,
-        starting_offset=None,
+        maximum_run_length: int | None = None,
     ) -> list["Meter"]:
         """
         Finds the best-matching sequence of meters for the offsets contained in
-        ``argument``.
+        ``offset_counter``.
 
         ..  container:: example
 
-            >>> meters = [(3, 4), (4, 4), (5, 4)]
-            >>> meters = [abjad.Meter(_) for _ in meters]
+            >>> pairs = [(3, 4), (4, 4), (5, 4)]
+            >>> meters = [abjad.Meter(_) for _ in pairs]
 
         ..  container:: example
 
             Matches a series of hypothetical ``4/4`` measures:
 
-            >>> argument = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
-            >>> for meter in abjad.Meter.fit_meters(argument, meters):
+            >>> pairs = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
+            >>> offsets = [abjad.Offset(_) for _ in pairs]
+            >>> offset_counter = abjad.OffsetCounter(offsets)
+            >>> for meter in abjad.Meter.fit_meters(offset_counter, meters):
             ...     print(meter.implied_time_signature)
             ...
             TimeSignature(pair=(4, 4), hide=False, partial=None)
@@ -1006,8 +1007,10 @@ class Meter:
 
             Matches a series of hypothetical ``5/4`` measures:
 
-            >>> argument = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
-            >>> for meter in abjad.Meter.fit_meters(argument, meters):
+            >>> pairs = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
+            >>> offsets = [abjad.Offset(_) for _ in pairs]
+            >>> offset_counter = abjad.OffsetCounter(offsets)
+            >>> for meter in abjad.Meter.fit_meters(offset_counter, meters):
             ...     print(meter.implied_time_signature)
             ...
             TimeSignature(pair=(3, 4), hide=False, partial=None)
@@ -1016,16 +1019,18 @@ class Meter:
             TimeSignature(pair=(5, 4), hide=False, partial=None)
             TimeSignature(pair=(5, 4), hide=False, partial=None)
 
-        Coerces offsets from ``argument`` via ``MetricAccentKernel.count_offsets()``.
         """
+        assert all(isinstance(_, Meter) for _ in meters), repr(meters)
+        assert isinstance(offset_counter, _timespan.OffsetCounter), repr(offset_counter)
         session = _MeterFittingSession(
             kernel_denominator=denominator,
             maximum_run_length=maximum_run_length,
             meters=meters,
-            offset_counter=argument,
+            offset_counter=offset_counter,
         )
-        meters = session()
-        return list(meters)
+        meters = list(session())
+        assert all(isinstance(_, Meter) for _ in meters), repr(meters)
+        return meters
 
     @staticmethod
     def from_rtcontainer(rtcontainer) -> "Meter":
@@ -1036,59 +1041,65 @@ class Meter:
         meter._root_node = rtcontainer
         return meter
 
-    def generate_offset_kernel_to_denominator(self, denominator, normalize=True):
+    def generate_offset_kernel_to_denominator(
+        self, denominator: int
+    ) -> "MetricAccentKernel":
         r"""
-        Generates a dictionary of all offsets in a meter up to ``denominator``.
+        Generates MAK (dictionary) of all offsets in ``self`` up to ``denominator``.
 
-        Keys are the offsets and the values are the normalized weights of those offsets.
+        Keys of MAK are offsets.
+
+        Values of MAK are normalized weights of those offsets.
+
+        This is useful for testing how strongly a collection of offsets
+        responds to a given meter.
 
         ..  container:: example
 
             >>> meter = abjad.Meter((4, 4))
             >>> kernel = meter.generate_offset_kernel_to_denominator(8)
             >>> for offset, weight in sorted(kernel.kernel.items()):
-            ...     print(f"{offset!s}\t{weight!s}")
+            ...     print(f"{offset!r}\t{weight!r}")
             ...
-            0       3/16
-            1/8     1/16
-            1/4     1/8
-            3/8     1/16
-            1/2     1/8
-            5/8     1/16
-            3/4     1/8
-            7/8     1/16
-            1       3/16
+            Offset((0, 1))	Fraction(3, 16)
+            Offset((1, 8))	Fraction(1, 16)
+            Offset((1, 4))	Fraction(1, 8)
+            Offset((3, 8))	Fraction(1, 16)
+            Offset((1, 2))	Fraction(1, 8)
+            Offset((5, 8))	Fraction(1, 16)
+            Offset((3, 4))	Fraction(1, 8)
+            Offset((7, 8))	Fraction(1, 16)
+            Offset((1, 1))	Fraction(3, 16)
 
-        This is useful for testing how strongly a collection of offsets responds to a
-        given meter.
-
-        Returns dictionary.
         """
         assert _math.is_positive_integer_power_of_two(denominator // self.denominator)
         inventory = list(self.depthwise_offset_inventory)
+        for offset_tuple in inventory:
+            assert isinstance(offset_tuple, tuple)
+            assert all(isinstance(_, _duration.Offset) for _ in offset_tuple)
         old_flag_count = _duration.Duration(1, self.denominator).flag_count
         new_flag_count = _duration.Duration(1, denominator).flag_count
         extra_depth = new_flag_count - old_flag_count
+        assert isinstance(extra_depth, int), repr(extra_depth)
         for _ in range(extra_depth):
             old_offsets = inventory[-1]
             new_offsets = []
-            for first, second in _sequence.nwise(old_offsets):
-                new_offsets.append(first)
-                new_offsets.append((first + second) / 2)
+            for first_offset, second_offset in _sequence.nwise(old_offsets):
+                new_offsets.append(first_offset)
+                new_offsets.append((first_offset + second_offset) / 2)
             new_offsets.append(old_offsets[-1])
             inventory.append(tuple(new_offsets))
         total = 0
-        kernel = {}
-        for offsets in inventory:
-            for offset in offsets:
-                if offset not in kernel:
-                    kernel[offset] = 0
-                kernel[offset] += 1
+        offset_to_weight = {}
+        for offset_tuple in inventory:
+            for offset in offset_tuple:
+                if offset not in offset_to_weight:
+                    offset_to_weight[offset] = fractions.Fraction(0)
+                offset_to_weight[offset] += fractions.Fraction(1)
                 total += 1
-        if normalize:
-            for offset, response in kernel.items():
-                kernel[offset] = fractions.Fraction(response, total)
-        return MetricAccentKernel(kernel)
+        for offset, count in offset_to_weight.items():
+            offset_to_weight[offset] = fractions.Fraction(count, total)
+        return MetricAccentKernel(offset_to_weight)
 
     # TODO: typehint
     @staticmethod
@@ -2601,12 +2612,13 @@ def illustrate_meter_list(
         kernel_denominator = denominator or meter.denominator
         kernel = MetricAccentKernel.from_meter(meter, kernel_denominator)
         for offset, weight in sorted(kernel.kernel.items()):
-            weight = float(weight) * -40
+            assert isinstance(weight, fractions.Fraction)
+            weight_as_float = float(weight) * -40
             ps_x_offset = float(rational_x_offset + offset)
             ps_x_offset *= postscript_scale
             ps_x_offset += 1
             postscript_strings.append(f"{_timespan._fpa(ps_x_offset)} -2 moveto")
-            postscript_strings.append(f"0 {_timespan._fpa(weight)} rlineto")
+            postscript_strings.append(f"0 {_timespan._fpa(weight_as_float)} rlineto")
             postscript_strings.append("stroke")
         rational_x_offset += meter.duration
     fraction_pairs = []
@@ -2653,16 +2665,26 @@ class MetricAccentKernel:
 
         >>> hierarchy = abjad.Meter((7, 8))
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
-        >>> kernel
-        MetricAccentKernel(kernel={Offset((0, 1)): Fraction(3, 14), Offset((7, 8)): Fraction(3, 14), Offset((3, 8)): Fraction(1, 7), Offset((5, 8)): Fraction(1, 7), Offset((1, 8)): Fraction(1, 14), Offset((1, 4)): Fraction(1, 14), Offset((1, 2)): Fraction(1, 14), Offset((3, 4)): Fraction(1, 14)})
+        >>> for offset, weight in kernel.kernel.items():
+        ...     print(f"{offset!r}: {weight!r}")
+        Offset((0, 1)): Fraction(3, 14)
+        Offset((7, 8)): Fraction(3, 14)
+        Offset((3, 8)): Fraction(1, 7)
+        Offset((5, 8)): Fraction(1, 7)
+        Offset((1, 8)): Fraction(1, 14)
+        Offset((1, 4)): Fraction(1, 14)
+        Offset((1, 2)): Fraction(1, 14)
+        Offset((3, 4)): Fraction(1, 14)
 
-    Call the kernel against an expression from which offsets can be counted to receive an
-    impulse-response:
+    Call the kernel against an expression from which offsets can be counted to
+    receive an impulse-response:
 
     ..  container:: example
 
-        >>> offsets = [(0, 8), (1, 8), (1, 8), (3, 8)]
-        >>> kernel(offsets)
+        >>> pairs = [(0, 8), (1, 8), (1, 8), (3, 8)]
+        >>> offsets = [abjad.Offset(_) for _ in pairs]
+        >>> offset_counter = abjad.OffsetCounter(offsets)
+        >>> kernel(offset_counter)
         Fraction(1, 2)
 
     """
@@ -2684,35 +2706,35 @@ class MetricAccentKernel:
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, argument):
+    def __call__(self, offset_counter: _timespan.OffsetCounter) -> fractions.Fraction:
         r"""
-        Calls metrical accent kernal on ``argument``.
+        Calls metric accent kernal on ``offset_counter``.
 
         >>> upper_staff = abjad.Staff("c'8 d'4. e'8 f'4.")
-        >>> lower_staff = abjad.Staff(r'\clef bass c4 b,4 a,2')
+        >>> lower_staff = abjad.Staff(r"\clef bass c4 b,4 a,2")
         >>> score = abjad.Score([upper_staff, lower_staff])
 
-        >>> kernel = abjad.MetricAccentKernel.from_meter((4, 4))
-        >>> kernel(score)
+        >>> meter = abjad.Meter((4, 4))
+        >>> kernel = abjad.MetricAccentKernel.from_meter(meter)
+        >>> offset_counter = abjad.OffsetCounter(score)
+        >>> kernel(offset_counter)
         Fraction(10, 33)
 
-        Returns float.
         """
-        offset_count = self.count_offsets(argument)
+        assert isinstance(offset_counter, _timespan.OffsetCounter), repr(offset_counter)
         response = fractions.Fraction(0, 1)
-        for offset, count in offset_count.items.items():
+        for offset, count in offset_counter.items.items():
             if offset in self._kernel:
                 weight = self._kernel[offset]
                 weighted_count = weight * count
                 response += weighted_count
+        assert isinstance(response, fractions.Fraction), repr(response)
         return response
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a metrical accent kernal with a kernal equal to that
-        of this metrical accent kernel.
-
-        Returns true or false.
+        Is true when ``argument`` is a metric accent kernal with a kernal equal
+        to that of ``self``.
         """
         if isinstance(argument, type(self)):
             if self.kernel == argument.kernel:
@@ -2720,11 +2742,9 @@ class MetricAccentKernel:
                     return True
         return False
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes metric accent kernel.
-
-        Returns integer.
         """
         return super().__hash__()
 
@@ -2737,7 +2757,7 @@ class MetricAccentKernel:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def duration(self):
+    def duration(self) -> _duration.Duration:
         """
         Gets duration.
         """
@@ -2747,11 +2767,9 @@ class MetricAccentKernel:
             return _duration.Duration(0)
 
     @property
-    def kernel(self):
+    def kernel(self) -> dict[_duration.Offset, fractions.Fraction]:
         """
-        The kernel datastructure.
-
-        Returns dict.
+        The kernel dictionary.
         """
         return self._kernel.copy()
 
@@ -2796,13 +2814,13 @@ class MetricAccentKernel:
             >>> leaves = abjad.select.leaves(score)
             >>> counter = abjad.MetricAccentKernel.count_offsets(leaves)
             >>> for offset, count in sorted(counter.items.items()):
-            ...     offset, count
-            (Offset((0, 1)), 2)
-            (Offset((1, 8)), 2)
-            (Offset((1, 4)), 2)
-            (Offset((1, 2)), 4)
-            (Offset((5, 8)), 2)
-            (Offset((1, 1)), 2)
+            ...     print(f"{offset!r}: {count}")
+            Offset((0, 1)): 2
+            Offset((1, 8)): 2
+            Offset((1, 4)): 2
+            Offset((1, 2)): 4
+            Offset((5, 8)): 2
+            Offset((1, 1)): 2
 
         ..  container:: example
 
@@ -2812,35 +2830,31 @@ class MetricAccentKernel:
 
             >>> counter = MetricAccentKernel.count_offsets((a, b, c))
             >>> for offset, count in sorted(counter.items.items()):
-            ...     offset, count
-            (Offset((0, 1)), 1)
-            (Offset((5, 1)), 1)
-            (Offset((10, 1)), 1)
-            (Offset((15, 1)), 2)
-            (Offset((20, 1)), 1)
+            ...     print(f"{offset!r}: {count}")
+            Offset((0, 1)): 1
+            Offset((5, 1)): 1
+            Offset((10, 1)): 1
+            Offset((15, 1)): 2
+            Offset((20, 1)): 1
 
         """
         return _timespan.OffsetCounter(argument)
 
     @staticmethod
-    def from_meter(meter, denominator=32, normalize=True):
+    def from_meter(meter: Meter, denominator: int = 32) -> "MetricAccentKernel":
         """
         Create a metric accent kernel from ``meter``.
-
-        Returns new metric accent kernel.
         """
-        if not isinstance(meter, Meter):
-            meter = Meter(meter)
-        return meter.generate_offset_kernel_to_denominator(
-            denominator=denominator, normalize=normalize
-        )
+        assert isinstance(meter, Meter), repr(meter)
+        assert isinstance(denominator, int), repr(denominator)
+        return meter.generate_offset_kernel_to_denominator(denominator=denominator)
 
 
 class _MeterFittingSession:
     """
     Meter-fitting session.
 
-    Used internally by Meter.fit_meters().
+    Used internally by ``Meter.fit_meters()``.
     """
 
     ### CLASS VARIABLES ###
@@ -2865,29 +2879,28 @@ class _MeterFittingSession:
         kernel_denominator: int = 32,
         maximum_run_length: int | None = None,
         meters: typing.Sequence[Meter] = (),
-        offset_counter=None,
+        offset_counter: _timespan.OffsetCounter = _timespan.OffsetCounter(),
     ) -> None:
         assert isinstance(kernel_denominator, int), repr(kernel_denominator)
         if maximum_run_length is not None:
             assert isinstance(maximum_run_length, int), repr(maximum_run_length)
             assert 0 < maximum_run_length
         assert all(isinstance(_, Meter) for _ in meters), repr(meters)
-        if offset_counter:
-            offset_counter = MetricAccentKernel.count_offsets(offset_counter)
-        else:
-            offset_counter = {}
+        assert isinstance(offset_counter, _timespan.OffsetCounter), repr(offset_counter)
+        assert isinstance(offset_counter, _timespan.OffsetCounter), repr(offset_counter)
         self._cached_offset_counters: dict = {}
         self._maximum_run_length = maximum_run_length
         self._meters = tuple(meters)
         self._offset_counter = offset_counter
         self._ordered_offsets = tuple(sorted(self.offset_counter.items))
-        self._kernel_denominator = _duration.Duration(kernel_denominator)
+        self._kernel_denominator = kernel_denominator
         self._kernels = {}
         for meter in self._meters:
             kernel = meter.generate_offset_kernel_to_denominator(
                 self._kernel_denominator
             )
             self._kernels[kernel] = meter
+        self._longest_kernel: MetricAccentKernel | None
         if self.kernels:
             self._longest_kernel = sorted(self._kernels, key=lambda _: _.duration)[-1]
         else:
@@ -2899,16 +2912,21 @@ class _MeterFittingSession:
         """
         Fits meters.
         """
-        selected_kernels: list[Meter] = []
+        selected_kernels: list[MetricAccentKernel] = []
         current_offset = _duration.Offset(0)
         while current_offset < self.ordered_offsets[-1]:
-            kernel_scores = []
+            kernel_scores: list[_MeterFittingSession.KernelScore] = []
             kernels = self._get_kernels(selected_kernels)
             offset_counter = self._get_offset_counter_at(current_offset)
+            assert isinstance(offset_counter, _timespan.OffsetCounter), repr(
+                offset_counter
+            )
             if not offset_counter:
                 winning_kernel = self.longest_kernel
+                assert isinstance(winning_kernel, MetricAccentKernel)
                 if selected_kernels:
                     winning_kernel = selected_kernels[-1]
+                    assert isinstance(winning_kernel, MetricAccentKernel)
             else:
                 for kernel in kernels:
                     if (
@@ -2929,10 +2947,12 @@ class _MeterFittingSession:
                     kernel_scores.append(kernel_score)
                 kernel_scores.sort(key=lambda kernel_score: kernel_score.score)
                 winning_kernel = kernel_scores[-1].kernel
+                assert isinstance(winning_kernel, MetricAccentKernel)
             selected_kernels.append(winning_kernel)
             current_offset += winning_kernel.duration
-        selected_meters = (self.kernels[_] for _ in selected_kernels)
-        return list(selected_meters)
+        selected_meters = [self.kernels[_] for _ in selected_kernels]
+        assert all(isinstance(_, Meter) for _ in selected_meters), repr(selected_meters)
+        return selected_meters
 
     ### PRIVATE METHODS ###
 
@@ -2950,12 +2970,14 @@ class _MeterFittingSession:
 
     def _get_offset_counter_at(self, start_offset):
         if start_offset in self.cached_offset_counters:
-            return self.cached_offset_counters[start_offset]
+            # return self.cached_offset_counters[start_offset]
+            return _timespan.OffsetCounter(self.cached_offset_counters[start_offset])
         offset_counter = {}
         stop_offset = start_offset + self.longest_kernel.duration
         index = bisect.bisect_left(self.ordered_offsets, start_offset)
         if index == len(self.ordered_offsets):
-            return offset_counter
+            # return offset_counter
+            return _timespan.OffsetCounter(offset_counter)
         offset = self.ordered_offsets[index]
         while offset <= stop_offset:
             count = self.offset_counter.items[offset]
@@ -2965,6 +2987,8 @@ class _MeterFittingSession:
                 break
             offset = self.ordered_offsets[index]
         self.cached_offset_counters[start_offset] = offset_counter
+        offset_counter = _timespan.OffsetCounter(offset_counter)
+        # raise Exception(offset_counter)
         return offset_counter
 
     ### PUBLIC PROPERTIES ###
@@ -2977,7 +3001,7 @@ class _MeterFittingSession:
         return self._cached_offset_counters
 
     @property
-    def kernel_denominator(self) -> _duration.Duration:
+    def kernel_denominator(self) -> int:
         """
         Gets kernel denominator.
         """
@@ -2991,45 +3015,39 @@ class _MeterFittingSession:
         return self._kernels
 
     @property
-    def longest_kernel(self):
+    def longest_kernel(self) -> MetricAccentKernel | None:
         """
         Gets longest kernel.
         """
+        if self._longest_kernel is not None:
+            assert isinstance(self._longest_kernel, MetricAccentKernel)
         return self._longest_kernel
 
     @property
-    def maximum_run_length(self):
+    def maximum_run_length(self) -> int | None:
         """
         Gets maximum meter repetitions.
-
-        Returns integer or none.
         """
         return self._maximum_run_length
 
     @property
-    def meters(self):
+    def meters(self) -> tuple[Meter, ...]:
         """
         Gets meters.
-
-        Returns meters.
         """
         return self._meters
 
     @property
-    def offset_counter(self):
+    def offset_counter(self) -> _timespan.OffsetCounter:
         """
         Gets offset counter.
-
-        Returns offset counter.
         """
         return self._offset_counter
 
     @property
-    def ordered_offsets(self):
+    def ordered_offsets(self) -> tuple[_duration.Offset, ...]:
         """
         Gets ordered offsets.
-
-        Returns offsets.
         """
         return self._ordered_offsets
 
