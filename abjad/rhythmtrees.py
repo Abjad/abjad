@@ -389,12 +389,12 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
 
         ..  container:: example
 
-            >>> rtleaf = abjad.rhythmtrees.RhythmTreeLeaf((1, 1), is_pitched=True)
-            >>> rtleaf.rtm_format
+            >>> rtl = abjad.rhythmtrees.RhythmTreeLeaf((1, 1), is_pitched=True)
+            >>> rtl.rtm_format
             '1'
 
-            >>> rtleaf = abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_pitched=False)
-            >>> rtleaf.rtm_format
+            >>> rtl = abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_pitched=False)
+            >>> rtl.rtm_format
             '-5'
 
         """
@@ -479,9 +479,9 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, rtcontainer: "RhythmTreeContainer") -> "RhythmTreeContainer":
+    def __add__(self, rtc: "RhythmTreeContainer") -> "RhythmTreeContainer":
         r"""
-        Concatenate ``self`` and ``rtcontainer``. The operation ``a + b = c``
+        Concatenate ``self`` and ``rtc``. The operation ``a + b = c``
         returns a new rhythm-tree container ``c`` with the content of both
         ``a`` and ``b``, and a pair equal to the sum of the durations of ``a``
         and ``b``. The operation is non-commutative: the content of the first
@@ -489,13 +489,13 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
         ..  container:: example
 
-            >>> rtcontainer_a = abjad.rhythmtrees.RhythmTreeParser()('(1 (1 1 1))')[0]
-            >>> rtcontainer_b = abjad.rhythmtrees.RhythmTreeParser()('(2 (3 4))')[0]
-            >>> rtcontainer_c = rtcontainer_a + rtcontainer_b
-            >>> rtcontainer_c.pair
+            >>> rtc_a = abjad.rhythmtrees.RhythmTreeParser()('(1 (1 1 1))')[0]
+            >>> rtc_b = abjad.rhythmtrees.RhythmTreeParser()('(2 (3 4))')[0]
+            >>> rtc_c = rtc_a + rtc_b
+            >>> rtc_c.pair
             (3, 1)
 
-            >>> for node in rtcontainer_c:
+            >>> for node in rtc_c:
             ...     node
             RhythmTreeLeaf((1, 1), is_pitched=True)
             RhythmTreeLeaf((1, 1), is_pitched=True)
@@ -504,12 +504,12 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             RhythmTreeLeaf((4, 1), is_pitched=True)
 
         """
-        assert isinstance(rtcontainer, RhythmTreeContainer), repr(rtcontainer)
+        assert isinstance(rtc, RhythmTreeContainer), repr(rtc)
         new_duration = _duration.Duration(self.duration)
-        new_duration += _duration.Duration(rtcontainer.duration)
+        new_duration += _duration.Duration(rtc.duration)
         container = RhythmTreeContainer(new_duration.pair)
         container.extend(self[:])
-        container.extend(rtcontainer[:])
+        container.extend(rtc[:])
         return container
 
     def __call__(
@@ -654,12 +654,12 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
                 )
         return graph
 
-    def __radd__(self, rtcontainer) -> "RhythmTreeContainer":
+    def __radd__(self, rtc) -> "RhythmTreeContainer":
         """
-        Add ``rtcontainer`` and ``self``.
+        Add ``rtc`` and ``self``.
         """
-        assert isinstance(rtcontainer, type(self))
-        return rtcontainer.__add__(self)
+        assert isinstance(rtc, type(self))
+        return rtc.__add__(self)
 
     def __repr__(self) -> str:
         """
@@ -730,16 +730,16 @@ class RhythmTreeParser(Parser):
         >>> parser = abjad.rhythmtrees.RhythmTreeParser()
         >>> string = '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
         >>> list_ = parser(string)
-        >>> rtcontainer = list_[0]
-        >>> rtcontainer.rtm_format
+        >>> rtc = list_[0]
+        >>> rtc.rtm_format
         '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
 
-        >>> for node in rtcontainer:
+        >>> for node in rtc:
         ...     node
         RhythmTreeLeaf((1, 1), is_pitched=True)
         RhythmTreeContainer((1, 1))
 
-        >>> component_list = rtcontainer(abjad.Duration(1, 4))
+        >>> component_list = rtc(abjad.Duration(1, 4))
         >>> tuplet = component_list[0]
         >>> abjad.show(tuplet) # doctest: +SKIP
 
