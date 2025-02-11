@@ -35,7 +35,8 @@ class Meter:
 
         Duple meter:
 
-        >>> meter = abjad.Meter((2, 4))
+        >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((2, 4))
+        >>> meter = abjad.Meter(rtcontainer)
         >>> meter
         Meter('(2/4 (1/4 1/4))')
         >>> print(meter.pretty_rtm_format)
@@ -51,7 +52,8 @@ class Meter:
 
         Triple meter:
 
-        >>> meter = abjad.Meter((3, 4))
+        >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((3, 4))
+        >>> meter = abjad.Meter(rtcontainer)
         >>> print(meter.pretty_rtm_format)
         (3/4 (
             1/4
@@ -66,7 +68,8 @@ class Meter:
 
         Quadruple meter:
 
-        >>> meter = abjad.Meter((4, 4))
+        >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((4, 4))
+        >>> meter = abjad.Meter(rtcontainer)
         >>> meter
         Meter('(4/4 (1/4 1/4 1/4 1/4))')
         >>> print(meter.pretty_rtm_format)
@@ -84,7 +87,8 @@ class Meter:
 
         Compound triple meter:
 
-        >>> meter = abjad.Meter((6, 8))
+        >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((6, 8))
+        >>> meter = abjad.Meter(rtcontainer)
         >>> print(meter.pretty_rtm_format)
         (6/8 (
             (3/8 (
@@ -104,7 +108,8 @@ class Meter:
 
         Another compound triple meter:
 
-        >>> meter = abjad.Meter((12, 8))
+        >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((12, 8))
+        >>> meter = abjad.Meter(rtcontainer)
         >>> print(meter.pretty_rtm_format)
         (12/8 (
             (3/8 (
@@ -132,7 +137,8 @@ class Meter:
 
         An asymmetric meter:
 
-        >>> meter = abjad.Meter((5, 4))
+        >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((5, 4))
+        >>> meter = abjad.Meter(rtcontainer)
         >>> print(meter.pretty_rtm_format)
         (5/4 (
             (3/4 (
@@ -152,7 +158,8 @@ class Meter:
 
         Another asymmetric meter:
 
-        >>> meter = abjad.Meter((7, 4))
+        >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
+        >>> meter = abjad.Meter(rtcontainer)
         >>> print(meter.pretty_rtm_format)
         (7/4 (
             (3/4 (
@@ -175,10 +182,8 @@ class Meter:
 
         The same asymmetric meter structured differently:
 
-        >>> meter = abjad.Meter(
-        ...     (7, 4),
-        ...     increase_monotonic=True,
-        ...     )
+        >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
+        >>> meter = abjad.Meter(rtcontainer, increase_monotonic=True)
         >>> print(meter.pretty_rtm_format)
         (7/4 (
             (2/4 (
@@ -200,7 +205,8 @@ class Meter:
 
         Meter interpreted by default as containing two compound beats:
 
-        >>> meter = abjad.Meter((6, 4))
+        >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((6, 4))
+        >>> meter = abjad.Meter(rtcontainer)
         >>> meter
         Meter('(6/4 ((3/4 (1/4 1/4 1/4)) (3/4 (1/4 1/4 1/4))))')
         >>> print(meter.pretty_rtm_format)
@@ -266,13 +272,13 @@ class Meter:
 
     def __init__(
         self,
-        # TODO: force initialization from rtcontainer only
-        input_pair: tuple[int, int] = (4, 4),
+        root_node: _rhythmtrees.RhythmTreeContainer,
         *,
+        do_not_recurse: bool = False,
         increase_monotonic: bool = False,
         preferred_boundary_depth: int | None = None,
     ) -> None:
-        assert isinstance(input_pair, tuple), repr(input_pair)
+        assert isinstance(root_node, _rhythmtrees.RhythmTreeContainer), repr(root_node)
         assert isinstance(increase_monotonic, bool), repr(increase_monotonic)
         if preferred_boundary_depth is not None:
             assert isinstance(preferred_boundary_depth, int)
@@ -337,12 +343,13 @@ class Meter:
                     rtleaf = _rhythmtrees.RhythmTreeLeaf(pair_)
                     rtcontainer.append(rtleaf)
 
+        assert isinstance(root_node, _rhythmtrees.RhythmTreeContainer), repr(root_node)
+        input_pair = root_node.pair
         factors = _math.factors(input_pair[0])
         if 1 < len(factors) and factors[0] == factors[1] == 2:
             factors[0:2] = [4]
-        root_node = _rhythmtrees.RhythmTreeContainer(input_pair)
-        recurse(root_node, factors, input_pair[1], increase_monotonic)
-        assert isinstance(root_node, _rhythmtrees.RhythmTreeContainer), repr(root_node)
+        if do_not_recurse is False:
+            recurse(root_node, factors, input_pair[1], increase_monotonic)
         self._root_node = root_node
         self._numerator = input_pair[0]
         self._denominator = input_pair[1]
@@ -372,7 +379,8 @@ class Meter:
 
             Graphs ``7/4``:
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
+            >>> meter = abjad.Meter(rtcontainer)
             >>> meter_graph = meter.__graph__()
             >>> abjad.graph(meter_graph) # doctest: +SKIP
 
@@ -580,7 +588,8 @@ class Meter:
 
             Iterates ``5/4``:
 
-            >>> meter = abjad.Meter((5, 4))
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((5, 4))
+            >>> meter = abjad.Meter(rtcontainer)
             >>> for pair in meter:
             ...    pair
             ...
@@ -630,7 +639,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
+            >>> meter = abjad.Meter(rtcontainer)
             >>> meter.denominator
             4
 
@@ -644,7 +654,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
+            >>> meter = abjad.Meter(rtcontainer)
             >>> for depth, offsets in enumerate(
             ...     meter.depthwise_offset_inventory):
             ...     print(depth, offsets)
@@ -669,7 +680,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
+            >>> meter = abjad.Meter(rtcontainer)
             >>> meter.duration
             Duration(7, 4)
 
@@ -690,7 +702,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> abjad.Meter((4, 4)).implied_time_signature
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((4, 4))
+            >>> abjad.Meter(rtcontainer).implied_time_signature
             TimeSignature(pair=(4, 4), hide=False, partial=None)
 
         """
@@ -707,7 +720,8 @@ class Meter:
 
             An asymmetric meter with beats arranged greatest to least:
 
-            >>> meter = abjad.Meter((7, 4), increase_monotonic=False)
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
+            >>> meter = abjad.Meter(rtcontainer, increase_monotonic=False)
             >>> meter.increase_monotonic
             False
 
@@ -731,7 +745,8 @@ class Meter:
             The same asymmetric meter with unequal beats arranged least to
             greatest:
 
-            >>> meter = abjad.Meter((7, 4), increase_monotonic=True)
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
+            >>> meter = abjad.Meter(rtcontainer, increase_monotonic=True)
             >>> meter.increase_monotonic
             True
 
@@ -761,7 +776,8 @@ class Meter:
             Compound meters written over ``4``:
 
             >>> for numerator in range(1, 13):
-            ...     meter = abjad.Meter((numerator, 4))
+            ...     rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((numerator, 4))
+            ...     meter = abjad.Meter(rtcontainer)
             ...     string = True if meter.is_compound else ''
             ...     print(str(meter.fraction_string), string)
             ...
@@ -783,7 +799,8 @@ class Meter:
             Compound meters written over ``8``:
 
             >>> for numerator in range(1, 13):
-            ...     meter = abjad.Meter((numerator, 8))
+            ...     rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((numerator, 8))
+            ...     meter = abjad.Meter(rtcontainer)
             ...     string = True if meter.is_compound else ''
             ...     print(str(meter.fraction_string), string)
             ...
@@ -818,7 +835,8 @@ class Meter:
             Simple meters written over ``4``:
 
             >>> for numerator in range(1, 13):
-            ...     meter = abjad.Meter((numerator, 4))
+            ...     rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((numerator, 4))
+            ...     meter = abjad.Meter(rtcontainer)
             ...     string = True if meter.is_simple else ''
             ...     print(str(meter.fraction_string), string)
             ...
@@ -840,7 +858,8 @@ class Meter:
             Simple meters written over ``8``:
 
             >>> for numerator in range(1, 13):
-            ...     meter = abjad.Meter((numerator, 8))
+            ...     rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((numerator, 8))
+            ...     meter = abjad.Meter(rtcontainer)
             ...     string = True if meter.is_simple else ''
             ...     print(str(meter.fraction_string), string)
             ...
@@ -871,7 +890,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
+            >>> meter = abjad.Meter(rtcontainer)
             >>> meter.numerator
             7
 
@@ -885,7 +905,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((6, 4))
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((6, 4))
+            >>> meter = abjad.Meter(rtcontainer)
             >>> meter.pair
             (6, 4)
 
@@ -901,14 +922,16 @@ class Meter:
 
             No preferred boundary depth:
 
-            >>> abjad.Meter((6, 8)).preferred_boundary_depth is None
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((6, 8))
+            >>> abjad.Meter(rtcontainer).preferred_boundary_depth is None
             True
 
         ..  container:: example
 
             Customized preferred boundary depth:
 
-            >>> meter = abjad.Meter((6, 8), preferred_boundary_depth=1)
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((6, 8))
+            >>> meter = abjad.Meter(rtcontainer, preferred_boundary_depth=1)
             >>> meter.preferred_boundary_depth
             1
 
@@ -923,7 +946,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
+            >>> meter = abjad.Meter(rtcontainer)
             >>> print(meter.pretty_rtm_format)
             (7/4 (
                 (3/4 (
@@ -947,7 +971,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> for item in meter.root_node:
             ...     item
             RhythmTreeContainer((3, 4))
@@ -964,7 +989,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> meter.rtm_format
             '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
 
@@ -987,7 +1013,8 @@ class Meter:
         ..  container:: example
 
             >>> pairs = [(3, 4), (4, 4), (5, 4)]
-            >>> meters = [abjad.Meter(_) for _ in pairs]
+            >>> rtcontainers = [abjad.rhythmtrees.RhythmTreeContainer(_) for _ in pairs]
+            >>> meters = [abjad.Meter(_) for _ in rtcontainers]
 
         ..  container:: example
 
@@ -1036,10 +1063,10 @@ class Meter:
     @staticmethod
     def from_rtcontainer(rtcontainer: _rhythmtrees.RhythmTreeContainer) -> "Meter":
         assert isinstance(rtcontainer, _rhythmtrees.RhythmTreeContainer)
+        # TODO: add this check to Meter.__init__
         for node in [rtcontainer] + list(rtcontainer.depth_first()):
             assert node.prolation == 1
-        meter = Meter(rtcontainer.pair)
-        meter._root_node = rtcontainer
+        meter = Meter(rtcontainer, do_not_recurse=True)
         return meter
 
     def generate_offset_kernel_to_denominator(
@@ -1058,7 +1085,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((4, 4))
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((4, 4))
+            >>> meter = abjad.Meter(rtcontainer)
             >>> kernel = meter.generate_offset_kernel_to_denominator(8)
             >>> for offset, weight in sorted(kernel.kernel.items()):
             ...     print(f"{offset!r}\t{weight!r}")
@@ -1155,7 +1183,8 @@ class Meter:
                     }
                 }
 
-            >>> meter = abjad.Meter((4, 4))
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer((4, 4))
+            >>> meter = abjad.Meter(rtcontainer)
             >>> print(meter.pretty_rtm_format)
             (4/4 (
                 1/4
@@ -1233,7 +1262,7 @@ class Meter:
             >>> parser = abjad.rhythmtrees.RhythmTreeParser()
             >>> string = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
             >>> rtcontainer = parser(string)[0]
-            >>> meter = abjad.Meter.from_rtcontainer(rtcontainer)
+            >>> meter = abjad.Meter(rtcontainer, do_not_recurse=True)
             >>> print(meter.pretty_rtm_format) # doctest: +SKIP
             (4/4 (
                 (2/4 (
@@ -1302,7 +1331,8 @@ class Meter:
 
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
+            >>> meter = abjad.Meter(rtcontainer)
             >>> abjad.Meter.rewrite_meter(measure[:], meter)
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1334,7 +1364,8 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
+            >>> rtcontainer = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
+            >>> meter = abjad.Meter(rtcontainer)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
             ...     meter,
@@ -1372,7 +1403,8 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
+            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
+            >>> meter = abjad.Meter(rtc)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
             ...     meter,
@@ -1412,7 +1444,8 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
+            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
+            >>> meter = abjad.Meter(rtc)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
             ...     meter,
@@ -1457,7 +1490,8 @@ class Meter:
 
             Consider the default meter for ``9/8``:
 
-            >>> meter = abjad.Meter((9, 8))
+            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((9, 8))
+            >>> meter = abjad.Meter(rtc)
             >>> print(meter.pretty_rtm_format)
             (9/8 (
                 (3/8 (
@@ -1498,7 +1532,8 @@ class Meter:
 
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
+            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
+            >>> meter = abjad.Meter(rtc)
             >>> abjad.Meter.rewrite_meter(measure[:], meter)
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1530,7 +1565,8 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
+            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
+            >>> meter = abjad.Meter(rtc)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
             ...     meter,
@@ -1567,7 +1603,8 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
+            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
+            >>> meter = abjad.Meter(rtc)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
             ...     meter,
@@ -1716,7 +1753,8 @@ class Meter:
             ...     for container in staff:
             ...         leaf = abjad.get.leaf(container, 0)
             ...         time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
-            ...         meter = abjad.Meter(time_signature.pair)
+            ...         rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
+            ...         meter = abjad.Meter(rtc)
             ...         abjad.Meter.rewrite_meter(container[:], meter)
             ...
             >>> abjad.show(score) # doctest: +SKIP
@@ -1817,7 +1855,8 @@ class Meter:
             ...     for container in staff:
             ...         leaf = abjad.get.leaf(container, 0)
             ...         time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
-            ...         meter = abjad.Meter(time_signature.pair)
+            ...         rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
+            ...         meter = abjad.Meter(rtc)
             ...         abjad.Meter.rewrite_meter(
             ...             container[:],
             ...             meter,
@@ -1977,7 +2016,8 @@ class Meter:
 
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
+            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
+            >>> meter = abjad.Meter(rtc)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
             ...     meter,
@@ -2028,7 +2068,8 @@ class Meter:
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-            >>> meter = abjad.Meter((6, 8))
+            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 8))
+            >>> meter = abjad.Meter(rtc)
             >>> abjad.Meter.rewrite_meter(staff[:], meter)
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2050,7 +2091,8 @@ class Meter:
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-            >>> meter = abjad.Meter((6, 8))
+            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 8))
+            >>> meter = abjad.Meter(rtc)
             >>> abjad.Meter.rewrite_meter(staff[:], meter, boundary_depth=1)
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2075,7 +2117,8 @@ class Meter:
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-            >>> meter = abjad.Meter((6, 8), preferred_boundary_depth=1)
+            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 8))
+            >>> meter = abjad.Meter(rtc, preferred_boundary_depth=1)
             >>> abjad.Meter.rewrite_meter(staff[:], meter)
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2138,7 +2181,8 @@ class Meter:
                     c'8
                 }
 
-            >>> meter = abjad.Meter((6, 4))
+            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> abjad.Meter.rewrite_meter(
             ...     staff[:],
             ...     meter,
@@ -2218,13 +2262,14 @@ class Meter:
                     c'8
                 }
 
-            >>> meter = abjad.Meter((6, 4))
+            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> abjad.Meter.rewrite_meter(
             ...     staff[:],
             ...     meter,
             ...     boundary_depth=1,
             ...     rewrite_tuplets=False,
-            ...     )
+            ... )
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2394,7 +2439,9 @@ class Meter:
                     pair = _duration.with_denominator(duration, denominator)
                 else:
                     pair = duration.pair
-                sub_metrical_hierarchy = Meter(pair)
+                # sub_metrical_hierarchy = Meter(pair)
+                rtcontainer_ = _rhythmtrees.RhythmTreeContainer(pair)
+                sub_metrical_hierarchy = Meter(rtcontainer_)
                 sub_boundary_depth: int | None = 1
                 if boundary_depth is None:
                     sub_boundary_depth = None
@@ -2417,7 +2464,9 @@ def illustrate_meter_list(
 
     ..  container:: example
 
-        >>> meters = [abjad.Meter(_) for _ in [(3, 4), (5, 16), (7, 8)]]
+        >>> pairs = [(3, 4), (5, 16), (7, 8)]
+        >>> rtcs = [abjad.rhythmtrees.RhythmTreeContainer(_) for _ in pairs]
+        >>> meters = [abjad.Meter(_) for _ in rtcs]
         >>> lilypond_file = abjad.meter.illustrate_meter_list(meters, scale=0.5)
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -2665,7 +2714,8 @@ class MetricAccentKernel:
 
     ..  container:: example
 
-        >>> hierarchy = abjad.Meter((7, 8))
+        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 8))
+        >>> hierarchy = abjad.Meter(rtc)
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
         >>> for offset, weight in kernel.kernel.items():
         ...     print(f"{offset!r}: {weight!r}")
@@ -2717,7 +2767,8 @@ class MetricAccentKernel:
         >>> lower_staff = abjad.Staff(r"\clef bass c4 b,4 a,2")
         >>> score = abjad.Score([upper_staff, lower_staff])
 
-        >>> meter = abjad.Meter((4, 4))
+        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((4, 4))
+        >>> meter = abjad.Meter(rtc)
         >>> kernel = abjad.MetricAccentKernel.from_meter(meter)
         >>> offset_counter = abjad.OffsetCounter(score)
         >>> kernel(offset_counter)
