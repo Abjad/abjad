@@ -230,7 +230,7 @@ class Meter:
         >>> list_ = parser(string)
         >>> assert len(list_) == 1
         >>> rtcontainer = list_[0]
-        >>> meter = abjad.Meter.from_rtcontainer(rtcontainer)
+        >>> meter = abjad.Meter(rtcontainer, do_not_recurse=True)
         >>> print(meter.pretty_rtm_format)
         (6/4 (
             (3/8 (
@@ -279,6 +279,10 @@ class Meter:
         preferred_boundary_depth: int | None = None,
     ) -> None:
         assert isinstance(root_node, _rhythmtrees.RhythmTreeContainer), repr(root_node)
+        """
+        for node in [root_node] + list(root_node.depth_first()):
+            assert node.prolation == 1, (repr(node), repr(node.prolation))
+        """
         assert isinstance(increase_monotonic, bool), repr(increase_monotonic)
         if preferred_boundary_depth is not None:
             assert isinstance(preferred_boundary_depth, int)
@@ -1059,15 +1063,6 @@ class Meter:
         meters = list(session())
         assert all(isinstance(_, Meter) for _ in meters), repr(meters)
         return meters
-
-    @staticmethod
-    def from_rtcontainer(rtcontainer: _rhythmtrees.RhythmTreeContainer) -> "Meter":
-        assert isinstance(rtcontainer, _rhythmtrees.RhythmTreeContainer)
-        # TODO: add this check to Meter.__init__
-        for node in [rtcontainer] + list(rtcontainer.depth_first()):
-            assert node.prolation == 1
-        meter = Meter(rtcontainer, do_not_recurse=True)
-        return meter
 
     def generate_offset_kernel_to_denominator(
         self, denominator: int
