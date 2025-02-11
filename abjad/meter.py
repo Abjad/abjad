@@ -266,6 +266,7 @@ class Meter:
 
     def __init__(
         self,
+        # TODO: force initialization from rtcontainer only
         input_pair: tuple[int, int] = (4, 4),
         *,
         increase_monotonic: bool = False,
@@ -507,7 +508,9 @@ class Meter:
             else:
                 offset_node = uqbar.graphs.Node(attributes={"shape": "Mrecord"})
             offset_field = uqbar.graphs.RecordField(label=str(offset))
-            weight_field = uqbar.graphs.RecordField(label="+" * offsets.items[offset])
+            weight_field = uqbar.graphs.RecordField(
+                label="+" * offset_counter.items[offset]
+            )
             group = uqbar.graphs.RecordGroup()
             group.extend([offset_field, weight_field])
             offset_node.append(group)
@@ -520,9 +523,8 @@ class Meter:
                 edge = uqbar.graphs.Edge(attributes={"style": "dotted"})
                 edge.attach(leaf_two_node, offset_node)
 
-        offsets = MetricAccentKernel.count_offsets(
-            _sequence.flatten(self.depthwise_offset_inventory, depth=-1)
-        )
+        offsets = _sequence.flatten(self.depthwise_offset_inventory, depth=-1)
+        offset_counter = _timespan.OffsetCounter(offsets)
         graph = uqbar.graphs.Graph(
             name="G",
             attributes={
@@ -971,7 +973,6 @@ class Meter:
 
     ### PUBLIC METHODS ###
 
-    # TODO: remove .count_offsets
     @staticmethod
     def fit_meters(
         offset_counter: _timespan.OffsetCounter,
@@ -1033,7 +1034,7 @@ class Meter:
         return meters
 
     @staticmethod
-    def from_rtcontainer(rtcontainer) -> "Meter":
+    def from_rtcontainer(rtcontainer: _rhythmtrees.RhythmTreeContainer) -> "Meter":
         assert isinstance(rtcontainer, _rhythmtrees.RhythmTreeContainer)
         for node in [rtcontainer] + list(rtcontainer.depth_first()):
             assert node.prolation == 1
@@ -1045,7 +1046,8 @@ class Meter:
         self, denominator: int
     ) -> "MetricAccentKernel":
         r"""
-        Generates MAK (dictionary) of all offsets in ``self`` up to ``denominator``.
+        Generates MAK (dictionary) of all offsets in ``self`` up to
+        ``denominator``.
 
         Keys of MAK are offsets.
 
@@ -1101,16 +1103,15 @@ class Meter:
             offset_to_weight[offset] = fractions.Fraction(count, total)
         return MetricAccentKernel(offset_to_weight)
 
-    # TODO: typehint
     @staticmethod
     def rewrite_meter(
-        components,
-        meter,
-        boundary_depth=None,
-        initial_offset=None,
-        maximum_dot_count=None,
-        rewrite_tuplets=True,
-    ):
+        components: typing.Sequence[_score.Component],
+        meter: "Meter",
+        boundary_depth: int | None = None,
+        initial_offset: _duration.Offset = _duration.Offset(0),
+        maximum_dot_count: int | None = None,
+        rewrite_tuplets: bool = True,
+    ) -> None:
         r"""
         Rewrites ``components`` according to ``meter``.
 
@@ -2249,28 +2250,28 @@ class Meter:
                     c'4.
                 }
 
-        Operates in place and returns none.
+        Operates in place.
         """
         assert all(isinstance(_, _score.Component) for _ in components)
         assert isinstance(meter, Meter), repr(meter)
         if boundary_depth is not None:
             assert isinstance(boundary_depth, int)
-        if initial_offset is not None:
-            assert isinstance(initial_offset, _duration.Offset), repr(initial_offset)
+        assert isinstance(initial_offset, _duration.Offset), repr(initial_offset)
         if maximum_dot_count is not None:
             assert isinstance(maximum_dot_count, int)
         assert isinstance(rewrite_tuplets, bool)
 
         def recurse(
-            boundary_depth=None,
-            boundary_offsets=None,
-            depth=0,
-            logical_tie=None,
-        ):
+            logical_tie: _select.LogicalTie,
+            boundary_depth: int | None = None,
+            boundary_offsets=(),
+            depth: int = 0,
+        ) -> None:
+            assert isinstance(logical_tie, _select.LogicalTie), repr(logical_tie)
+            assert isinstance(boundary_offsets, tuple), repr(boundary_offsets)
             offsets = _MeterManager.get_offsets_at_depth(depth, offset_inventory)
-            logical_tie_duration = sum(
-                _._get_preprolated_duration() for _ in logical_tie
-            )
+            durations = [_._get_preprolated_duration() for _ in logical_tie]
+            logical_tie_duration = sum(durations)
             logical_tie_timespan = _getlib._get_timespan(logical_tie)
             logical_tie_start_offset = logical_tie_timespan.start_offset
             logical_tie_stop_offset = logical_tie_timespan.stop_offset
@@ -2284,10 +2285,9 @@ class Meter:
             ):
                 split_offset = None
                 offsets = _MeterManager.get_offsets_at_depth(depth, offset_inventory)
-                # If the logical tie's start aligns,
-                # take the latest possible offset.
+                # If the logical tie's start aligns, take the latest possible offset
                 if logical_tie_starts_in_offsets:
-                    offsets = reversed(offsets)
+                    offsets = tuple(reversed(offsets))
                 for offset in offsets:
                     if logical_tie_start_offset < offset < logical_tie_stop_offset:
                         split_offset = offset
@@ -2298,27 +2298,27 @@ class Meter:
                     logical_ties = [_select.LogicalTie(_) for _ in shards]
                     for logical_tie in logical_ties:
                         recurse(
+                            logical_tie,
                             boundary_depth=boundary_depth,
                             boundary_offsets=boundary_offsets,
                             depth=depth,
-                            logical_tie=logical_tie,
                         )
                 else:
                     recurse(
+                        logical_tie,
                         boundary_depth=boundary_depth,
                         boundary_offsets=boundary_offsets,
                         depth=depth + 1,
-                        logical_tie=logical_tie,
                     )
             elif _MeterManager.is_boundary_crossing_logical_tie(
+                logical_tie_start_offset,
+                logical_tie_stop_offset,
                 boundary_depth=boundary_depth,
                 boundary_offsets=boundary_offsets,
-                logical_tie_start_offset=logical_tie_start_offset,
-                logical_tie_stop_offset=logical_tie_stop_offset,
             ):
                 offsets = boundary_offsets
                 if logical_tie_start_offset in boundary_offsets:
-                    offsets = reversed(boundary_offsets)
+                    offsets = tuple(reversed(boundary_offsets))
                 split_offset = None
                 for offset in offsets:
                     if logical_tie_start_offset < offset < logical_tie_stop_offset:
@@ -2330,10 +2330,10 @@ class Meter:
                 logical_ties = [_select.LogicalTie(shard) for shard in shards]
                 for logical_tie in logical_ties:
                     recurse(
+                        logical_tie,
                         boundary_depth=boundary_depth,
                         boundary_offsets=boundary_offsets,
                         depth=depth,
-                        logical_tie=logical_tie,
                     )
             else:
                 _mutate._fuse(logical_tie[:])
@@ -2348,16 +2348,11 @@ class Meter:
         if maximum_dot_count is not None:
             maximum_dot_count = int(maximum_dot_count)
             assert 0 <= maximum_dot_count
-        if initial_offset is None:
-            initial_offset = _duration.Offset(0)
-        initial_offset = _duration.Offset(initial_offset)
         nongrace_components = [
             _
             for _ in components
             if not isinstance(_, _score.IndependentAfterGraceContainer)
         ]
-        # first_start_offset = components[0]._get_timespan().start_offset
-        # last_start_offset = components[-1]._get_timespan().start_offset
         first_start_offset = nongrace_components[0]._get_timespan().start_offset
         last_start_offset = nongrace_components[-1]._get_timespan().start_offset
         difference = last_start_offset - first_start_offset + initial_offset
@@ -2366,7 +2361,7 @@ class Meter:
         first_offset = components[0]._get_timespan().start_offset
         first_offset -= initial_offset
         if components[0]._parent is None:
-            prolation = 1
+            prolation = fractions.Fraction(1)
         else:
             parentage = _parentage.Parentage(components[0]._parent)
             prolation = parentage.prolation
@@ -2378,18 +2373,17 @@ class Meter:
         if boundary_depth is not None:
             boundary_offsets = offset_inventory[boundary_depth]
         else:
-            boundary_offsets = None
-        # Cache results of iterator;
-        # we'll be mutating the underlying collection
+            boundary_offsets = ()
+        # Cache results of iterator; we'll be mutating the underlying collection
         iterator = _MeterManager.iterate_rewrite_inputs(components)
         items = tuple(iterator)
         for item in items:
             if isinstance(item, _select.LogicalTie):
                 recurse(
+                    item,
                     boundary_depth=boundary_depth,
                     boundary_offsets=boundary_offsets,
                     depth=0,
-                    logical_tie=item,
                 )
             elif isinstance(item, _score.Tuplet) and not rewrite_tuplets:
                 pass
@@ -2401,7 +2395,7 @@ class Meter:
                 else:
                     pair = duration.pair
                 sub_metrical_hierarchy = Meter(pair)
-                sub_boundary_depth = 1
+                sub_boundary_depth: int | None = 1
                 if boundary_depth is None:
                     sub_boundary_depth = None
                 Meter.rewrite_meter(
@@ -2413,7 +2407,10 @@ class Meter:
 
 
 def illustrate_meter_list(
-    meter_list, denominator=16, range_=None, scale=None
+    meter_list: list["Meter"],
+    denominator: int = 16,
+    range_: tuple | None = None,
+    scale: float = 1.0,
 ) -> _lilypondfile.LilyPondFile:
     r"""
     Illustrates meters.
@@ -2581,6 +2578,11 @@ def illustrate_meter_list(
             }
 
     """
+    assert all(isinstance(_, Meter) for _ in meter_list), repr(meter_list)
+    assert isinstance(denominator, int), repr(denominator)
+    if range_ is not None:
+        assert isinstance(range_, tuple), repr(range_)
+    assert isinstance(scale, float), repr(scale)
     durations = [_.duration for _ in meter_list]
     total_duration = sum(durations)
     offsets = _math.cumulative_sums(durations, start=0)
@@ -2695,14 +2697,15 @@ class MetricAccentKernel:
 
     ### INITIALIZER ###
 
-    def __init__(self, kernel=None):
+    def __init__(self, kernel: dict | None = None):
         kernel = kernel or {}
         assert isinstance(kernel, dict)
         for key, value in kernel.items():
             assert isinstance(key, _duration.Offset)
             assert isinstance(value, fractions.Fraction)
         self._kernel = kernel.copy()
-        self._offsets = tuple(sorted(self._kernel))
+        offsets = tuple(sorted(self._kernel))
+        self._offsets = offsets
 
     ### SPECIAL METHODS ###
 
@@ -2776,71 +2779,6 @@ class MetricAccentKernel:
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def count_offsets(argument) -> _timespan.OffsetCounter:
-        r"""
-        Count offsets in ``argument``.
-
-        ..  container:: example
-
-            >>> upper_staff = abjad.Staff("c'8 d'4. e'8 f'4.")
-            >>> lower_staff = abjad.Staff(r'\clef bass c4 b,4 a,2')
-            >>> score = abjad.Score([upper_staff, lower_staff])
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(score)
-                >>> print(string)
-                \new Score
-                <<
-                    \new Staff
-                    {
-                        c'8
-                        d'4.
-                        e'8
-                        f'4.
-                    }
-                    \new Staff
-                    {
-                        \clef "bass"
-                        c4
-                        b,4
-                        a,2
-                    }
-                >>
-
-            >>> abjad.show(score) # doctest: +SKIP
-
-            >>> MetricAccentKernel = abjad.MetricAccentKernel
-            >>> leaves = abjad.select.leaves(score)
-            >>> counter = abjad.MetricAccentKernel.count_offsets(leaves)
-            >>> for offset, count in sorted(counter.items.items()):
-            ...     print(f"{offset!r}: {count}")
-            Offset((0, 1)): 2
-            Offset((1, 8)): 2
-            Offset((1, 4)): 2
-            Offset((1, 2)): 4
-            Offset((5, 8)): 2
-            Offset((1, 1)): 2
-
-        ..  container:: example
-
-            >>> a = abjad.Timespan(0, 10)
-            >>> b = abjad.Timespan(5, 15)
-            >>> c = abjad.Timespan(15, 20)
-
-            >>> counter = MetricAccentKernel.count_offsets((a, b, c))
-            >>> for offset, count in sorted(counter.items.items()):
-            ...     print(f"{offset!r}: {count}")
-            Offset((0, 1)): 1
-            Offset((5, 1)): 1
-            Offset((10, 1)): 1
-            Offset((15, 1)): 2
-            Offset((20, 1)): 1
-
-        """
-        return _timespan.OffsetCounter(argument)
-
-    @staticmethod
     def from_meter(meter: Meter, denominator: int = 32) -> "MetricAccentKernel":
         """
         Create a metric accent kernel from ``meter``.
@@ -2900,11 +2838,9 @@ class _MeterFittingSession:
                 self._kernel_denominator
             )
             self._kernels[kernel] = meter
-        self._longest_kernel: MetricAccentKernel | None
-        if self.kernels:
-            self._longest_kernel = sorted(self._kernels, key=lambda _: _.duration)[-1]
-        else:
-            self._longest_kernel = None
+        mak = sorted(self._kernels, key=lambda _: _.duration)[-1]
+        assert isinstance(mak, MetricAccentKernel), repr(mak)
+        self._longest_kernel = mak
 
     ### SPECIAL METHODS ###
 
@@ -2968,27 +2904,25 @@ class _MeterFittingSession:
         lookahead_score = sum(lookahead_scores)
         return lookahead_score
 
-    def _get_offset_counter_at(self, start_offset):
+    def _get_offset_counter_at(self, start_offset) -> _timespan.OffsetCounter:
         if start_offset in self.cached_offset_counters:
-            # return self.cached_offset_counters[start_offset]
             return _timespan.OffsetCounter(self.cached_offset_counters[start_offset])
-        offset_counter = {}
+        offset_to_weight: dict[_duration.Offset, fractions.Fraction] = {}
+        assert self.longest_kernel is not None
         stop_offset = start_offset + self.longest_kernel.duration
         index = bisect.bisect_left(self.ordered_offsets, start_offset)
         if index == len(self.ordered_offsets):
-            # return offset_counter
-            return _timespan.OffsetCounter(offset_counter)
+            return _timespan.OffsetCounter(offset_to_weight)
         offset = self.ordered_offsets[index]
         while offset <= stop_offset:
             count = self.offset_counter.items[offset]
-            offset_counter[offset - start_offset] = count
+            offset_to_weight[offset - start_offset] = count
             index += 1
             if index == len(self.ordered_offsets):
                 break
             offset = self.ordered_offsets[index]
-        self.cached_offset_counters[start_offset] = offset_counter
-        offset_counter = _timespan.OffsetCounter(offset_counter)
-        # raise Exception(offset_counter)
+        self.cached_offset_counters[start_offset] = offset_to_weight
+        offset_counter = _timespan.OffsetCounter(offset_to_weight)
         return offset_counter
 
     ### PUBLIC PROPERTIES ###
@@ -3015,12 +2949,10 @@ class _MeterFittingSession:
         return self._kernels
 
     @property
-    def longest_kernel(self) -> MetricAccentKernel | None:
+    def longest_kernel(self) -> MetricAccentKernel:
         """
         Gets longest kernel.
         """
-        if self._longest_kernel is not None:
-            assert isinstance(self._longest_kernel, MetricAccentKernel)
         return self._longest_kernel
 
     @property
@@ -3052,6 +2984,7 @@ class _MeterFittingSession:
         return self._ordered_offsets
 
 
+# TODO: remove and migrate methods to remaining classes
 class _MeterManager:
     """
     Meter manager.
@@ -3064,10 +2997,13 @@ class _MeterManager:
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def get_offsets_at_depth(depth, offset_inventory):
+    def get_offsets_at_depth(
+        depth, offset_inventory: list[tuple[_duration.Offset, ...]]
+    ) -> tuple[_duration.Offset, ...]:
         """
         Gets offsets at ``depth`` in ``offset_inventory``.
         """
+        assert all(isinstance(_, tuple) for _ in offset_inventory)
         if depth < len(offset_inventory):
             return offset_inventory[depth]
         while len(offset_inventory) <= depth:
@@ -3087,19 +3023,24 @@ class _MeterManager:
                     new_offsets.append(three_quarters)
             new_offsets.append(old_offsets[-1])
             offset_inventory.append(tuple(new_offsets))
-        return offset_inventory[depth]
+        result = offset_inventory[depth]
+        assert isinstance(result, tuple)
+        assert all(isinstance(_, _duration.Offset) for _ in result), repr(result)
+        return result
 
     @staticmethod
     def is_acceptable_logical_tie(
-        logical_tie_duration=None,
-        logical_tie_starts_in_offsets=None,
-        logical_tie_stops_in_offsets=None,
-        maximum_dot_count=None,
-    ):
+        logical_tie_duration: _duration.Duration,
+        logical_tie_starts_in_offsets: bool = False,
+        logical_tie_stops_in_offsets: bool = False,
+        maximum_dot_count: int | None = None,
+    ) -> bool:
         """
         Is true if logical tie is acceptable.
         """
-        # print '\tTESTING ACCEPTABILITY'
+        assert isinstance(logical_tie_duration, _duration.Duration)
+        assert isinstance(logical_tie_starts_in_offsets, bool)
+        assert isinstance(logical_tie_stops_in_offsets, bool)
         if not logical_tie_duration.is_assignable:
             return False
         if (
@@ -3113,15 +3054,16 @@ class _MeterManager:
 
     @staticmethod
     def is_boundary_crossing_logical_tie(
-        boundary_depth=None,
-        boundary_offsets=None,
-        logical_tie_start_offset=None,
-        logical_tie_stop_offset=None,
-    ):
+        logical_tie_start_offset: _duration.Offset,
+        logical_tie_stop_offset: _duration.Offset,
+        boundary_depth: int | None = None,
+        boundary_offsets: tuple[_duration.Offset, ...] = (),
+    ) -> bool:
         """
         Is true if logical tie crosses meter boundaries.
         """
-        # print '\tTESTING BOUNDARY CROSSINGS'
+        assert isinstance(logical_tie_start_offset, _duration.Offset)
+        assert isinstance(logical_tie_stop_offset, _duration.Offset)
         if boundary_depth is None:
             return False
         if not any(
@@ -3136,11 +3078,12 @@ class _MeterManager:
             return False
         return True
 
+    # TODO: typehint
     @staticmethod
     def iterate_rewrite_inputs(argument):
         r"""
-        Iterates topmost masked logical ties, rest groups and containers in ``argument``,
-        masked by ``argument``.
+        Iterates topmost masked logical ties, rest groups and containers in
+        ``argument``, masked by ``argument``.
 
         >>> string = "! 2/4 c'4 d'4 ~ !"
         >>> string += "! 4/4 d'8. r16 r8. e'16 ~ "
@@ -3231,7 +3174,6 @@ class _MeterManager:
         LogicalTie(items=[Note("b'4")])
         LogicalTie(items=[Note("c''4")])
 
-        Returns generator.
         """
         last_tie = None
         current_leaf_group = None
