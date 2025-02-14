@@ -2410,10 +2410,12 @@ def test_LilyPondParser_accidentals_forced_02():
 
 def test_parse_rtm_syntax_01():
     string = "(3 (1 (3 (1 (3 (1 (3 (1 1 1 1))))))))"
-    container = abjad.rhythmtrees.parse_rtm_syntax(string)
+    components = abjad.rhythmtrees.parse_rtm_syntax(string)
+    voice = abjad.Voice(components)
 
-    assert abjad.lilypond(container) == abjad.string.normalize(
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
+        \new Voice
         {
             \tweak text #tuplet-number::calc-fraction-text
             \tuplet 4/3
