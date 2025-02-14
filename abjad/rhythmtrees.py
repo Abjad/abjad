@@ -119,7 +119,7 @@ class RhythmTreeNode:
                 Duration(1, 1)
 
                 >>> rtc(abjad.Duration(1, 1))
-                [Note("c'4"), Note("c'4"), Note("c'4"), Note("c'4")]
+                [Tuplet('1:1', "{ 1/1 c'4 c'4 } { 1/1 c'4 c'4 }")]
 
             ..  container:: example
 
@@ -137,7 +137,7 @@ class RhythmTreeNode:
                 Duration(1, 2)
 
                 >>> rtc[1](abjad.Duration(1, 2))
-                [Note("c'4"), Note("c'4")]
+                [Tuplet('1:1', "c'4 c'4")]
 
             ..  container:: example
 
@@ -727,9 +727,6 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             target_duration = tuplet_duration
             multiplier = target_duration / contents_duration
             tuplet.multiplier = _duration.pair(multiplier)
-            # TODO: remove this branch to regularlize output structure
-            if fractions.Fraction(*tuplet.multiplier) == 1:
-                return tuplet[:]
             return [tuplet]
 
         tuplet_duration_ = duration * _duration.Duration(self.pair)
@@ -876,14 +873,14 @@ class RhythmTreeParser(Parser):
     ..  container:: example
 
         Abjad’s rhythm-tree parser parses a micro-language resembling Ircam’s
-        RTM Lisp syntax, and generates a sequence of rhythm-tree structures.
-        Composers can maniuplate these structures and then convert them to
-        Abjad score components.
+        RTM Lisp syntax. The parser generates a list of rhythm trees. Composers
+        can maniuplate these rhythm trees and convert them to Abjad score
+        components.
 
         >>> parser = abjad.rhythmtrees.RhythmTreeParser()
         >>> string = '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
-        >>> list_ = parser(string)
-        >>> rtc = list_[0]
+        >>> rtcs = parser(string)
+        >>> rtc = rtcs[0]
         >>> rtc.rtm_format
         '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
 
@@ -892,8 +889,8 @@ class RhythmTreeParser(Parser):
         RhythmTreeLeaf((1, 1), is_pitched=True)
         RhythmTreeContainer((1, 1))
 
-        >>> component_list = rtc(abjad.Duration(1, 4))
-        >>> tuplet = component_list[0]
+        >>> components = rtc(abjad.Duration(1, 4))
+        >>> tuplet = components[0]
         >>> abjad.show(tuplet) # doctest: +SKIP
 
         ..  docs::
@@ -1070,17 +1067,19 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
 
         A single quarter note:
 
-        >>> result = abjad.rhythmtrees.parse_rtm_syntax("1")
-        >>> result
-        Note("c'4")
+        >>> container = abjad.rhythmtrees.parse_rtm_syntax("1")
+        >>> container
+        Container("c'4")
 
-        >>> abjad.show(result) # doctest: +SKIP
+        >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(result)
+            >>> string = abjad.lilypond(container)
             >>> print(string)
-            c'4
+            {
+                c'4
+            }
 
         A series of quarter notes:
 
@@ -1181,56 +1180,69 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
 
     ..  container:: example
 
-        Divides quarter-note duration into 1 part; results in a note:
+        Divides quarter-note duration into 1 part:
 
         >>> string = "(1 (1))"
-        >>> result = abjad.rhythmtrees.parse_rtm_syntax(string)
-        >>> result
-        Note("c'4")
+        >>> container = abjad.rhythmtrees.parse_rtm_syntax(string)
 
-        >>> abjad.show(result) # doctest: +SKIP
+        >>> container
+        Container("{ 1/1 c'4 }")
+
+        >>> abjad.show(tuplet) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(result)
+            >>> string = abjad.lilypond(container)
             >>> print(string)
-            c'4
+            {
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 1/1
+                {
+                    c'4
+                }
+            }
 
         Divides quarter-note duration ``1:1``; results in a container:
 
         >>> string = "(1 (1 1))"
-        >>> result = abjad.rhythmtrees.parse_rtm_syntax(string)
-        >>> result
-        Container("c'8 c'8")
+        >>> container = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> container
+        Container("{ 1/1 c'8 c'8 }")
 
-        >>> abjad.show(result) # doctest: +SKIP
+        >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(result)
+            >>> string = abjad.lilypond(container)
             >>> print(string)
             {
-                c'8
-                c'8
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 1/1
+                {
+                    c'8
+                    c'8
+                }
             }
 
         Divides quarter-note duration ``1:2``; results in a tuplet:
 
         >>> string = "(1 (1 2))"
-        >>> result = abjad.rhythmtrees.parse_rtm_syntax(string)
-        >>> result
-        Tuplet('3:2', "c'8 c'4")
+        >>> container = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> container
+        Container("{ 2/3 c'8 c'4 }")
 
-        >>> abjad.show(result) # doctest: +SKIP
+        >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(result)
+            >>> string = abjad.lilypond(container)
             >>> print(string)
-            \tuplet 3/2
             {
-                c'8
-                c'4
+                \tuplet 3/2
+                {
+                    c'8
+                    c'4
+                }
             }
 
     ..  container:: example
@@ -1238,53 +1250,65 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
         Divides half-note duration into 1 part; results in a note:
 
         >>> string = "(2 (1))"
-        >>> result = abjad.rhythmtrees.parse_rtm_syntax(string)
-        >>> result
-        Note("c'2")
+        >>> container = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> container
+        Container("{ 1/1 c'2 }")
 
-        >>> abjad.show(result) # doctest: +SKIP
+        >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(result)
+            >>> string = abjad.lilypond(container)
             >>> print(string)
-            c'2
+            {
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 1/1
+                {
+                    c'2
+                }
+            }
 
         Divides half-note duration ``1:1``; results in a container:
 
         >>> string = "(2 (1 1))"
-        >>> result = abjad.rhythmtrees.parse_rtm_syntax(string)
-        >>> result
-        Container("c'4 c'4")
+        >>> container = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> container
+        Container("{ 1/1 c'4 c'4 }")
 
-        >>> abjad.show(result) # doctest: +SKIP
+        >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(result)
+            >>> string = abjad.lilypond(container)
             >>> print(string)
             {
-                c'4
-                c'4
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 1/1
+                {
+                    c'4
+                    c'4
+                }
             }
 
         Divides half-note duration ``1:2``; results in a tuplet:
 
         >>> string = "(2 (1 2))"
-        >>> result = abjad.rhythmtrees.parse_rtm_syntax(string)
-        >>> result
-        Tuplet('3:2', "c'4 c'2")
+        >>> container = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> container
+        Container("{ 2/3 c'4 c'2 }")
 
-        >>> abjad.show(result) # doctest: +SKIP
+        >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(result)
+            >>> string = abjad.lilypond(container)
             >>> print(string)
-            \tuplet 3/2
             {
-                c'4
-                c'2
+                \tuplet 3/2
+                {
+                    c'4
+                    c'2
+                }
             }
 
     ..  container:: example
@@ -1293,20 +1317,28 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
         ``1``, ``1:1``, ``1:2``:
 
         >>> string = "(1 (1)) (1 (1 1)) (1 (1 2))"
-        >>> result = abjad.rhythmtrees.parse_rtm_syntax(string)
-        >>> result
-        Container("c'4 c'8 c'8 { 2/3 c'8 c'4 }")
+        >>> container = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> container
+        Container("{ 1/1 c'4 } { 1/1 c'8 c'8 } { 2/3 c'8 c'4 }")
 
         >>> abjad.show(result) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(result)
+            >>> string = abjad.lilypond(container)
             >>> print(string)
             {
-                c'4
-                c'8
-                c'8
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 1/1
+                {
+                    c'4
+                }
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 1/1
+                {
+                    c'8
+                    c'8
+                }
                 \tuplet 3/2
                 {
                     c'8
@@ -1319,19 +1351,29 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
         Another example:
 
         >>> string = "(1 (1 (1 (1 1)) 1))"
-        >>> tuplet = abjad.rhythmtrees.parse_rtm_syntax(string)
-        >>> abjad.show(tuplet) # doctest: +SKIP
+        >>> container = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> container
+        Container("{ 2/3 c'8 { 1/1 c'16 c'16 } c'8 }")
+
+        >>> abjad.show(container) # doctest: +SKIP
+        Container("{ 2/3 c'8 { 1/1 c'16 c'16 } c'8 }")
 
         ..  docs::
 
-            >>> string = abjad.lilypond(tuplet)
+            >>> string = abjad.lilypond(container)
             >>> print(string)
-            \tuplet 3/2
             {
-                c'8
-                c'16
-                c'16
-                c'8
+                \tuplet 3/2
+                {
+                    c'8
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \tuplet 1/1
+                    {
+                        c'16
+                        c'16
+                    }
+                    c'8
+                }
             }
 
     ..  container:: example
@@ -1339,24 +1381,29 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
         Fractional durations are allowed:
 
         >>> string = "(3/4 (1 1/2 (4/3 (1 -1/2 1))))"
-        >>> tuplet = abjad.rhythmtrees.parse_rtm_syntax(string)
-        >>> abjad.show(tuplet) # doctest: +SKIP
+        >>> container = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> container
+        Container("{ 9/17 c'8 c'16 { 8/15 c'8 r16 c'8 } }")
+
+        >>> abjad.show(container) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(tuplet)
+            >>> string = abjad.lilypond(container)
             >>> print(string)
-            \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 17/9
             {
-                c'8
-                c'16
-                \tweak edge-height #'(0.7 . 0)
-                \tuplet 15/8
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 17/9
                 {
                     c'8
-                    r16
-                    c'8
+                    c'16
+                    \tweak edge-height #'(0.7 . 0)
+                    \tuplet 15/8
+                    {
+                        c'8
+                        r16
+                        c'8
+                    }
                 }
             }
 
@@ -1368,10 +1415,13 @@ def parse_rtm_syntax(string: str) -> _score.Container | _score.Leaf | _score.Tup
         assert isinstance(node, prototype), repr(node)
         components = node(_duration.Duration(1, 4))
         container.extend(components)
+    """
     if len(container) == 1:
         result = container[0]
     else:
         result = container
+    """
+    result = container
     prototype_ = (_score.Container, _score.Leaf, _score.Tuplet)
     assert isinstance(result, prototype_), repr(result)
     return result

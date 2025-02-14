@@ -33,8 +33,9 @@ def test_RhythmTreeContainer___call___02():
     rtm = "(1 (1 (2 (1 1 1 1)) 1))"
     rtc = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
     components = rtc(abjad.Duration(1, 4))
-    tuplet = components[0]._parent
-    staff = abjad.Staff([tuplet])
+    # tuplet = components[0]._parent
+    # staff = abjad.Staff([tuplet])
+    staff = abjad.Staff(components)
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
@@ -43,10 +44,14 @@ def test_RhythmTreeContainer___call___02():
             \tuplet 1/1
             {
                 c'16
-                c'32
-                c'32
-                c'32
-                c'32
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 1/1
+                {
+                    c'32
+                    c'32
+                    c'32
+                    c'32
+                }
                 c'16
             }
         }
@@ -387,9 +392,11 @@ def test_RhythmTreeNode___call___01():
     rtm = "(1 (1 1 1 1))"
     rtc = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
     components = rtc(abjad.Duration(1, 4))
-    assert len(components) == 4
-    assert all(isinstance(_, abjad.Note) for _ in components)
-    assert all(_.written_duration == abjad.Duration(1, 16) for _ in components)
+    assert len(components) == 1
+    tuplet = components[0]
+    assert len(tuplet) == 4
+    assert all(isinstance(_, abjad.Note) for _ in tuplet)
+    assert all(_.written_duration == abjad.Duration(1, 16) for _ in tuplet)
 
 
 def test_RhythmTreeNode___call___02():
@@ -418,17 +425,29 @@ def test_RhythmTreeNode___call___02():
 def test_RhythmTreeNode___call___03():
     rtm = "(1 (1 (2 (1 (2 (1 1)) 1)) 2))"
     rtc = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
-    result = rtc(abjad.Duration(1, 4))
-    assert abjad.lilypond(result[0]) == abjad.string.normalize(
+    components = rtc(abjad.Duration(1, 4))
+    staff = abjad.Staff(components)
+    assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
-        \tuplet 5/4
+        \new Staff
         {
-            c'16
-            c'32
-            c'32
-            c'32
-            c'32
-            c'8
+            \tuplet 5/4
+            {
+                c'16
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 1/1
+                {
+                    c'32
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \tuplet 1/1
+                    {
+                        c'32
+                        c'32
+                    }
+                    c'32
+                }
+                c'8
+            }
         }
         """
     )
