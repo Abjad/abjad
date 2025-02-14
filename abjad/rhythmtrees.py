@@ -1034,32 +1034,33 @@ class RhythmTreeParser(Parser):
         p[0] = p[1] + [p[2]]
 
 
-# TODO: find a way to initialize module-level __parser
-# TODO: combine this with parse_rtm_syntax()
-def parse(string: str) -> list[RhythmTreeContainer]:
+def call(
+    nodes, duration: _duration.Duration = _duration.Duration(1, 4)
+) -> list[_score.Leaf | _score.Tuplet]:
     """
-    Parses ``string``.
+    Calls each node in ``nodes`` with ``duration``.
     """
-    parser = RhythmTreeParser()
-    rtcs = parser(string)
-    assert all(isinstance(_, RhythmTreeContainer) for _ in rtcs)
-    return rtcs
+    assert all(isinstance(_, RhythmTreeContainer | RhythmTreeLeaf) for _ in nodes)
+    assert isinstance(duration, _duration.Duration), repr(duration)
+    components = []
+    for node in nodes:
+        components_ = node(duration)
+        components.extend(components_)
+    prototype_ = (_score.Leaf, _score.Tuplet)
+    assert all(isinstance(_, prototype_) for _ in components), repr(components)
+    return components
 
 
-# TODO: regularize output
-# TODO: combine this with parse()
-# TODO: change parse_rtm_syntax() to parse()
-def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
+def parse(string: str) -> list[RhythmTreeContainer | RhythmTreeLeaf]:
     r"""
-    Parses RTM syntax ``string``.
-
-    Then calls rhythm tree on quarter-note pulse duration.
+    Parses RTM ``string``.
 
     ..  container:: example
 
         A single quarter note:
 
-        >>> components = abjad.rhythmtrees.parse_rtm_syntax("1")
+        >>> nodes = abjad.rhythmtrees.parse("1")
+        >>> components = abjad.rhythmtrees.call(nodes)
         >>> components
         [Note("c'4")]
 
@@ -1077,7 +1078,8 @@ def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
 
         A series of quarter notes:
 
-        >>> components = abjad.rhythmtrees.parse_rtm_syntax("1 1 1 1 1 1")
+        >>> nodes = abjad.rhythmtrees.parse("1 1 1 1 1 1")
+        >>> components = abjad.rhythmtrees.call(nodes)
         >>> components
         [Note("c'4"), Note("c'4"), Note("c'4"), Note("c'4"), Note("c'4"), Note("c'4")]
 
@@ -1100,7 +1102,8 @@ def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
 
         Additive ritardando:
 
-        >>> components = abjad.rhythmtrees.parse_rtm_syntax("1 2 3 4 5")
+        >>> nodes = abjad.rhythmtrees.parse("1 2 3 4 5")
+        >>> components = abjad.rhythmtrees.call(nodes)
         >>> voice = abjad.Voice(components)
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1121,7 +1124,8 @@ def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
 
         Fractions durations:
 
-        >>> components = abjad.rhythmtrees.parse_rtm_syntax("1 1/2 1/3 1/4 1/5")
+        >>> nodes = abjad.rhythmtrees.parse("1 1/2 1/3 1/4 1/5")
+        >>> components = abjad.rhythmtrees.call(nodes)
         >>> voice = abjad.Voice(components)
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1148,7 +1152,8 @@ def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
 
         With arbitrary multipliers:
 
-        >>> components = abjad.rhythmtrees.parse_rtm_syntax("1 2/3 3/5")
+        >>> nodes = abjad.rhythmtrees.parse("1 2/3 3/5")
+        >>> components = abjad.rhythmtrees.call(nodes)
         >>> voice = abjad.Voice(components)
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1176,7 +1181,8 @@ def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
         Divides quarter-note duration into 1 part:
 
         >>> string = "(1 (1))"
-        >>> components = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> nodes = abjad.rhythmtrees.parse(string)
+        >>> components = abjad.rhythmtrees.call(nodes)
         >>> voice = abjad.Voice(components)
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1196,7 +1202,8 @@ def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
         Divides quarter-note duration ``1:1``; results in a container:
 
         >>> string = "(1 (1 1))"
-        >>> components = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> nodes = abjad.rhythmtrees.parse(string)
+        >>> components = abjad.rhythmtrees.call(nodes)
         >>> voice = abjad.Voice(components)
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1217,7 +1224,8 @@ def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
         Divides quarter-note duration ``1:2``; results in a tuplet:
 
         >>> string = "(1 (1 2))"
-        >>> components = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> nodes = abjad.rhythmtrees.parse(string)
+        >>> components = abjad.rhythmtrees.call(nodes)
         >>> voice = abjad.Voice(components)
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1239,7 +1247,8 @@ def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
         Divides half-note duration into 1 part; results in a note:
 
         >>> string = "(2 (1))"
-        >>> components = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> nodes = abjad.rhythmtrees.parse(string)
+        >>> components = abjad.rhythmtrees.call(nodes)
         >>> voice = abjad.Voice(components)
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1259,7 +1268,8 @@ def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
         Divides half-note duration ``1:1``; results in a container:
 
         >>> string = "(2 (1 1))"
-        >>> components = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> nodes = abjad.rhythmtrees.parse(string)
+        >>> components = abjad.rhythmtrees.call(nodes)
         >>> voice = abjad.Voice(components)
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1280,7 +1290,8 @@ def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
         Divides half-note duration ``1:2``; results in a tuplet:
 
         >>> string = "(2 (1 2))"
-        >>> components = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> nodes = abjad.rhythmtrees.parse(string)
+        >>> components = abjad.rhythmtrees.call(nodes)
         >>> voice = abjad.Voice(components)
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1303,7 +1314,8 @@ def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
         ``1``, ``1:1``, ``1:2``:
 
         >>> string = "(1 (1)) (1 (1 1)) (1 (1 2))"
-        >>> components = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> nodes = abjad.rhythmtrees.parse(string)
+        >>> components = abjad.rhythmtrees.call(nodes)
         >>> voice = abjad.Voice(components)
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1336,7 +1348,8 @@ def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
         Another example:
 
         >>> string = "(1 (1 (1 (1 1)) 1))"
-        >>> components = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> nodes = abjad.rhythmtrees.parse(string)
+        >>> components = abjad.rhythmtrees.call(nodes)
         >>> voice = abjad.Voice(components)
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1364,7 +1377,8 @@ def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
         Fractional durations are allowed:
 
         >>> string = "(3/4 (1 1/2 (4/3 (1 -1/2 1))))"
-        >>> components = abjad.rhythmtrees.parse_rtm_syntax(string)
+        >>> nodes = abjad.rhythmtrees.parse(string)
+        >>> components = abjad.rhythmtrees.call(nodes)
         >>> voice = abjad.Voice(components)
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1391,13 +1405,6 @@ def parse_rtm_syntax(string: str) -> list[_score.Leaf | _score.Tuplet]:
 
     """
     parser = RhythmTreeParser()
-    components = []
     nodes = parser(string)
-    prototype = (RhythmTreeLeaf, RhythmTreeContainer)
-    for node in nodes:
-        assert isinstance(node, prototype), repr(node)
-        components_ = node(_duration.Duration(1, 4))
-        components.extend(components_)
-    prototype_ = (_score.Leaf, _score.Tuplet)
-    assert all(isinstance(_, prototype_) for _ in components), repr(components)
-    return components
+    assert all(isinstance(_, RhythmTreeContainer | RhythmTreeLeaf) for _ in nodes)
+    return nodes
