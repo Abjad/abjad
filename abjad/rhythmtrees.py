@@ -11,7 +11,6 @@ import uqbar.graphs
 from . import duration as _duration
 from . import makers as _makers
 from . import math as _math
-from . import mutate as _mutate
 from . import score as _score
 from . import sequence as _sequence
 from . import spanners as _spanners
@@ -656,7 +655,6 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
         container.extend(rtc[:])
         return container
 
-    # TODO: regularize output structure
     def __call__(
         self, duration: _duration.Duration
     ) -> list[_score.Leaf | _score.Tuplet]:
@@ -698,7 +696,6 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
         assert isinstance(duration, _duration.Duration), repr(duration)
         assert 0 < duration
 
-        # TODO: regularize output structure
         def recurse(rtc, tuplet_duration):
             assert isinstance(rtc, RhythmTreeContainer), repr(rtc)
             assert isinstance(tuplet_duration, _duration.Duration)
@@ -732,12 +729,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
         tuplet_duration_ = duration * _duration.Duration(self.pair)
         assert isinstance(tuplet_duration_, _duration.Duration)
         components = recurse(self, tuplet_duration_)
-        # TODO: remove this loop; return components as-is
-        #       user can do further by-hand processing
-        for component in components[:]:
-            if isinstance(component, _score.Tuplet):
-                if component.trivial():
-                    _mutate._extract(component)
+        assert all(isinstance(_, _score.Leaf | _score.Tuplet) for _ in components)
         return components
 
     def __graph__(self, **keywords) -> uqbar.graphs.Graph:
