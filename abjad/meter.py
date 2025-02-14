@@ -274,8 +274,11 @@ class Meter:
         self,
         root_node: _rhythmtrees.RhythmTreeContainer,
         *,
+        # TODO: remove do_not_recurse
         do_not_recurse: bool = False,
+        # TODO: move increase_monotonic to abjad.rhythmtrees.populate()
         increase_monotonic: bool = False,
+        # TODO: possibly move preferred_boundary_depth to rewrite_meter()
         preferred_boundary_depth: int | None = None,
     ) -> None:
         assert isinstance(root_node, _rhythmtrees.RhythmTreeContainer), repr(root_node)
@@ -288,6 +291,7 @@ class Meter:
             assert isinstance(preferred_boundary_depth, int)
         self._preferred_boundary_depth = preferred_boundary_depth
 
+        # TODO: move recurse() to abjad.rhythmtrees.populate()
         def recurse(rtc, factors, denominator, increase_monotonic):
             assert isinstance(rtc, _rhythmtrees.RhythmTreeContainer)
             assert all(isinstance(_, int) for _ in factors)
@@ -1344,6 +1348,9 @@ class Meter:
         if current_leaf_group is not None:
             yield _select.LogicalTie(current_leaf_group)
 
+    # TODO: change rewrite_meter() from staic method to bound method
+    # TODO: possibly pass in preferred_boundary_depth
+    # TODO: move docstring examples to meter.py module-level docstring
     @staticmethod
     def rewrite_meter(
         components: typing.Sequence[_score.Component],
