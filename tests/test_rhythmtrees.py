@@ -571,15 +571,15 @@ def test_RhythmTreeNode_parent_01():
         subcontainer.append(container)
 
 
-def test_RhythmTreeNode_parentage_ratios_01():
+def test_RhythmTreeNode__get_parentage_ratios_01():
     string = "(1 (1 (2 (3 4)) 2))"
     rtc = abjad.rhythmtrees.RhythmTreeParser()(string)[0]
-    assert rtc.parentage_ratios == ((1, 1),)
-    assert rtc[0].parentage_ratios == ((1, 1), (1, 5))
-    assert rtc[1].parentage_ratios == ((1, 1), (2, 5))
-    assert rtc[1][0].parentage_ratios == ((1, 1), (2, 5), (3, 7))
-    assert rtc[1][1].parentage_ratios == ((1, 1), (2, 5), (4, 7))
-    assert rtc[2].parentage_ratios == ((1, 1), (2, 5))
+    assert rtc._get_parentage_ratios() == ((1, 1),)
+    assert rtc[0]._get_parentage_ratios() == ((1, 1), (1, 5))
+    assert rtc[1]._get_parentage_ratios() == ((1, 1), (2, 5))
+    assert rtc[1][0]._get_parentage_ratios() == ((1, 1), (2, 5), (3, 7))
+    assert rtc[1][1]._get_parentage_ratios() == ((1, 1), (2, 5), (4, 7))
+    assert rtc[2]._get_parentage_ratios() == ((1, 1), (2, 5))
 
 
 def test_RhythmTreeNode_pickle_01():
