@@ -287,7 +287,6 @@ class Meter:
     __slots__ = (
         "_denominator",
         "_numerator",
-        "_preferred_boundary_depth",
         "_root_node",
     )
 
@@ -296,36 +295,26 @@ class Meter:
     def __init__(
         self,
         root_node: _rhythmtrees.RhythmTreeContainer,
-        *,
-        # TODO: move preferred_boundary_depth to rewrite_meter()
-        preferred_boundary_depth: int | None = None,
     ) -> None:
         assert isinstance(root_node, _rhythmtrees.RhythmTreeContainer), repr(root_node)
-        """
         for node in [root_node] + list(root_node.depth_first()):
             assert node.prolation == 1, (repr(node), repr(node.prolation))
-        """
-        if preferred_boundary_depth is not None:
-            assert isinstance(preferred_boundary_depth, int)
         numerator, denominator = root_node.pair
         self._denominator = denominator
         self._numerator = numerator
-        self._preferred_boundary_depth = preferred_boundary_depth
         self._root_node = root_node
 
     ### SPECIAL METHODS ###
 
-    # TODO: this should probably include self.root_node
     def __eq__(self, argument) -> bool:
         """
-        Compares ``numerator``, ``denominator``, ``increase_monotonic``,
-        ``preferred_boundary_depth``.
+        Compares ``numerator``, ``denominator``.
         """
+        # TODO: compare root nodes
         if isinstance(argument, type(self)):
             return (
                 self.numerator == argument.numerator
                 and self.denominator == argument.denominator
-                and self.preferred_boundary_depth == argument.preferred_boundary_depth
             )
         return False
 
@@ -834,33 +823,6 @@ class Meter:
         return (self.numerator, self.denominator)
 
     @property
-    def preferred_boundary_depth(self) -> int | None:
-        """
-        Gets preferred boundary depth of meter.
-
-        ..  container:: example
-
-            No preferred boundary depth:
-
-            >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
-            >>> meter = abjad.Meter(rtc)
-            >>> meter.preferred_boundary_depth is None
-            True
-
-        ..  container:: example
-
-            Customized preferred boundary depth:
-
-            >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
-            >>> meter = abjad.Meter(rtc, preferred_boundary_depth=1)
-            >>> meter.preferred_boundary_depth
-            1
-
-        Used by ``abjad.Meter.rewrite_meter()``.
-        """
-        return self._preferred_boundary_depth
-
-    @property
     def pretty_rtm_format(self) -> str:
         """
         Gets pretty RTM format of meter.
@@ -1262,12 +1224,12 @@ class Meter:
             yield _select.LogicalTie(current_leaf_group)
 
     # TODO: change rewrite_meter() from staic method to bound method
-    # TODO: possibly pass in preferred_boundary_depth
     # TODO: move docstring examples to meter.py module-level docstring
     @staticmethod
     def rewrite_meter(
         components: typing.Sequence[_score.Component],
         meter: "Meter",
+        *,
         boundary_depth: int | None = None,
         initial_offset: _duration.Offset = _duration.Offset(0),
         maximum_dot_count: int | None = None,
@@ -2243,34 +2205,6 @@ class Meter:
                     c'4
                 }
 
-            Another way of doing this is by setting preferred boundary depth on the meter
-            itself:
-
-            >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
-            >>> score = abjad.Score([staff], name="Score")
-            >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-            >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
-            >>> meter = abjad.Meter(rtc, preferred_boundary_depth=1)
-            >>> abjad.Meter.rewrite_meter(staff[:], meter)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    \time 6/8
-                    c'4.
-                    ~
-                    c'16
-                    c'16
-                    ~
-                    c'4
-                }
-
-            This makes it possible to divide different meters in different ways.
-
         ..  container:: example
 
             Rewrites notes and tuplets:
@@ -2515,9 +2449,6 @@ class Meter:
             else:
                 _mutate._fuse(logical_tie[:])
 
-        if not isinstance(meter, Meter):
-            meter = Meter(meter)
-        boundary_depth = boundary_depth or meter.preferred_boundary_depth
         if not isinstance(meter, Meter):
             meter = Meter(meter)
         if boundary_depth is not None:
