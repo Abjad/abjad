@@ -6075,7 +6075,7 @@ class StemTremolo:
             }
 
         >>> rtc = abjad.meter.make_best_guess_rtc((3, 4))
-        >>> meter = abjad.Meter(rtc, do_not_populate=True)
+        >>> meter = abjad.Meter(rtc)
         >>> abjad.Meter.rewrite_meter(staff[:], meter)
         >>> abjad.show(staff) # doctest: +SKIP
 
