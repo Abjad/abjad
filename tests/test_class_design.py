@@ -20,7 +20,7 @@ class_to_default_values = {
     abjad.ColorFingering: (0,),
     abjad.InstrumentName: ("Piano",),
     abjad.Markup: (r"\markup Allegro",),
-    abjad.Meter: (abjad.rhythmtrees.RhythmTreeContainer((4, 4)),),
+    abjad.Meter: (abjad.meter.make_best_guess_rtc((4, 4)),),
     abjad.MetricModulation: (abjad.Note("c'4"), abjad.Note("c'4.")),
     abjad.MetronomeMark: (abjad.Duration(1, 4), 90),
     abjad.TextMark: (r'\textMark \markup \italic "V.S."',),

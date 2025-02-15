@@ -25,20 +25,17 @@ from . import timespan as _timespan
 
 class Meter:
     """
-    Meter models a common practice understanding of beats and other levels of
-    rhythmic organization structured as a tree. Meter structure corresponds to
-    the monotonically increasing sequence of factors in the numerator of a
-    given time signature. Successively deeper levels of the tree divide time by
-    successive factors.
+    Meter.
+
+    Meter models a common-practice understanding of beats and other levels of
+    rhythmic organization structured as a tree.
 
     ..  container:: example
 
-        Duple meter:
+        ``2/4``:
 
-        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((2, 4))
-        >>> meter = abjad.Meter(rtc)
-        >>> meter
-        Meter('(2/4 (1/4 1/4))')
+        >>> rtc = abjad.meter.make_best_guess_rtc((2, 4))
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
         >>> print(meter.pretty_rtm_format)
         (2/4 (
             1/4
@@ -46,14 +43,12 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        ``2/4`` comprises two beats.
-
     ..  container:: example
 
-        Triple meter:
+        ``3/4``:
 
-        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((3, 4))
-        >>> meter = abjad.Meter(rtc)
+        >>> rtc = abjad.meter.make_best_guess_rtc((3, 4))
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
         >>> print(meter.pretty_rtm_format)
         (3/4 (
             1/4
@@ -62,16 +57,12 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        ``3/4`` comprises three beats.
-
     ..  container:: example
 
-        Quadruple meter:
+        ``4/4`` as four equal beats:
 
-        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((4, 4))
-        >>> meter = abjad.Meter(rtc)
-        >>> meter
-        Meter('(4/4 (1/4 1/4 1/4 1/4))')
+        >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
         >>> print(meter.pretty_rtm_format)
         (4/4 (
             1/4
@@ -81,14 +72,28 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        ``4/4`` comprises four beats.
+        ``4/4`` as two groups of two beats:
+
+        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((4, 4))
+        >>> abjad.rhythmtrees.populate(rtc, [2, 2], 4)
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
+        >>> print(meter.pretty_rtm_format)
+        (4/4 (
+            (2/4 (
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))))
+
+        >>> abjad.graph(meter) # doctest: +SKIP
 
     ..  container:: example
 
-        Compound triple meter:
+        ``6/8``:
 
-        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 8))
-        >>> meter = abjad.Meter(rtc)
+        >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
         >>> print(meter.pretty_rtm_format)
         (6/8 (
             (3/8 (
@@ -102,14 +107,12 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        ``6/8`` comprises two beats of three parts each.
-
     ..  container:: example
 
-        Another compound triple meter:
+        ``12/8``:
 
-        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((12, 8))
-        >>> meter = abjad.Meter(rtc)
+        >>> rtc = abjad.meter.make_best_guess_rtc((12, 8))
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
         >>> print(meter.pretty_rtm_format)
         (12/8 (
             (3/8 (
@@ -131,14 +134,12 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        ``12/8`` comprises four beats of three parts each.
-
     ..  container:: example
 
-        An asymmetric meter:
+        ``5/4`` grouped as two ``3/4 + 2/4``:
 
-        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((5, 4))
-        >>> meter = abjad.Meter(rtc)
+        >>> rtc = abjad.meter.make_best_guess_rtc((5, 4))
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
         >>> print(meter.pretty_rtm_format)
         (5/4 (
             (3/4 (
@@ -151,15 +152,28 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        ``5/4`` comprises two unequal beats. By default unequal beats are
-        arranged from greatest to least.
+        ``5/4`` grouped as ``2/4 + 3/4``:
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((5, 4), increase_monotonic=True)
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
+        >>> print(meter.pretty_rtm_format)
+        (5/4 (
+            (2/4 (
+                1/4
+                1/4))
+            (3/4 (
+                1/4
+                1/4
+                1/4))))
+
+        >>> abjad.graph(meter) # doctest: +SKIP
 
     ..  container:: example
 
-        Another asymmetric meter:
+        ``7/4`` grouped as ``3/4 + 2/4 + 2/4``:
 
-        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
-        >>> meter = abjad.Meter(rtc)
+        >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
         >>> print(meter.pretty_rtm_format)
         (7/4 (
             (3/4 (
@@ -175,15 +189,10 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        ``7/4`` comprises three unequal beats. Beats are arranged from greatest
-        to least by default.
+        ``7/4`` grouped as ``2/4 + 2/4 + 3/4``:
 
-    ..  container:: example
-
-        The same asymmetric meter structured differently:
-
-        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
-        >>> meter = abjad.Meter(rtc, increase_monotonic=True)
+        >>> rtc = abjad.meter.make_best_guess_rtc((7, 4), increase_monotonic=True)
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
         >>> print(meter.pretty_rtm_format)
         (7/4 (
             (2/4 (
@@ -199,16 +208,12 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        ``7/4`` with beats arragned from least to greatest.
-
     ..  container:: example
 
-        Meter interpreted by default as containing two compound beats:
+        ``6/4`` grouped as ``3/4 + 3/4``:
 
-        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 4))
-        >>> meter = abjad.Meter(rtc)
-        >>> meter
-        Meter('(6/4 ((3/4 (1/4 1/4 1/4)) (3/4 (1/4 1/4 1/4))))')
+        >>> rtc = abjad.meter.make_best_guess_rtc((6, 4))
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
         >>> print(meter.pretty_rtm_format)
         (6/4 (
             (3/4 (
@@ -222,15 +227,12 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        Same meter customized to contain four compound beats:
+        ``6/4`` grouped as ``3/8 + 3/8 + 3/8 + 3/8``:
 
-        >>> parser = abjad.rhythmtrees.RhythmTreeParser()
-        >>> string = '(6/4 ((3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))'
-        >>> string += ' (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))))'
-        >>> list_ = parser(string)
-        >>> assert len(list_) == 1
-        >>> rtc = list_[0]
-        >>> meter = abjad.Meter(rtc, do_not_recurse=True)
+        >>> beat = "(3/8 (1/8 1/8 1/8))"
+        >>> string = f"(6/4 ({beat} {beat} {beat} {beat}))"
+        >>> rtc = abjad.rhythmtrees.parse(string)[0]
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
         >>> print(meter.pretty_rtm_format)
         (6/4 (
             (3/8 (
@@ -252,10 +254,32 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-    Prime divisions greater than 3 are converted to sequences of 2 and 3
-    summing to that prime. Summands are arranged from greatest to least by
-    default. This means that 5 becomes 3+2 and 7 becomes 3+2+2 in the examples
-    above.
+        ``6/4`` grouped as ``3/8 + 3/8 + 3/8 + 3/8`` again:
+
+        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 4))
+        >>> abjad.rhythmtrees.populate(rtc, [4, 3], 8)
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
+        >>> print(meter.pretty_rtm_format)
+        (6/4 (
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))))
+
+        >>> abjad.graph(meter) # doctest: +SKIP
+
     """
 
     ### CLASS VARIABLES ###
@@ -274,8 +298,8 @@ class Meter:
         self,
         root_node: _rhythmtrees.RhythmTreeContainer,
         *,
-        # TODO: remove do_not_recurse
-        do_not_recurse: bool = False,
+        # TODO: remove do_not_populate
+        do_not_populate: bool = False,
         # TODO: move increase_monotonic to abjad.rhythmtrees.populate()
         increase_monotonic: bool = False,
         # TODO: possibly move preferred_boundary_depth to rewrite_meter()
@@ -286,85 +310,31 @@ class Meter:
         for node in [root_node] + list(root_node.depth_first()):
             assert node.prolation == 1, (repr(node), repr(node.prolation))
         """
-        assert isinstance(increase_monotonic, bool), repr(increase_monotonic)
+        assert do_not_populate is True, repr(do_not_populate)
         if preferred_boundary_depth is not None:
             assert isinstance(preferred_boundary_depth, int)
-        self._preferred_boundary_depth = preferred_boundary_depth
-
-        # TODO: move recurse() to abjad.rhythmtrees.populate()
-        def recurse(rtc, factors, denominator, increase_monotonic):
-            assert isinstance(rtc, _rhythmtrees.RhythmTreeContainer)
-            assert all(isinstance(_, int) for _ in factors)
-            assert isinstance(denominator, int)
-            assert isinstance(increase_monotonic, bool)
-            if factors:
-                factor, factors = factors[0], factors[1:]
-                pair = _duration.divide_pair(rtc.pair, factor)
-                if factor in (2, 3, 4):
-                    if factors:
-                        for _ in range(factor):
-                            rtc_ = _rhythmtrees.RhythmTreeContainer(pair)
-                            rtc.append(rtc_)
-                            recurse(
-                                rtc_,
-                                factors,
-                                denominator,
-                                increase_monotonic,
-                            )
-                    else:
-                        for _ in range(factor):
-                            pair_ = (1, denominator)
-                            rtl = _rhythmtrees.RhythmTreeLeaf(pair_)
-                            rtc.append(rtl)
-                else:
-                    parts = [3]
-                    total = 3
-                    while total < factor:
-                        if not increase_monotonic:
-                            parts.append(2)
-                        else:
-                            parts.insert(0, 2)
-                        total += 2
-                    for part in parts:
-                        assert isinstance(part, int)
-                        pair_ = (part * pair[0], pair[1])
-                        grouping = _rhythmtrees.RhythmTreeContainer(pair_)
-                        if factors:
-                            for _ in range(part):
-                                rtc_ = _rhythmtrees.RhythmTreeContainer(pair)
-                                grouping.append(rtc_)
-                                recurse(
-                                    rtc_,
-                                    factors,
-                                    denominator,
-                                    increase_monotonic,
-                                )
-                        else:
-                            for _ in range(part):
-                                pair_ = (1, denominator)
-                                rtl = _rhythmtrees.RhythmTreeLeaf(pair_)
-                                grouping.append(rtl)
-                        rtc.append(grouping)
-            else:
-                pair_ = (1, denominator)
-                for _ in range(rtc.pair[0]):
-                    rtl = _rhythmtrees.RhythmTreeLeaf(pair_)
-                    rtc.append(rtl)
-
         assert isinstance(root_node, _rhythmtrees.RhythmTreeContainer), repr(root_node)
         input_pair = root_node.pair
         factors = _math.factors(input_pair[0])
         if 1 < len(factors) and factors[0] == factors[1] == 2:
             factors[0:2] = [4]
-        if do_not_recurse is False:
-            recurse(root_node, factors, input_pair[1], increase_monotonic)
-        self._root_node = root_node
-        self._numerator = input_pair[0]
+        if do_not_populate is False:
+            _rhythmtrees.populate(
+                root_node,
+                factors,
+                input_pair[1],
+                increase_monotonic=increase_monotonic,
+            )
+        assert root_node.pair == input_pair
         self._denominator = input_pair[1]
         self._increase_monotonic = increase_monotonic
+        self._numerator = input_pair[0]
+        self._preferred_boundary_depth = preferred_boundary_depth
+        self._root_node = root_node
 
     ### SPECIAL METHODS ###
 
+    # TODO: this should probably include self.root_node
     def __eq__(self, argument) -> bool:
         """
         Compares ``numerator``, ``denominator``, ``increase_monotonic``,
@@ -387,14 +357,15 @@ class Meter:
 
             Graphs ``7/4``:
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
-            >>> meter = abjad.Meter(rtc)
-            >>> meter_graph = meter.__graph__()
-            >>> abjad.graph(meter_graph) # doctest: +SKIP
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
+            >>> abjad.graph(meter) # doctest: +SKIP
 
             ..  docs::
 
-                >>> print(format(meter_graph, 'graphviz'))
+                >>> graph = meter.__graph__()
+                >>> string = format(graph, 'graphviz')
+                >>> print(string)
                 digraph G {
                     graph [bgcolor=transparent,
                         fontname=Arial,
@@ -596,8 +567,8 @@ class Meter:
 
             Iterates ``5/4``:
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((5, 4))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((5, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> for pair in meter:
             ...    pair
             ...
@@ -647,8 +618,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> meter.denominator
             4
 
@@ -662,14 +633,30 @@ class Meter:
 
         ..  container:: example
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> for depth, offsets in enumerate(
             ...     meter.depthwise_offset_inventory):
-            ...     print(depth, offsets)
-            0 (Offset((0, 1)), Offset((7, 4)))
-            1 (Offset((0, 1)), Offset((3, 4)), Offset((5, 4)), Offset((7, 4)))
-            2 (Offset((0, 1)), Offset((1, 4)), Offset((1, 2)), Offset((3, 4)), Offset((1, 1)), Offset((5, 4)), Offset((3, 2)), Offset((7, 4)))
+            ...     print(f"{depth}:")
+            ...     for offset in offsets:
+            ...         print(f"    {offset!r}")
+            0:
+                Offset((0, 1))
+                Offset((7, 4))
+            1:
+                Offset((0, 1))
+                Offset((3, 4))
+                Offset((5, 4))
+                Offset((7, 4))
+            2:
+                Offset((0, 1))
+                Offset((1, 4))
+                Offset((1, 2))
+                Offset((3, 4))
+                Offset((1, 1))
+                Offset((5, 4))
+                Offset((3, 2))
+                Offset((7, 4))
 
         """
         inventory = []
@@ -688,8 +675,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> meter.duration
             Duration(7, 4)
 
@@ -710,8 +697,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((4, 4))
-            >>> abjad.Meter(rtc).implied_time_signature
+            >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
+            >>> abjad.Meter(rtc, do_not_populate=True).implied_time_signature
             TimeSignature(pair=(4, 4), hide=False, partial=None)
 
         """
@@ -726,13 +713,10 @@ class Meter:
 
         ..  container:: example
 
-            An asymmetric meter with beats arranged greatest to least:
+            ``7/4`` grouped ``3/4 + 2/4 + 2/4``; this is default behavior:
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
-            >>> meter = abjad.Meter(rtc, increase_monotonic=False)
-            >>> meter.increase_monotonic
-            False
-
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> print(meter.pretty_rtm_format)
             (7/4 (
                 (3/4 (
@@ -746,18 +730,12 @@ class Meter:
                     1/4
                     1/4))))
 
-            This is default beahvior.
-
         ..  container:: example
 
-            The same asymmetric meter with unequal beats arranged least to
-            greatest:
+            ``7/4`` grouped ``2/4 + 2/4 + 3/4``:
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
-            >>> meter = abjad.Meter(rtc, increase_monotonic=True)
-            >>> meter.increase_monotonic
-            True
-
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4), increase_monotonic=True)
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> print(meter.pretty_rtm_format)
             (7/4 (
                 (2/4 (
@@ -784,8 +762,8 @@ class Meter:
             Compound meters written over ``4``:
 
             >>> for numerator in range(1, 13):
-            ...     rtc = abjad.rhythmtrees.RhythmTreeContainer((numerator, 4))
-            ...     meter = abjad.Meter(rtc)
+            ...     rtc = abjad.meter.make_best_guess_rtc((numerator, 4))
+            ...     meter = abjad.Meter(rtc, do_not_populate=True)
             ...     string = True if meter.is_compound else ''
             ...     print(str(meter.fraction_string), string)
             ...
@@ -807,8 +785,8 @@ class Meter:
             Compound meters written over ``8``:
 
             >>> for numerator in range(1, 13):
-            ...     rtc = abjad.rhythmtrees.RhythmTreeContainer((numerator, 8))
-            ...     meter = abjad.Meter(rtc)
+            ...     rtc = abjad.meter.make_best_guess_rtc((numerator, 8))
+            ...     meter = abjad.Meter(rtc, do_not_populate=True)
             ...     string = True if meter.is_compound else ''
             ...     print(str(meter.fraction_string), string)
             ...
@@ -843,8 +821,8 @@ class Meter:
             Simple meters written over ``4``:
 
             >>> for numerator in range(1, 13):
-            ...     rtc = abjad.rhythmtrees.RhythmTreeContainer((numerator, 4))
-            ...     meter = abjad.Meter(rtc)
+            ...     rtc = abjad.meter.make_best_guess_rtc((numerator, 4))
+            ...     meter = abjad.Meter(rtc, do_not_populate=True)
             ...     string = True if meter.is_simple else ''
             ...     print(str(meter.fraction_string), string)
             ...
@@ -866,8 +844,8 @@ class Meter:
             Simple meters written over ``8``:
 
             >>> for numerator in range(1, 13):
-            ...     rtc = abjad.rhythmtrees.RhythmTreeContainer((numerator, 8))
-            ...     meter = abjad.Meter(rtc)
+            ...     rtc = abjad.meter.make_best_guess_rtc((numerator, 8))
+            ...     meter = abjad.Meter(rtc, do_not_populate=True)
             ...     string = True if meter.is_simple else ''
             ...     print(str(meter.fraction_string), string)
             ...
@@ -898,8 +876,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> meter.numerator
             7
 
@@ -913,8 +891,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 4))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((6, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> meter.pair
             (6, 4)
 
@@ -930,16 +908,17 @@ class Meter:
 
             No preferred boundary depth:
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 8))
-            >>> abjad.Meter(rtc).preferred_boundary_depth is None
+            >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
+            >>> meter.preferred_boundary_depth is None
             True
 
         ..  container:: example
 
             Customized preferred boundary depth:
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 8))
-            >>> meter = abjad.Meter(rtc, preferred_boundary_depth=1)
+            >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True, preferred_boundary_depth=1)
             >>> meter.preferred_boundary_depth
             1
 
@@ -954,8 +933,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> print(meter.pretty_rtm_format)
             (7/4 (
                 (3/4 (
@@ -979,8 +958,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> for item in meter.root_node:
             ...     item
             RhythmTreeContainer((3, 4))
@@ -997,8 +976,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 4))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> meter.rtm_format
             '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
 
@@ -1021,8 +1000,8 @@ class Meter:
         ..  container:: example
 
             >>> pairs = [(3, 4), (4, 4), (5, 4)]
-            >>> rtcs = [abjad.rhythmtrees.RhythmTreeContainer(_) for _ in pairs]
-            >>> meters = [abjad.Meter(_) for _ in rtcs]
+            >>> rtcs = [abjad.meter.make_best_guess_rtc(_) for _ in pairs]
+            >>> meters = [abjad.Meter(_, do_not_populate=True) for _ in rtcs]
 
         ..  container:: example
 
@@ -1084,8 +1063,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((4, 4))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> kernel = meter.generate_offset_kernel_to_denominator(8)
             >>> for offset, weight in sorted(kernel.kernel.items()):
             ...     print(f"{offset!r}\t{weight!r}")
@@ -1403,8 +1382,8 @@ class Meter:
                     }
                 }
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((4, 4))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> print(meter.pretty_rtm_format)
             (4/4 (
                 1/4
@@ -1479,10 +1458,9 @@ class Meter:
                     }
                 }
 
-            >>> parser = abjad.rhythmtrees.RhythmTreeParser()
             >>> string = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
-            >>> rtc = parser(string)[0]
-            >>> meter = abjad.Meter(rtc, do_not_recurse=True)
+            >>> rtc = abjad.rhythmtrees.parse(string)[0]
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> print(meter.pretty_rtm_format) # doctest: +SKIP
             (4/4 (
                 (2/4 (
@@ -1551,8 +1529,8 @@ class Meter:
 
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> abjad.Meter.rewrite_meter(measure[:], meter)
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1584,8 +1562,8 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
             ...     meter,
@@ -1623,8 +1601,8 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
             ...     meter,
@@ -1664,8 +1642,8 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
             ...     meter,
@@ -1710,8 +1688,8 @@ class Meter:
 
             Consider the default meter for ``9/8``:
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((9, 8))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((9, 8))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> print(meter.pretty_rtm_format)
             (9/8 (
                 (3/8 (
@@ -1752,8 +1730,8 @@ class Meter:
 
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> abjad.Meter.rewrite_meter(measure[:], meter)
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1785,8 +1763,8 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
             ...     meter,
@@ -1823,8 +1801,8 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
             ...     meter,
@@ -1973,8 +1951,8 @@ class Meter:
             ...     for container in staff:
             ...         leaf = abjad.get.leaf(container, 0)
             ...         time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
-            ...         rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
-            ...         meter = abjad.Meter(rtc)
+            ...         rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            ...         meter = abjad.Meter(rtc, do_not_populate=True)
             ...         abjad.Meter.rewrite_meter(container[:], meter)
             ...
             >>> abjad.show(score) # doctest: +SKIP
@@ -2075,8 +2053,8 @@ class Meter:
             ...     for container in staff:
             ...         leaf = abjad.get.leaf(container, 0)
             ...         time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
-            ...         rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
-            ...         meter = abjad.Meter(rtc)
+            ...         rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            ...         meter = abjad.Meter(rtc, do_not_populate=True)
             ...         abjad.Meter.rewrite_meter(
             ...             container[:],
             ...             meter,
@@ -2236,8 +2214,8 @@ class Meter:
 
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer(time_signature.pair)
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> abjad.Meter.rewrite_meter(
             ...     measure[:],
             ...     meter,
@@ -2288,8 +2266,8 @@ class Meter:
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 8))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> abjad.Meter.rewrite_meter(staff[:], meter)
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2311,8 +2289,8 @@ class Meter:
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 8))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> abjad.Meter.rewrite_meter(staff[:], meter, boundary_depth=1)
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2337,8 +2315,8 @@ class Meter:
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 8))
-            >>> meter = abjad.Meter(rtc, preferred_boundary_depth=1)
+            >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True, preferred_boundary_depth=1)
             >>> abjad.Meter.rewrite_meter(staff[:], meter)
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2401,8 +2379,8 @@ class Meter:
                     c'8
                 }
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 4))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((6, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> abjad.Meter.rewrite_meter(
             ...     staff[:],
             ...     meter,
@@ -2482,8 +2460,8 @@ class Meter:
                     c'8
                 }
 
-            >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((6, 4))
-            >>> meter = abjad.Meter(rtc)
+            >>> rtc = abjad.meter.make_best_guess_rtc((6, 4))
+            >>> meter = abjad.Meter(rtc, do_not_populate=True)
             >>> abjad.Meter.rewrite_meter(
             ...     staff[:],
             ...     meter,
@@ -2659,8 +2637,8 @@ class Meter:
                     pair = _duration.with_denominator(duration, denominator)
                 else:
                     pair = duration.pair
-                rtc_ = _rhythmtrees.RhythmTreeContainer(pair)
-                sub_metrical_hierarchy = Meter(rtc_)
+                rtc_ = make_best_guess_rtc(pair)
+                sub_metrical_hierarchy = Meter(rtc_, do_not_populate=True)
                 sub_boundary_depth: int | None = 1
                 if boundary_depth is None:
                     sub_boundary_depth = None
@@ -2684,8 +2662,8 @@ def illustrate_meter_list(
     ..  container:: example
 
         >>> pairs = [(3, 4), (5, 16), (7, 8)]
-        >>> rtcs = [abjad.rhythmtrees.RhythmTreeContainer(_) for _ in pairs]
-        >>> meters = [abjad.Meter(_) for _ in rtcs]
+        >>> rtcs = [abjad.meter.make_best_guess_rtc(_) for _ in pairs]
+        >>> meters = [abjad.Meter(_, do_not_populate=True) for _ in rtcs]
         >>> lilypond_file = abjad.meter.illustrate_meter_list(meters, scale=0.5)
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -2933,8 +2911,8 @@ class MetricAccentKernel:
 
     ..  container:: example
 
-        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((7, 8))
-        >>> hierarchy = abjad.Meter(rtc)
+        >>> rtc = abjad.meter.make_best_guess_rtc((7, 8))
+        >>> hierarchy = abjad.Meter(rtc, do_not_populate=True)
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
         >>> for offset, weight in kernel.kernel.items():
         ...     print(f"{offset!r}: {weight!r}")
@@ -2986,8 +2964,8 @@ class MetricAccentKernel:
         >>> lower_staff = abjad.Staff(r"\clef bass c4 b,4 a,2")
         >>> score = abjad.Score([upper_staff, lower_staff])
 
-        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((4, 4))
-        >>> meter = abjad.Meter(rtc)
+        >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
         >>> kernel = abjad.MetricAccentKernel.from_meter(meter)
         >>> offset_counter = abjad.OffsetCounter(score)
         >>> kernel(offset_counter)
@@ -3252,3 +3230,26 @@ class _MeterFittingSession:
         Gets ordered offsets.
         """
         return self._ordered_offsets
+
+
+def make_best_guess_rtc(
+    pair: tuple[int, int], *, increase_monotonic: bool = False
+) -> _rhythmtrees.RhythmTreeContainer:
+    """
+    Makes best-guess rhythm-tree container.
+    """
+    assert isinstance(pair, tuple), repr(pair)
+    assert all(isinstance(_, int) for _ in pair), repr(pair)
+    assert isinstance(increase_monotonic, bool), repr(increase_monotonic)
+    rtc = _rhythmtrees.RhythmTreeContainer(pair)
+    numerator, denominator = pair
+    numerator_factors = _math.factors(numerator)
+    if 1 < len(numerator_factors) and numerator_factors[0] == numerator_factors[1] == 2:
+        numerator_factors[0:2] = [4]
+    _rhythmtrees.populate(
+        rtc,
+        numerator_factors,
+        denominator,
+        increase_monotonic=increase_monotonic,
+    )
+    return rtc

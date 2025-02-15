@@ -6074,8 +6074,8 @@ class StemTremolo:
                 :16
             }
 
-        >>> rtc = abjad.rhythmtrees.RhythmTreeContainer((3, 4))
-        >>> meter = abjad.Meter(rtc)
+        >>> rtc = abjad.meter.make_best_guess_rtc((3, 4))
+        >>> meter = abjad.Meter(rtc, do_not_populate=True)
         >>> abjad.Meter.rewrite_meter(staff[:], meter)
         >>> abjad.show(staff) # doctest: +SKIP
 
