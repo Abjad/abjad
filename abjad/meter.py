@@ -285,7 +285,6 @@ class Meter:
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        "_increase_monotonic",
         "_denominator",
         "_numerator",
         "_preferred_boundary_depth",
@@ -298,9 +297,7 @@ class Meter:
         self,
         root_node: _rhythmtrees.RhythmTreeContainer,
         *,
-        # TODO: move increase_monotonic to abjad.rhythmtrees.populate()
-        increase_monotonic: bool = False,
-        # TODO: possibly move preferred_boundary_depth to rewrite_meter()
+        # TODO: move preferred_boundary_depth to rewrite_meter()
         preferred_boundary_depth: int | None = None,
     ) -> None:
         assert isinstance(root_node, _rhythmtrees.RhythmTreeContainer), repr(root_node)
@@ -312,7 +309,6 @@ class Meter:
             assert isinstance(preferred_boundary_depth, int)
         numerator, denominator = root_node.pair
         self._denominator = denominator
-        self._increase_monotonic = increase_monotonic
         self._numerator = numerator
         self._preferred_boundary_depth = preferred_boundary_depth
         self._root_node = root_node
@@ -329,7 +325,6 @@ class Meter:
             return (
                 self.numerator == argument.numerator
                 and self.denominator == argument.denominator
-                and self.increase_monotonic == argument.increase_monotonic
                 and self.preferred_boundary_depth == argument.preferred_boundary_depth
             )
         return False
@@ -690,53 +685,6 @@ class Meter:
         """
         pair = self.root_node.pair
         return _indicators.TimeSignature(pair)
-
-    @property
-    def increase_monotonic(self) -> bool:
-        """
-        Is true when meter divides large primes into collections of ``2`` and
-        ``3`` that increase monotonically.
-
-        ..  container:: example
-
-            ``7/4`` grouped ``3/4 + 2/4 + 2/4``; this is default behavior:
-
-            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
-            >>> meter = abjad.Meter(rtc)
-            >>> print(meter.pretty_rtm_format)
-            (7/4 (
-                (3/4 (
-                    1/4
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))))
-
-        ..  container:: example
-
-            ``7/4`` grouped ``2/4 + 2/4 + 3/4``:
-
-            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4), increase_monotonic=True)
-            >>> meter = abjad.Meter(rtc)
-            >>> print(meter.pretty_rtm_format)
-            (7/4 (
-                (2/4 (
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))
-                (3/4 (
-                    1/4
-                    1/4
-                    1/4))))
-
-        """
-        return self._increase_monotonic
 
     @property
     def is_compound(self) -> bool:
@@ -3223,6 +3171,47 @@ def make_best_guess_rtc(
 ) -> _rhythmtrees.RhythmTreeContainer:
     """
     Makes best-guess rhythm-tree container.
+
+    ..  container:: example
+
+        Use ``increase_monotonic`` like this:
+
+        ``7/4`` grouped ``3/4 + 2/4 + 2/4``; this is default behavior:
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+        >>> meter = abjad.Meter(rtc)
+        >>> print(meter.pretty_rtm_format)
+        (7/4 (
+            (3/4 (
+                1/4
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))))
+
+    ..  container:: example
+
+        ``7/4`` grouped ``2/4 + 2/4 + 3/4``:
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((7, 4), increase_monotonic=True)
+        >>> meter = abjad.Meter(rtc)
+        >>> print(meter.pretty_rtm_format)
+        (7/4 (
+            (2/4 (
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))
+            (3/4 (
+                1/4
+                1/4
+                1/4))))
+
     """
     assert isinstance(pair, tuple), repr(pair)
     assert all(isinstance(_, int) for _ in pair), repr(pair)
