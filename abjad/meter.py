@@ -219,14 +219,10 @@ class Meter:
 
     def __eq__(self, argument) -> bool:
         """
-        Compares ``numerator``, ``denominator``.
+        Compares ``root_node.rtm_format`` of self to that of ``argument``.
         """
-        # TODO: compare root nodes
         if isinstance(argument, type(self)):
-            return (
-                self.numerator == argument.numerator
-                and self.denominator == argument.denominator
-            )
+            return self.root_node.rtm_format == argument.root_node.rtm_format
         return False
 
     def __graph__(self, **keywords) -> uqbar.graphs.Graph:
