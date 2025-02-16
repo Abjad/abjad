@@ -910,224 +910,6 @@ class Meter:
             offset_to_weight[offset] = fractions.Fraction(count, total)
         return MetricAccentKernel(offset_to_weight)
 
-    @staticmethod
-    def get_offsets_at_depth(
-        depth, offset_inventory: list[tuple[_duration.Offset, ...]]
-    ) -> tuple[_duration.Offset, ...]:
-        """
-        Gets offsets at ``depth`` in ``offset_inventory``.
-        """
-        assert all(isinstance(_, tuple) for _ in offset_inventory)
-        if depth < len(offset_inventory):
-            return offset_inventory[depth]
-        while len(offset_inventory) <= depth:
-            new_offsets = []
-            old_offsets = offset_inventory[-1]
-            for first, second in _sequence.nwise(old_offsets):
-                new_offsets.append(first)
-                difference = second - first
-                half = (first + second) / 2
-                if _duration.Duration(1, 8) < difference:
-                    new_offsets.append(half)
-                else:
-                    one_quarter = (first + half) / 2
-                    three_quarters = (half + second) / 2
-                    new_offsets.append(one_quarter)
-                    new_offsets.append(half)
-                    new_offsets.append(three_quarters)
-            new_offsets.append(old_offsets[-1])
-            offset_inventory.append(tuple(new_offsets))
-        result = offset_inventory[depth]
-        assert isinstance(result, tuple)
-        assert all(isinstance(_, _duration.Offset) for _ in result), repr(result)
-        return result
-
-    @staticmethod
-    def is_acceptable_logical_tie(
-        logical_tie_duration: _duration.Duration,
-        logical_tie_starts_in_offsets: bool = False,
-        logical_tie_stops_in_offsets: bool = False,
-        maximum_dot_count: int | None = None,
-    ) -> bool:
-        """
-        Is true if logical tie is acceptable.
-        """
-        assert isinstance(logical_tie_duration, _duration.Duration)
-        assert isinstance(logical_tie_starts_in_offsets, bool)
-        assert isinstance(logical_tie_stops_in_offsets, bool)
-        if not logical_tie_duration.is_assignable:
-            return False
-        if (
-            maximum_dot_count is not None
-            and maximum_dot_count < logical_tie_duration.dot_count
-        ):
-            return False
-        if not logical_tie_starts_in_offsets and not logical_tie_stops_in_offsets:
-            return False
-        return True
-
-    @staticmethod
-    def is_boundary_crossing_logical_tie(
-        logical_tie_start_offset: _duration.Offset,
-        logical_tie_stop_offset: _duration.Offset,
-        boundary_depth: int | None = None,
-        boundary_offsets: tuple[_duration.Offset, ...] = (),
-    ) -> bool:
-        """
-        Is true if logical tie crosses meter boundaries.
-        """
-        assert isinstance(logical_tie_start_offset, _duration.Offset)
-        assert isinstance(logical_tie_stop_offset, _duration.Offset)
-        if boundary_depth is None:
-            return False
-        if not any(
-            logical_tie_start_offset < _ < logical_tie_stop_offset
-            for _ in boundary_offsets
-        ):
-            return False
-        if (
-            logical_tie_start_offset in boundary_offsets
-            and logical_tie_stop_offset in boundary_offsets
-        ):
-            return False
-        return True
-
-    # TODO: typehint
-    @staticmethod
-    def iterate_rewrite_inputs(argument):
-        r"""
-        Iterates topmost masked logical ties, rest groups and containers in
-        ``argument``, masked by ``argument``.
-
-        >>> string = "! 2/4 c'4 d'4 ~ !"
-        >>> string += "! 4/4 d'8. r16 r8. e'16 ~ "
-        >>> string += "2/3 { e'8 ~ e'8 f'8 ~ } f'4 ~ !"
-        >>> string += "! 4/4 f'8 g'8 ~ g'4 a'4 ~ a'8 b'8 ~ !"
-        >>> string += "! 2/4 b'4 c''4 !"
-        >>> string = string.replace('!', '|')
-        >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
-        >>> staff = abjad.Staff()
-        >>> score = abjad.Score([staff], name="Score")
-        >>> staff[:] = container
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                {
-                    \time 2/4
-                    c'4
-                    d'4
-                    ~
-                }
-                {
-                    \time 4/4
-                    d'8.
-                    r16
-                    r8.
-                    e'16
-                    ~
-                    \tuplet 3/2
-                    {
-                        e'8
-                        ~
-                        e'8
-                        f'8
-                        ~
-                    }
-                    f'4
-                    ~
-                }
-                {
-                    \time 4/4
-                    f'8
-                    g'8
-                    ~
-                    g'4
-                    a'4
-                    ~
-                    a'8
-                    b'8
-                    ~
-                }
-                {
-                    \time 2/4
-                    b'4
-                    c''4
-                }
-            }
-
-        >>> for x in abjad.meter.Meter.iterate_rewrite_inputs(
-        ...     staff[0]): x
-        ...
-        LogicalTie(items=[Note("c'4")])
-        LogicalTie(items=[Note("d'4")])
-
-        >>> for x in abjad.meter.Meter.iterate_rewrite_inputs(
-        ...     staff[1]): x
-        ...
-        LogicalTie(items=[Note("d'8.")])
-        LogicalTie(items=[Rest('r16'), Rest('r8.')])
-        LogicalTie(items=[Note("e'16")])
-        Tuplet('3:2', "e'8 e'8 f'8")
-        LogicalTie(items=[Note("f'4")])
-
-        >>> for x in abjad.meter.Meter.iterate_rewrite_inputs(
-        ...     staff[2]): x
-        ...
-        LogicalTie(items=[Note("f'8")])
-        LogicalTie(items=[Note("g'8"), Note("g'4")])
-        LogicalTie(items=[Note("a'4"), Note("a'8")])
-        LogicalTie(items=[Note("b'8")])
-
-        >>> for x in abjad.meter.Meter.iterate_rewrite_inputs(
-        ...     staff[3]): x
-        ...
-        LogicalTie(items=[Note("b'4")])
-        LogicalTie(items=[Note("c''4")])
-
-        """
-        last_tie = None
-        current_leaf_group = None
-        current_leaf_group_is_silent = False
-        for component in argument:
-            if isinstance(component, _score.Note | _score.Chord):
-                this_tie_leaves = _iterlib._get_logical_tie_leaves(component)
-                this_tie = _select.LogicalTie(this_tie_leaves)
-                if current_leaf_group is None:
-                    current_leaf_group = []
-                elif (
-                    current_leaf_group_is_silent
-                    or this_tie is None
-                    or last_tie != this_tie
-                ):
-                    yield _select.LogicalTie(current_leaf_group)
-                    current_leaf_group = []
-                current_leaf_group_is_silent = False
-                current_leaf_group.append(component)
-                last_tie = this_tie
-            elif isinstance(component, _score.Rest | _score.Skip):
-                if current_leaf_group is None:
-                    current_leaf_group = []
-                elif not current_leaf_group_is_silent:
-                    yield _select.LogicalTie(current_leaf_group)
-                    current_leaf_group = []
-                current_leaf_group_is_silent = True
-                current_leaf_group.append(component)
-                last_tie = None
-            elif isinstance(component, _score.Container):
-                if current_leaf_group is not None:
-                    yield _select.LogicalTie(current_leaf_group)
-                    current_leaf_group = None
-                    last_tie = None
-                yield component
-            else:
-                raise Exception(f"unhandled component: {component!r}.")
-        if current_leaf_group is not None:
-            yield _select.LogicalTie(current_leaf_group)
-
     # TODO: change rewrite_meter() from staic method to bound method
     # TODO: move docstring examples to meter.py module-level docstring
     @staticmethod
@@ -2285,7 +2067,7 @@ class Meter:
         ) -> None:
             assert isinstance(logical_tie, _select.LogicalTie), repr(logical_tie)
             assert isinstance(boundary_offsets, tuple), repr(boundary_offsets)
-            offsets = Meter.get_offsets_at_depth(depth, offset_inventory)
+            offsets = _get_offsets_at_depth(depth, offset_inventory)
             durations = [_._get_preprolated_duration() for _ in logical_tie]
             logical_tie_duration = sum(durations)
             logical_tie_timespan = _getlib._get_timespan(logical_tie)
@@ -2293,14 +2075,14 @@ class Meter:
             logical_tie_stop_offset = logical_tie_timespan.stop_offset
             logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
             logical_tie_stops_in_offsets = logical_tie_stop_offset in offsets
-            if not Meter.is_acceptable_logical_tie(
+            if not _is_acceptable_logical_tie(
                 logical_tie_duration=logical_tie_duration,
                 logical_tie_starts_in_offsets=logical_tie_starts_in_offsets,
                 logical_tie_stops_in_offsets=logical_tie_stops_in_offsets,
                 maximum_dot_count=maximum_dot_count,
             ):
                 split_offset = None
-                offsets = Meter.get_offsets_at_depth(depth, offset_inventory)
+                offsets = _get_offsets_at_depth(depth, offset_inventory)
                 # If the logical tie's start aligns, take the latest possible offset
                 if logical_tie_starts_in_offsets:
                     offsets = tuple(reversed(offsets))
@@ -2326,7 +2108,7 @@ class Meter:
                         boundary_offsets=boundary_offsets,
                         depth=depth + 1,
                     )
-            elif Meter.is_boundary_crossing_logical_tie(
+            elif _is_boundary_crossing_logical_tie(
                 logical_tie_start_offset,
                 logical_tie_stop_offset,
                 boundary_depth=boundary_depth,
@@ -2388,7 +2170,7 @@ class Meter:
         else:
             boundary_offsets = ()
         # Cache results of iterator; we'll be mutating the underlying collection
-        iterator = Meter.iterate_rewrite_inputs(components)
+        iterator = _iterate_rewrite_inputs(components)
         items = tuple(iterator)
         for item in items:
             if isinstance(item, _select.LogicalTie):
@@ -2418,6 +2200,217 @@ class Meter:
                     boundary_depth=sub_boundary_depth,
                     maximum_dot_count=maximum_dot_count,
                 )
+
+
+def _get_offsets_at_depth(
+    depth, offset_inventory: list[tuple[_duration.Offset, ...]]
+) -> tuple[_duration.Offset, ...]:
+    assert all(isinstance(_, tuple) for _ in offset_inventory)
+    if depth < len(offset_inventory):
+        return offset_inventory[depth]
+    while len(offset_inventory) <= depth:
+        new_offsets = []
+        old_offsets = offset_inventory[-1]
+        for first, second in _sequence.nwise(old_offsets):
+            new_offsets.append(first)
+            difference = second - first
+            half = (first + second) / 2
+            if _duration.Duration(1, 8) < difference:
+                new_offsets.append(half)
+            else:
+                one_quarter = (first + half) / 2
+                three_quarters = (half + second) / 2
+                new_offsets.append(one_quarter)
+                new_offsets.append(half)
+                new_offsets.append(three_quarters)
+        new_offsets.append(old_offsets[-1])
+        offset_inventory.append(tuple(new_offsets))
+    result = offset_inventory[depth]
+    assert isinstance(result, tuple)
+    assert all(isinstance(_, _duration.Offset) for _ in result), repr(result)
+    return result
+
+
+def _is_acceptable_logical_tie(
+    logical_tie_duration: _duration.Duration,
+    logical_tie_starts_in_offsets: bool = False,
+    logical_tie_stops_in_offsets: bool = False,
+    maximum_dot_count: int | None = None,
+) -> bool:
+    assert isinstance(logical_tie_duration, _duration.Duration)
+    assert isinstance(logical_tie_starts_in_offsets, bool)
+    assert isinstance(logical_tie_stops_in_offsets, bool)
+    if not logical_tie_duration.is_assignable:
+        return False
+    if (
+        maximum_dot_count is not None
+        and maximum_dot_count < logical_tie_duration.dot_count
+    ):
+        return False
+    if not logical_tie_starts_in_offsets and not logical_tie_stops_in_offsets:
+        return False
+    return True
+
+
+def _is_boundary_crossing_logical_tie(
+    logical_tie_start_offset: _duration.Offset,
+    logical_tie_stop_offset: _duration.Offset,
+    boundary_depth: int | None = None,
+    boundary_offsets: tuple[_duration.Offset, ...] = (),
+) -> bool:
+    assert isinstance(logical_tie_start_offset, _duration.Offset)
+    assert isinstance(logical_tie_stop_offset, _duration.Offset)
+    if boundary_depth is None:
+        return False
+    if not any(
+        logical_tie_start_offset < _ < logical_tie_stop_offset
+        for _ in boundary_offsets
+    ):
+        return False
+    if (
+        logical_tie_start_offset in boundary_offsets
+        and logical_tie_stop_offset in boundary_offsets
+    ):
+        return False
+    return True
+
+
+def _iterate_rewrite_inputs(
+    argument: typing.Sequence[_score.Component],
+) -> typing.Iterator[_select.LogicalTie | _score.Container]:
+    r"""
+    Iterates topmost masked logical ties, rest groups and containers in
+    ``argument``, masked by ``argument``.
+
+    ..  container:: example
+
+        >>> string = "! 2/4 c'4 d'4 ~ !"
+        >>> string += "! 4/4 d'8. r16 r8. e'16 ~ "
+        >>> string += "2/3 { e'8 ~ e'8 f'8 ~ } f'4 ~ !"
+        >>> string += "! 4/4 f'8 g'8 ~ g'4 a'4 ~ a'8 b'8 ~ !"
+        >>> string += "! 2/4 b'4 c''4 !"
+        >>> string = string.replace('!', '|')
+        >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+        >>> staff = abjad.Staff()
+        >>> score = abjad.Score([staff], name="Score")
+        >>> staff[:] = container
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                {
+                    \time 2/4
+                    c'4
+                    d'4
+                    ~
+                }
+                {
+                    \time 4/4
+                    d'8.
+                    r16
+                    r8.
+                    e'16
+                    ~
+                    \tuplet 3/2
+                    {
+                        e'8
+                        ~
+                        e'8
+                        f'8
+                        ~
+                    }
+                    f'4
+                    ~
+                }
+                {
+                    \time 4/4
+                    f'8
+                    g'8
+                    ~
+                    g'4
+                    a'4
+                    ~
+                    a'8
+                    b'8
+                    ~
+                }
+                {
+                    \time 2/4
+                    b'4
+                    c''4
+                }
+            }
+
+        >>> for x in abjad.meter._iterate_rewrite_inputs(
+        ...     staff[0]): x
+        ...
+        LogicalTie(items=[Note("c'4")])
+        LogicalTie(items=[Note("d'4")])
+
+        >>> for x in abjad.meter._iterate_rewrite_inputs(
+        ...     staff[1]): x
+        ...
+        LogicalTie(items=[Note("d'8.")])
+        LogicalTie(items=[Rest('r16'), Rest('r8.')])
+        LogicalTie(items=[Note("e'16")])
+        Tuplet('3:2', "e'8 e'8 f'8")
+        LogicalTie(items=[Note("f'4")])
+
+        >>> for x in abjad.meter._iterate_rewrite_inputs(
+        ...     staff[2]): x
+        ...
+        LogicalTie(items=[Note("f'8")])
+        LogicalTie(items=[Note("g'8"), Note("g'4")])
+        LogicalTie(items=[Note("a'4"), Note("a'8")])
+        LogicalTie(items=[Note("b'8")])
+
+        >>> for x in abjad.meter._iterate_rewrite_inputs(
+        ...     staff[3]): x
+        ...
+        LogicalTie(items=[Note("b'4")])
+        LogicalTie(items=[Note("c''4")])
+
+    """
+    last_tie = None
+    current_leaf_group: list[_score.Leaf] | None = None
+    current_leaf_group_is_silent = False
+    for component in argument:
+        assert isinstance(component, _score.Component)
+        if isinstance(component, _score.Note | _score.Chord):
+            this_tie_leaves = _iterlib._get_logical_tie_leaves(component)
+            this_tie = _select.LogicalTie(this_tie_leaves)
+            if current_leaf_group is None:
+                current_leaf_group = []
+            elif (
+                current_leaf_group_is_silent or this_tie is None or last_tie != this_tie
+            ):
+                yield _select.LogicalTie(current_leaf_group)
+                current_leaf_group = []
+            current_leaf_group_is_silent = False
+            current_leaf_group.append(component)
+            last_tie = this_tie
+        elif isinstance(component, _score.Rest | _score.Skip):
+            if current_leaf_group is None:
+                current_leaf_group = []
+            elif not current_leaf_group_is_silent:
+                yield _select.LogicalTie(current_leaf_group)
+                current_leaf_group = []
+            current_leaf_group_is_silent = True
+            current_leaf_group.append(component)
+            last_tie = None
+        elif isinstance(component, _score.Container):
+            if current_leaf_group is not None:
+                yield _select.LogicalTie(current_leaf_group)
+                current_leaf_group = None
+                last_tie = None
+            yield component
+        else:
+            raise Exception(f"unhandled component: {component!r}.")
+    if current_leaf_group is not None:
+        yield _select.LogicalTie(current_leaf_group)
 
 
 def illustrate_meter_list(
