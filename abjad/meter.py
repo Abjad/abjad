@@ -2435,11 +2435,15 @@ def illustrate_meter_list(
 
     ..  container:: example
 
+        The PNG image that would be rendered below fails to draw vertical lines
+        in Postscript. But the output renders correctly as a PDF. To see the
+        effect of this function, paste the excerpt below into a test file and
+        call LilyPond on that test file:
+
         >>> pairs = [(3, 4), (5, 16), (7, 8)]
         >>> rtcs = [abjad.meter.make_best_guess_rtc(_) for _ in pairs]
         >>> meters = [abjad.Meter(_) for _ in rtcs]
         >>> lilypond_file = abjad.meter.illustrate_meter_list(meters, scale=0.5)
-        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2734,16 +2738,41 @@ class MetricAccentKernel:
         r"""
         Calls metric accent kernal on ``offset_counter``.
 
-        >>> upper_staff = abjad.Staff("c'8 d'4. e'8 f'4.")
-        >>> lower_staff = abjad.Staff(r"\clef bass c4 b,4 a,2")
-        >>> score = abjad.Score([upper_staff, lower_staff])
+        ..  container:: example
 
-        >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
-        >>> meter = abjad.Meter(rtc)
-        >>> kernel = abjad.MetricAccentKernel.from_meter(meter)
-        >>> offset_counter = abjad.OffsetCounter(score)
-        >>> kernel(offset_counter)
-        Fraction(10, 33)
+            >>> upper_staff = abjad.Staff("c'8 d'4. e'8 f'4.")
+            >>> lower_staff = abjad.Staff(r"\clef bass c4 b,4 a,2")
+            >>> score = abjad.Score([upper_staff, lower_staff])
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(score)
+                >>> print(string)
+                \new Score
+                <<
+                    \new Staff
+                    {
+                        c'8
+                        d'4.
+                        e'8
+                        f'4.
+                    }
+                    \new Staff
+                    {
+                        \clef "bass"
+                        c4
+                        b,4
+                        a,2
+                    }
+                >>
+
+            >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
+            >>> meter = abjad.Meter(rtc)
+            >>> kernel = abjad.MetricAccentKernel.from_meter(meter)
+            >>> offset_counter = abjad.OffsetCounter(score)
+            >>> kernel(offset_counter)
+            Fraction(10, 33)
 
         """
         assert isinstance(offset_counter, _timespan.OffsetCounter), repr(offset_counter)
@@ -3012,7 +3041,7 @@ def make_best_guess_rtc(
     """
     Makes best-guess rhythm-tree container.
 
-    Prime divisions greater than 3 are converted to sequences of 2 and 3
+    Prime divisions greater than 3 are converted to sequences of 2, 3 and 4
     summing to that prime. Summands are arranged from greatest to least by
     default. This means that 5 becomes 3+2 and 7 becomes 3+2+2 in the examples
     below.
@@ -3134,7 +3163,7 @@ def make_best_guess_rtc(
                 1/4
                 1/4))))
 
-    ..  container::
+    ..  container:: example
 
         >>> rtc = abjad.meter.make_best_guess_rtc((2, 8))
         >>> print(rtc.pretty_rtm_format)
