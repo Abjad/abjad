@@ -77,7 +77,7 @@ jobs:
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
         python scr/prime_parser_tables.py 2>/dev/null
 
-    - name: Run checks
+    - name: Run lints
       run: |
         make black-check
         make flake8
