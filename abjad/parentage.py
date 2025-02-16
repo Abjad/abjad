@@ -640,8 +640,8 @@ class Parentage(collections.abc.Sequence):
             >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
             ...     print(f"{repr(component):30} {repr(parentage.prolation)}")
-            Staff("{ { 2/3 c'4 d'4 e'4 } { 2/3 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 } }") Fraction(1, 1)
-            Voice("{ 2/3 c'4 d'4 e'4 } { 2/3 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 }", name='MusicVoice') Fraction(1, 1)
+            Staff("{ { 3:2 c'4 d'4 e'4 } { 3:2 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 } }") Fraction(1, 1)
+            Voice("{ 3:2 c'4 d'4 e'4 } { 3:2 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 }", name='MusicVoice') Fraction(1, 1)
             Tuplet('3:2', "c'4 d'4 e'4")   Fraction(2, 3)
             Note("c'4")                    Fraction(2, 3)
             BeforeGraceContainer("cs'16")  Fraction(2, 3)
@@ -803,8 +803,8 @@ class Parentage(collections.abc.Sequence):
             ...     parentage = abjad.get.parentage(component)
             ...     count = parentage.count(abjad.Tuplet)
             ...     print(f"{repr(component):55} {repr(count)}")
-            Staff("{ 2/3 c'2 { 2/3 d'8 e'8 f'8 } } { 2/3 c'4 d'4 e'4 }") 0
-            Tuplet('3:2', "c'2 { 2/3 d'8 e'8 f'8 }")                1
+            Staff("{ 3:2 c'2 { 3:2 d'8 e'8 f'8 } } { 3:2 c'4 d'4 e'4 }") 0
+            Tuplet('3:2', "c'2 { 3:2 d'8 e'8 f'8 }")                1
             Note("c'2")                                             1
             Tuplet('3:2', "d'8 e'8 f'8")                            2
             Note("d'8")                                             2
@@ -1392,8 +1392,8 @@ class Parentage(collections.abc.Sequence):
             ...     parentage = abjad.get.parentage(component)
             ...     component, parentage.score_index()
             ...
-            (Score("{ { 2/3 c''2 b'2 a'2 } } { c'2 d'2 }", simultaneous=True), ())
-            (Staff("{ 2/3 c''2 b'2 a'2 }"), (0,))
+            (Score("{ { 3:2 c''2 b'2 a'2 } } { c'2 d'2 }", simultaneous=True), ())
+            (Staff("{ 3:2 c''2 b'2 a'2 }"), (0,))
             (Tuplet('3:2', "c''2 b'2 a'2"), (0, 0))
             (Note("c''2"), (0, 0, 0))
             (Note("b'2"), (0, 0, 1))

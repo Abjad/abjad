@@ -6707,7 +6707,7 @@ def tuplets(
         >>> for item in result:
         ...     item
         ...
-        Tuplet('3:2', "c'2 { 2/3 d'8 e'8 f'8 }")
+        Tuplet('3:2', "c'2 { 3:2 d'8 e'8 f'8 }")
         Tuplet('3:2', "d'8 e'8 f'8")
         Tuplet('3:2', "c'4 d'4 e'4")
 
@@ -6813,7 +6813,7 @@ def tuplets(
         >>> for item in result:
         ...     item
         ...
-        Tuplet('3:2', "c'2 { 2/3 d'8 e'8 f'8 }")
+        Tuplet('3:2', "c'2 { 3:2 d'8 e'8 f'8 }")
         Tuplet('3:2', "c'4 d'4 e'4")
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])

@@ -5398,8 +5398,8 @@ class Tuplet(Container):
     def _get_compact_representation(self):
         n, d = self.multiplier
         if not self:
-            return f"{{ {n}/{d} }}"
-        return f"{{ {n}/{d} {self._get_contents_summary()} }}"
+            return f"{{ {d}:{n} }}"
+        return f"{{ {d}:{n} {self._get_contents_summary()} }}"
 
     def _get_edge_height_tweak_string(self):
         duration = self._get_preprolated_duration()
