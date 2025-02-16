@@ -5,6 +5,7 @@ Tools for modeling musical meter.
 import bisect
 import collections
 import fractions
+import typing
 
 import uqbar.graphs
 
@@ -24,50 +25,16 @@ from . import timespan as _timespan
 
 class Meter:
     """
-    Meter models a common practice understanding of beats and other levels of
-    rhythmic organization structured as a tree. Meter structure corresponds to
-    the monotonically increasing sequence of factors in the numerator of a
-    given time signature. Successively deeper levels of the tree divide time by
-    successive factors.
+    Meter.
+
+    Meter models rhythmic organization structured as a tree.
 
     ..  container:: example
 
-        Duple meter:
+        ``4/4`` grouped two different ways:
 
-        >>> meter = abjad.Meter((2, 4))
-        >>> meter
-        Meter('(2/4 (1/4 1/4))')
-        >>> print(meter.pretty_rtm_format)
-        (2/4 (
-            1/4
-            1/4))
-
-        >>> abjad.graph(meter) # doctest: +SKIP
-
-        ``2/4`` comprises two beats.
-
-    ..  container:: example
-
-        Triple meter:
-
-        >>> meter = abjad.Meter((3, 4))
-        >>> print(meter.pretty_rtm_format)
-        (3/4 (
-            1/4
-            1/4
-            1/4))
-
-        >>> abjad.graph(meter) # doctest: +SKIP
-
-        ``3/4`` comprises three beats.
-
-    ..  container:: example
-
-        Quadruple meter:
-
-        >>> meter = abjad.Meter((4, 4))
-        >>> meter
-        Meter('(4/4 (1/4 1/4 1/4 1/4))')
+        >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
+        >>> meter = abjad.Meter(rtc)
         >>> print(meter.pretty_rtm_format)
         (4/4 (
             1/4
@@ -77,87 +44,11 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        ``4/4`` comprises four beats.
-
-    ..  container:: example
-
-        Compound triple meter:
-
-        >>> meter = abjad.Meter((6, 8))
+        >>> string = "(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))"
+        >>> rtc = abjad.rhythmtrees.parse(string)[0]
+        >>> meter = abjad.Meter(rtc)
         >>> print(meter.pretty_rtm_format)
-        (6/8 (
-            (3/8 (
-                1/8
-                1/8
-                1/8))
-            (3/8 (
-                1/8
-                1/8
-                1/8))))
-
-        >>> abjad.graph(meter) # doctest: +SKIP
-
-        ``6/8`` comprises two beats of three parts each.
-
-    ..  container:: example
-
-        Another compound triple meter:
-
-        >>> meter = abjad.Meter((12, 8))
-        >>> print(meter.pretty_rtm_format)
-        (12/8 (
-            (3/8 (
-                1/8
-                1/8
-                1/8))
-            (3/8 (
-                1/8
-                1/8
-                1/8))
-            (3/8 (
-                1/8
-                1/8
-                1/8))
-            (3/8 (
-                1/8
-                1/8
-                1/8))))
-
-        >>> abjad.graph(meter) # doctest: +SKIP
-
-        ``12/8`` comprises four beats of three parts each.
-
-    ..  container:: example
-
-        An asymmetric meter:
-
-        >>> meter = abjad.Meter((5, 4))
-        >>> print(meter.pretty_rtm_format)
-        (5/4 (
-            (3/4 (
-                1/4
-                1/4
-                1/4))
-            (2/4 (
-                1/4
-                1/4))))
-
-        >>> abjad.graph(meter) # doctest: +SKIP
-
-        ``5/4`` comprises two unequal beats. By default unequal beats are
-        arranged from greatest to least.
-
-    ..  container:: example
-
-        Another asymmetric meter:
-
-        >>> meter = abjad.Meter((7, 4))
-        >>> print(meter.pretty_rtm_format)
-        (7/4 (
-            (3/4 (
-                1/4
-                1/4
-                1/4))
+        (4/4 (
             (2/4 (
                 1/4
                 1/4))
@@ -167,41 +58,12 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        ``7/4`` comprises three unequal beats. Beats are arranged from greatest
-        to least by default.
-
     ..  container:: example
 
-        The same asymmetric meter structured differently:
+        ``6/4`` grouped four different ways:
 
-        >>> meter = abjad.Meter(
-        ...     (7, 4),
-        ...     increase_monotonic=True,
-        ...     )
-        >>> print(meter.pretty_rtm_format)
-        (7/4 (
-            (2/4 (
-                1/4
-                1/4))
-            (2/4 (
-                1/4
-                1/4))
-            (3/4 (
-                1/4
-                1/4
-                1/4))))
-
-        >>> abjad.graph(meter) # doctest: +SKIP
-
-        ``7/4`` with beats arragned from least to greatest.
-
-    ..  container:: example
-
-        Meter interpreted by default as containing two compound beats:
-
-        >>> meter = abjad.Meter((6, 4))
-        >>> meter
-        Meter('(6/4 ((3/4 (1/4 1/4 1/4)) (3/4 (1/4 1/4 1/4))))')
+        >>> rtc = abjad.meter.make_best_guess_rtc((6, 4))
+        >>> meter = abjad.Meter(rtc)
         >>> print(meter.pretty_rtm_format)
         (6/4 (
             (3/4 (
@@ -215,15 +77,41 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-        Same meter customized to contain four compound beats:
+        >>> string = "(6/4 (1/4 1/4 1/4 1/4 1/4 1/4))"
+        >>> rtc = abjad.rhythmtrees.parse(string)[0]
+        >>> meter = abjad.Meter(rtc)
+        >>> print(meter.pretty_rtm_format)
+        (6/4 (
+            1/4
+            1/4
+            1/4
+            1/4
+            1/4
+            1/4))
 
-        >>> parser = abjad.rhythmtrees.RhythmTreeParser()
-        >>> string = '(6/4 ((3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))'
-        >>> string += ' (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))))'
-        >>> list_ = parser(string)
-        >>> assert len(list_) == 1
-        >>> rtcontainer = list_[0]
-        >>> meter = abjad.Meter.from_rtcontainer(rtcontainer)
+        >>> abjad.graph(meter) # doctest: +SKIP
+
+        >>> string = "(6/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))"
+        >>> rtc = abjad.rhythmtrees.parse(string)[0]
+        >>> meter = abjad.Meter(rtc)
+        >>> print(meter.pretty_rtm_format)
+        (6/4 (
+            (2/4 (
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))))
+
+        >>> abjad.graph(meter) # doctest: +SKIP
+
+        >>> part = "(3/8 (1/8 1/8 1/8))"
+        >>> string = f"(6/4 ({part} {part} {part} {part}))"
+        >>> rtc = abjad.rhythmtrees.parse(string)[0]
+        >>> meter = abjad.Meter(rtc)
         >>> print(meter.pretty_rtm_format)
         (6/4 (
             (3/8 (
@@ -245,140 +133,113 @@ class Meter:
 
         >>> abjad.graph(meter) # doctest: +SKIP
 
-    Prime divisions greater than 3 are converted to sequences of 2 and 3
-    summing to that prime. Summands are arranged from greatest to least by
-    default. This means that 5 becomes 3+2 and 7 becomes 3+2+2 in the examples
-    above.
+    ..  container:: example
+
+        ``7/4`` grouped three different ways:
+
+        >>> string = "(7/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4)) (3/4 (1/4 1/4 1/4))))"
+        >>> rtc = abjad.rhythmtrees.parse(string)[0]
+        >>> meter = abjad.Meter(rtc)
+        >>> print(meter.pretty_rtm_format)
+        (7/4 (
+            (2/4 (
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))
+            (3/4 (
+                1/4
+                1/4
+                1/4))))
+
+        >>> abjad.graph(meter) # doctest: +SKIP
+
+        >>> string = "(7/4 ((2/4 (1/4 1/4)) (3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))"
+        >>> rtc = abjad.rhythmtrees.parse(string)[0]
+        >>> meter = abjad.Meter(rtc)
+        >>> print(meter.pretty_rtm_format)
+        (7/4 (
+            (2/4 (
+                1/4
+                1/4))
+            (3/4 (
+                1/4
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))))
+
+        >>> abjad.graph(meter) # doctest: +SKIP
+
+        >>> string = "(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))"
+        >>> rtc = abjad.rhythmtrees.parse(string)[0]
+        >>> meter = abjad.Meter(rtc)
+        >>> print(meter.pretty_rtm_format)
+        (7/4 (
+            (3/4 (
+                1/4
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))))
+
+        >>> abjad.graph(meter) # doctest: +SKIP
+
     """
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        "_increase_monotonic",
         "_denominator",
         "_numerator",
-        "_preferred_boundary_depth",
         "_root_node",
     )
 
     ### INITIALIZER ###
 
-    # TODO: typehint
     def __init__(
         self,
-        input_pair=(4, 4),
-        *,
-        increase_monotonic=False,
-        preferred_boundary_depth=None,
-    ):
-        assert isinstance(input_pair, tuple), repr(input_pair)
-        assert isinstance(increase_monotonic, bool), repr(increase_monotonic)
-        if preferred_boundary_depth is not None:
-            assert isinstance(preferred_boundary_depth, int)
-        self._preferred_boundary_depth = preferred_boundary_depth
-
-        def recurse(rtcontainer, factors, denominator, increase_monotonic):
-            assert isinstance(rtcontainer, _rhythmtrees.RhythmTreeContainer)
-            assert all(isinstance(_, int) for _ in factors)
-            assert isinstance(denominator, int)
-            assert isinstance(increase_monotonic, bool)
-            if factors:
-                factor, factors = factors[0], factors[1:]
-                pair = _duration.divide_pair(rtcontainer.pair, factor)
-                if factor in (2, 3, 4):
-                    if factors:
-                        for _ in range(factor):
-                            rtcontainer_ = _rhythmtrees.RhythmTreeContainer(pair)
-                            rtcontainer.append(rtcontainer_)
-                            recurse(
-                                rtcontainer_,
-                                factors,
-                                denominator,
-                                increase_monotonic,
-                            )
-                    else:
-                        for _ in range(factor):
-                            pair_ = (1, denominator)
-                            rtleaf = _rhythmtrees.RhythmTreeLeaf(pair_)
-                            rtcontainer.append(rtleaf)
-                else:
-                    parts = [3]
-                    total = 3
-                    while total < factor:
-                        if not increase_monotonic:
-                            parts.append(2)
-                        else:
-                            parts.insert(0, 2)
-                        total += 2
-                    for part in parts:
-                        assert isinstance(part, int)
-                        pair_ = (part * pair[0], pair[1])
-                        grouping = _rhythmtrees.RhythmTreeContainer(pair_)
-                        if factors:
-                            for _ in range(part):
-                                rtcontainer_ = _rhythmtrees.RhythmTreeContainer(pair)
-                                grouping.append(rtcontainer_)
-                                recurse(
-                                    rtcontainer_,
-                                    factors,
-                                    denominator,
-                                    increase_monotonic,
-                                )
-                        else:
-                            for _ in range(part):
-                                pair_ = (1, denominator)
-                                rtleaf = _rhythmtrees.RhythmTreeLeaf(pair_)
-                                grouping.append(rtleaf)
-                        rtcontainer.append(grouping)
-            else:
-                pair_ = (1, denominator)
-                for _ in range(rtcontainer.pair[0]):
-                    rtleaf = _rhythmtrees.RhythmTreeLeaf(pair_)
-                    rtcontainer.append(rtleaf)
-
-        factors = _math.factors(input_pair[0])
-        # group two nested levels of 2s into a 4
-        if 1 < len(factors) and factors[0] == factors[1] == 2:
-            factors[0:2] = [4]
-        root_node = _rhythmtrees.RhythmTreeContainer(input_pair)
-        recurse(root_node, factors, input_pair[1], increase_monotonic)
+        root_node: _rhythmtrees.RhythmTreeContainer,
+    ) -> None:
         assert isinstance(root_node, _rhythmtrees.RhythmTreeContainer), repr(root_node)
+        for node in [root_node] + list(root_node.depth_first()):
+            assert node.prolation == 1, (repr(node), repr(node.prolation))
+        numerator, denominator = root_node.pair
+        self._denominator = denominator
+        self._numerator = numerator
         self._root_node = root_node
-        self._numerator = input_pair[0]
-        self._denominator = input_pair[1]
-        self._increase_monotonic = increase_monotonic
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
-        Compares ``numerator``, ``denominator``, ``increase_monotonic``,
-        ``preferred_boundary_depth``.
+        Compares ``root_node.rtm_format`` of self to that of ``argument``.
         """
         if isinstance(argument, type(self)):
-            return (
-                self.numerator == argument.numerator
-                and self.denominator == argument.denominator
-                and self.increase_monotonic == argument.increase_monotonic
-                and self.preferred_boundary_depth == argument.preferred_boundary_depth
-            )
+            return self.root_node.rtm_format == argument.root_node.rtm_format
         return False
 
-    def __graph__(self, **keywords):
+    def __graph__(self, **keywords) -> uqbar.graphs.Graph:
         """
         Gets Graphviz format of meter.
 
         ..  container:: example
 
-            Graphs ``7/4``:
-
-            >>> meter = abjad.Meter((7, 4))
-            >>> meter_graph = meter.__graph__()
-            >>> abjad.graph(meter_graph) # doctest: +SKIP
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc)
+            >>> abjad.graph(meter) # doctest: +SKIP
 
             ..  docs::
 
-                >>> print(format(meter_graph, 'graphviz'))
+                >>> graph = meter.__graph__()
+                >>> string = format(graph, 'graphviz')
+                >>> print(string)
                 digraph G {
                     graph [bgcolor=transparent,
                         fontname=Arial,
@@ -490,11 +351,10 @@ class Meter:
                     node_10 -> node_11_7 [style=dotted];
                 }
 
-        Returns Graphviz graph.
         """
 
         def make_offset_node(offset, leaf_one=None, leaf_two=None, is_last=False):
-            offset = _duration.Offset(offset)
+            assert isinstance(offset, _duration.Offset), repr(offset)
             if not is_last:
                 offset_node = uqbar.graphs.Node(
                     attributes={
@@ -509,7 +369,9 @@ class Meter:
             else:
                 offset_node = uqbar.graphs.Node(attributes={"shape": "Mrecord"})
             offset_field = uqbar.graphs.RecordField(label=str(offset))
-            weight_field = uqbar.graphs.RecordField(label="+" * offsets.items[offset])
+            weight_field = uqbar.graphs.RecordField(
+                label="+" * offset_counter.items[offset]
+            )
             group = uqbar.graphs.RecordGroup()
             group.extend([offset_field, weight_field])
             offset_node.append(group)
@@ -522,9 +384,8 @@ class Meter:
                 edge = uqbar.graphs.Edge(attributes={"style": "dotted"})
                 edge.attach(leaf_two_node, offset_node)
 
-        offsets = MetricAccentKernel.count_offsets(
-            _sequence.flatten(self.depthwise_offset_inventory, depth=-1)
-        )
+        offsets = _sequence.flatten(self.depthwise_offset_inventory, depth=-1)
+        offset_counter = _timespan.OffsetCounter(offsets)
         graph = uqbar.graphs.Graph(
             name="G",
             attributes={
@@ -572,7 +433,7 @@ class Meter:
         """
         return super().__hash__()
 
-    def __iter__(self):
+    def __iter__(self) -> typing.Iterator[tuple[tuple[int, int], tuple[int, int]]]:
         """
         Iterates meter.
 
@@ -580,7 +441,8 @@ class Meter:
 
             Iterates ``5/4``:
 
-            >>> meter = abjad.Meter((5, 4))
+            >>> rtc = abjad.meter.make_best_guess_rtc((5, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> for pair in meter:
             ...    pair
             ...
@@ -593,7 +455,6 @@ class Meter:
             ((3, 4), (5, 4))
             ((0, 4), (5, 4))
 
-        Yields pairs of pairs.
         """
 
         def recurse(node):
@@ -625,36 +486,52 @@ class Meter:
     ### PUBLIC PROPERTIES ###
 
     @property
-    def denominator(self):
+    def denominator(self) -> int:
         """
         Gets denominator of meter.
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> meter.denominator
             4
 
-        Returns positive integer.
         """
         return self._denominator
 
     @property
-    def depthwise_offset_inventory(self):
+    def depthwise_offset_inventory(self) -> tuple:
         """
         Gets depthwise offset inventory of meter.
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> for depth, offsets in enumerate(
             ...     meter.depthwise_offset_inventory):
-            ...     print(depth, offsets)
-            0 (Offset((0, 1)), Offset((7, 4)))
-            1 (Offset((0, 1)), Offset((3, 4)), Offset((5, 4)), Offset((7, 4)))
-            2 (Offset((0, 1)), Offset((1, 4)), Offset((1, 2)), Offset((3, 4)), Offset((1, 1)), Offset((5, 4)), Offset((3, 2)), Offset((7, 4)))
+            ...     print(f"{depth}:")
+            ...     for offset in offsets:
+            ...         print(f"    {offset!r}")
+            0:
+                Offset((0, 1))
+                Offset((7, 4))
+            1:
+                Offset((0, 1))
+                Offset((3, 4))
+                Offset((5, 4))
+                Offset((7, 4))
+            2:
+                Offset((0, 1))
+                Offset((1, 4))
+                Offset((1, 2))
+                Offset((3, 4))
+                Offset((1, 1))
+                Offset((5, 4))
+                Offset((3, 2))
+                Offset((7, 4))
 
-        Returns dictionary.
         """
         inventory = []
         all_offsets = set()
@@ -666,110 +543,45 @@ class Meter:
         return tuple(inventory)
 
     @property
-    def duration(self):
+    def duration(self) -> _duration.Duration:
         """
         Gets duration of meter.
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> meter.duration
             Duration(7, 4)
 
-        Returns duration.
         """
         return _duration.Duration(self.numerator, self.denominator)
 
     @property
-    def fraction_string(self):
+    def fraction_string(self) -> str:
         """
         Gets fraction string.
         """
         return f"{self.pair[0]}/{self.pair[1]}"
 
     @property
-    def implied_time_signature(self):
+    def implied_time_signature(self) -> _indicators.TimeSignature:
         """
         Gets implied time signature of meter.
 
         ..  container:: example
 
-            >>> abjad.Meter((4, 4)).implied_time_signature
+            >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
+            >>> meter = abjad.Meter(rtc)
+            >>> meter.implied_time_signature
             TimeSignature(pair=(4, 4), hide=False, partial=None)
 
-        Returns time signature.
         """
-        duration = self.root_node.pair
-        if hasattr(duration, "pair"):
-            pair = duration.pair
-        else:
-            pair = duration
+        pair = self.root_node.pair
         return _indicators.TimeSignature(pair)
 
     @property
-    def increase_monotonic(self) -> bool | None:
-        """
-        Is true when meter divides large primes into collections of ``2``
-        and ``3`` that increase monotonically.
-
-        ..  container:: example
-
-            An asymmetric meter with beats arranged greatest to least:
-
-            >>> meter = abjad.Meter(
-            ...     (7, 4),
-            ...     increase_monotonic=False,
-            ...     )
-
-            >>> meter.increase_monotonic
-            False
-
-            >>> print(meter.pretty_rtm_format)
-            (7/4 (
-                (3/4 (
-                    1/4
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))))
-
-            This is default beahvior.
-
-        ..  container:: example
-
-            The same asymmetric meter with unequal beats arranged least to
-            greatest:
-
-            >>> meter = abjad.Meter(
-            ...     (7, 4),
-            ...     increase_monotonic=True
-            ...     )
-
-            >>> meter.increase_monotonic
-            True
-
-            >>> print(meter.pretty_rtm_format)
-            (7/4 (
-                (2/4 (
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))
-                (3/4 (
-                    1/4
-                    1/4
-                    1/4))))
-
-        """
-        return self._increase_monotonic
-
-    @property
-    def is_compound(self):
+    def is_compound(self) -> bool:
         """
         Is true when meter is compound.
 
@@ -778,7 +590,8 @@ class Meter:
             Compound meters written over ``4``:
 
             >>> for numerator in range(1, 13):
-            ...     meter = abjad.Meter((numerator, 4))
+            ...     rtc = abjad.meter.make_best_guess_rtc((numerator, 4))
+            ...     meter = abjad.Meter(rtc)
             ...     string = True if meter.is_compound else ''
             ...     print(str(meter.fraction_string), string)
             ...
@@ -800,7 +613,8 @@ class Meter:
             Compound meters written over ``8``:
 
             >>> for numerator in range(1, 13):
-            ...     meter = abjad.Meter((numerator, 8))
+            ...     rtc = abjad.meter.make_best_guess_rtc((numerator, 8))
+            ...     meter = abjad.Meter(rtc)
             ...     string = True if meter.is_compound else ''
             ...     print(str(meter.fraction_string), string)
             ...
@@ -819,8 +633,6 @@ class Meter:
 
         Compound meters defined equal to those meters with a numerator divisible by ``3``
         (but not equal to ``3``).
-
-        Returns true or false.
         """
         if 3 in _math.divisors(self.numerator):
             if not self.numerator == 3:
@@ -828,7 +640,7 @@ class Meter:
         return False
 
     @property
-    def is_simple(self):
+    def is_simple(self) -> bool:
         """
         Is true when meter is simple.
 
@@ -837,7 +649,8 @@ class Meter:
             Simple meters written over ``4``:
 
             >>> for numerator in range(1, 13):
-            ...     meter = abjad.Meter((numerator, 4))
+            ...     rtc = abjad.meter.make_best_guess_rtc((numerator, 4))
+            ...     meter = abjad.Meter(rtc)
             ...     string = True if meter.is_simple else ''
             ...     print(str(meter.fraction_string), string)
             ...
@@ -859,7 +672,8 @@ class Meter:
             Simple meters written over ``8``:
 
             >>> for numerator in range(1, 13):
-            ...     meter = abjad.Meter((numerator, 8))
+            ...     rtc = abjad.meter.make_best_guess_rtc((numerator, 8))
+            ...     meter = abjad.Meter(rtc)
             ...     string = True if meter.is_simple else ''
             ...     print(str(meter.fraction_string), string)
             ...
@@ -880,73 +694,38 @@ class Meter:
         ``3``.
 
         Meters with numerator equal to ``3`` are also defined as simple.
-
-        Returns true or false.
         """
         return not self.is_compound
 
     @property
-    def numerator(self):
+    def numerator(self) -> int:
         """
         Gets numerator of meter.
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> meter.numerator
             7
 
-        Returns positive integer.
         """
         return self._numerator
 
     @property
-    def pair(self):
+    def pair(self) -> tuple[int, int]:
         """
         Gets pair of numerator and denominator of meter.
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((6, 4))
+            >>> rtc = abjad.meter.make_best_guess_rtc((6, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> meter.pair
             (6, 4)
 
-        Returns pair.
         """
         return (self.numerator, self.denominator)
-
-    @property
-    def preferred_boundary_depth(self):
-        """
-        Gets preferred boundary depth of meter.
-
-        ..  container:: example
-
-            No preferred boundary depth:
-
-            >>> abjad.Meter((6, 8)).preferred_boundary_depth is None
-            True
-
-        ..  container:: example
-
-            Customized preferred boundary depth:
-
-            >>> meter = abjad.Meter(
-            ...     (6, 8),
-            ...     preferred_boundary_depth=1,
-            ...     )
-            >>> meter.preferred_boundary_depth
-            1
-
-        Used by ``abjad.Meter.rewrite_meter()``.
-
-        Defaults to none.
-
-        Set to integer or none.
-
-        Returns integer or none.
-        """
-        return self._preferred_boundary_depth
 
     @property
     def pretty_rtm_format(self) -> str:
@@ -955,7 +734,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> print(meter.pretty_rtm_format)
             (7/4 (
                 (3/4 (
@@ -979,7 +759,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> for item in meter.root_node:
             ...     item
             RhythmTreeContainer((3, 4))
@@ -996,7 +777,8 @@ class Meter:
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((7, 4))
+            >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> meter.rtm_format
             '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
 
@@ -1007,28 +789,29 @@ class Meter:
 
     @staticmethod
     def fit_meters(
-        argument,
-        meters,
-        denominator=32,
-        discard_final_orphan_downbeat=True,
-        maximum_run_length=None,
-        starting_offset=None,
-    ):
+        offset_counter: _timespan.OffsetCounter,
+        meters: typing.Sequence["Meter"],
+        denominator: int = 32,
+        maximum_run_length: int | None = None,
+    ) -> list["Meter"]:
         """
         Finds the best-matching sequence of meters for the offsets contained in
-        ``argument``.
+        ``offset_counter``.
 
         ..  container:: example
 
-            >>> meters = [(3, 4), (4, 4), (5, 4)]
-            >>> meters = [abjad.Meter(_) for _ in meters]
+            >>> pairs = [(3, 4), (4, 4), (5, 4)]
+            >>> rtcs = [abjad.meter.make_best_guess_rtc(_) for _ in pairs]
+            >>> meters = [abjad.Meter(_) for _ in rtcs]
 
         ..  container:: example
 
             Matches a series of hypothetical ``4/4`` measures:
 
-            >>> argument = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
-            >>> for meter in abjad.Meter.fit_meters(argument, meters):
+            >>> pairs = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
+            >>> offsets = [abjad.Offset(_) for _ in pairs]
+            >>> offset_counter = abjad.OffsetCounter(offsets)
+            >>> for meter in abjad.Meter.fit_meters(offset_counter, meters):
             ...     print(meter.implied_time_signature)
             ...
             TimeSignature(pair=(4, 4), hide=False, partial=None)
@@ -1040,8 +823,10 @@ class Meter:
 
             Matches a series of hypothetical ``5/4`` measures:
 
-            >>> argument = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
-            >>> for meter in abjad.Meter.fit_meters(argument, meters):
+            >>> pairs = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
+            >>> offsets = [abjad.Offset(_) for _ in pairs]
+            >>> offset_counter = abjad.OffsetCounter(offsets)
+            >>> for meter in abjad.Meter.fit_meters(offset_counter, meters):
             ...     print(meter.implied_time_signature)
             ...
             TimeSignature(pair=(3, 4), hide=False, partial=None)
@@ -1050,92 +835,90 @@ class Meter:
             TimeSignature(pair=(5, 4), hide=False, partial=None)
             TimeSignature(pair=(5, 4), hide=False, partial=None)
 
-        Coerces offsets from ``argument`` via ``MetricAccentKernel.count_offsets()``.
-
-        Returns list.
         """
+        assert all(isinstance(_, Meter) for _ in meters), repr(meters)
+        assert isinstance(offset_counter, _timespan.OffsetCounter), repr(offset_counter)
         session = _MeterFittingSession(
             kernel_denominator=denominator,
             maximum_run_length=maximum_run_length,
             meters=meters,
-            offset_counter=argument,
+            offset_counter=offset_counter,
         )
-        meters = session()
+        meters = list(session())
+        assert all(isinstance(_, Meter) for _ in meters), repr(meters)
         return meters
 
-    @staticmethod
-    def from_rtcontainer(rtcontainer):
-        assert isinstance(rtcontainer, _rhythmtrees.RhythmTreeContainer)
-        for node in [rtcontainer] + list(rtcontainer.depth_first()):
-            assert node.prolation == 1
-        meter = Meter(rtcontainer.pair)
-        meter._root_node = rtcontainer
-        return meter
-
-    def generate_offset_kernel_to_denominator(self, denominator, normalize=True):
+    def generate_offset_kernel_to_denominator(
+        self, denominator: int
+    ) -> "MetricAccentKernel":
         r"""
-        Generates a dictionary of all offsets in a meter up to ``denominator``.
+        Generates MAK (dictionary) of all offsets in ``self`` up to
+        ``denominator``.
 
-        Keys are the offsets and the values are the normalized weights of those offsets.
+        Keys of MAK are offsets.
+
+        Values of MAK are normalized weights of those offsets.
+
+        This is useful for testing how strongly a collection of offsets
+        responds to a given meter.
 
         ..  container:: example
 
-            >>> meter = abjad.Meter((4, 4))
+            >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> kernel = meter.generate_offset_kernel_to_denominator(8)
             >>> for offset, weight in sorted(kernel.kernel.items()):
-            ...     print(f"{offset!s}\t{weight!s}")
+            ...     print(f"{offset!r}\t{weight!r}")
             ...
-            0       3/16
-            1/8     1/16
-            1/4     1/8
-            3/8     1/16
-            1/2     1/8
-            5/8     1/16
-            3/4     1/8
-            7/8     1/16
-            1       3/16
+            Offset((0, 1))	Fraction(3, 16)
+            Offset((1, 8))	Fraction(1, 16)
+            Offset((1, 4))	Fraction(1, 8)
+            Offset((3, 8))	Fraction(1, 16)
+            Offset((1, 2))	Fraction(1, 8)
+            Offset((5, 8))	Fraction(1, 16)
+            Offset((3, 4))	Fraction(1, 8)
+            Offset((7, 8))	Fraction(1, 16)
+            Offset((1, 1))	Fraction(3, 16)
 
-        This is useful for testing how strongly a collection of offsets responds to a
-        given meter.
-
-        Returns dictionary.
         """
         assert _math.is_positive_integer_power_of_two(denominator // self.denominator)
         inventory = list(self.depthwise_offset_inventory)
+        for offset_tuple in inventory:
+            assert isinstance(offset_tuple, tuple)
+            assert all(isinstance(_, _duration.Offset) for _ in offset_tuple)
         old_flag_count = _duration.Duration(1, self.denominator).flag_count
         new_flag_count = _duration.Duration(1, denominator).flag_count
         extra_depth = new_flag_count - old_flag_count
+        assert isinstance(extra_depth, int), repr(extra_depth)
         for _ in range(extra_depth):
             old_offsets = inventory[-1]
             new_offsets = []
-            for first, second in _sequence.nwise(old_offsets):
-                new_offsets.append(first)
-                new_offsets.append((first + second) / 2)
+            for first_offset, second_offset in _sequence.nwise(old_offsets):
+                new_offsets.append(first_offset)
+                new_offsets.append((first_offset + second_offset) / 2)
             new_offsets.append(old_offsets[-1])
             inventory.append(tuple(new_offsets))
         total = 0
-        kernel = {}
-        for offsets in inventory:
-            for offset in offsets:
-                if offset not in kernel:
-                    kernel[offset] = 0
-                kernel[offset] += 1
+        offset_to_weight = {}
+        for offset_tuple in inventory:
+            for offset in offset_tuple:
+                if offset not in offset_to_weight:
+                    offset_to_weight[offset] = fractions.Fraction(0)
+                offset_to_weight[offset] += fractions.Fraction(1)
                 total += 1
-        if normalize:
-            for offset, response in kernel.items():
-                kernel[offset] = fractions.Fraction(response, total)
-        return MetricAccentKernel(kernel)
+        for offset, count in offset_to_weight.items():
+            offset_to_weight[offset] = fractions.Fraction(count, total)
+        return MetricAccentKernel(offset_to_weight)
 
-    # TODO: typehint
-    @staticmethod
-    def rewrite_meter(
-        components,
-        meter,
-        boundary_depth=None,
-        initial_offset=None,
-        maximum_dot_count=None,
-        rewrite_tuplets=True,
-    ):
+    def rewrite(
+        self,
+        components: typing.Sequence[_score.Component],
+        *,
+        boundary_depth: int | None = None,
+        initial_offset: _duration.Offset = _duration.Offset(0),
+        maximum_dot_count: int | None = None,
+        rewrite_tuplets: bool = True,
+    ) -> None:
         r"""
         Rewrites ``components`` according to ``meter``.
 
@@ -1179,7 +962,8 @@ class Meter:
                     }
                 }
 
-            >>> meter = abjad.Meter((4, 4))
+            >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
+            >>> meter = abjad.Meter(rtc)
             >>> print(meter.pretty_rtm_format)
             (4/4 (
                 1/4
@@ -1187,7 +971,7 @@ class Meter:
                 1/4
                 1/4))
 
-            >>> abjad.Meter.rewrite_meter(staff[1][:], meter)
+            >>> meter.rewrite(staff[1][:])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1254,10 +1038,9 @@ class Meter:
                     }
                 }
 
-            >>> parser = abjad.rhythmtrees.RhythmTreeParser()
             >>> string = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
-            >>> rtcontainer = parser(string)[0]
-            >>> meter = abjad.Meter.from_rtcontainer(rtcontainer)
+            >>> rtc = abjad.rhythmtrees.parse(string)[0]
+            >>> meter = abjad.Meter(rtc)
             >>> print(meter.pretty_rtm_format) # doctest: +SKIP
             (4/4 (
                 (2/4 (
@@ -1267,7 +1050,7 @@ class Meter:
                     1/4
                     1/4))))
 
-            >>> abjad.Meter.rewrite_meter(staff[1][:], meter)
+            >>> meter.rewrite(staff[1][:])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1326,8 +1109,9 @@ class Meter:
 
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
-            >>> abjad.Meter.rewrite_meter(measure[:], meter)
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc)
+            >>> meter.rewrite(measure[:])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1358,12 +1142,9 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
-            >>> abjad.Meter.rewrite_meter(
-            ...     measure[:],
-            ...     meter,
-            ...     maximum_dot_count=2,
-            ... )
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc)
+            >>> meter.rewrite(measure[:], maximum_dot_count=2)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1396,12 +1177,9 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
-            >>> abjad.Meter.rewrite_meter(
-            ...     measure[:],
-            ...     meter,
-            ...     maximum_dot_count=1,
-            ... )
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc)
+            >>> meter.rewrite(measure[:], maximum_dot_count=1)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1436,12 +1214,9 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
-            >>> abjad.Meter.rewrite_meter(
-            ...     measure[:],
-            ...     meter,
-            ...     maximum_dot_count=0,
-            ... )
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc)
+            >>> meter.rewrite(measure[:], maximum_dot_count=0)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1481,7 +1256,8 @@ class Meter:
 
             Consider the default meter for ``9/8``:
 
-            >>> meter = abjad.Meter((9, 8))
+            >>> rtc = abjad.meter.make_best_guess_rtc((9, 8))
+            >>> meter = abjad.Meter(rtc)
             >>> print(meter.pretty_rtm_format)
             (9/8 (
                 (3/8 (
@@ -1522,8 +1298,9 @@ class Meter:
 
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
-            >>> abjad.Meter.rewrite_meter(measure[:], meter)
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc)
+            >>> meter.rewrite(measure[:])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1554,12 +1331,9 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
-            >>> abjad.Meter.rewrite_meter(
-            ...     measure[:],
-            ...     meter,
-            ...     boundary_depth=1,
-            ... )
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc)
+            >>> meter.rewrite(measure[:], boundary_depth=1)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1591,12 +1365,9 @@ class Meter:
             >>> score = abjad.Score([staff], name="Score")
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
-            >>> abjad.Meter.rewrite_meter(
-            ...     measure[:],
-            ...     meter,
-            ...     boundary_depth=2,
-            ... )
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc)
+            >>> meter.rewrite(measure[:], boundary_depth=2)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1740,8 +1511,9 @@ class Meter:
             ...     for container in staff:
             ...         leaf = abjad.get.leaf(container, 0)
             ...         time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
-            ...         meter = abjad.Meter(time_signature.pair)
-            ...         abjad.Meter.rewrite_meter(container[:], meter)
+            ...         rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            ...         meter = abjad.Meter(rtc)
+            ...         meter.rewrite(container[:])
             ...
             >>> abjad.show(score) # doctest: +SKIP
 
@@ -1841,12 +1613,9 @@ class Meter:
             ...     for container in staff:
             ...         leaf = abjad.get.leaf(container, 0)
             ...         time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
-            ...         meter = abjad.Meter(time_signature.pair)
-            ...         abjad.Meter.rewrite_meter(
-            ...             container[:],
-            ...             meter,
-            ...             boundary_depth=1,
-            ...         )
+            ...         rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            ...         meter = abjad.Meter(rtc)
+            ...         meter.rewrite(container[:], boundary_depth=1)
             ...
             >>> abjad.show(score) # doctest: +SKIP
 
@@ -1994,19 +1763,16 @@ class Meter:
                 }
 
             When establishing a meter on a selection of components which
-            contain containers, like tuplets or containers, ``rewrite_meter()``
+            contain containers, like tuplets or containers, ``abjad.Meter.rewrite()``
             will recurse into those containers, treating them as measures whose
             time signature is derived from the preprolated duration of the
             container's contents:
 
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
-            >>> meter = abjad.Meter(time_signature.pair)
-            >>> abjad.Meter.rewrite_meter(
-            ...     measure[:],
-            ...     meter,
-            ...     boundary_depth=1,
-            ... )
+            >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
+            >>> meter = abjad.Meter(rtc)
+            >>> meter.rewrite(measure[:], boundary_depth=1)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2052,8 +1818,9 @@ class Meter:
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-            >>> meter = abjad.Meter((6, 8))
-            >>> abjad.Meter.rewrite_meter(staff[:], meter)
+            >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
+            >>> meter = abjad.Meter(rtc)
+            >>> meter.rewrite(staff[:])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2074,8 +1841,9 @@ class Meter:
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-            >>> meter = abjad.Meter((6, 8))
-            >>> abjad.Meter.rewrite_meter(staff[:], meter, boundary_depth=1)
+            >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
+            >>> meter = abjad.Meter(rtc)
+            >>> meter.rewrite(staff[:], boundary_depth=1)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2092,33 +1860,6 @@ class Meter:
                     ~
                     c'4
                 }
-
-            Another way of doing this is by setting preferred boundary depth on the meter
-            itself:
-
-            >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
-            >>> score = abjad.Score([staff], name="Score")
-            >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
-            >>> meter = abjad.Meter((6, 8), preferred_boundary_depth=1)
-            >>> abjad.Meter.rewrite_meter(staff[:], meter)
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    \time 6/8
-                    c'4.
-                    ~
-                    c'16
-                    c'16
-                    ~
-                    c'4
-                }
-
-            This makes it possible to divide different meters in different ways.
 
         ..  container:: example
 
@@ -2162,12 +1903,9 @@ class Meter:
                     c'8
                 }
 
-            >>> meter = abjad.Meter((6, 4))
-            >>> abjad.Meter.rewrite_meter(
-            ...     staff[:],
-            ...     meter,
-            ...     boundary_depth=1,
-            ...     )
+            >>> rtc = abjad.meter.make_best_guess_rtc((6, 4))
+            >>> meter = abjad.Meter(rtc)
+            >>> meter.rewrite(staff[:], boundary_depth=1)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2242,13 +1980,13 @@ class Meter:
                     c'8
                 }
 
-            >>> meter = abjad.Meter((6, 4))
-            >>> abjad.Meter.rewrite_meter(
+            >>> rtc = abjad.meter.make_best_guess_rtc((6, 4))
+            >>> meter = abjad.Meter(rtc)
+            >>> meter.rewrite(
             ...     staff[:],
-            ...     meter,
             ...     boundary_depth=1,
             ...     rewrite_tuplets=False,
-            ...     )
+            ... )
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2274,45 +2012,43 @@ class Meter:
                     c'4.
                 }
 
-        Operates in place and returns none.
         """
         assert all(isinstance(_, _score.Component) for _ in components)
-        assert isinstance(meter, Meter), repr(meter)
         if boundary_depth is not None:
             assert isinstance(boundary_depth, int)
-        if initial_offset is not None:
-            assert isinstance(initial_offset, _duration.Offset), repr(initial_offset)
+        assert isinstance(initial_offset, _duration.Offset), repr(initial_offset)
         if maximum_dot_count is not None:
             assert isinstance(maximum_dot_count, int)
+            assert 0 <= maximum_dot_count
         assert isinstance(rewrite_tuplets, bool)
 
         def recurse(
-            boundary_depth=None,
-            boundary_offsets=None,
-            depth=0,
-            logical_tie=None,
-        ):
-            offsets = _MeterManager.get_offsets_at_depth(depth, offset_inventory)
-            logical_tie_duration = sum(
-                _._get_preprolated_duration() for _ in logical_tie
-            )
+            logical_tie: _select.LogicalTie,
+            boundary_depth: int | None = None,
+            boundary_offsets=(),
+            depth: int = 0,
+        ) -> None:
+            assert isinstance(logical_tie, _select.LogicalTie), repr(logical_tie)
+            assert isinstance(boundary_offsets, tuple), repr(boundary_offsets)
+            offsets = _get_offsets_at_depth(depth, offset_inventory)
+            durations = [_._get_preprolated_duration() for _ in logical_tie]
+            logical_tie_duration = sum(durations)
             logical_tie_timespan = _getlib._get_timespan(logical_tie)
             logical_tie_start_offset = logical_tie_timespan.start_offset
             logical_tie_stop_offset = logical_tie_timespan.stop_offset
             logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
             logical_tie_stops_in_offsets = logical_tie_stop_offset in offsets
-            if not _MeterManager.is_acceptable_logical_tie(
+            if not _is_acceptable_logical_tie(
                 logical_tie_duration=logical_tie_duration,
                 logical_tie_starts_in_offsets=logical_tie_starts_in_offsets,
                 logical_tie_stops_in_offsets=logical_tie_stops_in_offsets,
                 maximum_dot_count=maximum_dot_count,
             ):
                 split_offset = None
-                offsets = _MeterManager.get_offsets_at_depth(depth, offset_inventory)
-                # If the logical tie's start aligns,
-                # take the latest possible offset.
+                offsets = _get_offsets_at_depth(depth, offset_inventory)
+                # if the logical tie's start aligns, take the latest possible offset
                 if logical_tie_starts_in_offsets:
-                    offsets = reversed(offsets)
+                    offsets = tuple(reversed(offsets))
                 for offset in offsets:
                     if logical_tie_start_offset < offset < logical_tie_stop_offset:
                         split_offset = offset
@@ -2323,27 +2059,27 @@ class Meter:
                     logical_ties = [_select.LogicalTie(_) for _ in shards]
                     for logical_tie in logical_ties:
                         recurse(
+                            logical_tie,
                             boundary_depth=boundary_depth,
                             boundary_offsets=boundary_offsets,
                             depth=depth,
-                            logical_tie=logical_tie,
                         )
                 else:
                     recurse(
+                        logical_tie,
                         boundary_depth=boundary_depth,
                         boundary_offsets=boundary_offsets,
                         depth=depth + 1,
-                        logical_tie=logical_tie,
                     )
-            elif _MeterManager.is_boundary_crossing_logical_tie(
+            elif _is_boundary_crossing_logical_tie(
+                logical_tie_start_offset,
+                logical_tie_stop_offset,
                 boundary_depth=boundary_depth,
                 boundary_offsets=boundary_offsets,
-                logical_tie_start_offset=logical_tie_start_offset,
-                logical_tie_stop_offset=logical_tie_stop_offset,
             ):
                 offsets = boundary_offsets
                 if logical_tie_start_offset in boundary_offsets:
-                    offsets = reversed(boundary_offsets)
+                    offsets = tuple(reversed(boundary_offsets))
                 split_offset = None
                 for offset in offsets:
                     if logical_tie_start_offset < offset < logical_tie_stop_offset:
@@ -2355,66 +2091,49 @@ class Meter:
                 logical_ties = [_select.LogicalTie(shard) for shard in shards]
                 for logical_tie in logical_ties:
                     recurse(
+                        logical_tie,
                         boundary_depth=boundary_depth,
                         boundary_offsets=boundary_offsets,
                         depth=depth,
-                        logical_tie=logical_tie,
                     )
             else:
                 _mutate._fuse(logical_tie[:])
 
-        if not isinstance(meter, Meter):
-            meter = Meter(meter)
-        boundary_depth = boundary_depth or meter.preferred_boundary_depth
-        if not isinstance(meter, Meter):
-            meter = Meter(meter)
-        if boundary_depth is not None:
-            boundary_depth = int(boundary_depth)
-        if maximum_dot_count is not None:
-            maximum_dot_count = int(maximum_dot_count)
-            assert 0 <= maximum_dot_count
-        if initial_offset is None:
-            initial_offset = _duration.Offset(0)
-        initial_offset = _duration.Offset(initial_offset)
-        nongrace_components = [
-            _
-            for _ in components
-            if not isinstance(_, _score.IndependentAfterGraceContainer)
-        ]
-        # first_start_offset = components[0]._get_timespan().start_offset
-        # last_start_offset = components[-1]._get_timespan().start_offset
+        nongrace_components = []
+        for component in components:
+            if not isinstance(component, _score.IndependentAfterGraceContainer):
+                nongrace_components.append(component)
         first_start_offset = nongrace_components[0]._get_timespan().start_offset
         last_start_offset = nongrace_components[-1]._get_timespan().start_offset
         difference = last_start_offset - first_start_offset + initial_offset
-        assert difference < meter.implied_time_signature.duration
-        # Build offset inventory, adjusted for initial offset and prolation.
+        assert difference < self.implied_time_signature.duration
+        # build offset inventory, adjusted for initial offset and prolation
         first_offset = components[0]._get_timespan().start_offset
         first_offset -= initial_offset
         if components[0]._parent is None:
-            prolation = 1
+            prolation = fractions.Fraction(1)
         else:
             parentage = _parentage.Parentage(components[0]._parent)
             prolation = parentage.prolation
         offset_inventory = []
-        for offsets in meter.depthwise_offset_inventory:
+        for offsets in self.depthwise_offset_inventory:
             offsets = [(_ * prolation) + first_offset for _ in offsets]
             offset_inventory.append(tuple(offsets))
-        # Build boundary offset inventory, if applicable.
+        # build boundary offset inventory, if applicable
         if boundary_depth is not None:
             boundary_offsets = offset_inventory[boundary_depth]
         else:
-            boundary_offsets = None
-        # Cache results of iterator;
-        # we'll be mutating the underlying collection
-        iterator = _MeterManager.iterate_rewrite_inputs(components)
+            boundary_offsets = ()
+        # cache results of iterator; we'll be mutating the underlying collection
+        iterator = _iterate_rewrite_inputs(components)
         items = tuple(iterator)
         for item in items:
             if isinstance(item, _select.LogicalTie):
                 recurse(
+                    item,
                     boundary_depth=boundary_depth,
                     boundary_offsets=boundary_offsets,
                     depth=0,
-                    logical_tie=item,
                 )
             elif isinstance(item, _score.Tuplet) and not rewrite_tuplets:
                 pass
@@ -2425,29 +2144,248 @@ class Meter:
                     pair = _duration.with_denominator(duration, denominator)
                 else:
                     pair = duration.pair
-                sub_metrical_hierarchy = Meter(pair)
-                sub_boundary_depth = 1
+                rtc_ = make_best_guess_rtc(pair)
+                sub_metrical_hierarchy = Meter(rtc_)
+                sub_boundary_depth: int | None = 1
                 if boundary_depth is None:
                     sub_boundary_depth = None
-                Meter.rewrite_meter(
+                sub_metrical_hierarchy.rewrite(
                     item[:],
-                    sub_metrical_hierarchy,
                     boundary_depth=sub_boundary_depth,
                     maximum_dot_count=maximum_dot_count,
                 )
 
 
+def _get_offsets_at_depth(
+    depth, offset_inventory: list[tuple[_duration.Offset, ...]]
+) -> tuple[_duration.Offset, ...]:
+    assert all(isinstance(_, tuple) for _ in offset_inventory)
+    if depth < len(offset_inventory):
+        return offset_inventory[depth]
+    while len(offset_inventory) <= depth:
+        new_offsets = []
+        old_offsets = offset_inventory[-1]
+        for first, second in _sequence.nwise(old_offsets):
+            new_offsets.append(first)
+            difference = second - first
+            half = (first + second) / 2
+            if _duration.Duration(1, 8) < difference:
+                new_offsets.append(half)
+            else:
+                one_quarter = (first + half) / 2
+                three_quarters = (half + second) / 2
+                new_offsets.append(one_quarter)
+                new_offsets.append(half)
+                new_offsets.append(three_quarters)
+        new_offsets.append(old_offsets[-1])
+        offset_inventory.append(tuple(new_offsets))
+    result = offset_inventory[depth]
+    assert isinstance(result, tuple)
+    assert all(isinstance(_, _duration.Offset) for _ in result), repr(result)
+    return result
+
+
+def _is_acceptable_logical_tie(
+    logical_tie_duration: _duration.Duration,
+    logical_tie_starts_in_offsets: bool = False,
+    logical_tie_stops_in_offsets: bool = False,
+    maximum_dot_count: int | None = None,
+) -> bool:
+    assert isinstance(logical_tie_duration, _duration.Duration)
+    assert isinstance(logical_tie_starts_in_offsets, bool)
+    assert isinstance(logical_tie_stops_in_offsets, bool)
+    if not logical_tie_duration.is_assignable:
+        return False
+    if (
+        maximum_dot_count is not None
+        and maximum_dot_count < logical_tie_duration.dot_count
+    ):
+        return False
+    if not logical_tie_starts_in_offsets and not logical_tie_stops_in_offsets:
+        return False
+    return True
+
+
+def _is_boundary_crossing_logical_tie(
+    logical_tie_start_offset: _duration.Offset,
+    logical_tie_stop_offset: _duration.Offset,
+    boundary_depth: int | None = None,
+    boundary_offsets: tuple[_duration.Offset, ...] = (),
+) -> bool:
+    assert isinstance(logical_tie_start_offset, _duration.Offset)
+    assert isinstance(logical_tie_stop_offset, _duration.Offset)
+    if boundary_depth is None:
+        return False
+    if not any(
+        logical_tie_start_offset < _ < logical_tie_stop_offset for _ in boundary_offsets
+    ):
+        return False
+    if (
+        logical_tie_start_offset in boundary_offsets
+        and logical_tie_stop_offset in boundary_offsets
+    ):
+        return False
+    return True
+
+
+def _iterate_rewrite_inputs(
+    argument: typing.Sequence[_score.Component],
+) -> typing.Iterator[_select.LogicalTie | _score.Container]:
+    r"""
+    Iterates topmost masked logical ties, rest groups and containers in
+    ``argument``, masked by ``argument``.
+
+    ..  container:: example
+
+        >>> string = "! 2/4 c'4 d'4 ~ !"
+        >>> string += "! 4/4 d'8. r16 r8. e'16 ~ "
+        >>> string += "2/3 { e'8 ~ e'8 f'8 ~ } f'4 ~ !"
+        >>> string += "! 4/4 f'8 g'8 ~ g'4 a'4 ~ a'8 b'8 ~ !"
+        >>> string += "! 2/4 b'4 c''4 !"
+        >>> string = string.replace('!', '|')
+        >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
+        >>> staff = abjad.Staff()
+        >>> score = abjad.Score([staff], name="Score")
+        >>> staff[:] = container
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                {
+                    \time 2/4
+                    c'4
+                    d'4
+                    ~
+                }
+                {
+                    \time 4/4
+                    d'8.
+                    r16
+                    r8.
+                    e'16
+                    ~
+                    \tuplet 3/2
+                    {
+                        e'8
+                        ~
+                        e'8
+                        f'8
+                        ~
+                    }
+                    f'4
+                    ~
+                }
+                {
+                    \time 4/4
+                    f'8
+                    g'8
+                    ~
+                    g'4
+                    a'4
+                    ~
+                    a'8
+                    b'8
+                    ~
+                }
+                {
+                    \time 2/4
+                    b'4
+                    c''4
+                }
+            }
+
+        >>> for x in abjad.meter._iterate_rewrite_inputs(staff[0]):
+        ...     x
+        ...
+        LogicalTie(items=[Note("c'4")])
+        LogicalTie(items=[Note("d'4")])
+
+        >>> for x in abjad.meter._iterate_rewrite_inputs(staff[1]):
+        ...     x
+        ...
+        LogicalTie(items=[Note("d'8.")])
+        LogicalTie(items=[Rest('r16'), Rest('r8.')])
+        LogicalTie(items=[Note("e'16")])
+        Tuplet('3:2', "e'8 e'8 f'8")
+        LogicalTie(items=[Note("f'4")])
+
+        >>> for x in abjad.meter._iterate_rewrite_inputs(staff[2]):
+        ...     x
+        ...
+        LogicalTie(items=[Note("f'8")])
+        LogicalTie(items=[Note("g'8"), Note("g'4")])
+        LogicalTie(items=[Note("a'4"), Note("a'8")])
+        LogicalTie(items=[Note("b'8")])
+
+        >>> for x in abjad.meter._iterate_rewrite_inputs(staff[3]):
+        ...     x
+        ...
+        LogicalTie(items=[Note("b'4")])
+        LogicalTie(items=[Note("c''4")])
+
+    """
+    last_tie = None
+    current_leaf_group: list[_score.Leaf] | None = None
+    current_leaf_group_is_silent = False
+    for component in argument:
+        assert isinstance(component, _score.Component)
+        if isinstance(component, _score.Note | _score.Chord):
+            this_tie_leaves = _iterlib._get_logical_tie_leaves(component)
+            this_tie = _select.LogicalTie(this_tie_leaves)
+            if current_leaf_group is None:
+                current_leaf_group = []
+            elif (
+                current_leaf_group_is_silent or this_tie is None or last_tie != this_tie
+            ):
+                yield _select.LogicalTie(current_leaf_group)
+                current_leaf_group = []
+            current_leaf_group_is_silent = False
+            current_leaf_group.append(component)
+            last_tie = this_tie
+        elif isinstance(component, _score.Rest | _score.Skip):
+            if current_leaf_group is None:
+                current_leaf_group = []
+            elif not current_leaf_group_is_silent:
+                yield _select.LogicalTie(current_leaf_group)
+                current_leaf_group = []
+            current_leaf_group_is_silent = True
+            current_leaf_group.append(component)
+            last_tie = None
+        elif isinstance(component, _score.Container):
+            if current_leaf_group is not None:
+                yield _select.LogicalTie(current_leaf_group)
+                current_leaf_group = None
+                last_tie = None
+            yield component
+        else:
+            raise Exception(f"unhandled component: {component!r}.")
+    if current_leaf_group is not None:
+        yield _select.LogicalTie(current_leaf_group)
+
+
 def illustrate_meter_list(
-    meter_list, denominator=16, range_=None, scale=None
+    meter_list: list["Meter"],
+    denominator: int = 16,
+    range_: tuple | None = None,
+    scale: float = 1.0,
 ) -> _lilypondfile.LilyPondFile:
     r"""
     Illustrates meters.
 
     ..  container:: example
 
-        >>> meters = [abjad.Meter(_) for _ in [(3, 4), (5, 16), (7, 8)]]
+        The PNG image that would be rendered below fails to draw vertical lines
+        in Postscript. But the output renders correctly as a PDF. To see the
+        effect of this function, paste the excerpt below into a test file and
+        call LilyPond on that test file:
+
+        >>> pairs = [(3, 4), (5, 16), (7, 8)]
+        >>> rtcs = [abjad.meter.make_best_guess_rtc(_) for _ in pairs]
+        >>> meters = [abjad.Meter(_) for _ in rtcs]
         >>> lilypond_file = abjad.meter.illustrate_meter_list(meters, scale=0.5)
-        >>> abjad.show(lilypond_file) # doctest: +SKIP
 
         ..  docs::
 
@@ -2606,6 +2544,11 @@ def illustrate_meter_list(
             }
 
     """
+    assert all(isinstance(_, Meter) for _ in meter_list), repr(meter_list)
+    assert isinstance(denominator, int), repr(denominator)
+    if range_ is not None:
+        assert isinstance(range_, tuple), repr(range_)
+    assert isinstance(scale, float), repr(scale)
     durations = [_.duration for _ in meter_list]
     total_duration = sum(durations)
     offsets = _math.cumulative_sums(durations, start=0)
@@ -2637,12 +2580,13 @@ def illustrate_meter_list(
         kernel_denominator = denominator or meter.denominator
         kernel = MetricAccentKernel.from_meter(meter, kernel_denominator)
         for offset, weight in sorted(kernel.kernel.items()):
-            weight = float(weight) * -40
+            assert isinstance(weight, fractions.Fraction)
+            weight_as_float = float(weight) * -40
             ps_x_offset = float(rational_x_offset + offset)
             ps_x_offset *= postscript_scale
             ps_x_offset += 1
             postscript_strings.append(f"{_timespan._fpa(ps_x_offset)} -2 moveto")
-            postscript_strings.append(f"0 {_timespan._fpa(weight)} rlineto")
+            postscript_strings.append(f"0 {_timespan._fpa(weight_as_float)} rlineto")
             postscript_strings.append("stroke")
         rational_x_offset += meter.duration
     fraction_pairs = []
@@ -2687,18 +2631,29 @@ class MetricAccentKernel:
 
     ..  container:: example
 
-        >>> hierarchy = abjad.Meter((7, 8))
+        >>> rtc = abjad.meter.make_best_guess_rtc((7, 8))
+        >>> hierarchy = abjad.Meter(rtc)
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
-        >>> kernel
-        MetricAccentKernel(kernel={Offset((0, 1)): Fraction(3, 14), Offset((7, 8)): Fraction(3, 14), Offset((3, 8)): Fraction(1, 7), Offset((5, 8)): Fraction(1, 7), Offset((1, 8)): Fraction(1, 14), Offset((1, 4)): Fraction(1, 14), Offset((1, 2)): Fraction(1, 14), Offset((3, 4)): Fraction(1, 14)})
+        >>> for offset, weight in kernel.kernel.items():
+        ...     print(f"{offset!r}: {weight!r}")
+        Offset((0, 1)): Fraction(3, 14)
+        Offset((7, 8)): Fraction(3, 14)
+        Offset((3, 8)): Fraction(1, 7)
+        Offset((5, 8)): Fraction(1, 7)
+        Offset((1, 8)): Fraction(1, 14)
+        Offset((1, 4)): Fraction(1, 14)
+        Offset((1, 2)): Fraction(1, 14)
+        Offset((3, 4)): Fraction(1, 14)
 
-    Call the kernel against an expression from which offsets can be counted to receive an
-    impulse-response:
+    Call the kernel against an expression from which offsets can be counted to
+    receive an impulse-response:
 
     ..  container:: example
 
-        >>> offsets = [(0, 8), (1, 8), (1, 8), (3, 8)]
-        >>> kernel(offsets)
+        >>> pairs = [(0, 8), (1, 8), (1, 8), (3, 8)]
+        >>> offsets = [abjad.Offset(_) for _ in pairs]
+        >>> offset_counter = abjad.OffsetCounter(offsets)
+        >>> kernel(offset_counter)
         Fraction(1, 2)
 
     """
@@ -2709,100 +2664,28 @@ class MetricAccentKernel:
 
     ### INITIALIZER ###
 
-    def __init__(self, kernel=None):
+    def __init__(self, kernel: dict | None = None):
         kernel = kernel or {}
         assert isinstance(kernel, dict)
         for key, value in kernel.items():
             assert isinstance(key, _duration.Offset)
             assert isinstance(value, fractions.Fraction)
         self._kernel = kernel.copy()
-        self._offsets = tuple(sorted(self._kernel))
+        offsets = tuple(sorted(self._kernel))
+        self._offsets = offsets
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, argument):
+    def __call__(self, offset_counter: _timespan.OffsetCounter) -> fractions.Fraction:
         r"""
-        Calls metrical accent kernal on ``argument``.
-
-        >>> upper_staff = abjad.Staff("c'8 d'4. e'8 f'4.")
-        >>> lower_staff = abjad.Staff(r'\clef bass c4 b,4 a,2')
-        >>> score = abjad.Score([upper_staff, lower_staff])
-
-        >>> kernel = abjad.MetricAccentKernel.from_meter((4, 4))
-        >>> kernel(score)
-        Fraction(10, 33)
-
-        Returns float.
-        """
-        offset_count = self.count_offsets(argument)
-        response = fractions.Fraction(0, 1)
-        for offset, count in offset_count.items.items():
-            if offset in self._kernel:
-                weight = self._kernel[offset]
-                weighted_count = weight * count
-                response += weighted_count
-        return response
-
-    def __eq__(self, argument):
-        """
-        Is true when ``argument`` is a metrical accent kernal with a kernal equal to that
-        of this metrical accent kernel.
-
-        Returns true or false.
-        """
-        if isinstance(argument, type(self)):
-            if self.kernel == argument.kernel:
-                if self.duration == argument.duration:
-                    return True
-        return False
-
-    def __hash__(self):
-        """
-        Hashes metric accent kernel.
-
-        Returns integer.
-        """
-        return super().__hash__()
-
-    def __repr__(self) -> str:
-        """
-        Gets repr.
-        """
-        return f"{type(self).__name__}(kernel={self.kernel})"
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def duration(self):
-        """
-        Gets duration.
-        """
-        if self._offsets:
-            return _duration.Duration(self._offsets[-1])
-        else:
-            return _duration.Duration(0)
-
-    @property
-    def kernel(self):
-        """
-        The kernel datastructure.
-
-        Returns dict.
-        """
-        return self._kernel.copy()
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def count_offsets(argument) -> _timespan.OffsetCounter:
-        r"""
-        Count offsets in ``argument``.
+        Calls metric accent kernal on ``offset_counter``.
 
         ..  container:: example
 
             >>> upper_staff = abjad.Staff("c'8 d'4. e'8 f'4.")
-            >>> lower_staff = abjad.Staff(r'\clef bass c4 b,4 a,2')
+            >>> lower_staff = abjad.Staff(r"\clef bass c4 b,4 a,2")
             >>> score = abjad.Score([upper_staff, lower_staff])
+            >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
 
@@ -2826,58 +2709,83 @@ class MetricAccentKernel:
                     }
                 >>
 
-            >>> abjad.show(score) # doctest: +SKIP
+            >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
+            >>> meter = abjad.Meter(rtc)
+            >>> kernel = abjad.MetricAccentKernel.from_meter(meter)
+            >>> offset_counter = abjad.OffsetCounter(score)
+            >>> kernel(offset_counter)
+            Fraction(10, 33)
 
-            >>> MetricAccentKernel = abjad.MetricAccentKernel
-            >>> leaves = abjad.select.leaves(score)
-            >>> counter = abjad.MetricAccentKernel.count_offsets(leaves)
-            >>> for offset, count in sorted(counter.items.items()):
-            ...     offset, count
-            (Offset((0, 1)), 2)
-            (Offset((1, 8)), 2)
-            (Offset((1, 4)), 2)
-            (Offset((1, 2)), 4)
-            (Offset((5, 8)), 2)
-            (Offset((1, 1)), 2)
-
-        ..  container:: example
-
-            >>> a = abjad.Timespan(0, 10)
-            >>> b = abjad.Timespan(5, 15)
-            >>> c = abjad.Timespan(15, 20)
-
-            >>> counter = MetricAccentKernel.count_offsets((a, b, c))
-            >>> for offset, count in sorted(counter.items.items()):
-            ...     offset, count
-            (Offset((0, 1)), 1)
-            (Offset((5, 1)), 1)
-            (Offset((10, 1)), 1)
-            (Offset((15, 1)), 2)
-            (Offset((20, 1)), 1)
-
-        Returns counter.
         """
-        return _timespan.OffsetCounter(argument)
+        assert isinstance(offset_counter, _timespan.OffsetCounter), repr(offset_counter)
+        response = fractions.Fraction(0, 1)
+        for offset, count in offset_counter.items.items():
+            if offset in self._kernel:
+                weight = self._kernel[offset]
+                weighted_count = weight * count
+                response += weighted_count
+        assert isinstance(response, fractions.Fraction), repr(response)
+        return response
+
+    def __eq__(self, argument) -> bool:
+        """
+        Is true when ``argument`` is a metric accent kernal with a kernal equal
+        to that of ``self``.
+        """
+        if isinstance(argument, type(self)):
+            if self.kernel == argument.kernel:
+                if self.duration == argument.duration:
+                    return True
+        return False
+
+    def __hash__(self) -> int:
+        """
+        Hashes metric accent kernel.
+        """
+        return super().__hash__()
+
+    def __repr__(self) -> str:
+        """
+        Gets repr.
+        """
+        return f"{type(self).__name__}(kernel={self.kernel})"
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def duration(self) -> _duration.Duration:
+        """
+        Gets duration.
+        """
+        if self._offsets:
+            return _duration.Duration(self._offsets[-1])
+        else:
+            return _duration.Duration(0)
+
+    @property
+    def kernel(self) -> dict[_duration.Offset, fractions.Fraction]:
+        """
+        The kernel dictionary.
+        """
+        return self._kernel.copy()
+
+    ### PUBLIC METHODS ###
 
     @staticmethod
-    def from_meter(meter, denominator=32, normalize=True):
+    def from_meter(meter: Meter, denominator: int = 32) -> "MetricAccentKernel":
         """
         Create a metric accent kernel from ``meter``.
-
-        Returns new metric accent kernel.
         """
-        if not isinstance(meter, Meter):
-            meter = Meter(meter)
-        return meter.generate_offset_kernel_to_denominator(
-            denominator=denominator, normalize=normalize
-        )
+        assert isinstance(meter, Meter), repr(meter)
+        assert isinstance(denominator, int), repr(denominator)
+        return meter.generate_offset_kernel_to_denominator(denominator=denominator)
 
 
 class _MeterFittingSession:
     """
     Meter-fitting session.
 
-    Used internally by Meter.fit_meters().
+    Used internally by ``Meter.fit_meters()``.
     """
 
     ### CLASS VARIABLES ###
@@ -2899,55 +2807,55 @@ class _MeterFittingSession:
 
     def __init__(
         self,
-        kernel_denominator=32,
-        maximum_run_length=None,
-        meters=None,
-        offset_counter=None,
-    ):
-        if meters is not None:
-            assert all(isinstance(_, Meter) for _ in meters), repr(meters)
-        self._cached_offset_counters = {}
+        kernel_denominator: int = 32,
+        maximum_run_length: int | None = None,
+        meters: typing.Sequence[Meter] = (),
+        offset_counter: _timespan.OffsetCounter = _timespan.OffsetCounter(),
+    ) -> None:
+        assert isinstance(kernel_denominator, int), repr(kernel_denominator)
         if maximum_run_length is not None:
-            maximum_run_length = int(maximum_run_length)
+            assert isinstance(maximum_run_length, int), repr(maximum_run_length)
             assert 0 < maximum_run_length
+        assert all(isinstance(_, Meter) for _ in meters), repr(meters)
+        assert isinstance(offset_counter, _timespan.OffsetCounter), repr(offset_counter)
+        assert isinstance(offset_counter, _timespan.OffsetCounter), repr(offset_counter)
+        self._cached_offset_counters: dict = {}
         self._maximum_run_length = maximum_run_length
-        if offset_counter:
-            self._offset_counter = MetricAccentKernel.count_offsets(offset_counter)
-        else:
-            self._offset_counter = {}
-        self._ordered_offsets = tuple(sorted(self.offset_counter.items))
-        meters = meters or ()
         self._meters = tuple(meters)
-        self._kernel_denominator = _duration.Duration(kernel_denominator)
+        self._offset_counter = offset_counter
+        self._ordered_offsets = tuple(sorted(self.offset_counter.items))
+        self._kernel_denominator = kernel_denominator
         self._kernels = {}
         for meter in self._meters:
             kernel = meter.generate_offset_kernel_to_denominator(
                 self._kernel_denominator
             )
             self._kernels[kernel] = meter
-        if self.kernels:
-            self._longest_kernel = sorted(self._kernels, key=lambda _: _.duration)[-1]
-        else:
-            self._longest_kernel = None
+        mak = sorted(self._kernels, key=lambda _: _.duration)[-1]
+        assert isinstance(mak, MetricAccentKernel), repr(mak)
+        self._longest_kernel = mak
 
     ### SPECIAL METHODS ###
 
-    def __call__(self):
+    def __call__(self) -> list[Meter]:
         """
         Fits meters.
-
-        Returns meter list.
         """
-        selected_kernels = []
+        selected_kernels: list[MetricAccentKernel] = []
         current_offset = _duration.Offset(0)
         while current_offset < self.ordered_offsets[-1]:
-            kernel_scores = []
+            kernel_scores: list[_MeterFittingSession.KernelScore] = []
             kernels = self._get_kernels(selected_kernels)
             offset_counter = self._get_offset_counter_at(current_offset)
+            assert isinstance(offset_counter, _timespan.OffsetCounter), repr(
+                offset_counter
+            )
             if not offset_counter:
                 winning_kernel = self.longest_kernel
+                assert isinstance(winning_kernel, MetricAccentKernel)
                 if selected_kernels:
                     winning_kernel = selected_kernels[-1]
+                    assert isinstance(winning_kernel, MetricAccentKernel)
             else:
                 for kernel in kernels:
                     if (
@@ -2968,9 +2876,11 @@ class _MeterFittingSession:
                     kernel_scores.append(kernel_score)
                 kernel_scores.sort(key=lambda kernel_score: kernel_score.score)
                 winning_kernel = kernel_scores[-1].kernel
+                assert isinstance(winning_kernel, MetricAccentKernel)
             selected_kernels.append(winning_kernel)
             current_offset += winning_kernel.duration
-        selected_meters = (self.kernels[_] for _ in selected_kernels)
+        selected_meters = [self.kernels[_] for _ in selected_kernels]
+        assert all(isinstance(_, Meter) for _ in selected_meters), repr(selected_meters)
         return selected_meters
 
     ### PRIVATE METHODS ###
@@ -2984,319 +2894,433 @@ class _MeterFittingSession:
         lookahead_offset_counter = self._get_offset_counter_at(lookahead_offset)
         for lookahead_kernel in kernels:
             lookahead_scores.append(lookahead_kernel(lookahead_offset_counter))
-        lookahead_score = sum(lookahead_scores)  # / len(lookahead_scores)
+        lookahead_score = sum(lookahead_scores)
         return lookahead_score
 
-    def _get_offset_counter_at(self, start_offset):
+    def _get_offset_counter_at(self, start_offset) -> _timespan.OffsetCounter:
         if start_offset in self.cached_offset_counters:
-            return self.cached_offset_counters[start_offset]
-        offset_counter = {}
+            return _timespan.OffsetCounter(self.cached_offset_counters[start_offset])
+        offset_to_weight: dict[_duration.Offset, fractions.Fraction] = {}
+        assert self.longest_kernel is not None
         stop_offset = start_offset + self.longest_kernel.duration
         index = bisect.bisect_left(self.ordered_offsets, start_offset)
         if index == len(self.ordered_offsets):
-            return offset_counter
+            return _timespan.OffsetCounter(offset_to_weight)
         offset = self.ordered_offsets[index]
         while offset <= stop_offset:
             count = self.offset_counter.items[offset]
-            offset_counter[offset - start_offset] = count
+            offset_to_weight[offset - start_offset] = count
             index += 1
             if index == len(self.ordered_offsets):
                 break
             offset = self.ordered_offsets[index]
-        self.cached_offset_counters[start_offset] = offset_counter
+        self.cached_offset_counters[start_offset] = offset_to_weight
+        offset_counter = _timespan.OffsetCounter(offset_to_weight)
         return offset_counter
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def cached_offset_counters(self):
+    def cached_offset_counters(self) -> dict:
         """
         Gets cached offset counters
-
-        Returns dictionary.
         """
         return self._cached_offset_counters
 
     @property
-    def kernel_denominator(self):
+    def kernel_denominator(self) -> int:
         """
         Gets kernel denominator.
-
-        Returns duration.
         """
         return self._kernel_denominator
 
     @property
-    def kernels(self):
+    def kernels(self) -> dict:
         """
         Gets kernels-to-meter dictionary.
-
-        Returns dictionary.
         """
         return self._kernels
 
     @property
-    def longest_kernel(self):
+    def longest_kernel(self) -> MetricAccentKernel:
         """
         Gets longest kernel.
-
-        Returns kernel.
         """
         return self._longest_kernel
 
     @property
-    def maximum_run_length(self):
+    def maximum_run_length(self) -> int | None:
         """
         Gets maximum meter repetitions.
-
-        Returns integer or none.
         """
         return self._maximum_run_length
 
     @property
-    def meters(self):
+    def meters(self) -> tuple[Meter, ...]:
         """
         Gets meters.
-
-        Returns meters.
         """
         return self._meters
 
     @property
-    def offset_counter(self):
+    def offset_counter(self) -> _timespan.OffsetCounter:
         """
         Gets offset counter.
-
-        Returns offset counter.
         """
         return self._offset_counter
 
     @property
-    def ordered_offsets(self):
+    def ordered_offsets(self) -> tuple[_duration.Offset, ...]:
         """
         Gets ordered offsets.
-
-        Returns offsets.
         """
         return self._ordered_offsets
 
 
-class _MeterManager:
+def make_best_guess_rtc(
+    pair: tuple[int, int], *, increase_monotonic: bool = False
+) -> _rhythmtrees.RhythmTreeContainer:
     """
-    Meter manager.
+    Makes best-guess rhythm-tree container.
+
+    Prime divisions greater than 3 are converted to sequences of 2, 3 and 4
+    summing to that prime. Summands are arranged from greatest to least by
+    default. This means that 5 becomes 3+2 and 7 becomes 3+2+2 in the examples
+    below.
+
+    ..  container:: example
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((2, 4))
+        >>> print(rtc.pretty_rtm_format)
+        (2/4 (
+            1/4
+            1/4))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((3, 4))
+        >>> print(rtc.pretty_rtm_format)
+        (3/4 (
+            1/4
+            1/4
+            1/4))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
+        >>> print(rtc.pretty_rtm_format)
+        (4/4 (
+            1/4
+            1/4
+            1/4
+            1/4))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((5, 4))
+        >>> print(rtc.pretty_rtm_format)
+        (5/4 (
+            (3/4 (
+                1/4
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((5, 4), increase_monotonic=True)
+        >>> print(rtc.pretty_rtm_format)
+        (5/4 (
+            (2/4 (
+                1/4
+                1/4))
+            (3/4 (
+                1/4
+                1/4
+                1/4))))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((6, 4))
+        >>> print(rtc.pretty_rtm_format)
+        (6/4 (
+            (3/4 (
+                1/4
+                1/4
+                1/4))
+            (3/4 (
+                1/4
+                1/4
+                1/4))))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
+        >>> print(rtc.pretty_rtm_format)
+        (7/4 (
+            (3/4 (
+                1/4
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((7, 4), increase_monotonic=True)
+        >>> print(rtc.pretty_rtm_format)
+        (7/4 (
+            (2/4 (
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))
+            (3/4 (
+                1/4
+                1/4
+                1/4))))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((8, 4))
+        >>> print(rtc.pretty_rtm_format)
+        (8/4 (
+            (2/4 (
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))
+            (2/4 (
+                1/4
+                1/4))))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((9, 4))
+        >>> print(rtc.pretty_rtm_format)
+        (9/4 (
+            (3/4 (
+                1/4
+                1/4
+                1/4))
+            (3/4 (
+                1/4
+                1/4
+                1/4))
+            (3/4 (
+                1/4
+                1/4
+                1/4))))
+
+    ..  container:: example
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((2, 8))
+        >>> print(rtc.pretty_rtm_format)
+        (2/8 (
+            1/8
+            1/8))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((3, 8))
+        >>> print(rtc.pretty_rtm_format)
+        (3/8 (
+            1/8
+            1/8
+            1/8))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((4, 8))
+        >>> print(rtc.pretty_rtm_format)
+        (4/8 (
+            1/8
+            1/8
+            1/8
+            1/8))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((5, 8))
+        >>> print(rtc.pretty_rtm_format)
+        (5/8 (
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (2/8 (
+                1/8
+                1/8))))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((5, 8), increase_monotonic=True)
+        >>> print(rtc.pretty_rtm_format)
+        (5/8 (
+            (2/8 (
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
+        >>> print(rtc.pretty_rtm_format)
+        (6/8 (
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((7, 8))
+        >>> print(rtc.pretty_rtm_format)
+        (7/8 (
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (2/8 (
+                1/8
+                1/8))
+            (2/8 (
+                1/8
+                1/8))))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((7, 8), increase_monotonic=True)
+        >>> print(rtc.pretty_rtm_format)
+        (7/8 (
+            (2/8 (
+                1/8
+                1/8))
+            (2/8 (
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((8, 8))
+        >>> print(rtc.pretty_rtm_format)
+        (8/8 (
+            (2/8 (
+                1/8
+                1/8))
+            (2/8 (
+                1/8
+                1/8))
+            (2/8 (
+                1/8
+                1/8))
+            (2/8 (
+                1/8
+                1/8))))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((9, 8))
+        >>> print(rtc.pretty_rtm_format)
+        (9/8 (
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))))
+
+        >>> rtc = abjad.meter.make_best_guess_rtc((12, 8))
+        >>> print(rtc.pretty_rtm_format)
+        (12/8 (
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))
+            (3/8 (
+                1/8
+                1/8
+                1/8))))
+
     """
+    assert isinstance(pair, tuple), repr(pair)
+    assert all(isinstance(_, int) for _ in pair), repr(pair)
+    assert isinstance(increase_monotonic, bool), repr(increase_monotonic)
+    rtc = _rhythmtrees.RhythmTreeContainer(pair)
+    numerator, denominator = pair
+    numerator_factors = _math.factors(numerator)
+    if 1 < len(numerator_factors) and numerator_factors[0] == numerator_factors[1] == 2:
+        numerator_factors[0:2] = [4]
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = ()
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def get_offsets_at_depth(depth, offset_inventory):
-        """
-        Gets offsets at ``depth`` in ``offset_inventory``.
-        """
-        if depth < len(offset_inventory):
-            return offset_inventory[depth]
-        while len(offset_inventory) <= depth:
-            new_offsets = []
-            old_offsets = offset_inventory[-1]
-            for first, second in _sequence.nwise(old_offsets):
-                new_offsets.append(first)
-                difference = second - first
-                half = (first + second) / 2
-                if _duration.Duration(1, 8) < difference:
-                    new_offsets.append(half)
+    def recurse(
+        rtc: _rhythmtrees.RhythmTreeContainer,
+        factors: typing.Sequence[int],
+        denominator: int,
+        *,
+        increase_monotonic: bool = False,
+    ) -> None:
+        assert isinstance(rtc, _rhythmtrees.RhythmTreeContainer)
+        assert all(isinstance(_, int) for _ in factors)
+        assert isinstance(denominator, int)
+        assert isinstance(increase_monotonic, bool)
+        if factors:
+            factor, factors = factors[0], factors[1:]
+            pair = _duration.divide_pair(rtc.pair, factor)
+            if factor in (2, 3, 4):
+                if factors:
+                    for _ in range(factor):
+                        rtc_ = _rhythmtrees.RhythmTreeContainer(pair)
+                        rtc.append(rtc_)
+                        recurse(
+                            rtc_,
+                            factors,
+                            denominator,
+                            increase_monotonic=increase_monotonic,
+                        )
                 else:
-                    one_quarter = (first + half) / 2
-                    three_quarters = (half + second) / 2
-                    new_offsets.append(one_quarter)
-                    new_offsets.append(half)
-                    new_offsets.append(three_quarters)
-            new_offsets.append(old_offsets[-1])
-            offset_inventory.append(tuple(new_offsets))
-        return offset_inventory[depth]
-
-    @staticmethod
-    def is_acceptable_logical_tie(
-        logical_tie_duration=None,
-        logical_tie_starts_in_offsets=None,
-        logical_tie_stops_in_offsets=None,
-        maximum_dot_count=None,
-    ):
-        """
-        Is true if logical tie is acceptable.
-        """
-        # print '\tTESTING ACCEPTABILITY'
-        if not logical_tie_duration.is_assignable:
-            return False
-        if (
-            maximum_dot_count is not None
-            and maximum_dot_count < logical_tie_duration.dot_count
-        ):
-            return False
-        if not logical_tie_starts_in_offsets and not logical_tie_stops_in_offsets:
-            return False
-        return True
-
-    @staticmethod
-    def is_boundary_crossing_logical_tie(
-        boundary_depth=None,
-        boundary_offsets=None,
-        logical_tie_start_offset=None,
-        logical_tie_stop_offset=None,
-    ):
-        """
-        Is true if logical tie crosses meter boundaries.
-        """
-        # print '\tTESTING BOUNDARY CROSSINGS'
-        if boundary_depth is None:
-            return False
-        if not any(
-            logical_tie_start_offset < _ < logical_tie_stop_offset
-            for _ in boundary_offsets
-        ):
-            return False
-        if (
-            logical_tie_start_offset in boundary_offsets
-            and logical_tie_stop_offset in boundary_offsets
-        ):
-            return False
-        return True
-
-    @staticmethod
-    def iterate_rewrite_inputs(argument):
-        r"""
-        Iterates topmost masked logical ties, rest groups and containers in ``argument``,
-        masked by ``argument``.
-
-        >>> string = "! 2/4 c'4 d'4 ~ !"
-        >>> string += "! 4/4 d'8. r16 r8. e'16 ~ "
-        >>> string += "2/3 { e'8 ~ e'8 f'8 ~ } f'4 ~ !"
-        >>> string += "! 4/4 f'8 g'8 ~ g'4 a'4 ~ a'8 b'8 ~ !"
-        >>> string += "! 2/4 b'4 c''4 !"
-        >>> string = string.replace('!', '|')
-        >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
-        >>> staff = abjad.Staff()
-        >>> score = abjad.Score([staff], name="Score")
-        >>> staff[:] = container
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                {
-                    \time 2/4
-                    c'4
-                    d'4
-                    ~
-                }
-                {
-                    \time 4/4
-                    d'8.
-                    r16
-                    r8.
-                    e'16
-                    ~
-                    \tuplet 3/2
-                    {
-                        e'8
-                        ~
-                        e'8
-                        f'8
-                        ~
-                    }
-                    f'4
-                    ~
-                }
-                {
-                    \time 4/4
-                    f'8
-                    g'8
-                    ~
-                    g'4
-                    a'4
-                    ~
-                    a'8
-                    b'8
-                    ~
-                }
-                {
-                    \time 2/4
-                    b'4
-                    c''4
-                }
-            }
-
-        >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(
-        ...     staff[0]): x
-        ...
-        LogicalTie(items=[Note("c'4")])
-        LogicalTie(items=[Note("d'4")])
-
-        >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(
-        ...     staff[1]): x
-        ...
-        LogicalTie(items=[Note("d'8.")])
-        LogicalTie(items=[Rest('r16'), Rest('r8.')])
-        LogicalTie(items=[Note("e'16")])
-        Tuplet('3:2', "e'8 e'8 f'8")
-        LogicalTie(items=[Note("f'4")])
-
-        >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(
-        ...     staff[2]): x
-        ...
-        LogicalTie(items=[Note("f'8")])
-        LogicalTie(items=[Note("g'8"), Note("g'4")])
-        LogicalTie(items=[Note("a'4"), Note("a'8")])
-        LogicalTie(items=[Note("b'8")])
-
-        >>> for x in abjad.meter._MeterManager.iterate_rewrite_inputs(
-        ...     staff[3]): x
-        ...
-        LogicalTie(items=[Note("b'4")])
-        LogicalTie(items=[Note("c''4")])
-
-        Returns generator.
-        """
-        last_tie = None
-        current_leaf_group = None
-        current_leaf_group_is_silent = False
-        for component in argument:
-            if isinstance(component, _score.Note | _score.Chord):
-                this_tie_leaves = _iterlib._get_logical_tie_leaves(component)
-                this_tie = _select.LogicalTie(this_tie_leaves)
-                if current_leaf_group is None:
-                    current_leaf_group = []
-                elif (
-                    current_leaf_group_is_silent
-                    or this_tie is None
-                    or last_tie != this_tie
-                ):
-                    yield _select.LogicalTie(current_leaf_group)
-                    current_leaf_group = []
-                current_leaf_group_is_silent = False
-                current_leaf_group.append(component)
-                last_tie = this_tie
-            elif isinstance(component, _score.Rest | _score.Skip):
-                if current_leaf_group is None:
-                    current_leaf_group = []
-                elif not current_leaf_group_is_silent:
-                    yield _select.LogicalTie(current_leaf_group)
-                    current_leaf_group = []
-                current_leaf_group_is_silent = True
-                current_leaf_group.append(component)
-                last_tie = None
-            elif isinstance(component, _score.Container):
-                if current_leaf_group is not None:
-                    yield _select.LogicalTie(current_leaf_group)
-                    current_leaf_group = None
-                    last_tie = None
-                yield component
+                    for _ in range(factor):
+                        pair_ = (1, denominator)
+                        rtl = _rhythmtrees.RhythmTreeLeaf(pair_)
+                        rtc.append(rtl)
             else:
-                raise Exception(f"unhandled component: {component!r}.")
-        if current_leaf_group is not None:
-            yield _select.LogicalTie(current_leaf_group)
+                parts = [3]
+                total = 3
+                while total < factor:
+                    if not increase_monotonic:
+                        parts.append(2)
+                    else:
+                        parts.insert(0, 2)
+                    total += 2
+                for part in parts:
+                    assert isinstance(part, int)
+                    pair_ = (part * pair[0], pair[1])
+                    grouping = _rhythmtrees.RhythmTreeContainer(pair_)
+                    if factors:
+                        for _ in range(part):
+                            rtc_ = _rhythmtrees.RhythmTreeContainer(pair)
+                            grouping.append(rtc_)
+                            recurse(
+                                rtc_,
+                                factors,
+                                denominator,
+                                increase_monotonic=increase_monotonic,
+                            )
+                    else:
+                        for _ in range(part):
+                            pair_ = (1, denominator)
+                            rtl = _rhythmtrees.RhythmTreeLeaf(pair_)
+                            grouping.append(rtl)
+                    rtc.append(grouping)
+        else:
+            pair_ = (1, denominator)
+            for _ in range(rtc.pair[0]):
+                rtl = _rhythmtrees.RhythmTreeLeaf(pair_)
+                rtc.append(rtl)
+
+    recurse(
+        rtc,
+        numerator_factors,
+        denominator,
+        increase_monotonic=increase_monotonic,
+    )
+    return rtc

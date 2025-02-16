@@ -75,12 +75,10 @@ class Parser:
 
     def __call__(self, string):
         """
-        Parse ``string`` and return result.
+        Parses ``string`` and returns result.
         """
-
         if hasattr(self, "_setup"):
             self._setup()
-
         if self.debug:
             result = self.parser.parse_debug(
                 string, lexer=self.lexer, debug=self.logger
@@ -89,14 +87,13 @@ class Parser:
             result = self.parser.parse(string, lexer=self.lexer)
         if hasattr(self, "_cleanup"):
             result = self._cleanup(result)
-
         return result
 
     ### PUBLIC METHODS ###
 
     def tokenize(self, string):
         """
-        Tokenize ``string`` and print results.
+        Tokenizes ``string`` and print results.
         """
         self.lexer.input(string)
         for token in self.lexer:

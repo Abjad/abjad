@@ -6054,9 +6054,10 @@ class StemTremolo:
 
     ..  container:: example
 
-        REGRESSION. Consider a note, rest, chord to which a stem tremolo is attached.
-        When such a note, rest, chord splits into two notes, rests, chords then a stem
-        tremolo attaches to each of the resultant notes, rests, chords:
+        REGRESSION. Consider a note, rest, chord to which a stem tremolo is
+        attached. When such a note, rest, chord splits into two notes, rests,
+        chords then a stem tremolo attaches to each of the resultant notes,
+        rests, chords:
 
         >>> staff = abjad.Staff("c'4 c'2.")
         >>> abjad.attach(abjad.StemTremolo(), staff[1])
@@ -6073,7 +6074,9 @@ class StemTremolo:
                 :16
             }
 
-        >>> abjad.Meter.rewrite_meter(staff[:], abjad.Meter((3, 4)))
+        >>> rtc = abjad.meter.make_best_guess_rtc((3, 4))
+        >>> meter = abjad.Meter(rtc)
+        >>> meter.rewrite(staff[:])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

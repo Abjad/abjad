@@ -1549,7 +1549,6 @@ def test_LilyPondParser__indicators__PhrasingSlur_01():
     target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.phrasing_slur(target[2:])
     abjad.phrasing_slur(target[:3])
-
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Voice
@@ -1579,7 +1578,6 @@ def test_LilyPondParser__indicators__PhrasingSlur_02():
     target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.phrasing_slur(target[2:])
     abjad.phrasing_slur(target[:3])
-
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Voice
@@ -1597,7 +1595,6 @@ def test_LilyPondParser__indicators__PhrasingSlur_02():
     )
 
     string = r"\new Voice \relative c' { c \( c c \( \) c \) }"
-
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
@@ -1660,7 +1657,6 @@ def test_LilyPondParser__indicators__Slur_01():
     target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.slur(target[2:])
     abjad.slur(target[:3])
-
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Voice
@@ -1690,7 +1686,6 @@ def test_LilyPondParser__indicators__Slur_02():
     target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.slur(target[2:])
     abjad.slur(target[:3])
-
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Voice
@@ -1763,7 +1758,6 @@ def test_LilyPondParser__indicators__Slur_07():
     abjad.slur(target[:3], direction=abjad.DOWN, start_slur=start_slur)
     start_slur = abjad.StartSlur()
     abjad.slur(target[2:], direction=abjad.UP, start_slur=start_slur)
-
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Voice
@@ -1789,7 +1783,6 @@ def test_LilyPondParser__indicators__StemTremolo_01():
     target = abjad.Staff([abjad.Note(0, 1)])
     stem_tremolo = abjad.StemTremolo(4)
     abjad.attach(stem_tremolo, target[0])
-
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Staff
@@ -1815,7 +1808,6 @@ def test_LilyPondParser__indicators__Text_01():
     container = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.text_spanner(container[2:])
     abjad.text_spanner(container[:3])
-
     assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         \new Voice
@@ -1847,7 +1839,6 @@ def test_LilyPondParser__indicators__Text_02():
     target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
     abjad.text_spanner(target[2:])
     abjad.text_spanner(target[:3])
-
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Voice
@@ -1961,7 +1952,6 @@ def test_LilyPondParser__indicators__TimeSignature_01():
     target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
     time_signature = abjad.TimeSignature((8, 8))
     abjad.attach(time_signature, target[0][0])
-
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Score
@@ -1993,7 +1983,6 @@ def test_LilyPondParser__indicators__Trill_01():
     target = abjad.Voice(notes)
     abjad.trill_spanner(target[2:])
     abjad.trill_spanner(target[:3])
-
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Voice
@@ -2024,7 +2013,6 @@ def test_LilyPondParser__indicators__Trill_02():
     target = abjad.Voice(notes)
     abjad.trill_spanner(target[2:])
     abjad.trill_spanner(target[:3])
-
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Voice
@@ -2190,7 +2178,6 @@ def test_LilyPondParser__misc__chord_repetition_02():
             abjad.Chord([0, 4, 7], (1, 4)),
         ]
     )
-
     dynamic = abjad.Dynamic("p")
     abjad.attach(dynamic, target[0])
     articulation = abjad.Articulation("staccatissimo")
@@ -2199,7 +2186,6 @@ def test_LilyPondParser__misc__chord_repetition_02():
     abjad.attach(markup, target[3], direction=abjad.UP)
     articulation = abjad.Articulation("staccatissimo")
     abjad.attach(articulation, target[-1])
-
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         \new Voice
@@ -2275,7 +2261,6 @@ def test_LilyPondParser__misc__default_duration_01():
     )
     target[-2].multiplier = (5, 17)
     target[-1].multiplier = (5, 17)
-
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {
@@ -2291,7 +2276,6 @@ def test_LilyPondParser__misc__default_duration_01():
     )
 
     string = r"""{ c' c'2 c' c'8 c' c'8. * 5/17 c' }"""
-
     parser = abjad.parser.LilyPondParser()
     result = parser(string)
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
@@ -2375,7 +2359,6 @@ def test_LilyPondParser__misc__version_string_01():
 def test_LilyPondParser_accidentals_cautionary_01():
     string = "{ c?4 }"
     parsed = abjad.parser.LilyPondParser()(string)
-
     assert parsed[0].note_head.is_cautionary is True
     assert abjad.lilypond(parsed[0]) == "c?4"
 
@@ -2383,7 +2366,6 @@ def test_LilyPondParser_accidentals_cautionary_01():
 def test_LilyPondParser_accidentals_cautionary_02():
     string = "{ <c? e g??>4 }"
     parsed = abjad.parser.LilyPondParser()(string)
-
     assert parsed[0].note_heads[0].is_cautionary is True
     assert parsed[0].note_heads[1].is_cautionary is False
     assert parsed[0].note_heads[2].is_cautionary is True
@@ -2393,7 +2375,6 @@ def test_LilyPondParser_accidentals_cautionary_02():
 def test_LilyPondParser_accidentals_forced_01():
     string = "{ c!4 }"
     parsed = abjad.parser.LilyPondParser()(string)
-
     assert parsed[0].note_head.is_forced is True
     assert abjad.lilypond(parsed[0]) == "c!4"
 
@@ -2401,23 +2382,21 @@ def test_LilyPondParser_accidentals_forced_01():
 def test_LilyPondParser_accidentals_forced_02():
     string = "{ <c! e g!!>4 }"
     parsed = abjad.parser.LilyPondParser()(string)
-
     assert parsed[0].note_heads[0].is_forced is True
     assert parsed[0].note_heads[1].is_forced is False
     assert parsed[0].note_heads[2].is_forced is True
     assert abjad.lilypond(parsed[0]) == "<c! e g!>4"
 
 
-def test_parse_rtm_syntax_01():
-    rtm = "(3 (1 (3 (1 (3 (1 (3 (1 1 1 1))))))))"
-    result = abjad.rhythmtrees.parse_rtm_syntax(rtm)
-
-    assert abjad.lilypond(result) == abjad.string.normalize(
+def test_rhythmtrees_parse_01():
+    string = "(3 (1 (3 (1 (3 (1 (3 (1 1 1 1))))))))"
+    nodes = abjad.rhythmtrees.parse(string)
+    components = abjad.rhythmtrees.call(nodes)
+    voice = abjad.Voice(components)
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \tweak text #tuplet-number::calc-fraction-text
-        \tuplet 4/3
+        \new Voice
         {
-            c'4
             \tweak text #tuplet-number::calc-fraction-text
             \tuplet 4/3
             {
@@ -2430,9 +2409,14 @@ def test_parse_rtm_syntax_01():
                     \tuplet 4/3
                     {
                         c'4
-                        c'4
-                        c'4
-                        c'4
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \tuplet 4/3
+                        {
+                            c'4
+                            c'4
+                            c'4
+                            c'4
+                        }
                     }
                 }
             }
