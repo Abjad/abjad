@@ -910,12 +910,9 @@ class Meter:
             offset_to_weight[offset] = fractions.Fraction(count, total)
         return MetricAccentKernel(offset_to_weight)
 
-    # TODO: change rewrite_meter() from staic method to bound method
-    # TODO: move docstring examples to meter.py module-level docstring
-    @staticmethod
-    def rewrite_meter(
+    def rewrite(
+        self,
         components: typing.Sequence[_score.Component],
-        meter: "Meter",
         *,
         boundary_depth: int | None = None,
         initial_offset: _duration.Offset = _duration.Offset(0),
@@ -974,7 +971,7 @@ class Meter:
                 1/4
                 1/4))
 
-            >>> abjad.Meter.rewrite_meter(staff[1][:], meter)
+            >>> meter.rewrite(staff[1][:])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1053,7 +1050,7 @@ class Meter:
                     1/4
                     1/4))))
 
-            >>> abjad.Meter.rewrite_meter(staff[1][:], meter)
+            >>> meter.rewrite(staff[1][:])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1114,7 +1111,7 @@ class Meter:
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
             >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
             >>> meter = abjad.Meter(rtc)
-            >>> abjad.Meter.rewrite_meter(measure[:], meter)
+            >>> meter.rewrite(measure[:])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1147,11 +1144,7 @@ class Meter:
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
             >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
             >>> meter = abjad.Meter(rtc)
-            >>> abjad.Meter.rewrite_meter(
-            ...     measure[:],
-            ...     meter,
-            ...     maximum_dot_count=2,
-            ... )
+            >>> meter.rewrite(measure[:], maximum_dot_count=2)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1186,11 +1179,7 @@ class Meter:
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
             >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
             >>> meter = abjad.Meter(rtc)
-            >>> abjad.Meter.rewrite_meter(
-            ...     measure[:],
-            ...     meter,
-            ...     maximum_dot_count=1,
-            ... )
+            >>> meter.rewrite(measure[:], maximum_dot_count=1)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1227,11 +1216,7 @@ class Meter:
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
             >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
             >>> meter = abjad.Meter(rtc)
-            >>> abjad.Meter.rewrite_meter(
-            ...     measure[:],
-            ...     meter,
-            ...     maximum_dot_count=0,
-            ... )
+            >>> meter.rewrite(measure[:], maximum_dot_count=0)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1315,7 +1300,7 @@ class Meter:
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
             >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
             >>> meter = abjad.Meter(rtc)
-            >>> abjad.Meter.rewrite_meter(measure[:], meter)
+            >>> meter.rewrite(measure[:])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1348,11 +1333,7 @@ class Meter:
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
             >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
             >>> meter = abjad.Meter(rtc)
-            >>> abjad.Meter.rewrite_meter(
-            ...     measure[:],
-            ...     meter,
-            ...     boundary_depth=1,
-            ... )
+            >>> meter.rewrite(measure[:], boundary_depth=1)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1386,11 +1367,7 @@ class Meter:
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
             >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
             >>> meter = abjad.Meter(rtc)
-            >>> abjad.Meter.rewrite_meter(
-            ...     measure[:],
-            ...     meter,
-            ...     boundary_depth=2,
-            ... )
+            >>> meter.rewrite(measure[:], boundary_depth=2)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1536,7 +1513,7 @@ class Meter:
             ...         time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
             ...         rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
             ...         meter = abjad.Meter(rtc)
-            ...         abjad.Meter.rewrite_meter(container[:], meter)
+            ...         meter.rewrite(container[:])
             ...
             >>> abjad.show(score) # doctest: +SKIP
 
@@ -1638,11 +1615,7 @@ class Meter:
             ...         time_signature = abjad.get.indicator(leaf, abjad.TimeSignature)
             ...         rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
             ...         meter = abjad.Meter(rtc)
-            ...         abjad.Meter.rewrite_meter(
-            ...             container[:],
-            ...             meter,
-            ...             boundary_depth=1,
-            ...         )
+            ...         meter.rewrite(container[:], boundary_depth=1)
             ...
             >>> abjad.show(score) # doctest: +SKIP
 
@@ -1790,7 +1763,7 @@ class Meter:
                 }
 
             When establishing a meter on a selection of components which
-            contain containers, like tuplets or containers, ``rewrite_meter()``
+            contain containers, like tuplets or containers, ``abjad.Meter.rewrite()``
             will recurse into those containers, treating them as measures whose
             time signature is derived from the preprolated duration of the
             container's contents:
@@ -1799,11 +1772,7 @@ class Meter:
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
             >>> rtc = abjad.meter.make_best_guess_rtc(time_signature.pair)
             >>> meter = abjad.Meter(rtc)
-            >>> abjad.Meter.rewrite_meter(
-            ...     measure[:],
-            ...     meter,
-            ...     boundary_depth=1,
-            ... )
+            >>> meter.rewrite(measure[:], boundary_depth=1)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1851,7 +1820,7 @@ class Meter:
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
             >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
             >>> meter = abjad.Meter(rtc)
-            >>> abjad.Meter.rewrite_meter(staff[:], meter)
+            >>> meter.rewrite(staff[:])
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1874,7 +1843,7 @@ class Meter:
             >>> abjad.attach(abjad.TimeSignature((6, 8)), staff[0])
             >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
             >>> meter = abjad.Meter(rtc)
-            >>> abjad.Meter.rewrite_meter(staff[:], meter, boundary_depth=1)
+            >>> meter.rewrite(staff[:], boundary_depth=1)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -1936,11 +1905,7 @@ class Meter:
 
             >>> rtc = abjad.meter.make_best_guess_rtc((6, 4))
             >>> meter = abjad.Meter(rtc)
-            >>> abjad.Meter.rewrite_meter(
-            ...     staff[:],
-            ...     meter,
-            ...     boundary_depth=1,
-            ...     )
+            >>> meter.rewrite(staff[:], boundary_depth=1)
             >>> abjad.show(staff) # doctest: +SKIP
 
             ..  docs::
@@ -2017,9 +1982,8 @@ class Meter:
 
             >>> rtc = abjad.meter.make_best_guess_rtc((6, 4))
             >>> meter = abjad.Meter(rtc)
-            >>> abjad.Meter.rewrite_meter(
+            >>> meter.rewrite(
             ...     staff[:],
-            ...     meter,
             ...     boundary_depth=1,
             ...     rewrite_tuplets=False,
             ... )
@@ -2048,15 +2012,14 @@ class Meter:
                     c'4.
                 }
 
-        Operates in place.
         """
         assert all(isinstance(_, _score.Component) for _ in components)
-        assert isinstance(meter, Meter), repr(meter)
         if boundary_depth is not None:
             assert isinstance(boundary_depth, int)
         assert isinstance(initial_offset, _duration.Offset), repr(initial_offset)
         if maximum_dot_count is not None:
             assert isinstance(maximum_dot_count, int)
+            assert 0 <= maximum_dot_count
         assert isinstance(rewrite_tuplets, bool)
 
         def recurse(
@@ -2083,7 +2046,7 @@ class Meter:
             ):
                 split_offset = None
                 offsets = _get_offsets_at_depth(depth, offset_inventory)
-                # If the logical tie's start aligns, take the latest possible offset
+                # if the logical tie's start aligns, take the latest possible offset
                 if logical_tie_starts_in_offsets:
                     offsets = tuple(reversed(offsets))
                 for offset in offsets:
@@ -2136,23 +2099,15 @@ class Meter:
             else:
                 _mutate._fuse(logical_tie[:])
 
-        if not isinstance(meter, Meter):
-            meter = Meter(meter)
-        if boundary_depth is not None:
-            boundary_depth = int(boundary_depth)
-        if maximum_dot_count is not None:
-            maximum_dot_count = int(maximum_dot_count)
-            assert 0 <= maximum_dot_count
-        nongrace_components = [
-            _
-            for _ in components
-            if not isinstance(_, _score.IndependentAfterGraceContainer)
-        ]
+        nongrace_components = []
+        for component in components:
+            if not isinstance(component, _score.IndependentAfterGraceContainer):
+                nongrace_components.append(component)
         first_start_offset = nongrace_components[0]._get_timespan().start_offset
         last_start_offset = nongrace_components[-1]._get_timespan().start_offset
         difference = last_start_offset - first_start_offset + initial_offset
-        assert difference < meter.implied_time_signature.duration
-        # Build offset inventory, adjusted for initial offset and prolation.
+        assert difference < self.implied_time_signature.duration
+        # build offset inventory, adjusted for initial offset and prolation
         first_offset = components[0]._get_timespan().start_offset
         first_offset -= initial_offset
         if components[0]._parent is None:
@@ -2161,15 +2116,15 @@ class Meter:
             parentage = _parentage.Parentage(components[0]._parent)
             prolation = parentage.prolation
         offset_inventory = []
-        for offsets in meter.depthwise_offset_inventory:
+        for offsets in self.depthwise_offset_inventory:
             offsets = [(_ * prolation) + first_offset for _ in offsets]
             offset_inventory.append(tuple(offsets))
-        # Build boundary offset inventory, if applicable.
+        # build boundary offset inventory, if applicable
         if boundary_depth is not None:
             boundary_offsets = offset_inventory[boundary_depth]
         else:
             boundary_offsets = ()
-        # Cache results of iterator; we'll be mutating the underlying collection
+        # cache results of iterator; we'll be mutating the underlying collection
         iterator = _iterate_rewrite_inputs(components)
         items = tuple(iterator)
         for item in items:
@@ -2194,9 +2149,8 @@ class Meter:
                 sub_boundary_depth: int | None = 1
                 if boundary_depth is None:
                     sub_boundary_depth = None
-                Meter.rewrite_meter(
+                sub_metrical_hierarchy.rewrite(
                     item[:],
-                    sub_metrical_hierarchy,
                     boundary_depth=sub_boundary_depth,
                     maximum_dot_count=maximum_dot_count,
                 )
@@ -2263,8 +2217,7 @@ def _is_boundary_crossing_logical_tie(
     if boundary_depth is None:
         return False
     if not any(
-        logical_tie_start_offset < _ < logical_tie_stop_offset
-        for _ in boundary_offsets
+        logical_tie_start_offset < _ < logical_tie_stop_offset for _ in boundary_offsets
     ):
         return False
     if (
@@ -2344,14 +2297,14 @@ def _iterate_rewrite_inputs(
                 }
             }
 
-        >>> for x in abjad.meter._iterate_rewrite_inputs(
-        ...     staff[0]): x
+        >>> for x in abjad.meter._iterate_rewrite_inputs(staff[0]):
+        ...     x
         ...
         LogicalTie(items=[Note("c'4")])
         LogicalTie(items=[Note("d'4")])
 
-        >>> for x in abjad.meter._iterate_rewrite_inputs(
-        ...     staff[1]): x
+        >>> for x in abjad.meter._iterate_rewrite_inputs(staff[1]):
+        ...     x
         ...
         LogicalTie(items=[Note("d'8.")])
         LogicalTie(items=[Rest('r16'), Rest('r8.')])
@@ -2359,16 +2312,16 @@ def _iterate_rewrite_inputs(
         Tuplet('3:2', "e'8 e'8 f'8")
         LogicalTie(items=[Note("f'4")])
 
-        >>> for x in abjad.meter._iterate_rewrite_inputs(
-        ...     staff[2]): x
+        >>> for x in abjad.meter._iterate_rewrite_inputs(staff[2]):
+        ...     x
         ...
         LogicalTie(items=[Note("f'8")])
         LogicalTie(items=[Note("g'8"), Note("g'4")])
         LogicalTie(items=[Note("a'4"), Note("a'8")])
         LogicalTie(items=[Note("b'8")])
 
-        >>> for x in abjad.meter._iterate_rewrite_inputs(
-        ...     staff[3]): x
+        >>> for x in abjad.meter._iterate_rewrite_inputs(staff[3]):
+        ...     x
         ...
         LogicalTie(items=[Note("b'4")])
         LogicalTie(items=[Note("c''4")])
