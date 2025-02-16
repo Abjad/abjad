@@ -2473,7 +2473,7 @@ def swap(argument, container):
         ...     time_signature = abjad.get.effective(component, prototype)
         ...     print(component, time_signature)
         ...
-        Voice("{ 2/3 c'4 d'4 e'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 4), hide=False, partial=None)
+        Voice("{ 3:2 c'4 d'4 e'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 4), hide=False, partial=None)
         Tuplet('3:2', "c'4 d'4 e'4 d'4 e'4 f'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
         Note("c'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
         Note("d'4") TimeSignature(pair=(3, 4), hide=False, partial=None)

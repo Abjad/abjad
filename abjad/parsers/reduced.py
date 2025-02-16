@@ -690,7 +690,7 @@ def parse_reduced_ly_syntax(string) -> _score.Container:
         >>> string = '4 -4. 8.. 5/3 { } 4'
         >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
         >>> container
-        Container("c'4 r4. c'8.. { 5/3 } c'4")
+        Container("c'4 r4. c'8.. { 3:5 } c'4")
 
         >>> for component in container:
         ...     component
