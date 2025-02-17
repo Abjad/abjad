@@ -1,0 +1,55 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "abjad"
+version = "3.21"
+description = "Abjad is a Python API for building LilyPond files."
+authors = [
+    { name = "Trevor Bača", email = "trevor.baca@gmail.com" },
+    { name = "Joséphine Wolf Oberholtzer", email = "josephine.wolf.oberholtzer@gmail.com" }
+]
+license = { text = "MIT" }
+readme = "README.rst"
+requires-python = ">=3.12"
+keywords = ["lilypond", "music composition", "music notation"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: GNU General Public License (GPL)",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Artistic Software"
+]
+dependencies = [
+    "ply>=3.11",
+    "roman>=5.0",
+    "uqbar>=0.7.4"
+]
+
+[project.optional-dependencies]
+nauert = ["abjad-ext-nauert>=3.21"]
+rmakers = ["abjad-ext-rmakers>=3.21"]
+dev = [
+    "black>=25.1.0",
+    "flake8>=7.1.1",
+    "isort>=6.0.0",
+    "mypy>=1.14.1",
+    "pytest>=8.3.4",
+    "pytest-cov>=6.0.0",
+    "pytest-helpers-namespace>=2021.12.29",
+    "setuptools>=75.8.0",
+    "sphinx>=8.1.3",
+    "sphinx-rtd-theme>=3.0.2",
+    "twine>=6.1.0"
+]
+
+[project.urls]
+Homepage = "https://abjad.github.io"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["abjad"]
+
+[tool.setuptools.package-data]
+"abjad" = ["**/*"]
