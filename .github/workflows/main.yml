@@ -73,7 +73,7 @@ jobs:
 
     - name: Install this repo
       run: |
-        python -m pip install .
+        python -m pip install -e .
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
         python scr/prime_parser_tables.py 2>/dev/null
 

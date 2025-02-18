@@ -45,11 +45,11 @@ isort-reformat:
 		--trailing-comma  --use-parentheses .
 
 mypy:
-	mypy abjad
+	mypy source
 	mypy tests
 
 pytest:
-	pytest abjad tests
+	pytest source tests
 
 pytest-coverage:
 	pytest --cov-config=.coveragerc --cov-report=html --cov=abjad abjad tests \
