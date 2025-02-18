@@ -1,6 +1,10 @@
 ### https://www.sphinx-doc.org/en/master/usage/configuration.html ###
+import os
+import sys
 
 import abjad
+
+sys.path.insert(0, os.path.abspath("../../source"))
 
 autodoc_member_order = "groupwise"
 

@@ -6,10 +6,6 @@ build-backend = "setuptools.build_meta"
 name = "abjad"
 version = "3.21"
 description = "Abjad is a Python API for building LilyPond files."
-authors = [
-    { name = "Trevor Bača", email = "trevor.baca@gmail.com" },
-    { name = "Joséphine Wolf Oberholtzer", email = "josephine.wolf.oberholtzer@gmail.com" }
-]
 license = { text = "MIT" }
 readme = "README.rst"
 requires-python = ">=3.12"
@@ -26,6 +22,14 @@ dependencies = [
     "roman>=5.0",
     "uqbar>=0.7.4"
 ]
+
+[[project.authors]]
+name = "Trevor Bača"
+email = "trevor.baca@gmail.com"
+
+[[project.authors]]
+name = "Joséphine Wolf Oberholtzer"
+email = "josephine.wolf.oberholtzer@gmail.com"
 
 [project.optional-dependencies]
 nauert = ["abjad-ext-nauert>=3.21"]
@@ -47,9 +51,9 @@ dev = [
 [project.urls]
 Homepage = "https://abjad.github.io"
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["abjad"]
+[tool.setuptools]
+packages = ["abjad"]
+package-dir = { "" = "source" }
 
 [tool.setuptools.package-data]
 "abjad" = ["**/*"]
