@@ -32,7 +32,6 @@ name = "Joséphine Wolf Oberholtzer"
 email = "josephine.wolf.oberholtzer@gmail.com"
 
 [project.optional-dependencies]
-nauert = ["abjad-ext-nauert>=3.21"]
 dev = [
     "black>=25.1.0",
     "flake8>=7.1.1",
