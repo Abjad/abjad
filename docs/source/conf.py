@@ -95,26 +95,4 @@ uqbar_book_strict = False
 uqbar_book_use_black = True
 uqbar_book_use_cache = True
 
-try:
-    import abjadext  # noqa
-
-    uqbar_api_source_paths.append("abjadext")
-    uqbar_book_console_setup.append("import abjadext")
-except ImportError:
-    pass
-
-try:
-    from abjadext import microtones  # noqa
-
-    uqbar_book_console_setup.append("from abjadext import microtones")
-except ImportError:
-    pass
-
-try:
-    from abjadext import nauert  # noqa
-
-    uqbar_book_console_setup.append("from abjadext import nauert")
-except ImportError:
-    pass
-
 version = abjad.__version__

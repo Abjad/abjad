@@ -36,12 +36,12 @@ gh-pages:
 
 isort-check:
 	isort --case-sensitive --check-only --diff --line-width=88 --multi-line=3 \
-		--project=abjad --project=abjadext --thirdparty=ply --thirdparty=roman \
-		--thirdparty=uqbar --trailing-comma --use-parentheses .
+		--project=abjad --thirdparty=ply --thirdparty=roman --thirdparty=uqbar \
+		--trailing-comma --use-parentheses .
 
 isort-reformat:
-	isort --case-sensitive --line-width=88 --multi-line=3 --project=abjad \
-		--project=abjadext --thirdparty=ply --thirdparty=roman --thirdparty=uqbar \
+	isort --case-sensitive --line-width=88 --multi-line=3 \
+		--project=abjad --thirdparty=ply --thirdparty=roman --thirdparty=uqbar \
 		--trailing-comma  --use-parentheses .
 
 mypy:
