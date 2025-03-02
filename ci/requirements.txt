@@ -1,7 +1,7 @@
 coverage
 defusedxml
 black==25.1.0
-flake8==7.1.1
-isort==6.0.0
-mypy==1.14.1
-pytest==8.3.4
+flake8==7.1.2
+isort==6.0.1
+mypy==1.15.0
+pytest==8.3.5
