@@ -3,4 +3,7 @@ Welcome
 
 ..  include:: welcome/welcome.rst
 
-..  include:: sidebar.rst
+..  toctree::
+    :maxdepth: 1
+
+    sidebar
