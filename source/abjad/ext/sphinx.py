@@ -435,7 +435,6 @@ def setup(app):
     app.add_directive("docs", HiddenDoctestDirective)
     app.add_directive("shell", ShellDirective)
     app.add_directive("thumbnail", ThumbnailDirective)
-    app.add_js_file("copybutton.js", defer="defer")
     app.add_js_file("ga.js")
     app.add_node(
         thumbnail_block,
