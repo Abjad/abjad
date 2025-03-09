@@ -57,6 +57,14 @@ jobs:
       with:
         lilypond-version: ${{ matrix.lilypond-version }}
 
+    - name: Install this repo
+      run: |
+        # [dev] for black, flake8, etc
+        python -m pip install --upgrade pip
+        python -m pip install -e ".[dev]"
+        python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
+        python scripts/prime_parser_tables.py 2>/dev/null
+
     - name: Log Python dependencies
       run: |
         black --version
@@ -65,14 +73,6 @@ jobs:
         mypy --version
         pip --version
         pytest --version
-
-    - name: Install this repo
-      run: |
-        # [dev] for black, flake8, etc
-        python -m pip install --upgrade pip
-        python -m pip install -e ".[dev]"
-        python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
-        python scripts/prime_parser_tables.py 2>/dev/null
 
     - name: Run lints
       run: |
