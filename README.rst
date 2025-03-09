@@ -1,12 +1,21 @@
 Abjad 3.21
 ==========
 
-Abjad helps composers build up complex pieces of music notation in iterative and
-incremental ways. Use Abjad to create a symbolic representation of all the notes, rests,
-chords, tuplets, beams and slurs in any score. Because Abjad extends the Python
-programming language, you can use Abjad to make systematic changes to music as you work.
-Because Abjad wraps the LilyPond music notation package, you can use Abjad to control the
-typographic detail of symbols on the page.
+Abjad helps composers build up complex pieces of music notation in iterative
+and incremental ways. Use Abjad to create a symbolic representation of all the
+notes, rests, chords, tuplets, beams and slurs in any score. Because Abjad
+extends the Python programming language, you can use Abjad to make systematic
+changes to music as you work. Because Abjad wraps the LilyPond music notation
+package, you can use Abjad to control the typographic detail of symbols on the
+page.
+
+..  image:: https://img.shields.io/badge/python-3.12-blue.svg
+    :target: https://www.python.org/downloads/release/python-312/
+    :alt: Python 3.12
+
+..  image:: https://img.shields.io/badge/python-3.13-blue.svg
+    :target: https://www.python.org/downloads/release/python-313/
+    :alt: Python 3.13
 
 ..  image:: https://img.shields.io/pypi/v/abjad.svg?style=flat-square
     :target: https://pypi.python.org/pypi/abjad
@@ -39,7 +48,7 @@ Make sure LilyPond is callable from the commandline:
 ..  code-block::
 
     $ lilypond --version
-    GNU LilyPond 2.25.23 (running Guile 3.0)
+    GNU LilyPond 2.25.24 (running Guile 3.0)
 
     Copyright (c) 1996--2023 by
       Han-Wen Nienhuys <hanwen@xs4all.nl>
