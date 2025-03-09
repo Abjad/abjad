@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        lilypond-version: ["2.25.23"]
+        lilypond-version: ["2.25.24"]
         python-version: ["3.12", "3.13"]
 
     steps:
@@ -32,7 +32,7 @@ jobs:
         key: >
           ${{ runner.os }}-pip-
           ${{ matrix.python-version }}-
-          ${{ hashFiles('ci/requirements.txt') }}
+          ${{ hashFiles('pyproject.toml') }}
         restore-keys: |
           ${{ runner.os }}-pip-${{ matrix.python-version }}-
           ${{ runner.os }}-pip-
@@ -57,11 +57,6 @@ jobs:
       with:
         lilypond-version: ${{ matrix.lilypond-version }}
 
-    - name: Install Python dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install -r ci/requirements.txt --no-cache-dir
-
     - name: Log Python dependencies
       run: |
         black --version
@@ -73,7 +68,9 @@ jobs:
 
     - name: Install this repo
       run: |
-        python -m pip install -e .
+        # [dev] for black, flake8, etc
+        python -m pip install --upgrade pip
+        python -m pip install -e ".[dev]"
         python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
         python scripts/prime_parser_tables.py 2>/dev/null
 
