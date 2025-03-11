@@ -56,10 +56,6 @@ module = "docutils.*"
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
-module = "fractions"
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
 module = "ply"
 ignore_missing_imports = true
 
@@ -68,19 +64,7 @@ module = "ply.yacc"
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
-module = "pytest"
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
 module = "roman"
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-module = "setuptools"
-ignore_missing_imports = true
-
-[[tool.mypy.overrides]]
-module = "uqbar"
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
