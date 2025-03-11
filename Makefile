@@ -8,7 +8,7 @@ black-reformat:
 	black .
 
 build:
-	python setup.py sdist
+	python -m build --sdist
 
 clean:
 	find abjad/ tests/ -name '*.pyc' -delete
