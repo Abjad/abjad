@@ -1,7 +1,0 @@
-include LICENSE
-include README.rst
-include conftest.py
-include pytest.ini
-
-recursive-include abjad/ *
-prune docs/

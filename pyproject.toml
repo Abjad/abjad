@@ -34,6 +34,7 @@ email = "josephine.wolf.oberholtzer@gmail.com"
 [project.optional-dependencies]
 dev = [
     "black==25.1.0",
+    "build==1.2.2.post1",
     "flake8==7.1.2",
     "isort==6.0.1",
     "mypy==1.15.0",
@@ -50,9 +51,48 @@ dev = [
 [project.urls]
 Homepage = "https://abjad.github.io"
 
+[[tool.mypy.overrides]]
+module = "docutils.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "fractions"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "ply"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "pytest"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "roman"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "setuptools"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "uqbar"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = "--doctest-modules"
+doctest_optionflags = "ELLIPSIS NORMALIZE_WHITESPACE"
+markers = "sphinx"
+testpaths = ["tests", "source"]
+
 [tool.setuptools]
+include-package-data = true
 packages = ["abjad"]
 package-dir = { "" = "source" }
 
 [tool.setuptools.package-data]
+"*" = ["LICENSE", "README.rst", "conftest.py"]
 "abjad" = ["**/*"]
+
+[tool.setuptools.exclude-package-data]
+"*" = ["docs/*"]
