@@ -64,6 +64,10 @@ module = "ply"
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
+module = "ply.yacc"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
 module = "pytest"
 ignore_missing_imports = true
 

@@ -1,4 +1,3 @@
-import collections
 import copy
 import fractions
 import itertools
@@ -7,7 +6,7 @@ import typing
 
 import ply
 from ply import lex
-from ply.yacc import (  # type: ignore
+from ply.yacc import (
     YaccProduction,
     YaccSymbol,
     error_count,
@@ -597,11 +596,9 @@ class LilyPondEvent:
 
     ### SPECIAL METHODS ###
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets interpreter representation of LilyPond event.
-
-        Returns string.
         """
         result = repr(self.name)
         for key in self.__dict__:
@@ -3688,57 +3685,6 @@ class LilyPondParser(Parser):
             music_functions.append(name)
         return sorted(music_functions)
 
-    @classmethod
-    def register_markup_function(class_, name, signature, undo=None) -> None:
-        r"""
-        Registers a custom markup function globally with LilyPondParser.
-
-        ..  container:: example
-
-            >>> name = 'my-custom-markup-function'
-            >>> signature = ['markup?']
-            >>> abjad.parser.LilyPondParser.register_markup_function(name, signature)
-
-            >>> parser = abjad.parser.LilyPondParser()
-            >>> string = r"\markup { \my-custom-markup-function { foo bar baz } }"
-            >>> markup = parser(string)
-            >>> string = abjad.lilypond(markup)
-            >>> print(string)
-            \markup { \my-custom-markup-function
-                {
-                    foo
-                    bar
-                    baz
-                } }
-
-        ``signature`` should be a sequence of zero or more type-predicate names, as
-        understood by LilyPond.  Consult LilyPond's documentation for a complete list of
-        all understood type-predicates.
-
-        ..  container:: example
-
-            Set ``undo=True`` to unregister.
-
-            >>> name = 'my-custom-markup-function'
-            >>> signature = ['markup?']
-            >>> class_ = abjad.parser.LilyPondParser
-            >>> class_.register_markup_function(name, signature, undo=True)
-
-            NOTE. Added to allow doctests to pass on TravisCI.
-
-        """
-        if undo is True:
-            del _lyenv.markup_functions[name]
-            return
-        assert isinstance(name, str)
-        assert all(not x.isspace() for x in name)
-        assert isinstance(signature, collections.abc.Iterable)
-        for predicate in signature:
-            assert isinstance(predicate, str)
-            assert all(not x.isspace() for x in predicate)
-            assert predicate.endswith("?")
-        _lyenv.markup_functions[name] = tuple(signature)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -3766,7 +3712,6 @@ class LilyPondParser(Parser):
             svenska
             vlaams
 
-        Returns tuple.
         """
         return tuple(sorted(self._language_pitch_names.keys()))
 
@@ -6648,13 +6593,11 @@ class SequentialMusic(Music):
 
     __slots__ = ()
 
-    def construct(self):
+    def construct(self) -> _score.Container:
         """
         Constructs sequential music.
-
-        Returns Abjad container.
         """
-        container = _score.Container(tag=self.tag)
+        container = _score.Container()
         for x in self.music:
             if isinstance(x, _score.Component):
                 container.append(x)
