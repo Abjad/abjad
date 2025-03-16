@@ -1,0 +1,600 @@
+rm -rf build/*
+sphinx-build -b html -d build/doctrees   source build/html
+Running Sphinx v8.1.3
+loading translations [en]... done
+making output directory... done
+installing lightbox files... [ 17%] lightbox2/css/lightbox.css
+installing lightbox files... [ 33%] lightbox2/images/loading.gif
+installing lightbox files... [ 50%] lightbox2/images/next.png
+installing lightbox files... [ 67%] lightbox2/images/prev.png
+installing lightbox files... [ 83%] lightbox2/images/close.png
+installing lightbox files... [100%] lightbox2/js/lightbox.js
+
+[autosummary] generating autosummary for: _mothballed/accumulation.rst, _mothballed/bibliography.rst, _mothballed/colophon.rst, _mothballed/containerized-model.rst, _mothballed/custom-context-creation.rst, _mothballed/glossary.rst, _mothballed/instruments.rst, _mothballed/lilypond-literals.rst, _mothballed/lilypond-wellformedness.rst, _mothballed/organization.rst, ..., overview/containers-time-interpretation-of.rst, overview/containers.rst, overview/contexts-lilypond-type-of.rst, overview/indicators.rst, overview/lilypond-files-preamble-of.rst, overview/lilypond-format-of-abjad-objects.rst, welcome/abstract.rst, welcome/example.rst, welcome/quickstart.rst, welcome/welcome.rst
+loading intersphinx inventory 'python' from https://docs.python.org/3/objects.inv ...
+loading intersphinx inventory 'sphinx' from http://www.sphinx-doc.org/en/master/objects.inv ...
+intersphinx inventory has moved: http://www.sphinx-doc.org/en/master/objects.inv -> https://www.sphinx-doc.org/en/master/objects.inv
+[uqbar-api] wrote source/api/index.rst
+[uqbar-api] wrote source/api/abjad/index.rst
+[uqbar-api] wrote source/api/abjad/bind.rst
+[uqbar-api] wrote source/api/abjad/configuration.rst
+[uqbar-api] wrote source/api/abjad/contextmanagers.rst
+[uqbar-api] wrote source/api/abjad/contributions.rst
+[uqbar-api] wrote source/api/abjad/cyclictuple.rst
+[uqbar-api] wrote source/api/abjad/duration.rst
+[uqbar-api] wrote source/api/abjad/enumerate.rst
+[uqbar-api] wrote source/api/abjad/enums.rst
+[uqbar-api] wrote source/api/abjad/exceptions.rst
+[uqbar-api] wrote source/api/abjad/ext/index.rst
+[uqbar-api] wrote source/api/abjad/ext/sphinx.rst
+[uqbar-api] wrote source/api/abjad/format.rst
+[uqbar-api] wrote source/api/abjad/get.rst
+[uqbar-api] wrote source/api/abjad/grace_corner_cases.rst
+[uqbar-api] wrote source/api/abjad/illustrators.rst
+[uqbar-api] wrote source/api/abjad/indicators.rst
+[uqbar-api] wrote source/api/abjad/instruments.rst
+[uqbar-api] wrote source/api/abjad/io.rst
+[uqbar-api] wrote source/api/abjad/iterate.rst
+[uqbar-api] wrote source/api/abjad/iterpitches.rst
+[uqbar-api] wrote source/api/abjad/label.rst
+[uqbar-api] wrote source/api/abjad/lilypondfile.rst
+[uqbar-api] wrote source/api/abjad/lyproxy.rst
+[uqbar-api] wrote source/api/abjad/makers.rst
+[uqbar-api] wrote source/api/abjad/math.rst
+[uqbar-api] wrote source/api/abjad/meter.rst
+[uqbar-api] wrote source/api/abjad/metricmodulation.rst
+[uqbar-api] wrote source/api/abjad/mutate.rst
+[uqbar-api] wrote source/api/abjad/obgc.rst
+[uqbar-api] wrote source/api/abjad/overrides.rst
+[uqbar-api] wrote source/api/abjad/parentage.rst
+[uqbar-api] wrote source/api/abjad/parsers/index.rst
+[uqbar-api] wrote source/api/abjad/parsers/base.rst
+[uqbar-api] wrote source/api/abjad/parsers/parse.rst
+[uqbar-api] wrote source/api/abjad/parsers/parser.rst
+[uqbar-api] wrote source/api/abjad/parsers/reduced.rst
+[uqbar-api] wrote source/api/abjad/parsers/scheme.rst
+[uqbar-api] wrote source/api/abjad/pattern.rst
+[uqbar-api] wrote source/api/abjad/pcollections.rst
+[uqbar-api] wrote source/api/abjad/persist.rst
+[uqbar-api] wrote source/api/abjad/pitch.rst
+[uqbar-api] wrote source/api/abjad/rhythmtrees.rst
+[uqbar-api] wrote source/api/abjad/score.rst
+[uqbar-api] wrote source/api/abjad/select.rst
+[uqbar-api] wrote source/api/abjad/sequence.rst
+[uqbar-api] wrote source/api/abjad/setclass.rst
+[uqbar-api] wrote source/api/abjad/spanners.rst
+[uqbar-api] wrote source/api/abjad/string.rst
+[uqbar-api] wrote source/api/abjad/tag.rst
+[uqbar-api] wrote source/api/abjad/timespan.rst
+[uqbar-api] wrote source/api/abjad/tweaks.rst
+[uqbar-api] wrote source/api/abjad/verticalmoment.rst
+[uqbar-api] wrote source/api/abjad/wf.rst
+[uqbar-book] initializing cache db
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 61 source files that are out of date
+updating environment: [new config] 116 added, 0 changed, 0 removed
+reading sources... [  1%] _mothballed/accumulation
+reading sources... [  2%] _mothballed/bibliography
+reading sources... [  3%] _mothballed/colophon
+reading sources... [  3%] _mothballed/containerized-model
+reading sources... [  4%] _mothballed/custom-context-creation
+reading sources... [  5%] _mothballed/glossary
+reading sources... [  6%] _mothballed/instruments
+reading sources... [  7%] _mothballed/lilypond-literals
+reading sources... [  8%] _mothballed/lilypond-wellformedness
+reading sources... [  9%] _mothballed/organization
+reading sources... [  9%] _mothballed/parentage
+reading sources... [ 10%] _mothballed/pitch-conventions
+reading sources... [ 11%] _mothballed/score-fragment-strings
+reading sources... [ 12%] _mothballed/summer-workshop
+reading sources... [ 13%] _mothballed/understanding-reprs
+reading sources... [ 14%] _mothballed/virtual-environments
+reading sources... [ 15%] _mothballed/working-with-named-pitches
+reading sources... [ 16%] _mothballed/working-with-tuplets
+reading sources... [ 16%] _mothballed/written-duration
+reading sources... [ 17%] _pending/hexachordal-recombination-all-interval
+reading sources... [ 18%] _pending/interval-cycle-intersection
+reading sources... [ 19%] _pending/rotation-by-row-index
+reading sources... [ 20%] _pending/row-derivation-by-trichord
+reading sources... [ 21%] _pending/scale-derivation-by-sieve
+reading sources... [ 22%] _pending/superimposition-of-partials
+reading sources... [ 22%] _pending/tone-clock-tesselation
+reading sources... [ 23%] _pending/trichord-definition-by-ratio
+reading sources... [ 24%] api/abjad/bind
+reading sources... [ 25%] api/abjad/configuration
+reading sources... [ 26%] api/abjad/contextmanagers
+reading sources... [ 27%] api/abjad/contributions
+reading sources... [ 28%] api/abjad/cyclictuple
+reading sources... [ 28%] api/abjad/duration
+reading sources... [ 29%] api/abjad/enumerate
+reading sources... [ 30%] api/abjad/enums
+reading sources... [ 31%] api/abjad/exceptions
+reading sources... [ 32%] api/abjad/ext/index
+reading sources... [ 33%] api/abjad/ext/sphinx
+reading sources... [ 34%] api/abjad/format
+reading sources... [ 34%] api/abjad/get
+reading sources... [ 35%] api/abjad/grace_corner_cases
+reading sources... [ 36%] api/abjad/illustrators
+reading sources... [ 37%] api/abjad/index
+reading sources... [ 38%] api/abjad/indicators
+reading sources... [ 39%] api/abjad/instruments
+reading sources... [ 40%] api/abjad/io
+reading sources... [ 41%] api/abjad/iterate
+reading sources... [ 41%] api/abjad/iterpitches
+reading sources... [ 42%] api/abjad/label
+reading sources... [ 43%] api/abjad/lilypondfile
+reading sources... [ 44%] api/abjad/lyproxy
+reading sources... [ 45%] api/abjad/makers
+reading sources... [ 46%] api/abjad/math
+reading sources... [ 47%] api/abjad/meter
+reading sources... [ 47%] api/abjad/metricmodulation
+reading sources... [ 48%] api/abjad/mutate
+reading sources... [ 49%] api/abjad/obgc
+reading sources... [ 50%] api/abjad/overrides
+reading sources... [ 51%] api/abjad/parentage
+reading sources... [ 52%] api/abjad/parsers/base
+reading sources... [ 53%] api/abjad/parsers/index
+reading sources... [ 53%] api/abjad/parsers/parse
+reading sources... [ 54%] api/abjad/parsers/parser
+reading sources... [ 55%] api/abjad/parsers/reduced
+reading sources... [ 56%] api/abjad/parsers/scheme
+reading sources... [ 57%] api/abjad/pattern
+reading sources... [ 58%] api/abjad/pcollections
+reading sources... [ 59%] api/abjad/persist
+reading sources... [ 59%] api/abjad/pitch
+reading sources... [ 60%] api/abjad/rhythmtrees
+reading sources... [ 61%] api/abjad/score
+reading sources... [ 62%] api/abjad/select
+reading sources... [ 63%] api/abjad/sequence
+reading sources... [ 64%] api/abjad/setclass
+reading sources... [ 65%] api/abjad/spanners
+reading sources... [ 66%] api/abjad/string
+reading sources... [ 66%] api/abjad/tag
+reading sources... [ 67%] api/abjad/timespan
+reading sources... [ 68%] api/abjad/tweaks
+reading sources... [ 69%] api/abjad/verticalmoment
+reading sources... [ 70%] api/abjad/wf
+reading sources... [ 71%] api/index
+reading sources... [ 72%] appendices/best-practices
+reading sources... [ 72%] appendices/changes
+reading sources... [ 73%] appendices/community
+reading sources... [ 74%] appendices/configuration
+reading sources... [ 75%] appendices/developer-installation
+reading sources... [ 76%] appendices/lilypond-context-concatenation
+reading sources... [ 77%] appendices/publications
+reading sources... [ 78%] examples/corpus-selection
+reading sources... [ 78%] examples/design-by-dyads
+reading sources... [ 79%] examples/enumeration
+reading sources... [ 80%] examples/magic-square-from-twelve-tone-row
+reading sources... [ 81%] examples/scales-diatonic
+reading sources... [ 82%] examples/score-fragment-piano
+reading sources... [ 83%] first_steps/audience
+reading sources... [ 84%] first_steps/install
+reading sources... [ 84%] first_steps/linux
+reading sources... [ 85%] first_steps/macos
+reading sources... [ 86%] first_steps/windows
+reading sources... [ 87%] gallery-2010
+reading sources... [ 88%] gallery-2015
+reading sources... [ 89%] gallery-2020
+reading sources... [ 90%] index
+reading sources... [ 91%] overview/containers
+reading sources... [ 91%] overview/containers-basic-operations-on
+reading sources... [ 92%] overview/containers-retrieving-by-name
+reading sources... [ 93%] overview/containers-time-interpretation-of
+reading sources... [ 94%] overview/contexts-lilypond-type-of
+reading sources... [ 95%] overview/indicators
+reading sources... [ 96%] overview/lilypond-files-preamble-of
+reading sources... [ 97%] overview/lilypond-format-of-abjad-objects
+reading sources... [ 97%] welcome/abstract
+reading sources... [ 98%] welcome/example
+reading sources... [ 99%] welcome/quickstart
+reading sources... [100%] welcome/welcome
+
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /Users/trevor/Repositories/Projects/abjad/docs/build/html/_static/basic.css
+Writing evaluated template result to /Users/trevor/Repositories/Projects/abjad/docs/build/html/_static/language_data.js
+Writing evaluated template result to /Users/trevor/Repositories/Projects/abjad/docs/build/html/_static/documentation_options.js
+Writing evaluated template result to /Users/trevor/Repositories/Projects/abjad/docs/build/html/_static/js/versions.js
+Writing evaluated template result to /Users/trevor/Repositories/Projects/abjad/docs/build/html/_static/toggleprompt.js
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [  1%] _mothballed/accumulation
+writing output... [  2%] _mothballed/bibliography
+writing output... [  3%] _mothballed/colophon
+writing output... [  3%] _mothballed/containerized-model
+writing output... [  4%] _mothballed/custom-context-creation
+writing output... [  5%] _mothballed/glossary
+writing output... [  6%] _mothballed/instruments
+writing output... [  7%] _mothballed/lilypond-literals
+writing output... [  8%] _mothballed/lilypond-wellformedness
+writing output... [  9%] _mothballed/organization
+writing output... [  9%] _mothballed/parentage
+writing output... [ 10%] _mothballed/pitch-conventions
+writing output... [ 11%] _mothballed/score-fragment-strings
+writing output... [ 12%] _mothballed/summer-workshop
+writing output... [ 13%] _mothballed/understanding-reprs
+writing output... [ 14%] _mothballed/virtual-environments
+writing output... [ 15%] _mothballed/working-with-named-pitches
+writing output... [ 16%] _mothballed/working-with-tuplets
+writing output... [ 16%] _mothballed/written-duration
+writing output... [ 17%] _pending/hexachordal-recombination-all-interval
+writing output... [ 18%] _pending/interval-cycle-intersection
+writing output... [ 19%] _pending/rotation-by-row-index
+writing output... [ 20%] _pending/row-derivation-by-trichord
+writing output... [ 21%] _pending/scale-derivation-by-sieve
+writing output... [ 22%] _pending/superimposition-of-partials
+writing output... [ 22%] _pending/tone-clock-tesselation
+writing output... [ 23%] _pending/trichord-definition-by-ratio
+writing output... [ 24%] api/abjad/bind
+writing output... [ 25%] api/abjad/configuration
+writing output... [ 26%] api/abjad/contextmanagers
+writing output... [ 27%] api/abjad/contributions
+writing output... [ 28%] api/abjad/cyclictuple
+writing output... [ 28%] api/abjad/duration
+writing output... [ 29%] api/abjad/enumerate
+writing output... [ 30%] api/abjad/enums
+writing output... [ 31%] api/abjad/exceptions
+writing output... [ 32%] api/abjad/ext/index
+writing output... [ 33%] api/abjad/ext/sphinx
+writing output... [ 34%] api/abjad/format
+writing output... [ 34%] api/abjad/get
+writing output... [ 35%] api/abjad/grace_corner_cases
+writing output... [ 36%] api/abjad/illustrators
+writing output... [ 37%] api/abjad/index
+writing output... [ 38%] api/abjad/indicators
+writing output... [ 39%] api/abjad/instruments
+writing output... [ 40%] api/abjad/io
+writing output... [ 41%] api/abjad/iterate
+writing output... [ 41%] api/abjad/iterpitches
+writing output... [ 42%] api/abjad/label
+writing output... [ 43%] api/abjad/lilypondfile
+writing output... [ 44%] api/abjad/lyproxy
+writing output... [ 45%] api/abjad/makers
+writing output... [ 46%] api/abjad/math
+writing output... [ 47%] api/abjad/meter
+writing output... [ 47%] api/abjad/metricmodulation
+writing output... [ 48%] api/abjad/mutate
+writing output... [ 49%] api/abjad/obgc
+writing output... [ 50%] api/abjad/overrides
+writing output... [ 51%] api/abjad/parentage
+writing output... [ 52%] api/abjad/parsers/base
+writing output... [ 53%] api/abjad/parsers/index
+writing output... [ 53%] api/abjad/parsers/parse
+writing output... [ 54%] api/abjad/parsers/parser
+writing output... [ 55%] api/abjad/parsers/reduced
+writing output... [ 56%] api/abjad/parsers/scheme
+writing output... [ 57%] api/abjad/pattern
+writing output... [ 58%] api/abjad/pcollections
+writing output... [ 59%] api/abjad/persist
+writing output... [ 59%] api/abjad/pitch
+writing output... [ 60%] api/abjad/rhythmtrees
+writing output... [ 61%] api/abjad/score
+writing output... [ 62%] api/abjad/select
+writing output... [ 63%] api/abjad/sequence
+writing output... [ 64%] api/abjad/setclass
+writing output... [ 65%] api/abjad/spanners
+writing output... [ 66%] api/abjad/string
+writing output... [ 66%] api/abjad/tag
+writing output... [ 67%] api/abjad/timespan
+writing output... [ 68%] api/abjad/tweaks
+writing output... [ 69%] api/abjad/verticalmoment
+writing output... [ 70%] api/abjad/wf
+writing output... [ 71%] api/index
+writing output... [ 72%] appendices/best-practices
+writing output... [ 72%] appendices/changes
+writing output... [ 73%] appendices/community
+writing output... [ 74%] appendices/configuration
+writing output... [ 75%] appendices/developer-installation
+writing output... [ 76%] appendices/lilypond-context-concatenation
+writing output... [ 77%] appendices/publications
+writing output... [ 78%] examples/corpus-selection
+writing output... [ 78%] examples/design-by-dyads
+writing output... [ 79%] examples/enumeration
+writing output... [ 80%] examples/magic-square-from-twelve-tone-row
+writing output... [ 81%] examples/scales-diatonic
+writing output... [ 82%] examples/score-fragment-piano
+writing output... [ 83%] first_steps/audience
+writing output... [ 84%] first_steps/install
+writing output... [ 84%] first_steps/linux
+writing output... [ 85%] first_steps/macos
+writing output... [ 86%] first_steps/windows
+writing output... [ 87%] gallery-2010
+writing output... [ 88%] gallery-2015
+writing output... [ 89%] gallery-2020
+writing output... [ 90%] index
+writing output... [ 91%] overview/containers
+writing output... [ 91%] overview/containers-basic-operations-on
+writing output... [ 92%] overview/containers-retrieving-by-name
+writing output... [ 93%] overview/containers-time-interpretation-of
+writing output... [ 94%] overview/contexts-lilypond-type-of
+writing output... [ 95%] overview/indicators
+writing output... [ 96%] overview/lilypond-files-preamble-of
+writing output... [ 97%] overview/lilypond-format-of-abjad-objects
+writing output... [ 97%] welcome/abstract
+writing output... [ 98%] welcome/example
+writing output... [ 99%] welcome/quickstart
+writing output... [100%] welcome/welcome
+
+generating indices... genindex py-modindex done
+copying gallery thumbnails...[  1%] gallery/baca-imaginaire-page-4-thumbnail.png
+copying gallery thumbnails...[  3%] gallery/baca-imaginaire-page-5-thumbnail.png
+copying gallery thumbnails...[  4%] gallery/oberholtzer-lagartija-page-4-thumbnail.png
+copying gallery thumbnails...[  6%] gallery/oberholtzer-lagartija-page-5-thumbnail.png
+copying gallery thumbnails...[  7%] gallery/baca-desir-page-14-thumbnail.png
+copying gallery thumbnails...[  8%] gallery/baca-desir-page-15-thumbnail.png
+copying gallery thumbnails...[ 10%] gallery/baca-lidercfeny-page-22-thumbnail.png
+copying gallery thumbnails...[ 11%] gallery/baca-lidercfeny-page-23-thumbnail.png
+copying gallery thumbnails...[ 13%] gallery/baca-sekka-page-5-thumbnail.png
+copying gallery thumbnails...[ 14%] gallery/baca-sekka-page-6-thumbnail.png
+copying gallery thumbnails...[ 15%] gallery/baca-cary-page-5-thumbnail.png
+copying gallery thumbnails...[ 17%] gallery/baca-cary-page-6-thumbnail.png
+copying gallery thumbnails...[ 18%] gallery/baca-poeme-recursif-page-3-thumbnail.png
+copying gallery thumbnails...[ 20%] gallery/baca-poeme-recursif-page-4-thumbnail.png
+copying gallery thumbnails...[ 21%] gallery/baca-akasha-page-7-thumbnail.png
+copying gallery thumbnails...[ 23%] gallery/baca-akasha-page-8-thumbnail.png
+copying gallery thumbnails...[ 24%] gallery/baca-myrkr-page-1-thumbnail.png
+copying gallery thumbnails...[ 25%] gallery/baca-myrkr-page-2-thumbnail.png
+copying gallery thumbnails...[ 27%] gallery/baca-khamr-page-10-thumbnail.png
+copying gallery thumbnails...[ 28%] gallery/baca-khamr-page-11-thumbnail.png
+copying gallery thumbnails...[ 30%] gallery/oberholtzer-ersilia-page-9-thumbnail.png
+copying gallery thumbnails...[ 31%] gallery/oberholtzer-ersilia-page-10-thumbnail.png
+copying gallery thumbnails...[ 32%] gallery/baca-ins-wasser-page-3-thumbnail.png
+copying gallery thumbnails...[ 34%] gallery/baca-ins-wasser-page-4-thumbnail.png
+copying gallery thumbnails...[ 35%] gallery/oberholtzer-armilla-page-8-thumbnail.png
+copying gallery thumbnails...[ 37%] gallery/oberholtzer-armilla-page-9-thumbnail.png
+copying gallery thumbnails...[ 38%] gallery/trevino-refrain-page-1-thumbnail.png
+copying gallery thumbnails...[ 39%] gallery/trevino-refrain-page-2-thumbnail.png
+copying gallery thumbnails...[ 41%] gallery/baca-huitzil-page-12-thumbnail.png
+copying gallery thumbnails...[ 42%] gallery/baca-huitzil-page-13-thumbnail.png
+copying gallery thumbnails...[ 44%] gallery/oberholtzer-zaira-page-16-thumbnail.png
+copying gallery thumbnails...[ 45%] gallery/oberholtzer-zaira-page-17-thumbnail.png
+copying gallery thumbnails...[ 46%] gallery/baca-krummzeit-page-80-thumbnail.png
+copying gallery thumbnails...[ 48%] gallery/baca-krummzeit-page-81-thumbnail.png
+copying gallery thumbnails...[ 49%] gallery/oberholtzer-plague-water-page-12-thumbnail.png
+copying gallery thumbnails...[ 51%] gallery/oberholtzer-plague-water-page-13-thumbnail.png
+copying gallery thumbnails...[ 52%] gallery/trevino-world-all-around-page-1-thumbnail.png
+copying gallery thumbnails...[ 54%] gallery/trevino-world-all-around-page-2-thumbnail.png
+copying gallery thumbnails...[ 55%] gallery/baca-traiettorie-page-6-thumbnail.png
+copying gallery thumbnails...[ 56%] gallery/baca-traiettorie-page-7-thumbnail.png
+copying gallery thumbnails...[ 58%] gallery/wallberg-cartography-bass-flute-thumbnail.png
+copying gallery thumbnails...[ 59%] gallery/oberholtzer-aurora-page-6-thumbnail.png
+copying gallery thumbnails...[ 61%] gallery/oberholtzer-aurora-page-7-thumbnail.png
+copying gallery thumbnails...[ 62%] gallery/baca-archipel-page-9-thumbnail.png
+copying gallery thumbnails...[ 63%] gallery/baca-archipel-page-10-thumbnail.png
+copying gallery thumbnails...[ 65%] gallery/agostinho-whtt-page-4-thumbnail.png
+copying gallery thumbnails...[ 66%] gallery/agostinho-whtt-page-5-thumbnail.png
+copying gallery thumbnails...[ 68%] gallery/evans-adumbration-page-7-thumbnail.png
+copying gallery thumbnails...[ 69%] gallery/evans-adumbration-page-11-thumbnail.png
+copying gallery thumbnails...[ 70%] gallery/evans-chalk-line-page-1-thumbnail.png
+copying gallery thumbnails...[ 72%] gallery/evans-chalk-line-page-4-thumbnail.png
+copying gallery thumbnails...[ 73%] gallery/evans-hamonshu-page-1-thumbnail.png
+copying gallery thumbnails...[ 75%] gallery/evans-hamonshu-page-4-thumbnail.png
+copying gallery thumbnails...[ 76%] gallery/baca-harmony-page-10-thumbnail.png
+copying gallery thumbnails...[ 77%] gallery/baca-harmony-page-29-thumbnail.png
+copying gallery thumbnails...[ 79%] gallery/baca-faberge-page-1-thumbnail.png
+copying gallery thumbnails...[ 80%] gallery/baca-faberge-page-36-thumbnail.png
+copying gallery thumbnails...[ 82%] gallery/agostinho-cartography-11-page-4-thumbnail.png
+copying gallery thumbnails...[ 83%] gallery/agostinho-cartography-11-page-5-thumbnail.png
+copying gallery thumbnails...[ 85%] gallery/baca-naehte-page-1-thumbnail.png
+copying gallery thumbnails...[ 86%] gallery/baca-naehte-page-2-thumbnail.png
+copying gallery thumbnails...[ 87%] gallery/evans-guerrero-page-1-thumbnail.svg
+copying gallery thumbnails...[ 89%] gallery/evans-guerrero-page-10-thumbnail.svg
+copying gallery thumbnails...[ 90%] gallery/baca-mraz-page-4-thumbnail.png
+copying gallery thumbnails...[ 92%] gallery/baca-mraz-page-5-thumbnail.png
+copying gallery thumbnails...[ 93%] gallery/oberholtzer-demarest-page-19-thumbnail.png
+copying gallery thumbnails...[ 94%] gallery/oberholtzer-demarest-page-28-thumbnail.png
+copying gallery thumbnails...[ 96%] gallery/baca-dornen-page-1-thumbnail.png
+copying gallery thumbnails...[ 97%] gallery/baca-dornen-page-2-thumbnail.png
+copying gallery thumbnails...[ 99%] gallery/baca-ikribu-page-16-thumbnail.png
+copying gallery thumbnails...[100%] gallery/baca-ikribu-page-17-thumbnail.png
+
+highlighting module code... [  2%] abjad.bind
+highlighting module code... [  4%] abjad.configuration
+highlighting module code... [  6%] abjad.contextmanagers
+highlighting module code... [  8%] abjad.contributions
+highlighting module code... [ 10%] abjad.cyclictuple
+highlighting module code... [ 12%] abjad.duration
+highlighting module code... [ 14%] abjad.enumerate
+highlighting module code... [ 16%] abjad.enums
+highlighting module code... [ 18%] abjad.exceptions
+highlighting module code... [ 20%] abjad.ext.sphinx
+highlighting module code... [ 22%] abjad.format
+highlighting module code... [ 24%] abjad.get
+highlighting module code... [ 25%] abjad.grace_corner_cases
+highlighting module code... [ 27%] abjad.illustrators
+highlighting module code... [ 29%] abjad.indicators
+highlighting module code... [ 31%] abjad.instruments
+highlighting module code... [ 33%] abjad.io
+highlighting module code... [ 35%] abjad.iterate
+highlighting module code... [ 37%] abjad.iterpitches
+highlighting module code... [ 39%] abjad.label
+highlighting module code... [ 41%] abjad.lilypondfile
+highlighting module code... [ 43%] abjad.lyproxy
+highlighting module code... [ 45%] abjad.makers
+highlighting module code... [ 47%] abjad.math
+highlighting module code... [ 49%] abjad.meter
+highlighting module code... [ 51%] abjad.metricmodulation
+highlighting module code... [ 53%] abjad.mutate
+highlighting module code... [ 55%] abjad.obgc
+highlighting module code... [ 57%] abjad.overrides
+highlighting module code... [ 59%] abjad.parentage
+highlighting module code... [ 61%] abjad.parsers.base
+highlighting module code... [ 63%] abjad.parsers.parse
+highlighting module code... [ 65%] abjad.parsers.parser
+highlighting module code... [ 67%] abjad.parsers.reduced
+highlighting module code... [ 69%] abjad.parsers.scheme
+highlighting module code... [ 71%] abjad.pattern
+highlighting module code... [ 73%] abjad.pcollections
+highlighting module code... [ 75%] abjad.persist
+highlighting module code... [ 76%] abjad.pitch
+highlighting module code... [ 78%] abjad.rhythmtrees
+highlighting module code... [ 80%] abjad.score
+highlighting module code... [ 82%] abjad.select
+highlighting module code... [ 84%] abjad.sequence
+highlighting module code... [ 86%] abjad.setclass
+highlighting module code... [ 88%] abjad.spanners
+highlighting module code... [ 90%] abjad.string
+highlighting module code... [ 92%] abjad.tag
+highlighting module code... [ 94%] abjad.timespan
+highlighting module code... [ 96%] abjad.tweaks
+highlighting module code... [ 98%] abjad.verticalmoment
+highlighting module code... [100%] abjad.wf
+
+writing additional pages... search done
+copying images... [  1%] _mothballed/images/lci-1.png
+copying images... [  3%] _mothballed/images/lci-2.png
+copying images... [  4%] _mothballed/images/lci-3.png
+copying images... [  5%] _mothballed/images/lci-4.png
+copying images... [  7%] examples/images/mozart-tables.png
+copying images... [  8%] gallery/baca-imaginaire-page-4.png
+copying images... [  9%] gallery/baca-imaginaire-page-5.png
+copying images... [ 11%] gallery/oberholtzer-lagartija-page-4.png
+copying images... [ 12%] gallery/oberholtzer-lagartija-page-5.png
+copying images... [ 13%] gallery/baca-desir-page-14.png
+copying images... [ 14%] gallery/baca-desir-page-15.png
+copying images... [ 16%] gallery/baca-lidercfeny-page-22.png
+copying images... [ 17%] gallery/baca-lidercfeny-page-23.png
+copying images... [ 18%] gallery/baca-sekka-page-5.png
+copying images... [ 20%] gallery/baca-sekka-page-6.png
+copying images... [ 21%] gallery/baca-cary-page-5.png
+copying images... [ 22%] gallery/baca-cary-page-6.png
+copying images... [ 24%] gallery/baca-poeme-recursif-page-3.png
+copying images... [ 25%] gallery/baca-poeme-recursif-page-4.png
+copying images... [ 26%] gallery/baca-akasha-page-7.png
+copying images... [ 28%] gallery/baca-akasha-page-8.png
+copying images... [ 29%] gallery/baca-myrkr-page-1.png
+copying images... [ 30%] gallery/baca-myrkr-page-2.png
+copying images... [ 32%] gallery/baca-khamr-page-10.png
+copying images... [ 33%] gallery/baca-khamr-page-11.png
+copying images... [ 34%] gallery/oberholtzer-ersilia-page-9.png
+copying images... [ 36%] gallery/oberholtzer-ersilia-page-10.png
+copying images... [ 37%] gallery/baca-ins-wasser-page-3.png
+copying images... [ 38%] gallery/baca-ins-wasser-page-4.png
+copying images... [ 39%] gallery/oberholtzer-armilla-page-8.png
+copying images... [ 41%] gallery/oberholtzer-armilla-page-9.png
+copying images... [ 42%] gallery/trevino-refrain-page-1.png
+copying images... [ 43%] gallery/trevino-refrain-page-2.png
+copying images... [ 45%] gallery/baca-huitzil-page-12.png
+copying images... [ 46%] gallery/baca-huitzil-page-13.png
+copying images... [ 47%] gallery/oberholtzer-zaira-page-16.png
+copying images... [ 49%] gallery/oberholtzer-zaira-page-17.png
+copying images... [ 50%] gallery/baca-krummzeit-page-80.png
+copying images... [ 51%] gallery/baca-krummzeit-page-81.png
+copying images... [ 53%] gallery/oberholtzer-plague-water-page-12.png
+copying images... [ 54%] gallery/oberholtzer-plague-water-page-13.png
+copying images... [ 55%] gallery/trevino-world-all-around-page-1.png
+copying images... [ 57%] gallery/trevino-world-all-around-page-2.png
+copying images... [ 58%] gallery/baca-traiettorie-page-6.png
+copying images... [ 59%] gallery/baca-traiettorie-page-7.png
+copying images... [ 61%] gallery/wallberg-cartography-bass-flute.png
+copying images... [ 62%] gallery/oberholtzer-aurora-page-6.png
+copying images... [ 63%] gallery/oberholtzer-aurora-page-7.png
+copying images... [ 64%] gallery/baca-archipel-page-9.png
+copying images... [ 66%] gallery/baca-archipel-page-10.png
+copying images... [ 67%] gallery/agostinho-whtt-page-4.png
+copying images... [ 68%] gallery/agostinho-whtt-page-5.png
+copying images... [ 70%] gallery/evans-adumbration-page-7.png
+copying images... [ 71%] gallery/evans-adumbration-page-11.png
+copying images... [ 72%] gallery/evans-chalk-line-page-1.png
+copying images... [ 74%] gallery/evans-chalk-line-page-4.png
+copying images... [ 75%] gallery/evans-hamonshu-page-1.png
+copying images... [ 76%] gallery/evans-hamonshu-page-4.png
+copying images... [ 78%] gallery/baca-harmony-page-10.png
+copying images... [ 79%] gallery/baca-harmony-page-29.png
+copying images... [ 80%] gallery/baca-faberge-page-1.png
+copying images... [ 82%] gallery/baca-faberge-page-36.png
+copying images... [ 83%] gallery/agostinho-cartography-11-page-4.png
+copying images... [ 84%] gallery/agostinho-cartography-11-page-5.png
+copying images... [ 86%] gallery/baca-naehte-page-1.png
+copying images... [ 87%] gallery/baca-naehte-page-2.png
+copying images... [ 88%] gallery/evans-guerrero-page-1.svg
+copying images... [ 89%] gallery/evans-guerrero-page-10.svg
+copying images... [ 91%] gallery/baca-mraz-page-4.png
+copying images... [ 92%] gallery/baca-mraz-page-5.png
+copying images... [ 93%] gallery/oberholtzer-demarest-page-19.png
+copying images... [ 95%] gallery/oberholtzer-demarest-page-28.png
+copying images... [ 96%] gallery/baca-dornen-page-1.png
+copying images... [ 97%] gallery/baca-dornen-page-2.png
+copying images... [ 99%] gallery/baca-ikribu-page-16.png
+copying images... [100%] gallery/baca-ikribu-page-17.png
+
+dumping search index in English (code: en)... done
+dumping object inventory... done
+
+[uqbar-book] Cache hits for abjad.duration.Duration.__add__: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.__div__: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.__mul__: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.__ne__: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.dot_count: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.durations_to_nonreduced_fractions: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.equal_or_greater_assignable: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.equal_or_greater_power_of_two: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.equal_or_lesser_assignable: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.equal_or_lesser_power_of_two: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.exponent: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.flag_count: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.from_clock_string: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.from_dot_count: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.from_lilypond_duration_string: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.implied_prolation: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.is_assignable: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.is_dyadic_rational: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.is_token: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.lilypond_duration_string: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.normalized: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.pair: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.prolation_string: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.reciprocal: 1
+[uqbar-book] Cache hits for abjad.duration.Duration.to_clock_string: 1
+[uqbar-book] Cache hits for abjad.overrides.Interface.__eq__: 2
+[uqbar-book] Cache hits for abjad.pcollections.PitchClassSegment.__str__: 1
+[uqbar-book] Cache hits for abjad.pitch.NamedIntervalClass.__abs__: 1
+[uqbar-book] Cache hits for abjad.pitch.NamedIntervalClass.__lt__: 1
+[uqbar-book] Cache hits for abjad.pitch.NamedIntervalClass.direction_number: 1
+[uqbar-book] Cache hits for abjad.pitch.NamedIntervalClass.name: 1
+[uqbar-book] Cache hits for abjad.pitch.NumberedIntervalClass.__eq__: 1
+[uqbar-book] Cache hits for abjad.pitch.NumberedIntervalClass.from_pitch_carriers: 1
+[uqbar-book] Cache hits for abjad.rhythmtrees.RhythmTreeNode.duration: 2
+[uqbar-book] Cache hits for abjad.rhythmtrees.RhythmTreeNode.pair: 2
+[uqbar-book] Cache hits for abjad.rhythmtrees.RhythmTreeNode.pretty_rtm_format: 2
+[uqbar-book] Cache hits for abjad.rhythmtrees.RhythmTreeNode.start_offset: 2
+[uqbar-book] Cache hits for abjad.rhythmtrees.RhythmTreeNode.stop_offset: 2
+[uqbar-book] Cache hits for abjad.score.Container.__delitem__: 12
+[uqbar-book] Cache hits for abjad.score.Container.__iter__: 12
+[uqbar-book] Cache hits for abjad.score.Container.append: 11
+[uqbar-book] Cache hits for abjad.score.Container.extend: 11
+[uqbar-book] Cache hits for abjad.score.Container.identifier: 12
+[uqbar-book] Cache hits for abjad.score.Container.index: 12
+[uqbar-book] Cache hits for abjad.score.Container.insert: 12
+[uqbar-book] Cache hits for abjad.score.Container.name: 12
+[uqbar-book] Cache hits for abjad.score.Container.pop: 12
+[uqbar-book] Cache hits for abjad.score.Container.remove: 12
+[uqbar-book] Cache hits for abjad.score.Container.simultaneous: 12
+[uqbar-book] Cache hits for abjad.score.Context.__repr__: 4
+[uqbar-book] Cache hits for abjad.score.Context.consists_commands: 4
+[uqbar-book] Cache hits for abjad.score.Context.lilypond_type: 4
+[uqbar-book] Cache hits for abjad.score.Context.remove_commands: 4
+[uqbar-book] Cache hits for abjad.score.Context.tag: 2
+[uqbar-book] Cache hits for abjad.score.NoteHead.__copy__: 1
+[uqbar-book] Cache hits for abjad.score.NoteHead.__repr__: 1
+[uqbar-book] Cache hits for abjad.score.NoteHead.alternative: 1
+[uqbar-book] Cache hits for abjad.score.NoteHead.is_cautionary: 1
+[uqbar-book] Cache hits for abjad.score.NoteHead.is_forced: 1
+[uqbar-book] Cache hits for abjad.score.NoteHead.is_parenthesized: 1
+[uqbar-book] Cache hits for abjad.score.NoteHead.named_pitch: 1
+[uqbar-book] Cache hits for abjad.score.NoteHead.written_pitch: 1
+[uqbar-book] Cache hits for fractions.Fraction.limit_denominator: 1
+[uqbar-book] Cache hits for uqbar.containers.unique_tree.UniqueTreeNode.graph_order: 1
+build succeeded.
+
+The HTML pages are in build/html.
+
+Build finished. The HTML pages are in build/html.

@@ -1,9 +1,14 @@
 import os
+import pathlib
+import re
 import sys
 
 import abjad
 
 sys.path.insert(0, os.path.abspath("../../source"))
+version_file = pathlib.Path("../../source/abjad/_version.py").read_text()
+match = re.search(r'__version__ = ["\'](.+?)["\']', version_file)
+version = match.group(1) if match else "unknown"
 
 autodoc_member_order = "groupwise"
 
@@ -40,7 +45,7 @@ html_theme_options = {
     "navigation_depth": 1,
     "sticky_navigation": False,
     "style_external_links": True,
-    "style_nav_header_background": "#ffeedd",
+    "style_nav_header_background": "#000000",
 }
 
 intersphinx_mapping = {
@@ -51,6 +56,7 @@ intersphinx_mapping = {
 project = "Abjad"
 pygments_style = "sphinx"
 
+release = version
 rst_epilog = """
 ..  _Bača: https://github.com/trevorbaca
 ..  _Florian Hollerweger: https://www.hfmt-koeln.de/musik/lehrende-musik/prof-dr-florian-hollerweger/
