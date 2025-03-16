@@ -1,5 +1,5 @@
-Abjad |release|
-===============
+Abjad 3.22
+==========
 
 Abjad helps composers build up complex pieces of music notation in iterative
 and incremental ways. Use Abjad to create a symbolic representation of all the
