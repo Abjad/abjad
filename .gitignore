@@ -5,6 +5,7 @@ build/
 dist/
 
 # docs
+docs/.sphinx.log
 docs/build
 docs/source/api
 docs/source/_static/uqbar.css
