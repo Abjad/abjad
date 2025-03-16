@@ -12,7 +12,7 @@ build:
 
 clean:
 	find source/abjad/ tests/ -name '*.pyc' -delete
-	rm -rf __pycache__ *.egg-info .cache .tox build dist htmlcov prof
+	rm -rf __pycache__ .cache .tox build dist htmlcov prof source/*.egg-info
 
 docs:
 	make -C docs/ html
