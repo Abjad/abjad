@@ -19,7 +19,7 @@ from . import (
     typings,
     wf,
 )
-from ._version import __version__, __version_info__
+from ._version import __version__
 from .bind import Wrapper, annotate, attach, detach
 from .configuration import (
     Configuration,

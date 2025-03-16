@@ -1,5 +1,5 @@
-Abjad 3.21
-==========
+Abjad |release|
+===============
 
 Abjad helps composers build up complex pieces of music notation in iterative
 and incremental ways. Use Abjad to create a symbolic representation of all the
@@ -37,11 +37,12 @@ Abjad requires Python 3.12 or later:
 ..  code-block::
 
     ~$ python --version
-    Python 3.13.1
+    Python 3.13.2
 
 Abjad requires LilyPond 2.23.6 or later.
 
-Make sure LilyPond is installed: http://lilypond.org/development.html
+Make sure LilyPond is installed:
+http://lilypond.org/development.html
 
 Make sure LilyPond is callable from the commandline:
 
