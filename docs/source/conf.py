@@ -6,7 +6,7 @@ import sys
 import abjad
 
 sys.path.insert(0, os.path.abspath("../../source"))
-version_file = pathlib.Path("../abjad/_version.py").read_text()
+version_file = pathlib.Path("../../source/abjad/_version.py").read_text()
 match = re.search(r'__version__ = ["\'](.+?)["\']', version_file)
 version = match.group(1) if match else "unknown"
 
