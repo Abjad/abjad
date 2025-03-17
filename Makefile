@@ -11,7 +11,7 @@ build:
 	python -m build --sdist
 
 clean:
-	find source/abjad/ tests/ -name '*.pyc' -delete
+	find . -name '*.pyc' -delete
 	rm -rf __pycache__ .cache .tox build dist htmlcov prof source/*.egg-info
 
 docs:
