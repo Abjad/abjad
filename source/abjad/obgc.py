@@ -13,7 +13,6 @@ from . import select as _select
 from . import spanners as _spanners
 from . import tag as _tag
 from . import tweaks as _tweaks
-from . import typings as _typings
 
 
 def _is_obgc_nongrace_voice(component):
@@ -118,7 +117,7 @@ class OnBeatGraceContainer(_score.Container):
         self,
         components: str | typing.Sequence[_score.Leaf] = (),
         *,
-        grace_leaf_duration: _typings.Duration | None = None,
+        grace_leaf_duration: _duration.Duration | None = None,
         identifier: str | None = None,
         name: str | None = None,
         tag: _tag.Tag | None = None,
@@ -294,7 +293,7 @@ def on_beat_grace_container(
     do_not_slash: bool = False,
     do_not_slur: bool = False,
     grace_font_size: int = -3,
-    grace_leaf_duration: _typings.Duration | None = None,
+    grace_leaf_duration: _duration.Duration | None = None,
     grace_polyphony_command: _indicators.VoiceNumber = _indicators.VoiceNumber(1),
     nongrace_polyphony_command: _indicators.VoiceNumber = _indicators.VoiceNumber(2),
     tag: _tag.Tag = _tag.Tag(),

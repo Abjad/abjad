@@ -20,7 +20,6 @@ from . import pitch as _pitch
 from . import tag as _tag
 from . import timespan as _timespan
 from . import tweaks as _tweaks
-from . import typings as _typings
 
 
 def _indent_strings(strings):
@@ -6196,7 +6195,7 @@ class Tuplet(Container):
 
     @staticmethod
     def from_duration(
-        duration: _typings.Duration, components, *, tag: _tag.Tag | None = None
+        duration: _duration.Duration, components, *, tag: _tag.Tag | None = None
     ) -> "Tuplet":
         r"""
         Makes tuplet from ``duration`` and ``components``.
@@ -6205,7 +6204,8 @@ class Tuplet(Container):
 
             Makes diminution:
 
-            >>> tuplet = abjad.Tuplet.from_duration((2, 8), "c'8 d' e'")
+            >>> duration = abjad.Duration(2, 8)
+            >>> tuplet = abjad.Tuplet.from_duration(duration, "c'8 d' e'")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6220,6 +6220,7 @@ class Tuplet(Container):
                 }
 
         """
+        assert isinstance(duration, _duration.Duration), repr(duration)
         if not len(components):
             raise Exception(f"components must be nonempty: {components!r}.")
         target_duration = _duration.Duration(duration)

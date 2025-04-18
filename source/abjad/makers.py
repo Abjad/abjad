@@ -12,7 +12,6 @@ from . import score as _score
 from . import sequence as _sequence
 from . import spanners as _spanners
 from . import tag as _tag
-from . import typings as _typings
 
 
 def _group_by_implied_prolation(durations):
@@ -201,8 +200,8 @@ def make_leaves(
     pitches,
     durations,
     *,
-    forbidden_note_duration: _typings.Duration | None = None,
-    forbidden_rest_duration: _typings.Duration | None = None,
+    forbidden_note_duration: _duration.Duration | None = None,
+    forbidden_rest_duration: _duration.Duration | None = None,
     skips_instead_of_rests: bool = False,
     increase_monotonic: bool = False,
     tag: _tag.Tag | None = None,
@@ -643,9 +642,9 @@ def make_leaves(
     if isinstance(durations, numbers.Number | tuple):
         durations = [durations]
     if forbidden_note_duration is not None:
-        forbidden_note_duration = _duration.Duration(forbidden_note_duration)
+        assert isinstance(forbidden_note_duration, _duration.Duration)
     if forbidden_rest_duration is not None:
-        forbidden_rest_duration = _duration.Duration(forbidden_rest_duration)
+        assert isinstance(forbidden_rest_duration, _duration.Duration)
     nonreduced_fractions = [_duration.Duration(_) for _ in durations]
     size = max(len(nonreduced_fractions), len(pitches))
     nonreduced_fractions = _sequence.repeat_to_length(nonreduced_fractions, size)
@@ -1571,12 +1570,12 @@ def tuplet_from_leaf_and_ratio(
 
 def tuplet_from_ratio_and_pair(
     ratio: tuple,
-    fraction: tuple,
+    pair: tuple,
     *,
     tag: _tag.Tag | None = None,
 ) -> _score.Tuplet:
     r"""
-    Makes tuplet from nonreduced ``ratio`` and nonreduced ``fraction``.
+    Makes tuplet from ``ratio`` and ``pair``.
 
     ..  container:: example
 
@@ -1744,10 +1743,10 @@ def tuplet_from_ratio_and_pair(
     """
     if not isinstance(ratio, tuple):
         raise ValueError(f"must be tuple, not {ratio!r}.")
-    if not isinstance(fraction, tuple):
-        raise ValueError(f"must be pair, not {fraction!r}.")
-    numerator, denominator = fraction
-    duration = _duration.Duration(fraction)
+    if not isinstance(pair, tuple):
+        raise ValueError(f"must be pair, not {pair!r}.")
+    numerator, denominator = pair
+    duration = _duration.Duration(pair)
     if len(ratio) == 1:
         if 0 < ratio[0]:
             try:
