@@ -12,7 +12,6 @@ from . import score as _score
 from . import select as _select
 from . import tag as _tag
 from . import timespan as _timespan
-from . import typings as _typings
 
 
 def after_grace_container(argument):
@@ -952,7 +951,7 @@ def duration(
 
 def effective(
     argument,
-    prototype: _typings.Prototype,
+    prototype: type | tuple[type, ...],
     *,
     attributes: dict | None = None,
     default: typing.Any | None = None,
@@ -1631,7 +1630,7 @@ def effective_staff(argument) -> typing.Optional["_score.Staff"]:
 
 def effective_wrapper(
     argument,
-    prototype: _typings.Prototype,
+    prototype: type | tuple[type, ...],
     *,
     attributes: dict | None = None,
     n: int = 0,
@@ -1895,7 +1894,7 @@ def grace(argument) -> bool:
 
 def has_effective_indicator(
     argument,
-    prototype: _typings.Prototype | None = None,
+    prototype: type | tuple[type, ...] | None = None,
     *,
     attributes: dict | None = None,
 ) -> bool:
@@ -2093,7 +2092,7 @@ def has_effective_indicator(
 
 def has_indicator(
     argument,
-    prototype: str | _typings.Prototype | enum.Enum | None = None,
+    prototype: str | enum.Enum | type | tuple[type, ...] | None = None,
     *,
     attributes: dict | None = None,
 ) -> bool:
@@ -2335,7 +2334,7 @@ def has_indicator(
 
 def indicator(
     argument,
-    prototype: _typings.Prototype | None = None,
+    prototype: type | tuple[type, ...] | None = None,
     *,
     default: typing.Any | None = None,
     unwrap: bool = True,
@@ -2486,7 +2485,7 @@ def indicator(
 
 def indicators(
     argument: _score.Component,
-    prototype: _typings.Prototype | None = None,
+    prototype: type | tuple[type, ...] | None = None,
     *,
     attributes: dict | None = None,
     unwrap: bool = True,
@@ -4364,7 +4363,7 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
 
 def wrapper(
     argument,
-    prototype: _typings.Prototype | None = None,
+    prototype: type | tuple[type, ...] | None = None,
     *,
     attributes: dict | None = None,
 ):
@@ -4498,7 +4497,7 @@ def wrapper(
 
 def wrappers(
     argument,
-    prototype: _typings.Prototype | None = None,
+    prototype: type | tuple[type, ...] | None = None,
     *,
     attributes: dict | None = None,
 ):

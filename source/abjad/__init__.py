@@ -16,7 +16,6 @@ from . import (
     mutate,
     persist,
     string,
-    typings,
     wf,
 )
 from ._version import __version__
@@ -550,7 +549,6 @@ __all__ = [
     "tie",
     "trill_spanner",
     "tweak",
-    "typings",
     "wf",
     "yield_all_modules",
 ]

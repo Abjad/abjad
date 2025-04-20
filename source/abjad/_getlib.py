@@ -12,7 +12,6 @@ from . import parentage as _parentage
 from . import pitch as _pitch
 from . import score as _score
 from . import timespan as _timespan
-from . import typings as _typings
 
 
 def _are_logical_voice(components, prototype=None):
@@ -193,7 +192,7 @@ def _get_grace_container(component):
 
 def _get_indicator(
     component: _score.Component,
-    prototype: _typings.Prototype | None = None,
+    prototype: type | tuple[type, ...] | None = None,
     *,
     default: typing.Any | None = None,
     unwrap: bool = True,
