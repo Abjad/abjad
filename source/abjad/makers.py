@@ -948,40 +948,78 @@ def tuplet_from_duration_and_ratio(
 
     ..  container:: example
 
-        Divides duration of a quarter note into equal parts:
+        Divides duration of 3/16 into increasing number of parts:
 
-        >>> score = make_score(abjad.Duration(1, 4), (1, 1, 1, 1, 1))
+        >>> score = make_score(abjad.Duration(3, 16), (1, 2, 2))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(score["Staff"][0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tuplet 5/4
             {
-                \time 1/4
-                c'16
-                c'16
-                c'16
-                c'16
-                c'16
+                \time 3/16
+                c'32.
+                c'16.
+                c'16.
             }
 
-        Divides duration of a quarter note into unequal parts:
-
-        >>> score = make_score(abjad.Duration(1, 4), (3, 2, 2))
+        >>> score = make_score(abjad.Duration(3, 16), (1, 2, 2, 3))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(score["Staff"][0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
-            \tuplet 7/4
+            \tweak text #tuplet-number::calc-fraction-text
+            \tuplet 4/3
             {
-                \time 1/4
-                c'8.
-                c'8
-                c'8
+                \time 3/16
+                c'32
+                c'16
+                c'16
+                c'16.
+            }
+
+        >>> score = make_score(abjad.Duration(3, 16), (1, 2, 2, 3, 3))
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
+            \tweak text #tuplet-number::calc-fraction-text
+            \tuplet 11/6
+            {
+                \time 3/16
+                c'32
+                c'16
+                c'16
+                c'16.
+                c'16.
+            }
+
+        >>> score = make_score(abjad.Duration(3, 16), (1, 2, 2, 3, 3, 4))
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
+            \tuplet 5/4
+            {
+                \time 3/16
+                c'64
+                c'32
+                c'32
+                c'32.
+                c'32.
+                c'16
             }
 
     ..  container:: example
@@ -1022,7 +1060,7 @@ def tuplet_from_duration_and_ratio(
 
     ..  container:: example
 
-        Spells nonassignable durations monotonically decreasing by default:
+        Spells nonassignable durations in monotonically decreasing parts by default:
 
         >>> score = make_score(abjad.Duration(1, 4), (5, -2))
         >>> abjad.show(score) # doctest: +SKIP
@@ -1041,7 +1079,7 @@ def tuplet_from_duration_and_ratio(
             }
 
         Set ``increase_monotonic=True`` to spell nonassignable durations
-        monotonically increasing:
+        in monotonically increasing parts:
 
         >>> score = make_score(abjad.Duration(1, 4), (5, -2), increase_monotonic=True)
         >>> abjad.show(score) # doctest: +SKIP
@@ -1121,324 +1159,6 @@ def tuplet_from_duration_and_ratio(
             tag=tag,
         )
     tuplet = _score.Tuplet.from_duration(duration, components, tag=tag)
-    tuplet.normalize_multiplier()
-    return tuplet
-
-
-def tuplet_from_leaf_and_ratio(
-    leaf: _score.Leaf, ratio: tuple[int, ...]
-) -> _score.Tuplet:
-    r"""
-    Makes tuplet from ``leaf`` and ``ratio``.
-
-    >>> note = abjad.Note("c'8.")
-
-    ..  container:: example
-
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1,))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 1/1
-            {
-                \time 3/16
-                c'8.
-            }
-
-    ..  container:: example
-
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 1/1
-            {
-                \time 3/16
-                c'16
-                c'8
-            }
-
-    ..  container:: example
-
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tuplet 5/4
-            {
-                \time 3/16
-                c'32.
-                c'16.
-                c'16.
-            }
-
-    ..  container:: example
-
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2, 3))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 4/3
-            {
-                \time 3/16
-                c'32
-                c'16
-                c'16
-                c'16.
-            }
-
-    ..  container:: example
-
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2, 3, 3))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 11/6
-            {
-                \time 3/16
-                c'32
-                c'16
-                c'16
-                c'16.
-                c'16.
-            }
-
-    ..  container:: example
-
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2, 3, 3, 4))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tuplet 5/4
-            {
-                \time 3/16
-                c'64
-                c'32
-                c'32
-                c'32.
-                c'32.
-                c'16
-            }
-
-    ..  container:: example
-
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1,))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 1/1
-            {
-                \time 3/16
-                c'8.
-            }
-
-    ..  container:: example
-
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 1/1
-            {
-                \time 3/16
-                c'16
-                c'8
-            }
-
-    ..  container:: example
-
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tuplet 5/4
-            {
-                \time 3/16
-                c'32.
-                c'16.
-                c'16.
-            }
-
-    ..  container:: example
-
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2, 3))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 4/3
-            {
-                \time 3/16
-                c'32
-                c'16
-                c'16
-                c'16.
-            }
-
-    ..  container:: example
-
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2, 3, 3))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 11/6
-            {
-                \time 3/16
-                c'32
-                c'16
-                c'16
-                c'16.
-                c'16.
-            }
-
-    ..  container:: example
-
-        >>> tuplet = abjad.makers.tuplet_from_leaf_and_ratio(note, (1, 2, 2, 3, 3, 4))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((3, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tuplet 5/4
-            {
-                \time 3/16
-                c'64
-                c'32
-                c'32
-                c'32.
-                c'32.
-                c'16
-            }
-
-    """
-    assert isinstance(ratio, tuple), repr(ratio)
-    target_duration = leaf.written_duration
-    basic_prolated_duration = target_duration / sum(ratio)
-    basic_written_duration = basic_prolated_duration.equal_or_greater_assignable
-    written_durations = [_ * basic_written_duration for _ in ratio]
-    notes: list[_score.Note | _score.Tuplet]
-    try:
-        notes = [_score.Note(0, x) for x in written_durations]
-    except _exceptions.AssignabilityError:
-        denominator = target_duration.denominator
-        note_durations = [_duration.Duration(_, denominator) for _ in ratio]
-        notes = make_notes(0, note_durations)
-    contents_duration = _getlib._get_duration(notes)
-    multiplier = target_duration / contents_duration
-    tuplet = _score.Tuplet(_duration.pair(multiplier), notes)
     tuplet.normalize_multiplier()
     return tuplet
 
