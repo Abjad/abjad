@@ -938,7 +938,6 @@ def tuplet_from_duration_and_ratio(
         ...         duration, ratio, increase_monotonic=increase_monotonic
         ...     )
         ...     staff = abjad.Staff([tuplet], lilypond_type="RhythmicStaff")
-        ...     staff.name = "Staff"
         ...     score = abjad.Score([staff], name="Score")
         ...     pair = duration.pair
         ...     time_signature = abjad.TimeSignature(pair)
@@ -1031,7 +1030,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> string = abjad.lilypond(score["Staff"][0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tuplet 5/4
             {
@@ -1048,7 +1048,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> string = abjad.lilypond(score["Staff"][0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tuplet 7/4
             {
@@ -1067,7 +1068,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> string = abjad.lilypond(score["Staff"][0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tuplet 7/4
             {
@@ -1086,7 +1088,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> string = abjad.lilypond(score["Staff"][0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tuplet 7/4
             {
@@ -1106,7 +1109,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> string = abjad.lilypond(score["Staff"][0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tuplet 3/2
             {
@@ -1121,7 +1125,8 @@ def tuplet_from_duration_and_ratio(
 
         ..  docs::
 
-            >>> string = abjad.lilypond(score["Staff"][0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tuplet 3/2
             {
@@ -1164,8 +1169,8 @@ def tuplet_from_duration_and_ratio(
 
 
 def tuplet_from_ratio_and_pair(
-    ratio: tuple,
-    pair: tuple,
+    ratio: tuple[int, ...],
+    pair: tuple[int, int],
     *,
     tag: _tag.Tag | None = None,
 ) -> _score.Tuplet:
@@ -1174,18 +1179,28 @@ def tuplet_from_ratio_and_pair(
 
     ..  container:: example
 
-        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair((1,), (7, 16))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
+        Helper function:
+
+        >>> def make_score(ratio, pair):
+        ...     tuplet = abjad.makers.tuplet_from_ratio_and_pair(ratio, pair)
+        ...     staff = abjad.Staff([tuplet], lilypond_type="RhythmicStaff")
+        ...     score = abjad.Score([staff], name="Score")
+        ...     time_signature = abjad.TimeSignature(pair)
+        ...     leaf = abjad.select.leaf(staff, 0)
+        ...     abjad.attach(time_signature, leaf)
+        ...     return score
+
+    ..  container:: example
+
+        Divides duration of 7/16 into increasing number of parts:
+
+        >>> score = make_score((1,), (7, 16))
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff[0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \tuplet 1/1
@@ -1194,18 +1209,13 @@ def tuplet_from_ratio_and_pair(
                 c'4..
             }
 
-        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2), (7, 16))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> score = make_score((1, 2), (7, 16))
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff[0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \tuplet 6/7
@@ -1215,18 +1225,13 @@ def tuplet_from_ratio_and_pair(
                 c'4
             }
 
-        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 4), (7, 16))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> score = make_score((1, 2, 4), (7, 16))
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff[0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \tuplet 1/1
@@ -1237,18 +1242,13 @@ def tuplet_from_ratio_and_pair(
                 c'4
             }
 
-        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 4, 1), (7, 16))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> score = make_score((1, 2, 4, 1), (7, 16))
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff[0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \tuplet 8/7
@@ -1260,18 +1260,13 @@ def tuplet_from_ratio_and_pair(
                 c'16
             }
 
-        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 4, 1, 2), (7, 16))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> score = make_score((1, 2, 4, 1, 2), (7, 16))
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff[0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
             \tuplet 10/7
@@ -1284,18 +1279,13 @@ def tuplet_from_ratio_and_pair(
                 c'8
             }
 
-        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 4, 1, 2, 4), (7, 16))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> score = make_score((1, 2, 4, 1, 2, 4), (7, 16))
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff[0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tuplet 2/1
             {
@@ -1308,23 +1298,20 @@ def tuplet_from_ratio_and_pair(
                 c'4
             }
 
+    ..  container:: example
+
         Works with nonassignable rests:
 
-        >>> tuplet = abjad.makers.tuplet_from_ratio_and_pair((11, -5), (5, 16))
-        >>> staff = abjad.Staff(
-        ...     [tuplet],
-        ...     lilypond_type="RhythmicStaff",
-        ... )
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((7, 16)), tuplet[0])
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> score = make_score((11, -5), (7, 16))
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff[0])
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 8/5
+            \tuplet 8/7
             {
                 \time 7/16
                 c'4
@@ -1334,12 +1321,11 @@ def tuplet_from_ratio_and_pair(
                 r32
             }
 
-    Interprets ``d`` as tuplet denominator.
     """
-    if not isinstance(ratio, tuple):
-        raise ValueError(f"must be tuple, not {ratio!r}.")
-    if not isinstance(pair, tuple):
-        raise ValueError(f"must be pair, not {pair!r}.")
+    assert isinstance(ratio, tuple), repr(ratio)
+    assert all(isinstance(_, int) for _ in ratio), repr(ratio)
+    assert isinstance(pair, tuple), repr(pair)
+    assert all(isinstance(_, int) for _ in pair), repr(pair)
     numerator, denominator = pair
     duration = _duration.Duration(pair)
     if len(ratio) == 1:
