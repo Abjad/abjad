@@ -3,7 +3,6 @@ import fractions
 import math
 import numbers
 
-from . import _getlib
 from . import duration as _duration
 from . import exceptions as _exceptions
 from . import math as _math
@@ -1327,29 +1326,17 @@ def tuplet_from_ratio_and_pair(
     assert not any(_ == 0 for _ in ratio), repr(ratio)
     assert isinstance(pair, tuple), repr(pair)
     assert all(isinstance(_, int) for _ in pair), repr(pair)
-    numerator, denominator = pair
     duration = _duration.Duration(pair)
     if len(ratio) == 1:
         if 0 < ratio[0]:
-            try:
-                note = _score.Note(0, duration, tag=tag)
-                duration = note._get_duration()
-                tuplet = _score.Tuplet.from_duration(duration, [note], tag=tag)
-            except _exceptions.AssignabilityError:
-                notes = make_notes(0, duration, tag=tag)
-                duration = _getlib._get_duration(notes)
-                tuplet = _score.Tuplet.from_duration(duration, notes, tag=tag)
+            pitch = 0
         else:
             assert ratio[0] < 0, repr(ratio)
-            try:
-                rest = _score.Rest(duration, tag=tag)
-                duration = rest._get_duration()
-                tuplet = _score.Tuplet.from_duration(duration, [rest], tag=tag)
-            except _exceptions.AssignabilityError:
-                rests = make_leaves([None], duration, tag=tag)
-                duration = _getlib._get_duration(rests)
-                tuplet = _score.Tuplet.from_duration(duration, rests, tag=tag)
+            pitch = None
+        leaves = make_leaves([pitch], [duration], tag=tag)
+        tuplet = _score.Tuplet.from_duration(duration, leaves, tag=tag)
     else:
+        numerator, denominator = pair
         exponent = int(math.log(_math.weight(ratio), 2) - math.log(numerator, 2))
         denominator = int(denominator * 2**exponent)
         components: list[_score.Leaf | _score.Tuplet] = []
@@ -1359,7 +1346,7 @@ def tuplet_from_ratio_and_pair(
             else:
                 assert item < 0, repr(item)
                 pitch = None
-            leaves = make_leaves(pitch, (abs(item), denominator), tag=tag)
+            leaves = make_leaves([pitch], [(abs(item), denominator)], tag=tag)
             components.extend(leaves)
         tuplet = _score.Tuplet.from_duration(duration, components, tag=tag)
     return tuplet
