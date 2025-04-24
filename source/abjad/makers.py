@@ -1324,6 +1324,7 @@ def tuplet_from_ratio_and_pair(
     """
     assert isinstance(ratio, tuple), repr(ratio)
     assert all(isinstance(_, int) for _ in ratio), repr(ratio)
+    assert not any(_ == 0 for _ in ratio), repr(ratio)
     assert isinstance(pair, tuple), repr(pair)
     assert all(isinstance(_, int) for _ in pair), repr(pair)
     numerator, denominator = pair
@@ -1334,41 +1335,31 @@ def tuplet_from_ratio_and_pair(
                 note = _score.Note(0, duration, tag=tag)
                 duration = note._get_duration()
                 tuplet = _score.Tuplet.from_duration(duration, [note], tag=tag)
-                return tuplet
             except _exceptions.AssignabilityError:
                 notes = make_notes(0, duration, tag=tag)
                 duration = _getlib._get_duration(notes)
-                return _score.Tuplet.from_duration(duration, notes, tag=tag)
-        elif ratio[0] < 0:
+                tuplet = _score.Tuplet.from_duration(duration, notes, tag=tag)
+        else:
+            assert ratio[0] < 0, repr(ratio)
             try:
                 rest = _score.Rest(duration, tag=tag)
                 duration = rest._get_duration()
-                return _score.Tuplet.from_duration(duration, [rest], tag=tag)
+                tuplet = _score.Tuplet.from_duration(duration, [rest], tag=tag)
             except _exceptions.AssignabilityError:
                 rests = make_leaves([None], duration, tag=tag)
                 duration = _getlib._get_duration(rests)
-                return _score.Tuplet.from_duration(duration, rests, tag=tag)
-        else:
-            raise ValueError("no divide zero values.")
+                tuplet = _score.Tuplet.from_duration(duration, rests, tag=tag)
     else:
         exponent = int(math.log(_math.weight(ratio), 2) - math.log(numerator, 2))
         denominator = int(denominator * 2**exponent)
         components: list[_score.Leaf | _score.Tuplet] = []
-        for x in ratio:
-            if not x:
-                raise ValueError("no divide zero values.")
-            if 0 < x:
-                try:
-                    note = _score.Note(0, (x, denominator), tag=tag)
-                    components.append(note)
-                except _exceptions.AssignabilityError:
-                    notes = make_notes(0, (x, denominator), tag=tag)
-                    components.extend(notes)
+        for item in ratio:
+            if 0 < item:
+                pitch = 0
             else:
-                try:
-                    rest = _score.Rest((-x, denominator), tag=tag)
-                    components.append(rest)
-                except _exceptions.AssignabilityError:
-                    rests = make_leaves(None, (-x, denominator), tag=tag)
-                    components.extend(rests)
-        return _score.Tuplet.from_duration(duration, components, tag=tag)
+                assert item < 0, repr(item)
+                pitch = None
+            leaves = make_leaves(pitch, (abs(item), denominator), tag=tag)
+            components.extend(leaves)
+        tuplet = _score.Tuplet.from_duration(duration, components, tag=tag)
+    return tuplet
