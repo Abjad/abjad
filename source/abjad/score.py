@@ -6202,8 +6202,6 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Makes diminution:
-
             >>> duration = abjad.Duration(2, 8)
             >>> tuplet = abjad.Tuplet.from_duration(duration, "c'8 d' e'")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -6221,13 +6219,11 @@ class Tuplet(Container):
 
         """
         assert isinstance(duration, _duration.Duration), repr(duration)
-        if not len(components):
-            raise Exception(f"components must be nonempty: {components!r}.")
-        target_duration = _duration.Duration(duration)
+        assert len(components), repr(components)
         tuplet = Tuplet((1, 1), components, tag=tag)
-        contents_duration = tuplet._get_duration()
-        multiplier = target_duration / contents_duration
-        tuplet.multiplier = _duration.pair(multiplier)
+        fraction = duration / tuplet._get_duration()
+        pair = (fraction.numerator, fraction.denominator)
+        tuplet.multiplier = pair
         return tuplet
 
     def normalize_multiplier(self) -> None:
@@ -6347,19 +6343,16 @@ class Tuplet(Container):
             True
 
         """
-        # find tuplet multiplier
         multiplier = fractions.Fraction(*self.multiplier)
         integer_exponent = int(math.log(multiplier, 2))
         leaf_multiplier = fractions.Fraction(2) ** integer_exponent
-        # scale leaves in tuplet by power of two
         for component in self:
             if isinstance(component, Leaf):
                 old_written_duration = component.written_duration
                 new_written_duration = leaf_multiplier * old_written_duration
                 multiplier = new_written_duration / old_written_duration
                 component._scale(multiplier)
-        numerator, denominator = _duration.pair(leaf_multiplier)
-        multiplier = fractions.Fraction(denominator, numerator)
+        multiplier = leaf_multiplier**-1
         multiplier *= fractions.Fraction(*self.multiplier)
         pair = multiplier.numerator, multiplier.denominator
         self.multiplier = pair
