@@ -28,10 +28,9 @@ The following functions recreate Malt's results in Abjad:
     ...     lone_note_denominator = denominator * 4
     ...     lone_note_duration = (1, lone_note_denominator)
     ...     lone_note = abjad.Note("c'", lone_note_duration)
-    ...     duration = (outer, lone_note_denominator)
     ...     ratio = inner * (1,)
-    ...     maker = abjad.makers.tuplet_from_duration_and_ratio
-    ...     inner_tuplet = maker(duration, ratio)
+    ...     pair = (outer, lone_note_denominator)
+    ...     inner_tuplet = abjad.makers.tuplet_from_ratio_and_pair(ratio, pair)
     ...     multiplier = abjad.Fraction(*inner_tuplet.multiplier)
     ...     pair = abjad.duration.with_denominator(multiplier, inner)
     ...     inner_tuplet.multiplier = pair
@@ -112,4 +111,4 @@ Here's the rhythmic retrograde of the same:
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
-:author:`[Bača (1.1, 3.2)]`
+:author:`[Bača (1.1, 3.2, 3.24)]`
