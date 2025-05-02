@@ -8,7 +8,7 @@ black-reformat:
 	black .
 
 build:
-	python -m build --sdist
+	python -m build
 
 clean:
 	find . -name '*.pyc' -delete
@@ -61,7 +61,7 @@ release:
 	make -C docs/ clean html
 	make clean
 	make build
-	twine upload dist/*.tar.gz
+	twine upload dist/*
 	make gh-pages
 
 lint: black-check flake8 isort-check mypy
