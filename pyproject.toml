@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "abjad"
-version = "3.23"
+version = "3.24"
 description = "Abjad is a Python API for building LilyPond files."
 license = { text = "MIT" }
 readme = "README.rst"
