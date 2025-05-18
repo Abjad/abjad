@@ -185,7 +185,7 @@ def as_png(
         shutil.move(source_png_file_path, target_png_file_path)
         png_file_paths.append(target_png_file_path)
     shutil.rmtree(temporary_directory)
-    if 1 < len(png_file_paths):
+    if 1 < len(png_file_paths) and preview is False:
         _png_page_pattern = re.compile(r".+page(\d+)\.png")
 
         def _key(path):
