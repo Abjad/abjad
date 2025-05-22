@@ -433,7 +433,7 @@ def _set_leaf_duration(leaf, new_duration, *, tag=None):
         return [leaf]
     except _exceptions.AssignabilityError:
         pass
-    components = _makers.make_notes(0, new_duration, tag=tag)
+    components = _makers.make_notes([_pitch.NamedPitch("c'")], [new_duration], tag=tag)
     new_leaves = _select.leaves(components)
     following_leaf_count = len(new_leaves) - 1
     following_leaves = []
@@ -1379,9 +1379,10 @@ def logical_tie_to_tuplet(
     try:
         notes = [_score.Note(0, _) for _ in written_durations]
     except _exceptions.AssignabilityError:
+        pitches = _makers.make_pitches([0])
         denominator = target_duration._denominator
         note_durations = [_duration.Duration(_, denominator) for _ in proportions]
-        notes = _makers.make_notes(0, note_durations, tag=tag)
+        notes = _makers.make_notes(pitches, note_durations, tag=tag)
     tuplet = _score.Tuplet.from_duration(target_duration, notes, tag=tag)
     for leaf in argument:
         _bind.detach(_indicators.Tie, leaf)
@@ -1432,7 +1433,9 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
                 }
             }
 
-        >>> notes = abjad.makers.make_notes("c' d' e' f' c' d' e' f'", (1, 16))
+        >>> duration = abjad.Duration(1, 16)
+        >>> pitches = abjad.makers.make_pitches("c' d' e' f' c' d' e' f'")
+        >>> notes = abjad.makers.make_notes(pitches, [duration])
         >>> abjad.mutate.replace([tuplet_1], notes)
         >>> abjad.attach(abjad.Dynamic('p'), voice[0])
         >>> abjad.attach(abjad.StartHairpin('<'), voice[0])
@@ -1575,12 +1578,10 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
 
     ..  container:: example
 
-        ..  todo:: Fix.
-
-        Introduces duplicate ties:
-
         >>> staff = abjad.Staff("c'2 ~ c'2")
-        >>> tied_notes = abjad.makers.make_notes(0, abjad.Duration(5, 8))
+        >>> pitches = abjad.makers.make_pitches([0])
+        >>> durations = [abjad.Duration(5, 8)]
+        >>> tied_notes = abjad.makers.make_notes(pitches, durations)
         >>> abjad.mutate.replace(staff[:1], tied_notes)
 
         >>> string = abjad.lilypond(staff)
@@ -2632,7 +2633,9 @@ def wrap(argument, container):
 
         Wraps outside-score notes in tuplet:
 
-        >>> notes = abjad.makers.make_notes([0, 2, 4], [(1, 8)])
+        >>> pitches = abjad.makers.make_pitches([0, 2, 4])
+        >>> durations = [abjad.Duration(1, 8)]
+        >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> tuplet = abjad.Tuplet((2, 3), [])
         >>> abjad.mutate.wrap(notes, tuplet)
         >>> abjad.show(tuplet) # doctest: +SKIP

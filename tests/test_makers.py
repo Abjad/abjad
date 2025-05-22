@@ -70,6 +70,33 @@ def test_makers__group_by_implied_prolation_07():
     ]
 
 
+def test_makers_make_notes_01():
+    """
+    Tag output like this.
+    """
+
+    pitches = abjad.makers.make_pitches([0])
+    durations = abjad.makers.make_durations([(1, 16), (1, 8), (1, 8)])
+    tag = abjad.Tag("note_maker")
+    notes = abjad.makers.make_notes(pitches, durations, tag=tag)
+    staff = abjad.Staff(notes)
+    string = abjad.lilypond(staff, tags=True)
+
+    assert string == abjad.string.normalize(
+        r"""
+        \new Staff
+        {
+              %! note_maker
+            c'16
+              %! note_maker
+            c'8
+              %! note_maker
+            c'8
+        }
+        """
+    )
+
+
 def test_makers_tuplet_from_ratio_and_pair_01():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 4), (6, 16))
 

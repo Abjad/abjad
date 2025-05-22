@@ -1906,11 +1906,12 @@ def test_Container_extend_10():
     Lists must be flattened.
     """
 
+    duration = abjad.Duration(1, 4)
     lists = [
-        abjad.makers.make_notes([0, 2], [abjad.Duration(1, 4)]),
-        abjad.makers.make_notes([4, 5], [abjad.Duration(1, 4)]),
-        abjad.makers.make_notes([7, 9], [abjad.Duration(1, 4)]),
-        abjad.makers.make_notes([11, 12], [abjad.Duration(1, 4)]),
+        abjad.makers.make_notes(abjad.makers.make_pitches([0, 2]), [duration]),
+        abjad.makers.make_notes(abjad.makers.make_pitches([4, 5]), [duration]),
+        abjad.makers.make_notes(abjad.makers.make_pitches([7, 9]), [duration]),
+        abjad.makers.make_notes(abjad.makers.make_pitches([11, 12]), [duration]),
     ]
     components = abjad.sequence.flatten(lists, depth=-1)
     container = abjad.Container()
