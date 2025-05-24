@@ -24,7 +24,8 @@ def test_LilyPondParser__containers__Container_01():
 
 
 def test_LilyPondParser__containers__Tuplet_01():
-    notes = abjad.makers.make_notes([0, 2, 4], (1, 8))
+    pitches = abjad.makers.make_pitches([0, 2, 4])
+    notes = abjad.makers.make_notes(pitches, [abjad.Duration(1, 8)])
     target = abjad.Tuplet((2, 3), notes)
 
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -75,10 +76,12 @@ def test_LilyPondParser__containers__simultaneous_01():
 
 
 def test_LilyPondParser__contexts__PianoStaff_01():
+    pitches = abjad.makers.make_pitches([0, 2, 4, 5, 7])
+    duration = abjad.Duration(1, 8)
     target = abjad.StaffGroup(
         [
-            abjad.Staff(abjad.makers.make_notes([0, 2, 4, 5, 7], (1, 8))),
-            abjad.Staff(abjad.makers.make_notes([0, 2, 4, 5, 7], (1, 8))),
+            abjad.Staff(abjad.makers.make_notes(pitches, [duration])),
+            abjad.Staff(abjad.makers.make_notes(pitches, [duration])),
         ]
     )
     target.lilypond_type = "PianoStaff"
@@ -147,12 +150,12 @@ def test_LilyPondParser__contexts__Staff_01():
 def test_LilyPondParser__contexts__Staff_02():
     target = abjad.Staff([])
     target.simultaneous = True
-    target.append(
-        abjad.Voice(abjad.makers.make_notes([0, 2, 4, 5, 7, 9, 11, 12], (1, 8)))
-    )
-    target.append(
-        abjad.Voice(abjad.makers.make_notes([0, 2, 4, 5, 7, 9, 11, 12], (1, 8)))
-    )
+    pitches = abjad.makers.make_pitches([0, 2, 4, 5, 7, 9, 11, 12])
+    duration = abjad.Duration(1, 8)
+    voice = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
+    target.append(voice)
+    voice = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
+    target.append(voice)
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
@@ -222,7 +225,9 @@ def test_LilyPondParser__contexts__Voice_01():
 
 
 def test_LilyPondParser__contexts__context_ids_01():
-    notes = abjad.makers.make_notes([0, 2, 4, 5, 7], (1, 8))
+    pitches = abjad.makers.make_pitches([0, 2, 4, 5, 7])
+    duration = abjad.Duration(1, 8)
+    notes = abjad.makers.make_notes(pitches, [duration])
     target = abjad.Staff(notes)
     target.name = "foo"
 
@@ -310,8 +315,9 @@ def test_LilyPondParser__functions__language_01():
 
 
 def test_LilyPondParser__functions__relative_01():
-    pitches = [2, 5, 9, 7, 12, 11, 5, 2]
-    notes = abjad.makers.make_notes(pitches, (1, 4))
+    pitches = abjad.makers.make_pitches([2, 5, 9, 7, 12, 11, 5, 2])
+    duration = abjad.Duration(1, 4)
+    notes = abjad.makers.make_notes(pitches, [duration])
     target = abjad.Container(notes)
 
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -336,8 +342,9 @@ def test_LilyPondParser__functions__relative_01():
 
 
 def test_LilyPondParser__functions__relative_02():
-    pitches = [11, 12, 11, 14, 11, 16, 11, 9, 11, 7, 11, 5]
-    notes = abjad.makers.make_notes(pitches, (1, 4))
+    pitches = abjad.makers.make_pitches([11, 12, 11, 14, 11, 16, 11, 9, 11, 7, 11, 5])
+    duration = abjad.Duration(1, 4)
+    notes = abjad.makers.make_notes(pitches, [duration])
     target = abjad.Container(notes)
 
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -366,8 +373,9 @@ def test_LilyPondParser__functions__relative_02():
 
 
 def test_LilyPondParser__functions__relative_03():
-    pitches = [9, -3, 12, 5, 7, 31, 9, 17]
-    notes = abjad.makers.make_notes(pitches, (1, 4))
+    pitches = abjad.makers.make_pitches([9, -3, 12, 5, 7, 31, 9, 17])
+    duration = abjad.Duration(1, 4)
+    notes = abjad.makers.make_notes(pitches, [duration])
     target = abjad.Container(notes)
 
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -392,14 +400,15 @@ def test_LilyPondParser__functions__relative_03():
 
 
 def test_LilyPondParser__functions__relative_04():
-    pitches = [
+    lists = [
         ["a'", "c''", "e''"],
         ["f'", "a'", "c''"],
         ["a'", "c''", "e''"],
         ["f''", "a''", "c'''"],
         ["b", "b'", "e''"],
     ]
-    leaves = abjad.makers.make_leaves(pitches, 1)
+    pitch_lists = abjad.makers.make_pitch_lists(lists)
+    leaves = abjad.makers.make_leaves(pitch_lists, [abjad.Duration(1)])
     target = abjad.Container(leaves)
 
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -421,8 +430,9 @@ def test_LilyPondParser__functions__relative_04():
 
 
 def test_LilyPondParser__functions__relative_05():
-    pitches = ["c", "f", "b", "e'", "a'", "d''", "g''", "c'''"]
-    leaves = abjad.makers.make_leaves(pitches, [(1, 4)])
+    names = ["c", "f", "b", "e'", "a'", "d''", "g''", "c'''"]
+    pitch_lists = abjad.makers.make_pitch_lists(names)
+    leaves = abjad.makers.make_leaves(pitch_lists, [abjad.Duration(1, 4)])
     target = abjad.Container(leaves)
 
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -556,8 +566,10 @@ def test_LilyPondParser__functions__relative_08():
 
 def test_LilyPondParser__functions__relative_09():
     # http://lilypond.org/doc/v2.15/Documentation/c6/lily-8d84e2b9.ly
-    pitches = ["c''", "fs''", "c''", "gf'", "b'", "ess''", "b'", "fff'"]
-    notes = abjad.makers.make_notes(pitches, [(1, 2)])
+    names = ["c''", "fs''", "c''", "gf'", "b'", "ess''", "b'", "fff'"]
+    pitches = abjad.makers.make_pitches(names)
+    duration = abjad.Duration(1, 2)
+    notes = abjad.makers.make_notes(pitches, [duration])
     target = abjad.Container(notes)
 
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -582,8 +594,10 @@ def test_LilyPondParser__functions__relative_09():
 
 
 def test_LilyPondParser__functions__relative_10():
-    pitches = ["c''", "bf''", "cf'''", "c'''", "cf'''", "c''", "cf''", "c''"]
-    notes = abjad.makers.make_notes(pitches, [(1, 4)])
+    names = ["c''", "bf''", "cf'''", "c'''", "cf'''", "c''", "cf''", "c''"]
+    pitches = abjad.makers.make_pitches(names)
+    duration = abjad.Duration(1, 4)
+    notes = abjad.makers.make_notes(pitches, [duration])
     target = abjad.Container(notes)
 
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -608,8 +622,10 @@ def test_LilyPondParser__functions__relative_10():
 
 
 def test_LilyPondParser__functions__relative_11():
-    pitches = ["cs''", "b''", "bs''", "cs'''", "bs''", "cs''", "bs'", "cs''"]
-    notes = abjad.makers.make_notes(pitches, [(1, 4)])
+    names = ["cs''", "b''", "bs''", "cs'''", "bs''", "cs''", "bs'", "cs''"]
+    pitches = abjad.makers.make_pitches(names)
+    duration = abjad.Duration(1, 4)
+    notes = abjad.makers.make_notes(pitches, [duration])
     target = abjad.Container(notes)
 
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -634,8 +650,9 @@ def test_LilyPondParser__functions__relative_11():
 
 
 def test_LilyPondParser__functions__transpose_01():
-    pitches = ["e'", "gs'", "b'", "e''"]
-    target = abjad.Staff(abjad.makers.make_notes(pitches, (1, 4)))
+    pitches = abjad.makers.make_pitches(["e'", "gs'", "b'", "e''"])
+    duration = abjad.Duration(1, 4)
+    target = abjad.Staff(abjad.makers.make_notes(pitches, [duration]))
     key_signature = abjad.KeySignature(abjad.NamedPitchClass("e"), abjad.Mode("major"))
     abjad.attach(key_signature, target[0])
 
@@ -659,8 +676,9 @@ def test_LilyPondParser__functions__transpose_01():
 
 
 def test_LilyPondParser__functions__transpose_02():
-    pitches = ["ef'", "f'", "g'", "bf'"]
-    target = abjad.Staff(abjad.makers.make_notes(pitches, (1, 4)))
+    pitches = abjad.makers.make_pitches(["ef'", "f'", "g'", "bf'"])
+    duration = abjad.Duration(1, 4)
+    target = abjad.Staff(abjad.makers.make_notes(pitches, [duration]))
     key_signature = abjad.KeySignature(abjad.NamedPitchClass("ef"), abjad.Mode("major"))
     abjad.attach(key_signature, target[0])
 
@@ -684,14 +702,13 @@ def test_LilyPondParser__functions__transpose_02():
 
 
 def test_LilyPondParser__functions__transpose_03():
+    duration = abjad.Duration(1, 4)
+    pitches_1 = abjad.makers.make_pitches(["cs'", "ds'", "es'", "fs'"])
+    pitches_2 = abjad.makers.make_pitches(["df'", "ef'", "f'", "gf'"])
     target = abjad.Staff(
         [
-            abjad.Container(
-                abjad.makers.make_notes(["cs'", "ds'", "es'", "fs'"], (1, 4))
-            ),
-            abjad.Container(
-                abjad.makers.make_notes(["df'", "ef'", "f'", "gf'"], (1, 4))
-            ),
+            abjad.Container(abjad.makers.make_notes(pitches_1, [duration])),
+            abjad.Container(abjad.makers.make_notes(pitches_2, [duration])),
         ]
     )
 
@@ -728,7 +745,10 @@ def test_LilyPondParser__functions__transpose_03():
 
 
 def test_LilyPondParser__indicators__Articulation_01():
-    target = abjad.Staff(abjad.makers.make_notes(["c''"], [(1, 4)] * 6 + [(1, 2)]))
+    pitches = abjad.makers.make_pitches([12])
+    durations = 6 * [abjad.Duration(1, 4)] + [abjad.Duration(1, 2)]
+    notes = abjad.makers.make_notes(pitches, durations)
+    target = abjad.Staff(notes)
     articulation = abjad.Articulation("marcato")
     abjad.attach(articulation, target[0], direction=abjad.UP)
     articulation = abjad.Articulation("stopped")
@@ -801,12 +821,10 @@ def test_LilyPondParser__indicators__Articulation_02():
 
 
 def test_LilyPondParser__indicators__Articulation_03():
-    target = abjad.Container(
-        abjad.makers.make_notes(
-            ["c''", "c''", "b'", "c''"], [(1, 4), (1, 4), (1, 2), (1, 1)]
-        )
-    )
-
+    durations = abjad.makers.make_durations([(1, 4), (1, 4), (1, 2), (1, 1)])
+    pitches = abjad.makers.make_pitches(["c''", "c''", "b'", "c''"])
+    notes = abjad.makers.make_notes(pitches, durations)
+    target = abjad.Container(notes)
     articulation = abjad.Articulation("staccato")
     abjad.attach(articulation, target[0])
     articulation = abjad.Articulation("mordent")
@@ -841,9 +859,10 @@ def test_LilyPondParser__indicators__Articulation_03():
 
 
 def test_LilyPondParser__indicators__BarLine_01():
-    target = abjad.Staff(
-        abjad.makers.make_notes(["e'", "d'", "c'"], [(1, 4), (1, 4), (1, 2)])
-    )
+    durations = abjad.makers.make_durations([(1, 4), (1, 4), (1, 2)])
+    pitches = abjad.makers.make_pitches(["e'", "d'", "c'"])
+    notes = abjad.makers.make_notes(pitches, durations)
+    target = abjad.Staff(notes)
     abjad.Score([target], name="Score")
     bar_line = abjad.BarLine("|.")
     abjad.attach(bar_line, target[-1])
@@ -868,7 +887,9 @@ def test_LilyPondParser__indicators__BarLine_01():
 
 
 def test_LilyPondParser__indicators__Beam_01():
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 8)]))
+    pitches = abjad.makers.make_pitches(4 * [0])
+    duration = abjad.Duration(1, 8)
+    target = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     abjad.beam(target[0:3])
     abjad.beam(target[3:], beam_lone_notes=True)
 
@@ -894,7 +915,9 @@ def test_LilyPondParser__indicators__Beam_01():
 
 
 def test_LilyPondParser__indicators__Beam_02():
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 8)]))
+    pitches = abjad.makers.make_pitches(4 * [0])
+    duration = abjad.Duration(1, 8)
+    target = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     abjad.beam(target[:])
     abjad.beam(target[1:3])
 
@@ -919,7 +942,9 @@ def test_LilyPondParser__indicators__Beam_02():
 
 
 def test_LilyPondParser__indicators__Beam_03():
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 8)]))
+    pitches = abjad.makers.make_pitches(4 * [0])
+    duration = abjad.Duration(1, 8)
+    target = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     abjad.beam(target[:3])
     abjad.beam(target[2:])
 
@@ -954,7 +979,9 @@ def test_LilyPondParser__indicators__Beam_05():
     With direction.
     """
 
-    target = abjad.Voice(abjad.makers.make_notes(4 * [0], [(1, 8)]))
+    pitches = abjad.makers.make_pitches(4 * [0])
+    duration = abjad.Duration(1, 8)
+    target = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     start_beam = abjad.StartBeam()
     abjad.attach(start_beam, target[0], direction=abjad.UP)
     stop_beam = abjad.StopBeam()
@@ -1072,7 +1099,9 @@ def test_LilyPondParser__indicators__Glissando_03():
 
 
 def test_LilyPondParser__indicators__Hairpin_01():
-    target = abjad.Voice(abjad.makers.make_notes([0] * 5, [(1, 4)]))
+    pitches = abjad.makers.make_pitches(5 * [0])
+    duration = abjad.Duration(1, 4)
+    target = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     abjad.hairpin("< !", target[:3])
     abjad.hairpin("> ppp", target[2:])
 
@@ -1103,7 +1132,9 @@ def test_LilyPondParser__indicators__Hairpin_02():
     Dynamics can terminate hairpins.
     """
 
-    target = abjad.Voice(abjad.makers.make_notes([0] * 3, [(1, 4)]))
+    pitches = abjad.makers.make_pitches(3 * [0])
+    duration = abjad.Duration(1, 4)
+    target = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     abjad.hairpin("<", target[0:2])
     abjad.hairpin("p > f", target[1:])
 
@@ -1162,7 +1193,9 @@ def test_LilyPondParser__indicators__Hairpin_06():
     With direction.
     """
 
-    target = abjad.Voice(abjad.makers.make_notes([0] * 5, [(1, 4)]))
+    pitches = abjad.makers.make_pitches(5 * [0])
+    duration = abjad.Duration(1, 4)
+    target = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     start_hairpin = abjad.StartHairpin("<")
     abjad.attach(start_hairpin, target[0], direction=abjad.UP)
     stop_hairpin = abjad.StopHairpin()
@@ -1217,7 +1250,9 @@ def test_LilyPondParser__indicators__Hairpin_07():
 
 
 def test_LilyPondParser__indicators__HorizontalBracket_01():
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    pitches = abjad.makers.make_pitches(4 * [0])
+    duration = abjad.Duration(1, 4)
+    target = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     abjad.horizontal_bracket(target[:])
     abjad.horizontal_bracket(target[:2])
     abjad.horizontal_bracket(target[2:])
@@ -1546,7 +1581,9 @@ def test_LilyPondParser__indicators__PhrasingSlur_01():
     Successful slurs, showing single leaf overlap.
     """
 
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    pitches = abjad.makers.make_pitches(4 * [0])
+    duration = abjad.Duration(1, 4)
+    target = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     abjad.phrasing_slur(target[2:])
     abjad.phrasing_slur(target[:3])
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -1575,7 +1612,9 @@ def test_LilyPondParser__indicators__PhrasingSlur_02():
     Swapped start and stop.
     """
 
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    pitches = abjad.makers.make_pitches(4 * [0])
+    duration = abjad.Duration(1, 4)
+    target = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     abjad.phrasing_slur(target[2:])
     abjad.phrasing_slur(target[:3])
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -1654,7 +1693,9 @@ def test_LilyPondParser__indicators__Slur_01():
     Successful slurs, showing single leaf overlap.
     """
 
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    pitches = abjad.makers.make_pitches(4 * [0])
+    duration = abjad.Duration(1, 4)
+    target = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     abjad.slur(target[2:])
     abjad.slur(target[:3])
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -1683,7 +1724,9 @@ def test_LilyPondParser__indicators__Slur_02():
     Swapped start and stop.
     """
 
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    pitches = abjad.makers.make_pitches(4 * [0])
+    duration = abjad.Duration(1, 4)
+    target = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     abjad.slur(target[2:])
     abjad.slur(target[:3])
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -1753,7 +1796,9 @@ def test_LilyPondParser__indicators__Slur_07():
     With direction.
     """
 
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    pitches = abjad.makers.make_pitches(4 * [0])
+    duration = abjad.Duration(1, 4)
+    target = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     start_slur = abjad.StartSlur()
     abjad.slur(target[:3], direction=abjad.DOWN, start_slur=start_slur)
     start_slur = abjad.StartSlur()
@@ -1805,7 +1850,9 @@ def test_LilyPondParser__indicators__Text_01():
     Successful text spanners, showing single leaf overlap.
     """
 
-    container = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    pitches = abjad.makers.make_pitches(4 * [0])
+    duration = abjad.Duration(1, 4)
+    container = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     abjad.text_spanner(container[2:])
     abjad.text_spanner(container[:3])
     assert abjad.lilypond(container) == abjad.string.normalize(
@@ -1836,7 +1883,9 @@ def test_LilyPondParser__indicators__Text_02():
     Swapped start and stop.
     """
 
-    target = abjad.Voice(abjad.makers.make_notes([0] * 4, [(1, 4)]))
+    pitches = abjad.makers.make_pitches(4 * [0])
+    duration = abjad.Duration(1, 4)
+    target = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
     abjad.text_spanner(target[2:])
     abjad.text_spanner(target[:3])
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -1979,7 +2028,9 @@ def test_LilyPondParser__indicators__Trill_01():
     Successful trills, showing single leaf overlap.
     """
 
-    notes = abjad.makers.make_notes(4 * [0], [(1, 4)])
+    pitches = abjad.makers.make_pitches(4 * [0])
+    duration = abjad.Duration(1, 4)
+    notes = abjad.makers.make_notes(pitches, [duration])
     target = abjad.Voice(notes)
     abjad.trill_spanner(target[2:])
     abjad.trill_spanner(target[:3])
@@ -2009,7 +2060,9 @@ def test_LilyPondParser__indicators__Trill_02():
     Swapped start and stop.
     """
 
-    notes = abjad.makers.make_notes(4 * [0], [(1, 4)])
+    pitches = abjad.makers.make_pitches(4 * [0])
+    duration = abjad.Duration(1, 4)
+    notes = abjad.makers.make_notes(pitches, [duration])
     target = abjad.Voice(notes)
     abjad.trill_spanner(target[2:])
     abjad.trill_spanner(target[:3])
@@ -2254,11 +2307,11 @@ def test_LilyPondParser__misc__comments_01():
 
 
 def test_LilyPondParser__misc__default_duration_01():
-    target = abjad.Container(
-        abjad.makers.make_notes(
-            [0], [(1, 4), (1, 2), (1, 2), (1, 8), (1, 8), (3, 16), (3, 16)]
-        )
-    )
+    pitches = abjad.makers.make_pitches([0])
+    pairs = [(1, 4), (1, 2), (1, 2), (1, 8), (1, 8), (3, 16), (3, 16)]
+    durations = abjad.makers.make_durations(pairs)
+    notes = abjad.makers.make_notes(pitches, durations)
+    target = abjad.Container(notes)
     target[-2].multiplier = (5, 17)
     target[-1].multiplier = (5, 17)
     assert abjad.lilypond(target) == abjad.string.normalize(

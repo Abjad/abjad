@@ -365,8 +365,9 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
             pitches = [0]
         else:
             pitches = [None]
+        pitch_lists = _makers.make_pitch_lists(pitches)
         duration *= _duration.Duration(self.pair)
-        components = _makers.make_leaves(pitches, duration)
+        components = _makers.make_leaves(pitch_lists, [duration])
         return components
 
     def __graph__(self, **keywords) -> uqbar.graphs.Graph:

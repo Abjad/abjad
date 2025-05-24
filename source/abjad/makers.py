@@ -1,7 +1,4 @@
-import collections
-import fractions
 import math
-import numbers
 
 from . import duration as _duration
 from . import math as _math
@@ -12,51 +9,63 @@ from . import spanners as _spanners
 from . import tag as _tag
 
 
-def _group_by_implied_prolation(durations):
-    pairs = []
-    for duration in durations:
-        if isinstance(duration, tuple):
-            pairs.append(duration)
+def _group_by_implied_prolation(pairs):
+    assert all(isinstance(_, tuple) for _ in pairs), repr(pairs)
+    assert 0 < len(pairs)
+    pair_list = [pairs[0]]
+    pair_lists = [pair_list]
+    for pair in pairs[1:]:
+        pair_denominator_factors = set(_math.factors(pair[1]))
+        pair_denominator_factors.discard(2)
+        group_zero_denominator_factors = set(_math.factors(pair_list[0][1]))
+        group_zero_denominator_factors.discard(2)
+        if pair_denominator_factors == group_zero_denominator_factors:
+            pair_list.append(pair)
         else:
-            pairs.append(duration.pair)
-    durations = pairs
-    assert 0 < len(durations)
-    group = [durations[0]]
-    result = [group]
-    for d in durations[1:]:
-        d_f = set(_math.factors(d[1]))
-        d_f.discard(2)
-        gd_f = set(_math.factors(group[0][1]))
-        gd_f.discard(2)
-        if d_f == gd_f:
-            group.append(d)
-        else:
-            group = [d]
-            result.append(group)
-    return result
+            pair_list = [pair]
+            pair_lists.append(pair_list)
+    return pair_lists
 
 
 def _make_leaf_on_pitch(
-    pitch,
+    pitch_list,
     duration,
     *,
-    increase_monotonic=None,
+    increase_monotonic=False,
     forbidden_note_duration=None,
     forbidden_rest_duration=None,
-    skips_instead_of_rests=None,
+    skips_instead_of_rests=False,
     tag=None,
-    use_multimeasure_rests=None,
+    use_multimeasure_rests=False,
 ):
-    note_prototype = (
-        numbers.Number,
-        str,
-        _pitch.NamedPitch,
-        _pitch.NumberedPitch,
-        _pitch.PitchClass,
-    )
-    chord_prototype = (tuple, list)
-    rest_prototype = (type(None),)
-    if isinstance(pitch, note_prototype):
+    assert isinstance(pitch_list, list), repr(pitch_list)
+    assert all(isinstance(_, _pitch.NamedPitch) for _ in pitch_list), repr(pitch_list)
+    assert isinstance(duration, _duration.Duration), repr(duration)
+    if pitch_list == []:
+        if skips_instead_of_rests is True:
+            leaves = _make_tied_leaf(
+                _score.Skip,
+                duration,
+                increase_monotonic=increase_monotonic,
+                forbidden_duration=forbidden_rest_duration,
+                pitches=None,
+                tag=tag,
+            )
+        elif use_multimeasure_rests is True:
+            multimeasure_rest = _score.MultimeasureRest((1), tag=tag)
+            multimeasure_rest.multiplier = duration.pair
+            leaves = [multimeasure_rest]
+        else:
+            leaves = _make_tied_leaf(
+                _score.Rest,
+                duration,
+                increase_monotonic=increase_monotonic,
+                forbidden_duration=forbidden_rest_duration,
+                pitches=None,
+                tag=tag,
+            )
+    elif len(pitch_list) == 1:
+        pitch = pitch_list[0]
         leaves = _make_tied_leaf(
             _score.Note,
             duration,
@@ -65,78 +74,47 @@ def _make_leaf_on_pitch(
             pitches=pitch,
             tag=tag,
         )
-    elif isinstance(pitch, chord_prototype):
+    else:
         leaves = _make_tied_leaf(
             _score.Chord,
             duration,
             increase_monotonic=increase_monotonic,
             forbidden_duration=forbidden_note_duration,
-            pitches=pitch,
+            pitches=pitch_list,
             tag=tag,
         )
-    elif isinstance(pitch, rest_prototype) and skips_instead_of_rests:
-        leaves = _make_tied_leaf(
-            _score.Skip,
-            duration,
-            increase_monotonic=increase_monotonic,
-            forbidden_duration=forbidden_rest_duration,
-            pitches=None,
-            tag=tag,
-        )
-    elif isinstance(pitch, rest_prototype) and not use_multimeasure_rests:
-        leaves = _make_tied_leaf(
-            _score.Rest,
-            duration,
-            increase_monotonic=increase_monotonic,
-            forbidden_duration=forbidden_rest_duration,
-            pitches=None,
-            tag=tag,
-        )
-    elif isinstance(pitch, rest_prototype) and use_multimeasure_rests:
-        multimeasure_rest = _score.MultimeasureRest((1), tag=tag)
-        multimeasure_rest.multiplier = duration
-        leaves = (multimeasure_rest,)
-    else:
-        raise ValueError(f"unknown pitch: {pitch!r}.")
+    assert isinstance(leaves, list), repr(leaves)
+    assert all(isinstance(_, _score.Leaf) for _ in leaves), repr(leaves)
     return leaves
 
 
 def _make_tied_leaf(
     class_,
     duration,
-    increase_monotonic=None,
+    increase_monotonic=False,
     forbidden_duration=None,
     multiplier=None,
     pitches=None,
     tag=None,
-    tie_parts=True,
 ):
-    duration = _duration.Duration(duration)
+    assert isinstance(duration, _duration.Duration), repr(duration)
+    if multiplier is not None:
+        assert isinstance(multiplier, tuple), repr(multiplier)
     duration_pair = duration.pair
     if forbidden_duration is not None:
         assert forbidden_duration.is_assignable
         assert forbidden_duration.numerator == 1
-    # find preferred numerator of written durations if necessary
-    if forbidden_duration is not None and forbidden_duration <= fractions.Fraction(
-        *duration_pair
-    ):
-        denominators = [
-            2 * forbidden_duration.denominator,
-            duration_pair[1],
-        ]
+    if forbidden_duration is not None and forbidden_duration <= duration:
+        denominators = [2 * forbidden_duration.denominator, duration.denominator]
         denominator = _math.least_common_multiple(*denominators)
-        pair = _duration.with_denominator(forbidden_duration, denominator)
-        forbidden_numerator = pair[0]
+        forbidden_pair = _duration.with_denominator(forbidden_duration, denominator)
+        forbidden_numerator = forbidden_pair[0]
         assert forbidden_numerator % 2 == 0
         preferred_numerator = forbidden_numerator / 2
-        pair = _duration.with_denominator(duration_pair, denominator)
-        duration_pair = pair
-    # make written duration numerators
-    numerators = []
+        duration_pair = _duration.with_denominator(duration_pair, denominator)
     parts = _math.partition_integer_into_canonic_parts(duration_pair[0])
-    if forbidden_duration is not None and fractions.Fraction(
-        forbidden_duration
-    ) <= fractions.Fraction(*duration_pair):
+    if forbidden_duration is not None and forbidden_duration <= duration:
+        numerators = []
         for part in parts:
             if forbidden_numerator <= part:
                 better_parts = _partition_less_than_double(part, preferred_numerator)
@@ -145,39 +123,39 @@ def _make_tied_leaf(
                 numerators.append(part)
     else:
         numerators = parts
-    # reverse numerators if necessary
     if increase_monotonic:
         numerators = list(reversed(numerators))
-    # make one leaf per written duration
-    result = []
+    leaves = []
     for numerator in numerators:
         written_duration = _duration.Duration(numerator, duration_pair[1])
         if pitches is not None:
             arguments = (pitches, written_duration)
         else:
             arguments = (written_duration,)
-        result.append(class_(*arguments, multiplier=multiplier, tag=tag))
-    # tie if required
-    if tie_parts and 1 < len(result):
-        if not issubclass(class_, (_score.Rest, _score.Skip)):
-            _spanners.tie(result)
-    return result
+        leaf = class_(*arguments, multiplier=multiplier, tag=tag)
+        leaves.append(leaf)
+    if 1 < len(leaves):
+        if not issubclass(class_, _score.Rest | _score.Skip):
+            _spanners.tie(leaves)
+    assert isinstance(leaves, list), repr(leaves)
+    assert all(isinstance(_, _score.Leaf) for _ in leaves), repr(leaves)
+    return leaves
 
 
-def _make_unprolated_notes(pitches, durations, increase_monotonic=None, tag=None):
-    assert len(pitches) == len(durations)
-    result = []
-    for pitch, duration in zip(pitches, durations):
-        result.extend(
-            _make_tied_leaf(
-                _score.Note,
-                duration,
-                pitches=pitch,
-                increase_monotonic=increase_monotonic,
-                tag=tag,
-            )
+def _make_unprolated_notes(pitches, durations, *, increase_monotonic=None, tag=None):
+    assert all(isinstance(_, _duration.Duration) for _ in durations), repr(durations)
+    notes = []
+    for pitch, duration in zip(pitches, durations, strict=True):
+        notes_ = _make_tied_leaf(
+            _score.Note,
+            duration,
+            pitches=pitch,
+            increase_monotonic=increase_monotonic,
+            tag=tag,
         )
-    return result
+        notes.extend(notes_)
+    assert all(isinstance(_, _score.Note) for _ in notes), repr(notes)
+    return notes
 
 
 def _partition_less_than_double(n, m):
@@ -194,27 +172,61 @@ def _partition_less_than_double(n, m):
     return tuple(result)
 
 
+def make_durations(items: list) -> list[_duration.Duration]:
+    """
+    Changes list of arbitrary ``items`` to list of durations.
+
+    ..  container:: example
+
+        >>> abjad.makers.make_durations([(1, 8), (1, 2), (1, 16)])
+        [Duration(1, 8), Duration(1, 2), Duration(1, 16)]
+
+    """
+    durations = [_duration.Duration(_) for _ in items]
+    return durations
+
+
 def make_leaves(
-    pitches,
-    durations,
+    pitch_lists: list[list[_pitch.NamedPitch]],
+    durations: list[_duration.Duration],
     *,
     forbidden_note_duration: _duration.Duration | None = None,
     forbidden_rest_duration: _duration.Duration | None = None,
-    skips_instead_of_rests: bool = False,
     increase_monotonic: bool = False,
+    skips_instead_of_rests: bool = False,
     tag: _tag.Tag | None = None,
     use_multimeasure_rests: bool = False,
 ):
     r"""
-    Makes leaves from ``pitches`` and ``durations``.
+    Makes leaves from ``pitch_lists`` and ``durations``.
 
     ..  container:: example
 
-        Integer and string elements in ``pitches`` result in notes:
+        Interprets empty pitch lists as rests:
 
-        >>> pitches = [2, 4, "F#5", "G#5"]
-        >>> duration = abjad.Duration(1, 4)
-        >>> leaves = abjad.makers.make_leaves(pitches, duration)
+        >>> items = [[], [], [], []]
+        >>> pitch_lists = abjad.makers.make_pitch_lists(items)
+        >>> leaves = abjad.makers.make_leaves(pitch_lists, [abjad.Duration(1, 4)])
+        >>> staff = abjad.Staff(leaves)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                r4
+                r4
+                r4
+                r4
+            }
+
+        Interprets length-1 pitch lists as notes:
+
+        >>> items = [2, 4, "F#5", "G#5"]
+        >>> pitch_lists = abjad.makers.make_pitch_lists(items)
+        >>> leaves = abjad.makers.make_leaves(pitch_lists, [abjad.Duration(1, 4)])
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -230,13 +242,11 @@ def make_leaves(
                 gs''4
             }
 
-    ..  container:: example
+        Interprets pitch lists with length greater than 1 as chords:
 
-        Tuple elements in ``pitches`` result in chords:
-
-        >>> pitches = [(0, 2, 4), ("F#5", "G#5", "A#5")]
-        >>> duration = abjad.Duration(1, 2)
-        >>> leaves = abjad.makers.make_leaves(pitches, duration)
+        >>> items = [[0, 2, 4], ["F#5", "G#5", "A#5"]]
+        >>> pitch_lists = abjad.makers.make_pitch_lists(items)
+        >>> leaves = abjad.makers.make_leaves(pitch_lists, [abjad.Duration(1, 4)])
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -246,39 +256,15 @@ def make_leaves(
             >>> print(string)
             \new Staff
             {
-                <c' d' e'>2
-                <fs'' gs'' as''>2
+                <c' d' e'>4
+                <fs'' gs'' as''>4
             }
 
-    ..  container:: example
+        Interprets mixed types of pitch list like this:
 
-        None-valued elements in ``pitches`` result in rests:
-
-        >>> pitches = 4 * [None]
-        >>> durations = [abjad.Duration(1, 4)]
-        >>> leaves = abjad.makers.make_leaves(pitches, durations)
-        >>> staff = abjad.Staff(leaves, lilypond_type="RhythmicStaff")
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new RhythmicStaff
-            {
-                r4
-                r4
-                r4
-                r4
-            }
-
-    ..  container:: example
-
-        You can mix and match values passed to ``pitches``:
-
-        >>> pitches = [(0, 2, 4), None, "C#5", "D#5"]
-        >>> durations = [abjad.Duration(1, 4)]
-        >>> leaves = abjad.makers.make_leaves(pitches, durations)
+        >>> items = [[0, 2, 4], [], "C#5", "D#5"]
+        >>> pitch_lists = abjad.makers.make_pitch_lists(items)
+        >>> leaves = abjad.makers.make_leaves(pitch_lists, [abjad.Duration(1, 4)])
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -296,11 +282,41 @@ def make_leaves(
 
     ..  container:: example
 
-        Works with segments:
+        Interprets nondyadic durations as (possibly incomplete) tuplets:
 
-        >>> pitches = "e'' ef'' d'' df'' c''"
-        >>> durations = [abjad.Duration(1, 4)]
-        >>> leaves = abjad.makers.make_leaves(pitches, durations)
+        >>> pitch_list = [abjad.NamedPitch("d''")]
+        >>> durations = [abjad.Duration(1, 3)]
+        >>> leaves = abjad.makers.make_leaves([pitch_list], durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> score = abjad.Score([staff])
+        >>> abjad.override(score).TupletBracket.bracket_visibility = True
+        >>> abjad.setting(score).tupletFullLength = True
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
+            \new Score
+            \with
+            {
+                \override TupletBracket.bracket-visibility = ##t
+                tupletFullLength = ##t
+            }
+            <<
+                \new Staff
+                {
+                    \tweak edge-height #'(0.7 . 0)
+                    \tuplet 3/2
+                    {
+                        d''2
+                    }
+                }
+            >>
+
+        >>> pitch_list = [abjad.NamedPitch("d''")]
+        >>> durations = 2 * [abjad.Duration(1, 3)]
+        >>> leaves = abjad.makers.make_leaves([pitch_list], durations)
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -310,67 +326,17 @@ def make_leaves(
             >>> print(string)
             \new Staff
             {
-                e''4
-                ef''4
-                d''4
-                df''4
-                c''4
+                \tweak edge-height #'(0.7 . 0)
+                \tuplet 3/2
+                {
+                    d''2
+                    d''2
+                }
             }
 
-    ..  container:: example
-
-        Reads ``pitches`` cyclically when the length of ``pitches`` is less than the
-        length of ``durations``:
-
-        >>> pitches = ["C5"]
-        >>> durations = 2 * [abjad.Duration(3, 8), abjad.Duration(1, 8)]
-        >>> leaves = abjad.makers.make_leaves(pitches, durations)
-        >>> staff = abjad.Staff(leaves)
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c''4.
-                c''8
-                c''4.
-                c''8
-            }
-
-    ..  container:: example
-
-        Reads ``durations`` cyclically when the length of ``durations`` is less than the
-        length of ``pitches``:
-
-        >>> pitches = "c'' d'' e'' f''"
-        >>> durations = [abjad.Duration(1, 4)]
-        >>> leaves = abjad.makers.make_leaves(pitches, durations)
-        >>> staff = abjad.Staff(leaves)
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c''4
-                d''4
-                e''4
-                f''4
-            }
-
-    ..  container:: example
-
-        Elements in ``durations`` with non-power-of-two denominators result in
-        tuplet-nested leaves:
-
-        >>> pitches = ["D5"]
+        >>> pitch_list = [abjad.NamedPitch("d''")]
         >>> durations = 3 * [abjad.Duration(1, 3)]
-        >>> leaves = abjad.makers.make_leaves(pitches, durations)
+        >>> leaves = abjad.makers.make_leaves([pitch_list], durations)
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -388,14 +354,147 @@ def make_leaves(
                 }
             }
 
+        >>> pitch_list = [abjad.NamedPitch("d''")]
+        >>> leaves = abjad.makers.make_leaves([pitch_list], [abjad.Duration(5, 14)])
+        >>> staff = abjad.Staff(leaves)
+        >>> time_signature = abjad.TimeSignature((5, 14))
+        >>> leaf = abjad.get.leaf(staff, 0)
+        >>> abjad.attach(time_signature, leaf)
+        >>> score = abjad.Score([staff], name="Score")
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(score)
+            >>> print(string)
+            \context Score = "Score"
+            <<
+                \new Staff
+                {
+                    \tweak edge-height #'(0.7 . 0)
+                    \tuplet 14/8
+                    {
+                        #(ly:expect-warning "strange time signature found")
+                        \time 5/14
+                        d''2
+                        ~
+                        d''8
+                    }
+                }
+            >>
+
     ..  container:: example
 
-        Set ``increase_monotonic`` to false to return nonassignable durations tied from
-        greatest to least:
+        Reads ``pitch_lists`` cyclically when the length of ``pitch_lists`` is less
+        than the length of ``durations``:
 
-        >>> pitches = ["D#5"]
+        >>> pitch_lists = abjad.makers.make_pitch_lists([[12, 14], []])
+        >>> pairs = [(1, 16), (1, 16), (1, 8), (1, 8), (1, 8)]
+        >>> durations = abjad.makers.make_durations(pairs)
+        >>> leaves = abjad.makers.make_leaves(pitch_lists, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                <c'' d''>16
+                r16
+                <c'' d''>8
+                r8
+                <c'' d''>8
+            }
+
+        Reads ``durations`` cyclically when the length of ``durations`` is less
+        than the length of ``pitch_lists``:
+
+        >>> pitch_lists = abjad.makers.make_pitch_lists([[12, 14], [], 10, 9, 7])
+        >>> durations = [abjad.Duration(1, 16), abjad.Duration(1, 8)]
+        >>> leaves = abjad.makers.make_leaves(pitch_lists, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                <c'' d''>16
+                r8
+                bf'16
+                a'8
+                g'16
+            }
+
+    ..  container:: example
+
+        Avoids durations greater than or equal to ``forbidden_note_duration``:
+
+        >>> pitch_lists = abjad.makers.make_pitch_lists("f' g'")
+        >>> durations = [abjad.Duration(5, 8)]
+        >>> leaves = abjad.makers.make_leaves(pitch_lists, durations)
+        >>> staff = abjad.Staff(leaves)
+        >>> score = abjad.Score([staff], name="Score")
+        >>> time_signature = abjad.TimeSignature((5, 4))
+        >>> abjad.attach(time_signature, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \time 5/4
+                f'2
+                ~
+                f'8
+                g'2
+                ~
+                g'8
+            }
+
+        >>> leaves = abjad.makers.make_leaves(
+        ...     pitch_lists,
+        ...     durations,
+        ...     forbidden_note_duration=abjad.Duration(1, 2),
+        ... )
+        >>> staff = abjad.Staff(leaves)
+        >>> score = abjad.Score([staff], name="Score")
+        >>> time_signature = abjad.TimeSignature((5, 4))
+        >>> abjad.attach(time_signature, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \time 5/4
+                f'4
+                ~
+                f'4
+                ~
+                f'8
+                g'4
+                ~
+                g'4
+                ~
+                g'8
+            }
+
+    ..  container:: example
+
+        Writes tied durations in monotonically decreasing order by default:
+
+        >>> pitch_list = [abjad.NamedPitch("ds''")]
         >>> durations = [abjad.Duration(13, 16)]
-        >>> leaves = abjad.makers.make_leaves(pitches, durations)
+        >>> leaves = abjad.makers.make_leaves([pitch_list], durations)
         >>> staff = abjad.Staff(leaves)
         >>> score = abjad.Score([staff], name="Score")
         >>> time_signature = abjad.TimeSignature((13, 16))
@@ -414,14 +513,14 @@ def make_leaves(
                 ds''16
             }
 
-    ..  container:: example
+        Writes tied durations in monotonically increasing order when
+        ``increase_monotonic`` is true:
 
-        Set ``increase_monotonic`` to true to return nonassignable durations tied from
-        least to greatest:
-
-        >>> pitches = ["E5"]
-        >>> durations = [abjad.Duration(13, 16)]
-        >>> leaves = abjad.makers.make_leaves(pitches, durations, increase_monotonic=True)
+        >>> leaves = abjad.makers.make_leaves(
+        ...     [[abjad.NamedPitch("e''")]],
+        ...     [abjad.Duration(13, 16)],
+        ...     increase_monotonic=True,
+        ... )
         >>> staff = abjad.Staff(leaves)
         >>> score = abjad.Score([staff], name="Score")
         >>> time_signature = abjad.TimeSignature((13, 16))
@@ -442,224 +541,75 @@ def make_leaves(
 
     ..  container:: example
 
-        Set ``forbidden_note_duration`` to avoid notes greater than or equal to a certain
-        written duration:
+        Interprets empty pitch lists as skips when ``skips_instead_of_rests``
+        is true:
 
-        >>> pitches = "f' g'"
-        >>> durations = [abjad.Duration(5, 8)]
-        >>> leaves = abjad.makers.make_leaves(pitches, durations,
-        ...     forbidden_note_duration=abjad.Duration(1, 2))
-        >>> staff = abjad.Staff(leaves)
-        >>> score = abjad.Score([staff], name="Score")
-        >>> time_signature = abjad.TimeSignature((5, 4))
-        >>> abjad.attach(time_signature, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \time 5/4
-                f'4
-                ~
-                f'4
-                ~
-                f'8
-                g'4
-                ~
-                g'4
-                ~
-                g'8
-            }
-
-    ..  container:: example
-
-        You may set ``forbidden_note_duration`` and ``increase_monotonic`` together:
-
-        >>> pitches = "f' g'"
-        >>> durations = [abjad.Duration(5, 8)]
-        >>> leaves = abjad.makers.make_leaves(
-        ...     pitches, durations,
-        ...     forbidden_note_duration=abjad.Duration(1, 2),
-        ...     increase_monotonic=True,
-        ... )
-        >>> staff = abjad.Staff(leaves)
-        >>> score = abjad.Score([staff], name="Score")
-        >>> time_signature = abjad.TimeSignature((5, 4))
-        >>> abjad.attach(time_signature, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \time 5/4
-                f'8
-                ~
-                f'4
-                ~
-                f'4
-                g'8
-                ~
-                g'4
-                ~
-                g'4
-            }
-
-    ..  container:: example
-
-        Produces diminished tuplets:
-
-        >>> pitches = "f'"
-        >>> durations = [abjad.Duration(5, 14)]
-        >>> leaves = abjad.makers.make_leaves(pitches, durations)
-        >>> staff = abjad.Staff(leaves)
-        >>> score = abjad.Score([staff], name="Score")
-        >>> time_signature = abjad.TimeSignature((5, 14))
-        >>> leaf = abjad.get.leaf(staff, 0)
-        >>> abjad.attach(time_signature, leaf)
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \tweak edge-height #'(0.7 . 0)
-                \tuplet 14/8
-                {
-                    #(ly:expect-warning "strange time signature found")
-                    \time 5/14
-                    f'2
-                    ~
-                    f'8
-                }
-            }
-
-        This is default behavior.
-
-    ..  container:: example
-
-        None-valued elements in ``pitches`` result in multimeasure rests when the
-        multimeasure rest keyword is set:
-
-        >>> pitches = [None]
-        >>> durations = [abjad.Duration(3, 8), abjad.Duration(5, 8)]
-        >>> leaves = abjad.makers.make_leaves(pitches, durations,
-        ...     use_multimeasure_rests=True)
-        >>> leaves
-        [MultimeasureRest('R1 * 3/8'), MultimeasureRest('R1 * 5/8')]
-
-        >>> staff = abjad.Staff(leaves, lilypond_type="RhythmicStaff")
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
-        >>> abjad.attach(abjad.TimeSignature((5, 8)), leaves[1])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new RhythmicStaff
-            {
-                \time 3/8
-                R1 * 3/8
-                \time 5/8
-                R1 * 5/8
-            }
-
-    ..  container:: example
-
-        Works with numbered pitch-class:
-
-        >>> pitches = [abjad.NumberedPitchClass(6)]
         >>> durations = [abjad.Duration(13, 16)]
-        >>> leaves = abjad.makers.make_leaves(pitches, durations)
-        >>> staff = abjad.Staff(leaves)
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                fs'2.
-                ~
-                fs'16
-            }
-
-    ..  container:: example
-
-        Makes skips instead of rests:
-
-        >>> pitches = [None]
-        >>> durations = [abjad.Duration(13, 16)]
-        >>> abjad.makers.make_leaves(pitches, durations, skips_instead_of_rests=True)
+        >>> abjad.makers.make_leaves([[]], durations, skips_instead_of_rests=True)
         [Skip('s2.'), Skip('s16')]
 
     ..  container:: example
 
-        Integer and string elements in ``pitches`` result in notes:
+        Interprets empty pitch lists as multimeasure rests when
+        ``use_multimeasure_rests`` is true:
 
-        >>> tag = abjad.Tag("leaf_maker")
-        >>> pitches = [2, 4, "F#5", "G#5"]
-        >>> duration = abjad.Duration(1, 4)
-        >>> leaves = abjad.makers.make_leaves(pitches, duration, tag=tag)
+        >>> durations = [abjad.Duration(3, 8), abjad.Duration(5, 8)]
+        >>> leaves = abjad.makers.make_leaves(
+        ...     [[]],
+        ...     durations,
+        ...     use_multimeasure_rests=True,
+        ... )
         >>> staff = abjad.Staff(leaves)
+        >>> abjad.attach(abjad.TimeSignature((3, 8)), leaves[0])
+        >>> abjad.attach(abjad.TimeSignature((5, 8)), leaves[1])
         >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff, tags=True)
+            >>> string = abjad.lilypond(score)
             >>> print(string)
-            \new Staff
-            {
-                %! leaf_maker
-                d'4
-                %! leaf_maker
-                e'4
-                %! leaf_maker
-                fs''4
-                %! leaf_maker
-                gs''4
-            }
+            \context Score = "Score"
+            <<
+                \new Staff
+                {
+                    \time 3/8
+                    R1 * 3/8
+                    \time 5/8
+                    R1 * 5/8
+                }
+            >>
 
     """
-    if isinstance(pitches, str):
-        pitches = pitches.split()
-    if not isinstance(pitches, collections.abc.Iterable):
-        pitches = [pitches]
-    if isinstance(durations, numbers.Number | tuple):
-        durations = [durations]
+    assert isinstance(pitch_lists, list), repr(pitch_lists)
+    for pitch_list in pitch_lists:
+        assert isinstance(pitch_list, list), repr(pitch_lists)
+        assert all(isinstance(_, _pitch.NamedPitch) for _ in pitch_list), repr(
+            pitch_lists
+        )
+    assert all(isinstance(_, _duration.Duration) for _ in durations), repr(durations)
     if forbidden_note_duration is not None:
         assert isinstance(forbidden_note_duration, _duration.Duration)
     if forbidden_rest_duration is not None:
         assert isinstance(forbidden_rest_duration, _duration.Duration)
-    nonreduced_fractions = [_duration.Duration(_) for _ in durations]
-    size = max(len(nonreduced_fractions), len(pitches))
-    nonreduced_fractions = _sequence.repeat_to_length(nonreduced_fractions, size)
-    pitches = _sequence.repeat_to_length(pitches, size)
-    duration_groups = _group_by_implied_prolation(nonreduced_fractions)
+    maximum_length = max(len(durations), len(pitch_lists))
+    durations = _sequence.repeat_to_length(durations, maximum_length)
+    pitch_lists = _sequence.repeat_to_length(pitch_lists, maximum_length)
+    pairs = [_.pair for _ in durations]
+    pair_lists = _group_by_implied_prolation(pairs)
     result: list[_score.Tuplet | _score.Leaf] = []
-    for duration_group in duration_groups:
-        factors_ = _math.factors(duration_group[0][1])
+    for pair_list in pair_lists:
+        factors_ = _math.factors(pair_list[0][1])
         factors = set(factors_)
         factors.discard(1)
         factors.discard(2)
-        current_pitches = pitches[0 : len(duration_group)]
-        pitches = pitches[len(duration_group) :]
+        current_pitch_lists = pitch_lists[0 : len(pair_list)]
+        pitch_lists = pitch_lists[len(pair_list) :]
         if len(factors) == 0:
-            for pitch, duration in zip(current_pitches, duration_group):
+            pair_list = [_duration.Duration(_) for _ in pair_list]
+            for pitch_list, duration in zip(current_pitch_lists, pair_list):
                 leaves = _make_leaf_on_pitch(
-                    pitch,
+                    pitch_list,
                     duration,
                     increase_monotonic=increase_monotonic,
                     forbidden_note_duration=forbidden_note_duration,
@@ -670,17 +620,15 @@ def make_leaves(
                 )
                 result.extend(leaves)
         else:
-            denominator = duration_group[0][1]
+            denominator = pair_list[0][1]
             numerator = _math.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
             ratio = 1 / _duration.Duration(*multiplier)
-            duration_group = [
-                ratio * _duration.Duration(duration) for duration in duration_group
-            ]
+            pair_list = [ratio * _duration.Duration(duration) for duration in pair_list]
             tuplet_leaves: list[_score.Leaf] = []
-            for pitch, duration in zip(current_pitches, duration_group):
+            for pitch_list, duration in zip(current_pitch_lists, pair_list):
                 leaves = _make_leaf_on_pitch(
-                    pitch,
+                    pitch_list,
                     duration,
                     increase_monotonic=increase_monotonic,
                     skips_instead_of_rests=skips_instead_of_rests,
@@ -694,22 +642,23 @@ def make_leaves(
 
 
 def make_notes(
-    pitches, durations, *, increase_monotonic: bool = False, tag: _tag.Tag | None = None
+    pitches: list[_pitch.NamedPitch],
+    durations: list[_duration.Duration],
+    *,
+    increase_monotonic: bool = False,
+    tag: _tag.Tag | None = None,
 ) -> list[_score.Note | _score.Tuplet]:
     r"""
     Makes notes from ``pitches`` and ``durations``.
-
-    Set ``pitches`` to a single pitch or a sequence of pitches.
-
-    Set ``durations`` to a single duration or a list of durations.
 
     ..  container:: example
 
         Cycles through ``pitches`` when the length of ``pitches`` is less than
         the length of ``durations``:
 
-        >>> pitches = [0]
-        >>> durations = [(1, 16), (1, 8), (1, 8)]
+        >>> pitches = abjad.makers.make_pitches("c' d'")
+        >>> pairs = [(1, 16), (1, 16), (1, 8), (1, 8), (1, 8)]
+        >>> durations = abjad.makers.make_durations(pairs)
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> score = abjad.Score([staff], name="Score")
@@ -722,17 +671,17 @@ def make_notes(
             \new Staff
             {
                 c'16
+                d'16
                 c'8
+                d'8
                 c'8
             }
 
-    ..  container:: example
+        Cycles through ``durations`` when the length of ``durations`` is less
+        than the length of ``pitches``:
 
-        Cycles through ``durations`` when the length of ``durations`` is less than the
-        length of ``pitches``:
-
-        >>> pitches = [0, 2, 4, 5, 7]
-        >>> durations = [(1, 16), (1, 8), (1, 8)]
+        >>> pitches = abjad.makers.make_pitches("c' d' e' f' g'")
+        >>> durations = abjad.makers.make_durations([(1, 16), (1, 8)])
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -745,42 +694,55 @@ def make_notes(
             {
                 c'16
                 d'8
-                e'8
-                f'16
-                g'8
+                e'16
+                f'8
+                g'16
             }
 
     ..  container:: example
 
-        Creates ad hoc tuplets for nonassignable durations:
+        Interprets nondyadic durations as (possibly incomplete) tuplets:
 
-        >>> pitches = [0]
-        >>> durations = [(1, 16), (1, 12), (1, 8)]
-        >>> notes = abjad.makers.make_notes(pitches, durations)
-        >>> staff = abjad.Staff(notes)
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> pitches = abjad.makers.make_pitches([0])
+        >>> durations = abjad.makers.make_durations([(1, 16), (1, 12), (1, 8)])
+        >>> components = abjad.makers.make_notes(pitches, durations)
+        >>> staff = abjad.Staff(components)
+        >>> score = abjad.Score([staff])
+        >>> abjad.override(score).TupletBracket.bracket_visibility = True
+        >>> abjad.setting(score).proportionalNotationDuration = "#1/24"
+        >>> abjad.setting(score).tupletFullLength = True
+        >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(score)
             >>> print(string)
-            \new Staff
+            \new Score
+            \with
             {
-                c'16
-                \tweak edge-height #'(0.7 . 0)
-                \tuplet 3/2
+                \override TupletBracket.bracket-visibility = ##t
+                proportionalNotationDuration = #1/24
+                tupletFullLength = ##t
+            }
+            <<
+                \new Staff
                 {
+                    c'16
+                    \tweak edge-height #'(0.7 . 0)
+                    \tuplet 3/2
+                    {
+                        c'8
+                    }
                     c'8
                 }
-                c'8
-            }
+            >>
 
     ..  container:: example
 
-        Tied values are written in decreasing duration by default:
+        Writes tied durations in monotonically decreasing order by default:
 
-        >>> pitches = [0]
-        >>> durations = [(13, 16)]
+        >>> pitches = abjad.makers.make_pitches([0])
+        >>> durations = [abjad.Duration(13, 16)]
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -796,10 +758,11 @@ def make_notes(
                 c'16
             }
 
-        Set ``increase_monotonic=True`` to express tied values in increasing duration:
+        Writes tied durations in monotonically increasing order when
+        ``increase_monotonic`` is true:
 
-        >>> pitches = [0]
-        >>> durations = [(13, 16)]
+        >>> pitches = abjad.makers.make_pitches([0])
+        >>> durations = [abjad.Duration(13, 16)]
         >>> notes = abjad.makers.make_notes(pitches, durations, increase_monotonic=True)
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -815,106 +778,107 @@ def make_notes(
                 c'2.
             }
 
-    ..  container:: example
-
-        Works with pitch segments:
-
-        >>> pitches = abjad.PitchSegment([-2, -1.5, 6, 7, -1.5, 7])
-        >>> durations = [(1, 8)]
-        >>> notes = abjad.makers.make_notes(pitches, durations)
-        >>> staff = abjad.Staff(notes)
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                bf8
-                bqf8
-                fs'8
-                g'8
-                bqf8
-                g'8
-            }
-
-    ..  container:: example
-
-        Tag output like this:
-
-        >>> pitches = [0]
-        >>> durations = [(1, 16), (1, 8), (1, 8)]
-        >>> tag = abjad.Tag("note_maker")
-        >>> notes = abjad.makers.make_notes(pitches, durations, tag=tag)
-        >>> staff = abjad.Staff(notes)
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff, tags=True)
-            >>> print(string)
-            \new Staff
-            {
-                %! note_maker
-                c'16
-                %! note_maker
-                c'8
-                %! note_maker
-                c'8
-            }
-
     """
-    if isinstance(pitches, str):
-        pitches = pitches.split()
-    if not isinstance(pitches, collections.abc.Iterable):
-        pitches = [pitches]
-    if isinstance(durations, numbers.Number | tuple):
-        durations = [durations]
-    pairs = []
-    for duration in durations:
-        if isinstance(duration, tuple):
-            pairs.append(duration)
-        elif isinstance(duration, int):
-            pair = (duration, 1)
-            pairs.append(pair)
-        else:
-            pairs.append(duration.pair)
-    size = max(len(pairs), len(pitches))
-    pairs = _sequence.repeat_to_length(pairs, size)
-    pitches = _sequence.repeat_to_length(pitches, size)
-    durations = _group_by_implied_prolation(pairs)
+    assert isinstance(pitches, list), repr(pitches)
+    prototype = _pitch.NamedPitch | _pitch.NumberedPitch
+    assert all(isinstance(_, prototype) for _ in pitches), repr(pitches)
+    assert all(isinstance(_, _duration.Duration) for _ in durations), repr(durations)
+    maximum_length = max(len(pitches), len(durations))
+    pitches = _sequence.repeat_to_length(pitches, maximum_length)
+    pairs = [_.pair for _ in durations]
+    pairs = _sequence.repeat_to_length(pairs, maximum_length)
+    pair_lists = _group_by_implied_prolation(pairs)
     result: list[_score.Note | _score.Tuplet] = []
-    for duration in durations:
-        factors = set(_math.factors(duration[0][1]))
+    for pair_list in pair_lists:
+        factors = set(_math.factors(pair_list[0][1]))
         factors.discard(1)
         factors.discard(2)
-        ps = pitches[0 : len(duration)]
-        pitches = pitches[len(duration) :]
+        pitches_ = pitches[0 : len(pair_list)]
+        pitches = pitches[len(pair_list) :]
         if len(factors) == 0:
-            result.extend(
-                _make_unprolated_notes(
-                    ps,
-                    duration,
-                    increase_monotonic=increase_monotonic,
-                    tag=tag,
-                )
-            )
-        else:
-            denominator = duration[0][1]
-            numerator = _math.greatest_power_of_two_less_equal(denominator)
-            multiplier = _duration.Duration(numerator, denominator)
-            ratio = multiplier.reciprocal
-            duration = [ratio * _duration.Duration(d) for d in duration]
-            ns = _make_unprolated_notes(
-                ps,
-                duration,
+            duration_list = [_duration.Duration(_) for _ in pair_list]
+            notes = _make_unprolated_notes(
+                pitches_,
+                duration_list,
                 increase_monotonic=increase_monotonic,
                 tag=tag,
             )
-            tuplet = _score.Tuplet(multiplier.pair, ns)
+            result.extend(notes)
+        else:
+            denominator = pair_list[0][1]
+            numerator = _math.greatest_power_of_two_less_equal(denominator)
+            duration = _duration.Duration(numerator, denominator)
+            duration_list = [_duration.Duration(_) for _ in pair_list]
+            duration_list = [duration.reciprocal * _ for _ in duration_list]
+            notes = _make_unprolated_notes(
+                pitches_,
+                duration_list,
+                increase_monotonic=increase_monotonic,
+                tag=tag,
+            )
+            tuplet = _score.Tuplet(duration.pair, notes)
             result.append(tuplet)
+    assert isinstance(result, list), repr(list)
+    assert all(isinstance(_, _score.Note | _score.Tuplet) for _ in result), repr(result)
     return result
+
+
+def make_pitch_lists(argument: list | str) -> list[list[_pitch.NamedPitch]]:
+    """
+    Changes list or string ``argument`` to list of pitch lists.
+
+    ..  container:: example
+
+        >>> abjad.makers.make_pitch_lists([3, None, [4, 5]])
+        [[NamedPitch("ef'")], [], [NamedPitch("e'"), NamedPitch("f'")]]
+
+        >>> abjad.makers.make_pitch_lists([3, [], [4, 5]])
+        [[NamedPitch("ef'")], [], [NamedPitch("e'"), NamedPitch("f'")]]
+
+        >>> abjad.makers.make_pitch_lists("e'' ef'' d''")
+        [[NamedPitch("e''")], [NamedPitch("ef''")], [NamedPitch("d''")]]
+
+    Use this function to format input for ``abjad.makers.make_leaves()``.
+    """
+    pitch_lists = []
+    if isinstance(argument, str):
+        argument = argument.split()
+    for item in argument:
+        if isinstance(item, list | tuple):
+            pitch_list = [_pitch.NamedPitch(_) for _ in item]
+        elif item is None:
+            pitch_list = []
+        else:
+            pitch_list = [_pitch.NamedPitch(item)]
+        pitch_lists.append(pitch_list)
+    return pitch_lists
+
+
+def make_pitches(argument: list | str) -> list[_pitch.NamedPitch]:
+    """
+    Changes list or string ``argument`` to list of named pitches.
+
+    ..  container:: example
+
+        >>> abjad.makers.make_pitches([3, 16, 16.5])
+        [NamedPitch("ef'"), NamedPitch("e''"), NamedPitch("eqs''")]
+
+        >>> abjad.makers.make_pitches("ef' e'' eqs''")
+        [NamedPitch("ef'"), NamedPitch("e''"), NamedPitch("eqs''")]
+
+        >>> abjad.makers.make_pitches(["ef'", "e''", "eqs''"])
+        [NamedPitch("ef'"), NamedPitch("e''"), NamedPitch("eqs''")]
+
+        >>> abjad.makers.make_pitches([3, "e''", abjad.NamedPitch("eqs''")])
+        [NamedPitch("ef'"), NamedPitch("e''"), NamedPitch("eqs''")]
+
+    Use this function to format input for ``abjad.makers.make_notes()``.
+    """
+    if isinstance(argument, str):
+        argument = argument.split()
+    assert not any(_ is None for _ in argument), repr(argument)
+    pitches = [_pitch.NamedPitch(_) for _ in argument]
+    return pitches
 
 
 def tuplet_from_ratio_and_pair(
@@ -1230,11 +1194,11 @@ def tuplet_from_ratio_and_pair(
     duration = _duration.Duration(pair)
     if len(ratio) == 1:
         if 0 < ratio[0]:
-            pitch = 0
+            pitch_list = [_pitch.NamedPitch("c'")]
         else:
             assert ratio[0] < 0, repr(ratio)
-            pitch = None
-        leaves = make_leaves([pitch], [duration], tag=tag)
+            pitch_list = []
+        leaves = make_leaves([pitch_list], [duration], tag=tag)
         tuplet = _score.Tuplet.from_duration(duration, leaves, tag=tag)
     else:
         numerator, denominator = pair
@@ -1243,11 +1207,12 @@ def tuplet_from_ratio_and_pair(
         components: list[_score.Leaf | _score.Tuplet] = []
         for item in ratio:
             if 0 < item:
-                pitch = 0
+                pitch_list = [_pitch.NamedPitch("c'")]
             else:
                 assert item < 0, repr(item)
-                pitch = None
-            leaves = make_leaves([pitch], [(abs(item), denominator)], tag=tag)
+                pitch_list = []
+            duration_ = _duration.Duration(abs(item), denominator)
+            leaves = make_leaves([pitch_list], [duration_], tag=tag)
             components.extend(leaves)
         tuplet = _score.Tuplet.from_duration(duration, components, tag=tag)
     return tuplet
