@@ -5065,6 +5065,7 @@ class Tuplet(Container):
 
         >>> second_tuplet = abjad.Tuplet("7:4", "g'4. ( a'16 )")
         >>> tuplet.insert(1, second_tuplet)
+        >>> abjad.makers.tweak_tuplet_bracket_edge_height(tuplet)
         >>> abjad.show(tuplet) # doctest: +SKIP
 
         ..  docs::
@@ -5094,6 +5095,7 @@ class Tuplet(Container):
             >>> third_tuplet = abjad.Tuplet("5:4", [])
             >>> third_tuplet.extend("e''32 [ ef''32 d''32 cs''32 cqs''32 ]")
             >>> second_tuplet.insert(1, third_tuplet)
+            >>> abjad.makers.tweak_tuplet_bracket_edge_height(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
         ..  docs::
@@ -5251,6 +5253,8 @@ class Tuplet(Container):
         "tweaks",
     )
 
+    tweak_edge_height_string = r"\tweak edge-height #'(0.7 . 0)"
+
     ### INITIALIZER ###
 
     def __init__(
@@ -5371,9 +5375,6 @@ class Tuplet(Container):
                 )
                 if fraction_command_string:
                     contributions.append(fraction_command_string)
-                edge_height_tweak_string = self._get_edge_height_tweak_string()
-                if edge_height_tweak_string:
-                    contributions.append(edge_height_tweak_string)
                 for tweak in sorted(self.tweaks):
                     strings = tweak._list_contributions()
                     contributions.extend(strings)
@@ -5399,12 +5400,6 @@ class Tuplet(Container):
         if not self:
             return f"{{ {d}:{n} }}"
         return f"{{ {d}:{n} {self._get_contents_summary()} }}"
-
-    def _get_edge_height_tweak_string(self):
-        duration = self._get_preprolated_duration()
-        denominator = duration.denominator
-        if not _math.is_nonnegative_integer_power_of_two(denominator):
-            return r"\tweak edge-height #'(0.7 . 0)"
 
     def _get_multiplier_fraction_string(self):
         numerator, denominator = self.multiplier
@@ -5952,6 +5947,7 @@ class Tuplet(Container):
                 }
 
             >>> tuplet.append(abjad.Note("e'4"))
+            >>> abjad.makers.tweak_tuplet_bracket_edge_height(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6124,6 +6120,7 @@ class Tuplet(Container):
 
             >>> notes = [abjad.Note("e'32"), abjad.Note("d'32"), abjad.Note("e'16")]
             >>> tuplet.extend(notes)
+            >>> abjad.makers.tweak_tuplet_bracket_edge_height(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::

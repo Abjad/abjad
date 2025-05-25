@@ -1,12 +1,14 @@
 import math
 
 from . import duration as _duration
+from . import iterate as _iterate
 from . import math as _math
 from . import pitch as _pitch
 from . import score as _score
 from . import sequence as _sequence
 from . import spanners as _spanners
 from . import tag as _tag
+from . import tweaks as _tweaks
 
 
 def _group_by_implied_prolation(pairs):
@@ -287,6 +289,7 @@ def make_leaves(
         >>> pitch_list = [abjad.NamedPitch("d''")]
         >>> durations = [abjad.Duration(1, 3)]
         >>> leaves = abjad.makers.make_leaves([pitch_list], durations)
+        >>> abjad.makers.tweak_tuplet_bracket_edge_height(leaves)
         >>> staff = abjad.Staff(leaves)
         >>> score = abjad.Score([staff])
         >>> abjad.override(score).TupletBracket.bracket_visibility = True
@@ -317,6 +320,7 @@ def make_leaves(
         >>> pitch_list = [abjad.NamedPitch("d''")]
         >>> durations = 2 * [abjad.Duration(1, 3)]
         >>> leaves = abjad.makers.make_leaves([pitch_list], durations)
+        >>> abjad.makers.tweak_tuplet_bracket_edge_height(leaves)
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -356,6 +360,7 @@ def make_leaves(
 
         >>> pitch_list = [abjad.NamedPitch("d''")]
         >>> leaves = abjad.makers.make_leaves([pitch_list], [abjad.Duration(5, 14)])
+        >>> abjad.makers.tweak_tuplet_bracket_edge_height(leaves)
         >>> staff = abjad.Staff(leaves)
         >>> time_signature = abjad.TimeSignature((5, 14))
         >>> leaf = abjad.get.leaf(staff, 0)
@@ -706,6 +711,7 @@ def make_notes(
         >>> pitches = abjad.makers.make_pitches([0])
         >>> durations = abjad.makers.make_durations([(1, 16), (1, 12), (1, 8)])
         >>> components = abjad.makers.make_notes(pitches, durations)
+        >>> abjad.makers.tweak_tuplet_bracket_edge_height(components)
         >>> staff = abjad.Staff(components)
         >>> score = abjad.Score([staff])
         >>> abjad.override(score).TupletBracket.bracket_visibility = True
@@ -1216,3 +1222,75 @@ def tuplet_from_ratio_and_pair(
             components.extend(leaves)
         tuplet = _score.Tuplet.from_duration(duration, components, tag=tag)
     return tuplet
+
+
+def tweak_tuplet_bracket_edge_height(argument) -> None:
+    r"""
+    Tweaks tuplet bracket edge height of incomplete tuplets in ``argument``.
+
+    A tuplet is defined as incomplete when the denominator ``d`` of the
+    tuplet's duration ``n/d`` is nondyadic. For example, the duration of
+    ``\tuplet 3/2 { c'4 d'4 }`` is nondyadic because the denominator of ``2/3 *
+    2/4 = 1/3`` is 3. But the duration of ``\tuplet 3/2 { c'4 d'4 e'4 }`` is
+    dyadic because the denominator of ``2/3 * 3/4 = 1/2`` is 2.
+
+    ..  container:: example
+
+        By default, LilyPond engraves all tuplets with a complete bracket,
+        even those that are incomplete, like the first tuplet below:
+
+        >>> string = r"\tuplet 3/2 { c'4 d'4 } \tuplet 3/2 { c'4 d'4 e'4 }"
+        >>> staff = abjad.Staff(string)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \tuplet 3/2
+                {
+                    c'4
+                    d'4
+                }
+                \tuplet 3/2
+                {
+                    c'4
+                    d'4
+                    e'4
+                }
+            }
+
+        Call ``abjad.makers.tweak_tuplet_bracket_edge_height()`` to adjust
+        the right edge of incomplete tuplets:
+
+        >>> abjad.makers.tweak_tuplet_bracket_edge_height(staff)
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \tweak edge-height #'(0.7 . 0)
+                \tuplet 3/2
+                {
+                    c'4
+                    d'4
+                }
+                \tuplet 3/2
+                {
+                    c'4
+                    d'4
+                    e'4
+                }
+            }
+
+    """
+    for tuplet in _iterate.components(argument, _score.Tuplet):
+        duration = tuplet._get_preprolated_duration()
+        denominator = duration.denominator
+        if not _math.is_nonnegative_integer_power_of_two(denominator):
+            _tweaks.tweak(tuplet, tuplet.tweak_edge_height_string)

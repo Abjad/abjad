@@ -7409,6 +7409,7 @@ class TimeSignature:
             Suppresses LilyPond "strange time signature" warning:
 
             >>> tuplet = abjad.Tuplet((2, 3), "c'4 d' e' f'")
+            >>> abjad.makers.tweak_tuplet_bracket_edge_height(tuplet)
             >>> staff = abjad.Staff([tuplet])
             >>> score = abjad.Score([staff], name="Score")
             >>> time_signature = abjad.TimeSignature((4, 3))

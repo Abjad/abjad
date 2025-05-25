@@ -196,6 +196,7 @@ class MetricModulation:
         >>> pitches = abjad.makers.make_pitches([0])
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> tuplet = abjad.Tuplet((2, 3), notes)
+        >>> abjad.makers.tweak_tuplet_bracket_edge_height(tuplet)
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c'4"),
         ...     right_rhythm=tuplet,
