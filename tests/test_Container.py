@@ -227,6 +227,7 @@ def test_Container___delitem___07():
 
     tuplet = abjad.Tuplet((2, 3), "c'8 [ d'8 e'8 ]")
     del tuplet[1]
+    abjad.makers.tweak_tuplet_bracket_edge_height(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""

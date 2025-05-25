@@ -241,6 +241,7 @@ def test_mutate_fuse_08():
     tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
     tuplet_2 = abjad.Tuplet((2, 3), "c'8 d'8 e'8 f'8 g'8")
     voice = abjad.Voice([tuplet_1, tuplet_2])
+    abjad.makers.tweak_tuplet_bracket_edge_height(voice)
     abjad.beam(tuplet_1[:])
     abjad.slur(tuplet_2[:])
 
@@ -273,6 +274,7 @@ def test_mutate_fuse_08():
 
     tuplets = voice[:]
     abjad.mutate.fuse(tuplets)
+    abjad.makers.tweak_tuplet_bracket_edge_height(voice)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -318,6 +320,7 @@ def test_mutate_fuse_10():
     tuplet_1 = abjad.Tuplet((2, 3), "c'8")
     tuplet_2 = abjad.Tuplet((2, 3), "c'4")
     voice = abjad.Voice([tuplet_1, tuplet_2, abjad.Note("c'4")])
+    abjad.makers.tweak_tuplet_bracket_edge_height(voice)
     leaves = abjad.select.leaves(voice)
     abjad.slur(leaves)
 

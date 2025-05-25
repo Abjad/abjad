@@ -2694,6 +2694,7 @@ def wrap(argument, container):
         ...     tuplet = abjad.Tuplet((2, 3))
         ...     abjad.mutate.wrap(note, tuplet)
         ...
+        >>> abjad.makers.tweak_tuplet_bracket_edge_height(staff)
 
         ..  docs::
 

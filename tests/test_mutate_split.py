@@ -157,6 +157,7 @@ def test_mutate__set_leaf_duration_04():
     ), print(abjad.lilypond(voice))
 
     abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(5, 48))
+    abjad.makers.tweak_tuplet_bracket_edge_height(voice)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -205,6 +206,7 @@ def test_mutate__set_leaf_duration_05():
     ), print(abjad.lilypond(voice))
 
     abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(1, 12))
+    abjad.makers.tweak_tuplet_bracket_edge_height(voice)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -457,6 +459,7 @@ def test_mutate__split_container_by_duration_02():
     ), print(abjad.lilypond(voice))
 
     abjad.mutate._split_container_by_duration(voice[0], abjad.Duration(1, 5))
+    abjad.makers.tweak_tuplet_bracket_edge_height(voice)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -1310,6 +1313,7 @@ def test_mutate_split_07():
 
     tuplets = voice[1:2]
     abjad.mutate.split(tuplets, [abjad.Duration(1, 12)])
+    abjad.makers.tweak_tuplet_bracket_edge_height(voice)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -1573,6 +1577,7 @@ def test_mutate_split_12():
     abjad.beam(tuplet[:])
 
     result = abjad.mutate.split([tuplet], [abjad.Duration(1, 5)])
+    abjad.makers.tweak_tuplet_bracket_edge_height(voice)
 
     left = result[0][0]
     right = result[1][0]

@@ -658,6 +658,7 @@ def logical_ties(
         >>> string = r"c'4 ~ \times 2/3 { c'8 d'4 }"
         >>> string += r" e'4 ~ \times 2/3 { e'8 f' }"
         >>> staff = abjad.Staff(string)
+        >>> abjad.makers.tweak_tuplet_bracket_edge_height(staff)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
