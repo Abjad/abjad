@@ -5254,8 +5254,9 @@ class Tuplet(Container):
     )
 
     edge_height_tweak_string = r"\tweak edge-height #'(0.7 . 0)"
-    tuplet_number_calc_fraction_text_tweak_string = \
+    tuplet_number_calc_fraction_text_tweak_string = (
         r"\tweak text #tuplet-number::calc-fraction-text"
+    )
 
     ### INITIALIZER ###
 
@@ -5372,11 +5373,11 @@ class Tuplet(Container):
                 contributions = [string, "{"]
             else:
                 contributions = []
-                fraction_command_string = (
-                    self._format_lilypond_fraction_command_string()
-                )
-                if fraction_command_string:
-                    contributions.append(fraction_command_string)
+                # fraction_command_string = (
+                #     self._format_lilypond_fraction_command_string()
+                # )
+                # if fraction_command_string:
+                #     contributions.append(fraction_command_string)
                 for tweak in sorted(self.tweaks):
                     strings = tweak._list_contributions()
                     contributions.extend(strings)
@@ -5847,8 +5848,8 @@ class Tuplet(Container):
 
             Gets tuplet multiplier:
 
-                >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> abjad.show(tuplet) # doctest: +SKIP
+            >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+            >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> tuplet.multiplier
             (2, 3)
@@ -5857,8 +5858,8 @@ class Tuplet(Container):
 
             Sets tuplet multiplier:
 
-                >>> tuplet.multiplier = (4, 3)
-                >>> abjad.show(tuplet) # doctest: +SKIP
+            >>> tuplet.multiplier = (4, 3)
+            >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
 
@@ -6093,6 +6094,29 @@ class Tuplet(Container):
             return fractions.Fraction(*self.multiplier) < 1
         else:
             return False
+
+    def dyadic(self) -> bool:
+        r"""
+        Is true when denominator of tuplet multiplier is power of 2.
+
+        ..  container:: example
+
+            3:2 is dyadic (because 2 is a power of 2):
+
+            >>> abjad.Tuplet("3:2", "c'4 d'4 e'4").dyadic()
+            True
+
+            4:3 is nondyadic (because 3 is not a power of 2):
+
+            >>> abjad.Tuplet("4:3", "c'4 d'4 e'4 f'4").dyadic()
+            False
+
+        """
+        if self.multiplier:
+            numerator = self.multiplier[0]
+            return _math.is_nonnegative_integer_power_of_two(numerator)
+        else:
+            return True
 
     def extend(
         self, argument, *, language: str = "english", preserve_duration=False

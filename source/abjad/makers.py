@@ -1293,4 +1293,21 @@ def tweak_tuplet_bracket_edge_height(argument) -> None:
         duration = tuplet._get_preprolated_duration()
         denominator = duration.denominator
         if not _math.is_nonnegative_integer_power_of_two(denominator):
-            _tweaks.tweak(tuplet, tuplet.tweak_edge_height_string)
+            _tweaks.tweak(tuplet, tuplet.edge_height_tweak_string)
+
+
+def tweak_tuplet_number_text(argument) -> None:
+    r"""
+    Tweaks tuplet number text for tuplets in ``argument``. Sets tuplet
+    number text equal to ``#tuplet-number::calc-fraction-text`` when
+    any of these conditions is true:
+
+      * tuplet is an augmentation (like 3:4), or
+      * tuplet is nondyadic (like 4:3), or
+      * denominator of tuplet multiplier is 1
+
+    Does not tweak tuplets for which none of these conditions holds.
+    """
+    for tuplet in _iterate.components(argument, _score.Tuplet):
+        if tuplet.augmentation() or not tuplet.dyadic() or tuplet.multiplier[1] == 1:
+            _tweaks.tweak(tuplet, tuplet.tuplet_number_calc_fraction_text_tweak_string)

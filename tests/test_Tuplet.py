@@ -84,6 +84,7 @@ def test_Tuplet_get_timespan_01():
 def test_Tuplet_set_minimum_denominator_01():
     tuplet = abjad.Tuplet((3, 5), "c'4 d'8 e'8 f'4 g'2")
     tuplet.set_minimum_denominator(8)
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -105,6 +106,7 @@ def test_Tuplet_set_minimum_denominator_01():
 def test_Tuplet_set_minimum_denominator_02():
     tuplet = abjad.Tuplet((3, 5), "c'4 d'8 e'8 f'4 g'2")
     tuplet.set_minimum_denominator(16)
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -126,6 +128,7 @@ def test_Tuplet_set_minimum_denominator_02():
 def test_Tuplet_set_minimum_denominator_03():
     tuplet = abjad.Tuplet((3, 5), "c'4 d'8 e'8 f'4 g'2")
     tuplet.set_minimum_denominator(2)
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
