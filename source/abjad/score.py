@@ -5253,7 +5253,9 @@ class Tuplet(Container):
         "tweaks",
     )
 
-    tweak_edge_height_string = r"\tweak edge-height #'(0.7 . 0)"
+    edge_height_tweak_string = r"\tweak edge-height #'(0.7 . 0)"
+    tuplet_number_calc_fraction_text_tweak_string = \
+        r"\tweak text #tuplet-number::calc-fraction-text"
 
     ### INITIALIZER ###
 
