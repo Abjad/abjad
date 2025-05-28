@@ -35,6 +35,7 @@ def test_Mutation_swap_01():
     )
 
     tuplet = abjad.Tuplet((3, 4), [])
+    abjad.makers.tweak_tuplet_number_text(tuplet)
     abjad.mutate.swap(voice[:2], tuplet)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -156,6 +157,7 @@ def test_Mutation_swap_03():
     )
 
     tuplet = abjad.Tuplet((3, 4), [])
+    abjad.makers.tweak_tuplet_number_text(tuplet)
     abjad.mutate.swap(voice[1:2], tuplet)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(

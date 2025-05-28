@@ -98,6 +98,7 @@ class ReducedLyParser(Parser):
         >>> string = "2/3 { 4 4 3/5 { 8 8 8 } }"
         >>> tuplet = parser(string)
         >>> abjad.makers.tweak_tuplet_bracket_edge_height(tuplet)
+        >>> abjad.makers.tweak_tuplet_number_text(tuplet)
         >>> abjad.show(tuplet) # doctest: +SKIP
 
         ..  docs::
@@ -109,8 +110,8 @@ class ReducedLyParser(Parser):
             {
                 c'4
                 c'4
-                \tweak text #tuplet-number::calc-fraction-text
                 \tweak edge-height #'(0.7 . 0)
+                \tweak text #tuplet-number::calc-fraction-text
                 \tuplet 5/3
                 {
                     c'8

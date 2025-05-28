@@ -33,8 +33,7 @@ def test_RhythmTreeContainer___call___02():
     rtm = "(1 (1 (2 (1 1 1 1)) 1))"
     rtc = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
     components = rtc(abjad.Duration(1, 4))
-    # tuplet = components[0]._parent
-    # staff = abjad.Staff([tuplet])
+    abjad.makers.tweak_tuplet_number_text(components)
     staff = abjad.Staff(components)
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
@@ -426,6 +425,7 @@ def test_RhythmTreeNode___call___03():
     rtm = "(1 (1 (2 (1 (2 (1 1)) 1)) 2))"
     rtc = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
     components = rtc(abjad.Duration(1, 4))
+    abjad.makers.tweak_tuplet_number_text(components)
     staff = abjad.Staff(components)
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""

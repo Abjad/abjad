@@ -3,6 +3,7 @@ import math
 from . import duration as _duration
 from . import iterate as _iterate
 from . import math as _math
+from . import overrides as _overrides
 from . import pitch as _pitch
 from . import score as _score
 from . import sequence as _sequence
@@ -902,6 +903,7 @@ def tuplet_from_ratio_and_pair(
 
         >>> def make_score(ratio, pair):
         ...     tuplet = abjad.makers.tuplet_from_ratio_and_pair(ratio, pair)
+        ...     abjad.makers.tweak_tuplet_number_text(tuplet)
         ...     staff = abjad.Staff([tuplet], lilypond_type="RhythmicStaff")
         ...     score = abjad.Score([staff], name="Score")
         ...     time_signature = abjad.TimeSignature(pair)
@@ -1309,5 +1311,7 @@ def tweak_tuplet_number_text(argument) -> None:
     Does not tweak tuplets for which none of these conditions holds.
     """
     for tuplet in _iterate.components(argument, _score.Tuplet):
+        if "text" in vars(_overrides.override(tuplet).TupletNumber):
+            continue
         if tuplet.augmentation() or not tuplet.dyadic() or tuplet.multiplier[1] == 1:
             _tweaks.tweak(tuplet, tuplet.tuplet_number_calc_fraction_text_tweak_string)

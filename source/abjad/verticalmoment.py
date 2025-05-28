@@ -133,6 +133,7 @@ class VerticalMoment:
             ...    '''
             ...    )
 
+            >>> abjad.makers.tweak_tuplet_number_text(score)
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
@@ -232,6 +233,7 @@ class VerticalMoment:
             ...    '''
             ...    )
 
+            >>> abjad.makers.tweak_tuplet_number_text(score)
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
@@ -334,6 +336,7 @@ class VerticalMoment:
             ...    '''
             ...    )
 
+            >>> abjad.makers.tweak_tuplet_number_text(score)
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
@@ -506,6 +509,7 @@ def iterate_vertical_moments(components, reverse=None):
         >>> staff_group.append(abjad.Staff("a'4 g'4"))
         >>> staff_group.append(abjad.Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
         >>> score.append(staff_group)
+        >>> abjad.makers.tweak_tuplet_number_text(score)
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -572,6 +576,7 @@ def iterate_vertical_moments(components, reverse=None):
         >>> staff_group.append(abjad.Staff("a'4 g'4"))
         >>> staff_group.append(abjad.Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
         >>> score.append(staff_group)
+        >>> abjad.makers.tweak_tuplet_number_text(score)
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::

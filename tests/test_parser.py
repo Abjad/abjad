@@ -2445,6 +2445,7 @@ def test_rhythmtrees_parse_01():
     string = "(3 (1 (3 (1 (3 (1 (3 (1 1 1 1))))))))"
     nodes = abjad.rhythmtrees.parse(string)
     components = abjad.rhythmtrees.call(nodes)
+    abjad.makers.tweak_tuplet_number_text(components)
     voice = abjad.Voice(components)
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
