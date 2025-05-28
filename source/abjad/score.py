@@ -4790,6 +4790,7 @@ class Staff(Context):
         ...     r"\times 9/10 { bf'16 e''16 e''4 ~ e''16 r16 fs''16 af''16 }",
         ...     r"\times 4/5 { a'16 r4 }",
         ... ])
+        >>> abjad.makers.tweak_tuplet_number_text(staff)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -5191,6 +5192,7 @@ class Tuplet(Container):
 
         >>> staff = abjad.Staff([tuplet_3])
         >>> score = abjad.Score([staff], name="Score")
+        >>> abjad.makers.tweak_tuplet_number_text(score)
         >>> leaves = abjad.select.leaves(staff)
         >>> abjad.attach(abjad.TimeSignature((5, 4)), leaves[0])
         >>> literal = abjad.LilyPondLiteral(
@@ -5206,9 +5208,9 @@ class Tuplet(Container):
             \new Staff
             {
                 \set tupletFullLength = ##t
-                \tweak text #tuplet-number::calc-fraction-text
                 \tweak color #blue
                 \tweak staff-padding 4
+                \tweak text #tuplet-number::calc-fraction-text
                 \tuplet 4/5
                 {
                     \tweak color #red
@@ -5253,7 +5255,10 @@ class Tuplet(Container):
         "tweaks",
     )
 
-    tweak_edge_height_string = r"\tweak edge-height #'(0.7 . 0)"
+    edge_height_tweak_string = r"\tweak edge-height #'(0.7 . 0)"
+    tuplet_number_calc_fraction_text_tweak_string = (
+        r"\tweak text #tuplet-number::calc-fraction-text"
+    )
 
     ### INITIALIZER ###
 
@@ -5370,11 +5375,11 @@ class Tuplet(Container):
                 contributions = [string, "{"]
             else:
                 contributions = []
-                fraction_command_string = (
-                    self._format_lilypond_fraction_command_string()
-                )
-                if fraction_command_string:
-                    contributions.append(fraction_command_string)
+                # fraction_command_string = (
+                #     self._format_lilypond_fraction_command_string()
+                # )
+                # if fraction_command_string:
+                #     contributions.append(fraction_command_string)
                 for tweak in sorted(self.tweaks):
                     strings = tweak._list_contributions()
                     contributions.extend(strings)
@@ -5561,88 +5566,6 @@ class Tuplet(Container):
     def force_fraction(self) -> bool | None:
         r"""
         Gets and sets force fraction flag.
-
-        ..  container:: example
-
-            To illustrate the effect of Abjad's force fraction property, we can
-            temporarily restore LilyPond's default tuplet number formatting
-            like this:
-
-            >>> staff = abjad.Staff()
-            >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
-            >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
-            >>> staff.append(abjad.Tuplet((2, 3), "c'4 d' e'"))
-            >>> string = '#tuplet-number::calc-denominator-text'
-            >>> abjad.override(staff).TupletNumber.text = string
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                \with
-                {
-                    \override TupletNumber.text = #tuplet-number::calc-denominator-text
-                }
-                {
-                    \tuplet 3/2
-                    {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                    \tuplet 3/2
-                    {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                    \tuplet 3/2
-                    {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                }
-
-            Which makes it possible to see the effect of setting force fraction
-            to true on a single tuplet:
-
-            >>> tuplet = staff[1]
-            >>> tuplet.force_fraction = True
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                \with
-                {
-                    \override TupletNumber.text = #tuplet-number::calc-denominator-text
-                }
-                {
-                    \tuplet 3/2
-                    {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \tuplet 3/2
-                    {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                    \tuplet 3/2
-                    {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                }
 
         ..  container:: example
 
@@ -5845,8 +5768,8 @@ class Tuplet(Container):
 
             Gets tuplet multiplier:
 
-                >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> abjad.show(tuplet) # doctest: +SKIP
+            >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+            >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> tuplet.multiplier
             (2, 3)
@@ -5855,8 +5778,9 @@ class Tuplet(Container):
 
             Sets tuplet multiplier:
 
-                >>> tuplet.multiplier = (4, 3)
-                >>> abjad.show(tuplet) # doctest: +SKIP
+            >>> tuplet.multiplier = (4, 3)
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
+            >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
 
@@ -6092,6 +6016,29 @@ class Tuplet(Container):
         else:
             return False
 
+    def dyadic(self) -> bool:
+        r"""
+        Is true when denominator of tuplet multiplier is power of 2.
+
+        ..  container:: example
+
+            3:2 is dyadic (because 2 is a power of 2):
+
+            >>> abjad.Tuplet("3:2", "c'4 d'4 e'4").dyadic()
+            True
+
+            4:3 is nondyadic (because 3 is not a power of 2):
+
+            >>> abjad.Tuplet("4:3", "c'4 d'4 e'4 f'4").dyadic()
+            False
+
+        """
+        if self.multiplier:
+            numerator = self.multiplier[0]
+            return _math.is_nonnegative_integer_power_of_two(numerator)
+        else:
+            return True
+
     def extend(
         self, argument, *, language: str = "english", preserve_duration=False
     ) -> None:
@@ -6266,6 +6213,7 @@ class Tuplet(Container):
         ..  container:: example
 
             >>> tuplet = abjad.Tuplet((8, 3), "c'32 d'32 e'32")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6304,6 +6252,7 @@ class Tuplet(Container):
         ..  container:: example
 
             >>> tuplet = abjad.Tuplet((5, 12), "c'4 d'4 e'4")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6361,6 +6310,7 @@ class Tuplet(Container):
         ..  container:: example
 
             >>> tuplet = abjad.Tuplet((3, 2), "r4 r r")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  container:: example
@@ -6390,6 +6340,7 @@ class Tuplet(Container):
             Rewrites single dots as 3:2 prolation:
 
             >>> tuplet = abjad.Tuplet((1, 1), "c'8. c'8.")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6422,6 +6373,7 @@ class Tuplet(Container):
             Rewrites double dots as 7:4 prolation:
 
             >>> tuplet = abjad.Tuplet((1, 1), "c'8.. c'8..")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6454,6 +6406,7 @@ class Tuplet(Container):
             Does nothing when dot counts differ:
 
             >>> tuplet = abjad.Tuplet((1, 1), "c'8. d'8. e'8")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6488,6 +6441,7 @@ class Tuplet(Container):
             Does nothing when leaves carry no dots:
 
             >>> tuplet = abjad.Tuplet((3, 2), "c'8 d' e'")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6547,6 +6501,7 @@ class Tuplet(Container):
             Sets preferred denominator of tuplet to ``8`` at least:
 
             >>> tuplet = abjad.Tuplet((3, 5), "c'4 d'8 e'8 f'4 g'2")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6600,6 +6555,7 @@ class Tuplet(Container):
             Changes augmented tuplet to diminished:
 
             >>> tuplet = abjad.Tuplet((4, 3), "c'8 d'8 e'8")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6621,6 +6577,7 @@ class Tuplet(Container):
 
                 >>> string = abjad.lilypond(tuplet)
                 >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
                 \tuplet 3/2
                 {
                     c'4
@@ -6650,6 +6607,7 @@ class Tuplet(Container):
                 }
 
             >>> tuplet.toggle_prolation()
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6672,6 +6630,7 @@ class Tuplet(Container):
             REGRESSION. Leaves trivial tuplets unchanged:
 
             >>> tuplet = abjad.Tuplet((1, 1), "c'4 d'4 e'4")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6728,6 +6687,7 @@ class Tuplet(Container):
         ..  container:: example
 
             >>> tuplet = abjad.Tuplet((1, 1), "c'8 d'8 e'8")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6752,6 +6712,7 @@ class Tuplet(Container):
             >>> tuplet = abjad.Tuplet((1, 1), "c'8 d'8 e'8")
             >>> tuplet[0].multiplier = (3, 2)
             >>> tuplet[-1].multiplier = (1, 2)
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6789,6 +6750,7 @@ class Tuplet(Container):
         ..  container:: example
 
             >>> tuplet = abjad.Tuplet((3, 4), "c'4 c'4")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> staff = abjad.Staff([tuplet])
             >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((3, 8)), tuplet[0])
@@ -6832,6 +6794,7 @@ class Tuplet(Container):
             Nontrivializable tuplet:
 
             >>> tuplet = abjad.Tuplet((3, 5), "c'4 c'4 c'4 c'4 c'4")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> staff = abjad.Staff([tuplet])
             >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((3, 4)), tuplet[0])
@@ -6865,6 +6828,7 @@ class Tuplet(Container):
             REGRESSION. Nontrivializable tuplet:
 
             >>> tuplet = abjad.Tuplet((3, 4), "c'2. c4")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> staff = abjad.Staff([tuplet])
             >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((3, 4)), tuplet[0])
@@ -6906,6 +6870,7 @@ class Tuplet(Container):
         ..  container:: example
 
             >>> tuplet = abjad.Tuplet((3, 4), "c'2")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::

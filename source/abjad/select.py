@@ -269,6 +269,7 @@ def chord(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
+        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -359,6 +360,7 @@ def chords(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
+        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -1063,6 +1065,7 @@ def flatten(argument, depth: int = 1) -> list:
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
+        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -1152,6 +1155,7 @@ def flatten(argument, depth: int = 1) -> list:
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
+        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -2462,6 +2466,7 @@ def leaf(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
+        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -4375,6 +4380,7 @@ def note(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
+        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -4465,6 +4471,7 @@ def notes(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
+        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -6050,6 +6057,7 @@ def rest(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
+        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -6140,6 +6148,7 @@ def rests(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
+        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -6239,6 +6248,7 @@ def run(argument, n: int, *, exclude: Exclude | None = None) -> list[_score.Leaf
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
+        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -6333,6 +6343,7 @@ def runs(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
+        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -6613,6 +6624,7 @@ def tuplet(
         ... ]
         >>> tuplets = zip([(10, 9), (8, 9), (10, 9)], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
+        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False

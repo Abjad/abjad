@@ -99,6 +99,7 @@ def test_makers_make_notes_01():
 
 def test_makers_tuplet_from_ratio_and_pair_01():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 4), (6, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -115,6 +116,7 @@ def test_makers_tuplet_from_ratio_and_pair_01():
 
 def test_makers_tuplet_from_ratio_and_pair_02():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 1, 2, 4), (6, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -132,6 +134,7 @@ def test_makers_tuplet_from_ratio_and_pair_02():
 
 def test_makers_tuplet_from_ratio_and_pair_03():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((-2, 3, 7), (7, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -164,6 +167,7 @@ def test_makers_tuplet_from_ratio_and_pair_04():
 
 def test_makers_tuplet_from_ratio_and_pair_05():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 2), (12, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -180,6 +184,7 @@ def test_makers_tuplet_from_ratio_and_pair_05():
 
 def test_makers_tuplet_from_ratio_and_pair_06():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((2, 4, 4), (12, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -196,6 +201,7 @@ def test_makers_tuplet_from_ratio_and_pair_06():
 
 def test_makers_tuplet_from_ratio_and_pair_07():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((4, 8, 8), (12, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -212,6 +218,7 @@ def test_makers_tuplet_from_ratio_and_pair_07():
 
 def test_makers_tuplet_from_ratio_and_pair_08():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((8, 16, 16), (12, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -228,6 +235,7 @@ def test_makers_tuplet_from_ratio_and_pair_08():
 
 def test_makers_tuplet_from_ratio_and_pair_09():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((2, 4, 4), (3, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -244,6 +252,7 @@ def test_makers_tuplet_from_ratio_and_pair_09():
 
 def test_makers_tuplet_from_ratio_and_pair_10():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((2, 4, 4), (6, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -260,6 +269,7 @@ def test_makers_tuplet_from_ratio_and_pair_10():
 
 def test_makers_tuplet_from_ratio_and_pair_11():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((2, 4, 4), (12, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -276,6 +286,7 @@ def test_makers_tuplet_from_ratio_and_pair_11():
 
 def test_makers_tuplet_from_ratio_and_pair_12():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((2, 4, 4), (24, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -292,6 +303,7 @@ def test_makers_tuplet_from_ratio_and_pair_12():
 
 def test_makers_tuplet_from_ratio_and_pair_13():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 2), (6, 2))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -308,6 +320,7 @@ def test_makers_tuplet_from_ratio_and_pair_13():
 
 def test_makers_tuplet_from_ratio_and_pair_14():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 2), (6, 4))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -324,6 +337,7 @@ def test_makers_tuplet_from_ratio_and_pair_14():
 
 def test_makers_tuplet_from_ratio_and_pair_15():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 2), (6, 8))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -340,6 +354,7 @@ def test_makers_tuplet_from_ratio_and_pair_15():
 
 def test_makers_tuplet_from_ratio_and_pair_16():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 2, 2), (6, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -356,6 +371,7 @@ def test_makers_tuplet_from_ratio_and_pair_16():
 
 def test_makers_tuplet_from_ratio_and_pair_17():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, -1, -1), (3, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -372,6 +388,7 @@ def test_makers_tuplet_from_ratio_and_pair_17():
 
 def test_makers_tuplet_from_ratio_and_pair_18():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 1, -1, -1), (4, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -389,6 +406,7 @@ def test_makers_tuplet_from_ratio_and_pair_18():
 
 def test_makers_tuplet_from_ratio_and_pair_19():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 1, 1, -1, -1), (5, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -407,6 +425,7 @@ def test_makers_tuplet_from_ratio_and_pair_19():
 
 def test_makers_tuplet_from_ratio_and_pair_20():
     tuplet = abjad.makers.tuplet_from_ratio_and_pair((1, 1, 1, 1, -1, -1), (6, 16))
+    abjad.makers.tweak_tuplet_number_text(tuplet)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
