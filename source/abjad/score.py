@@ -6391,59 +6391,6 @@ class Tuplet(Container):
         for component in self:
             component.written_duration *= dot_multiplier_reciprocal
 
-    def set_minimum_denominator(self, denominator) -> None:
-        r"""
-        Sets preferred denominator of tuplet to at least ``denominator``.
-
-        ..  container:: example
-
-            Sets preferred denominator of tuplet to ``8`` at least:
-
-            >>> tuplet = abjad.Tuplet((3, 5), "c'4 d'8 e'8 f'4 g'2")
-            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(tuplet)
-                >>> print(string)
-                \tweak text #tuplet-number::calc-fraction-text
-                \tuplet 5/3
-                {
-                    c'4
-                    d'8
-                    e'8
-                    f'4
-                    g'2
-                }
-
-            >>> tuplet.set_minimum_denominator(8)
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(tuplet)
-                >>> print(string)
-                \tweak text #tuplet-number::calc-fraction-text
-                \tuplet 10/6
-                {
-                    c'4
-                    d'8
-                    e'8
-                    f'4
-                    g'2
-                }
-
-        """
-        assert _math.is_nonnegative_integer_power_of_two(denominator)
-        durations = [
-            self._get_contents_duration(),
-            self._get_preprolated_duration(),
-            _duration.Duration(1, denominator),
-        ]
-        pairs = _duration.Duration.durations_to_nonreduced_fractions(durations)
-        self.denominator = pairs[1][0]
-
     def toggle_prolation(self) -> None:
         r"""
         Changes augmented tuplets to diminished; changes diminished tuplets to augmented.
