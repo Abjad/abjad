@@ -5249,7 +5249,6 @@ class Tuplet(Container):
 
     __slots__ = (
         "_denominator",
-        "_force_fraction",
         "_hide",
         "_multiplier",
         "tweaks",
@@ -5268,7 +5267,6 @@ class Tuplet(Container):
         components=None,
         *,
         denominator: int | None = None,
-        force_fraction: bool = False,
         hide: bool = False,
         language: str = "english",
         tag: _tag.Tag | None = None,
@@ -5287,7 +5285,6 @@ class Tuplet(Container):
             raise ValueError(message)
         self.multiplier = pair
         self.denominator = denominator
-        self.force_fraction = force_fraction
         self.hide = hide
 
     ### SPECIAL METHODS ###
@@ -5353,20 +5350,6 @@ class Tuplet(Container):
         result = _indent_strings(result)
         return result
 
-    def _format_lilypond_fraction_command_string(self):
-        if self.hide:
-            return ""
-        if "text" in vars(_overrides.override(self).TupletNumber):
-            return ""
-        if (
-            self.augmentation()
-            or not self._is_dyadic_rational()
-            or self.multiplier[1] == 1
-            or self.force_fraction
-        ):
-            return r"\tweak text #tuplet-number::calc-fraction-text"
-        return ""
-
     def _format_open_brackets_site(self, contributions):
         result = []
         if self.multiplier:
@@ -5375,11 +5358,6 @@ class Tuplet(Container):
                 contributions = [string, "{"]
             else:
                 contributions = []
-                # fraction_command_string = (
-                #     self._format_lilypond_fraction_command_string()
-                # )
-                # if fraction_command_string:
-                #     contributions.append(fraction_command_string)
                 for tweak in sorted(self.tweaks):
                     strings = tweak._list_contributions()
                     contributions.extend(strings)
@@ -5561,85 +5539,6 @@ class Tuplet(Container):
         elif not isinstance(argument, type(None)):
             raise TypeError(argument)
         self._denominator = argument
-
-    @property
-    def force_fraction(self) -> bool | None:
-        r"""
-        Gets and sets force fraction flag.
-
-        ..  container:: example
-
-            Ignored when tuplet number text is overridden explicitly:
-
-            >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-            >>> duration = abjad.get.duration(tuplet)
-            >>> note = abjad.Note.from_pitch_and_duration(0, duration)
-            >>> string = abjad.illustrators.components_to_score_markup_string([note])
-            >>> string = rf"\markup {{ {string} }}"
-            >>> abjad.override(tuplet).TupletNumber.text = string
-            >>> staff = abjad.Staff([tuplet])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    \override TupletNumber.text = \markup { \score
-                        {
-                            \context Score = "Score"
-                            \with
-                            {
-                                \override SpacingSpanner.spacing-increment = 0.5
-                                proportionalNotationDuration = ##f
-                            }
-                            <<
-                                \context RhythmicStaff = "Rhythmic_Staff"
-                                \with
-                                {
-                                    \remove Time_signature_engraver
-                                    \remove Staff_symbol_engraver
-                                    \override Stem.direction = #up
-                                    \override Stem.length = 5
-                                    \override TupletBracket.bracket-visibility = ##t
-                                    \override TupletBracket.direction = #up
-                                    \override TupletBracket.minimum-length = 4
-                                    \override TupletBracket.padding = 1.25
-                                    \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                    \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
-                                    \override TupletNumber.font-size = 0
-                                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                    tupletFullLength = ##t
-                                }
-                                {
-                                    c'4
-                                }
-                            >>
-                            \layout
-                            {
-                                indent = 0
-                                ragged-right = ##t
-                            }
-                        } }
-                    \tuplet 3/2
-                    {
-                        c'8
-                        d'8
-                        e'8
-                    }
-                    \revert TupletNumber.text
-                }
-
-        """
-        return self._force_fraction
-
-    @force_fraction.setter
-    def force_fraction(self, argument):
-        if isinstance(argument, bool):
-            self._force_fraction = argument
-        else:
-            raise TypeError(f"force fraction must be boolean (not {argument!r}).")
 
     @property
     def hide(self) -> bool | None:
@@ -6537,7 +6436,6 @@ class Tuplet(Container):
 
         """
         assert _math.is_nonnegative_integer_power_of_two(denominator)
-        self.force_fraction = True
         durations = [
             self._get_contents_duration(),
             self._get_preprolated_duration(),
