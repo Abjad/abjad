@@ -2444,8 +2444,7 @@ def swap(argument, container):
             }
 
         >>> containers = voice[:]
-        >>> tuplet = abjad.Tuplet((2, 3), [])
-        >>> tuplet.denominator = 4
+        >>> tuplet = abjad.Tuplet((4, 6), [])
         >>> abjad.mutate.swap(containers, tuplet)
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -2479,8 +2478,8 @@ def swap(argument, container):
         ...     time_signature = abjad.get.effective(component, prototype)
         ...     print(component, time_signature)
         ...
-        Voice("{ 3:2 c'4 d'4 e'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 4), hide=False, partial=None)
-        Tuplet('3:2', "c'4 d'4 e'4 d'4 e'4 f'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
+        Voice("{ 6:4 c'4 d'4 e'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 4), hide=False, partial=None)
+        Tuplet('6:4', "c'4 d'4 e'4 d'4 e'4 f'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
         Note("c'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
         Note("d'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
         Note("e'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
