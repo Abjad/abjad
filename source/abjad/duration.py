@@ -748,41 +748,6 @@ class Duration(fractions.Fraction):
         return max(count, 0)
 
     @property
-    def is_dyadic_rational(self) -> bool:
-        r"""
-        Is true when duration is an integer power of two.
-
-        ..  container:: example
-
-            Is true when duration has power-of-two denominator:
-
-            >>> for n in range(1, 16 + 1):
-            ...     duration = abjad.Duration(1, n)
-            ...     result = duration.is_dyadic_rational
-            ...     print(f"{duration!s}\t{result}")
-            ...
-            1       True
-            1/2     True
-            1/3     False
-            1/4     True
-            1/5     False
-            1/6     False
-            1/7     False
-            1/8     True
-            1/9     False
-            1/10    False
-            1/11    False
-            1/12    False
-            1/13    False
-            1/14    False
-            1/15    False
-            1/16    True
-
-        """
-        exponent = math.log(self.denominator, 2)
-        return int(exponent) == exponent
-
-    @property
     def implied_prolation(self) -> fractions.Fraction:
         r"""
         Gets implied prolation.
@@ -855,6 +820,37 @@ class Duration(fractions.Fraction):
                 if _math.is_assignable_integer(self.numerator):
                     return True
         return False
+
+    @property
+    def is_dyadic(self) -> bool:
+        r"""
+        Is true when denominator of duration is integer power of two.
+
+        ..  container:: example
+
+            >>> for n in range(1, 16 + 1):
+            ...     duration = abjad.Duration(1, n)
+            ...     print(f"{duration!s}\t{duration.is_dyadic}")
+            ...
+            1       True
+            1/2     True
+            1/3     False
+            1/4     True
+            1/5     False
+            1/6     False
+            1/7     False
+            1/8     True
+            1/9     False
+            1/10    False
+            1/11    False
+            1/12    False
+            1/13    False
+            1/14    False
+            1/15    False
+            1/16    True
+
+        """
+        return _math.is_nonnegative_integer_power_of_two(self.denominator)
 
     @property
     def lilypond_duration_string(self) -> str:

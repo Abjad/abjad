@@ -7340,7 +7340,7 @@ class TimeSignature:
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
-        if self.is_non_dyadic_rational and not self.hide:
+        if not self.is_dyadic and not self.hide:
             string = '#(ly:expect-warning "strange time signature found")'
             site.commands.append(string)
         strings = self._get_lilypond_format()
@@ -7388,27 +7388,42 @@ class TimeSignature:
         return _duration.Duration(*self.pair)
 
     @property
-    def is_non_dyadic_rational(self) -> bool:
-        r"""
-        Is true when time signature has non-power-of-two denominator.
+    def implied_prolation(self) -> fractions.Fraction:
+        """
+        Gets implied prolation of time signature.
 
         ..  container:: example
 
-            With non-power-of-two denominator:
+            Implied prolation of dyadic time signature:
 
-            >>> time_signature = abjad.TimeSignature((7, 12))
-            >>> time_signature.is_non_dyadic_rational
+            >>> abjad.TimeSignature((3, 8)).implied_prolation
+            Fraction(1, 1)
+
+            Implied prolation of nondyadic time signature:
+
+            >>> abjad.TimeSignature((7, 12)).implied_prolation
+            Fraction(2, 3)
+
+        """
+        return _duration.Duration(1, self.denominator).implied_prolation
+
+    @property
+    def is_dyadic(self) -> bool:
+        r"""
+        Is true when denominator of time signature is integer power of two.
+
+        ..  container:: example
+
+            >>> abjad.TimeSignature((3, 8)).is_dyadic
             True
 
-            With power-of-two denominator:
-
-            >>> time_signature = abjad.TimeSignature((3, 8))
-            >>> time_signature.is_non_dyadic_rational
+            >>> abjad.TimeSignature((7, 12)).is_dyadic
             False
 
-            Suppresses LilyPond "strange time signature" warning:
+            Nondyadic time signatures suppress LilyPond "strange time
+            signature" warning:
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'4 d' e' f'")
+            >>> tuplet = abjad.Tuplet("3:2", "c'4 d' e' f'")
             >>> abjad.makers.tweak_tuplet_bracket_edge_height(tuplet)
             >>> staff = abjad.Staff([tuplet])
             >>> score = abjad.Score([staff], name="Score")
@@ -7433,27 +7448,7 @@ class TimeSignature:
             }
 
         """
-        return not _math.is_nonnegative_integer_power_of_two(self.denominator)
-
-    @property
-    def implied_prolation(self) -> fractions.Fraction:
-        """
-        Gets implied prolation of time signature.
-
-        ..  container:: example
-
-            Implied prolation of dyadic time signature:
-
-            >>> abjad.TimeSignature((3, 8)).implied_prolation
-            Fraction(1, 1)
-
-            Implied prolation of nondyadic time signature:
-
-            >>> abjad.TimeSignature((7, 12)).implied_prolation
-            Fraction(2, 3)
-
-        """
-        return _duration.Duration(1, self.denominator).implied_prolation
+        return _math.is_nonnegative_integer_power_of_two(self.denominator)
 
     @property
     def numerator(self) -> int:
@@ -7485,57 +7480,6 @@ class TimeSignature:
         numbers = [int(_) for _ in parts]
         numerator, denominator = numbers
         return TimeSignature((numerator, denominator))
-
-    def to_dyadic_rational(self) -> "TimeSignature":
-        """
-        Makes new time signature equivalent to current time signature with power-of-two
-        denominator.
-
-        ..  container:: example
-
-            >>> abjad.TimeSignature((1, 12)).to_dyadic_rational()
-            TimeSignature(pair=(1, 12), hide=False, partial=None)
-
-            >>> abjad.TimeSignature((2, 12)).to_dyadic_rational()
-            TimeSignature(pair=(2, 12), hide=False, partial=None)
-
-            >>> abjad.TimeSignature((3, 12)).to_dyadic_rational()
-            TimeSignature(pair=(2, 8), hide=False, partial=None)
-
-            >>> abjad.TimeSignature((4, 12)).to_dyadic_rational()
-            TimeSignature(pair=(4, 12), hide=False, partial=None)
-
-            >>> abjad.TimeSignature((5, 12)).to_dyadic_rational()
-            TimeSignature(pair=(5, 12), hide=False, partial=None)
-
-            >>> abjad.TimeSignature((6, 12)).to_dyadic_rational()
-            TimeSignature(pair=(4, 8), hide=False, partial=None)
-
-            >>> abjad.TimeSignature((1, 14)).to_dyadic_rational()
-            TimeSignature(pair=(1, 14), hide=False, partial=None)
-
-            >>> abjad.TimeSignature((2, 14)).to_dyadic_rational()
-            TimeSignature(pair=(2, 14), hide=False, partial=None)
-
-            >>> abjad.TimeSignature((3, 14)).to_dyadic_rational()
-            TimeSignature(pair=(3, 14), hide=False, partial=None)
-
-            >>> abjad.TimeSignature((4, 14)).to_dyadic_rational()
-            TimeSignature(pair=(4, 14), hide=False, partial=None)
-
-            >>> abjad.TimeSignature((5, 14)).to_dyadic_rational()
-            TimeSignature(pair=(5, 14), hide=False, partial=None)
-
-            >>> abjad.TimeSignature((6, 14)).to_dyadic_rational()
-            TimeSignature(pair=(6, 14), hide=False, partial=None)
-
-        """
-        non_power_of_two_denominator = self.denominator
-        power_of_two_denominator = _math.greatest_power_of_two_less_equal(
-            non_power_of_two_denominator
-        )
-        pair = _duration.with_denominator(self.pair, power_of_two_denominator)
-        return type(self)(pair)
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)

@@ -5392,13 +5392,6 @@ class Tuplet(Container):
             denominator, numerator = pair
         return f"{numerator}/{denominator}"
 
-    def _is_dyadic_rational(self):
-        if self.multiplier:
-            numerator = self.multiplier[0]
-            return _math.is_nonnegative_integer_power_of_two(numerator)
-        else:
-            return True
-
     def _get_preprolated_duration(self):
         return self.multiplied_duration
 
