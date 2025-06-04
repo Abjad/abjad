@@ -225,7 +225,7 @@ def test_Container___delitem___07():
     Deletes leaf from tuplet.
     """
 
-    tuplet = abjad.Tuplet((2, 3), "c'8 [ d'8 e'8 ]")
+    tuplet = abjad.Tuplet("3:2", "c'8 [ d'8 e'8 ]")
     del tuplet[1]
     abjad.makers.tweak_tuplet_bracket_edge_height(tuplet)
 
@@ -635,7 +635,7 @@ def test_Container___setitem___04():
         """
     ), print(abjad.lilypond(voice))
 
-    voice[1] = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    voice[1] = abjad.Tuplet("3:2", "c'8 d'8 e'8")
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -1481,7 +1481,7 @@ def test_Container_append_02():
     Append leaf to tuplet.
     """
 
-    tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
     abjad.Voice([tuplet])
     abjad.beam(tuplet[:])
     tuplet.append(abjad.Note(5, (1, 16)), preserve_duration=True)

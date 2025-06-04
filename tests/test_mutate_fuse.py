@@ -110,10 +110,10 @@ def test_mutate_fuse_06():
     """
 
     voice = abjad.Voice()
-    tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    tuplet_1 = abjad.Tuplet("3:2", "c'8 d'8 e'8")
     voice.append(tuplet_1)
     abjad.beam(tuplet_1[:])
-    tuplet_2 = abjad.Tuplet((2, 3), "c'16 d'16 e'16")
+    tuplet_2 = abjad.Tuplet("3:2", "c'16 d'16 e'16")
     voice.append(tuplet_2)
     abjad.slur(tuplet_2[:])
 
@@ -176,8 +176,8 @@ def test_mutate_fuse_07():
     """
 
     voice = abjad.Voice()
-    tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-    tuplet_2 = abjad.Tuplet((2, 3), "c'16 d'16 e'16")
+    tuplet_1 = abjad.Tuplet("3:2", "c'8 d'8 e'8")
+    tuplet_2 = abjad.Tuplet("3:2", "c'16 d'16 e'16")
     voice = abjad.Voice([tuplet_1, tuplet_2])
     abjad.beam(tuplet_1[:])
     abjad.slur(tuplet_2[:])
@@ -238,8 +238,8 @@ def test_mutate_fuse_08():
     Fuses fixed-multiplier tuplets with same multiplier in score.
     """
 
-    tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-    tuplet_2 = abjad.Tuplet((2, 3), "c'8 d'8 e'8 f'8 g'8")
+    tuplet_1 = abjad.Tuplet("3:2", "c'8 d'8 e'8")
+    tuplet_2 = abjad.Tuplet("3:2", "c'8 d'8 e'8 f'8 g'8")
     voice = abjad.Voice([tuplet_1, tuplet_2])
     abjad.makers.tweak_tuplet_bracket_edge_height(voice)
     abjad.beam(tuplet_1[:])
@@ -308,8 +308,8 @@ def test_mutate_fuse_09():
     Raises exception when tuplet multipliers differ.
     """
 
-    tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
-    tuplet_2 = abjad.Tuplet((4, 5), "c'8 d'8 e'8 f'8 g'8")
+    tuplet_1 = abjad.Tuplet("3:2", "c'8 d'8 e'8")
+    tuplet_2 = abjad.Tuplet("5:4", "c'8 d'8 e'8 f'8 g'8")
     tuplets = [tuplet_1, tuplet_2]
 
     with pytest.raises(Exception):
@@ -317,8 +317,8 @@ def test_mutate_fuse_09():
 
 
 def test_mutate_fuse_10():
-    tuplet_1 = abjad.Tuplet((2, 3), "c'8")
-    tuplet_2 = abjad.Tuplet((2, 3), "c'4")
+    tuplet_1 = abjad.Tuplet("3:2", "c'8")
+    tuplet_2 = abjad.Tuplet("3:2", "c'4")
     voice = abjad.Voice([tuplet_1, tuplet_2, abjad.Note("c'4")])
     abjad.makers.tweak_tuplet_bracket_edge_height(voice)
     leaves = abjad.select.leaves(voice)

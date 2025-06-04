@@ -489,7 +489,7 @@ def test_Parentage_orphan_01():
 
 
 def test_Parentage_root_01():
-    tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
     staff = abjad.Staff([tuplet])
     leaves = abjad.select.leaves(staff)
 

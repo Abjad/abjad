@@ -26,7 +26,7 @@ def test_LilyPondParser__containers__Container_01():
 def test_LilyPondParser__containers__Tuplet_01():
     pitches = abjad.makers.make_pitches([0, 2, 4])
     notes = abjad.makers.make_notes(pitches, [abjad.Duration(1, 8)])
-    target = abjad.Tuplet((2, 3), notes)
+    target = abjad.Tuplet("3:2", notes)
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""

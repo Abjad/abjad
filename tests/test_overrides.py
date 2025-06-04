@@ -2,7 +2,7 @@ import abjad
 
 
 def test_Tuplet_grob_override_01():
-    tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8 f'8")
+    tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8 f'8")
     abjad.override(tuplet).Glissando.thickness = 3
     abjad.makers.tweak_tuplet_bracket_edge_height(tuplet)
 

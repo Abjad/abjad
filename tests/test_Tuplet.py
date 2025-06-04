@@ -4,7 +4,7 @@ import abjad
 
 
 def test_Tuplet___copy___01():
-    tuplet_1 = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    tuplet_1 = abjad.Tuplet("3:2", "c'8 d'8 e'8")
     abjad.override(tuplet_1).NoteHead.color = "#red"
 
     assert abjad.lilypond(tuplet_1) == abjad.string.normalize(
@@ -47,35 +47,23 @@ def test_Tuplet___init___01():
     assert not len(tuplet)
 
 
-# TODO: move to test_get_timespan.py
-def test_Tuplet_get_timespan_01():
-    staff = abjad.Staff(r"c'4 d'4 \tuplet 3/2 { e'4 f'4 g'4 }")
-    leaves = abjad.select.leaves(staff)
-    score = abjad.Score([staff])
-    mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
-    abjad.attach(mark, leaves[0])
+def test_Tuplet___init__02():
+    r"""
+    Abjad parses LilyPond's \tuplet command.
+    """
 
-    assert abjad.lilypond(score) == abjad.string.normalize(
+    voice = abjad.Voice(r"\tuplet 6/4 { c'4 d' e' }")
+
+    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
-        \new Score
-        <<
-            \new Staff
+        \new Voice
+        {
+            \tuplet 6/4
             {
-                \tempo 4=60
                 c'4
                 d'4
-                \tuplet 3/2
-                {
-                    e'4
-                    f'4
-                    g'4
-                }
+                e'4
             }
-        >>
+        }
         """
     )
-
-    assert abjad.get.timespan(staff, in_seconds=True) == abjad.Timespan(0, 4)
-    assert abjad.get.timespan(staff[0], in_seconds=True) == abjad.Timespan(0, 1)
-    assert abjad.get.timespan(staff[1], in_seconds=True) == abjad.Timespan(1, 2)
-    assert abjad.get.timespan(staff[-1], in_seconds=True) == abjad.Timespan(2, 4)

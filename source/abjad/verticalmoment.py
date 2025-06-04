@@ -1,6 +1,9 @@
+import typing
+
 from . import enumerate as _enumerate
 from . import iterate as _iterate
 from . import parentage as _parentage
+from . import pitch as _pitch
 from . import score as _score
 from . import select as _select
 from . import sequence as _sequence
@@ -667,7 +670,7 @@ def iterate_vertical_moments(components, reverse=None):
     return tuple(moments)
 
 
-def iterate_leaf_pairs(components):
+def iterate_leaf_pairs(components) -> typing.Iterator:
     r"""
     Iterates leaf pairs.
 
@@ -721,8 +724,6 @@ def iterate_leaf_pairs(components):
         [Note("g'4"), Note('g,4')]
 
     Iterates leaf pairs left-to-right and top-to-bottom.
-
-    Returns generator.
     """
     vertical_moments = iterate_vertical_moments(components)
     for moment_1, moment_2 in _sequence.nwise(vertical_moments):
@@ -736,7 +737,9 @@ def iterate_leaf_pairs(components):
             yield list(pair)
 
 
-def iterate_pitch_pairs(components):
+def iterate_pitch_pairs(
+    components,
+) -> typing.Iterator[tuple[_pitch.NamedPitch, _pitch.NamedPitch]]:
     r"""
     Iterates pitch pairs.
 
@@ -821,7 +824,6 @@ def iterate_pitch_pairs(components):
         (NamedPitch("e'"), NamedPitch("g''"))
         (NamedPitch("f''"), NamedPitch("g''"))
 
-    Returns generator.
     """
     for leaf_pair in iterate_leaf_pairs(components):
         pitches = sorted(_iterate.pitches(leaf_pair[0]))

@@ -90,7 +90,7 @@ def test_Skip___init___03():
 
     chord = abjad.Chord([2, 3, 4], (1, 4))
     chords = abjad.mutate.copy(chord, 3)
-    tuplet = abjad.Tuplet((2, 3), chords)
+    tuplet = abjad.Tuplet("3:2", chords)
     duration = tuplet[0].written_duration
     skip = abjad.Skip(tuplet[0])
     assert isinstance(tuplet[0], abjad.Chord)
@@ -130,7 +130,7 @@ def test_Skip___init___05():
 
 
 def test_Skip___init___06():
-    tuplet = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
+    tuplet = abjad.Tuplet("3:2", "c'8 c'8 c'8")
     duration = tuplet[0].written_duration
     skip = abjad.Skip(tuplet[0])
     assert isinstance(tuplet[0], abjad.Note)
@@ -173,7 +173,7 @@ def test_Skip___init___09():
     Initialize skip from tupletized rest.
     """
 
-    tuplet = abjad.Tuplet((2, 3), "r8 r8 r8")
+    tuplet = abjad.Tuplet("3:2", "r8 r8 r8")
     duration = tuplet[0].written_duration
     skip = abjad.Skip(tuplet[0])
     assert isinstance(skip, abjad.Skip)

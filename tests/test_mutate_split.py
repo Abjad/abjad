@@ -1306,8 +1306,8 @@ def test_mutate_split_07():
     """
 
     voice = abjad.Voice()
-    voice.append(abjad.Tuplet((2, 3), "c'8 d'8 e'8"))
-    voice.append(abjad.Tuplet((2, 3), "f'8 g'8 a'8"))
+    voice.append(abjad.Tuplet("3:2", "c'8 d'8 e'8"))
+    voice.append(abjad.Tuplet("3:2", "f'8 g'8 a'8"))
     leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
 
@@ -1571,7 +1571,7 @@ def test_mutate_split_12():
     Splits tuplet in score.
     """
 
-    tuplet = abjad.Tuplet((4, 5), "c'8 c'8 c'8 c'8 c'8")
+    tuplet = abjad.Tuplet("5:4", "c'8 c'8 c'8 c'8 c'8")
     voice = abjad.Voice([tuplet])
     staff = abjad.Staff([voice])
     abjad.beam(tuplet[:])

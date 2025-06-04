@@ -128,7 +128,7 @@ def test_get_leaf_05():
     Tuplet.
     """
 
-    tuplet = abjad.Tuplet((2, 3), "c'8 cs'8 d'8")
+    tuplet = abjad.Tuplet("3:2", "c'8 cs'8 d'8")
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -195,8 +195,8 @@ def test_get_leaf_07():
     Tuplets inside a voice.
     """
 
-    tuplet_1 = abjad.Tuplet((2, 3), "c'8 cs'8 d'8")
-    tuplet_2 = abjad.Tuplet((2, 3), "ef'8 e'8 f'8")
+    tuplet_1 = abjad.Tuplet("3:2", "c'8 cs'8 d'8")
+    tuplet_2 = abjad.Tuplet("3:2", "ef'8 e'8 f'8")
     voice = abjad.Voice([tuplet_1, tuplet_2])
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -652,9 +652,9 @@ def test_get_leaf_17():
     """
 
     notes = [abjad.Note(i, abjad.Duration(1, 8)) for i in range(3)]
-    tuplet_1 = abjad.Tuplet((2, 3), notes)
+    tuplet_1 = abjad.Tuplet("3:2", notes)
     notes = [abjad.Note(i, abjad.Duration(1, 8)) for i in range(4, 7)]
-    tuplet_2 = abjad.Tuplet((2, 3), notes)
+    tuplet_2 = abjad.Tuplet("3:2", notes)
     voice = abjad.Voice([tuplet_1, abjad.Note(3, (1, 8)), tuplet_2])
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -690,9 +690,9 @@ def test_get_leaf_18():
     Does connect through asymmetrically nested tuplets.
     """
 
-    inner_tuplet = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
+    inner_tuplet = abjad.Tuplet("3:2", "c'8 c'8 c'8")
     contents = [abjad.Note("c'4"), inner_tuplet, abjad.Note("c'4")]
-    tuplet = abjad.Tuplet((2, 3), contents)
+    tuplet = abjad.Tuplet("3:2", contents)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -1049,7 +1049,7 @@ def test__inspect_are_logical_voice_03():
     Tuplet and leaves all logical voice.
     """
 
-    tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
 
     r"""
     \tuplet 3/2

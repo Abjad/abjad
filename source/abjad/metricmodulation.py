@@ -39,7 +39,7 @@ class MetricModulation:
         With tuplets:
 
         >>> metric_modulation = abjad.MetricModulation(
-        ...     left_rhythm=abjad.Tuplet((4, 5), "c'4"),
+        ...     left_rhythm=abjad.Tuplet("5:4", "c'4"),
         ...     right_rhythm=abjad.Note("c'4"),
         ... )
 
@@ -56,7 +56,7 @@ class MetricModulation:
 
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c'4"),
-        ...     right_rhythm=abjad.Tuplet((4, 5), "c'4"),
+        ...     right_rhythm=abjad.Tuplet("5:4", "c'4"),
         ... )
 
         >>> lilypond_file = abjad.LilyPondFile(
@@ -76,7 +76,7 @@ class MetricModulation:
 
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c16."),
-        ...     right_rhythm=abjad.Tuplet((2, 3), "c8"),
+        ...     right_rhythm=abjad.Tuplet("3:2", "c8"),
         ... )
 
         >>> lilypond_file = abjad.LilyPondFile(
@@ -195,7 +195,7 @@ class MetricModulation:
         >>> durations = abjad.makers.make_durations([(5, 16)])
         >>> pitches = abjad.makers.make_pitches([0])
         >>> notes = abjad.makers.make_notes(pitches, durations)
-        >>> tuplet = abjad.Tuplet((2, 3), notes)
+        >>> tuplet = abjad.Tuplet("3:2", notes)
         >>> abjad.makers.tweak_tuplet_bracket_edge_height(tuplet)
         >>> metric_modulation = abjad.MetricModulation(
         ...     left_rhythm=abjad.Note("c'4"),
@@ -367,7 +367,7 @@ class MetricModulation:
             ...     right_rhythm=abjad.Note("c'4."),
             ... )
             >>> metric_modulation_2 = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
+            ...     left_rhythm=abjad.Tuplet("3:2", [abjad.Note("c'4")]),
             ...     right_rhythm=abjad.Note("c'4"),
             ... )
             >>> durations = abjad.makers.make_durations([(5, 16)])
@@ -567,7 +567,7 @@ class MetricModulation:
         ..  container:: example
 
             >>> metric_modulation = abjad.MetricModulation(
-            ...     left_rhythm=abjad.Tuplet((2, 3), [abjad.Note("c'4")]),
+            ...     left_rhythm=abjad.Tuplet("3:2", [abjad.Note("c'4")]),
             ...     right_rhythm=abjad.Note("c'4"),
             ... )
             >>> metric_modulation.ratio

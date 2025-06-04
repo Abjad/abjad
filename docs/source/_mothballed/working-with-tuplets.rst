@@ -10,7 +10,7 @@ You can create tuplets from a LilyPond input string:
 
 ::
 
-    >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
     >>> abjad.show(tuplet)
 
 
@@ -22,7 +22,7 @@ You can also make tuplets from a list of other components:
 ::
 
     >>> leaves = [abjad.Note("fs'8"), abjad.Note("g'8"), abjad.Rest('r8')]
-    >>> tuplet = abjad.Tuplet((2, 3), leaves)
+    >>> tuplet = abjad.Tuplet("3:2", leaves)
     >>> abjad.show(tuplet)
 
 Understanding the interpreter representation of a tuplet

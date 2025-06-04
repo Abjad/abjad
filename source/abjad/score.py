@@ -879,8 +879,8 @@ class Container(Component):
             Deletes first tuplet in voice:
 
             >>> voice = abjad.Voice()
-            >>> voice.append(abjad.Tuplet((4, 6), "c'4 d'4 e'4"))
-            >>> voice.append(abjad.Tuplet((2, 3), "e'4 d'4 c'4"))
+            >>> voice.append(abjad.Tuplet("6:4", "c'4 d'4 e'4"))
+            >>> voice.append(abjad.Tuplet("3:2", "e'4 d'4 c'4"))
             >>> leaves = abjad.select.leaves(voice)
             >>> abjad.slur(leaves)
             >>> abjad.show(voice) # doctest: +SKIP
@@ -1005,7 +1005,7 @@ class Container(Component):
         """
         return ([],)
 
-    def __iter__(self):
+    def __iter__(self) -> typing.Iterator:
         """
         Iterates container.
 
@@ -1028,8 +1028,6 @@ class Container(Component):
             False
 
         Yields container elements.
-
-        Returns generator.
         """
         return iter(self.components)
 
@@ -5062,143 +5060,24 @@ class Tuplet(Container):
 
     ..  container:: example
 
-        A nested tuplet:
-
-        >>> second_tuplet = abjad.Tuplet("7:4", "g'4. ( a'16 )")
-        >>> tuplet.insert(1, second_tuplet)
-        >>> abjad.makers.tweak_tuplet_bracket_edge_height(tuplet)
-        >>> abjad.show(tuplet) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tweak edge-height #'(0.7 . 0)
-            \tuplet 6/4
-            {
-                c'8
-                \tuplet 7/4
-                {
-                    g'4.
-                    (
-                    a'16
-                    )
-                }
-                d'8
-                e'8
-            }
-
-
-    ..  container:: example
-
-        A doubly nested tuplet:
-
-            >>> third_tuplet = abjad.Tuplet("5:4", [])
-            >>> third_tuplet.extend("e''32 [ ef''32 d''32 cs''32 cqs''32 ]")
-            >>> second_tuplet.insert(1, third_tuplet)
-            >>> abjad.makers.tweak_tuplet_bracket_edge_height(tuplet)
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tweak edge-height #'(0.7 . 0)
-            \tuplet 6/4
-            {
-                c'8
-                \tweak edge-height #'(0.7 . 0)
-                \tuplet 7/4
-                {
-                    g'4.
-                    (
-                    \tuplet 5/4
-                    {
-                        e''32
-                        [
-                        ef''32
-                        d''32
-                        cs''32
-                        cqs''32
-                        ]
-                    }
-                    a'16
-                    )
-                }
-                d'8
-                e'8
-            }
-
-    ..  container:: example
-
-        Selects language:
-
-        >>> abjad.Tuplet("6:4", "do'2 dod' re'", language="français")
-        Tuplet('6:4', "c'2 cs'2 d'2")
-
-    ..  container:: example
-
-        Tuplets can be entered as LilyPond input:
-
-        >>> voice = abjad.Voice(r"\tuplet 6/4 { c'4 d' e' }")
-        >>> abjad.show(voice) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(voice)
-            >>> print(string)
-            \new Voice
-            {
-                \tuplet 6/4
-                {
-                    c'4
-                    d'4
-                    e'4
-                }
-            }
-
-        >>> voice = abjad.Voice(r"\times 4/6 { c'4 d' e' }")
-        >>> abjad.show(voice) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(voice)
-            >>> print(string)
-            \new Voice
-            {
-                \tuplet 6/4
-                {
-                    c'4
-                    d'4
-                    e'4
-                }
-            }
-
-    ..  container:: example
-
         Tweak tuplets like this:
 
-        >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 ( d'4 e'4 )")
+        >>> tuplet_1 = abjad.Tuplet("3:2", "c'4 ( d'4 e'4 )")
         >>> abjad.tweak(tuplet_1, r"\tweak color #red")
         >>> abjad.tweak(tuplet_1, r"\tweak staff-padding 2")
 
-        >>> tuplet_2 = abjad.Tuplet((2, 3), "c'4 ( d'4 e'4 )")
+        >>> tuplet_2 = abjad.Tuplet("3:2", "c'4 ( d'4 e'4 )")
         >>> abjad.tweak(tuplet_2, r"\tweak color #green")
         >>> abjad.tweak(tuplet_2, r"\tweak staff-padding 2")
 
-        >>> tuplet_3 = abjad.Tuplet((5, 4), [tuplet_1, tuplet_2])
+        >>> tuplet_3 = abjad.Tuplet("4:5", [tuplet_1, tuplet_2])
         >>> abjad.tweak(tuplet_3, r"\tweak color #blue")
         >>> abjad.tweak(tuplet_3, r"\tweak staff-padding 4")
 
-        >>> staff = abjad.Staff([tuplet_3])
+        >>> staff = abjad.Staff(r"\time 6/4 r4")
+        >>> staff.append(tuplet_3)
         >>> score = abjad.Score([staff], name="Score")
         >>> abjad.makers.tweak_tuplet_number_text(score)
-        >>> leaves = abjad.select.leaves(staff)
-        >>> abjad.attach(abjad.TimeSignature((5, 4)), leaves[0])
-        >>> literal = abjad.LilyPondLiteral(
-        ...     r"\set tupletFullLength = ##t", site="opening"
-        ... )
-        >>> abjad.attach(literal, staff)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -5207,7 +5086,8 @@ class Tuplet(Container):
             >>> print(string)
             \new Staff
             {
-                \set tupletFullLength = ##t
+                \time 6/4
+                r4
                 \tweak color #blue
                 \tweak staff-padding 4
                 \tweak text #tuplet-number::calc-fraction-text
@@ -5217,7 +5097,6 @@ class Tuplet(Container):
                     \tweak staff-padding 2
                     \tuplet 3/2
                     {
-                        \time 5/4
                         c'4
                         (
                         d'4
@@ -5236,10 +5115,6 @@ class Tuplet(Container):
                     }
                 }
             }
-
-        ..  todo:: Report LilyPond bug that results from removing tupletFullLength
-            in the example above: blue tuplet bracket shrinks to encompass only the
-            second underlying tuplet.
 
     """
 
@@ -5540,7 +5415,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+            >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -5559,8 +5434,8 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
-            >>> tuplet_2 = abjad.Tuplet((2, 3), "d'4 e'4 f'4")
+            >>> tuplet_1 = abjad.Tuplet("3:2", "c'4 d'4 e'4")
+            >>> tuplet_2 = abjad.Tuplet("3:2", "d'4 e'4 f'4")
             >>> staff = abjad.Staff([tuplet_1, tuplet_2])
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -5623,7 +5498,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+            >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> tuplet.implied_prolation
@@ -5639,7 +5514,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+            >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
 
             >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -5660,7 +5535,7 @@ class Tuplet(Container):
 
             Gets tuplet multiplier:
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+            >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> tuplet.multiplier
@@ -5706,9 +5581,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            >>> tuplet = abjad.Tuplet(
-            ...     (2, 3), "c'4 d' e'", tag=abjad.Tag('RED')
-            ... )
+            >>> tuplet = abjad.Tuplet("3:2", "c'4 d' e'", tag=abjad.Tag('RED'))
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> string = abjad.lilypond(tuplet, tags=True)
@@ -5746,7 +5619,7 @@ class Tuplet(Container):
 
             Appends note to tuplet:
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'4 ( d'4 f'4 )")
+            >>> tuplet = abjad.Tuplet("3:2", "c'4 ( d'4 f'4 )")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -5783,39 +5656,50 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Appends note to tuplet and preserves tuplet duration:
+            Appends note to tuplet and changes tuplet multiplier to preserve
+            tuplet duration:
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'4 ( d'4 f'4 )")
-            >>> abjad.show(tuplet) # doctest: +SKIP
+            >>> tuplet = abjad.Tuplet("3:2", "c'4 ( d'4 f'4 )")
+            >>> abjad.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")
+            >>> voice = abjad.Voice([tuplet])
+            >>> abjad.show(voice) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(tuplet)
+                >>> string = abjad.lilypond(voice)
                 >>> print(string)
-                \tuplet 3/2
+                \new Voice
                 {
-                    c'4
-                    (
-                    d'4
-                    f'4
-                    )
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \tuplet 3/2
+                    {
+                        c'4
+                        (
+                        d'4
+                        f'4
+                        )
+                    }
                 }
 
             >>> tuplet.append(abjad.Note("e'4"), preserve_duration=True)
-            >>> abjad.show(tuplet) # doctest: +SKIP
+            >>> abjad.show(voice) # doctest: +SKIP
 
             ..  docs::
 
-                >>> string = abjad.lilypond(tuplet)
+                >>> string = abjad.lilypond(voice)
                 >>> print(string)
-                \tuplet 2/1
+                \new Voice
                 {
-                    c'4
-                    (
-                    d'4
-                    f'4
-                    )
-                    e'4
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \tuplet 2/1
+                    {
+                        c'4
+                        (
+                        d'4
+                        f'4
+                        )
+                        e'4
+                    }
                 }
 
         """
@@ -5836,7 +5720,7 @@ class Tuplet(Container):
 
             Augmented tuplet:
 
-            >>> tuplet = abjad.Tuplet((4, 3), "c'8 d'8 e'8")
+            >>> tuplet = abjad.Tuplet("3:4", "c'8 d'8 e'8")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> tuplet.augmentation()
@@ -5846,7 +5730,7 @@ class Tuplet(Container):
 
             Diminished tuplet:
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
+            >>> tuplet = abjad.Tuplet("3:2", "c'4 d'4 e'4")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> tuplet.augmentation()
@@ -5856,7 +5740,7 @@ class Tuplet(Container):
 
             Trivial tuplet:
 
-            >>> tuplet = abjad.Tuplet((1, 1), "c'8. d'8. e'8.")
+            >>> tuplet = abjad.Tuplet("1:1", "c'8. d'8. e'8.")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> tuplet.augmentation()
@@ -5876,7 +5760,7 @@ class Tuplet(Container):
 
             Augmented tuplet:
 
-            >>> tuplet = abjad.Tuplet((4, 3), "c'8 d'8 e'8")
+            >>> tuplet = abjad.Tuplet("3:4", "c'8 d'8 e'8")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> tuplet.diminution()
@@ -5886,7 +5770,7 @@ class Tuplet(Container):
 
             Diminished tuplet:
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
+            >>> tuplet = abjad.Tuplet("3:2", "c'4 d'4 e'4")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> tuplet.diminution()
@@ -5896,7 +5780,7 @@ class Tuplet(Container):
 
             Trivial tuplet:
 
-            >>> tuplet = abjad.Tuplet((1, 1), "c'8. d'8. e'8.")
+            >>> tuplet = abjad.Tuplet("1:1", "c'8. d'8. e'8.")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             >>> tuplet.diminution()
@@ -5941,7 +5825,7 @@ class Tuplet(Container):
 
             Extends tuplet with three notes:
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'4 ( d'4 f'4 )")
+            >>> tuplet = abjad.Tuplet("3:2", "c'4 ( d'4 f'4 )")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -5983,7 +5867,7 @@ class Tuplet(Container):
 
             Extends tuplet with three notes and preserves tuplet duration:
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'4 ( d'4 f'4 )")
+            >>> tuplet = abjad.Tuplet("3:2", "c'4 ( d'4 f'4 )")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6068,7 +5952,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            >>> tuplet = abjad.Tuplet((1, 3), "c'4 d' e'")
+            >>> tuplet = abjad.Tuplet("3:1", "c'4 d' e'")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6104,7 +5988,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            >>> tuplet = abjad.Tuplet((8, 3), "c'32 d'32 e'32")
+            >>> tuplet = abjad.Tuplet("3:8", "c'32 d'32 e'32")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -6143,7 +6027,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            >>> tuplet = abjad.Tuplet((5, 12), "c'4 d'4 e'4")
+            >>> tuplet = abjad.Tuplet("12:5", "c'4 d'4 e'4")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -6201,7 +6085,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            >>> tuplet = abjad.Tuplet((3, 2), "r4 r r")
+            >>> tuplet = abjad.Tuplet("2:3", "r4 r r")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -6231,7 +6115,7 @@ class Tuplet(Container):
 
             Rewrites single dots as 3:2 prolation:
 
-            >>> tuplet = abjad.Tuplet((1, 1), "c'8. c'8.")
+            >>> tuplet = abjad.Tuplet("1:1", "c'8. c'8.")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -6264,7 +6148,7 @@ class Tuplet(Container):
 
             Rewrites double dots as 7:4 prolation:
 
-            >>> tuplet = abjad.Tuplet((1, 1), "c'8.. c'8..")
+            >>> tuplet = abjad.Tuplet("1:1", "c'8.. c'8..")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -6297,7 +6181,7 @@ class Tuplet(Container):
 
             Does nothing when dot counts differ:
 
-            >>> tuplet = abjad.Tuplet((1, 1), "c'8. d'8. e'8")
+            >>> tuplet = abjad.Tuplet("1:1", "c'8. d'8. e'8")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -6332,7 +6216,7 @@ class Tuplet(Container):
 
             Does nothing when leaves carry no dots:
 
-            >>> tuplet = abjad.Tuplet((3, 2), "c'8 d' e'")
+            >>> tuplet = abjad.Tuplet("2:3", "c'8 d' e'")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -6392,7 +6276,7 @@ class Tuplet(Container):
 
             Changes augmented tuplet to diminished:
 
-            >>> tuplet = abjad.Tuplet((4, 3), "c'8 d'8 e'8")
+            >>> tuplet = abjad.Tuplet("3:4", "c'8 d'8 e'8")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -6430,7 +6314,7 @@ class Tuplet(Container):
 
             Changes diminished tuplet to augmented:
 
-            >>> tuplet = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
+            >>> tuplet = abjad.Tuplet("3:2", "c'4 d'4 e'4")
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -6467,7 +6351,7 @@ class Tuplet(Container):
 
             REGRESSION. Leaves trivial tuplets unchanged:
 
-            >>> tuplet = abjad.Tuplet((1, 1), "c'4 d'4 e'4")
+            >>> tuplet = abjad.Tuplet("1:1", "c'4 d'4 e'4")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -6524,7 +6408,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            >>> tuplet = abjad.Tuplet((1, 1), "c'8 d'8 e'8")
+            >>> tuplet = abjad.Tuplet("1:1", "c'8 d'8 e'8")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -6547,7 +6431,7 @@ class Tuplet(Container):
 
             Tuplet is not trivial when multipliers attach to tuplet leaves:
 
-            >>> tuplet = abjad.Tuplet((1, 1), "c'8 d'8 e'8")
+            >>> tuplet = abjad.Tuplet("1:1", "c'8 d'8 e'8")
             >>> tuplet[0].multiplier = (3, 2)
             >>> tuplet[-1].multiplier = (1, 2)
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
@@ -6587,7 +6471,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            >>> tuplet = abjad.Tuplet((3, 4), "c'4 c'4")
+            >>> tuplet = abjad.Tuplet("4:3", "c'4 c'4")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> staff = abjad.Staff([tuplet])
             >>> score = abjad.Score([staff], name="Score")
@@ -6631,7 +6515,7 @@ class Tuplet(Container):
 
             Nontrivializable tuplet:
 
-            >>> tuplet = abjad.Tuplet((3, 5), "c'4 c'4 c'4 c'4 c'4")
+            >>> tuplet = abjad.Tuplet("5:3", "c'4 c'4 c'4 c'4 c'4")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> staff = abjad.Staff([tuplet])
             >>> score = abjad.Score([staff], name="Score")
@@ -6665,7 +6549,7 @@ class Tuplet(Container):
 
             REGRESSION. Nontrivializable tuplet:
 
-            >>> tuplet = abjad.Tuplet((3, 4), "c'2. c4")
+            >>> tuplet = abjad.Tuplet("4:3", "c'2. c4")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> staff = abjad.Staff([tuplet])
             >>> score = abjad.Score([staff], name="Score")
@@ -6707,7 +6591,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            >>> tuplet = abjad.Tuplet((3, 4), "c'2")
+            >>> tuplet = abjad.Tuplet("4:3", "c'2")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
             >>> abjad.show(tuplet) # doctest: +SKIP
 

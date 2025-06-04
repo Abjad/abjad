@@ -51,13 +51,13 @@ def test_get_timespan_06():
 
 
 def test_get_timespan_07():
-    tuplet = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
+    tuplet = abjad.Tuplet("3:2", "c'8 c'8 c'8")
     for i, x in enumerate(tuplet):
         assert abjad.get.timespan(x).start_offset == i * abjad.Offset(1, 12)
 
 
 def test_get_timespan_08():
-    tuplet_1 = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
+    tuplet_1 = abjad.Tuplet("3:2", "c'8 c'8 c'8")
     voice = abjad.Voice([abjad.Note(0, (1, 8)), tuplet_1, abjad.Note(0, (1, 8))])
     offset = 0
     durations = [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]
@@ -72,8 +72,8 @@ def test_get_timespan_09():
     Offset works on nested tuplets.
     """
 
-    tuplet_1 = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
-    tuplet = abjad.Tuplet((2, 3), [abjad.Note("c'4"), tuplet_1, abjad.Note("c'4")])
+    tuplet_1 = abjad.Tuplet("3:2", "c'8 c'8 c'8")
+    tuplet = abjad.Tuplet("3:2", [abjad.Note("c'4"), tuplet_1, abjad.Note("c'4")])
     offset = 0
     durations = [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]
     leaves = abjad.select.leaves(tuplet)
@@ -231,9 +231,9 @@ def test_get_timespan_19():
 
     voice = abjad.Voice(
         [
-            abjad.Tuplet((2, 3), "c'8 d'8 e'8"),
-            abjad.Tuplet((2, 3), "c'8 d'8 e'8"),
-            abjad.Tuplet((2, 3), "c'8 d'8 e'8"),
+            abjad.Tuplet("3:2", "c'8 d'8 e'8"),
+            abjad.Tuplet("3:2", "c'8 d'8 e'8"),
+            abjad.Tuplet("3:2", "c'8 d'8 e'8"),
         ]
     )
     assert abjad.get.timespan(voice[0]).start_offset == 0 * abjad.Offset(1, 4)
@@ -246,7 +246,7 @@ def test_get_timespan_20():
     Offsets work on tuplets between notes.
     """
 
-    tuplet_1 = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
+    tuplet_1 = abjad.Tuplet("3:2", "c'8 c'8 c'8")
     voice = abjad.Voice([abjad.Note(0, (1, 8)), tuplet_1, abjad.Note(0, (1, 8))])
     assert abjad.get.timespan(voice[0]).start_offset == 0 * abjad.Offset(1, 8)
     assert abjad.get.timespan(voice[1]).start_offset == 1 * abjad.Offset(1, 8)
@@ -258,9 +258,9 @@ def test_get_timespan_21():
     Offsets work on nested tuplets.
     """
 
-    tuplet_1 = abjad.Tuplet((1, 2), "c'8 d'8 e'8 f'8")
+    tuplet_1 = abjad.Tuplet("2:1", "c'8 d'8 e'8 f'8")
     contents = [abjad.Note("c'4"), tuplet_1, abjad.Note("c'4")]
-    tuplet = abjad.Tuplet((2, 3), contents)
+    tuplet = abjad.Tuplet("3:2", contents)
     assert abjad.get.timespan(tuplet[0]).start_offset == 0 * abjad.Offset(1, 6)
     assert abjad.get.timespan(tuplet[1]).start_offset == 1 * abjad.Offset(1, 6)
     assert abjad.get.timespan(tuplet[2]).start_offset == 2 * abjad.Offset(1, 6)
@@ -373,3 +373,36 @@ def test_Tuplet_timespan_01():
     assert abjad.get.timespan(staff[0]) == abjad.Timespan(0, (1, 4))
     assert abjad.get.timespan(staff[1]) == abjad.Timespan((1, 4), (1, 2))
     assert abjad.get.timespan(staff[-1]) == abjad.Timespan((1, 2), 1)
+
+
+def test_Tuplet_timespan_02():
+    staff = abjad.Staff(r"c'4 d'4 \tuplet 3/2 { e'4 f'4 g'4 }")
+    leaves = abjad.select.leaves(staff)
+    score = abjad.Score([staff])
+    mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
+    abjad.attach(mark, leaves[0])
+
+    assert abjad.lilypond(score) == abjad.string.normalize(
+        r"""
+        \new Score
+        <<
+            \new Staff
+            {
+                \tempo 4=60
+                c'4
+                d'4
+                \tuplet 3/2
+                {
+                    e'4
+                    f'4
+                    g'4
+                }
+            }
+        >>
+        """
+    )
+
+    assert abjad.get.timespan(staff, in_seconds=True) == abjad.Timespan(0, 4)
+    assert abjad.get.timespan(staff[0], in_seconds=True) == abjad.Timespan(0, 1)
+    assert abjad.get.timespan(staff[1], in_seconds=True) == abjad.Timespan(1, 2)
+    assert abjad.get.timespan(staff[-1], in_seconds=True) == abjad.Timespan(2, 4)

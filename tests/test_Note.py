@@ -252,7 +252,7 @@ def test_Note___init___07():
 
     chord = abjad.Chord([2, 3, 4], (1, 4))
     chords = abjad.mutate.copy(chord, 3)
-    tuplet = abjad.Tuplet((2, 3), chords)
+    tuplet = abjad.Tuplet("3:2", chords)
     note = abjad.Note(tuplet[0])
 
     assert abjad.lilypond(note) == abjad.string.normalize(
@@ -307,7 +307,7 @@ def test_Note___init___10():
     Initializes note from tupletized rest.
     """
 
-    tuplet = abjad.Tuplet((2, 3), "r8 r8 r8")
+    tuplet = abjad.Tuplet("3:2", "r8 r8 r8")
     duration = tuplet[0].written_duration
     note = abjad.Note(tuplet[0])
 
@@ -356,7 +356,7 @@ def test_Note___init___13():
     Initializes note from tupletized skip.
     """
 
-    tuplet = abjad.Tuplet((2, 3), "s8 s8 s8")
+    tuplet = abjad.Tuplet("3:2", "s8 s8 s8")
     duration = tuplet[0].written_duration
     note = abjad.Note(tuplet[0])
 

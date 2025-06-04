@@ -265,7 +265,7 @@ def test_Chord___init___09():
     Initialize chord from tupletized skip.
     """
 
-    tuplet = abjad.Tuplet((2, 3), "s8 s8 s8")
+    tuplet = abjad.Tuplet("3:2", "s8 s8 s8")
     chord = abjad.Chord(tuplet[0])
 
     assert abjad.lilypond(chord) == "<>8"
@@ -318,7 +318,7 @@ def test_Chord___init___13():
     Initialize chord from tupletized rest.
     """
 
-    tuplet = abjad.Tuplet((2, 3), "r8 r8 r8")
+    tuplet = abjad.Tuplet("3:2", "r8 r8 r8")
     chord = abjad.Chord(tuplet[1])
 
     assert abjad.lilypond(chord) == "<>8"
@@ -345,7 +345,7 @@ def test_Chord___init___15():
     Initialize chord from tupletized note.
     """
 
-    tuplet = abjad.Tuplet((2, 3), "c'8 c'8 c'8")
+    tuplet = abjad.Tuplet("3:2", "c'8 c'8 c'8")
     chord = abjad.Chord(tuplet[1])
 
     assert abjad.lilypond(chord) == "<c'>8"

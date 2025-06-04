@@ -30,7 +30,7 @@ But now consider this measure:
 
 ::
 
-    >>> tuplet = abjad.Tuplet((4, 5), r"\time 4/16 c16 [ c c c c ]")
+    >>> tuplet = abjad.Tuplet("5:4", r"\time 4/16 c16 [ c c c c ]")
     >>> staff = abjad.Staff([tuplet], lilypond_type="RhythmicStaff")
     >>> leaves = abjad.select.leaves(staff)
 
