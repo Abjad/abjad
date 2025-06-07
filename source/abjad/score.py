@@ -5341,66 +5341,15 @@ class Tuplet(Container):
 
     @property
     def denominator(self) -> int | None:
-        r"""
-        Gets and sets preferred denominator of tuplet.
-
-        ..  container:: example
-
-            Gets preferred denominator of tuplet:
-
-            >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
-            >>> tuplet.denominator is None
-            True
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(tuplet)
-                >>> print(string)
-                \tuplet 3/2
-                {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-        ..  container:: example
-
-            Sets preferred denominator of tuplet:
-
-            >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(tuplet)
-                >>> print(string)
-                \tuplet 3/2
-                {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-            >>> tuplet.denominator = 4
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(tuplet)
-                >>> print(string)
-                \tuplet 6/4
-                {
-                    c'8
-                    d'8
-                    e'8
-                }
-
+        """
+        DEPRECATED: set tuplet multiplier (or ratio) directly.
         """
         return self._denominator
 
     @denominator.setter
     def denominator(self, argument):
+        # if argument is not None:
+        #     raise Exception("ASDF")
         if isinstance(argument, int):
             if not 0 < argument:
                 raise ValueError(argument)
