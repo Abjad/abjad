@@ -953,7 +953,7 @@ def with_indices(argument, direction=_enums.UP, prototype=None) -> None:
 
         Labels tuplet indices:
 
-        >>> tuplet = abjad.Tuplet((2, 3), "c'8 [ d'8 e'8 ]")
+        >>> tuplet = abjad.Tuplet("3:2", "c'8 [ d'8 e'8 ]")
         >>> tuplets = abjad.mutate.copy(tuplet, 4)
         >>> staff = abjad.Staff(tuplets)
         >>> abjad.label.with_indices(staff, prototype=abjad.Tuplet)

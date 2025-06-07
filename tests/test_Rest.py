@@ -114,7 +114,7 @@ def test_Rest___init___04():
 
     chord = abjad.Chord([2, 3, 4], abjad.Duration(1, 4))
     chords = abjad.mutate.copy(chord, 3)
-    tuplet = abjad.Tuplet((2, 3), chords)
+    tuplet = abjad.Tuplet("3:2", chords)
     rest = abjad.Rest(tuplet[0])
 
     assert abjad.lilypond(rest) == abjad.string.normalize(
@@ -169,7 +169,7 @@ def test_Rest___init___07():
     Initialize rest from tupletted skip.
     """
 
-    tuplet = abjad.Tuplet((2, 3), "s4 s4 s4")
+    tuplet = abjad.Tuplet("3:2", "s4 s4 s4")
     rest = abjad.Rest(tuplet[0])
 
     assert abjad.lilypond(rest) == abjad.string.normalize(
@@ -220,7 +220,7 @@ def test_Rest___init___10():
     Initialize rest from tupletized note.
     """
 
-    tuplet = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
+    tuplet = abjad.Tuplet("3:2", "c'4 d'4 e'4")
     rest = abjad.Rest(tuplet[0])
 
     assert abjad.lilypond(rest) == abjad.string.normalize(

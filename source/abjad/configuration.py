@@ -1,4 +1,3 @@
-import collections
 import configparser
 import importlib
 import os
@@ -657,30 +656,13 @@ def list_all_functions(modules="abjad"):
 configuration = Configuration()
 
 
-def yield_all_modules(paths=None):
+def yield_all_modules(package_name: str = "abjad") -> typing.Iterator[types.ModuleType]:
     """
-    Yields all modules encountered in ``path``.
-
-    Returns generator.
+    Yields all submodules in the package named ``package_name``.
     """
-    _paths = []
-    if not paths:
-        _paths = configuration.abjad_directory
-    elif isinstance(paths, str):
-        module = importlib.import_module(paths)
-        _paths.extend(module.__path__)
-    elif isinstance(paths, types.ModuleType):
-        _paths.extend(paths.__path__)
-    elif isinstance(paths, collections.abc.Iterable):
-        for path in paths:
-            if isinstance(path, types.ModuleType):
-                _paths.extend(path.__path__)
-            elif isinstance(path, str):
-                module = importlib.import_module(path)
-                _paths.extend(module.__path__)
-            else:
-                raise ValueError(module)
-    for path in _paths:
-        for source_path in uqbar.apis.collect_source_paths([path]):
+    assert isinstance(package_name, str), repr(package_name)
+    module = importlib.import_module(package_name)
+    for path_string in module.__path__:
+        for source_path in uqbar.apis.collect_source_paths([path_string]):
             package_path = uqbar.apis.source_path_to_package_path(source_path)
             yield importlib.import_module(package_path)

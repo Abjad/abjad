@@ -19,7 +19,7 @@ def test_score_01():
         abjad.Score(),
         abjad.Skip((1, 4)),
         abjad.Staff(),
-        abjad.Tuplet((2, 3), "c'8 d'8 e'8"),
+        abjad.Tuplet("3:2", "c'8 d'8 e'8"),
         abjad.Voice(),
     ):
         with pytest.raises(AttributeError):

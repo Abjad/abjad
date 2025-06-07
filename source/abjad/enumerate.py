@@ -6,7 +6,7 @@ from . import math as _math
 from . import sequence as _sequence
 
 
-def _is_restricted_growth_function(sequence):
+def _is_restricted_growth_function(sequence) -> bool:
     """
     Is true when ``sequence`` is a restricted growth function.
 
@@ -38,8 +38,6 @@ def _is_restricted_growth_function(sequence):
 
     A restricted growth function is a sequence ``l`` such that ``l[0] == 1`` and such
     that ``l[i] <= max(l[:i]) + 1`` for ``1 <= i <= len(l)``.
-
-    Returns true or false.
     """
     try:
         for i, n in enumerate(sequence):
@@ -54,7 +52,7 @@ def _is_restricted_growth_function(sequence):
         return False
 
 
-def _partition_by_rgf(sequence, rgf):
+def _partition_by_rgf(sequence, rgf: list[int]) -> list[list]:
     """
     Partitions ``sequence`` by restricted growth function ``rgf``.
 
@@ -64,7 +62,6 @@ def _partition_by_rgf(sequence, rgf):
     >>> abjad.enumerate._partition_by_rgf(sequence, rgf)
     [[0, 1, 4], [2, 3, 5, 8], [6, 7], [9]]
 
-    Returns list of lists.
     """
     rgf = list(rgf)
     if not _is_restricted_growth_function(rgf):
@@ -73,17 +70,17 @@ def _partition_by_rgf(sequence, rgf):
         raise ValueError("lengths must be equal.")
     partition = []
     for part_index in range(max(rgf)):
-        part = []
+        part: list = []
         partition.append(part)
     for n, part_number in zip(sequence, rgf):
         part_index = part_number - 1
         part = partition[part_index]
         part.append(n)
     partition = [type(sequence)(_) for _ in partition]
-    return type(sequence)(partition)
+    return partition
 
 
-def _yield_restricted_growth_functions(length):
+def _yield_restricted_growth_functions(length) -> typing.Iterator[list[int]]:
     """
     Yields restricted growth functions of ``length``.
 
@@ -93,30 +90,28 @@ def _yield_restricted_growth_functions(length):
         >>> for rgf in rgfs:
         ...     rgf
         ...
-        (1, 1, 1, 1)
-        (1, 1, 1, 2)
-        (1, 1, 2, 1)
-        (1, 1, 2, 2)
-        (1, 1, 2, 3)
-        (1, 2, 1, 1)
-        (1, 2, 1, 2)
-        (1, 2, 1, 3)
-        (1, 2, 2, 1)
-        (1, 2, 2, 2)
-        (1, 2, 2, 3)
-        (1, 2, 3, 1)
-        (1, 2, 3, 2)
-        (1, 2, 3, 3)
-        (1, 2, 3, 4)
+        [1, 1, 1, 1]
+        [1, 1, 1, 2]
+        [1, 1, 2, 1]
+        [1, 1, 2, 2]
+        [1, 1, 2, 3]
+        [1, 2, 1, 1]
+        [1, 2, 1, 2]
+        [1, 2, 1, 3]
+        [1, 2, 2, 1]
+        [1, 2, 2, 2]
+        [1, 2, 2, 3]
+        [1, 2, 3, 1]
+        [1, 2, 3, 2]
+        [1, 2, 3, 3]
+        [1, 2, 3, 4]
 
-    Returns restricted growth functions in lex order.
-
-    Returns generator of tuples.
+    Yields restricted growth functions in lex order.
     """
     assert _math.is_positive_integer(length), repr(length)
     last_rgf = list(range(1, length + 1))
     rgf = length * [1]
-    yield tuple(rgf)
+    yield list(rgf)
     while not rgf == last_rgf:
         for i, x in enumerate(reversed(rgf)):
             stop = -(i + 1)
@@ -125,7 +120,7 @@ def _yield_restricted_growth_functions(length):
                 increased_part = [rgf[stop] + 1]
                 trailing_ones = i * [1]
                 rgf = first_part + increased_part + trailing_ones
-                yield tuple(rgf)
+                yield list(rgf)
                 break
 
 
@@ -206,7 +201,9 @@ def outer_product(argument):
     return result
 
 
-def yield_combinations(argument, minimum_length=None, maximum_length=None):
+def yield_combinations(
+    argument, minimum_length=None, maximum_length=None
+) -> typing.Iterator:
     """
     Yields combinations of sequence items.
 
@@ -305,8 +302,6 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
         'text'
 
     Yields combinations in binary string order.
-
-    Returns sequence generator.
     """
     length = len(argument)
     for i in range(2**length):
@@ -330,7 +325,7 @@ def yield_combinations(argument, minimum_length=None, maximum_length=None):
                 yield type(argument)(sublist)
 
 
-def yield_pairs(argument):
+def yield_pairs(argument) -> typing.Iterator:
     """
     Yields pairs sequence items.
 
@@ -375,7 +370,6 @@ def yield_pairs(argument):
         ...     pair
         ...
 
-    Returns generator of length-2 sequences.
     """
     for i, item in enumerate(argument):
         start = i + 1
@@ -384,7 +378,7 @@ def yield_pairs(argument):
             yield type(argument)(pair)
 
 
-def yield_partitions(argument):
+def yield_partitions(argument) -> typing.Iterator:
     """
     Yields partitions of sequence.
 
@@ -412,7 +406,6 @@ def yield_partitions(argument):
         [[0], [1], [2, 3]]
         [[0], [1], [2], [3]]
 
-    Returns generator of nested sequences.
     """
     length = len(argument) - 1
     for i in range(2**length):
@@ -431,7 +424,7 @@ def yield_partitions(argument):
         yield partition
 
 
-def yield_permutations(argument) -> typing.Generator[typing.Any, None, None]:
+def yield_permutations(argument) -> typing.Iterator:
     """
     Yields permutations of sequence.
 
@@ -447,7 +440,6 @@ def yield_permutations(argument) -> typing.Generator[typing.Any, None, None]:
         [3, 1, 2]
         [3, 2, 1]
 
-    Returns sequence generator.
     """
     _argument = list(argument)
     length = len(_argument)
@@ -456,7 +448,7 @@ def yield_permutations(argument) -> typing.Generator[typing.Any, None, None]:
         yield _sequence.permute(argument, permutation)
 
 
-def yield_set_partitions(argument):
+def yield_set_partitions(argument) -> typing.Iterator[list[list]]:
     """
     Yields set partitions of sequence.
 
@@ -482,8 +474,6 @@ def yield_set_partitions(argument):
         [[21], [22], [23], [24]]
 
     Returns set partitions in order of restricted growth function.
-
-    Returns generator of list of lists.
     """
     _argument = list(argument)
     length = len(_argument)
@@ -492,7 +482,9 @@ def yield_set_partitions(argument):
         yield partition
 
 
-def yield_subsequences(argument, minimum_length=0, maximum_length=None):
+def yield_subsequences(
+    argument, minimum_length=0, maximum_length=None
+) -> typing.Iterator:
     """
     Yields subsequences of ``sequence``.
 
@@ -559,7 +551,6 @@ def yield_subsequences(argument, minimum_length=0, maximum_length=None):
         [1, 2, 3]
         [2, 3, 4]
 
-    Returns sequence generator.
     """
     _argument = argument
     length = len(_argument)

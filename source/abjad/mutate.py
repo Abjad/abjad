@@ -933,8 +933,8 @@ def extract(argument):
         Extract tuplets:
 
         >>> voice = abjad.Voice()
-        >>> voice.append(abjad.Tuplet((3, 2), "c'4 e'4"))
-        >>> voice.append(abjad.Tuplet((3, 2), "d'4 f'4"))
+        >>> voice.append(abjad.Tuplet("2:3", "c'4 e'4"))
+        >>> voice.append(abjad.Tuplet("2:3", "d'4 f'4"))
         >>> abjad.makers.tweak_tuplet_number_text(voice)
         >>> leaves = abjad.select.leaves(voice)
         >>> staff = abjad.Staff([voice])
@@ -1000,8 +1000,8 @@ def extract(argument):
 
         >>> voice = abjad.Voice()
         >>> staff = abjad.Staff([voice])
-        >>> voice.append(abjad.Tuplet((3, 2), "c'4 e'4"))
-        >>> voice.append(abjad.Tuplet((3, 2), "d'4 f'4"))
+        >>> voice.append(abjad.Tuplet("2:3", "c'4 e'4"))
+        >>> voice.append(abjad.Tuplet("2:3", "d'4 f'4"))
         >>> abjad.makers.tweak_tuplet_number_text(voice)
         >>> score = abjad.Score([staff], name="Score")
         >>> leaves = abjad.select.leaves(staff)
@@ -1067,7 +1067,7 @@ def extract(argument):
         Extracting out-of-score component does nothing and returns
         component:
 
-        >>> tuplet = abjad.Tuplet((3, 2), "c'4 e'4")
+        >>> tuplet = abjad.Tuplet("2:3", "c'4 e'4")
         >>> abjad.makers.tweak_tuplet_number_text(tuplet)
         >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -1133,8 +1133,8 @@ def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
 
         Fuses parent-contiguous tuplets in selection:
 
-        >>> tuplet_1 = abjad.Tuplet((2, 3), "c'8 d' e'")
-        >>> tuplet_2 = abjad.Tuplet((2, 3), "c'16 d' e'")
+        >>> tuplet_1 = abjad.Tuplet("3:2", "c'8 d' e'")
+        >>> tuplet_2 = abjad.Tuplet("3:2", "c'16 d' e'")
         >>> voice = abjad.Voice([tuplet_1, tuplet_2])
         >>> staff = abjad.Staff([voice])
         >>> abjad.beam(tuplet_1[:])
@@ -1405,8 +1405,8 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
         Replaces in-score tuplet (and children of tuplet) with notes. Functions
         exactly the same as container setitem:
 
-        >>> tuplet_1 = abjad.Tuplet((2, 3), "c'4 d'4 e'4")
-        >>> tuplet_2 = abjad.Tuplet((2, 3), "d'4 e'4 f'4")
+        >>> tuplet_1 = abjad.Tuplet("3:2", "c'4 d'4 e'4")
+        >>> tuplet_2 = abjad.Tuplet("3:2", "d'4 e'4 f'4")
         >>> voice = abjad.Voice([tuplet_1, tuplet_2])
         >>> leaves = abjad.select.leaves(voice)
         >>> abjad.hairpin('p < f', leaves)
@@ -1753,7 +1753,7 @@ def scale(argument, multiplier) -> None:
 
         >>> staff = abjad.Staff()
         >>> score = abjad.Score([staff], name="Score")
-        >>> tuplet = abjad.Tuplet((4, 5), "c'8 d'8 e'8 f'8 g'8")
+        >>> tuplet = abjad.Tuplet("5:4", "c'8 d'8 e'8 f'8 g'8")
         >>> staff.append(tuplet)
         >>> time_signature = abjad.TimeSignature((4, 8))
         >>> leaf = abjad.get.leaf(staff, 0)
@@ -2444,7 +2444,7 @@ def swap(argument, container):
             }
 
         >>> containers = voice[:]
-        >>> tuplet = abjad.Tuplet((4, 6), [])
+        >>> tuplet = abjad.Tuplet("6:4", [])
         >>> abjad.mutate.swap(containers, tuplet)
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -2604,7 +2604,7 @@ def wrap(argument, container):
                 ]
             }
 
-        >>> tuplet = abjad.Tuplet((2, 3), [])
+        >>> tuplet = abjad.Tuplet("3:2", [])
         >>> abjad.mutate.wrap(staff[-3:], tuplet)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2640,7 +2640,7 @@ def wrap(argument, container):
         >>> pitches = abjad.makers.make_pitches([0, 2, 4])
         >>> durations = [abjad.Duration(1, 8)]
         >>> notes = abjad.makers.make_notes(pitches, durations)
-        >>> tuplet = abjad.Tuplet((2, 3), [])
+        >>> tuplet = abjad.Tuplet("3:2", [])
         >>> abjad.mutate.wrap(notes, tuplet)
         >>> abjad.show(tuplet) # doctest: +SKIP
 
@@ -2695,7 +2695,7 @@ def wrap(argument, container):
         >>> notes = [abjad.Note(n, (1, 1)) for n in range(4)]
         >>> staff = abjad.Staff(notes)
         >>> for note in staff:
-        ...     tuplet = abjad.Tuplet((2, 3))
+        ...     tuplet = abjad.Tuplet("3:2")
         ...     abjad.mutate.wrap(note, tuplet)
         ...
         >>> abjad.makers.tweak_tuplet_bracket_edge_height(staff)
@@ -2734,7 +2734,7 @@ def wrap(argument, container):
 
         >>> import pytest
         >>> staff = abjad.Staff("c'8 [ ( d' e' ] ) c' [ ( d' e' ] )")
-        >>> tuplet = abjad.Tuplet((2, 3), "g'8 a' fs'")
+        >>> tuplet = abjad.Tuplet("3:2", "g'8 a' fs'")
         >>> abjad.mutate.wrap(staff[-3:], tuplet)
         Traceback (most recent call last):
             ...

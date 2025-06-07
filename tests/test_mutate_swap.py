@@ -34,7 +34,7 @@ def test_Mutation_swap_01():
         """
     )
 
-    tuplet = abjad.Tuplet((3, 4), [])
+    tuplet = abjad.Tuplet("4:3", [])
     abjad.makers.tweak_tuplet_number_text(tuplet)
     abjad.mutate.swap(voice[:2], tuplet)
 
@@ -156,7 +156,7 @@ def test_Mutation_swap_03():
         """
     )
 
-    tuplet = abjad.Tuplet((3, 4), [])
+    tuplet = abjad.Tuplet("4:3", [])
     abjad.makers.tweak_tuplet_number_text(tuplet)
     abjad.mutate.swap(voice[1:2], tuplet)
 
@@ -211,7 +211,7 @@ def test_Mutation_swap_05():
     leaves = abjad.select.leaves(voice)
     abjad.beam(leaves)
 
-    tuplet = abjad.Tuplet((2, 3), "c'8 d'8 e'8")
+    tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
     with pytest.raises(Exception):
         abjad.mutate.swap(voice[1:2], tuplet)
 
@@ -248,7 +248,7 @@ def test_Mutation_swap_06():
         """
     )
 
-    tuplet = abjad.Tuplet((2, 3), [])
+    tuplet = abjad.Tuplet("3:2", [])
     with pytest.raises(Exception):
         abjad.mutate.swap([voice[0], voice[2]], tuplet)
 

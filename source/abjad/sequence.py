@@ -1551,11 +1551,7 @@ def join(sequence):
 
     ..  container:: example
 
-        >>> items = [(1, 2, 3), (), (4, 5), (), (6,)]
-        >>> sequence = list(items)
-        >>> sequence
-        [(1, 2, 3), (), (4, 5), (), (6,)]
-
+        >>> sequence = [(1, 2, 3), (), (4, 5), (), (6,)]
         >>> abjad.sequence.join(sequence)
         [(1, 2, 3, 4, 5, 6)]
 
@@ -1665,8 +1661,6 @@ def nwise(
         [3, 4]
         [4, 5]
 
-        Returns infinite generator.
-
         Iterates items 3 at a time. Cycles indefinitely:
 
         >>> sequence = list(range(10))
@@ -1689,8 +1683,6 @@ def nwise(
         [2, 3, 4]
         [3, 4, 5]
         [4, 5, 6]
-
-        Returns infinite generator.
 
         Iterates items 1 at a time:
 

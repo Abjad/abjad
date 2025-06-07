@@ -4099,7 +4099,7 @@ def sustained(argument) -> bool:
 
     ..  container:: example
 
-        >>> tuplet = abjad.Tuplet((3, 2), "c'4 ~ c' ~ c'")
+        >>> tuplet = abjad.Tuplet("2:3", "c'4 ~ c' ~ c'")
         >>> abjad.makers.tweak_tuplet_number_text(tuplet)
         >>> abjad.show(tuplet) # doctest: +SKIP
 
