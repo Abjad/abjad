@@ -6402,7 +6402,7 @@ class Tuplet(Container):
             False
 
         """
-        if self.multiplier != (1, 1):
+        if _duration.Duration(self.multiplier) != _duration.Duration(1, 1):
             return False
         for component in self:
             if isinstance(component, Tuplet):
