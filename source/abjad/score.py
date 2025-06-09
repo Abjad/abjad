@@ -5141,7 +5141,6 @@ class Tuplet(Container):
         multiplier="3:2",
         components=None,
         *,
-        denominator: int | None = None,
         hide: bool = False,
         language: str = "english",
         tag: _tag.Tag | None = None,
@@ -5159,7 +5158,6 @@ class Tuplet(Container):
             message = f"tuplet multiplier must be pair or string (not {multiplier!r})."
             raise ValueError(message)
         self.multiplier = pair
-        self.denominator = denominator
         self.hide = hide
 
     ### SPECIAL METHODS ###
@@ -5261,10 +5259,6 @@ class Tuplet(Container):
 
     def _get_multiplier_fraction_string(self):
         numerator, denominator = self.multiplier
-        if self.denominator is not None:
-            inverse_multiplier = fractions.Fraction(denominator, numerator)
-            pair = _duration.with_denominator(inverse_multiplier, self.denominator)
-            denominator, numerator = pair
         return f"{numerator}/{denominator}"
 
     def _get_preprolated_duration(self):
@@ -5295,10 +5289,6 @@ class Tuplet(Container):
 
     def _get_tuplet_command_string(self):
         numerator, denominator = self.multiplier
-        if self.denominator is not None:
-            inverse_multiplier = fractions.Fraction(denominator, numerator)
-            pair = _duration.with_denominator(inverse_multiplier, self.denominator)
-            denominator, numerator = pair
         string = rf"\tuplet {denominator}/{numerator}"
         return string
 
@@ -5338,24 +5328,6 @@ class Tuplet(Container):
         """
         numerator, denominator = self.multiplier
         return f"{denominator}:{numerator}"
-
-    @property
-    def denominator(self) -> int | None:
-        """
-        DEPRECATED: set tuplet multiplier (or ratio) directly.
-        """
-        return self._denominator
-
-    @denominator.setter
-    def denominator(self, argument):
-        # if argument is not None:
-        #     raise Exception("ASDF")
-        if isinstance(argument, int):
-            if not 0 < argument:
-                raise ValueError(argument)
-        elif not isinstance(argument, type(None)):
-            raise TypeError(argument)
-        self._denominator = argument
 
     @property
     def hide(self) -> bool | None:
