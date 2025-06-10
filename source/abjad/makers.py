@@ -12,22 +12,24 @@ from . import tag as _tag
 from . import tweaks as _tweaks
 
 
-def _group_by_implied_prolation(pairs):
-    assert all(isinstance(_, tuple) for _ in pairs), repr(pairs)
-    assert 0 < len(pairs)
-    pair_list = [pairs[0]]
-    pair_lists = [pair_list]
-    for pair in pairs[1:]:
-        pair_denominator_factors = set(_math.factors(pair[1]))
-        pair_denominator_factors.discard(2)
-        group_zero_denominator_factors = set(_math.factors(pair_list[0][1]))
+def _group_by_prolation(durations):
+    assert all(isinstance(_, _duration.Duration) for _ in durations), repr(durations)
+    assert 0 < len(durations)
+    duration_list = [durations[0]]
+    duration_lists = [duration_list]
+    for duration in durations[1:]:
+        duration_denominator_factors = set(_math.factors(duration.denominator))
+        duration_denominator_factors.discard(2)
+        group_zero_denominator_factors = set(
+            _math.factors(duration_list[0].denominator)
+        )
         group_zero_denominator_factors.discard(2)
-        if pair_denominator_factors == group_zero_denominator_factors:
-            pair_list.append(pair)
+        if duration_denominator_factors == group_zero_denominator_factors:
+            duration_list.append(duration)
         else:
-            pair_list = [pair]
-            pair_lists.append(pair_list)
-    return pair_lists
+            duration_list = [duration]
+            duration_lists.append(duration_list)
+    return duration_lists
 
 
 def _make_leaf_on_pitch(
@@ -601,19 +603,17 @@ def make_leaves(
     maximum_length = max(len(durations), len(pitch_lists))
     durations = _sequence.repeat_to_length(durations, maximum_length)
     pitch_lists = _sequence.repeat_to_length(pitch_lists, maximum_length)
-    pairs = [_.pair for _ in durations]
-    pair_lists = _group_by_implied_prolation(pairs)
+    duration_lists = _group_by_prolation(durations)
     result: list[_score.Tuplet | _score.Leaf] = []
-    for pair_list in pair_lists:
-        factors_ = _math.factors(pair_list[0][1])
+    for duration_list in duration_lists:
+        factors_ = _math.factors(duration_list[0].denominator)
         factors = set(factors_)
         factors.discard(1)
         factors.discard(2)
-        current_pitch_lists = pitch_lists[0 : len(pair_list)]
-        pitch_lists = pitch_lists[len(pair_list) :]
+        current_pitch_lists = pitch_lists[0 : len(duration_list)]
+        pitch_lists = pitch_lists[len(duration_list) :]
         if len(factors) == 0:
-            pair_list = [_duration.Duration(_) for _ in pair_list]
-            for pitch_list, duration in zip(current_pitch_lists, pair_list):
+            for pitch_list, duration in zip(current_pitch_lists, duration_list):
                 leaves = _make_leaf_on_pitch(
                     pitch_list,
                     duration,
@@ -626,13 +626,14 @@ def make_leaves(
                 )
                 result.extend(leaves)
         else:
-            denominator = pair_list[0][1]
+            denominator = duration_list[0].denominator
             numerator = _math.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
+            # TODO: do not reduce
             ratio = 1 / _duration.Duration(*multiplier)
-            pair_list = [ratio * _duration.Duration(duration) for duration in pair_list]
+            duration_list = [ratio * _ for _ in duration_list]
             tuplet_leaves: list[_score.Leaf] = []
-            for pitch_list, duration in zip(current_pitch_lists, pair_list):
+            for pitch_list, duration in zip(current_pitch_lists, duration_list):
                 leaves = _make_leaf_on_pitch(
                     pitch_list,
                     duration,
@@ -792,18 +793,16 @@ def make_notes(
     assert all(isinstance(_, _duration.Duration) for _ in durations), repr(durations)
     maximum_length = max(len(pitches), len(durations))
     pitches = _sequence.repeat_to_length(pitches, maximum_length)
-    pairs = [_.pair for _ in durations]
-    pairs = _sequence.repeat_to_length(pairs, maximum_length)
-    pair_lists = _group_by_implied_prolation(pairs)
+    durations = _sequence.repeat_to_length(durations, maximum_length)
+    duration_lists = _group_by_prolation(durations)
     result: list[_score.Note | _score.Tuplet] = []
-    for pair_list in pair_lists:
-        factors = set(_math.factors(pair_list[0][1]))
+    for duration_list in duration_lists:
+        factors = set(_math.factors(duration_list[0].denominator))
         factors.discard(1)
         factors.discard(2)
-        pitches_ = pitches[0 : len(pair_list)]
-        pitches = pitches[len(pair_list) :]
+        pitches_ = pitches[0 : len(duration_list)]
+        pitches = pitches[len(duration_list) :]
         if len(factors) == 0:
-            duration_list = [_duration.Duration(_) for _ in pair_list]
             notes = _make_unprolated_notes(
                 pitches_,
                 duration_list,
@@ -812,18 +811,18 @@ def make_notes(
             )
             result.extend(notes)
         else:
-            denominator = pair_list[0][1]
+            denominator = duration_list[0].denominator
             numerator = _math.greatest_power_of_two_less_equal(denominator)
             duration = _duration.Duration(numerator, denominator)
-            duration_list = [_duration.Duration(_) for _ in pair_list]
-            duration_list = [duration.reciprocal * _ for _ in duration_list]
+            duration_list = [duration.reciprocal() * _ for _ in duration_list]
             notes = _make_unprolated_notes(
                 pitches_,
                 duration_list,
                 increase_monotonic=increase_monotonic,
                 tag=tag,
             )
-            tuplet = _score.Tuplet(duration.pair, notes)
+            ratio_string = f"{duration.denominator}:{duration.numerator}"
+            tuplet = _score.Tuplet(ratio_string, notes)
             result.append(tuplet)
     assert isinstance(result, list), repr(list)
     assert all(isinstance(_, _score.Note | _score.Tuplet) for _ in result), repr(result)

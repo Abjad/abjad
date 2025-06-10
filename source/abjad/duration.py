@@ -749,41 +749,6 @@ class Duration(fractions.Fraction):
         return max(count, 0)
 
     @property
-    def implied_prolation(self) -> fractions.Fraction:
-        r"""
-        Gets implied prolation.
-
-        ..  container:: example
-
-            Gets implied prolation:
-
-            >>> for denominator in range(1, 16 + 1):
-            ...     duration = abjad.Duration(1, denominator)
-            ...     result = duration.implied_prolation
-            ...     print(f"{duration!s}\t{result!s}")
-            ...
-            1       1
-            1/2     1
-            1/3     2/3
-            1/4     1
-            1/5     4/5
-            1/6     2/3
-            1/7     4/7
-            1/8     1
-            1/9     8/9
-            1/10    4/5
-            1/11    8/11
-            1/12    2/3
-            1/13    8/13
-            1/14    4/7
-            1/15    8/15
-            1/16    1
-
-        """
-        numerator = _math.greatest_power_of_two_less_equal(self.denominator)
-        return fractions.Fraction(numerator, self.denominator)
-
-    @property
     def is_assignable(self) -> bool:
         r"""
         Is true when duration is assignable.
@@ -821,37 +786,6 @@ class Duration(fractions.Fraction):
                 if _math.is_assignable_integer(self.numerator):
                     return True
         return False
-
-    @property
-    def is_dyadic(self) -> bool:
-        r"""
-        Is true when denominator of duration is integer power of two.
-
-        ..  container:: example
-
-            >>> for n in range(1, 16 + 1):
-            ...     duration = abjad.Duration(1, n)
-            ...     print(f"{duration!s}\t{duration.is_dyadic}")
-            ...
-            1       True
-            1/2     True
-            1/3     False
-            1/4     True
-            1/5     False
-            1/6     False
-            1/7     False
-            1/8     True
-            1/9     False
-            1/10    False
-            1/11    False
-            1/12    False
-            1/13    False
-            1/14    False
-            1/15    False
-            1/16    True
-
-        """
-        return _math.is_nonnegative_integer_power_of_two(self.denominator)
 
     @property
     def lilypond_duration_string(self) -> str:
@@ -900,22 +834,36 @@ class Duration(fractions.Fraction):
         """
         return self.numerator, self.denominator
 
-    @property
-    def prolation_string(self) -> str:
-        """
-        Gets prolation string.
+    def is_dyadic(self) -> bool:
+        r"""
+        Is true when denominator of duration is integer power of two.
 
         ..  container:: example
 
-            Gets prolation string:
-
-            >>> abjad.Duration(3, 16).prolation_string
-            '16:3'
+            >>> for n in range(1, 16 + 1):
+            ...     duration = abjad.Duration(1, n)
+            ...     print(f"{duration!s}\t{duration.is_dyadic()}")
+            ...
+            1       True
+            1/2     True
+            1/3     False
+            1/4     True
+            1/5     False
+            1/6     False
+            1/7     False
+            1/8     True
+            1/9     False
+            1/10    False
+            1/11    False
+            1/12    False
+            1/13    False
+            1/14    False
+            1/15    False
+            1/16    True
 
         """
-        return f"{self.denominator}:{self.numerator}"
+        return _math.is_nonnegative_integer_power_of_two(self.denominator)
 
-    @property
     def reciprocal(self) -> "Duration":
         """
         Gets reciprocal.
@@ -924,7 +872,7 @@ class Duration(fractions.Fraction):
 
             Gets reciprocal:
 
-            >>> abjad.Duration(3, 7).reciprocal
+            >>> abjad.Duration(3, 7).reciprocal()
             Duration(7, 3)
 
         """

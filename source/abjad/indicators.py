@@ -7340,7 +7340,7 @@ class TimeSignature:
     def _get_contributions(self, *, component=None, wrapper=None):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
-        if not self.is_dyadic and not self.hide:
+        if not self.is_dyadic() and not self.hide:
             string = '#(ly:expect-warning "strange time signature found")'
             site.commands.append(string)
         strings = self._get_lilypond_format()
@@ -7388,36 +7388,46 @@ class TimeSignature:
         return _duration.Duration(*self.pair)
 
     @property
-    def implied_prolation(self) -> fractions.Fraction:
+    def numerator(self) -> int:
         """
-        Gets implied prolation of time signature.
+        Gets numerator of time signature.
 
         ..  container:: example
 
-            Implied prolation of dyadic time signature:
-
-            >>> abjad.TimeSignature((3, 8)).implied_prolation
-            Fraction(1, 1)
-
-            Implied prolation of nondyadic time signature:
-
-            >>> abjad.TimeSignature((7, 12)).implied_prolation
-            Fraction(2, 3)
+            >>> abjad.TimeSignature((3, 8)).numerator
+            3
 
         """
-        return _duration.Duration(1, self.denominator).implied_prolation
+        return self.pair[0]
 
-    @property
+    @staticmethod
+    def from_string(string) -> "TimeSignature":
+        """
+        Makes new time signature from fraction ``string``.
+
+        ..  container:: example
+
+            >>> abjad.TimeSignature.from_string("6/8")
+            TimeSignature(pair=(6, 8), hide=False, partial=None)
+
+        """
+        assert isinstance(string, str), repr(string)
+        parts = string.split("/")
+        assert len(parts) == 2, repr(parts)
+        numbers = [int(_) for _ in parts]
+        numerator, denominator = numbers
+        return TimeSignature((numerator, denominator))
+
     def is_dyadic(self) -> bool:
         r"""
         Is true when denominator of time signature is integer power of two.
 
         ..  container:: example
 
-            >>> abjad.TimeSignature((3, 8)).is_dyadic
+            >>> abjad.TimeSignature((3, 8)).is_dyadic()
             True
 
-            >>> abjad.TimeSignature((7, 12)).is_dyadic
+            >>> abjad.TimeSignature((7, 12)).is_dyadic()
             False
 
             Nondyadic time signatures suppress LilyPond "strange time
@@ -7450,36 +7460,25 @@ class TimeSignature:
         """
         return _math.is_nonnegative_integer_power_of_two(self.denominator)
 
-    @property
-    def numerator(self) -> int:
+    def prolation(self) -> fractions.Fraction:
         """
-        Gets numerator of time signature.
+        Gets prolation of time signature.
 
         ..  container:: example
 
-            >>> abjad.TimeSignature((3, 8)).numerator
-            3
+            Prolation of dyadic time signature is always 1:
+
+            >>> abjad.TimeSignature((3, 8)).prolation()
+            Fraction(1, 1)
+
+            Prolation of nondyadic time signature is always less than 1:
+
+            >>> abjad.TimeSignature((7, 12)).prolation()
+            Fraction(2, 3)
 
         """
-        return self.pair[0]
-
-    @staticmethod
-    def from_string(string) -> "TimeSignature":
-        """
-        Makes new time signature from fraction ``string``.
-
-        ..  container:: example
-
-            >>> abjad.TimeSignature.from_string("6/8")
-            TimeSignature(pair=(6, 8), hide=False, partial=None)
-
-        """
-        assert isinstance(string, str), repr(string)
-        parts = string.split("/")
-        assert len(parts) == 2, repr(parts)
-        numbers = [int(_) for _ in parts]
-        numerator, denominator = numbers
-        return TimeSignature((numerator, denominator))
+        numerator = _math.greatest_power_of_two_less_equal(self.denominator)
+        return fractions.Fraction(numerator, self.denominator)
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)

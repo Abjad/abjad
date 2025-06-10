@@ -202,8 +202,9 @@ class Component:
         if self._parent is None:
             return duration
         for parent in self._parent._get_parentage():
-            multiplier = getattr(parent, "implied_prolation", fractions.Fraction(1))
-            duration *= multiplier
+            if hasattr(parent, "_get_prolation"):
+                prolation = parent._get_prolation()
+                duration *= prolation
         return duration
 
     def _get_indicator(self, prototype=None, *, attributes=None, unwrap=True):
@@ -5000,7 +5001,10 @@ class TremoloContainer(Container):
         return result
 
     def _get_preprolated_duration(self):
-        return self.implied_prolation * self._get_contents_duration()
+        return self._get_prolation() * self._get_contents_duration()
+
+    def _get_prolation(self) -> fractions.Fraction:
+        return fractions.Fraction(self.count)
 
     @property
     def count(self) -> int:
@@ -5015,25 +5019,6 @@ class TremoloContainer(Container):
 
         """
         return self._count
-
-    @property
-    def implied_prolation(self) -> fractions.Fraction:
-        r"""
-        Gets implied prolation of tremolo container.
-
-        ..  container:: example
-
-            Defined equal to count.
-
-            >>> tremolo_container = abjad.TremoloContainer(2, "<c' d'>16 e'16")
-            >>> abjad.show(tremolo_container) # doctest: +SKIP
-
-            >>> tremolo_container.implied_prolation
-            Fraction(2, 1)
-
-        """
-        fraction = fractions.Fraction(self.count)
-        return fraction
 
 
 class Tuplet(Container):
@@ -5265,6 +5250,9 @@ class Tuplet(Container):
         contents_duration = self._get_contents_duration()
         return _duration.Duration(self.fraction_multiplier * contents_duration)
 
+    def _get_prolation(self) -> fractions.Fraction:
+        return fractions.Fraction(*self.multiplier)
+
     def _get_ratio_string(self):
         if self.multiplier is not None:
             numerator, denominator = self.multiplier
@@ -5397,22 +5385,6 @@ class Tuplet(Container):
     def hide(self, argument):
         assert isinstance(argument, bool), repr(argument)
         self._hide = argument
-
-    @property
-    def implied_prolation(self) -> fractions.Fraction:
-        r"""
-        Gets implied prolation of tuplet.
-
-        ..  container:: example
-
-            >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            >>> tuplet.implied_prolation
-            Fraction(2, 3)
-
-        """
-        return fractions.Fraction(*self.multiplier)
 
     @property
     def multiplier(self) -> tuple[int, int]:
@@ -6189,7 +6161,7 @@ class Tuplet(Container):
         dot_multiplier = _duration.Duration.from_dot_count(global_dot_count)
         multiplier = fractions.Fraction(*self.multiplier) * dot_multiplier
         self.multiplier = multiplier.pair
-        dot_multiplier_reciprocal = dot_multiplier.reciprocal
+        dot_multiplier_reciprocal = dot_multiplier.reciprocal()
         for component in self:
             component.written_duration *= dot_multiplier_reciprocal
 
