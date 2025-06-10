@@ -1,4 +1,4 @@
-Abjad 3.22
+Abjad 3.25
 ==========
 
 Abjad helps composers build up complex pieces of music notation in iterative
@@ -32,14 +32,14 @@ Abjad's documentation is available here: https://abjad.github.io
 
 Abjad's install instructions are tested on macOS and Linux.
 
-Abjad requires Python 3.12 or later:
+Abjad requires Python 3.12 (or later):
 
 ..  code-block::
 
     ~$ python --version
-    Python 3.13.2
+    Python 3.13.3
 
-Abjad requires LilyPond 2.23.6 or later.
+Abjad requires LilyPond 2.25.26 (or later).
 
 Make sure LilyPond is installed:
 http://lilypond.org/development.html
@@ -49,7 +49,7 @@ Make sure LilyPond is callable from the commandline:
 ..  code-block::
 
     $ lilypond --version
-    GNU LilyPond 2.25.24 (running Guile 3.0)
+    GNU LilyPond 2.25.26 (running Guile 3.0)
 
     Copyright (c) 1996--2023 by
       Han-Wen Nienhuys <hanwen@xs4all.nl>
