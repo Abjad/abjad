@@ -1,3 +1,4 @@
+import dataclasses
 import fractions
 import math
 import re
@@ -1701,6 +1702,48 @@ class Offset(Duration):
 
         """
         return self._displacement
+
+
+@dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
+class Ratio:
+    """
+    Ratio.
+
+    Abjad ratios are two-term, unreduced integer ratios of the form ``n:d``.
+
+    These are used primarily in modeling tuplet ratios like ``3:2`` and ``6:4``.
+    """
+
+    numerator: int
+    denominator: int
+
+    def __post_init__(self):
+        assert isinstance(self.numerator, int), repr(self.numerator)
+        assert isinstance(self.denominator, int), repr(self.denominator)
+
+    def __str__(self) -> str:
+        """
+        Gets colon-delimited string format of ratio.
+
+        ..  container:: example
+
+            >>> str(abjad.Ratio(6, 4))
+            '6:4'
+
+        """
+        return f"{self.numerator}:{self.denominator}"
+
+    def reciprocal(self) -> "Ratio":
+        """
+        Get reciprocal of ratio.
+
+        ..  container:: example
+
+            >>> abjad.Ratio(6, 4).reciprocal()
+            Ratio(numerator=4, denominator=6)
+
+        """
+        return Ratio(self.denominator, self.numerator)
 
 
 def add_pairs(pair_1, pair_2):

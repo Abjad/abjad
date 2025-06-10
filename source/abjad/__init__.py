@@ -39,7 +39,7 @@ from .contextmanagers import (
 )
 from .contributions import ContributionsBySite
 from .cyclictuple import CyclicTuple
-from .duration import Duration, Offset, durations
+from .duration import Duration, Offset, Ratio, durations
 from .enums import (
     CENTER,
     DOWN,
@@ -425,6 +425,7 @@ __all__ = [
     "PitchClass",
     "PitchRange",
     "ProgressIndicator",
+    "Ratio",
     "RedirectedStreams",
     "RehearsalMark",
     "Repeat",
