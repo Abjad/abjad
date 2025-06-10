@@ -5123,9 +5123,9 @@ class Tuplet(Container):
     __documentation_section__ = "Containers"
 
     __slots__ = (
-        "_denominator",
         "_hide",
         "_multiplier",
+        "_ratio",
         "tweaks",
     )
 
@@ -5170,10 +5170,10 @@ class Tuplet(Container):
 
     def __repr__(self) -> str:
         """
-        Gets repr.
+        Gets string representation of tuplet.
         """
         string = self._get_contents_summary()
-        return f"{type(self).__name__}({self.colon_string!r}, {string!r})"
+        return f"{type(self).__name__}({str(self.ratio)!r}, {string!r})"
 
     ### PRIVATE METHODS ###
 
@@ -5300,34 +5300,6 @@ class Tuplet(Container):
         self.normalize_multiplier()
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def colon_string(self) -> str:
-        r"""
-        Gets colon string.
-
-        ..  container example
-
-            >>> tuplet = abjad.Tuplet("3:2", "c'4 d' e'")
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(tuplet)
-                >>> print(string)
-                \tuplet 3/2
-                {
-                    c'4
-                    d'4
-                    e'4
-                }
-
-            >>> tuplet.colon_string
-            '3:2'
-
-        """
-        numerator, denominator = self.multiplier
-        return f"{denominator}:{numerator}"
 
     @property
     def hide(self) -> bool | None:
@@ -5494,6 +5466,43 @@ class Tuplet(Container):
         if fractions.Fraction(*argument) <= 0:
             raise ValueError(f"tuplet multiplier must be positive, not {argument!r}.")
         self._multiplier = argument
+
+    @property
+    def ratio(self) -> _duration.Ratio:
+        r"""
+        Gets tuplet ratio.
+
+        ..  container:: example
+
+            Gets tuplet ratio:
+
+            >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
+            >>> abjad.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")
+            >>> abjad.show(tuplet) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 3/2
+                {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+            >>> tuplet.ratio
+            Ratio(numerator=3, denominator=2)
+
+        """
+        return _duration.Ratio(self.multiplier[1], self.multiplier[0])
+
+    # @ratio.setter
+    # def ratio(self, ratio):
+    #    assert isinstance(ratio, _duration.Ratio), repr(ratio)
+    #     assert ratio.denominator != 0, repr(ratio)
+    #     self._ratio = ratio
 
     @property
     def tag(self) -> _tag.Tag | None:
