@@ -7394,18 +7394,19 @@ class TimeSignature:
 
         ..  container:: example
 
-            Implied prolation of dyadic time signature:
+            Implied prolation of dyadic time signature is always 1:
 
             >>> abjad.TimeSignature((3, 8)).implied_prolation
             Fraction(1, 1)
 
-            Implied prolation of nondyadic time signature:
+            Implied prolation of nondyadic time signature is always less than 1:
 
             >>> abjad.TimeSignature((7, 12)).implied_prolation
             Fraction(2, 3)
 
         """
-        return _duration.Duration(1, self.denominator).implied_prolation
+        numerator = _math.greatest_power_of_two_less_equal(self.denominator)
+        return fractions.Fraction(numerator, self.denominator)
 
     @property
     def is_dyadic(self) -> bool:

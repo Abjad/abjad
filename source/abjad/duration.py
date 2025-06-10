@@ -749,41 +749,6 @@ class Duration(fractions.Fraction):
         return max(count, 0)
 
     @property
-    def implied_prolation(self) -> fractions.Fraction:
-        r"""
-        Gets implied prolation.
-
-        ..  container:: example
-
-            Gets implied prolation:
-
-            >>> for denominator in range(1, 16 + 1):
-            ...     duration = abjad.Duration(1, denominator)
-            ...     result = duration.implied_prolation
-            ...     print(f"{duration!s}\t{result!s}")
-            ...
-            1       1
-            1/2     1
-            1/3     2/3
-            1/4     1
-            1/5     4/5
-            1/6     2/3
-            1/7     4/7
-            1/8     1
-            1/9     8/9
-            1/10    4/5
-            1/11    8/11
-            1/12    2/3
-            1/13    8/13
-            1/14    4/7
-            1/15    8/15
-            1/16    1
-
-        """
-        numerator = _math.greatest_power_of_two_less_equal(self.denominator)
-        return fractions.Fraction(numerator, self.denominator)
-
-    @property
     def is_assignable(self) -> bool:
         r"""
         Is true when duration is assignable.
@@ -915,6 +880,7 @@ class Duration(fractions.Fraction):
         """
         return f"{self.denominator}:{self.numerator}"
 
+    # TODO: change to method
     @property
     def reciprocal(self) -> "Duration":
         """
