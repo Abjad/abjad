@@ -5262,7 +5262,8 @@ class Tuplet(Container):
         return f"{numerator}/{denominator}"
 
     def _get_preprolated_duration(self):
-        return self.multiplied_duration
+        contents_duration = self._get_contents_duration()
+        return _duration.Duration(self.fraction_multiplier * contents_duration)
 
     def _get_ratio_string(self):
         if self.multiplier is not None:
@@ -5300,6 +5301,19 @@ class Tuplet(Container):
         self.normalize_multiplier()
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def fraction_multiplier(self) -> fractions.Fraction:
+        """
+        TEMPORARY: gets tuplet multiplier as a fraction.
+
+        ..  container:: example
+
+            >>> abjad.Tuplet("6:4", "c'4 d'4 e'4").fraction_multiplier
+            Fraction(2, 3)
+
+        """
+        return fractions.Fraction(*self.multiplier)
 
     @property
     def hide(self) -> bool | None:
@@ -5399,25 +5413,6 @@ class Tuplet(Container):
 
         """
         return fractions.Fraction(*self.multiplier)
-
-    @property
-    def multiplied_duration(self) -> _duration.Duration:
-        r"""
-        Gets multiplied duration of tuplet.
-
-        ..  container:: example
-
-            >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
-
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            >>> tuplet.multiplied_duration
-            Duration(1, 4)
-
-        """
-        multiplier = fractions.Fraction(*self.multiplier)
-        contents_duration = self._get_contents_duration()
-        return _duration.Duration(multiplier * contents_duration)
 
     @property
     def multiplier(self) -> tuple[int, int]:
