@@ -23,9 +23,10 @@ class_to_default_values = {
     abjad.Meter: (abjad.meter.make_best_guess_rtc((4, 4)),),
     abjad.MetricModulation: (abjad.Note("c'4"), abjad.Note("c'4.")),
     abjad.MetronomeMark: (abjad.Duration(1, 4), 90),
-    abjad.TextMark: (r'\textMark \markup \italic "V.S."',),
+    abjad.Ratio: (6, 4),
     abjad.ShortInstrumentName: (r"\markup Vc.",),
     abjad.StaffChange: ("RH_Staff",),
+    abjad.TextMark: (r'\textMark \markup \italic "V.S."',),
     abjad.TimeSignature: ((4, 4),),
     abjad.Tweak: (r"\tweak color #red",),
 }

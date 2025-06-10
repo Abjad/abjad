@@ -413,6 +413,7 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.cyclictuple.CyclicTuple'>
         <class 'abjad.duration.Duration'>
         <class 'abjad.duration.Offset'>
+        <class 'abjad.duration.Ratio'>
         <class 'abjad.exceptions.AssignabilityError'>
         <class 'abjad.exceptions.ImpreciseMetronomeMarkError'>
         <class 'abjad.exceptions.LilyPondParserError'>
