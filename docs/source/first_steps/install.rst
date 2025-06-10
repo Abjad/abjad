@@ -1,17 +1,17 @@
 Check Python
 ------------
 
-Abjad requires Python 3.12 or later:
+Abjad requires Python 3.12 (or later):
 
 ..  code-block::
 
     ~$ python --version
-    Python 3.12.8
+    Python 3.13.3
 
 Check LilyPond
 --------------
 
-Abjad requires LilyPond 2.23.6 or later.
+Abjad requires LilyPond 2.25.26 (or later).
 
 Make sure LilyPond is installed: http://lilypond.org/development.html
 
@@ -20,7 +20,7 @@ Make sure LilyPond is callable from the commandline:
 ..  code-block::
 
     ~$ lilypond --version
-    GNU LilyPond 2.23.22
+    GNU LilyPond 2.25.26
 
     Copyright (c) 1996--2023 by
     Han-Wen Nienhuys <hanwen@xs4all.nl>
