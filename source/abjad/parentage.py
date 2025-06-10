@@ -114,14 +114,6 @@ class Parentage(collections.abc.Sequence):
         rhs = getattr(component, "name", None) or id(component)
         return f"{lhs}-{rhs!r}"
 
-    def _prolations(self):
-        prolations = []
-        default = fractions.Fraction(1)
-        for parent in self:
-            prolation = getattr(parent, "implied_prolation", default)
-            prolations.append(prolation)
-        return prolations
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -661,7 +653,14 @@ class Parentage(collections.abc.Sequence):
             Note("fs'16")                  Fraction(2, 3)
 
         """
-        prolations = [fractions.Fraction(1)] + self._prolations()
+        default = fractions.Fraction(1)
+        prolations = [default]
+        for parent in self:
+            if hasattr(parent, "_get_prolation"):
+                prolation = parent._get_prolation()
+            else:
+                prolation = default
+            prolations.append(prolation)
         products = _math.cumulative_products(prolations)
         return products[-1]
 

@@ -12,7 +12,7 @@ from . import tag as _tag
 from . import tweaks as _tweaks
 
 
-def _group_by_implied_prolation(durations):
+def _group_by_prolation(durations):
     assert all(isinstance(_, _duration.Duration) for _ in durations), repr(durations)
     assert 0 < len(durations)
     duration_list = [durations[0]]
@@ -603,7 +603,7 @@ def make_leaves(
     maximum_length = max(len(durations), len(pitch_lists))
     durations = _sequence.repeat_to_length(durations, maximum_length)
     pitch_lists = _sequence.repeat_to_length(pitch_lists, maximum_length)
-    duration_lists = _group_by_implied_prolation(durations)
+    duration_lists = _group_by_prolation(durations)
     result: list[_score.Tuplet | _score.Leaf] = []
     for duration_list in duration_lists:
         factors_ = _math.factors(duration_list[0].denominator)
@@ -794,7 +794,7 @@ def make_notes(
     maximum_length = max(len(pitches), len(durations))
     pitches = _sequence.repeat_to_length(pitches, maximum_length)
     durations = _sequence.repeat_to_length(durations, maximum_length)
-    duration_lists = _group_by_implied_prolation(durations)
+    duration_lists = _group_by_prolation(durations)
     result: list[_score.Note | _score.Tuplet] = []
     for duration_list in duration_lists:
         factors = set(_math.factors(duration_list[0].denominator))
@@ -814,7 +814,7 @@ def make_notes(
             denominator = duration_list[0].denominator
             numerator = _math.greatest_power_of_two_less_equal(denominator)
             duration = _duration.Duration(numerator, denominator)
-            duration_list = [duration.reciprocal * _ for _ in duration_list]
+            duration_list = [duration.reciprocal() * _ for _ in duration_list]
             notes = _make_unprolated_notes(
                 pitches_,
                 duration_list,
