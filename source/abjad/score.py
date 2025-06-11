@@ -5140,7 +5140,9 @@ class Tuplet(Container):
         else:
             message = f"tuplet multiplier must be pair or string (not {multiplier!r})."
             raise ValueError(message)
-        self.multiplier = pair
+        ratio = _duration.Ratio(pair[1], pair[0])
+        self.ratio = ratio
+        # self.multiplier = pair
         self.hide = hide
 
     ### SPECIAL METHODS ###
@@ -5149,7 +5151,8 @@ class Tuplet(Container):
         """
         Gets new arguments of tuplet.
         """
-        return (self.multiplier,)
+        string = str(self.ratio)
+        return (string,)
 
     def __repr__(self) -> str:
         """
@@ -5190,11 +5193,10 @@ class Tuplet(Container):
 
     def _format_close_brackets(self):
         result = []
-        if self.multiplier:
-            strings = ["}"]
-            if self.tag is not None:
-                strings = _tag.double_tag(strings, self.tag)
-            result.extend(strings)
+        strings = ["}"]
+        if self.tag is not None:
+            strings = _tag.double_tag(strings, self.tag)
+        result.extend(strings)
         return result
 
     def _format_closing_site(self, contributions):
@@ -5208,21 +5210,20 @@ class Tuplet(Container):
 
     def _format_open_brackets_site(self, contributions):
         result = []
-        if self.multiplier:
-            if self.hide:
-                string = self._get_scale_durations_command_string()
-                contributions = [string, "{"]
-            else:
-                contributions = []
-                for tweak in sorted(self.tweaks):
-                    strings = tweak._list_contributions()
-                    contributions.extend(strings)
-                tuplet_command_string = self._get_tuplet_command_string()
-                contributions.append(tuplet_command_string)
-                contributions.append("{")
-            if self.tag is not None:
-                contributions = _tag.double_tag(contributions, self.tag)
-            result.extend(contributions)
+        if self.hide:
+            string = self._get_scale_durations_command_string()
+            contributions = [string, "{"]
+        else:
+            contributions = []
+            for tweak in sorted(self.tweaks):
+                strings = tweak._list_contributions()
+                contributions.extend(strings)
+            tuplet_command_string = self._get_tuplet_command_string()
+            contributions.append(tuplet_command_string)
+            contributions.append("{")
+        if self.tag is not None:
+            contributions = _tag.double_tag(contributions, self.tag)
+        result.extend(contributions)
         return result
 
     def _format_opening_site(self, contributions):
@@ -5235,32 +5236,20 @@ class Tuplet(Container):
         return result
 
     def _get_compact_representation(self):
-        n, d = self.multiplier
         if not self:
-            return f"{{ {d}:{n} }}"
-        return f"{{ {d}:{n} {self._get_contents_summary()} }}"
-
-    def _get_multiplier_fraction_string(self):
-        numerator, denominator = self.multiplier
-        return f"{numerator}/{denominator}"
+            return f"{{ {str(self.ratio)} }}"
+        return f"{{ {str(self.ratio)} {self._get_contents_summary()} }}"
 
     def _get_preprolated_duration(self):
         contents_duration = self._get_contents_duration()
         return _duration.Duration(self.fraction_multiplier * contents_duration)
 
     def _get_prolation(self) -> fractions.Fraction:
-        return fractions.Fraction(*self.multiplier)
-
-    def _get_ratio_string(self):
-        if self.multiplier is not None:
-            numerator, denominator = self.multiplier
-            ratio_string = f"{denominator}:{numerator}"
-            return ratio_string
-        else:
-            return None
+        return self.fraction_multiplier
 
     def _get_scale_durations_command_string(self):
-        numerator, denominator = self.multiplier
+        numerator = self.ratio.denominator
+        denominator = self.ratio.numerator
         string = rf"\scaleDurations #'({numerator} . {denominator})"
         return string
 
@@ -5270,13 +5259,8 @@ class Tuplet(Container):
         else:
             return ""
 
-    def _get_times_command_string(self):
-        string = rf"\times {self._get_multiplier_fraction_string()}"
-        return string
-
     def _get_tuplet_command_string(self):
-        numerator, denominator = self.multiplier
-        string = rf"\tuplet {denominator}/{numerator}"
+        string = rf"\tuplet {self.ratio.numerator}/{self.ratio.denominator}"
         return string
 
     def _scale(self, multiplier):
@@ -5299,7 +5283,7 @@ class Tuplet(Container):
             Fraction(2, 3)
 
         """
-        return fractions.Fraction(*self.multiplier)
+        return fractions.Fraction(self.ratio.denominator, self.ratio.numerator)
 
     @property
     def hide(self) -> bool | None:
@@ -5391,6 +5375,7 @@ class Tuplet(Container):
 
         Use abjad.Tuplet.fraction_multiplier temporarily.
         """
+        # raise Exception("AAA")
         return self._multiplier
 
     @multiplier.setter
@@ -5402,6 +5387,8 @@ class Tuplet(Container):
         if fractions.Fraction(*argument) <= 0:
             raise ValueError(f"tuplet multiplier must be positive, not {argument!r}.")
         self._multiplier = argument
+        ratio = _duration.Ratio(argument[1], argument[0])
+        self._ratio = ratio
 
     @property
     def ratio(self) -> _duration.Ratio:
@@ -5449,14 +5436,14 @@ class Tuplet(Container):
                 }
 
         """
-        return _duration.Ratio(self.multiplier[1], self.multiplier[0])
+        return self._ratio
 
     @ratio.setter
     def ratio(self, ratio):
         assert isinstance(ratio, _duration.Ratio), repr(ratio)
         assert ratio.denominator != 0, repr(ratio)
         self._ratio = ratio
-        self.multiplier = (ratio.denominator, ratio.numerator)
+        self._multiplier = (ratio.denominator, ratio.numerator)
 
     @property
     def tag(self) -> _tag.Tag | None:
@@ -5593,7 +5580,7 @@ class Tuplet(Container):
         if preserve_duration:
             new_duration = self._get_contents_duration()
             multiplier = old_duration / new_duration
-            self.multiplier = _duration.pair(multiplier)
+            self.ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
             assert self._get_duration() == old_duration
 
     def augmentation(self) -> bool:
@@ -5631,10 +5618,7 @@ class Tuplet(Container):
             False
 
         """
-        if self.multiplier:
-            return 1 < fractions.Fraction(*self.multiplier)
-        else:
-            return False
+        return 1 < self.fraction_multiplier
 
     def diminution(self) -> bool:
         r"""
@@ -5671,10 +5655,7 @@ class Tuplet(Container):
             False
 
         """
-        if self.multiplier:
-            return fractions.Fraction(*self.multiplier) < 1
-        else:
-            return False
+        return self.fraction_multiplier < 1
 
     def dyadic(self) -> bool:
         r"""
@@ -5790,7 +5771,8 @@ class Tuplet(Container):
         if preserve_duration:
             new_duration = self._get_contents_duration()
             multiplier = old_duration / new_duration
-            self.multiplier = _duration.pair(multiplier)
+            pair = _duration.pair(multiplier)
+            self.ratio = _duration.Ratio(pair[1], pair[0])
             assert self._get_duration() == old_duration
 
     @staticmethod
@@ -6140,8 +6122,8 @@ class Tuplet(Container):
         if global_dot_count == 0:
             return
         dot_multiplier = _duration.Duration.from_dot_count(global_dot_count)
-        multiplier = fractions.Fraction(*self.multiplier) * dot_multiplier
-        self.multiplier = multiplier.pair
+        multiplier = self.fraction_multiplier * dot_multiplier
+        self.ratio = _duration.Ratio(multiplier.pair[1], multiplier.pair[0])
         dot_multiplier_reciprocal = dot_multiplier.reciprocal()
         for component in self:
             component.written_duration *= dot_multiplier_reciprocal
@@ -6264,17 +6246,17 @@ class Tuplet(Container):
         """
         if self.diminution():
             while self.diminution():
-                multiplier = 2 * fractions.Fraction(*self.multiplier)
-                pair = multiplier.numerator, multiplier.denominator
-                self.multiplier = pair
+                multiplier = 2 * self.fraction_multiplier
+                ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+                self.ratio = ratio
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
                         component.written_duration /= 2
         elif self.augmentation():
             while not self.diminution():
-                multiplier = fractions.Fraction(*self.multiplier) / 2
-                pair = multiplier.numerator, multiplier.denominator
-                self.multiplier = pair
+                multiplier = self.fraction_multiplier / 2
+                ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+                self.ratio = ratio
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
                         component.written_duration *= 2
@@ -6331,7 +6313,7 @@ class Tuplet(Container):
             False
 
         """
-        if _duration.Duration(self.multiplier) != _duration.Duration(1, 1):
+        if self.fraction_multiplier != 1:
             return False
         for component in self:
             if isinstance(component, Tuplet):
@@ -6457,7 +6439,7 @@ class Tuplet(Container):
             if isinstance(component, Tuplet):
                 continue
             assert isinstance(component, Leaf), repr(component)
-            fraction = fractions.Fraction(*self.multiplier) * component.written_duration
+            fraction = self.fraction_multiplier * component.written_duration
             duration = _duration.Duration(fraction)
             if not duration.is_assignable:
                 return False
@@ -6505,14 +6487,14 @@ class Tuplet(Container):
         for component in self:
             if isinstance(component, Tuplet):
                 multiplier = fractions.Fraction(*component.multiplier)
-                multiplier *= fractions.Fraction(*self.multiplier)
+                multiplier *= self.fraction_multiplier
                 pair = multiplier.numerator, multiplier.denominator
                 component.multiplier = pair
             elif isinstance(component, Leaf):
-                component.written_duration *= fractions.Fraction(*self.multiplier)
+                component.written_duration *= self.fraction_multiplier
             else:
                 raise TypeError(component)
-        self.multiplier = (1, 1)
+        self.ratio = _duration.Ratio(1, 1)
 
 
 class Voice(Context):
