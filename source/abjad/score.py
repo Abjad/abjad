@@ -633,15 +633,11 @@ class Leaf(Component):
         result = " * ".join(strings)
         return result
 
-    def _get_multiplied_duration(self):
-        if self.written_duration:
-            if self.multiplier is not None:
-                duration = _duration.Duration(self.multiplier) * self.written_duration
-                return _duration.Duration(duration)
-            return _duration.Duration(self.written_duration)
-
     def _get_preprolated_duration(self):
-        return self._get_multiplied_duration()
+        duration = self.written_duration
+        if self.multiplier is not None:
+            duration *= _duration.Duration(self.multiplier)
+        return duration
 
     def _get_subtree(self):
         result = []
