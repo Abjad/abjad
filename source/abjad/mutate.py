@@ -337,13 +337,12 @@ def _fuse_tuplets(tuplets, *, tag=None):
     assert _are_contiguous_same_parent(tuplets, prototype=_score.Tuplet)
     if len(tuplets) == 0:
         return None
-    first = tuplets[0]
-    first_multiplier = first.multiplier
+    first_tuplet = tuplets[0]
     for tuplet in tuplets[1:]:
-        if tuplet.multiplier != first_multiplier:
-            raise ValueError("tuplets must carry same multiplier.")
-    assert isinstance(first, _score.Tuplet)
-    new_tuplet = _score.Tuplet(first_multiplier, [], tag=tag)
+        if tuplet.ratio != first_tuplet.ratio:
+            raise ValueError("tuplets must carry same ratio.")
+    assert isinstance(first_tuplet, _score.Tuplet)
+    new_tuplet = _score.Tuplet(first_tuplet.ratio, [], tag=tag)
     wrapped = False
     if _get.parentage(tuplets[0]).root is not _get.parentage(tuplets[-1]).root:
         dummy_container = _score.Container(tuplets)
@@ -479,8 +478,7 @@ def _set_leaf_duration(leaf, new_duration, *, tag=None):
         assert isinstance(components[0], _score.Tuplet)
         assert len(components) == 1
         tuplet = components[0]
-        multiplier = tuplet.multiplier
-        tuplet = _score.Tuplet(multiplier, [])
+        tuplet = _score.Tuplet(tuplet.ratio, [])
         assert isinstance(all_leaves, list)
         wrap(all_leaves, tuplet)
         return [tuplet]
@@ -495,12 +493,11 @@ def _split_container_at_index(CONTAINER, i):
     """
     Splits container to the left of index ``i``.
 
-    Preserves tuplet multiplier when container is a tuplet.
+    Preserves tuplet ratio when container is a tuplet.
 
     Preserves time signature denominator when container is a measure.
 
     Resizes resizable containers.
-
 
     Returns split parts.
     """

@@ -5119,7 +5119,7 @@ class Tuplet(Container):
 
     def __init__(
         self,
-        multiplier="3:2",
+        multiplier: tuple[int, int] | str | _duration.Ratio = "3:2",
         components=None,
         *,
         hide: bool = False,
@@ -5133,6 +5133,8 @@ class Tuplet(Container):
             strings = multiplier.split(":")
             numbers = [int(_) for _ in strings]
             pair = numbers[1], numbers[0]
+        elif isinstance(multiplier, _duration.Ratio):
+            pair = multiplier.denominator, multiplier.numerator
         elif isinstance(multiplier, tuple):
             pair = multiplier[0], multiplier[1]
         else:
@@ -5282,7 +5284,7 @@ class Tuplet(Container):
         for component in self[:]:
             if isinstance(component, Leaf):
                 component._scale(multiplier)
-        self.normalize_multiplier()
+        self.normalize_ratio()
 
     ### PUBLIC PROPERTIES ###
 
@@ -5384,39 +5386,10 @@ class Tuplet(Container):
 
     @property
     def multiplier(self) -> tuple[int, int]:
-        r"""
-        Gets and sets multiplier of tuplet.
+        """
+        TEMPORARILY DEPRECATED.
 
-        ..  container:: example
-
-            Gets tuplet multiplier:
-
-            >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            >>> tuplet.multiplier
-            (2, 3)
-
-        ..  container:: example
-
-            Sets tuplet multiplier:
-
-            >>> tuplet.multiplier = (4, 3)
-            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(tuplet)
-                >>> print(string)
-                \tweak text #tuplet-number::calc-fraction-text
-                \tuplet 3/4
-                {
-                    c'8
-                    d'8
-                    e'8
-                }
-
+        Use abjad.Tuplet.fraction_multiplier temporarily.
         """
         return self._multiplier
 
@@ -5433,7 +5406,7 @@ class Tuplet(Container):
     @property
     def ratio(self) -> _duration.Ratio:
         r"""
-        Gets tuplet ratio.
+        Gets and sets tuplet ratio.
 
         ..  container:: example
 
@@ -5458,14 +5431,32 @@ class Tuplet(Container):
             >>> tuplet.ratio
             Ratio(numerator=3, denominator=2)
 
+            Sets tuplet ratio:
+
+            >>> tuplet.ratio = abjad.Ratio(6, 4)
+            >>> abjad.show(tuplet) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 6/4
+                {
+                    c'8
+                    d'8
+                    e'8
+                }
+
         """
         return _duration.Ratio(self.multiplier[1], self.multiplier[0])
 
-    # @ratio.setter
-    # def ratio(self, ratio):
-    #    assert isinstance(ratio, _duration.Ratio), repr(ratio)
-    #     assert ratio.denominator != 0, repr(ratio)
-    #     self._ratio = ratio
+    @ratio.setter
+    def ratio(self, ratio):
+        assert isinstance(ratio, _duration.Ratio), repr(ratio)
+        assert ratio.denominator != 0, repr(ratio)
+        self._ratio = ratio
+        self.multiplier = (ratio.denominator, ratio.numerator)
 
     @property
     def tag(self) -> _tag.Tag | None:
@@ -5549,8 +5540,8 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Appends note to tuplet and changes tuplet multiplier to preserve
-            tuplet duration:
+            Appends note to tuplet and changes tuplet ratio to preserve tuplet
+            duration:
 
             >>> tuplet = abjad.Tuplet("3:2", "c'4 ( d'4 f'4 )")
             >>> abjad.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")
@@ -5607,7 +5598,7 @@ class Tuplet(Container):
 
     def augmentation(self) -> bool:
         r"""
-        Is true when tuplet multiplier is greater than ``1``.
+        Is true when tuplet ratio is less than ``1:1``.
 
         ..  container:: example
 
@@ -5647,7 +5638,7 @@ class Tuplet(Container):
 
     def diminution(self) -> bool:
         r"""
-        Is true when tuplet multiplier is less than ``1``.
+        Is true when tuplet ratio is greater than ``1:1``.
 
         ..  container:: example
 
@@ -5687,7 +5678,7 @@ class Tuplet(Container):
 
     def dyadic(self) -> bool:
         r"""
-        Is true when denominator of tuplet multiplier is power of 2.
+        Is true when denominator of tuplet ratio is power of 2.
 
         ..  container:: example
 
@@ -5702,11 +5693,7 @@ class Tuplet(Container):
             False
 
         """
-        if self.multiplier:
-            numerator = self.multiplier[0]
-            return _math.is_nonnegative_integer_power_of_two(numerator)
-        else:
-            return True
+        return _math.is_nonnegative_integer_power_of_two(self.ratio.denominator)
 
     def extend(
         self, argument, *, language: str = "english", preserve_duration=False
@@ -5833,15 +5820,14 @@ class Tuplet(Container):
         """
         assert isinstance(duration, _duration.Duration), repr(duration)
         assert len(components), repr(components)
-        tuplet = Tuplet((1, 1), components, tag=tag)
-        fraction = duration / tuplet._get_duration()
-        pair = (fraction.numerator, fraction.denominator)
-        tuplet.multiplier = pair
+        tuplet = Tuplet("1:1", components, tag=tag)
+        fraction = tuplet._get_duration() / duration
+        tuplet.ratio = _duration.Ratio(fraction.numerator, fraction.denominator)
         return tuplet
 
-    def normalize_multiplier(self) -> None:
+    def normalize_ratio(self) -> None:
         r"""
-        Normalizes tuplet multiplier.
+        Normalizes tuplet ratio.
 
         ..  container:: example
 
@@ -5859,10 +5845,10 @@ class Tuplet(Container):
                     e'4
                 }
 
-            >>> abjad.Duration(tuplet.multiplier).normalized()
+            >>> tuplet.ratio.normalized()
             False
 
-            >>> tuplet.normalize_multiplier()
+            >>> tuplet.normalize_ratio()
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -5876,7 +5862,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> abjad.Duration(tuplet.multiplier).normalized()
+            >>> tuplet.ratio.normalized()
             True
 
         ..  container:: example
@@ -5897,10 +5883,10 @@ class Tuplet(Container):
                     e'32
                 }
 
-            >>> abjad.Duration(tuplet.multiplier).normalized()
+            >>> tuplet.ratio.normalized()
             False
 
-            >>> tuplet.normalize_multiplier()
+            >>> tuplet.normalize_ratio()
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -5915,7 +5901,7 @@ class Tuplet(Container):
                     e'16
                 }
 
-            >>> abjad.Duration(tuplet.multiplier).normalized()
+            >>> tuplet.ratio.normalized()
             True
 
         ..  container:: example
@@ -5936,10 +5922,10 @@ class Tuplet(Container):
                     e'4
                 }
 
-            >>> abjad.Duration(tuplet.multiplier).normalized()
+            >>> tuplet.ratio.normalized()
             False
 
-            >>> tuplet.normalize_multiplier()
+            >>> tuplet.normalize_ratio()
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -5954,12 +5940,11 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> abjad.Duration(tuplet.multiplier).normalized()
+            >>> tuplet.ratio.normalized()
             True
 
         """
-        multiplier = fractions.Fraction(*self.multiplier)
-        integer_exponent = int(math.log(multiplier, 2))
+        integer_exponent = int(math.log(self.fraction_multiplier, 2))
         leaf_multiplier = fractions.Fraction(2) ** integer_exponent
         for component in self:
             if isinstance(component, Leaf):
@@ -5968,9 +5953,9 @@ class Tuplet(Container):
                 multiplier = new_written_duration / old_written_duration
                 component._scale(multiplier)
         multiplier = leaf_multiplier**-1
-        multiplier *= fractions.Fraction(*self.multiplier)
-        pair = multiplier.numerator, multiplier.denominator
-        self.multiplier = pair
+        multiplier *= self.fraction_multiplier
+        ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+        self.ratio = ratio
 
     def rest_filled(self) -> bool:
         r"""
@@ -6296,8 +6281,8 @@ class Tuplet(Container):
 
     def trivial(self) -> bool:
         r"""
-        Is true when tuplet multiplier is equal to ``1`` and no multipliers
-        attach to any leaves in tuplet.
+        Is true when tuplet ratio reduces to ``1:1`` and no multiplier attaches
+        to any leaf in tuplet.
 
         ..  container:: example
 
