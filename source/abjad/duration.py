@@ -997,18 +997,6 @@ class Duration(fractions.Fraction):
         except Exception:
             return False
 
-    def normalized(self) -> bool:
-        """
-        Is true when duration is greater than ``1/2`` and less than ``2``.
-
-        ..  container:: example
-
-            >>> abjad.Duration(3, 2).normalized()
-            True
-
-        """
-        return type(self)(1, 2) < self < type(self)(2)
-
     def to_clock_string(self) -> str:
         r"""
         Changes duration to clock string.
@@ -1680,6 +1668,23 @@ class Ratio:
 
         """
         return f"{self.numerator}:{self.denominator}"
+
+    def normalized(self) -> bool:
+        """
+        Is true when fraction form of ratio is greater than ``1/2`` and less
+        than ``2``.
+
+        ..  container:: example
+
+            >>> abjad.Ratio(2, 3).normalized()
+            True
+
+            >>> abjad.Ratio(2, 5).normalized()
+            False
+
+        """
+        self_fraction = fractions.Fraction(self.numerator, self.denominator)
+        return fractions.Fraction(1, 2) < self_fraction < fractions.Fraction(2)
 
     def reciprocal(self) -> "Ratio":
         """

@@ -305,7 +305,7 @@ def test_mutate_fuse_08():
 
 def test_mutate_fuse_09():
     """
-    Raises exception when tuplet multipliers differ.
+    Raises exception when tuplet ratios differ.
     """
 
     tuplet_1 = abjad.Tuplet("3:2", "c'8 d'8 e'8")

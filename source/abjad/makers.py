@@ -1305,7 +1305,7 @@ def tweak_tuplet_number_text(argument) -> None:
 
       * tuplet is an augmentation (like 3:4), or
       * tuplet is nondyadic (like 4:3), or
-      * tuplet multiplier equals 1
+      * tuplet ratio reduces to 1:1
 
     Does not tweak tuplets for which none of these conditions holds.
     """
@@ -1315,6 +1315,6 @@ def tweak_tuplet_number_text(argument) -> None:
         if (
             tuplet.augmentation()
             or not tuplet.dyadic()
-            or _duration.Duration(tuplet.multiplier) == 1
+            or tuplet.fraction_multiplier == 1
         ):
             _tweaks.tweak(tuplet, tuplet.tuplet_number_calc_fraction_text_tweak_string)

@@ -653,11 +653,12 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
                     tuplet.extend(leaves)
                     if 1 < len(leaves):
                         _spanners.tie(leaves)
-            assert fractions.Fraction(*tuplet.multiplier) == 1, repr(tuplet.multiplier)
+            assert tuplet.fraction_multiplier == 1, repr(tuplet.fraction_multiplier)
             contents_duration = tuplet._get_duration()
             target_duration = tuplet_duration
             multiplier = target_duration / contents_duration
-            tuplet.multiplier = _duration.pair(multiplier)
+            ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+            tuplet.ratio = ratio
             return [tuplet]
 
         tuplet_duration_ = duration * _duration.Duration(self.pair)

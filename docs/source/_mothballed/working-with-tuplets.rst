@@ -36,27 +36,18 @@ The interprer representation of an tuplet contains three parts:
 
 ``Tuplet`` tells you the tuplet's class.
 
-``(2, 3)`` tells you the tuplet's multiplier.
+``"3:2"`` tells you the tuplet's ratio.
 
-``[fs'8, g'8, r8]`` tells you the top-level components the tuplet contains.
+``"fs'8, g'8, r8"`` tells you the top-level components the tuplet contains.
 
 Understanding the string representation of a tuplet
 ---------------------------------------------------
 
-The string representation of a tuplet contains four parts:
+The string representation of a tuplet is the same as the interpreter representation:
 
 ::
 
     >>> print(tuplet)
-
-Curly braces ``{`` and ``}`` indicate that the tuplet's music is interpreted
-sequentially instead of simultaneously.
-
-The asterisks ``*`` denote a fixed-multiplier tuplet.
-
-``3:2`` tells you the tuplet's ratio.
-
-The remaining arguments show the top-level components of tuplet.
 
 Formatting tuplets
 ------------------
@@ -110,36 +101,36 @@ Get the duration of a tuplet:
 Understanding rhythmic augmentation and diminution
 --------------------------------------------------
 
-A tuplet with a multiplier less than ``1`` constitutes a type of rhythmic diminution:
+A tuplet with a ratio greather than ``1:1`` constitutes a type of rhythmic diminution:
 
 ::
 
-    >>> tuplet.multiplier
+    >>> tuplet.ratio
 
 ::
 
     >>> tuplet.diminution()
 
-A tuplet with a multiplier greater than ``1`` is a type of rhythmic augmentation:
+A tuplet with a ratio less than ``1:1`` is a type of rhythmic augmentation:
 
 ::
 
     >>> tuplet.augmentation()
 
-Getting and setting the multiplier of a tuplet
-----------------------------------------------
+Getting and setting the ratio of a tuplet
+-----------------------------------------
 
-Get the multiplier of a tuplet like this:
-
-::
-
-    >>> tuplet.multiplier
-
-Set the multiplier of a tuplet like this:
+Get the ratio of a tuplet like this:
 
 ::
 
-    >>> tuplet.multiplier = (4, 5)
+    >>> tuplet.ratio
+
+Set the ratio of a tuplet like this:
+
+::
+
+    >>> tuplet.ratio = abjad.Ratio(5, 4)
     >>> abjad.show(tuplet)
 
 Appending one component to the end of a tuplet
@@ -149,7 +140,8 @@ Use ``append()`` to append one component to the end of a tuplet:
 
 ::
 
-    >>> tuplet.append("e'4.")
+    >>> note = abjad.Note("e'4.")
+    >>> tuplet.append(note)
     >>> abjad.show(tuplet)
 
 You can also use a LilyPond input string:

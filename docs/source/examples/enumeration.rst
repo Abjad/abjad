@@ -31,9 +31,9 @@ The following functions recreate Malt's results in Abjad:
     ...     ratio = inner * (1,)
     ...     pair = (outer, lone_note_denominator)
     ...     inner_tuplet = abjad.makers.tuplet_from_ratio_and_pair(ratio, pair)
-    ...     multiplier = abjad.Fraction(*inner_tuplet.multiplier)
+    ...     multiplier = inner_tuplet.fraction_multiplier
     ...     pair = abjad.duration.with_denominator(multiplier, inner)
-    ...     inner_tuplet.multiplier = pair
+    ...     inner_tuplet.ratio = abjad.Ratio(pair[1], pair[0])
     ...     inner_tuplet.hide = inner_tuplet.trivial()
     ...     if retrograde:
     ...         contents = [inner_tuplet, lone_note]
