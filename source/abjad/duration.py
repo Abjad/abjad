@@ -1669,6 +1669,18 @@ class Ratio:
         """
         return f"{self.numerator}:{self.denominator}"
 
+    def as_fraction(self):
+        """
+        Changes (unreduced) ratio to (reduced) fraction.
+
+        ..  container:: example
+
+            >>> abjad.Ratio(6, 4).as_fraction()
+            Fraction(3, 2)
+
+        """
+        return fractions.Fraction(self.numerator, self.denominator)
+
     def normalized(self) -> bool:
         """
         Is true when fraction form of ratio is greater than ``1/2`` and less
