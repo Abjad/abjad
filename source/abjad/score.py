@@ -5105,7 +5105,6 @@ class Tuplet(Container):
 
     __slots__ = (
         "_hide",
-        "_multiplier",
         "_ratio",
         "tweaks",
     )
@@ -5119,7 +5118,7 @@ class Tuplet(Container):
 
     def __init__(
         self,
-        multiplier: tuple[int, int] | str | _duration.Ratio = "3:2",
+        ratio: tuple[int, int] | str | _duration.Ratio = "3:2",
         components=None,
         *,
         hide: bool = False,
@@ -5129,20 +5128,22 @@ class Tuplet(Container):
     ) -> None:
         Container.__init__(self, components, language=language, tag=tag)
         self.tweaks = ()
-        if isinstance(multiplier, str) and ":" in multiplier:
-            strings = multiplier.split(":")
+        if isinstance(ratio, _duration.Ratio):
+            ratio_ = ratio
+        elif isinstance(ratio, str):
+            assert ":" in ratio, repr(ratio)
+            strings = ratio.split(":")
+            assert len(strings) == 2, repr(ratio)
             numbers = [int(_) for _ in strings]
-            pair = numbers[1], numbers[0]
-        elif isinstance(multiplier, _duration.Ratio):
-            pair = multiplier.denominator, multiplier.numerator
-        elif isinstance(multiplier, tuple):
-            pair = multiplier[0], multiplier[1]
+            ratio_ = _duration.Ratio(*numbers)
+        # TODO: remove this branch and force ratio or string input only
+        elif isinstance(ratio, tuple):
+            ratio_ = _duration.Ratio(*ratio)
+            ratio_ = ratio_.reciprocal()
         else:
-            message = f"tuplet multiplier must be pair or string (not {multiplier!r})."
+            message = f"tuplet ratio must be ratio, string or pair (not {ratio!r})."
             raise ValueError(message)
-        ratio = _duration.Ratio(pair[1], pair[0])
-        self.ratio = ratio
-        # self.multiplier = pair
+        self.ratio = ratio_
         self.hide = hide
 
     ### SPECIAL METHODS ###
@@ -5369,28 +5370,6 @@ class Tuplet(Container):
         self._hide = argument
 
     @property
-    def multiplier(self) -> tuple[int, int]:
-        """
-        TEMPORARILY DEPRECATED.
-
-        Use abjad.Tuplet.fraction_multiplier temporarily.
-        """
-        # raise Exception("AAA")
-        return self._multiplier
-
-    @multiplier.setter
-    def multiplier(self, argument):
-        if isinstance(argument, tuple):
-            assert len(argument) == 2, repr(argument)
-        else:
-            raise ValueError(f"tuplet multiplier must be pair, not {argument!r}.")
-        if fractions.Fraction(*argument) <= 0:
-            raise ValueError(f"tuplet multiplier must be positive, not {argument!r}.")
-        self._multiplier = argument
-        ratio = _duration.Ratio(argument[1], argument[0])
-        self._ratio = ratio
-
-    @property
     def ratio(self) -> _duration.Ratio:
         r"""
         Gets and sets tuplet ratio.
@@ -5443,7 +5422,6 @@ class Tuplet(Container):
         assert isinstance(ratio, _duration.Ratio), repr(ratio)
         assert ratio.denominator != 0, repr(ratio)
         self._ratio = ratio
-        self._multiplier = (ratio.denominator, ratio.numerator)
 
     @property
     def tag(self) -> _tag.Tag | None:
@@ -6263,8 +6241,8 @@ class Tuplet(Container):
 
     def trivial(self) -> bool:
         r"""
-        Is true when tuplet ratio reduces to ``1:1`` and no multiplier attaches
-        to any leaf in tuplet.
+        Is true when tuplet ratio reduces to ``1:1`` and no duration multiplier
+        attaches to any leaf in tuplet.
 
         ..  container:: example
 
@@ -6486,10 +6464,9 @@ class Tuplet(Container):
             return
         for component in self:
             if isinstance(component, Tuplet):
-                multiplier = fractions.Fraction(*component.multiplier)
-                multiplier *= self.fraction_multiplier
-                pair = multiplier.numerator, multiplier.denominator
-                component.multiplier = pair
+                multiplier = self.fraction_multiplier * component.fraction_multiplier
+                ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+                component.ratio = ratio
             elif isinstance(component, Leaf):
                 component.written_duration *= self.fraction_multiplier
             else:
