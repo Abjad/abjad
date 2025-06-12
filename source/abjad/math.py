@@ -536,14 +536,15 @@ def greatest_common_divisor(*integers) -> int:
     return max(common_divisors)
 
 
-def greatest_power_of_two_less_equal(n, i=0) -> int:
+def greatest_power_of_two_less_equal(n: int | fractions.Fraction) -> int:
     r"""
     Gets greatest integer power of two less than or equal to positive ``n``.
 
     ..  container:: example
 
         >>> for n in range(10, 20):
-        ...     print('\t%s\t%s' % (n, abjad.math.greatest_power_of_two_less_equal(n)))
+        ...     result = abjad.math.greatest_power_of_two_less_equal(n)
+        ...     print(f"{n} {result}")
         ...
         10 8
         11 8
@@ -556,27 +557,31 @@ def greatest_power_of_two_less_equal(n, i=0) -> int:
         18 16
         19 16
 
-        Greatest-but-``i`` integer power of ``2`` less than or equal to
-        positive ``n``:
-
-        >>> for n in range(10, 20):
-        ...     print('\t%s\t%s' % (n, abjad.math.greatest_power_of_two_less_equal(n, i=1)))
+        >>> for numerator in range(1, 8):
+        ...     fraction = fractions.Fraction(numerator, 8)
+        ...     result = abjad.math.greatest_power_of_two_less_equal(fraction)
+        ...     print(f"{fraction} {result}")
         ...
-        10 4
-        11 4
-        12 4
-        13 4
-        14 4
-        15 4
-        16 8
-        17 8
-        18 8
-        19 8
+        1/8 0.125
+        1/4 0.25
+        3/8 0.5
+        1/2 0.5
+        5/8 1
+        3/4 1
+        7/8 1
 
     """
     if n <= 0:
         raise ValueError(f"must be positive: {n!r}.")
-    return 2 ** (int(math.log(n, 2)) - i)
+    return 2 ** int(math.log(n, 2))
+    """
+    power = fractions.Fraction(1)
+    while power * 2 <= n:
+        power *= 2
+    while power > n:
+        power /= 2
+    return int(power) if power.denominator == 1 else power
+    """
 
 
 def integer_equivalent_number_to_integer(number) -> int | float:

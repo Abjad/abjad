@@ -2,7 +2,6 @@ import collections
 import copy
 import fractions
 import functools
-import math
 import typing
 
 from . import _indentlib, _updatelib
@@ -425,7 +424,11 @@ class Leaf(Component):
     ### INITIALIZER ###
 
     def __init__(
-        self, written_duration, *, multiplier=None, tag: _tag.Tag | None = None
+        self,
+        written_duration: _duration.Duration,
+        *,
+        multiplier=None,
+        tag: _tag.Tag | None = None,
     ) -> None:
         Component.__init__(self, tag=tag)
         self._after_grace_container = None
@@ -636,7 +639,7 @@ class Leaf(Component):
     def _get_preprolated_duration(self):
         duration = self.written_duration
         if self.multiplier is not None:
-            duration *= _duration.Duration(self.multiplier)
+            duration *= fractions.Fraction(*self.multiplier)
         return duration
 
     def _get_subtree(self):
@@ -675,6 +678,7 @@ class Leaf(Component):
         return result
 
     def _scale(self, multiplier):
+        assert isinstance(multiplier, fractions.Fraction), repr(multiplier)
         self.written_duration *= multiplier
 
     ### PUBLIC PROPERTIES ###
@@ -682,23 +686,22 @@ class Leaf(Component):
     @property
     def multiplier(self) -> tuple[int, int] | None:
         """
-        Gets multiplier.
+        Gets leaf duration multiplier.
         """
         return self._multiplier
 
     @multiplier.setter
     def multiplier(self, argument):
-        if argument is None:
-            self._multiplier = None
-        else:
-            assert isinstance(argument, tuple), repr(argument)
+        if isinstance(argument, tuple):
             assert len(argument) == 2, repr(argument)
-            self._multiplier = argument
+        else:
+            assert argument is None, repr(argument)
+        self._multiplier = argument
 
     @property
     def written_duration(self) -> _duration.Duration:
         """
-        Gets written duration.
+        Gets leaf written duration.
         """
         return self._written_duration
 
@@ -1333,6 +1336,7 @@ class Container(Component):
         return parsed
 
     def _scale(self, multiplier):
+        assert isinstance(multiplier, fractions.Fraction), repr(multiplier)
         for item in list(self):
             item._scale(multiplier)
 
@@ -4719,7 +4723,6 @@ class Skip(Leaf):
         tag: _tag.Tag | None = None,
     ) -> None:
         input_leaf = None
-        written_duration = None
         if len(arguments) == 1 and isinstance(arguments[0], str):
             string = f"{{ {arguments[0]} }}"
             parsed = self._parse_lilypond_string(string, language=language)
@@ -5264,7 +5267,7 @@ class Tuplet(Container):
         return string
 
     def _scale(self, multiplier):
-        multiplier = fractions.Fraction(multiplier)
+        assert isinstance(multiplier, fractions.Fraction), repr(multiplier)
         for component in self[:]:
             if isinstance(component, Leaf):
                 component._scale(multiplier)
@@ -5902,16 +5905,12 @@ class Tuplet(Container):
             True
 
         """
-        integer_exponent = int(math.log(self.multiplier(), 2))
-        leaf_multiplier = fractions.Fraction(2) ** integer_exponent
+        multiplier_ = _math.greatest_power_of_two_less_equal(self.multiplier())
+        multiplier = fractions.Fraction(multiplier_)
         for component in self:
             if isinstance(component, Leaf):
-                old_written_duration = component.written_duration
-                new_written_duration = leaf_multiplier * old_written_duration
-                multiplier = new_written_duration / old_written_duration
                 component._scale(multiplier)
-        multiplier = leaf_multiplier**-1
-        multiplier *= self.multiplier()
+        multiplier = self.multiplier() / multiplier
         ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
         self.ratio = ratio
 
