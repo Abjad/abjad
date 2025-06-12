@@ -488,7 +488,9 @@ class MetricModulation:
         elif self._lhs_tuplet():
             tuplet_exponent = left_rhythm[0][0].written_duration.exponent
             tuplet_dots = left_rhythm[0][0].written_duration.dot_count
-            tuplet_n, tuplet_d = left_rhythm[0].multiplier
+            # tuplet_n, tuplet_d = left_rhythm[0].multiplier
+            tuplet_n = left_rhythm[0].ratio.denominator
+            tuplet_d = left_rhythm[0].ratio.numerator
             note_exponent = right_rhythm[0].written_duration.exponent
             note_dots = right_rhythm[0].written_duration.dot_count
             return (
@@ -504,7 +506,9 @@ class MetricModulation:
             note_dots = left_rhythm[0].written_duration.dot_count
             tuplet_exponent = right_rhythm[0][0].written_duration.exponent
             tuplet_dots = right_rhythm[0][0].written_duration.dot_count
-            tuplet_n, tuplet_d = right_rhythm[0].multiplier
+            # tuplet_n, tuplet_d = right_rhythm[0].multiplier
+            tuplet_n = right_rhythm[0].ratio.denominator
+            tuplet_d = right_rhythm[0].ratio.numerator
             return (
                 note_exponent,
                 note_dots,

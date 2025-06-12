@@ -506,7 +506,7 @@ def _split_container_at_index(CONTAINER, i):
     right_components = CONTAINER[i:]
     # instantiate new left and right containers
     if isinstance(CONTAINER, _score.Tuplet):
-        multiplier = CONTAINER.multiplier
+        multiplier = CONTAINER.ratio.denominator, CONTAINER.ratio.numerator
         left = type(CONTAINER)(multiplier, [])
         wrap(left_components, left)
         right = type(CONTAINER)(multiplier, [])
