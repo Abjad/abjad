@@ -5242,11 +5242,10 @@ class Tuplet(Container):
         return f"{{ {str(self.ratio)} {self._get_contents_summary()} }}"
 
     def _get_preprolated_duration(self):
-        contents_duration = self._get_contents_duration()
-        return _duration.Duration(self.fraction_multiplier * contents_duration)
+        return self.multiplier() * self._get_contents_duration()
 
     def _get_prolation(self) -> fractions.Fraction:
-        return self.fraction_multiplier
+        return self.multiplier()
 
     def _get_scale_durations_command_string(self):
         numerator = self.ratio.denominator
@@ -5272,19 +5271,6 @@ class Tuplet(Container):
         self.normalize_ratio()
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def fraction_multiplier(self) -> fractions.Fraction:
-        """
-        TEMPORARY: gets tuplet multiplier as a fraction.
-
-        ..  container:: example
-
-            >>> abjad.Tuplet("6:4", "c'4 d'4 e'4").fraction_multiplier
-            Fraction(2, 3)
-
-        """
-        return fractions.Fraction(self.ratio.denominator, self.ratio.numerator)
 
     @property
     def hide(self) -> bool | None:
@@ -5596,7 +5582,7 @@ class Tuplet(Container):
             False
 
         """
-        return 1 < self.fraction_multiplier
+        return 1 < self.multiplier()
 
     def diminution(self) -> bool:
         r"""
@@ -5633,7 +5619,7 @@ class Tuplet(Container):
             False
 
         """
-        return self.fraction_multiplier < 1
+        return self.multiplier() < 1
 
     def dyadic(self) -> bool:
         r"""
@@ -5785,6 +5771,18 @@ class Tuplet(Container):
         tuplet.ratio = _duration.Ratio(fraction.numerator, fraction.denominator)
         return tuplet
 
+    def multiplier(self) -> fractions.Fraction:
+        """
+        Gets tuplet multiplier.
+
+        ..  container:: example
+
+            >>> abjad.Tuplet("6:4", "c'4 d'4 e'4").multiplier()
+            Fraction(2, 3)
+
+        """
+        return self.ratio.reciprocal().as_fraction()
+
     def normalize_ratio(self) -> None:
         r"""
         Normalizes tuplet ratio.
@@ -5904,7 +5902,7 @@ class Tuplet(Container):
             True
 
         """
-        integer_exponent = int(math.log(self.fraction_multiplier, 2))
+        integer_exponent = int(math.log(self.multiplier(), 2))
         leaf_multiplier = fractions.Fraction(2) ** integer_exponent
         for component in self:
             if isinstance(component, Leaf):
@@ -5913,7 +5911,7 @@ class Tuplet(Container):
                 multiplier = new_written_duration / old_written_duration
                 component._scale(multiplier)
         multiplier = leaf_multiplier**-1
-        multiplier *= self.fraction_multiplier
+        multiplier *= self.multiplier()
         ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
         self.ratio = ratio
 
@@ -6100,7 +6098,7 @@ class Tuplet(Container):
         if global_dot_count == 0:
             return
         dot_multiplier = _duration.Duration.from_dot_count(global_dot_count)
-        multiplier = self.fraction_multiplier * dot_multiplier
+        multiplier = self.multiplier() * dot_multiplier
         self.ratio = _duration.Ratio(multiplier.pair[1], multiplier.pair[0])
         dot_multiplier_reciprocal = dot_multiplier.reciprocal()
         for component in self:
@@ -6224,7 +6222,7 @@ class Tuplet(Container):
         """
         if self.diminution():
             while self.diminution():
-                multiplier = 2 * self.fraction_multiplier
+                multiplier = 2 * self.multiplier()
                 ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
                 self.ratio = ratio
                 for component in self._get_subtree():
@@ -6232,7 +6230,7 @@ class Tuplet(Container):
                         component.written_duration /= 2
         elif self.augmentation():
             while not self.diminution():
-                multiplier = self.fraction_multiplier / 2
+                multiplier = self.multiplier() / 2
                 ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
                 self.ratio = ratio
                 for component in self._get_subtree():
@@ -6291,7 +6289,7 @@ class Tuplet(Container):
             False
 
         """
-        if self.fraction_multiplier != 1:
+        if self.multiplier() != 1:
             return False
         for component in self:
             if isinstance(component, Tuplet):
@@ -6417,7 +6415,7 @@ class Tuplet(Container):
             if isinstance(component, Tuplet):
                 continue
             assert isinstance(component, Leaf), repr(component)
-            fraction = self.fraction_multiplier * component.written_duration
+            fraction = self.multiplier() * component.written_duration
             duration = _duration.Duration(fraction)
             if not duration.is_assignable:
                 return False
@@ -6464,11 +6462,11 @@ class Tuplet(Container):
             return
         for component in self:
             if isinstance(component, Tuplet):
-                multiplier = self.fraction_multiplier * component.fraction_multiplier
+                multiplier = self.multiplier() * component.multiplier()
                 ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
                 component.ratio = ratio
             elif isinstance(component, Leaf):
-                component.written_duration *= self.fraction_multiplier
+                component.written_duration *= self.multiplier()
             else:
                 raise TypeError(component)
         self.ratio = _duration.Ratio(1, 1)
