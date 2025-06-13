@@ -91,7 +91,7 @@ def test_Chord___copy___04():
 
 def test_Chord___copy___05():
     """
-    Chord coipes articulations and markup.
+    Chord copies articulations and markup.
     """
 
     chord_1 = abjad.Chord("<ef' cs'' f''>4")
@@ -159,7 +159,7 @@ def test_Chord___deepcopy___01():
 
 def test_Chord___eq____01():
     """
-    True only when chords have the same object ID.
+    Is true only when chords have the same object ID.
     """
 
     chord_1 = abjad.Chord([0, 4, 7], (1, 4))
@@ -179,7 +179,7 @@ def test_Chord___eq____01():
 
 def test_Chord___init___01():
     """
-    Initialize empty chord.
+    Initializes empty chord.
     """
 
     chord = abjad.Chord([], (1, 4))
@@ -188,7 +188,7 @@ def test_Chord___init___01():
 
 def test_Chord___init___02():
     """
-    Initialize chord with pitch numbers.
+    Initializes chord with pitch numbers.
     """
 
     chord = abjad.Chord([2, 4, 5], (1, 4))
@@ -197,7 +197,7 @@ def test_Chord___init___02():
 
 def test_Chord___init___03():
     """
-    Initialize chord with pitch tokens.
+    Initializes chord with pitch tokens.
     """
 
     chord = abjad.Chord([("ds", 4), ("ef", 4)], (1, 4))
@@ -206,7 +206,7 @@ def test_Chord___init___03():
 
 def test_Chord___init___04():
     """
-    Initialize chord with pitches.
+    Initializes chord with pitches.
     """
 
     pitches = []
@@ -218,7 +218,7 @@ def test_Chord___init___04():
 
 def test_Chord___init___05():
     """
-    Initialize chord with pitches and pitch numbers together.
+    Initializes chord with pitches and pitch numbers together.
     """
 
     pitches = [2, ("ef", 4), abjad.NamedPitch(4)]
@@ -228,7 +228,7 @@ def test_Chord___init___05():
 
 def test_Chord___init___06():
     """
-    Initialize chord with list of pitch names.
+    Initializes chord with list of pitch names.
     """
 
     pitches = ["d'", "ef'", "e'"]
@@ -238,7 +238,7 @@ def test_Chord___init___06():
 
 def test_Chord___init___07():
     """
-    Initialize chord with LilyPond input string.
+    Initializes chord with LilyPond input string.
     """
 
     chord = abjad.Chord("<d' ef' e'>4")
@@ -247,7 +247,7 @@ def test_Chord___init___07():
 
 def test_Chord___init___08():
     """
-    Initialize chord from skip.
+    Initializes chord from skip.
     """
 
     skip = abjad.Skip("s8")
@@ -262,7 +262,7 @@ def test_Chord___init___08():
 
 def test_Chord___init___09():
     """
-    Initialize chord from tupletized skip.
+    Initializes chord from tupletized skip.
     """
 
     tuplet = abjad.Tuplet("3:2", "s8 s8 s8")
@@ -275,7 +275,7 @@ def test_Chord___init___09():
 
 def test_Chord___init___10():
     """
-    Initialize chord from containerized skip.
+    Initializes chord from containerized skip.
     """
 
     tuplet = abjad.Voice("s8 s8 s8")
@@ -288,7 +288,7 @@ def test_Chord___init___10():
 
 def test_Chord___init___11():
     """
-    Initialize chord from beamed skip.
+    Initializes chord from beamed skip.
     """
 
     staff = abjad.Staff("c'8 [ s8 c'8 ]")
@@ -301,7 +301,7 @@ def test_Chord___init___11():
 
 def test_Chord___init___12():
     """
-    Initialize chord from rest.
+    Initializes chord from rest.
     """
 
     rest = abjad.Rest("r8")
@@ -315,7 +315,7 @@ def test_Chord___init___12():
 
 def test_Chord___init___13():
     """
-    Initialize chord from tupletized rest.
+    Initializes chord from tupletized rest.
     """
 
     tuplet = abjad.Tuplet("3:2", "r8 r8 r8")
@@ -328,7 +328,7 @@ def test_Chord___init___13():
 
 def test_Chord___init___14():
     """
-    Initialize chord from note.
+    Initializes chord from note.
     """
 
     note = abjad.Note("d'8")
@@ -342,7 +342,7 @@ def test_Chord___init___14():
 
 def test_Chord___init___15():
     """
-    Initialize chord from tupletized note.
+    Initializes chord from tupletized note.
     """
 
     tuplet = abjad.Tuplet("3:2", "c'8 c'8 c'8")
@@ -355,7 +355,7 @@ def test_Chord___init___15():
 
 def test_Chord___init___16():
     """
-    Initialize chord from spanned note.
+    Initializes chord from spanned note.
     """
 
     staff = abjad.Staff("c'8 ( d'8 e'8 f'8 )")
@@ -368,7 +368,7 @@ def test_Chord___init___16():
 
 def test_Chord___init___17():
     """
-    Initialize empty chord from LilyPond input string.
+    Initializes empty chord from LilyPond input string.
     """
 
     chord = abjad.Chord("<>8.")
@@ -379,7 +379,7 @@ def test_Chord___init___17():
 
 def test_Chord___init___18():
     """
-    Initialize chord from LilyPond input string with forced and cautionary
+    Initializes chord from LilyPond input string with forced and cautionary
     accidentals.
     """
 
@@ -390,7 +390,7 @@ def test_Chord___init___18():
 
 def test_Chord___init___19():
     """
-    Initialize chord from note with forced and cautionary accidentals.
+    Initializes chord from note with forced and cautionary accidentals.
     """
 
     note = abjad.Note("c'!?4")
@@ -401,7 +401,7 @@ def test_Chord___init___19():
 
 def test_Chord___init___20():
     """
-    Initialize chord from other chord.
+    Initializes chord from other chord.
     """
 
     chord_1 = abjad.Chord("<c' e' g' bf'>4")
@@ -409,10 +409,17 @@ def test_Chord___init___20():
 
     assert abjad.lilypond(chord_2) == "<c' e' g' bf'>8"
 
+    # REGRESSION
+
+    chord_1 = abjad.Chord("<e' cs'' f''>4", multiplier=(1, 2))
+    chord_2 = abjad.Chord(chord_1)
+
+    assert abjad.lilypond(chord_2) == "<e' cs'' f''>4 * 1/2"
+
 
 def test_Chord___init___21():
     """
-    Initialize chord with drum pitches.
+    Initializes chord with drum pitches.
     """
 
     chord = abjad.Chord("<sn? bd! tamb>4")
@@ -449,7 +456,7 @@ def test_Chord_written_pitches_02():
 
 def test_Chord_written_pitches_03():
     """
-    Set written pitches with pitch numbers.
+    Sets written pitches with pitch numbers.
     """
 
     chord = abjad.Chord([], (1, 4))
@@ -462,7 +469,7 @@ def test_Chord_written_pitches_03():
 
 def test_Chord_written_pitches_04():
     """
-    Set written pitches with pitches.
+    Sets written pitches with pitches.
     """
 
     chord = abjad.Chord([], (1, 4))
@@ -477,7 +484,7 @@ def test_Chord_written_pitches_04():
 
 def test_Chord_written_pitches_05():
     """
-    Set written pitches with both pitches and pitch numbers.
+    Sets written pitches with both pitches and pitch numbers.
     """
 
     chord = abjad.Chord([], (1, 4))

@@ -359,7 +359,7 @@ def test_Parentage_logical_voice_07():
 
 def test_Parentage_logical_voice_08():
     """
-    Unicorporated leaves carry equivalent containment signatures.
+    Orphan leaves carry equivalent containment signatures.
     """
 
     note_1 = abjad.Note(0, (1, 8))

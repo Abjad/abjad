@@ -934,35 +934,6 @@ class Duration(fractions.Fraction):
         return Duration(seconds)
 
     @staticmethod
-    def from_dot_count(dot_count: int) -> "Duration":
-        """
-        Makes duration from ``dot_count``.
-
-        ..  container:: example
-
-            >>> abjad.Duration.from_dot_count(0)
-            Duration(1, 1)
-
-            >>> abjad.Duration.from_dot_count(1)
-            Duration(3, 2)
-
-            >>> abjad.Duration.from_dot_count(2)
-            Duration(7, 4)
-
-            >>> abjad.Duration.from_dot_count(3)
-            Duration(15, 8)
-
-            >>> abjad.Duration.from_dot_count(4)
-            Duration(31, 16)
-
-        """
-        assert isinstance(dot_count, int), repr(dot_count)
-        assert 0 <= dot_count, repr(dot_count)
-        denominator = 2**dot_count
-        numerator = 2 ** (dot_count + 1) - 1
-        return Duration(numerator, denominator)
-
-    @staticmethod
     def from_lilypond_duration_string(
         lilypond_duration_string,
     ) -> "Duration":
@@ -1657,6 +1628,47 @@ class Ratio:
         assert isinstance(self.numerator, int), repr(self.numerator)
         assert isinstance(self.denominator, int), repr(self.denominator)
 
+    def __mul__(self, n: int) -> "Ratio":
+        """
+        Multiplies numerator and denominator of ratio by ``n``.
+
+        ..  container:: example
+
+            >>> abjad.Ratio(3, 2) * 2
+            Ratio(numerator=6, denominator=4)
+
+        """
+        assert isinstance(n, int), repr(n)
+        return Ratio(n * self.numerator, n * self.denominator)
+
+    def __truediv__(self, n: int) -> "Ratio":
+        """
+        Divides numerator and denominator of ratio by ``n``.
+
+        ..  container:: example
+
+            >>> abjad.Ratio(6, 4) / 2
+            Ratio(numerator=3, denominator=2)
+
+        """
+        assert isinstance(n, int), repr(n)
+        assert self.numerator % n == 0, repr((self.numerator, n))
+        assert self.denominator % n == 0, repr((self.denominator, n))
+        return Ratio(self.numerator // n, self.denominator // n)
+
+    def __rmul__(self, n: int) -> "Ratio":
+        """
+        Multiplies numerator and denominator of ratio by ``n``.
+
+        ..  container:: example
+
+            >>> 2 * abjad.Ratio(3, 2)
+            Ratio(numerator=6, denominator=4)
+
+        """
+        assert isinstance(n, int), repr(n)
+        return Ratio(n * self.numerator, n * self.denominator)
+
     def __str__(self) -> str:
         """
         Gets colon-delimited string format of ratio.
@@ -1751,6 +1763,35 @@ def durations(durations) -> list[Duration]:
     """
     durations = [Duration(_) for _ in durations]
     return durations
+
+
+def fraction_from_dot_count(dot_count: int) -> fractions.Fraction:
+    """
+    Makes fraction from ``dot_count``.
+
+    ..  container:: example
+
+        >>> abjad.duration.fraction_from_dot_count(0)
+        Fraction(1, 1)
+
+        >>> abjad.duration.fraction_from_dot_count(1)
+        Fraction(3, 2)
+
+        >>> abjad.duration.fraction_from_dot_count(2)
+        Fraction(7, 4)
+
+        >>> abjad.duration.fraction_from_dot_count(3)
+        Fraction(15, 8)
+
+        >>> abjad.duration.fraction_from_dot_count(4)
+        Fraction(31, 16)
+
+    """
+    assert isinstance(dot_count, int), repr(dot_count)
+    assert 0 <= dot_count, repr(dot_count)
+    denominator = 2**dot_count
+    numerator = 2 ** (dot_count + 1) - 1
+    return fractions.Fraction(numerator, denominator)
 
 
 def pair(argument) -> tuple[int, int]:

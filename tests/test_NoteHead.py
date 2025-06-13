@@ -90,7 +90,7 @@ def test_NoteHead___deepcopy___01():
 
 def test_NoteHead___init___01():
     """
-    Initialize note-head by number.
+    Initializes note-head by number.
     """
 
     notehead = abjad.NoteHead(6)
@@ -99,7 +99,7 @@ def test_NoteHead___init___01():
 
 def test_NoteHead___init___02():
     """
-    Initialize note-head by LilyPond-style pitch string.
+    Initializes note-head by LilyPond-style pitch string.
     """
 
     notehead = abjad.NoteHead("cs,,,")
@@ -108,7 +108,7 @@ def test_NoteHead___init___02():
 
 def test_NoteHead___init___03():
     """
-    Initialize note-head by other note-head instance.
+    Initializes note-head by other note-head instance.
     """
 
     notehead = abjad.NoteHead(6)
@@ -121,7 +121,7 @@ def test_NoteHead___init___03():
 
 def test_NoteHead___init___04():
     """
-    Initialize note-head with tweak manager.
+    Initializes note-head with tweak manager.
     """
 
     note_head = abjad.NoteHead("cs''", tweaks=[abjad.Tweak(r"\tweak color #red")])
@@ -186,7 +186,7 @@ def test_NoteHead_is_parenthesized_04():
 
 def test_NoteHead_written_pitch_01():
     """
-    Set note-head head pitch with integer.
+    Sets note-head head pitch with integer.
     """
 
     note = abjad.Note(13, (1, 4))
@@ -200,7 +200,7 @@ def test_NoteHead_written_pitch_01():
 
 def test_NoteHead_written_pitch_02():
     """
-    Set note-head pitch with pitch.
+    Sets note-head pitch with pitch.
     """
 
     note = abjad.Note(13, (1, 4))
@@ -214,8 +214,8 @@ def test_NoteHead_written_pitch_02():
 
 def test_NoteHead_written_pitch_03():
     """
-    Set note-head pitch from another note or note-head.
-    Make sure this does not cause reference problems.
+    Sets note-head pitch from another note or note-head.
+    Makes sure this does not cause reference problems.
     """
 
     n1 = abjad.Note(12, (1, 4))

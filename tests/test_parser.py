@@ -1180,7 +1180,7 @@ def test_LilyPondParser__indicators__Hairpin_04():
 
 def test_LilyPondParser__indicators__Hairpin_05():
     """
-    No double dynamic spans permitted.
+    Raises exception on double dynamic spans.
     """
 
     string = r"{ c \< \> c c c \! }"
@@ -1282,7 +1282,7 @@ def test_LilyPondParser__indicators__HorizontalBracket_01():
 
 def test_LilyPondParser__indicators__HorizontalBracket_02():
     """
-    Starting and stopping on the same leaf.
+    Raises exception when trying to start and stop on the same leaf.
     """
 
     string = r"""{ c \startGroup \stopGroup c c c }"""
@@ -1292,7 +1292,8 @@ def test_LilyPondParser__indicators__HorizontalBracket_02():
 
 def test_LilyPondParser__indicators__HorizontalBracket_03():
     """
-    One group stopping on a leaf, while another begins on the same leaf.
+    Raises exception when one group stops on a leaf, while another begins on
+    the same leaf.
     """
 
     string = r"""{ c \startGroup c \stopGroup \startGroup c c \stopGroup }"""
@@ -2296,7 +2297,7 @@ def test_LilyPondParser__misc__chord_repetition_03():
 
 def test_LilyPondParser__misc__comments_01():
     """
-    Comments are ignored.
+    Ignores comments.
     """
 
     target = abjad.Staff()
@@ -2399,7 +2400,7 @@ def test_LilyPondParser__misc__variables_01():
 
 def test_LilyPondParser__misc__version_string_01():
     """
-    Version strings are ignored.
+    Ignores version strings.
     """
 
     target = abjad.Staff()

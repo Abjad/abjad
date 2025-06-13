@@ -65,7 +65,7 @@ def test_persist_as_pdf_02():
 
 def test_persist_as_png_01():
     """
-    Persist PNG.
+    Persists PNG.
     """
 
     note = abjad.Note("c'4")
@@ -80,7 +80,7 @@ def test_persist_as_png_01():
 
 def test_persist_as_png_02():
     """
-    Persist PNG with preview.
+    Persists PNG with preview.
     """
 
     note = abjad.Note("c'4")

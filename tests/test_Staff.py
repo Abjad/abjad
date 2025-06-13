@@ -208,7 +208,7 @@ def test_Staff___getitem___03():
     assert len(components) == 1
     assert isinstance(components[0], abjad.Note)
     for x in staff:
-        assert x._parent == staff
+        assert abjad.get.parentage(x).parent == staff
     assert abjad.wf.wellformed(staff)
 
 
@@ -229,7 +229,7 @@ def test_Staff___getitem___04():
     assert len(components) == 1
     assert isinstance(components[0], abjad.Tuplet)
     for x in components:
-        assert x._parent == staff
+        assert abjad.get.parentage(x).parent == staff
     assert abjad.wf.wellformed(staff)
 
 
@@ -252,7 +252,7 @@ def test_Staff___getitem___05():
     assert isinstance(components[1], abjad.Chord)
     assert isinstance(components[2], abjad.Skip)
     for x in components:
-        assert x._parent == staff
+        assert abjad.get.parentage(x).parent == staff
     assert abjad.wf.wellformed(staff)
 
 
@@ -275,7 +275,7 @@ def test_Staff___getitem___06():
     assert isinstance(components[1], abjad.Skip)
     assert isinstance(components[2], abjad.Tuplet)
     for x in components:
-        assert x._parent == staff
+        assert abjad.get.parentage(x).parent == staff
     assert abjad.wf.wellformed(staff)
 
 
@@ -298,7 +298,7 @@ def test_Staff___getitem___07():
     assert isinstance(components[1], abjad.Rest)
     assert isinstance(components[2], abjad.Chord)
     for x in components:
-        assert x._parent == staff
+        assert abjad.get.parentage(x).parent == staff
     assert abjad.wf.wellformed(staff)
 
 
@@ -322,12 +322,12 @@ def test_Staff___getitem___08():
     assert isinstance(components[2], abjad.Chord)
     assert isinstance(components[3], abjad.Skip)
     assert isinstance(components[4], abjad.Tuplet)
-    assert all(_._parent is staff for _ in staff)
+    assert all(abjad.get.parentage(_).parent is staff for _ in staff)
 
 
 def test_Staff___init___01():
     """
-    Initialize with context name.
+    Initializes with context name.
     """
 
     staff = abjad.Staff(lilypond_type="BlueStaff")
@@ -336,7 +336,7 @@ def test_Staff___init___01():
 
 def test_Staff___init___02():
     """
-    Initialize with name.
+    Initializes with name.
     """
 
     staff = abjad.Staff(name="FirstBlueStaff")
@@ -345,7 +345,7 @@ def test_Staff___init___02():
 
 def test_Staff___init___03():
     """
-    Initialize with both context name and name.
+    Initializes with both context name and name.
     """
 
     staff = abjad.Staff(lilypond_type="BlueStaff", name="FirstBlueStaff")
@@ -415,7 +415,7 @@ def test_Staff___setitem___01():
 
 def test_Staff___setitem___02():
     """
-    Reassign the entire contents of staff.
+    Reassigns the entire contents of staff.
     """
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4")
@@ -426,7 +426,7 @@ def test_Staff___setitem___02():
 
 def test_Staff___setitem___03():
     """
-    Item-assign an empty container to staff.
+    Item-assigns an empty container to staff.
     """
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4")
@@ -435,7 +435,7 @@ def test_Staff___setitem___03():
 
 def test_Staff___setitem___04():
     """
-    Slice-assign empty containers to staff.
+    Slice-assigns empty containers to staff.
     """
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4")
@@ -444,7 +444,7 @@ def test_Staff___setitem___04():
 
 def test_Staff___setitem___05():
     """
-    Bark when user assigns a slice to an item.
+    Raises exception when user assigns a slice to an item.
     """
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4")
@@ -455,7 +455,7 @@ def test_Staff___setitem___05():
 
 def test_Staff___setitem___06():
     """
-    Bark when user assigns an item to a slice.
+    Raises exception when user assigns an item to a slice.
     """
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4")
@@ -466,7 +466,7 @@ def test_Staff___setitem___06():
 
 def test_Staff___setitem___07():
     """
-    Slice-assign notes.
+    Slice-assigns notes.
     """
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
@@ -481,7 +481,7 @@ def test_Staff___setitem___07():
 
 def test_Staff___setitem___08():
     """
-    Slice-assign chords.
+    Slice-assigns chords.
     """
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
@@ -498,7 +498,7 @@ def test_Staff___setitem___08():
 
 def test_Staff___setitem___09():
     """
-    Slice-assign tuplets.
+    Slice-assigns tuplets.
     """
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
@@ -516,7 +516,7 @@ def test_Staff___setitem___09():
 
 def test_Staff_append_01():
     """
-    Append one note.
+    Appends one note.
     """
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4")
@@ -528,7 +528,7 @@ def test_Staff_append_01():
 
 def test_Staff_append_02():
     """
-    Append one chord.
+    Appends one chord.
     """
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4")
@@ -540,7 +540,7 @@ def test_Staff_append_02():
 
 def test_Staff_append_03():
     """
-    Append one tuplet.
+    Appends one tuplet.
     """
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4")

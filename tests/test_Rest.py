@@ -25,7 +25,7 @@ def test_Rest___cmp___02():
 
 def test_Rest___copy___01():
     """
-    Copy rest.
+    Copies rest.
     """
 
     rest_1 = abjad.Rest((1, 4))
@@ -39,7 +39,7 @@ def test_Rest___copy___01():
 
 def test_Rest___copy___02():
     """
-    Copy rest with LilyPond multiplier.
+    Copies rest with LilyPond multiplier.
     """
 
     rest_1 = abjad.Rest("r4", multiplier=(1, 2))
@@ -53,7 +53,7 @@ def test_Rest___copy___02():
 
 def test_Rest___copy___03():
     """
-    Copy rest with LilyPond grob overrides and LilyPond context settings.
+    Copies rest with LilyPond grob overrides and LilyPond context settings.
     """
 
     rest_1 = abjad.Rest((1, 4))
@@ -70,7 +70,7 @@ def test_Rest___copy___03():
 
 def test_Rest___init___01():
     """
-    Initialize rest from LilyPond input string.
+    Initializes rest from LilyPond input string.
     """
 
     rest = abjad.Rest("r8.")
@@ -80,7 +80,7 @@ def test_Rest___init___01():
 
 def test_Rest___init___02():
     """
-    Initialize rest from other rest.
+    Initializes rest from other rest.
     """
 
     rest_1 = abjad.Rest("r4", multiplier=(1, 2))
@@ -95,7 +95,7 @@ def test_Rest___init___02():
 
 def test_Rest___init___03():
     """
-    Initialize rest from chord.
+    Initializes rest from chord.
     """
 
     chord = abjad.Chord([2, 3, 4], (1, 4))
@@ -109,7 +109,7 @@ def test_Rest___init___03():
 
 def test_Rest___init___04():
     """
-    Initialize rest from tupletized chord.
+    Initializes rest from tupletized chord.
     """
 
     chord = abjad.Chord([2, 3, 4], abjad.Duration(1, 4))
@@ -128,7 +128,7 @@ def test_Rest___init___04():
 
 def test_Rest___init___05():
     """
-    Initialize rest from beamed chord.
+    Initializes rest from beamed chord.
     """
 
     chord = abjad.Chord([2, 3, 4], abjad.Duration(1, 8))
@@ -149,7 +149,7 @@ def test_Rest___init___05():
 
 def test_Rest___init___06():
     """
-    Initialize rest from skip.
+    Initializes rest from skip.
     """
 
     skip = abjad.Skip("s4")
@@ -166,7 +166,7 @@ def test_Rest___init___06():
 
 def test_Rest___init___07():
     """
-    Initialize rest from tupletted skip.
+    Initializes rest from tupletted skip.
     """
 
     tuplet = abjad.Tuplet("3:2", "s4 s4 s4")
@@ -183,7 +183,7 @@ def test_Rest___init___07():
 
 def test_Rest___init___08():
     """
-    Initialize rest from beamed skip.
+    Initializes rest from beamed skip.
     """
 
     staff = abjad.Staff("c'8 [ s4 c'd ]")
@@ -200,7 +200,7 @@ def test_Rest___init___08():
 
 def test_Rest___init___09():
     """
-    Initialize rest from note.
+    Initializes rest from note.
     """
 
     note = abjad.Note("c'4")
@@ -217,7 +217,7 @@ def test_Rest___init___09():
 
 def test_Rest___init___10():
     """
-    Initialize rest from tupletized note.
+    Initializes rest from tupletized note.
     """
 
     tuplet = abjad.Tuplet("3:2", "c'4 d'4 e'4")
@@ -234,7 +234,7 @@ def test_Rest___init___10():
 
 def test_Rest___init___11():
     """
-    Initialize rest from beamed note.
+    Initializes rest from beamed note.
     """
 
     staff = abjad.Staff("c'8 [ d'8 e'8 ]")
@@ -252,7 +252,7 @@ def test_Rest___init___11():
 
 def test_Rest___init___12():
     """
-    Initialize multiple rests from spanned notes.
+    Initializes multiple rests from spanned notes.
     """
 
     voice = abjad.Voice("c'8 ( d'8 e'8 f'8 )")

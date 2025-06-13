@@ -7,7 +7,7 @@ import abjad
 
 def test_Note___copy___01():
     """
-    Copy note.
+    Copies note.
     """
 
     note_1 = abjad.Note(12, (1, 4))
@@ -21,7 +21,7 @@ def test_Note___copy___01():
 
 def test_Note___copy___02():
     """
-    Copy note with LilyPond multiplier.
+    Copies note with LilyPond multiplier.
     """
 
     note_1 = abjad.Note("c''4", multiplier=(1, 2))
@@ -35,7 +35,7 @@ def test_Note___copy___02():
 
 def test_Note___copy___03():
     """
-    Copy note with LilyPond grob overrides and LilyPond context settings.
+    Copies note with LilyPond grob overrides and LilyPond context settings.
     """
 
     note_1 = abjad.Note(12, (1, 4))
@@ -52,7 +52,7 @@ def test_Note___copy___03():
 
 def test_Note___copy___04():
     """
-    Copy note with grace container.
+    Copies note with grace container.
     """
 
     note_1 = abjad.Note("c'4")
@@ -89,7 +89,7 @@ def test_Note___copy___04():
 
 def test_Note___copy___05():
     """
-    Deepcopy orphan note.
+    Deepcopies orphan note.
     """
 
     note = abjad.Note("c'4")
@@ -118,7 +118,7 @@ def test_Note___copy___05():
 
 def test_Note___copy___06():
     """
-    Deepcopy note in score.
+    Deepcopies note in score.
     """
 
     staff = abjad.Staff("c'8 [ c'8 e'8 f'8 ]")
@@ -162,7 +162,7 @@ def test_Note___copy___06():
 
 def test_Note___copy___07():
     """
-    Copy note with tweaks in notehead.
+    Copies note with tweaks in notehead.
     """
 
     note = abjad.Note("c'4")
@@ -228,7 +228,31 @@ def test_Note___init___05():
     assert abjad.lilypond(note) == "cs8."
 
 
-def test_Note___init___06():
+def test_Note__init__06():
+    """
+    REGRESSION. Initializes note from other note with multiplier.
+    """
+
+    note = abjad.Note("cs''4", multiplier=(1, 1))
+
+    assert abjad.lilypond(note) == "cs''4 * 1/1"
+
+    new_note = abjad.Note(note)
+
+    assert abjad.lilypond(new_note) == "cs''4 * 1/1"
+
+
+def test_Note__init__07():
+    """
+    Initializes note with French note names.
+    """
+
+    note = abjad.Note("dod''8.", language="français")
+
+    assert abjad.lilypond(note) == "cs''8."
+
+
+def test_Note___init___08():
     """
     Initializes note from chord.
     """
@@ -245,7 +269,7 @@ def test_Note___init___06():
     assert abjad.wf.wellformed(note)
 
 
-def test_Note___init___07():
+def test_Note___init___09():
     """
     Initializes note from tupletized chord.
     """
@@ -264,7 +288,7 @@ def test_Note___init___07():
     assert abjad.wf.wellformed(note)
 
 
-def test_Note___init___08():
+def test_Note___init___10():
     """
     Initializes note from beamed chord.
     """
@@ -285,7 +309,7 @@ def test_Note___init___08():
     assert abjad.wf.wellformed(note)
 
 
-def test_Note___init___09():
+def test_Note___init___11():
     """
     Initializes note from rest.
     """
@@ -302,7 +326,7 @@ def test_Note___init___09():
     assert abjad.wf.wellformed(note)
 
 
-def test_Note___init___10():
+def test_Note___init___12():
     """
     Initializes note from tupletized rest.
     """
@@ -313,12 +337,12 @@ def test_Note___init___10():
 
     assert isinstance(tuplet[0], abjad.Rest)
     assert isinstance(note, abjad.Note)
-    assert tuplet[0]._parent is tuplet
+    assert abjad.get.parentage(tuplet[0]).parent is tuplet
     assert tuplet[0].written_duration == duration
-    assert note._parent is None
+    assert abjad.get.parentage(note).parent is None
 
 
-def test_Note___init___11():
+def test_Note___init___13():
     """
     Initializes note from beamed rest.
     """
@@ -331,11 +355,11 @@ def test_Note___init___11():
 
     assert isinstance(voice[1], abjad.Rest)
     assert isinstance(note, abjad.Note)
-    assert voice[1]._parent is voice
-    assert note._parent is None
+    assert abjad.get.parentage(voice[1]).parent is voice
+    assert abjad.get.parentage(note).parent is None
 
 
-def test_Note___init___12():
+def test_Note___init___14():
     """
     Initializes notes from skip.
     """
@@ -347,11 +371,11 @@ def test_Note___init___12():
     assert isinstance(note, abjad.Note)
     assert dir(skip) == dir(abjad.Skip((1, 4)))
     assert dir(note) == dir(abjad.Note("c'4"))
-    assert note._parent is None
+    assert abjad.get.parentage(note).parent is None
     assert note.written_duration == duration
 
 
-def test_Note___init___13():
+def test_Note___init___15():
     """
     Initializes note from tupletized skip.
     """
@@ -362,12 +386,12 @@ def test_Note___init___13():
 
     assert isinstance(tuplet[0], abjad.Skip)
     assert isinstance(note, abjad.Note)
-    assert tuplet[0]._parent is tuplet
+    assert abjad.get.parentage(tuplet[0]).parent is tuplet
     assert tuplet[0].written_duration == duration
-    assert note._parent is None
+    assert abjad.get.parentage(note).parent is None
 
 
-def test_Note___init___14():
+def test_Note___init___16():
     """
     Initializes note from beamed skip.
     """
@@ -380,11 +404,11 @@ def test_Note___init___14():
 
     assert isinstance(voice[1], abjad.Skip)
     assert isinstance(note, abjad.Note)
-    assert voice[1]._parent is voice
-    assert note._parent is None
+    assert abjad.get.parentage(voice[1]).parent is voice
+    assert abjad.get.parentage(note).parent is None
 
 
-def test_Note___init___15():
+def test_Note___init___17():
     """
     Initializes note with cautionary accidental.
     """
@@ -394,7 +418,7 @@ def test_Note___init___15():
     assert abjad.lilypond(note) == "c'?4"
 
 
-def test_Note___init___16():
+def test_Note___init___18():
     """
     Initializes note with forced accidental.
     """
@@ -404,7 +428,7 @@ def test_Note___init___16():
     assert abjad.lilypond(note) == "c'!4"
 
 
-def test_Note___init___17():
+def test_Note___init___19():
     """
     Initializes note with both forced and cautionary accidental.
     """
@@ -414,7 +438,7 @@ def test_Note___init___17():
     assert abjad.lilypond(note) == "c'!?4"
 
 
-def test_Note___init___18():
+def test_Note___init___20():
     """
     Initializes note from chord with forced and cautionary accidental.
     """
@@ -425,9 +449,9 @@ def test_Note___init___18():
     assert abjad.lilypond(note) == "c'!?4"
 
 
-def test_Note___init___19():
+def test_Note___init___21():
     """
-    Initialize note with drum pitch.
+    Initializes note with drum pitch.
     """
 
     note = abjad.Note("sn4")

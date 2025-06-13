@@ -75,7 +75,7 @@ def test_mutate_copy_01():
 
 def test_mutate_copy_02():
     """
-    Copy one measure.
+    Copies one measure.
     """
 
     voice = abjad.Voice(
