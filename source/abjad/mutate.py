@@ -519,7 +519,7 @@ def _split_container_at_index(CONTAINER, i):
     # save left and right containers together for iteration
     halves = (left, right)
     nonempty_halves = [half for half in halves if len(half)]
-    # incorporate left and right parents in score if possible
+    # add left and right parents to score if possible
     selection = [CONTAINER]
     parent, start, stop = _get_parent_and_start_stop_indices(selection)
     if parent is not None:

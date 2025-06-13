@@ -425,7 +425,7 @@ def test_get_staff_03():
 
 def test_get_staff_04():
     """
-    Redudant staff changes are allowed.
+    Allows redudant staff changes.
     """
 
     staff_group = abjad.StaffGroup(

@@ -3,7 +3,7 @@ import abjad
 
 def test_mutate__set_leaf_duration_01():
     """
-    Change leaf to tied duration.
+    Changes leaf to tied duration.
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -46,7 +46,7 @@ def test_mutate__set_leaf_duration_01():
 
 def test_mutate__set_leaf_duration_02():
     """
-    Change tied leaf to tied value.
+    Changes tied leaf to tied value.
     Duplicate ties are not created.
     """
 
@@ -93,7 +93,7 @@ def test_mutate__set_leaf_duration_02():
 
 def test_mutate__set_leaf_duration_03():
     """
-    Change leaf to nontied duration.
+    Changes leaf to nontied duration.
     Same as voice.written_duration = abjad.Duration(3, 16).
     """
 
@@ -135,7 +135,7 @@ def test_mutate__set_leaf_duration_03():
 
 def test_mutate__set_leaf_duration_04():
     """
-    Change leaf to tied duration without power-of-two denominator.
+    Changes leaf to tied duration without power-of-two denominator.
     abjad.Tuplet inserted over new tied notes.
     """
 
@@ -184,7 +184,7 @@ def test_mutate__set_leaf_duration_04():
 
 def test_mutate__set_leaf_duration_05():
     """
-    Change leaf to untied duration without power-of-two denominator.
+    Changes leaf to untied duration without power-of-two denominator.
     Tuplet inserted over input leaf.
     """
 
@@ -231,7 +231,7 @@ def test_mutate__set_leaf_duration_05():
 
 def test_mutate__set_leaf_duration_06():
     """
-    Change leaf with LilyPond multiplier to untied duration with
+    Changes leaf with LilyPond multiplier to untied duration with
     power-of-two denominator. LilyPond multiplier changes but leaf written
     duration does not.
     """
@@ -248,7 +248,7 @@ def test_mutate__set_leaf_duration_06():
 
 def test_mutate__set_leaf_duration_07():
     """
-    Change leaf with LilyPond multiplier to untied duration with
+    Changes leaf with LilyPond multiplier to untied duration with
     power-of-two denominator. LilyPond multiplier changes but leaf
     written duration does not.
     """
@@ -265,7 +265,7 @@ def test_mutate__set_leaf_duration_07():
 
 def test_mutate__set_leaf_duration_08():
     """
-    Change leaf with LilyPond multiplier to tied duration with
+    Changes leaf with LilyPond multiplier to tied duration with
     power-of-two denominator. LilyPond multiplier changes but leaf
     written duration does not.
     """
@@ -282,7 +282,7 @@ def test_mutate__set_leaf_duration_08():
 
 def test_mutate__set_leaf_duration_09():
     """
-    Change leaf with LilyPond multiplier to duration without
+    Changes leaf with LilyPond multiplier to duration without
     power-of-two denominator. LilyPond multiplier changes but leaf
     written duration does not.
     """
@@ -299,7 +299,7 @@ def test_mutate__set_leaf_duration_09():
 
 def test_mutate__set_leaf_duration_10():
     """
-    Change leaf with LilyPond multiplier.
+    Changes leaf with LilyPond multiplier.
     Change to tie-necessitating duration without power-of-two denominator.
     LilyPond multiplier changes but leaf written duration does not.
     """
@@ -316,7 +316,7 @@ def test_mutate__set_leaf_duration_10():
 
 def test_mutate__set_leaf_duration_11():
     """
-    Change rest duration.
+    Changes rest duration.
     """
 
     voice = abjad.Voice("c'8 r8 e'8 f'8")
@@ -358,7 +358,7 @@ def test_mutate__set_leaf_duration_11():
 
 def test_mutate__split_container_by_duration_01():
     """
-    Split one container in score.
+    Splits one container in score.
     Adds tie after split.
     """
 
@@ -425,7 +425,7 @@ def test_mutate__split_container_by_duration_01():
 
 def test_mutate__split_container_by_duration_02():
     """
-    Split in-score container at split offset with non-power-of-two denominator.
+    Splits in-score container at split offset with non-power-of-two denominator.
     """
 
     voice = abjad.Voice()
@@ -736,7 +736,7 @@ def test_mutate__split_leaf_by_durations_09():
 
 def test_mutate__split_leaf_by_durations_10():
     """
-    Split one leaf in score.
+    Splits one leaf in score.
     Ties after split.
     """
 

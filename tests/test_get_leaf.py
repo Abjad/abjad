@@ -1010,9 +1010,9 @@ def test_get_leaf_26():
 
 def test__inspect_are_logical_voice_01():
     """
-    Unincorporated leaves do not share a logical voice.
-    Unicorporated leaves do not share a root component.
-    False if not allow orphans; True if allow orphans.
+    Orphan leaves do not share a logical voice.
+    Orphan leaves do not share a root component.
+    False if not allow orphans; true if allow orphans.
     """
 
     notes = [
@@ -1026,7 +1026,7 @@ def test__inspect_are_logical_voice_01():
 
 def test__inspect_are_logical_voice_02():
     """
-    Container and leaves all logical voice.
+    Container and leaves all in same logical voice.
     """
 
     container = abjad.Container("c'8 d'8 e'8 f'8")
@@ -1046,7 +1046,7 @@ def test__inspect_are_logical_voice_02():
 
 def test__inspect_are_logical_voice_03():
     """
-    Tuplet and leaves all logical voice.
+    Tuplet and leaves all in same logical voice.
     """
 
     tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")

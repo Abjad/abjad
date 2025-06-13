@@ -625,14 +625,10 @@ class Leaf(Component):
                 return False
 
     def _get_formatted_duration(self):
-        strings = []
-        strings.append(self.written_duration.lilypond_duration_string)
+        strings = [self.written_duration.lilypond_duration_string]
         if self.multiplier is not None:
-            strings.append(f"{self.multiplier[0]}/{self.multiplier[1]}")
-        if hasattr(self._parent, "_leaf_multiplier"):
-            multiplier = self._parent._leaf_multiplier()
-            if multiplier is not None:
-                strings.append(str(multiplier))
+            string = f"{self.multiplier[0]}/{self.multiplier[1]}"
+            strings.append(string)
         result = " * ".join(strings)
         return result
 
@@ -692,10 +688,9 @@ class Leaf(Component):
 
     @multiplier.setter
     def multiplier(self, argument):
-        if isinstance(argument, tuple):
+        if argument is not None:
+            assert isinstance(argument, tuple), repr(argument)
             assert len(argument) == 2, repr(argument)
-        else:
-            assert argument is None, repr(argument)
         self._multiplier = argument
 
     @property
@@ -2547,28 +2542,6 @@ class Chord(Leaf):
             >>> print(string)
             <e' cs'' f''>4
 
-    ..  container:: example
-
-        REGRESSION. Initializes from other chord:
-
-        >>> chord = abjad.Chord("<e' cs'' f''>4", multiplier=(1, 2))
-        >>> abjad.show(chord) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(chord)
-            >>> print(string)
-            <e' cs'' f''>4 * 1/2
-
-        >>> new_chord = abjad.Chord(chord)
-        >>> abjad.show(new_chord) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(new_chord)
-            >>> print(string)
-            <e' cs'' f''>4 * 1/2
-
     """
 
     ### CLASS VARIABLES ###
@@ -3360,38 +3333,14 @@ class MultimeasureRest(Leaf):
 
     ..  container:: example
 
-        >>> rest = abjad.MultimeasureRest((1, 4))
+        >>> rest = abjad.MultimeasureRest("R1")
         >>> abjad.show(rest) # doctest: +SKIP
-
-    ..  container:: example
-
-        Multimeasure rests may be tagged:
-
-        >>> rest = abjad.MultimeasureRest(
-        ...     "R1", tag=abjad.Tag("GLOBAL_MULTIMEASURE_REST")
-        ... )
-        >>> string = abjad.lilypond(rest, tags=True)
-        >>> print(string)
-        %! GLOBAL_MULTIMEASURE_REST
-        R1
-
-    ..  container:: example
-
-        REGRESSION #1049. Parser reads multimeasure rest multipliers:
-
-        >>> staff = abjad.Staff(r"\time 3/8 R1 * 3/8")
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(rest)
             >>> print(string)
-            \new Staff
-            {
-                \time 3/8
-                R1 * 3/8
-            }
+            R1
 
     """
 
@@ -3417,9 +3366,9 @@ class MultimeasureRest(Leaf):
 
     ### PRIVATE METHODS ###
 
-    def _get_body(self):
+    def _get_body(self) -> list[str]:
         """
-        Gets list of string representation of body of rest.
+        Gets body of multimeasure rest as list of strings.
         Picked up as contribution at format-time.
         """
         result = "R" + str(self._get_formatted_duration())
@@ -3433,18 +3382,17 @@ class MultimeasureRest(Leaf):
     @property
     def tag(self) -> _tag.Tag | None:
         r"""
-        Gets tag.
+        Gets and sets tag.
 
         ..  container:: example
 
-            >>> rest = abjad.MultimeasureRest(
-            ...     1, tag=abjad.Tag('MULTIMEASURE_REST')
-            ... )
+            >>> tag = abjad.Tag('MULTIMEASURE_REST')
+            >>> rest = abjad.MultimeasureRest(1, tag=tag)
             >>> rest.multiplier = (3, 8)
 
             >>> string = abjad.lilypond(rest, tags=True)
             >>> print(string)
-            %! MULTIMEASURE_REST
+              %! MULTIMEASURE_REST
             R1 * 3/8
 
         """
@@ -4197,35 +4145,6 @@ class Note(Leaf):
             >>> print(string)
             cs''8.
 
-    ..  container:: example
-
-        REGRESSION. Initializes from other note:
-
-        >>> note = abjad.Note("cs''4", multiplier=(1, 1))
-        >>> abjad.show(note) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(note)
-            >>> print(string)
-            cs''4 * 1/1
-
-        >>> new_note = abjad.Note(note)
-        >>> abjad.show(new_note) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(new_note)
-            >>> print(string)
-            cs''4 * 1/1
-
-    ..  container:: example
-
-        Selects language:
-
-        >>> abjad.Note("dod''8.", language="français")
-        Note("cs''8.")
-
     """
 
     ### CLASS VARIABLES ###
@@ -4321,7 +4240,7 @@ class Note(Leaf):
 
     ### PRIVATE METHODS ###
 
-    def _get_body(self):
+    def _get_body(self) -> list[str]:
         duration = self._get_formatted_duration()
         if self.note_head is not None:
             string = self.note_head._get_lilypond_format(duration=duration)
@@ -4329,11 +4248,12 @@ class Note(Leaf):
             string = duration
         return [string]
 
-    def _get_compact_representation(self):
+    def _get_compact_representation(self) -> str:
         return self._get_body()[0]
 
     ### PUBLIC PROPERTIES ###
 
+    # TODO: change note to always have note head
     @property
     def note_head(self) -> NoteHead | None:
         """
@@ -4475,7 +4395,7 @@ class Note(Leaf):
 
         ..  container:: example
 
-            >>> note = abjad.Note.from_pitch_and_duration('C#5', (3, 16))
+            >>> note = abjad.Note.from_pitch_and_duration("C#5", (3, 16))
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -4543,10 +4463,10 @@ class Rest(Leaf):
         if isinstance(original_input, Leaf):
             self._copy_override_and_set_from_leaf(original_input)
 
-    def _get_body(self):
+    def _get_body(self) -> list[str]:
         return [self._get_compact_representation()]
 
-    def _get_compact_representation(self):
+    def _get_compact_representation(self) -> str:
         return f"r{self._get_formatted_duration()}"
 
 
@@ -4620,7 +4540,7 @@ class Score(Context):
     @property
     def tag(self) -> _tag.Tag | None:
         r"""
-        Gets tag.
+        Gets and sets tag.
 
         ..  container:: example
 
@@ -4631,27 +4551,27 @@ class Score(Context):
 
             >>> string = abjad.lilypond(score, tags=True)
             >>> print(string)
-            %! GREEN
+              %! GREEN
             \new Score
-            %! GREEN
+              %! GREEN
             <<
-                %! BLUE
+                  %! BLUE
                 \new Staff
-                %! BLUE
+                  %! BLUE
                 {
-                    %! RED
+                      %! RED
                     \new Voice
-                    %! RED
+                      %! RED
                     {
                         c'4
                         d'4
                         e'4
                         f'4
-                    %! RED
+                      %! RED
                     }
-                %! BLUE
+                  %! BLUE
                 }
-            %! GREEN
+              %! GREEN
             >>
 
         """
@@ -4668,7 +4588,7 @@ class Skip(Leaf):
 
     ..  container:: example
 
-        >>> skip = abjad.Skip((1, 1))
+        >>> skip = abjad.Skip("s1")
         >>> skip
         Skip('s1')
 
@@ -4678,7 +4598,7 @@ class Skip(Leaf):
             >>> print(string)
             s1
 
-        >>> skip = abjad.Skip((1, 1), multiplier=(5, 4))
+        >>> skip = abjad.Skip("s1", multiplier=(5, 4))
         >>> skip
         Skip('s1 * 5/4')
 
@@ -4699,21 +4619,11 @@ class Skip(Leaf):
             >>> print(string)
             s4 * 5/4
 
-    ..  container:: example
-
-        Skips can be tagged:
-
-        >>> skip = abjad.Skip("s8.", tag=abjad.Tag("GLOBAL_SKIP"))
-        >>> string = abjad.lilypond(skip, tags=True)
-        >>> print(string)
-        %! GLOBAL_SKIP
-        s8.
-
     """
 
     __documentation_section__ = "Leaves"
 
-    __slots__ = ("_hide_body", "_measure_initial_grace_note")
+    __slots__ = ("_measure_initial_grace_note",)
 
     def __init__(
         self,
@@ -4742,19 +4652,19 @@ class Skip(Leaf):
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
         if input_leaf is not None:
             self._copy_override_and_set_from_leaf(input_leaf)
+        self._measure_initial_grace_note = None
 
-    def _get_body(self):
+    def _get_body(self) -> list[str]:
         result = []
-        if getattr(self, "_hide_body", False) is not True:
-            if getattr(self, "_measure_initial_grace_note", None) is not None:
-                grace_strings = self._measure_initial_grace_note
-                assert isinstance(grace_strings, list), repr(grace_strings)
-                assert "grace" in repr(grace_strings), repr(grace_strings)
-                result.extend(grace_strings)
-            result.append(f"s{self._get_formatted_duration()}")
+        if getattr(self, "_measure_initial_grace_note", None) is not None:
+            grace_strings = self._measure_initial_grace_note
+            assert isinstance(grace_strings, list), repr(grace_strings)
+            assert "grace" in repr(grace_strings), repr(grace_strings)
+            result.extend(grace_strings)
+        result.append(f"s{self._get_formatted_duration()}")
         return result
 
-    def _get_compact_representation(self):
+    def _get_compact_representation(self) -> str:
         return f"s{self._get_formatted_duration()}"
 
 
@@ -4781,7 +4691,7 @@ class Staff(Context):
 
     ..  container:: example
 
-        Can initialize from collection of strings:
+        Can initialize from list of strings:
 
         >>> staff = abjad.Staff([
         ...     r"\times 9/10 { r8 c'16 c'16 bf'4~ bf'16 r16 }",
@@ -4993,13 +4903,13 @@ class TremoloContainer(Container):
         """
         return (self.count,)
 
-    def _format_open_brackets_site(self, contributions):
+    def _format_open_brackets_site(self, contributions) -> list[str]:
         result = []
         result.append(rf"\repeat tremolo {self.count}")
         result.append("{")
         return result
 
-    def _get_preprolated_duration(self):
+    def _get_preprolated_duration(self) -> _duration.Duration:
         return self._get_prolation() * self._get_contents_duration()
 
     def _get_prolation(self) -> fractions.Fraction:
@@ -5130,7 +5040,7 @@ class Tuplet(Container):
         tweaks: _tweaks.Tweak | None = None,
     ) -> None:
         Container.__init__(self, components, language=language, tag=tag)
-        self.tweaks = ()
+        self.tweaks: tuple[_tweaks.Tweak, ...] = ()
         if isinstance(ratio, _duration.Ratio):
             ratio_ = ratio
         elif isinstance(ratio, str):
@@ -5167,7 +5077,7 @@ class Tuplet(Container):
 
     ### PRIVATE METHODS ###
 
-    def _format_after_site(self, contributions):
+    def _format_after_site(self, contributions) -> list[str]:
         result = []
         strings = contributions.grob_reverts
         if strings:
@@ -5179,7 +5089,7 @@ class Tuplet(Container):
             result.extend(strings)
         return result
 
-    def _format_before_site(self, contributions):
+    def _format_before_site(self, contributions) -> list[str]:
         result = []
         strings = contributions.alphabetize(contributions.before.commands)
         if strings:
@@ -5195,15 +5105,13 @@ class Tuplet(Container):
             result.extend(strings)
         return result
 
-    def _format_close_brackets(self):
-        result = []
-        strings = ["}"]
+    def _format_close_brackets(self) -> list[str]:
+        result = ["}"]
         if self.tag is not None:
-            strings = _tag.double_tag(strings, self.tag)
-        result.extend(strings)
+            result = _tag.double_tag(result, self.tag)
         return result
 
-    def _format_closing_site(self, contributions):
+    def _format_closing_site(self, contributions) -> list[str]:
         result = []
         strings = contributions.alphabetize(contributions.closing.commands)
         if strings:
@@ -5212,7 +5120,7 @@ class Tuplet(Container):
         result = _indent_strings(result)
         return result
 
-    def _format_open_brackets_site(self, contributions):
+    def _format_open_brackets_site(self, contributions) -> list[str]:
         result = []
         if self.hide:
             string = self._get_scale_durations_command_string()
@@ -5230,7 +5138,7 @@ class Tuplet(Container):
         result.extend(contributions)
         return result
 
-    def _format_opening_site(self, contributions):
+    def _format_opening_site(self, contributions) -> list[str]:
         result = []
         strings = contributions.alphabetize(contributions.opening.commands)
         if strings:
@@ -5239,34 +5147,35 @@ class Tuplet(Container):
         result = _indent_strings(result)
         return result
 
-    def _get_compact_representation(self):
+    def _get_compact_representation(self) -> str:
         if not self:
             return f"{{ {str(self.ratio)} }}"
         return f"{{ {str(self.ratio)} {self._get_contents_summary()} }}"
 
-    def _get_preprolated_duration(self):
+    def _get_preprolated_duration(self) -> _duration.Duration:
         return self.multiplier() * self._get_contents_duration()
 
     def _get_prolation(self) -> fractions.Fraction:
         return self.multiplier()
 
-    def _get_scale_durations_command_string(self):
+    def _get_scale_durations_command_string(self) -> str:
         numerator = self.ratio.denominator
         denominator = self.ratio.numerator
         string = rf"\scaleDurations #'({numerator} . {denominator})"
         return string
 
-    def _get_summary(self):
+    def _get_summary(self) -> str:
         if 0 < len(self):
-            return ", ".join([str(_) for _ in self.components])
+            string = ", ".join([str(_) for _ in self.components])
         else:
-            return ""
+            string = ""
+        return string
 
-    def _get_tuplet_command_string(self):
+    def _get_tuplet_command_string(self) -> str:
         string = rf"\tuplet {self.ratio.numerator}/{self.ratio.denominator}"
         return string
 
-    def _scale(self, multiplier):
+    def _scale(self, multiplier) -> None:
         assert isinstance(multiplier, fractions.Fraction), repr(multiplier)
         for component in self[:]:
             if isinstance(component, Leaf):
@@ -5278,7 +5187,7 @@ class Tuplet(Container):
     @property
     def hide(self) -> bool | None:
         r"""
-        Is true when tuplet bracket hides.
+        Set to true to dynamically hide tuplet bracket and tuplet number.
 
         ..  container:: example
 
@@ -5349,7 +5258,6 @@ class Tuplet(Container):
                     }
                 }
 
-        Hides tuplet bracket and tuplet number when true.
         """
         return self._hide
 
@@ -5364,8 +5272,6 @@ class Tuplet(Container):
         Gets and sets tuplet ratio.
 
         ..  container:: example
-
-            Gets tuplet ratio:
 
             >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
             >>> abjad.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")
@@ -5385,8 +5291,6 @@ class Tuplet(Container):
 
             >>> tuplet.ratio
             Ratio(numerator=3, denominator=2)
-
-            Sets tuplet ratio:
 
             >>> tuplet.ratio = abjad.Ratio(6, 4)
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -5415,7 +5319,7 @@ class Tuplet(Container):
     @property
     def tag(self) -> _tag.Tag | None:
         r"""
-        Gets tag.
+        Gets and sets tuplet tag.
 
         ..  container:: example
 
@@ -5448,7 +5352,7 @@ class Tuplet(Container):
         component: Component,
         *,
         language: str = "english",
-        preserve_duration=False,
+        preserve_duration: bool = False,
     ) -> None:
         r"""
         Appends ``component`` to tuplet.
@@ -5541,10 +5445,10 @@ class Tuplet(Container):
                 }
 
         """
-        if preserve_duration:
+        if preserve_duration is True:
             old_duration = self._get_duration()
         Container.append(self, component, language=language)
-        if preserve_duration:
+        if preserve_duration is True:
             new_duration = self._get_contents_duration()
             multiplier = old_duration / new_duration
             self.ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
@@ -5556,7 +5460,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Augmented tuplet:
+            Augmented tuplet is an augmentation:
 
             >>> tuplet = abjad.Tuplet("3:4", "c'8 d'8 e'8")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -5564,9 +5468,7 @@ class Tuplet(Container):
             >>> tuplet.augmentation()
             True
 
-        ..  container:: example
-
-            Diminished tuplet:
+            Diminished tuplet is not an augmentation:
 
             >>> tuplet = abjad.Tuplet("3:2", "c'4 d'4 e'4")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -5574,9 +5476,7 @@ class Tuplet(Container):
             >>> tuplet.augmentation()
             False
 
-        ..  container:: example
-
-            Trivial tuplet:
+            Trivial tuplet is not an augmentation:
 
             >>> tuplet = abjad.Tuplet("1:1", "c'8. d'8. e'8.")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -5593,7 +5493,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Augmented tuplet:
+            Augmented tuplet is not a diminution:
 
             >>> tuplet = abjad.Tuplet("3:4", "c'8 d'8 e'8")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -5601,9 +5501,7 @@ class Tuplet(Container):
             >>> tuplet.diminution()
             False
 
-        ..  container:: example
-
-            Diminished tuplet:
+            Diminished tuplet is a diminution:
 
             >>> tuplet = abjad.Tuplet("3:2", "c'4 d'4 e'4")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -5611,9 +5509,7 @@ class Tuplet(Container):
             >>> tuplet.diminution()
             True
 
-        ..  container:: example
-
-            Trivial tuplet:
+            Trivial tuplet is not a diminution::
 
             >>> tuplet = abjad.Tuplet("1:1", "c'8. d'8. e'8.")
             >>> abjad.show(tuplet) # doctest: +SKIP
@@ -5626,7 +5522,8 @@ class Tuplet(Container):
 
     def dyadic(self) -> bool:
         r"""
-        Is true when denominator of tuplet ratio is power of 2.
+        Is true when denominator of tuplet ratio is nonnegative integer power
+        of 2.
 
         ..  container:: example
 
@@ -5644,7 +5541,7 @@ class Tuplet(Container):
         return _math.is_nonnegative_integer_power_of_two(self.ratio.denominator)
 
     def extend(
-        self, argument, *, language: str = "english", preserve_duration=False
+        self, argument, *, language: str = "english", preserve_duration: bool = False
     ) -> None:
         r"""
         Extends tuplet with ``argument``.
@@ -5732,14 +5629,13 @@ class Tuplet(Container):
                 }
 
         """
-        if preserve_duration:
+        if preserve_duration is True:
             old_duration = self._get_duration()
         Container.extend(self, argument, language=language)
-        if preserve_duration:
+        if preserve_duration is True:
             new_duration = self._get_contents_duration()
             multiplier = old_duration / new_duration
-            pair = _duration.pair(multiplier)
-            self.ratio = _duration.Ratio(pair[1], pair[0])
+            self.ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
             assert self._get_duration() == old_duration
 
     @staticmethod
@@ -5770,8 +5666,8 @@ class Tuplet(Container):
         assert isinstance(duration, _duration.Duration), repr(duration)
         assert len(components), repr(components)
         tuplet = Tuplet("1:1", components, tag=tag)
-        fraction = tuplet._get_duration() / duration
-        tuplet.ratio = _duration.Ratio(fraction.numerator, fraction.denominator)
+        multiplier = tuplet._get_duration() / duration
+        tuplet.ratio = _duration.Ratio(multiplier.numerator, multiplier.denominator)
         return tuplet
 
     def multiplier(self) -> fractions.Fraction:
@@ -6096,16 +5992,17 @@ class Tuplet(Container):
         global_dot_count = dot_counts.pop()
         if global_dot_count == 0:
             return
-        dot_multiplier = _duration.Duration.from_dot_count(global_dot_count)
-        multiplier = self.multiplier() * dot_multiplier
-        self.ratio = _duration.Ratio(multiplier.pair[1], multiplier.pair[0])
-        dot_multiplier_reciprocal = dot_multiplier.reciprocal()
+        dot_multiplier = _duration.fraction_from_dot_count(global_dot_count)
+        multiplier = dot_multiplier * self.multiplier()
+        self.ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+        dot_multiplier_duration = _duration.Duration(dot_multiplier)
+        dot_multiplier_reciprocal_duration = dot_multiplier_duration.reciprocal()
         for component in self:
-            component.written_duration *= dot_multiplier_reciprocal
+            component.written_duration *= dot_multiplier_reciprocal_duration
 
     def toggle_prolation(self) -> None:
         r"""
-        Changes augmented tuplets to diminished; changes diminished tuplets to augmented.
+        Toggles tuplet prolation.
 
         ..  container:: example
 
@@ -6184,7 +6081,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            REGRESSION. Leaves trivial tuplets unchanged:
+            Leaves trivial tuplets unchanged:
 
             >>> tuplet = abjad.Tuplet("1:1", "c'4 d'4 e'4")
             >>> abjad.makers.tweak_tuplet_number_text(tuplet)
@@ -6217,7 +6114,7 @@ class Tuplet(Container):
                     e'4
                 }
 
-        Does not yet work with nested tuplets.
+        Does not work with nested tuplets.
         """
         if self.diminution():
             while self.diminution():
@@ -6414,8 +6311,7 @@ class Tuplet(Container):
             if isinstance(component, Tuplet):
                 continue
             assert isinstance(component, Leaf), repr(component)
-            fraction = self.multiplier() * component.written_duration
-            duration = _duration.Duration(fraction)
+            duration = self.multiplier() * component.written_duration
             if not duration.is_assignable:
                 return False
         return True
@@ -6789,13 +6685,6 @@ class Voice(Context):
         Note("e'8") Dynamic(name='p', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
         Note("d''8") Dynamic(name='mf', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
 
-    ..  container:: example
-
-        Selects language:
-
-        >>> abjad.Voice("do'8 re' mi' fa'", language="français")
-        Voice("c'8 d'8 e'8 f'8")
-
     """
 
     ### CLASS VARIABLES ###
@@ -6833,24 +6722,24 @@ class Voice(Context):
     @property
     def tag(self) -> _tag.Tag | None:
         r"""
-        Gets tag.
+        Gets and sets voice tag.
 
         ..  container:: example
 
-            >>> voice = abjad.Voice("c'4 d' e' f'", tag=abjad.Tag('RED'))
+            >>> voice = abjad.Voice("c'4 d' e' f'", tag=abjad.Tag("RED"))
             >>> abjad.show(voice) # doctest: +SKIP
 
             >>> string = abjad.lilypond(voice, tags=True)
             >>> print(string)
-            %! RED
+              %! RED
             \new Voice
-            %! RED
+              %! RED
             {
                 c'4
                 d'4
                 e'4
                 f'4
-            %! RED
+              %! RED
             }
 
         """

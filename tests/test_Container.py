@@ -14,7 +14,7 @@ def test_Container___contains___01():
 
 def test_Container___copy___01():
     """
-    Containers copy simultaneity flag.
+    Containers copy ``simultaneous`` property.
     """
 
     container_1 = abjad.Container([abjad.Voice("c'8 d'8"), abjad.Voice("c''8 b'8")])
@@ -339,7 +339,7 @@ def test_Container___delitem___09():
 
 def test_Container___getitem___01():
     """
-    Get one container component with positive index.
+    Gets item at positive index.
     """
 
     notes = [
@@ -358,7 +358,7 @@ def test_Container___getitem___01():
 
 def test_Container___getitem___02():
     """
-    Get one container component with negative index.
+    Gets item at negative index.
     """
 
     notes = [
@@ -377,7 +377,7 @@ def test_Container___getitem___02():
 
 def test_Container___getitem___03():
     """
-    Get slice from container.
+    Gets slice.
     """
 
     notes = [
@@ -396,7 +396,7 @@ def test_Container___getitem___03():
 
 def test_Container___getitem___04():
     """
-    Bad index raises IndexError.
+    Raises IndexError on bad index.
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -407,7 +407,7 @@ def test_Container___getitem___04():
 
 def test_Container___getitem___05():
     """
-    Bad name raises exception.
+    Raises exception on bad name.
     """
 
     score = abjad.Score()
@@ -418,7 +418,7 @@ def test_Container___getitem___05():
 
 def test_Container___getitem___06():
     """
-    Duplicate named contexts raise exception.
+    Raises exception on duplicate named contexts.
     """
 
     score = abjad.Score(
@@ -449,7 +449,7 @@ def test_Container___getitem___06():
 
 def test_Container___init___01():
     """
-    Initialize empty container.
+    Initializes empty container.
     """
 
     container = abjad.Container([])
@@ -465,7 +465,7 @@ def test_Container___init___01():
 
 def test_Container___init___02():
     """
-    Initialize container with LilyPond note-entry string.
+    Initializes container with LilyPond note-entry string.
     """
 
     container = abjad.Container("c'8 d'8 e'8")
@@ -919,7 +919,9 @@ def test_Container___setitem___08():
 
 
 def test_Container___setitem___09():
-    r"""Sets leaf between unspanned components."""
+    """
+    Sets leaf between unspanned components.
+    """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     staff[2:2] = [abjad.Note("g'8")]
@@ -941,7 +943,9 @@ def test_Container___setitem___09():
 
 
 def test_Container___setitem___10():
-    r"""Sets leaf between spanned compoennts."""
+    """
+    Sets leaf between spanned compoennts.
+    """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:])
@@ -967,8 +971,8 @@ def test_Container___setitem___10():
 
 
 def test_Container___setitem___11():
-    r"""
-    Sets multiple leaves between spanned components.
+    """
+    Sets leaves between spanned components.
     """
 
     notes = [
@@ -1023,7 +1027,7 @@ def test_Container___setitem___11():
 
 
 def test_Container___setitem___12():
-    r"""
+    """
     Replaces multiple spanned leaves with with single leaf.
     """
 
@@ -1077,7 +1081,9 @@ def test_Container___setitem___13():
 
 
 def test_Container___setitem___14():
-    r"""Replaces in-score container with contents of container."""
+    """
+    Replaces in-score container with contents of container.
+    """
 
     staff = abjad.Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
@@ -1123,7 +1129,8 @@ def test_Container___setitem___14():
 
 
 def test_Container___setitem___15():
-    r"""Sets first slice of staff equal to first element of first container in
+    """
+    Sets first slice of staff equal to first element of first container in
     staff.
     """
 
@@ -1171,8 +1178,8 @@ def test_Container___setitem___15():
 
 
 def test_Container___setitem___16():
-    r"""Sets first slice of staff equal to contents of first container in
-    staff.
+    """
+    Sets first slice of staff equal to contents of first container in staff.
 
     Empties first container in staff.
 
@@ -1221,7 +1228,8 @@ def test_Container___setitem___16():
 
 
 def test_Container___setitem___17():
-    r"""Set first slice of staff equal to contents of first container in staff;
+    """
+    Sets first slice of staff equal to contents of first container in staff;
     empties first container in staff.
 
     Sets contents of empty first container in staff equal to first component in
@@ -1274,7 +1282,7 @@ def test_Container___setitem___17():
 
 
 def test_Container___setitem___18():
-    r"""
+    """
     Extremely small coequal indices indicate first slice in staff.
     """
 
@@ -1315,7 +1323,9 @@ def test_Container___setitem___18():
 
 
 def test_Container___setitem___19():
-    r"""Extremely large coequal indices indicate last slice in staff."""
+    """
+    Extremely large coequal indices indicate last slice in staff.
+    """
 
     voice = abjad.Voice("c'8 [ d'8 e'8 f'8 ]")
     voice[1000:1000] = [abjad.Rest("r8")]
@@ -1339,7 +1349,7 @@ def test_Container___setitem___19():
 
 
 def test_Container___setitem___20():
-    r"""
+    """
     You can use setitem to empty the contents of a container.
     """
 
@@ -1450,7 +1460,7 @@ def test_Container___setitem___20():
 
 def test_Container_append_01():
     """
-    Append container to voice.
+    Appends container to voice.
     """
 
     voice = abjad.Voice("c'8 d'8")
@@ -1478,7 +1488,7 @@ def test_Container_append_01():
 
 def test_Container_append_02():
     """
-    Append leaf to tuplet.
+    Appends leaf to tuplet.
     """
 
     tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
@@ -1505,7 +1515,7 @@ def test_Container_append_02():
 
 def test_Container_append_03():
     """
-    Trying to append noncomponent to container raises TypeError.
+    Raises TypeError when trying to append noncomponent to container.
     """
 
     voice = abjad.Voice("c'8 d'8 e'8")
@@ -1523,7 +1533,7 @@ def test_Container_append_03():
 
 def test_Container_append_04():
     """
-    Append spanned leaf from donor container to recipient container.
+    Appends spanned leaf from donor container to recipient container.
     """
 
     voice_1 = abjad.Voice("c'8 d'8 e'8")
@@ -1591,7 +1601,7 @@ def test_Container_append_04():
 
 def test_Container_append_05():
     """
-    Append spanned leaf from donor container to recipient container.
+    Appends spanned leaf from donor container to recipient container.
     Donor and recipient containers are the same.
     """
 
@@ -1645,7 +1655,7 @@ def test_Container_append_06():
 
 def test_Container_extend_01():
     """
-    Extend container with list of leaves.
+    Extends container with list of leaves.
     """
 
     voice = abjad.Voice("c'8 d'8")
@@ -1671,7 +1681,7 @@ def test_Container_extend_01():
 
 def test_Container_extend_02():
     """
-    Extend container with contents of other container.
+    Extends container with contents of other container.
     """
 
     voice_1 = abjad.Voice("c'8 d'8")
@@ -1702,7 +1712,7 @@ def test_Container_extend_02():
 
 def test_Container_extend_03():
     """
-    Extending container with empty list leaves container unchanged.
+    Leaves container unchanged when extending container with empty list.
     """
 
     voice = abjad.Voice("c'8 d'8")
@@ -1726,8 +1736,7 @@ def test_Container_extend_03():
 
 def test_Container_extend_04():
     """
-    Extending one container with empty second container leaves both
-    containers unchanged.
+    Leaves both containers unchanged when one container extends the other.
     """
 
     voice = abjad.Voice("c'8 d'8")
@@ -1751,7 +1760,7 @@ def test_Container_extend_04():
 
 def test_Container_extend_05():
     """
-    Trying to extend container with noncomponent raises TypeError.
+    Raises TypeError when trying to extend container with noncomponent.
     """
 
     voice = abjad.Voice("c'8 d'8")
@@ -1765,7 +1774,7 @@ def test_Container_extend_05():
 
 def test_Container_extend_06():
     """
-    Trying to extend container with noncontainer raises exception.
+    Raises exception when trying to extend container with noncontainer.
     """
 
     voice = abjad.Voice("c'8 d'8")
@@ -1780,7 +1789,7 @@ def test_Container_extend_06():
 
 def test_Container_extend_07():
     """
-    Extend container with partial and spanned contents of other container.
+    Extends container with partial and spanned contents of other container.
     """
 
     voice_1 = abjad.Voice("c'8 d'8")
@@ -1820,7 +1829,7 @@ def test_Container_extend_07():
 
 def test_Container_extend_08():
     """
-    Extend container with partial and spanned contents of other container.
+    Extends container with partial and spanned contents of other container.
     Covered span comes with components from donor container.
     """
 
@@ -1880,7 +1889,7 @@ def test_Container_extend_08():
 
 def test_Container_extend_09():
     """
-    Extend container with LilyPond input string.
+    Extends container with LilyPond input string.
     """
 
     container = abjad.Container([])
@@ -1951,7 +1960,7 @@ def test_Container_index_01():
 
 def test_Container_insert_01():
     """
-    Insert component into container at index i.
+    Inserts component into container at index i.
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -2111,7 +2120,7 @@ def test_Container_insert_07():
     assert abjad.wf.wellformed(voice)
     assert abjad.wf.wellformed(staff)
     assert note not in voice
-    assert note._parent is staff
+    assert abjad.get.parentage(note).parent is staff
 
 
 def test_Container_insert_08():
@@ -2138,7 +2147,7 @@ def test_Container_insert_08():
 
 def test_Container_is_simultaneous_01():
     """
-    Is true when container encloses contents in LilyPond << >> brackets, otherwise false.
+    Is true when container encloses contents in LilyPond << >> brackets.
     """
 
     assert not abjad.Container().simultaneous
@@ -2152,7 +2161,7 @@ def test_Container_is_simultaneous_01():
 
 def test_Container_is_simultaneous_02():
     """
-    Is true when container encloses contents in LilyPond << >> brackets, otherwise false.
+    Is true when container encloses contents in LilyPond << >> brackets.
     """
 
     container = abjad.Container([])
@@ -2162,7 +2171,7 @@ def test_Container_is_simultaneous_02():
 
 def test_Container_is_simultaneous_03():
     """
-    ``Container.simultaneous`` is settable.
+    The ``simultaneous`` property is settable.
     """
 
     container = abjad.Container([])

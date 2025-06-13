@@ -55,7 +55,7 @@ def test_NoteHeadList___len___01():
 
 def test_NoteHeadList___setitem___01():
     """
-    Set note-head with pitch number.
+    Sets note-head with pitch number.
     """
 
     chord = abjad.Chord("<c' d'>4")
@@ -66,7 +66,7 @@ def test_NoteHeadList___setitem___01():
 
 def test_NoteHeadList___setitem___02():
     """
-    Set note-head with pitch.
+    Sets note-head with pitch.
     """
 
     chord = abjad.Chord("<c' d'>4")
@@ -77,7 +77,7 @@ def test_NoteHeadList___setitem___02():
 
 def test_NoteHeadList___setitem___03():
     """
-    Set note-head with tweaked note-head.
+    Sets note-head with tweaked note-head.
     """
 
     chord = abjad.Chord("<c' cs'' f''>4")
@@ -101,7 +101,7 @@ def test_NoteHeadList___setitem___03():
 
 def test_NoteHeadList_append_01():
     """
-    Append tweaked note-head to chord.
+    Appends tweaked note-head to chord.
     """
 
     chord = abjad.Chord("<c' d'>4")

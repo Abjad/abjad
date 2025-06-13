@@ -189,7 +189,7 @@ def test_Mutation_swap_03():
 
 def test_Mutation_swap_04():
     """
-    Trying to move parentage, children to noncontainer raises exception.
+    Raises exception when Trying to move parentage, children to noncontainer.
     """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
@@ -203,8 +203,8 @@ def test_Mutation_swap_04():
 
 def test_Mutation_swap_05():
     """
-    Trying to move parentage, children from nonempty container to nonempty
-    container raises exception.
+    Raises exception when trying to move parentage, children from nonempty
+    container to nonempty container.
     """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 }")
@@ -218,8 +218,8 @@ def test_Mutation_swap_05():
 
 def test_Mutation_swap_06():
     """
-    Trying to move parentage, children from components that are not
-    parent-contiguous raises exception.
+    Raises exception when Trying to move parentage, children from components
+    that are not parent-contiguous.
     """
 
     voice = abjad.Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")

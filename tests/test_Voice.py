@@ -35,7 +35,7 @@ def test_Voice___copy___01():
 
 def test_Voice___delitem___01():
     """
-    Delete container from voice.
+    Deletes container from voice.
     """
 
     voice = abjad.Voice(
@@ -90,6 +90,16 @@ def test_Voice___delitem___01():
 
     assert abjad.wf.wellformed(voice)
     assert abjad.wf.wellformed(container)
+
+
+def test_Voice___init__01():
+    """
+    Initializes voice with French note names.
+    """
+
+    voice = abjad.Voice("do'8 re' mi' fa'", language="français")
+
+    assert repr(voice) == """Voice("c'8 d'8 e'8 f'8")"""
 
 
 def test_Voice___len___01():

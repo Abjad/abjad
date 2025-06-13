@@ -321,7 +321,7 @@ def test_allowable_sites():
 
 def test_StartTrillSpan_01():
     """
-    Set force_trill_pitch_head_accidental=True to force trill pitch head accidental.
+    Forces trill pitch head accidental when force_trill_pitch_head_accidental=True.
     """
 
     voice = abjad.Voice("c'4 d' e' f'")

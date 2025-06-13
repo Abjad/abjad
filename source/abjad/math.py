@@ -558,7 +558,7 @@ def greatest_power_of_two_less_equal(n: int | fractions.Fraction) -> int:
         19 16
 
         >>> for numerator in range(1, 8):
-        ...     fraction = fractions.Fraction(numerator, 8)
+        ...     fraction = abjad.Fraction(numerator, 8)
         ...     result = abjad.math.greatest_power_of_two_less_equal(fraction)
         ...     print(f"{fraction} {result}")
         ...

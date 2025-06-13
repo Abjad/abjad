@@ -5,7 +5,7 @@ import abjad
 
 def test_bind_01():
     """
-    REGRESSION. Make sure no exceptions are raised when updating
+    REGRESSION. Makes sure no exceptions are raised when updating
     wrappers that have been orphaned because a context was removed.
     In this example, the metronome mark finds the score context at
     attachment time. After the score is removed, the metronome mark
@@ -36,7 +36,7 @@ def test_bind_01():
 
 def test_bind_02():
     """
-    Make sure exception is raised when check_duplicate_indicator=True.
+    Makes sure exception is raised when check_duplicate_indicator=True.
     """
 
     score = abjad.Score(r"\new Staff { c'' d'' e'' f'' } \new Staff { c' d' e' f' }")

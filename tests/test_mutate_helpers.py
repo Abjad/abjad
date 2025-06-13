@@ -63,7 +63,7 @@ def test_mutate__are_contiguous_logical_voice_04():
 
 def test_mutate__are_contiguous_logical_voice_05():
     """
-    Is true for unincorporated component.
+    Is true for orphan component.
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
@@ -80,7 +80,7 @@ def test_mutate__are_contiguous_logical_voice_06():
 
 def test_mutate__are_contiguous_logical_voice_07():
     """
-    False when components belonging to same logical voice are ommitted.
+    Is false when components belonging to same logical voice are ommitted.
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8 g'8 a'8")
@@ -108,7 +108,7 @@ def test_mutate__are_contiguous_logical_voice_07():
 
 def test_mutate__are_contiguous_logical_voice_08():
     """
-    False when components belonging to same logical voice are ommitted.
+    Is false when components belonging to same logical voice are ommitted.
     """
 
     voice = abjad.Voice(
@@ -163,8 +163,8 @@ def test_mutate__are_contiguous_same_parent_01():
 
 def test_mutate__are_contiguous_same_parent_02():
     """
-    Is true for unincorporated components when orphans allowed.
-    Is false for unincorporated components when orphans not allowed.
+    Is true for orphan components when orphans allowed.
+    Is false for orphan components when orphans not allowed.
     """
 
     voice = abjad.Voice(
@@ -228,7 +228,7 @@ def test_mutate__are_contiguous_same_parent_04():
 
 def test_mutate__fuse_leaves_by_immediate_parent_01():
     """
-    Fuse leaves in logical tie with same immediate parent.
+    Fuses leaves in logical tie with same immediate parent.
     """
 
     staff = abjad.Staff([abjad.Container("c'8 c'8"), abjad.Container("c'8 c'8")])
@@ -259,7 +259,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_01():
 
 def test_mutate__fuse_leaves_by_immediate_parent_02():
     """
-    Fuse leaves in logical tie with same immediate parent.
+    Fuses leaves in logical tie with same immediate parent.
     """
 
     staff = abjad.Staff("c'8 c'8 c'8 c'8")
@@ -298,7 +298,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_02():
 
 def test_mutate__fuse_leaves_by_immediate_parent_03():
     """
-    Fuse leaves in logical tie with same immediate parent.
+    Fuses leaves in logical tie with same immediate parent.
     """
 
     note = abjad.Note("c'4")
@@ -310,7 +310,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_03():
 
 def test_mutate__fuse_leaves_by_immediate_parent_04():
     """
-    Fuse leaves in logical tie with same immediate parent.
+    Fuses leaves in logical tie with same immediate parent.
     """
 
     voice = abjad.Voice(r"c'16 ~ c'16 ~ c'16 ~ c'16 ~ c'16 r16 r16 r16 r4 r4")
@@ -339,7 +339,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_04():
 
 def test_mutate__fuse_leaves_by_immediate_parent_05():
     """
-    Fuse leaves in logical tie with same immediate parent.
+    Fuses leaves in logical tie with same immediate parent.
     """
 
     voice = abjad.Voice(r"c'16 ~ c'16 ~ c'16 ~ c'16 ~ c'16 r16 r16 r16 r4 r4")
@@ -372,7 +372,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_05():
 
 def test_mutate__fuse_leaves_by_immediate_parent_06():
     """
-    Fuse leaves in logical tie with same immediate parent.
+    Fuses leaves in logical tie with same immediate parent.
     """
 
     voice = abjad.Voice(r"c'16 ~ c'16 ~ c'16 ~ c'16 ~ c'16 r16 r16 r16 r4 r4")
@@ -401,7 +401,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_06():
 
 def test_mutate__fuse_leaves_by_immediate_parent_07():
     """
-    Fuse leaves in logical tie with same immediate parent.
+    Fuses leaves in logical tie with same immediate parent.
     """
 
     voice = abjad.Voice(r"\tuplet 13/8 { \time 4/4 c'8 ~ c'8 ~ c'16 ~ c'32 r16 } r4 r2")
@@ -437,7 +437,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_07():
 
 def test_mutate__fuse_leaves_by_immediate_parent_08():
     """
-    Fuse leaves in logical tie with same immediate parent.
+    Fuses leaves in logical tie with same immediate parent.
     """
 
     staff = abjad.Staff(r"c'16 ~ c'16 ~ c'16 ~ c'16 ~ c'16 r16 r16 r16 r4 r4")
@@ -483,8 +483,8 @@ def test_mutate__fuse_leaves_by_immediate_parent_08():
 
 def test_mutate__fuse_leaves_by_immediate_parent_09():
     """
-    Fuse leaves in logical tie with same immediate parent, with an indicator at
-    the end of the logical tie after fusing.
+    Fuses leaves in logical tie with same immediate parent, with an indicator
+    at the end of the logical tie after fusing.
     """
 
     voice = abjad.Voice(r"d'8 c'8 ~ c'32 r16 r16 r16 r4")
@@ -540,8 +540,8 @@ def test_mutate__fuse_leaves_by_immediate_parent_09():
 
 def test_mutate__fuse_leaves_by_immediate_parent_10():
     """
-    Fuse leaves in logical tie with same immediate parent, with an indicator at
-    every leaf of the logical tie after fusing.
+    Fuses leaves in logical tie with same immediate parent, with an indicator
+    at every leaf of the logical tie after fusing.
     """
 
     staff = abjad.Staff(r"c'16 ~ c'16 ~ c'16 ~ c'16 ~ c'16 r16 r16 r16 r4 r4")

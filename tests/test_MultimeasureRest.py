@@ -27,3 +27,42 @@ def test_MultimeasureRest___init___01():
     )
 
     assert abjad.wf.wellformed(multimeasure_rest)
+
+
+def test_MultimeasureRest___init___02():
+    """
+    REGRESSION #1049. Parser reads multimeasure rest multipliers.
+    """
+
+    staff = abjad.Staff(r"\time 3/8 R1 * 3/8")
+    score = abjad.Score([staff], name="Score")
+
+    assert abjad.lilypond(score) == abjad.string.normalize(
+        r"""
+        \context Score = "Score"
+        <<
+            \new Staff
+            {
+                \time 3/8
+                R1 * 3/8
+            }
+        >>
+        """
+    )
+
+    assert abjad.wf.wellformed(score)
+
+
+def test_MultimeasureRest___init___03():
+    """
+    Multimeasure rests may be tagged.
+    """
+
+    rest = abjad.MultimeasureRest("R1", tag=abjad.Tag("GLOBAL_MULTIMEASURE_REST"))
+
+    assert abjad.lilypond(rest, tags=True) == abjad.string.normalize(
+        """
+          %! GLOBAL_MULTIMEASURE_REST
+        R1
+        """
+    )
