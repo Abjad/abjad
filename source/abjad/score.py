@@ -5670,6 +5670,329 @@ class Tuplet(Container):
         tuplet.ratio = _duration.Ratio(multiplier.numerator, multiplier.denominator)
         return tuplet
 
+    @staticmethod
+    def from_duration_and_proportion(
+        duration: _duration.Duration,
+        proportion: tuple[int, ...],
+        *,
+        tag: _tag.Tag | None = None,
+    ) -> "Tuplet":
+        r"""
+        Makes tuplet from ``duration`` and ``proportion``.
+
+        ..  container:: example
+
+            Helper function:
+
+            >>> def make_score(duration, proportion):
+            ...     tuplet = abjad.Tuplet.from_duration_and_proportion(
+            ...         duration, proportion
+            ...     )
+            ...     abjad.makers.tweak_tuplet_number_text(tuplet)
+            ...     staff = abjad.Staff([tuplet], lilypond_type="RhythmicStaff")
+            ...     score = abjad.Score([staff], name="Score")
+            ...     time_signature = abjad.TimeSignature(duration.pair)
+            ...     leaf = abjad.select.leaf(staff, 0)
+            ...     abjad.attach(time_signature, leaf)
+            ...     return score
+
+        ..  container:: example
+
+            Divides duration of 3/16 into increasing number of parts:
+
+            >>> duration = abjad.Duration(3, 16)
+            >>> score = make_score(duration, (1, 2, 2))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 5/3
+                {
+                    \time 3/16
+                    c'16
+                    c'8
+                    c'8
+                }
+
+            >>> score = make_score(duration, (1, 2, 2, 3))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 4/3
+                {
+                    \time 3/16
+                    c'32
+                    c'16
+                    c'16
+                    c'16.
+                }
+
+            >>> score = make_score(duration, (1, 2, 2, 3, 3))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 11/6
+                {
+                    \time 3/16
+                    c'32
+                    c'16
+                    c'16
+                    c'16.
+                    c'16.
+                }
+
+            >>> score = make_score(duration, (1, 2, 2, 3, 3, 4))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tuplet 5/4
+                {
+                    \time 3/16
+                    c'64
+                    c'32
+                    c'32
+                    c'32.
+                    c'32.
+                    c'16
+                }
+
+        ..  container:: example
+
+            Divides duration of 7/16 into increasing number of parts:
+
+            >>> duration = abjad.Duration(7, 16)
+            >>> score = make_score(duration, (1,))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 1/1
+                {
+                    \time 7/16
+                    c'4..
+                }
+
+            >>> score = make_score(duration, (1, 2))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 6/7
+                {
+                    \time 7/16
+                    c'8
+                    c'4
+                }
+
+            >>> score = make_score(duration, (1, 2, 4))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 1/1
+                {
+                    \time 7/16
+                    c'16
+                    c'8
+                    c'4
+                }
+
+            >>> score = make_score(duration, (1, 2, 4, 1))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 8/7
+                {
+                    \time 7/16
+                    c'16
+                    c'8
+                    c'4
+                    c'16
+                }
+
+            >>> score = make_score(duration, (1, 2, 4, 1, 2))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 10/7
+                {
+                    \time 7/16
+                    c'16
+                    c'8
+                    c'4
+                    c'16
+                    c'8
+                }
+
+            >>> score = make_score(duration, (1, 2, 4, 1, 2, 4))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tuplet 2/1
+                {
+                    \time 7/16
+                    c'16
+                    c'8
+                    c'4
+                    c'16
+                    c'8
+                    c'4
+                }
+
+        ..  container:: example
+
+            Interprets negative integers in ``ratio`` as rests:
+
+            >>> duration = abjad.Duration(1, 4)
+            >>> score = make_score(duration, (1, 1, 1, -1, 1))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tuplet 5/4
+                {
+                    \time 1/4
+                    c'16
+                    c'16
+                    c'16
+                    r16
+                    c'16
+                }
+
+            >>> score = make_score(duration, (3, -2, 2))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tuplet 7/4
+                {
+                    \time 1/4
+                    c'8.
+                    r8
+                    c'8
+                }
+
+        ..  container:: example
+
+            Works with nonassignable rests:
+
+            >>> duration = abjad.Duration(7, 16)
+            >>> score = make_score(duration, (11, -5))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 8/7
+                {
+                    \time 7/16
+                    c'4
+                    ~
+                    c'16.
+                    r8
+                    r32
+                }
+
+        ..  container:: example
+
+            Reduces integers in ``ratio`` relative to each other:
+
+            >>> duration = abjad.Duration(1, 4)
+            >>> score = make_score(duration, (1, 1, 1))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tuplet 3/2
+                {
+                    \time 1/4
+                    c'8
+                    c'8
+                    c'8
+                }
+
+            >>> score = make_score(duration, (4, 4, 4))
+            >>> abjad.show(score) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> tuplet = score[0][0]
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tuplet 3/2
+                {
+                    \time 1/4
+                    c'8
+                    c'8
+                    c'8
+                }
+
+        """
+        from . import makers as _makers
+
+        assert isinstance(duration, _duration.Duration), repr(duration)
+        assert isinstance(proportion, tuple), repr(proportion)
+        assert all(isinstance(_, int) for _ in proportion), repr(proportion)
+        assert not any(_ == 0 for _ in proportion), repr(proportion)
+        tuplet = _makers.tuplet_from_ratio_and_pair(proportion, duration.pair)
+        return tuplet
+
     def multiplier(self) -> fractions.Fraction:
         """
         Gets tuplet multiplier.
