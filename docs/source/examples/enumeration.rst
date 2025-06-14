@@ -28,9 +28,9 @@ The following functions recreate Malt's results in Abjad:
     ...     lone_note_denominator = denominator * 4
     ...     lone_note_duration = (1, lone_note_denominator)
     ...     lone_note = abjad.Note("c'", lone_note_duration)
-    ...     ratio = inner * (1,)
+    ...     proportion = inner * (1,)
     ...     pair = (outer, lone_note_denominator)
-    ...     inner_tuplet = abjad.makers.tuplet_from_ratio_and_pair(ratio, pair)
+    ...     inner_tuplet = abjad.makers.tuplet_from_proportion_and_pair(proportion, pair)
     ...     pair = abjad.duration.with_denominator(inner_tuplet.multiplier(), inner)
     ...     inner_tuplet.ratio = abjad.Ratio(pair[1], pair[0])
     ...     inner_tuplet.hide = inner_tuplet.trivial()

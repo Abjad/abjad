@@ -887,24 +887,26 @@ def make_pitches(argument: list | str) -> list[_pitch.NamedPitch]:
     return pitches
 
 
-def tuplet_from_ratio_and_pair(
-    ratio: tuple[int, ...],
+def tuplet_from_proportion_and_pair(
+    proportion: tuple[int, ...],
     pair: tuple[int, int],
     *,
     tag: _tag.Tag | None = None,
 ) -> _score.Tuplet:
     r"""
-    Makes tuplet from ``ratio`` and ``pair``.
+    Makes tuplet from ``proportion`` and ``pair``.
 
     ..  container:: example
 
         Helper function:
 
-        >>> def make_score(ratio, pair):
-        ...     tuplet = abjad.makers.tuplet_from_ratio_and_pair(ratio, pair)
+        >>> def make_score(proportion, pair):
+        ...     tuplet = abjad.makers.tuplet_from_proportion_and_pair(proportion, pair)
         ...     abjad.makers.tweak_tuplet_number_text(tuplet)
         ...     staff = abjad.Staff([tuplet], lilypond_type="RhythmicStaff")
         ...     score = abjad.Score([staff], name="Score")
+        ...     fraction = abjad.Fraction(*pair)
+        ...     pair = fraction.numerator, fraction.denominator
         ...     time_signature = abjad.TimeSignature(pair)
         ...     leaf = abjad.select.leaf(staff, 0)
         ...     abjad.attach(time_signature, leaf)
@@ -969,6 +971,83 @@ def tuplet_from_ratio_and_pair(
             }
 
         >>> score = make_score((1, 2, 2, 3, 3, 4), (3, 16))
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
+            \tuplet 5/4
+            {
+                \time 3/16
+                c'64
+                c'32
+                c'32
+                c'32.
+                c'32.
+                c'16
+            }
+
+    ..  container:: example
+
+        Divides duration of 2/2 * 3/16 = 6/32 into increasing number of parts:
+
+        >>> score = make_score((1, 2, 2), (6, 32))
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
+            \tweak text #tuplet-number::calc-fraction-text
+            \tuplet 5/6
+            {
+                \time 3/16
+                c'32
+                c'16
+                c'16
+            }
+
+        >>> score = make_score((1, 2, 2, 3), (6, 32))
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
+            \tweak text #tuplet-number::calc-fraction-text
+            \tuplet 4/3
+            {
+                \time 3/16
+                c'32
+                c'16
+                c'16
+                c'16.
+            }
+
+        >>> score = make_score((1, 2, 2, 3, 3), (6, 32))
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
+            \tweak text #tuplet-number::calc-fraction-text
+            \tuplet 11/6
+            {
+                \time 3/16
+                c'32
+                c'16
+                c'16
+                c'16.
+                c'16.
+            }
+
+        >>> score = make_score((1, 2, 2, 3, 3, 4), (6, 32))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1097,7 +1176,116 @@ def tuplet_from_ratio_and_pair(
 
     ..  container:: example
 
-        Interprets negative integers in ``ratio`` as rests:
+        Divides duration of 2/2 * 7/16 = 14/32 into increasing number of parts:
+
+        >>> score = make_score((1,), (14, 32))
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
+            \tweak text #tuplet-number::calc-fraction-text
+            \tuplet 1/1
+            {
+                \time 7/16
+                c'4..
+            }
+
+        >>> score = make_score((1, 2), (14, 32))
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
+            \tweak text #tuplet-number::calc-fraction-text
+            \tuplet 6/7
+            {
+                \time 7/16
+                c'8
+                c'4
+            }
+
+        >>> score = make_score((1, 2, 4), (14, 32))
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
+            \tweak text #tuplet-number::calc-fraction-text
+            \tuplet 1/2
+            {
+                \time 7/16
+                c'32
+                c'16
+                c'8
+            }
+
+        >>> score = make_score((1, 2, 4, 1), (14, 32))
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
+            \tweak text #tuplet-number::calc-fraction-text
+            \tuplet 4/7
+            {
+                \time 7/16
+                c'32
+                c'16
+                c'8
+                c'32
+            }
+
+        >>> score = make_score((1, 2, 4, 1, 2), (14, 32))
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
+            \tweak text #tuplet-number::calc-fraction-text
+            \tuplet 5/7
+            {
+                \time 7/16
+                c'32
+                c'16
+                c'8
+                c'32
+                c'16
+            }
+
+        >>> score = make_score((1, 2, 4, 1, 2, 4), (14, 32))
+        >>> abjad.show(score) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> tuplet = score[0][0]
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
+            \tweak text #tuplet-number::calc-fraction-text
+            \tuplet 1/1
+            {
+                \time 7/16
+                c'32
+                c'16
+                c'8
+                c'32
+                c'16
+                c'8
+            }
+
+    ..  container:: example
+
+        Interprets negative integers in ``proportion`` as rests:
 
         >>> score = make_score((1, 1, 1, -1, 1), (1, 4))
         >>> abjad.show(score) # doctest: +SKIP
@@ -1158,7 +1346,7 @@ def tuplet_from_ratio_and_pair(
 
     ..  container:: example
 
-        Reduces integers in ``ratio`` relative to each other:
+        Reduces integers in ``proportion`` relative to each other:
 
         >>> score = make_score((1, 1, 1), (1, 4))
         >>> abjad.show(score) # doctest: +SKIP
@@ -1193,26 +1381,26 @@ def tuplet_from_ratio_and_pair(
             }
 
     """
-    assert isinstance(ratio, tuple), repr(ratio)
-    assert all(isinstance(_, int) for _ in ratio), repr(ratio)
-    assert not any(_ == 0 for _ in ratio), repr(ratio)
+    assert isinstance(proportion, tuple), repr(proportion)
+    assert all(isinstance(_, int) for _ in proportion), repr(proportion)
+    assert not any(_ == 0 for _ in proportion), repr(proportion)
     assert isinstance(pair, tuple), repr(pair)
     assert all(isinstance(_, int) for _ in pair), repr(pair)
     duration = _duration.Duration(pair)
-    if len(ratio) == 1:
-        if 0 < ratio[0]:
+    if len(proportion) == 1:
+        if 0 < proportion[0]:
             pitch_list = [_pitch.NamedPitch("c'")]
         else:
-            assert ratio[0] < 0, repr(ratio)
+            assert proportion[0] < 0, repr(proportion)
             pitch_list = []
         leaves = make_leaves([pitch_list], [duration], tag=tag)
         tuplet = _score.Tuplet.from_duration(duration, leaves, tag=tag)
     else:
         numerator, denominator = pair
-        exponent = int(math.log(_math.weight(ratio), 2) - math.log(numerator, 2))
+        exponent = int(math.log(_math.weight(proportion), 2) - math.log(numerator, 2))
         denominator = int(denominator * 2**exponent)
         components: list[_score.Leaf | _score.Tuplet] = []
-        for item in ratio:
+        for item in proportion:
             if 0 < item:
                 pitch_list = [_pitch.NamedPitch("c'")]
             else:
