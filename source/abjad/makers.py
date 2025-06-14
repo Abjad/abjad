@@ -891,7 +891,6 @@ def tuplet_from_proportion_and_pair(
     proportion: tuple[int, ...],
     pair: tuple[int, int],
     *,
-    do_not_normalize: bool = False,
     tag: _tag.Tag | None = None,
 ) -> _score.Tuplet:
     r"""
@@ -1412,11 +1411,8 @@ def tuplet_from_proportion_and_pair(
             leaves = make_leaves([pitch_list], [duration_], tag=tag)
             components.extend(leaves)
         tuplet = _score.Tuplet.from_duration(duration, components, tag=tag)
-    if do_not_normalize is True:
-        pass
-    else:
-        assert do_not_normalize is False
-        tuplet.normalize_ratio()
+    tuplet.normalize_ratio()
+    assert tuplet.ratio.normalized()
     return tuplet
 
 
