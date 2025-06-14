@@ -1163,15 +1163,16 @@ def tuplet_from_proportion_and_pair(
             >>> tuplet = score[0][0]
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
-            \tuplet 2/1
+            \tweak text #tuplet-number::calc-fraction-text
+            \tuplet 1/1
             {
                 \time 7/16
+                c'32
                 c'16
                 c'8
-                c'4
+                c'32
                 c'16
                 c'8
-                c'4
             }
 
     ..  container:: example
@@ -1218,12 +1219,12 @@ def tuplet_from_proportion_and_pair(
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 1/2
+            \tuplet 1/1
             {
                 \time 7/16
-                c'32
                 c'16
                 c'8
+                c'4
             }
 
         >>> score = make_score((1, 2, 4, 1), (14, 32))
@@ -1410,6 +1411,8 @@ def tuplet_from_proportion_and_pair(
             leaves = make_leaves([pitch_list], [duration_], tag=tag)
             components.extend(leaves)
         tuplet = _score.Tuplet.from_duration(duration, components, tag=tag)
+    tuplet.normalize_ratio()
+    assert tuplet.ratio.normalized()
     return tuplet
 
 

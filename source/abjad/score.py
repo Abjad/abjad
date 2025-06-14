@@ -5809,6 +5809,7 @@ class Tuplet(Container):
         multiplier = self.multiplier() / multiplier
         ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
         self.ratio = ratio
+        assert self.ratio.normalized()
 
     def rest_filled(self) -> bool:
         r"""
