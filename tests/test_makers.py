@@ -166,11 +166,11 @@ def test_makers_tuplet_from_proportion_and_pair_05():
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
-        \tuplet 5/6
+        \tuplet 5/3
         {
-            c'8
             c'4
-            c'4
+            c'2
+            c'2
         }
         """
     )
@@ -181,11 +181,11 @@ def test_makers_tuplet_from_proportion_and_pair_06():
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
-        \tuplet 5/6
+        \tuplet 5/3
         {
-            c'8
             c'4
-            c'4
+            c'2
+            c'2
         }
         """
     )
@@ -256,11 +256,11 @@ def test_makers_tuplet_from_proportion_and_pair_11():
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
-        \tuplet 5/6
+        \tuplet 5/3
         {
-            c'8
             c'4
-            c'4
+            c'2
+            c'2
         }
         """
     )
@@ -271,11 +271,11 @@ def test_makers_tuplet_from_proportion_and_pair_12():
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
-        \tuplet 5/6
+        \tuplet 5/3
         {
-            c'4
             c'2
-            c'2
+            c'1
+            c'1
         }
         """
     )
@@ -286,11 +286,11 @@ def test_makers_tuplet_from_proportion_and_pair_13():
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
-        \tuplet 5/6
+        \tuplet 5/3
         {
-            c'2
             c'1
-            c'1
+            c'\breve
+            c'\breve
         }
         """
     )
@@ -301,11 +301,11 @@ def test_makers_tuplet_from_proportion_and_pair_14():
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
-        \tuplet 5/6
+        \tuplet 5/3
         {
-            c'4
             c'2
-            c'2
+            c'1
+            c'1
         }
         """
     )
@@ -316,11 +316,11 @@ def test_makers_tuplet_from_proportion_and_pair_15():
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
-        \tuplet 5/6
+        \tuplet 5/3
         {
-            c'8
             c'4
-            c'4
+            c'2
+            c'2
         }
         """
     )
@@ -331,11 +331,11 @@ def test_makers_tuplet_from_proportion_and_pair_16():
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
-        \tuplet 5/6
+        \tuplet 5/3
         {
-            c'16
             c'8
-            c'8
+            c'4
+            c'4
         }
         """
     )
