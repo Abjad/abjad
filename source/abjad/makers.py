@@ -1413,14 +1413,14 @@ def tuplet_from_proportion_and_pair(
             components.extend(leaves)
         tuplet = _score.Tuplet.from_duration(duration, components, tag=tag)
     tuplet.normalize_ratio()
-    assert tuplet.ratio.normalized()
+    assert tuplet.ratio.is_normalized()
     if canonical is True:
-        if tuplet.augmentation():
+        if tuplet.ratio.is_augmented():
             tuplet.toggle_prolation()
-        assert tuplet.diminution() or tuplet.trivial()
+        assert tuplet.ratio.is_diminished() or tuplet.ratio.is_trivial()
     else:
         assert canonical is False
-    assert tuplet.ratio.normalized()
+    assert tuplet.ratio.is_normalized()
     return tuplet
 
 
@@ -1511,5 +1511,9 @@ def tweak_tuplet_number_text(argument) -> None:
     for tuplet in _iterate.components(argument, _score.Tuplet):
         if "text" in vars(_overrides.override(tuplet).TupletNumber):
             continue
-        if tuplet.augmentation() or not tuplet.dyadic() or tuplet.multiplier() == 1:
+        if (
+            tuplet.ratio.is_augmented()
+            or not tuplet.ratio.is_dyadic()
+            or tuplet.multiplier() == 1
+        ):
             _tweaks.tweak(tuplet, tuplet.tuplet_number_calc_fraction_text_tweak_string)

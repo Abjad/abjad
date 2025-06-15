@@ -33,7 +33,7 @@ The following functions recreate Malt's results in Abjad:
     ...     inner_tuplet = abjad.makers.tuplet_from_proportion_and_pair(proportion, pair)
     ...     pair = abjad.duration.with_denominator(inner_tuplet.multiplier(), inner)
     ...     inner_tuplet.ratio = abjad.Ratio(pair[1], pair[0])
-    ...     inner_tuplet.hide = inner_tuplet.trivial()
+    ...     inner_tuplet.hide = inner_tuplet.ratio.is_trivial()
     ...     if retrograde:
     ...         contents = [inner_tuplet, lone_note]
     ...         label = f'"({outer} | {inner}) : 1"'
@@ -44,7 +44,7 @@ The following functions recreate Malt's results in Abjad:
     ...     markup = abjad.Markup(rf"\markup {label}")
     ...     note = abjad.select.note(outer_tuplet, 0)
     ...     abjad.attach(markup, note, direction=abjad.UP)
-    ...     outer_tuplet.hide = outer_tuplet.trivial()
+    ...     outer_tuplet.hide = outer_tuplet.ratio.is_trivial()
     ...     abjad.tweak(inner_tuplet, r"\tweak staff-padding 0")
     ...     abjad.tweak(outer_tuplet, r"\tweak staff-padding 2")
     ...     return outer_tuplet

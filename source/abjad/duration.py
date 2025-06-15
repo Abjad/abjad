@@ -1693,22 +1693,214 @@ class Ratio:
         """
         return fractions.Fraction(self.numerator, self.denominator)
 
-    def normalized(self) -> bool:
+    def is_augmented(self) -> bool:
+        """
+        Is true when ratio numerator is less than ratio denominator.
+
+        ..  container:: example
+
+            >>> abjad.Ratio(6, 4).is_augmented()
+            False
+
+            >>> abjad.Ratio(3, 2).is_augmented()
+            False
+
+            >>> abjad.Ratio(4, 6).is_augmented()
+            True
+
+            >>> abjad.Ratio(2, 3).is_augmented()
+            True
+
+            >>> abjad.Ratio(2, 2).is_augmented()
+            False
+
+            >>> abjad.Ratio(1, 1).is_augmented()
+            False
+
+        """
+        return self.numerator < self.denominator
+
+    def is_canonical(self) -> bool:
+        """
+        Is true when ratio is normalized diminution.
+
+        ..  container:: example
+
+            >>> abjad.Ratio(6, 4).is_canonical()
+            True
+
+            >>> abjad.Ratio(3, 2).is_canonical()
+            True
+
+            >>> abjad.Ratio(4, 6).is_canonical()
+            False
+
+            >>> abjad.Ratio(2, 3).is_canonical()
+            False
+
+            >>> abjad.Ratio(2, 2).is_canonical()
+            False
+
+            >>> abjad.Ratio(1, 1).is_canonical()
+            False
+
+        """
+        return self.is_normalized() and self.is_diminished()
+
+    def is_diminished(self) -> bool:
+        """
+        Is true when ratio denominator is less than ratio numerator.
+
+        ..  container:: example
+
+            >>> abjad.Ratio(6, 4).is_diminished()
+            True
+
+            >>> abjad.Ratio(3, 2).is_diminished()
+            True
+
+            >>> abjad.Ratio(4, 6).is_diminished()
+            False
+
+            >>> abjad.Ratio(2, 3).is_diminished()
+            False
+
+            >>> abjad.Ratio(2, 2).is_diminished()
+            False
+
+            >>> abjad.Ratio(1, 1).is_diminished()
+            False
+
+        """
+        return self.denominator < self.numerator
+
+    def is_dyadic(self) -> bool:
+        """
+        Is true when ratio denominator is nonnegative integer power of two.
+
+        ..  container:: example
+
+            >>> abjad.Ratio(6, 4).is_dyadic()
+            True
+
+            >>> abjad.Ratio(3, 2).is_dyadic()
+            True
+
+            >>> abjad.Ratio(4, 6).is_dyadic()
+            False
+
+            >>> abjad.Ratio(2, 3).is_dyadic()
+            False
+
+            >>> abjad.Ratio(2, 2).is_dyadic()
+            True
+
+            >>> abjad.Ratio(1, 1).is_dyadic()
+            True
+
+        """
+        return _math.is_nonnegative_integer_power_of_two(self.denominator)
+
+    def is_normalized(self) -> bool:
         """
         Is true when fraction form of ratio is greater than ``1/2`` and less
         than ``2``.
 
         ..  container:: example
 
-            >>> abjad.Ratio(2, 3).normalized()
+            >>> abjad.Ratio(6, 4).is_normalized()
             True
 
-            >>> abjad.Ratio(2, 5).normalized()
+            >>> abjad.Ratio(3, 2).is_normalized()
+            True
+
+            >>> abjad.Ratio(4, 6).is_normalized()
+            True
+
+            >>> abjad.Ratio(2, 3).is_normalized()
+            True
+
+            >>> abjad.Ratio(2, 2).is_normalized()
+            True
+
+            >>> abjad.Ratio(1, 1).is_normalized()
+            True
+
+        ..  container:: example
+
+            >>> abjad.Ratio(10, 4).is_normalized()
+            False
+
+            >>> abjad.Ratio(4, 10).is_normalized()
+            False
+
+            >>> abjad.Ratio(9, 4).is_normalized()
+            False
+
+            >>> abjad.Ratio(4, 9).is_normalized()
             False
 
         """
         self_fraction = fractions.Fraction(self.numerator, self.denominator)
         return fractions.Fraction(1, 2) < self_fraction < fractions.Fraction(2)
+
+    def is_reduced(self) -> bool:
+        """
+        Is true when ratio numerator and denominator are relatively prime.
+
+        ..  container:: example
+
+            >>> abjad.Ratio(6, 4).is_reduced()
+            False
+
+            >>> abjad.Ratio(3, 2).is_reduced()
+            True
+
+            >>> abjad.Ratio(4, 6).is_reduced()
+            False
+
+            >>> abjad.Ratio(2, 3).is_reduced()
+            True
+
+            >>> abjad.Ratio(2, 2).is_reduced()
+            False
+
+            >>> abjad.Ratio(1, 1).is_reduced()
+            True
+
+        """
+        fraction = self.as_fraction()
+        if self.numerator == fraction.numerator:
+            if self.denominator == fraction.denominator:
+                return True
+        return False
+
+    def is_trivial(self) -> bool:
+        """
+        Is true when ratio numerator equals ratio denominator.
+
+        ..  container:: example
+
+            >>> abjad.Ratio(6, 4).is_trivial()
+            False
+
+            >>> abjad.Ratio(3, 2).is_trivial()
+            False
+
+            >>> abjad.Ratio(4, 6).is_trivial()
+            False
+
+            >>> abjad.Ratio(2, 3).is_trivial()
+            False
+
+            >>> abjad.Ratio(2, 2).is_trivial()
+            True
+
+            >>> abjad.Ratio(1, 1).is_trivial()
+            True
+
+        """
+        return self.numerator == self.denominator
 
     def reciprocal(self) -> "Ratio":
         """
