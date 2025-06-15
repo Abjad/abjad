@@ -5454,92 +5454,6 @@ class Tuplet(Container):
             self.ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
             assert self._get_duration() == old_duration
 
-    def augmentation(self) -> bool:
-        r"""
-        Is true when tuplet ratio is less than ``1:1``.
-
-        ..  container:: example
-
-            Augmented tuplet is an augmentation:
-
-            >>> tuplet = abjad.Tuplet("3:4", "c'8 d'8 e'8")
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            >>> tuplet.augmentation()
-            True
-
-            Diminished tuplet is not an augmentation:
-
-            >>> tuplet = abjad.Tuplet("3:2", "c'4 d'4 e'4")
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            >>> tuplet.augmentation()
-            False
-
-            Trivial tuplet is not an augmentation:
-
-            >>> tuplet = abjad.Tuplet("1:1", "c'8. d'8. e'8.")
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            >>> tuplet.augmentation()
-            False
-
-        """
-        return 1 < self.multiplier()
-
-    def diminution(self) -> bool:
-        r"""
-        Is true when tuplet ratio is greater than ``1:1``.
-
-        ..  container:: example
-
-            Augmented tuplet is not a diminution:
-
-            >>> tuplet = abjad.Tuplet("3:4", "c'8 d'8 e'8")
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            >>> tuplet.diminution()
-            False
-
-            Diminished tuplet is a diminution:
-
-            >>> tuplet = abjad.Tuplet("3:2", "c'4 d'4 e'4")
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            >>> tuplet.diminution()
-            True
-
-            Trivial tuplet is not a diminution::
-
-            >>> tuplet = abjad.Tuplet("1:1", "c'8. d'8. e'8.")
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            >>> tuplet.diminution()
-            False
-
-        """
-        return self.multiplier() < 1
-
-    def dyadic(self) -> bool:
-        r"""
-        Is true when denominator of tuplet ratio is nonnegative integer power
-        of 2.
-
-        ..  container:: example
-
-            3:2 is dyadic (because 2 is a power of 2):
-
-            >>> abjad.Tuplet("3:2", "c'4 d'4 e'4").dyadic()
-            True
-
-            4:3 is nondyadic (because 3 is not a power of 2):
-
-            >>> abjad.Tuplet("4:3", "c'4 d'4 e'4 f'4").dyadic()
-            False
-
-        """
-        return _math.is_nonnegative_integer_power_of_two(self.ratio.denominator)
-
     def extend(
         self, argument, *, language: str = "english", preserve_duration: bool = False
     ) -> None:
@@ -5670,6 +5584,217 @@ class Tuplet(Container):
         tuplet.ratio = _duration.Ratio(multiplier.numerator, multiplier.denominator)
         return tuplet
 
+    def is_rest_filled(self) -> bool:
+        r"""
+        Is true when tuplet is rest-filled.
+
+        ..  container:: example
+
+            >>> tuplet = abjad.Tuplet("2:3", "r4 r r")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
+            >>> abjad.show(tuplet) # doctest: +SKIP
+
+            ..  container:: example
+
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 2/3
+                {
+                    r4
+                    r4
+                    r4
+                }
+
+            >>> tuplet.is_rest_filled()
+            True
+
+        """
+        return all(isinstance(_, Rest) for _ in self)
+
+    def is_trivial(self) -> bool:
+        r"""
+        Is true when tuplet ratio reduces to ``1:1`` and no duration multiplier
+        attaches to any leaf in tuplet.
+
+        ..  container:: example
+
+            >>> tuplet = abjad.Tuplet("1:1", "c'8 d'8 e'8")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
+            >>> abjad.show(tuplet) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 1/1
+                {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+            >>> tuplet.is_trivial()
+            True
+
+        ..  container:: example
+
+            Tuplet is not trivial when multipliers attach to tuplet leaves:
+
+            >>> tuplet = abjad.Tuplet("1:1", "c'8 d'8 e'8")
+            >>> tuplet[0].multiplier = (3, 2)
+            >>> tuplet[-1].multiplier = (1, 2)
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
+            >>> abjad.show(tuplet) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 1/1
+                {
+                    c'8 * 3/2
+                    d'8
+                    e'8 * 1/2
+                }
+
+            >>> tuplet.is_trivial()
+            False
+
+        """
+        if not self.ratio.is_trivial():
+            return False
+        for component in self:
+            if isinstance(component, Tuplet):
+                continue
+            elif hasattr(component, "written_duration"):
+                if component.multiplier is not None:
+                    return False
+        return True
+
+    def is_trivializable(self) -> bool:
+        r"""
+        Is true when tuplet is trivializable (can be rewritten with a ratio of 1:1).
+
+        Redudant tuplet:
+
+        ..  container:: example
+
+            >>> tuplet = abjad.Tuplet("4:3", "c'4 c'4")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
+            >>> staff = abjad.Staff([tuplet])
+            >>> score = abjad.Score([staff], name="Score")
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), tuplet[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(tuplet)
+                >>> print(string)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tuplet 4/3
+                {
+                    \time 3/8
+                    c'4
+                    c'4
+                }
+
+            >>> tuplet.is_trivializable()
+            True
+
+            Can be rewritten without a tuplet bracket:
+
+            >>> staff = abjad.Staff("c'8. c'8.")
+            >>> score = abjad.Score([staff], name="Score")
+            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
+                \new Staff
+                {
+                    \time 3/8
+                    c'8.
+                    c'8.
+                }
+
+        ..  container:: example
+
+            Nontrivializable tuplet:
+
+            >>> tuplet = abjad.Tuplet("5:3", "c'4 c'4 c'4 c'4 c'4")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
+            >>> staff = abjad.Staff([tuplet])
+            >>> score = abjad.Score([staff], name="Score")
+            >>> abjad.attach(abjad.TimeSignature((3, 4)), tuplet[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
+                \new Staff
+                {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \tuplet 5/3
+                    {
+                        \time 3/4
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                }
+
+            >>> tuplet.is_trivializable()
+            False
+
+            Can not be rewritten without a tuplet bracket.
+
+        ..  container:: example
+
+            REGRESSION. Nontrivializable tuplet:
+
+            >>> tuplet = abjad.Tuplet("4:3", "c'2. c4")
+            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
+            >>> staff = abjad.Staff([tuplet])
+            >>> score = abjad.Score([staff], name="Score")
+            >>> abjad.attach(abjad.TimeSignature((3, 4)), tuplet[0])
+            >>> abjad.show(staff) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
+                \new Staff
+                {
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \tuplet 4/3
+                    {
+                        \time 3/4
+                        c'2.
+                        c4
+                    }
+                }
+
+            >>> tuplet.is_trivializable()
+            False
+
+        """
+        for component in self:
+            if isinstance(component, Tuplet):
+                continue
+            assert isinstance(component, Leaf), repr(component)
+            duration = self.multiplier() * component.written_duration
+            if not duration.is_assignable:
+                return False
+        return True
+
     def multiplier(self) -> fractions.Fraction:
         """
         Gets tuplet multiplier.
@@ -5702,7 +5827,7 @@ class Tuplet(Container):
                     e'4
                 }
 
-            >>> tuplet.ratio.normalized()
+            >>> tuplet.ratio.is_normalized()
             False
 
             >>> tuplet.normalize_ratio()
@@ -5719,7 +5844,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> tuplet.ratio.normalized()
+            >>> tuplet.ratio.is_normalized()
             True
 
         ..  container:: example
@@ -5740,7 +5865,7 @@ class Tuplet(Container):
                     e'32
                 }
 
-            >>> tuplet.ratio.normalized()
+            >>> tuplet.ratio.is_normalized()
             False
 
             >>> tuplet.normalize_ratio()
@@ -5758,7 +5883,7 @@ class Tuplet(Container):
                     e'16
                 }
 
-            >>> tuplet.ratio.normalized()
+            >>> tuplet.ratio.is_normalized()
             True
 
         ..  container:: example
@@ -5779,7 +5904,7 @@ class Tuplet(Container):
                     e'4
                 }
 
-            >>> tuplet.ratio.normalized()
+            >>> tuplet.ratio.is_normalized()
             False
 
             >>> tuplet.normalize_ratio()
@@ -5797,7 +5922,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> tuplet.ratio.normalized()
+            >>> tuplet.ratio.is_normalized()
             True
 
         """
@@ -5809,35 +5934,7 @@ class Tuplet(Container):
         multiplier = self.multiplier() / multiplier
         ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
         self.ratio = ratio
-        assert self.ratio.normalized()
-
-    def rest_filled(self) -> bool:
-        r"""
-        Is true when tuplet is rest-filled.
-
-        ..  container:: example
-
-            >>> tuplet = abjad.Tuplet("2:3", "r4 r r")
-            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            ..  container:: example
-
-                >>> string = abjad.lilypond(tuplet)
-                >>> print(string)
-                \tweak text #tuplet-number::calc-fraction-text
-                \tuplet 2/3
-                {
-                    r4
-                    r4
-                    r4
-                }
-
-            >>> tuplet.rest_filled()
-            True
-
-        """
-        return all(isinstance(_, Rest) for _ in self)
+        assert self.ratio.is_normalized()
 
     def rewrite_dots(self) -> None:
         r"""
@@ -6117,205 +6214,22 @@ class Tuplet(Container):
 
         Does not work with nested tuplets.
         """
-        if self.diminution():
-            while self.diminution():
+        if self.ratio.is_diminished():
+            while self.ratio.is_diminished():
                 multiplier = 2 * self.multiplier()
                 ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
                 self.ratio = ratio
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
                         component.written_duration /= 2
-        elif self.augmentation():
-            while not self.diminution():
+        elif self.ratio.is_augmented():
+            while not self.ratio.is_diminished():
                 multiplier = self.multiplier() / 2
                 ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
                 self.ratio = ratio
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
                         component.written_duration *= 2
-
-    def trivial(self) -> bool:
-        r"""
-        Is true when tuplet ratio reduces to ``1:1`` and no duration multiplier
-        attaches to any leaf in tuplet.
-
-        ..  container:: example
-
-            >>> tuplet = abjad.Tuplet("1:1", "c'8 d'8 e'8")
-            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(tuplet)
-                >>> print(string)
-                \tweak text #tuplet-number::calc-fraction-text
-                \tuplet 1/1
-                {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-            >>> tuplet.trivial()
-            True
-
-        ..  container:: example
-
-            Tuplet is not trivial when multipliers attach to tuplet leaves:
-
-            >>> tuplet = abjad.Tuplet("1:1", "c'8 d'8 e'8")
-            >>> tuplet[0].multiplier = (3, 2)
-            >>> tuplet[-1].multiplier = (1, 2)
-            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(tuplet)
-                >>> print(string)
-                \tweak text #tuplet-number::calc-fraction-text
-                \tuplet 1/1
-                {
-                    c'8 * 3/2
-                    d'8
-                    e'8 * 1/2
-                }
-
-            >>> tuplet.trivial()
-            False
-
-        """
-        if self.multiplier() != 1:
-            return False
-        for component in self:
-            if isinstance(component, Tuplet):
-                continue
-            elif hasattr(component, "written_duration"):
-                if component.multiplier is not None:
-                    return False
-        return True
-
-    def trivializable(self) -> bool:
-        r"""
-        Is true when tuplet is trivializable (can be rewritten with a ratio of 1:1).
-
-        Redudant tuplet:
-
-        ..  container:: example
-
-            >>> tuplet = abjad.Tuplet("4:3", "c'4 c'4")
-            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
-            >>> staff = abjad.Staff([tuplet])
-            >>> score = abjad.Score([staff], name="Score")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), tuplet[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(tuplet)
-                >>> print(string)
-                \tweak text #tuplet-number::calc-fraction-text
-                \tuplet 4/3
-                {
-                    \time 3/8
-                    c'4
-                    c'4
-                }
-
-            >>> tuplet.trivializable()
-            True
-
-            Can be rewritten without a tuplet bracket:
-
-            >>> staff = abjad.Staff("c'8. c'8.")
-            >>> score = abjad.Score([staff], name="Score")
-            >>> abjad.attach(abjad.TimeSignature((3, 8)), staff[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    \time 3/8
-                    c'8.
-                    c'8.
-                }
-
-        ..  container:: example
-
-            Nontrivializable tuplet:
-
-            >>> tuplet = abjad.Tuplet("5:3", "c'4 c'4 c'4 c'4 c'4")
-            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
-            >>> staff = abjad.Staff([tuplet])
-            >>> score = abjad.Score([staff], name="Score")
-            >>> abjad.attach(abjad.TimeSignature((3, 4)), tuplet[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \tuplet 5/3
-                    {
-                        \time 3/4
-                        c'4
-                        c'4
-                        c'4
-                        c'4
-                        c'4
-                    }
-                }
-
-            >>> tuplet.trivializable()
-            False
-
-            Can not be rewritten without a tuplet bracket.
-
-        ..  container:: example
-
-            REGRESSION. Nontrivializable tuplet:
-
-            >>> tuplet = abjad.Tuplet("4:3", "c'2. c4")
-            >>> abjad.makers.tweak_tuplet_number_text(tuplet)
-            >>> staff = abjad.Staff([tuplet])
-            >>> score = abjad.Score([staff], name="Score")
-            >>> abjad.attach(abjad.TimeSignature((3, 4)), tuplet[0])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \tuplet 4/3
-                    {
-                        \time 3/4
-                        c'2.
-                        c4
-                    }
-                }
-
-            >>> tuplet.trivializable()
-            False
-
-        """
-        for component in self:
-            if isinstance(component, Tuplet):
-                continue
-            assert isinstance(component, Leaf), repr(component)
-            duration = self.multiplier() * component.written_duration
-            if not duration.is_assignable:
-                return False
-        return True
 
     def trivialize(self) -> None:
         r"""
@@ -6337,7 +6251,7 @@ class Tuplet(Container):
                     c'2
                 }
 
-            >>> tuplet.trivializable()
+            >>> tuplet.is_trivializable()
             True
 
             >>> tuplet.trivialize()
@@ -6354,7 +6268,7 @@ class Tuplet(Container):
                 }
 
         """
-        if not self.trivializable():
+        if not self.is_trivializable():
             return
         for component in self:
             if isinstance(component, Tuplet):
