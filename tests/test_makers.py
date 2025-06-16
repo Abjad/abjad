@@ -99,8 +99,9 @@ def test_makers_make_notes_01():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_01():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((1, 2, 4), (6, 16))
+def test_makers_tuplet_from_duration_and_proportion_01():
+    duration = abjad.Duration(6, 16)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 2, 4))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -114,8 +115,9 @@ def test_makers_tuplet_from_proportion_and_pair_01():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_02():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((1, 1, 2, 4), (6, 16))
+def test_makers_tuplet_from_duration_and_proportion_02():
+    duration = abjad.Duration(6, 16)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 1, 2, 4))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -130,8 +132,9 @@ def test_makers_tuplet_from_proportion_and_pair_02():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_03():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((-2, 3, 7), (7, 16))
+def test_makers_tuplet_from_duration_and_proportion_03():
+    duration = abjad.Duration(7, 16)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (-2, 3, 7))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -145,8 +148,9 @@ def test_makers_tuplet_from_proportion_and_pair_03():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_04():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((7, 7, -4, -1), (1, 4))
+def test_makers_tuplet_from_duration_and_proportion_04():
+    duration = abjad.Duration(1, 4)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (7, 7, -4, -1))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -161,8 +165,9 @@ def test_makers_tuplet_from_proportion_and_pair_04():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_05():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((1, 2, 2), (12, 16))
+def test_makers_tuplet_from_duration_and_proportion_05():
+    duration = abjad.Duration(12, 16)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 2, 2))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -176,8 +181,9 @@ def test_makers_tuplet_from_proportion_and_pair_05():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_06():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((2, 4, 4), (12, 16))
+def test_makers_tuplet_from_duration_and_proportion_06():
+    duration = abjad.Duration(12, 16)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (2, 4, 4))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -191,8 +197,9 @@ def test_makers_tuplet_from_proportion_and_pair_06():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_07():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((4, 8, 8), (12, 16))
+def test_makers_tuplet_from_duration_and_proportion_07():
+    duration = abjad.Duration(12, 16)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (4, 8, 8))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -206,8 +213,9 @@ def test_makers_tuplet_from_proportion_and_pair_07():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_08():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((8, 16, 16), (12, 16))
+def test_makers_tuplet_from_duration_and_proportion_08():
+    duration = abjad.Duration(12, 16)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (8, 16, 16))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -221,8 +229,9 @@ def test_makers_tuplet_from_proportion_and_pair_08():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_09():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((2, 4, 4), (3, 16))
+def test_makers_tuplet_from_duration_and_proportion_09():
+    duration = abjad.Duration(3, 16)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (2, 4, 4))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -236,8 +245,9 @@ def test_makers_tuplet_from_proportion_and_pair_09():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_10():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((2, 4, 4), (6, 16))
+def test_makers_tuplet_from_duration_and_proportion_10():
+    duration = abjad.Duration(6, 16)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (2, 4, 4))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -251,8 +261,9 @@ def test_makers_tuplet_from_proportion_and_pair_10():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_11():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((2, 4, 4), (12, 16))
+def test_makers_tuplet_from_duration_and_proportion_11():
+    duration = abjad.Duration(12, 16)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (2, 4, 4))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -266,8 +277,9 @@ def test_makers_tuplet_from_proportion_and_pair_11():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_12():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((2, 4, 4), (24, 16))
+def test_makers_tuplet_from_duration_and_proportion_12():
+    duration = abjad.Duration(24, 16)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (2, 4, 4))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -281,8 +293,9 @@ def test_makers_tuplet_from_proportion_and_pair_12():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_13():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((1, 2, 2), (6, 2))
+def test_makers_tuplet_from_duration_and_proportion_13():
+    duration = abjad.Duration(6, 2)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 2, 2))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -296,8 +309,9 @@ def test_makers_tuplet_from_proportion_and_pair_13():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_14():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((1, 2, 2), (6, 4))
+def test_makers_tuplet_from_duration_and_proportion_14():
+    duration = abjad.Duration(6, 4)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 2, 2))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -311,8 +325,9 @@ def test_makers_tuplet_from_proportion_and_pair_14():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_15():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((1, 2, 2), (6, 8))
+def test_makers_tuplet_from_duration_and_proportion_15():
+    duration = abjad.Duration(6, 8)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 2, 2))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -326,8 +341,9 @@ def test_makers_tuplet_from_proportion_and_pair_15():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_16():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((1, 2, 2), (6, 16))
+def test_makers_tuplet_from_duration_and_proportion_16():
+    duration = abjad.Duration(6, 16)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 2, 2))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -341,8 +357,9 @@ def test_makers_tuplet_from_proportion_and_pair_16():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_17():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((1, -1, -1), (3, 16))
+def test_makers_tuplet_from_duration_and_proportion_17():
+    duration = abjad.Duration(3, 16)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, -1, -1))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -356,8 +373,9 @@ def test_makers_tuplet_from_proportion_and_pair_17():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_18():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((1, 1, -1, -1), (4, 16))
+def test_makers_tuplet_from_duration_and_proportion_18():
+    duration = abjad.Duration(4, 16)
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 1, -1, -1))
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -372,8 +390,11 @@ def test_makers_tuplet_from_proportion_and_pair_18():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_19():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((1, 1, 1, -1, -1), (5, 16))
+def test_makers_tuplet_from_duration_and_proportion_19():
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(
+        abjad.Duration(5, 16),
+        (1, 1, 1, -1, -1),
+    )
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -389,8 +410,11 @@ def test_makers_tuplet_from_proportion_and_pair_19():
     )
 
 
-def test_makers_tuplet_from_proportion_and_pair_20():
-    tuplet = abjad.makers.tuplet_from_proportion_and_pair((1, 1, 1, 1, -1, -1), (6, 16))
+def test_makers_tuplet_from_duration_and_proportion_20():
+    tuplet = abjad.makers.tuplet_from_duration_and_proportion(
+        abjad.Duration(6, 16),
+        (1, 1, 1, 1, -1, -1),
+    )
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
