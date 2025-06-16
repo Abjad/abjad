@@ -887,9 +887,9 @@ def make_pitches(argument: list | str) -> list[_pitch.NamedPitch]:
     return pitches
 
 
-def tuplet_from_proportion_and_pair(
+def tuplet_from_duration_and_proportion(
+    duration: _duration.Duration,
     proportion: tuple[int, ...],
-    pair: tuple[int, int],
     *,
     tag: _tag.Tag | None = None,
 ) -> _score.Tuplet:
@@ -900,13 +900,14 @@ def tuplet_from_proportion_and_pair(
 
         Helper function:
 
-        >>> def make_score(proportion, pair):
-        ...     tuplet = abjad.makers.tuplet_from_proportion_and_pair(proportion, pair)
+        >>> def make_score(duration, proportion):
+        ...     tuplet = abjad.makers.tuplet_from_duration_and_proportion(
+        ...         duration, proportion
+        ...     )
         ...     abjad.makers.tweak_tuplet_number_text(tuplet)
         ...     staff = abjad.Staff([tuplet], lilypond_type="RhythmicStaff")
         ...     score = abjad.Score([staff], name="Score")
-        ...     fraction = abjad.Fraction(*pair)
-        ...     pair = fraction.numerator, fraction.denominator
+        ...     pair = duration.numerator, duration.denominator
         ...     time_signature = abjad.TimeSignature(pair)
         ...     leaf = abjad.select.leaf(staff, 0)
         ...     abjad.attach(time_signature, leaf)
@@ -916,7 +917,8 @@ def tuplet_from_proportion_and_pair(
 
         Divides duration of 3/16 into increasing number of parts:
 
-        >>> score = make_score((1, 2, 2), (3, 16))
+        >>> duration = abjad.Duration(3, 16)
+        >>> score = make_score(duration, (1, 2, 2))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -933,7 +935,7 @@ def tuplet_from_proportion_and_pair(
                 c'8
             }
 
-        >>> score = make_score((1, 2, 2, 3), (3, 16))
+        >>> score = make_score(duration, (1, 2, 2, 3))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -951,7 +953,7 @@ def tuplet_from_proportion_and_pair(
                 c'16.
             }
 
-        >>> score = make_score((1, 2, 2, 3, 3), (3, 16))
+        >>> score = make_score(duration, (1, 2, 2, 3, 3))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -970,7 +972,7 @@ def tuplet_from_proportion_and_pair(
                 c'16.
             }
 
-        >>> score = make_score((1, 2, 2, 3, 3, 4), (3, 16))
+        >>> score = make_score(duration, (1, 2, 2, 3, 3, 4))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -993,7 +995,8 @@ def tuplet_from_proportion_and_pair(
 
         Divides duration of 2/2 * 3/16 = 6/32 into increasing number of parts:
 
-        >>> score = make_score((1, 2, 2), (6, 32))
+        >>> duration = abjad.Duration(6, 32)
+        >>> score = make_score(duration, (1, 2, 2))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1010,7 +1013,7 @@ def tuplet_from_proportion_and_pair(
                 c'8
             }
 
-        >>> score = make_score((1, 2, 2, 3), (6, 32))
+        >>> score = make_score(duration, (1, 2, 2, 3))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1028,7 +1031,7 @@ def tuplet_from_proportion_and_pair(
                 c'16.
             }
 
-        >>> score = make_score((1, 2, 2, 3, 3), (6, 32))
+        >>> score = make_score(duration, (1, 2, 2, 3, 3))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1047,7 +1050,7 @@ def tuplet_from_proportion_and_pair(
                 c'16.
             }
 
-        >>> score = make_score((1, 2, 2, 3, 3, 4), (6, 32))
+        >>> score = make_score(duration, (1, 2, 2, 3, 3, 4))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1070,7 +1073,8 @@ def tuplet_from_proportion_and_pair(
 
         Divides duration of 7/16 into increasing number of parts:
 
-        >>> score = make_score((1,), (7, 16))
+        >>> duration = abjad.Duration(7, 16)
+        >>> score = make_score(duration, (1,))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1085,7 +1089,7 @@ def tuplet_from_proportion_and_pair(
                 c'4..
             }
 
-        >>> score = make_score((1, 2), (7, 16))
+        >>> score = make_score(duration, (1, 2))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1101,7 +1105,7 @@ def tuplet_from_proportion_and_pair(
                 c'2
             }
 
-        >>> score = make_score((1, 2, 4), (7, 16))
+        >>> score = make_score(duration, (1, 2, 4))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1118,7 +1122,7 @@ def tuplet_from_proportion_and_pair(
                 c'4
             }
 
-        >>> score = make_score((1, 2, 4, 1), (7, 16))
+        >>> score = make_score(duration, (1, 2, 4, 1))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1136,7 +1140,7 @@ def tuplet_from_proportion_and_pair(
                 c'16
             }
 
-        >>> score = make_score((1, 2, 4, 1, 2), (7, 16))
+        >>> score = make_score(duration, (1, 2, 4, 1, 2))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1155,7 +1159,7 @@ def tuplet_from_proportion_and_pair(
                 c'8
             }
 
-        >>> score = make_score((1, 2, 4, 1, 2, 4), (7, 16))
+        >>> score = make_score(duration, (1, 2, 4, 1, 2, 4))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1179,7 +1183,8 @@ def tuplet_from_proportion_and_pair(
 
         Divides duration of 2/2 * 7/16 = 14/32 into increasing number of parts:
 
-        >>> score = make_score((1,), (14, 32))
+        >>> duration = abjad.Duration(14, 32)
+        >>> score = make_score(duration, (1,))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1194,7 +1199,7 @@ def tuplet_from_proportion_and_pair(
                 c'4..
             }
 
-        >>> score = make_score((1, 2), (14, 32))
+        >>> score = make_score(duration, (1, 2))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1210,7 +1215,7 @@ def tuplet_from_proportion_and_pair(
                 c'2
             }
 
-        >>> score = make_score((1, 2, 4), (14, 32))
+        >>> score = make_score(duration, (1, 2, 4))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1227,7 +1232,7 @@ def tuplet_from_proportion_and_pair(
                 c'4
             }
 
-        >>> score = make_score((1, 2, 4, 1), (14, 32))
+        >>> score = make_score(duration, (1, 2, 4, 1))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1245,7 +1250,7 @@ def tuplet_from_proportion_and_pair(
                 c'16
             }
 
-        >>> score = make_score((1, 2, 4, 1, 2), (14, 32))
+        >>> score = make_score(duration, (1, 2, 4, 1, 2))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1264,7 +1269,7 @@ def tuplet_from_proportion_and_pair(
                 c'8
             }
 
-        >>> score = make_score((1, 2, 4, 1, 2, 4), (14, 32))
+        >>> score = make_score(duration, (1, 2, 4, 1, 2, 4))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1288,7 +1293,8 @@ def tuplet_from_proportion_and_pair(
 
         Interprets negative integers in ``proportion`` as rests:
 
-        >>> score = make_score((1, 1, 1, -1, 1), (1, 4))
+        >>> duration = abjad.Duration(1, 4)
+        >>> score = make_score(duration, (1, 1, 1, -1, 1))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1306,7 +1312,7 @@ def tuplet_from_proportion_and_pair(
                 c'16
             }
 
-        >>> score = make_score((3, -2, 2), (1, 4))
+        >>> score = make_score(duration, (3, -2, 2))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1326,7 +1332,8 @@ def tuplet_from_proportion_and_pair(
 
         Works with nonassignable rests:
 
-        >>> score = make_score((11, -5), (7, 16))
+        >>> duration = abjad.Duration(7, 16)
+        >>> score = make_score(duration, (11, -5))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1349,7 +1356,8 @@ def tuplet_from_proportion_and_pair(
 
         Reduces integers in ``proportion`` relative to each other:
 
-        >>> score = make_score((1, 1, 1), (1, 4))
+        >>> duration = abjad.Duration(1, 4)
+        >>> score = make_score(duration, (1, 1, 1))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1365,7 +1373,7 @@ def tuplet_from_proportion_and_pair(
                 c'8
             }
 
-        >>> score = make_score((4, 4, 4), (1, 4))
+        >>> score = make_score(duration, (4, 4, 4))
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -1382,12 +1390,10 @@ def tuplet_from_proportion_and_pair(
             }
 
     """
+    assert isinstance(duration, _duration.Duration), repr(duration)
     assert isinstance(proportion, tuple), repr(proportion)
     assert all(isinstance(_, int) for _ in proportion), repr(proportion)
     assert not any(_ == 0 for _ in proportion), repr(proportion)
-    assert isinstance(pair, tuple), repr(pair)
-    assert all(isinstance(_, int) for _ in pair), repr(pair)
-    duration = _duration.Duration(pair)
     if len(proportion) == 1:
         if 0 < proportion[0]:
             pitch_list = [_pitch.NamedPitch("c'")]
@@ -1397,7 +1403,7 @@ def tuplet_from_proportion_and_pair(
         leaves = make_leaves([pitch_list], [duration], tag=tag)
         tuplet = _score.Tuplet.from_duration(duration, leaves, tag=tag)
     else:
-        numerator, denominator = pair
+        numerator, denominator = duration.pair
         exponent = int(math.log(_math.weight(proportion), 2) - math.log(numerator, 2))
         denominator = int(denominator * 2**exponent)
         components: list[_score.Leaf | _score.Tuplet] = []
