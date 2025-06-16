@@ -1,6 +1,7 @@
 import math
 
 from . import duration as _duration
+from . import get as _get
 from . import iterate as _iterate
 from . import math as _math
 from . import overrides as _overrides
@@ -1186,7 +1187,7 @@ def make_tuplet(
             assert proportion[0] < 0, repr(proportion)
             pitch_list = []
         leaves = make_leaves([pitch_list], [duration], tag=tag)
-        tuplet = _score.Tuplet.from_duration(duration, leaves, tag=tag)
+        tuplet = _score.Tuplet("1:1", leaves, tag=tag)
     else:
         numerator, denominator = duration.pair
         exponent = int(math.log(_math.weight(proportion), 2) - math.log(numerator, 2))
@@ -1201,7 +1202,9 @@ def make_tuplet(
             duration_ = _duration.Duration(abs(item), denominator)
             leaves = make_leaves([pitch_list], [duration_], tag=tag)
             components.extend(leaves)
-        tuplet = _score.Tuplet.from_duration(duration, components, tag=tag)
+        multiplier = duration / _get.duration(components)
+        ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+        tuplet = _score.Tuplet(ratio, components, tag=tag)
     tuplet.normalize_ratio()
     if tuplet.ratio.is_augmented():
         tuplet.toggle_prolation()
