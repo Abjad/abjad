@@ -99,9 +99,13 @@ def test_makers_make_notes_01():
     )
 
 
-def test_makers_tuplet_from_duration_and_proportion_01():
-    duration = abjad.Duration(6, 16)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 2, 4))
+def test_makers_make_tuplet_01():
+    """
+    Tests characteristic examples.
+    """
+
+    duration, proportion = abjad.Duration(3, 8), (1, 2, 4)
+    tuplet = abjad.makers.make_tuplet(duration, proportion)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -114,10 +118,8 @@ def test_makers_tuplet_from_duration_and_proportion_01():
         """
     )
 
-
-def test_makers_tuplet_from_duration_and_proportion_02():
-    duration = abjad.Duration(6, 16)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 1, 2, 4))
+    duration, proportion = abjad.Duration(3, 8), (1, 1, 2, 4)
+    tuplet = abjad.makers.make_tuplet(duration, proportion)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -131,10 +133,8 @@ def test_makers_tuplet_from_duration_and_proportion_02():
         """
     )
 
-
-def test_makers_tuplet_from_duration_and_proportion_03():
-    duration = abjad.Duration(7, 16)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (-2, 3, 7))
+    duration, proportion = abjad.Duration(7, 16), (-2, 3, 7)
+    tuplet = abjad.makers.make_tuplet(duration, proportion)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -147,10 +147,8 @@ def test_makers_tuplet_from_duration_and_proportion_03():
         """
     )
 
-
-def test_makers_tuplet_from_duration_and_proportion_04():
-    duration = abjad.Duration(1, 4)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (7, 7, -4, -1))
+    duration, proportion = abjad.Duration(1, 4), (7, 7, -4, -1)
+    tuplet = abjad.makers.make_tuplet(duration, proportion)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -165,9 +163,13 @@ def test_makers_tuplet_from_duration_and_proportion_04():
     )
 
 
-def test_makers_tuplet_from_duration_and_proportion_05():
-    duration = abjad.Duration(12, 16)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 2, 2))
+def test_makers_make_tuplet_02():
+    """
+    Varies duration.
+    """
+
+    duration, proportion = abjad.Duration(3, 4), (1, 2, 2)
+    tuplet = abjad.makers.make_tuplet(duration, proportion)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -180,58 +182,8 @@ def test_makers_tuplet_from_duration_and_proportion_05():
         """
     )
 
-
-def test_makers_tuplet_from_duration_and_proportion_06():
-    duration = abjad.Duration(12, 16)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (2, 4, 4))
-
-    assert abjad.lilypond(tuplet) == abjad.string.normalize(
-        r"""
-        \tuplet 5/3
-        {
-            c'4
-            c'2
-            c'2
-        }
-        """
-    )
-
-
-def test_makers_tuplet_from_duration_and_proportion_07():
-    duration = abjad.Duration(12, 16)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (4, 8, 8))
-
-    assert abjad.lilypond(tuplet) == abjad.string.normalize(
-        r"""
-        \tuplet 5/3
-        {
-            c'4
-            c'2
-            c'2
-        }
-        """
-    )
-
-
-def test_makers_tuplet_from_duration_and_proportion_08():
-    duration = abjad.Duration(12, 16)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (8, 16, 16))
-
-    assert abjad.lilypond(tuplet) == abjad.string.normalize(
-        r"""
-        \tuplet 5/3
-        {
-            c'4
-            c'2
-            c'2
-        }
-        """
-    )
-
-
-def test_makers_tuplet_from_duration_and_proportion_09():
-    duration = abjad.Duration(3, 16)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (2, 4, 4))
+    duration, proportion = abjad.Duration(3, 16), (1, 2, 2)
+    tuplet = abjad.makers.make_tuplet(duration, proportion)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -244,10 +196,8 @@ def test_makers_tuplet_from_duration_and_proportion_09():
         """
     )
 
-
-def test_makers_tuplet_from_duration_and_proportion_10():
-    duration = abjad.Duration(6, 16)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (2, 4, 4))
+    duration, proportion = abjad.Duration(3, 8), (1, 2, 2)
+    tuplet = abjad.makers.make_tuplet(duration, proportion)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -260,10 +210,8 @@ def test_makers_tuplet_from_duration_and_proportion_10():
         """
     )
 
-
-def test_makers_tuplet_from_duration_and_proportion_11():
-    duration = abjad.Duration(12, 16)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (2, 4, 4))
+    duration, proportion = abjad.Duration(3, 4), (1, 2, 2)
+    tuplet = abjad.makers.make_tuplet(duration, proportion)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -276,10 +224,8 @@ def test_makers_tuplet_from_duration_and_proportion_11():
         """
     )
 
-
-def test_makers_tuplet_from_duration_and_proportion_12():
-    duration = abjad.Duration(24, 16)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (2, 4, 4))
+    duration, proportion = abjad.Duration(3, 2), (1, 2, 2)
+    tuplet = abjad.makers.make_tuplet(duration, proportion)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -292,10 +238,8 @@ def test_makers_tuplet_from_duration_and_proportion_12():
         """
     )
 
-
-def test_makers_tuplet_from_duration_and_proportion_13():
-    duration = abjad.Duration(6, 2)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 2, 2))
+    duration, proportion = abjad.Duration(3, 1), (1, 2, 2)
+    tuplet = abjad.makers.make_tuplet(duration, proportion)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -309,57 +253,13 @@ def test_makers_tuplet_from_duration_and_proportion_13():
     )
 
 
-def test_makers_tuplet_from_duration_and_proportion_14():
-    duration = abjad.Duration(6, 4)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 2, 2))
+def test_makers_make_tuplet_03():
+    """
+    Interprets negative numbers in proportion as rests.
+    """
 
-    assert abjad.lilypond(tuplet) == abjad.string.normalize(
-        r"""
-        \tuplet 5/3
-        {
-            c'2
-            c'1
-            c'1
-        }
-        """
-    )
-
-
-def test_makers_tuplet_from_duration_and_proportion_15():
-    duration = abjad.Duration(6, 8)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 2, 2))
-
-    assert abjad.lilypond(tuplet) == abjad.string.normalize(
-        r"""
-        \tuplet 5/3
-        {
-            c'4
-            c'2
-            c'2
-        }
-        """
-    )
-
-
-def test_makers_tuplet_from_duration_and_proportion_16():
-    duration = abjad.Duration(6, 16)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 2, 2))
-
-    assert abjad.lilypond(tuplet) == abjad.string.normalize(
-        r"""
-        \tuplet 5/3
-        {
-            c'8
-            c'4
-            c'4
-        }
-        """
-    )
-
-
-def test_makers_tuplet_from_duration_and_proportion_17():
-    duration = abjad.Duration(3, 16)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, -1, -1))
+    duration, proportion = abjad.Duration(3, 16), (1, -1, -1)
+    tuplet = abjad.makers.make_tuplet(duration, proportion)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -372,10 +272,8 @@ def test_makers_tuplet_from_duration_and_proportion_17():
         """
     )
 
-
-def test_makers_tuplet_from_duration_and_proportion_18():
-    duration = abjad.Duration(4, 16)
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(duration, (1, 1, -1, -1))
+    duration, proportion = abjad.Duration(1, 4), (1, 1, -1, -1)
+    tuplet = abjad.makers.make_tuplet(duration, proportion)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -389,12 +287,8 @@ def test_makers_tuplet_from_duration_and_proportion_18():
         """
     )
 
-
-def test_makers_tuplet_from_duration_and_proportion_19():
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(
-        abjad.Duration(5, 16),
-        (1, 1, 1, -1, -1),
-    )
+    duration, proportion = abjad.Duration(5, 16), (1, 1, 1, -1, -1)
+    tuplet = abjad.makers.make_tuplet(duration, proportion)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -409,12 +303,8 @@ def test_makers_tuplet_from_duration_and_proportion_19():
         """
     )
 
-
-def test_makers_tuplet_from_duration_and_proportion_20():
-    tuplet = abjad.makers.tuplet_from_duration_and_proportion(
-        abjad.Duration(6, 16),
-        (1, 1, 1, 1, -1, -1),
-    )
+    duration, proportion = abjad.Duration(3, 8), (1, 1, 1, 1, -1, -1)
+    tuplet = abjad.makers.make_tuplet(duration, proportion)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
