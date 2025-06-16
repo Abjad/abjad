@@ -1385,7 +1385,9 @@ def logical_tie_to_tuplet(
         denominator = target_duration._denominator
         note_durations = [_duration.Duration(_, denominator) for _ in proportions]
         notes = _makers.make_notes(pitches, note_durations, tag=tag)
-    tuplet = _score.Tuplet.from_duration(target_duration, notes, tag=tag)
+    multiplier = target_duration / _get.duration(notes)
+    ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+    tuplet = _score.Tuplet(ratio, notes, tag=tag)
     for leaf in argument:
         _bind.detach(_indicators.Tie, leaf)
         _bind.detach(_indicators.RepeatTie, leaf)

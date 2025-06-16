@@ -5552,38 +5552,6 @@ class Tuplet(Container):
             self.ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
             assert self._get_duration() == old_duration
 
-    @staticmethod
-    def from_duration(
-        duration: _duration.Duration, components, *, tag: _tag.Tag | None = None
-    ) -> "Tuplet":
-        r"""
-        Makes tuplet from ``duration`` and ``components``.
-
-        ..  container:: example
-
-            >>> duration = abjad.Duration(2, 8)
-            >>> tuplet = abjad.Tuplet.from_duration(duration, "c'8 d' e'")
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(tuplet)
-                >>> print(string)
-                \tuplet 3/2
-                {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-        """
-        assert isinstance(duration, _duration.Duration), repr(duration)
-        assert len(components), repr(components)
-        tuplet = Tuplet("1:1", components, tag=tag)
-        multiplier = tuplet._get_duration() / duration
-        tuplet.ratio = _duration.Ratio(multiplier.numerator, multiplier.denominator)
-        return tuplet
-
     def is_rest_filled(self) -> bool:
         r"""
         Is true when tuplet is rest-filled.
