@@ -891,7 +891,6 @@ def tuplet_from_proportion_and_pair(
     proportion: tuple[int, ...],
     pair: tuple[int, int],
     *,
-    canonical: bool = False,
     tag: _tag.Tag | None = None,
 ) -> _score.Tuplet:
     r"""
@@ -1003,12 +1002,12 @@ def tuplet_from_proportion_and_pair(
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 5/6
+            \tuplet 5/3
             {
                 \time 3/16
-                c'32
                 c'16
-                c'16
+                c'8
+                c'8
             }
 
         >>> score = make_score((1, 2, 2, 3), (6, 32))
@@ -1095,11 +1094,11 @@ def tuplet_from_proportion_and_pair(
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 6/7
+            \tuplet 12/7
             {
                 \time 7/16
-                c'8
                 c'4
+                c'2
             }
 
         >>> score = make_score((1, 2, 4), (7, 16))
@@ -1204,11 +1203,11 @@ def tuplet_from_proportion_and_pair(
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 6/7
+            \tuplet 12/7
             {
                 \time 7/16
-                c'8
                 c'4
+                c'2
             }
 
         >>> score = make_score((1, 2, 4), (14, 32))
@@ -1237,13 +1236,13 @@ def tuplet_from_proportion_and_pair(
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 4/7
+            \tuplet 8/7
             {
                 \time 7/16
-                c'32
                 c'16
                 c'8
-                c'32
+                c'4
+                c'16
             }
 
         >>> score = make_score((1, 2, 4, 1, 2), (14, 32))
@@ -1255,14 +1254,14 @@ def tuplet_from_proportion_and_pair(
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
             \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 5/7
+            \tuplet 10/7
             {
                 \time 7/16
-                c'32
                 c'16
                 c'8
-                c'32
+                c'4
                 c'16
+                c'8
             }
 
         >>> score = make_score((1, 2, 4, 1, 2, 4), (14, 32))
@@ -1413,14 +1412,9 @@ def tuplet_from_proportion_and_pair(
             components.extend(leaves)
         tuplet = _score.Tuplet.from_duration(duration, components, tag=tag)
     tuplet.normalize_ratio()
-    assert tuplet.ratio.is_normalized()
-    if canonical is True:
-        if tuplet.ratio.is_augmented():
-            tuplet.toggle_prolation()
-        assert tuplet.ratio.is_diminished() or tuplet.ratio.is_trivial()
-    else:
-        assert canonical is False
-    assert tuplet.ratio.is_normalized()
+    if tuplet.ratio.is_augmented():
+        tuplet.toggle_prolation()
+    assert tuplet.ratio.is_canonical() or str(tuplet.ratio) == "1:1", repr(tuplet.ratio)
     return tuplet
 
 
