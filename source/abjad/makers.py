@@ -891,7 +891,6 @@ def tuplet_from_proportion_and_pair(
     proportion: tuple[int, ...],
     pair: tuple[int, int],
     *,
-    canonical: bool = True,
     tag: _tag.Tag | None = None,
 ) -> _score.Tuplet:
     r"""
@@ -1413,15 +1412,9 @@ def tuplet_from_proportion_and_pair(
             components.extend(leaves)
         tuplet = _score.Tuplet.from_duration(duration, components, tag=tag)
     tuplet.normalize_ratio()
-    assert tuplet.ratio.is_normalized()
-    canonical = True
-    if canonical is True:
-        if tuplet.ratio.is_augmented():
-            tuplet.toggle_prolation()
-        assert tuplet.ratio.is_diminished() or tuplet.ratio.is_trivial()
-    else:
-        assert canonical is False
-    assert tuplet.ratio.is_normalized()
+    if tuplet.ratio.is_augmented():
+        tuplet.toggle_prolation()
+    assert tuplet.ratio.is_canonical() or str(tuplet.ratio) == "1:1", repr(tuplet.ratio)
     return tuplet
 
 
