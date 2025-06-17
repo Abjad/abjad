@@ -1281,7 +1281,7 @@ def tweak_tuplet_bracket_edge_height(argument) -> None:
         duration = tuplet._get_preprolated_duration()
         denominator = duration.denominator
         if not _math.is_nonnegative_integer_power_of_two(denominator):
-            _tweaks.tweak(tuplet, tuplet.edge_height_tweak_string)
+            _tweaks.tweak(tuplet, r"\tweak edge-height #'(0.7 . 0)")
 
 
 def tweak_tuplet_number_text(argument) -> None:
@@ -1304,4 +1304,4 @@ def tweak_tuplet_number_text(argument) -> None:
             or not tuplet.ratio.is_dyadic()
             or tuplet.multiplier() == 1
         ):
-            _tweaks.tweak(tuplet, tuplet.tuplet_number_calc_fraction_text_tweak_string)
+            _tweaks.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")
