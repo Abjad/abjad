@@ -5017,7 +5017,6 @@ class Tuplet(Container):
     __documentation_section__ = "Containers"
 
     __slots__ = (
-        "_hide",
         "_ratio",
         "tweaks",
     )
@@ -5034,7 +5033,6 @@ class Tuplet(Container):
         ratio: tuple[int, int] | str | _duration.Ratio = "3:2",
         components=None,
         *,
-        hide: bool = False,
         language: str = "english",
         tag: _tag.Tag | None = None,
         tweaks: _tweaks.Tweak | None = None,
@@ -5057,7 +5055,6 @@ class Tuplet(Container):
             message = f"tuplet ratio must be ratio, string or pair (not {ratio!r})."
             raise ValueError(message)
         self.ratio = ratio_
-        self.hide = hide
 
     ### SPECIAL METHODS ###
 
@@ -5125,10 +5122,6 @@ class Tuplet(Container):
         for tweak in sorted(self.tweaks):
             strings = tweak._list_contributions()
             contributions.extend(strings)
-        if self.hide is True:
-            contributions.append(r"\tweak stencil ##f")
-        else:
-            assert self.hide is False
         tuplet_command_string = self._get_tuplet_command_string()
         contributions.append(tuplet_command_string)
         contributions.append("{")
@@ -5156,12 +5149,6 @@ class Tuplet(Container):
     def _get_prolation(self) -> fractions.Fraction:
         return self.multiplier()
 
-    def _get_scale_durations_command_string(self) -> str:
-        numerator = self.ratio.denominator
-        denominator = self.ratio.numerator
-        string = rf"\scaleDurations #'({numerator} . {denominator})"
-        return string
-
     def _get_summary(self) -> str:
         if 0 < len(self):
             string = ", ".join([str(_) for _ in self.components])
@@ -5181,89 +5168,6 @@ class Tuplet(Container):
         self.normalize_ratio()
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def hide(self) -> bool | None:
-        r"""
-        Set to true to dynamically hide tuplet bracket and tuplet number.
-
-        ..  container:: example
-
-            >>> tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(tuplet)
-                >>> print(string)
-                \tuplet 3/2
-                {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-            >>> tuplet.hide
-            False
-
-        ..  container:: example
-
-            >>> tuplet_1 = abjad.Tuplet("3:2", "c'4 d'4 e'4")
-            >>> tuplet_2 = abjad.Tuplet("3:2", "d'4 e'4 f'4")
-            >>> staff = abjad.Staff([tuplet_1, tuplet_2])
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    \tuplet 3/2
-                    {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                    \tuplet 3/2
-                    {
-                        d'4
-                        e'4
-                        f'4
-                    }
-                }
-
-            >>> staff[0].hide = True
-            >>> abjad.show(staff) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    \tweak stencil ##f
-                    \tuplet 3/2
-                    {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                    \tuplet 3/2
-                    {
-                        d'4
-                        e'4
-                        f'4
-                    }
-                }
-
-        """
-        return self._hide
-
-    @hide.setter
-    def hide(self, argument):
-        assert isinstance(argument, bool), repr(argument)
-        self._hide = argument
 
     @property
     def ratio(self) -> _duration.Ratio:
