@@ -506,10 +506,9 @@ def _split_container_at_index(CONTAINER, i):
     right_components = CONTAINER[i:]
     # instantiate new left and right containers
     if isinstance(CONTAINER, _score.Tuplet):
-        multiplier = CONTAINER.ratio.denominator, CONTAINER.ratio.numerator
-        left = type(CONTAINER)(multiplier, [])
+        left = type(CONTAINER)(CONTAINER.ratio, [])
         wrap(left_components, left)
-        right = type(CONTAINER)(multiplier, [])
+        right = type(CONTAINER)(CONTAINER.ratio, [])
         wrap(right_components, right)
     else:
         left = CONTAINER.__copy__()
