@@ -786,9 +786,9 @@ class Timespan:
         timespan_2 = dataclasses.replace(
             self, start_offset=stop_offsets[0], stop_offset=stop_offsets[1]
         )
-        if timespan_1.wellformed:
+        if timespan_1.is_wellformed():
             result.append(timespan_1)
-        if timespan_2.wellformed:
+        if timespan_2.is_wellformed():
             result.append(timespan_2)
         result.sort()
         return result
@@ -918,19 +918,6 @@ class Timespan:
         """
         return self.start_offset, self.stop_offset
 
-    @property
-    def wellformed(self) -> bool:
-        """
-        Is true when timespan start offset preceeds timespan stop offset.
-
-        ..  container:: example
-
-            >>> abjad.Timespan(0, 10).wellformed
-            True
-
-        """
-        return self.start_offset < self.stop_offset
-
     ### PUBLIC METHODS ###
 
     def divide_by_ratio(self, ratio) -> tuple["Timespan", ...]:
@@ -1006,6 +993,18 @@ class Timespan:
             result = _duration.Duration(sum(x.duration for x in self & timespan))
             return result
         return None
+
+    def is_wellformed(self) -> bool:
+        """
+        Is true when timespan start offset preceeds timespan stop offset.
+
+        ..  container:: example
+
+            >>> abjad.Timespan(0, 10).is_wellformed()
+            True
+
+        """
+        return self.start_offset < self.stop_offset
 
     def reflect(self, axis=None) -> "Timespan":
         """
@@ -2065,7 +2064,7 @@ class TimespanList(list):
 
         Is false when timespans are not all wellformed.
         """
-        return all(self._get_timespan(argument).wellformed for argument in self)
+        return all(self._get_timespan(argument).is_wellformed() for argument in self)
 
     @property
     def axis(self) -> _duration.Offset | None:
@@ -3385,7 +3384,7 @@ class TimespanList(list):
 
         Operates in place and returns timespan list.
         """
-        timespans = [x for x in self if x.wellformed]
+        timespans = [x for x in self if x.is_wellformed()]
         self[:] = timespans
         return self
 

@@ -492,7 +492,7 @@ def check_overlapping_beams(argument) -> tuple[list, int]:
         wrappers.sort(key=lambda _: _get.timespan(_.component).start_offset)
         open_beam_count = 0
         for wrapper in wrappers:
-            if _get.grace(wrapper.component) is True:
+            if _get.is_grace_music(wrapper.component) is True:
                 continue
             total += 1
             if isinstance(wrapper.unbundle_indicator(), _indicators.StartBeam):

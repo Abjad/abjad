@@ -33,7 +33,7 @@ def _are_logical_voice(components, prototype=None):
         parentage = _parentage.Parentage(component)
         if parentage.logical_voice() != first_logical_voice:
             same_logical_voice = False
-        if not parentage.orphan and not same_logical_voice:
+        if not parentage.is_orphan() and not same_logical_voice:
             return False
     return True
 

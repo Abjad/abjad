@@ -48,7 +48,7 @@ class Tweak:
         post_event, attribute, value = self._parse()
         return attribute
 
-    def post_event(self) -> bool:
+    def is_post_event(self) -> bool:
         post_event, attribute, value = self._parse()
         return post_event
 

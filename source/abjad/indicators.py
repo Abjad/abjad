@@ -1928,7 +1928,7 @@ class Dynamic:
     def _get_lilypond_format(self, *, wrapper=None):
         if self.command:
             string = self.command
-        elif self.effort:
+        elif self.is_effort():
             string = self._format_effort_dynamic(wrapper=wrapper)
         elif self.name_is_textual:
             string = self._format_textual(self.name, wrapper=wrapper)
@@ -1952,9 +1952,70 @@ class Dynamic:
                 contributions.after.articulations.append(command)
         return contributions
 
+    def get_ordinal(self) -> int | _math.Infinity | _math.NegativeInfinity | None:
+        """
+        Gets ordinal.
+
+        ..  container:: example
+
+            >>> abjad.Dynamic("f").get_ordinal()
+            2
+
+            >>> abjad.Dynamic("p").get_ordinal()
+            -2
+
+            >>> abjad.Dynamic('"f"').get_ordinal()
+            2
+
+            >>> abjad.Dynamic('"p"').get_ordinal()
+            -2
+
+            User-defined ordinals:
+
+            >>> barely_audible = abjad.Dynamic(
+            ...     "barely audible",
+            ...     name_is_textual=True,
+            ...     ordinal=-99,
+            ... )
+            >>> barely_audible.get_ordinal()
+            -99
+
+            >>> extremely_loud = abjad.Dynamic(
+            ...     "extremely loud",
+            ...     name_is_textual=True,
+            ...     ordinal=99,
+            ... )
+            >>> extremely_loud.get_ordinal()
+            99
+
+            REGRESSION. Textual names without explicit ordinal return none:
+
+            >>> dynamic = abjad.Dynamic("appena udibile", name_is_textual=True)
+            >>> dynamic.get_ordinal() is None
+            True
+
+        """
+        if self.ordinal is not None:
+            return self.ordinal
+        stripped_name = None
+        if self.name:
+            stripped_name = self.name.strip('"')
+        if stripped_name in self._composite_dynamic_name_to_steady_state_dynamic_name:
+            stripped_name = self._composite_dynamic_name_to_steady_state_dynamic_name[
+                stripped_name
+            ]
+        if stripped_name is None:
+            ordinal = None
+        else:
+            assert isinstance(stripped_name, str), repr(stripped_name)
+            ordinal_ = self._dynamic_name_to_dynamic_ordinal.get(stripped_name)
+            prototype = (int, _math.Infinity, _math.NegativeInfinity, type(None))
+            assert isinstance(ordinal_, prototype), repr(ordinal_)
+            ordinal = ordinal_
+        return ordinal
+
     # TODO: make markup function and shorten docstring
-    @property
-    def effort(self) -> bool:
+    def is_effort(self) -> bool:
         r"""
         Is true when double quotes enclose dynamic.
 
@@ -2118,29 +2179,28 @@ class Dynamic:
         assert isinstance(self.name, str), repr(self.name)
         return bool(self.name) and self.name[0] == '"'
 
-    @property
-    def sforzando(self) -> bool:
+    def is_sforzando(self) -> bool:
         """
         Is true when dynamic name begins in s- and ends in -z.
 
         ..  container:: example
 
-            >>> abjad.Dynamic("f").sforzando
+            >>> abjad.Dynamic("f").is_sforzando()
             False
 
-            >>> abjad.Dynamic("sfz").sforzando
+            >>> abjad.Dynamic("sfz").is_sforzando()
             True
 
-            >>> abjad.Dynamic("sffz").sforzando
+            >>> abjad.Dynamic("sffz").is_sforzando()
             True
 
-            >>> abjad.Dynamic("sfp").sforzando
+            >>> abjad.Dynamic("sfp").is_sforzando()
             False
 
-            >>> abjad.Dynamic("sf").sforzando
+            >>> abjad.Dynamic("sf").is_sforzando()
             False
 
-            >>> abjad.Dynamic("rfz").sforzando
+            >>> abjad.Dynamic("rfz").is_sforzando()
             False
 
         """
@@ -2210,68 +2270,6 @@ class Dynamic:
 
         """
         return argument in Dynamic._dynamic_names
-
-    def get_ordinal(self) -> int | _math.Infinity | _math.NegativeInfinity | None:
-        """
-        Gets ordinal.
-
-        ..  container:: example
-
-            >>> abjad.Dynamic("f").get_ordinal()
-            2
-
-            >>> abjad.Dynamic("p").get_ordinal()
-            -2
-
-            >>> abjad.Dynamic('"f"').get_ordinal()
-            2
-
-            >>> abjad.Dynamic('"p"').get_ordinal()
-            -2
-
-            User-defined ordinals:
-
-            >>> barely_audible = abjad.Dynamic(
-            ...     "barely audible",
-            ...     name_is_textual=True,
-            ...     ordinal=-99,
-            ... )
-            >>> barely_audible.get_ordinal()
-            -99
-
-            >>> extremely_loud = abjad.Dynamic(
-            ...     "extremely loud",
-            ...     name_is_textual=True,
-            ...     ordinal=99,
-            ... )
-            >>> extremely_loud.get_ordinal()
-            99
-
-            REGRESSION. Textual names without explicit ordinal return none:
-
-            >>> dynamic = abjad.Dynamic("appena udibile", name_is_textual=True)
-            >>> dynamic.get_ordinal() is None
-            True
-
-        """
-        if self.ordinal is not None:
-            return self.ordinal
-        stripped_name = None
-        if self.name:
-            stripped_name = self.name.strip('"')
-        if stripped_name in self._composite_dynamic_name_to_steady_state_dynamic_name:
-            stripped_name = self._composite_dynamic_name_to_steady_state_dynamic_name[
-                stripped_name
-            ]
-        if stripped_name is None:
-            ordinal = None
-        else:
-            assert isinstance(stripped_name, str), repr(stripped_name)
-            ordinal_ = self._dynamic_name_to_dynamic_ordinal.get(stripped_name)
-            prototype = (int, _math.Infinity, _math.NegativeInfinity, type(None))
-            assert isinstance(ordinal_, prototype), repr(ordinal_)
-            ordinal = ordinal_
-        return ordinal
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)

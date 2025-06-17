@@ -204,57 +204,6 @@ def annotation_wrappers(argument):
     return _getlib._get_annotation_wrappers(argument)
 
 
-def bar_line_crossing(argument) -> bool:
-    r"""
-    Is true when ``argument`` crosses bar line.
-
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d'4 e'4")
-        >>> score = abjad.Score([staff], name="Score")
-        >>> time_signature = abjad.TimeSignature((3, 8))
-        >>> abjad.attach(time_signature, staff[0])
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \time 3/8
-                c'4
-                d'4
-                e'4
-            }
-
-        >>> for note in staff:
-        ...     result = abjad.get.bar_line_crossing(note)
-        ...     print(note, result)
-        ...
-        Note("c'4") False
-        Note("d'4") True
-        Note("e'4") False
-
-    """
-    if not isinstance(argument, _score.Component):
-        raise Exception("can only get indicator on component.")
-    time_signature = _getlib._get_effective(argument, _indicators.TimeSignature)
-    if time_signature is None:
-        time_signature_duration = _duration.Duration(4, 4)
-    else:
-        time_signature_duration = time_signature.duration
-    partial = getattr(time_signature, "partial", 0)
-    partial = partial or 0
-    start_offset = timespan(argument).start_offset
-    shifted_start = start_offset - partial
-    shifted_start %= time_signature_duration
-    stop_offset = argument._get_duration() + shifted_start
-    if time_signature_duration < stop_offset:
-        return True
-    return False
-
-
 def before_grace_container(argument):
     r"""
     Gets before-grace container attached to leaf.
@@ -1750,149 +1699,6 @@ def effective_wrapper(
     return effective(argument, prototype, attributes=attributes, n=n, unwrap=False)
 
 
-def grace(argument) -> bool:
-    r"""
-    Is true when ``argument`` is grace music.
-
-    Grace music defined equal to grace container, after-grace container and
-    contents of those containers.
-
-    ..  container:: example
-
-        REGRESSION. Works with grace notes (and containers):
-
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
-        >>> container = abjad.BeforeGraceContainer("cs'16")
-        >>> abjad.attach(container, music_voice[1])
-        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
-        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
-        >>> container = abjad.AfterGraceContainer("fs'16")
-        >>> abjad.attach(container, music_voice[3])
-        >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
-        >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \context Voice = "MusicVoice"
-                {
-                    c'4
-                    \grace {
-                        cs'16
-                    }
-                    d'4
-                    <<
-                        \context Voice = "On_Beat_Grace_Container"
-                        {
-                            \set fontSize = #-3
-                            \slash
-                            \voiceOne
-                            <
-                                \tweak font-size 0
-                                \tweak transparent ##t
-                                e'
-                                g'
-                            >16
-                            - \accent
-                            [
-                            (
-                            gs'16
-                            a'16
-                            as'16
-                            )
-                            ]
-                        }
-                        \context Voice = "MusicVoice"
-                        {
-                            \voiceTwo
-                            e'4
-                        }
-                    >>
-                    \oneVoice
-                    \afterGrace
-                    f'4
-                    {
-                        fs'16
-                    }
-                }
-            }
-
-        >>> for component in abjad.select.components(staff):
-        ...     result = abjad.get.grace(component)
-        ...     print(f"{repr(component):30} {repr(result)}")
-        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") False
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') False
-        Note("c'4")                    False
-        BeforeGraceContainer("cs'16")  True
-        Note("cs'16")                  True
-        Note("d'4")                    False
-        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") False
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") True
-        Chord("<e' g'>16")             True
-        Note("gs'16")                  True
-        Note("a'16")                   True
-        Note("as'16")                  True
-        Voice("e'4", name='MusicVoice') False
-        Note("e'4")                    False
-        Note("f'4")                    False
-        AfterGraceContainer("fs'16")   True
-        Note("fs'16")                  True
-
-    ..  container:: example
-
-        REGRESSION. Works with independent after-grace containers:
-
-        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
-        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
-        >>> music_voice.insert(3, container)
-        >>> staff = abjad.Staff([music_voice])
-        >>> lilypond_file = abjad.LilyPondFile([staff])
-        >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \context Voice = "MusicVoice"
-                {
-                    c'4
-                    d'4
-                    \afterGrace
-                    e'4
-                    {
-                        gf'16
-                    }
-                    f'4
-                }
-            }
-
-        >>> for component in abjad.select.components(staff):
-        ...     result = abjad.get.grace(component)
-        ...     print(f"{repr(component):30} {repr(result)}")
-        Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }") False
-        Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice') False
-        Note("c'4")                    False
-        Note("d'4")                    False
-        Note("e'4")                    False
-        IndependentAfterGraceContainer("gf'16") True
-        Note("gf'16")                  True
-        Note("f'4")                    False
-
-    """
-    if _getlib._get_grace_container(argument) is True:
-        return True
-    for component in argument._get_parentage():
-        if isinstance(component, _score.IndependentAfterGraceContainer):
-            return True
-    return False
-
-
 def has_effective_indicator(
     argument,
     prototype: type | tuple[type, ...] | None = None,
@@ -2677,6 +2483,242 @@ def indicators(
         prototype=prototype, attributes=attributes, unwrap=unwrap
     )
     return list(result)
+
+
+def is_bar_line_crossing(argument) -> bool:
+    r"""
+    Is true when ``argument`` crosses bar line.
+
+    ..  container:: example
+
+        >>> staff = abjad.Staff("c'4 d'4 e'4")
+        >>> score = abjad.Score([staff], name="Score")
+        >>> time_signature = abjad.TimeSignature((3, 8))
+        >>> abjad.attach(time_signature, staff[0])
+        >>> abjad.show(staff) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \time 3/8
+                c'4
+                d'4
+                e'4
+            }
+
+        >>> for note in staff:
+        ...     result = abjad.get.is_bar_line_crossing(note)
+        ...     print(note, result)
+        ...
+        Note("c'4") False
+        Note("d'4") True
+        Note("e'4") False
+
+    """
+    if not isinstance(argument, _score.Component):
+        raise Exception("can only get indicator on component.")
+    time_signature = _getlib._get_effective(argument, _indicators.TimeSignature)
+    if time_signature is None:
+        time_signature_duration = _duration.Duration(4, 4)
+    else:
+        time_signature_duration = time_signature.duration
+    partial = getattr(time_signature, "partial", 0)
+    partial = partial or 0
+    start_offset = timespan(argument).start_offset
+    shifted_start = start_offset - partial
+    shifted_start %= time_signature_duration
+    stop_offset = argument._get_duration() + shifted_start
+    if time_signature_duration < stop_offset:
+        return True
+    return False
+
+
+def is_grace_music(argument) -> bool:
+    r"""
+    Is true when ``argument`` is grace music.
+
+    Grace music defined equal to grace container, after-grace container and
+    contents of those containers.
+
+    ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.BeforeGraceContainer("cs'16")
+        >>> abjad.attach(container, music_voice[1])
+        >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+        >>> abjad.attach(abjad.Articulation(">"), obgc[0])
+        >>> container = abjad.AfterGraceContainer("fs'16")
+        >>> abjad.attach(container, music_voice[3])
+        >>> staff = abjad.Staff([music_voice])
+        >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    \grace {
+                        cs'16
+                    }
+                    d'4
+                    <<
+                        \context Voice = "On_Beat_Grace_Container"
+                        {
+                            \set fontSize = #-3
+                            \slash
+                            \voiceOne
+                            <
+                                \tweak font-size 0
+                                \tweak transparent ##t
+                                e'
+                                g'
+                            >16
+                            - \accent
+                            [
+                            (
+                            gs'16
+                            a'16
+                            as'16
+                            )
+                            ]
+                        }
+                        \context Voice = "MusicVoice"
+                        {
+                            \voiceTwo
+                            e'4
+                        }
+                    >>
+                    \oneVoice
+                    \afterGrace
+                    f'4
+                    {
+                        fs'16
+                    }
+                }
+            }
+
+        >>> for component in abjad.select.components(staff):
+        ...     result = abjad.get.is_grace_music(component)
+        ...     print(f"{repr(component):30} {repr(result)}")
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") False
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') False
+        Note("c'4")                    False
+        BeforeGraceContainer("cs'16")  True
+        Note("cs'16")                  True
+        Note("d'4")                    False
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") False
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") True
+        Chord("<e' g'>16")             True
+        Note("gs'16")                  True
+        Note("a'16")                   True
+        Note("as'16")                  True
+        Voice("e'4", name='MusicVoice') False
+        Note("e'4")                    False
+        Note("f'4")                    False
+        AfterGraceContainer("fs'16")   True
+        Note("fs'16")                  True
+
+    ..  container:: example
+
+        REGRESSION. Works with independent after-grace containers:
+
+        >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+        >>> container = abjad.IndependentAfterGraceContainer("gf'16")
+        >>> music_voice.insert(3, container)
+        >>> staff = abjad.Staff([music_voice])
+        >>> lilypond_file = abjad.LilyPondFile([staff])
+        >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+        ..  docs::
+
+            >>> string = abjad.lilypond(staff)
+            >>> print(string)
+            \new Staff
+            {
+                \context Voice = "MusicVoice"
+                {
+                    c'4
+                    d'4
+                    \afterGrace
+                    e'4
+                    {
+                        gf'16
+                    }
+                    f'4
+                }
+            }
+
+        >>> for component in abjad.select.components(staff):
+        ...     result = abjad.get.is_grace_music(component)
+        ...     print(f"{repr(component):30} {repr(result)}")
+        Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }") False
+        Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice') False
+        Note("c'4")                    False
+        Note("d'4")                    False
+        Note("e'4")                    False
+        IndependentAfterGraceContainer("gf'16") True
+        Note("gf'16")                  True
+        Note("f'4")                    False
+
+    """
+    if _getlib._get_grace_container(argument) is True:
+        return True
+    for component in argument._get_parentage():
+        if isinstance(component, _score.IndependentAfterGraceContainer):
+            return True
+    return False
+
+
+def is_sustained(argument) -> bool:
+    r"""
+    Is true when ``argument`` is sustained.
+
+    ..  container:: example
+
+        >>> tuplet = abjad.Tuplet("2:3", "c'4 ~ c' ~ c'")
+        >>> abjad.makers.tweak_tuplet_number_text(tuplet)
+        >>> abjad.show(tuplet) # doctest: +SKIP
+
+        ..  container:: example
+
+            >>> string = abjad.lilypond(tuplet)
+            >>> print(string)
+            \tweak text #tuplet-number::calc-fraction-text
+            \tuplet 2/3
+            {
+                c'4
+                ~
+                c'4
+                ~
+                c'4
+            }
+
+        >>> abjad.get.is_sustained(tuplet)
+        True
+
+    """
+    lt_head_count = 0
+    leaves = _select.leaves(argument)
+    for leaf in leaves:
+        lt = logical_tie(leaf)
+        if lt.head is leaf:
+            lt_head_count += 1
+    if lt_head_count == 0:
+        return True
+    lt = logical_tie(leaves[0])
+    if lt.head is leaves[0] and lt_head_count == 1:
+        return True
+    return False
 
 
 def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
@@ -4091,48 +4133,6 @@ def sounding_pitches(argument: _score.Chord) -> set[_pitch.NamedPitch]:
         raise Exception("can only get sounding pitches of chord.")
     pitches = _getlib._get_sounding_pitches(argument)
     return set(pitches)
-
-
-def sustained(argument) -> bool:
-    r"""
-    Is true when ``argument`` is sustained.
-
-    ..  container:: example
-
-        >>> tuplet = abjad.Tuplet("2:3", "c'4 ~ c' ~ c'")
-        >>> abjad.makers.tweak_tuplet_number_text(tuplet)
-        >>> abjad.show(tuplet) # doctest: +SKIP
-
-        ..  container:: example
-
-            >>> string = abjad.lilypond(tuplet)
-            >>> print(string)
-            \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 2/3
-            {
-                c'4
-                ~
-                c'4
-                ~
-                c'4
-            }
-
-        >>> abjad.get.sustained(tuplet)
-        True
-
-    """
-    lt_head_count = 0
-    leaves = _select.leaves(argument)
-    for leaf in leaves:
-        lt = logical_tie(leaf)
-        if lt.head is leaf:
-            lt_head_count += 1
-    if lt_head_count == 0:
-        return True
-    lt = logical_tie(leaves[0])
-    if lt.head is leaves[0] and lt_head_count == 1:
-        return True
-    return False
 
 
 def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
