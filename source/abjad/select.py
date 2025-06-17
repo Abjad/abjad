@@ -832,8 +832,8 @@ def components(
     for component in generator:
         if (
             grace is None
-            or (grace is True and _get.grace(component))
-            or (grace is False and not _get.grace(component))
+            or (grace is True and _get.is_grace_music(component))
+            or (grace is False and not _get.is_grace_music(component))
         ):
             result.append(component)
     return result
@@ -4299,8 +4299,8 @@ def logical_ties(
     for logical_tie in generator:
         if (
             grace is None
-            or (grace is True and _get.grace(logical_tie.head))
-            or (grace is False and not _get.grace(logical_tie.head))
+            or (grace is True and _get.is_grace_music(logical_tie.head))
+            or (grace is False and not _get.is_grace_music(logical_tie.head))
         ):
             result.append(logical_tie)
     return result

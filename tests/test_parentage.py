@@ -483,9 +483,9 @@ def test_Parentage_logical_voice_11():
 def test_Parentage_orphan_01():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
 
-    assert abjad.get.parentage(staff).orphan
+    assert abjad.get.parentage(staff).is_orphan()
     for note in staff:
-        assert not abjad.get.parentage(note).orphan
+        assert not abjad.get.parentage(note).is_orphan()
 
 
 def test_Parentage_root_01():

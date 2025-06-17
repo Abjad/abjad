@@ -368,99 +368,6 @@ class Parentage(collections.abc.Sequence):
         return self._components
 
     @property
-    def orphan(self) -> bool:
-        r"""
-        Is true when component has no parent.
-
-        ..  container:: example
-
-            REGRESSION. Works with grace notes (and containers):
-
-            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
-            >>> container = abjad.BeforeGraceContainer("cs'16")
-            >>> abjad.attach(container, music_voice[1])
-            >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
-            >>> abjad.attach(abjad.Articulation(">"), obgc[0])
-            >>> container = abjad.AfterGraceContainer("fs'16")
-            >>> abjad.attach(container, music_voice[3])
-            >>> staff = abjad.Staff([music_voice])
-            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
-            >>> abjad.show(lilypond_file) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(staff)
-                >>> print(string)
-                \new Staff
-                {
-                    \context Voice = "MusicVoice"
-                    {
-                        c'4
-                        \grace {
-                            cs'16
-                        }
-                        d'4
-                        <<
-                            \context Voice = "On_Beat_Grace_Container"
-                            {
-                                \set fontSize = #-3
-                                \slash
-                                \voiceOne
-                                <
-                                    \tweak font-size 0
-                                    \tweak transparent ##t
-                                    e'
-                                    g'
-                                >16
-                                - \accent
-                                [
-                                (
-                                gs'16
-                                a'16
-                                as'16
-                                )
-                                ]
-                            }
-                            \context Voice = "MusicVoice"
-                            {
-                                \voiceTwo
-                                e'4
-                            }
-                        >>
-                        \oneVoice
-                        \afterGrace
-                        f'4
-                        {
-                            fs'16
-                        }
-                    }
-                }
-
-            >>> for component in abjad.select.components(staff):
-            ...     parentage = abjad.get.parentage(component)
-            ...     print(f"{repr(component):30} {repr(parentage.orphan)}")
-            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") True
-            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') False
-            Note("c'4")                    False
-            BeforeGraceContainer("cs'16")  False
-            Note("cs'16")                  False
-            Note("d'4")                    False
-            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") False
-            OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") False
-            Chord("<e' g'>16")             False
-            Note("gs'16")                  False
-            Note("a'16")                   False
-            Note("as'16")                  False
-            Voice("e'4", name='MusicVoice') False
-            Note("e'4")                    False
-            Note("f'4")                    False
-            AfterGraceContainer("fs'16")   False
-            Note("fs'16")                  False
-
-        """
-        return self.parent is None
-
-    @property
     def parent(self) -> _score.Component | None:
         r"""
         Gets parent.
@@ -1248,6 +1155,98 @@ class Parentage(collections.abc.Sequence):
                         return component
                     i -= 1
         return None
+
+    def is_orphan(self) -> bool:
+        r"""
+        Is true when component has no parent.
+
+        ..  container:: example
+
+            REGRESSION. Works with grace notes (and containers):
+
+            >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
+            >>> container = abjad.BeforeGraceContainer("cs'16")
+            >>> abjad.attach(container, music_voice[1])
+            >>> obgc = abjad.on_beat_grace_container("g'16 gs' a' as'", music_voice[2:3])
+            >>> abjad.attach(abjad.Articulation(">"), obgc[0])
+            >>> container = abjad.AfterGraceContainer("fs'16")
+            >>> abjad.attach(container, music_voice[3])
+            >>> staff = abjad.Staff([music_voice])
+            >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
+            >>> abjad.show(lilypond_file) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(staff)
+                >>> print(string)
+                \new Staff
+                {
+                    \context Voice = "MusicVoice"
+                    {
+                        c'4
+                        \grace {
+                            cs'16
+                        }
+                        d'4
+                        <<
+                            \context Voice = "On_Beat_Grace_Container"
+                            {
+                                \set fontSize = #-3
+                                \slash
+                                \voiceOne
+                                <
+                                    \tweak font-size 0
+                                    \tweak transparent ##t
+                                    e'
+                                    g'
+                                >16
+                                - \accent
+                                [
+                                (
+                                gs'16
+                                a'16
+                                as'16
+                                )
+                                ]
+                            }
+                            \context Voice = "MusicVoice"
+                            {
+                                \voiceTwo
+                                e'4
+                            }
+                        >>
+                        \oneVoice
+                        \afterGrace
+                        f'4
+                        {
+                            fs'16
+                        }
+                    }
+                }
+
+            >>> for component in abjad.select.components(staff):
+            ...     parentage = abjad.get.parentage(component)
+            ...     print(f"{repr(component):30} {repr(parentage.is_orphan())}")
+            Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") True
+            Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') False
+            Note("c'4")                    False
+            BeforeGraceContainer("cs'16")  False
+            Note("cs'16")                  False
+            Note("d'4")                    False
+            Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") False
+            OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") False
+            Chord("<e' g'>16")             False
+            Note("gs'16")                  False
+            Note("a'16")                   False
+            Note("as'16")                  False
+            Voice("e'4", name='MusicVoice') False
+            Note("e'4")                    False
+            Note("f'4")                    False
+            AfterGraceContainer("fs'16")   False
+            Note("fs'16")                  False
+
+        """
+        return self.parent is None
 
     def logical_voice(self) -> dict:
         r"""
