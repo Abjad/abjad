@@ -67,3 +67,11 @@ def test_Tuplet___init__02():
         }
         """
     )
+
+
+def test_Tuplet_is_trivializable_01():
+    """
+    REGRESSION. Is not trivializable.
+    """
+
+    assert abjad.Tuplet("4:3", "c'2. c4").is_trivializable() is False
