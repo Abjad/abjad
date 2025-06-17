@@ -644,7 +644,8 @@ def make_leaves(
                     use_multimeasure_rests=use_multimeasure_rests,
                 )
                 tuplet_leaves.extend(leaves)
-            tuplet = _score.Tuplet(multiplier, tuplet_leaves)
+            ratio_ = _duration.Ratio(denominator, numerator)
+            tuplet = _score.Tuplet(ratio_, tuplet_leaves)
             result.append(tuplet)
     return result
 

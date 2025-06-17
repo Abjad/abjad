@@ -5042,12 +5042,8 @@ class Tuplet(Container):
             assert len(strings) == 2, repr(ratio)
             numbers = [int(_) for _ in strings]
             ratio_ = _duration.Ratio(*numbers)
-        # TODO: remove this branch and force ratio or string input only
-        elif isinstance(ratio, tuple):
-            ratio_ = _duration.Ratio(*ratio)
-            ratio_ = ratio_.reciprocal()
         else:
-            message = f"tuplet ratio must be ratio, string or pair (not {ratio!r})."
+            message = f"tuplet ratio must be ratio or string (not {ratio!r})."
             raise ValueError(message)
         self.ratio = ratio_
 

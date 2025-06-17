@@ -601,7 +601,9 @@ class ReducedLyParser(Parser):
         assert isinstance(p[2], _score.Container)
         leaves = p[2][:]
         p[2][:] = []
-        p[0] = _score.Tuplet(p[1], leaves)
+        numerator, denominator = p[1]
+        ratio = _duration.Ratio(denominator, numerator)
+        p[0] = _score.Tuplet(ratio, leaves)
 
     ### PRIVATE METHODS ###
 

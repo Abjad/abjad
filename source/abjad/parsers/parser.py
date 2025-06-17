@@ -420,12 +420,13 @@ class GuileProxy:
         Handles LilyPond ``\times`` command.
         """
         n, d = fraction.numerator, fraction.denominator
+        ratio = _duration.Ratio(d, n)
         if not isinstance(music, _score.Context) and not isinstance(music, _score.Leaf):
             assert isinstance(music, _score.Container), repr(music)
             leaves = music[:]
             music[:] = []
-            return _score.Tuplet((n, d), leaves, tag=self.tag)
-        return _score.Tuplet((n, d), [music], tag=self.tag)
+            return _score.Tuplet(ratio, leaves, tag=self.tag)
+        return _score.Tuplet(ratio, [music], tag=self.tag)
 
     def transpose(self, from_pitch, to_pitch, music):
         r"""
