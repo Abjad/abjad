@@ -5121,22 +5121,20 @@ class Tuplet(Container):
         return result
 
     def _format_open_brackets_site(self, contributions) -> list[str]:
-        result = []
-        if self.hide:
-            string = self._get_scale_durations_command_string()
-            contributions = [string, "{"]
+        contributions = []
+        for tweak in sorted(self.tweaks):
+            strings = tweak._list_contributions()
+            contributions.extend(strings)
+        if self.hide is True:
+            contributions.append(r"\tweak stencil ##f")
         else:
-            contributions = []
-            for tweak in sorted(self.tweaks):
-                strings = tweak._list_contributions()
-                contributions.extend(strings)
-            tuplet_command_string = self._get_tuplet_command_string()
-            contributions.append(tuplet_command_string)
-            contributions.append("{")
+            assert self.hide is False
+        tuplet_command_string = self._get_tuplet_command_string()
+        contributions.append(tuplet_command_string)
+        contributions.append("{")
         if self.tag is not None:
             contributions = _tag.double_tag(contributions, self.tag)
-        result.extend(contributions)
-        return result
+        return contributions
 
     def _format_opening_site(self, contributions) -> list[str]:
         result = []
@@ -5244,7 +5242,8 @@ class Tuplet(Container):
                 >>> print(string)
                 \new Staff
                 {
-                    \scaleDurations #'(2 . 3)
+                    \tweak stencil ##f
+                    \tuplet 3/2
                     {
                         c'4
                         d'4
