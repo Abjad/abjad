@@ -1,5 +1,5 @@
 """
-Abjad's math library.
+Math functions.
 """
 
 import collections

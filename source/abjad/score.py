@@ -1,3 +1,7 @@
+"""
+Classes to model score components.
+"""
+
 import collections
 import copy
 import fractions
@@ -35,7 +39,7 @@ def _indent_strings(strings):
 
 class Component:
     """
-    Component baseclass.
+    Component.
     """
 
     ### CLASS VARIABLES ###
@@ -400,9 +404,7 @@ class Component:
 
 class Leaf(Component):
     """
-    Leaf baseclass.
-
-    Leaves include notes, rests, chords and skips.
+    Leaf.
     """
 
     ### CLASS VARIABLES ##
@@ -5209,35 +5211,6 @@ class Tuplet(Container):
         assert isinstance(ratio, _duration.Ratio), repr(ratio)
         assert ratio.denominator != 0, repr(ratio)
         self._ratio = ratio
-
-    @property
-    def tag(self) -> _tag.Tag | None:
-        r"""
-        Gets and sets tuplet tag.
-
-        ..  container:: example
-
-            >>> tuplet = abjad.Tuplet("3:2", "c'4 d' e'", tag=abjad.Tag('RED'))
-            >>> abjad.show(tuplet) # doctest: +SKIP
-
-            >>> string = abjad.lilypond(tuplet, tags=True)
-            >>> print(string)
-              %! RED
-            \tuplet 3/2
-              %! RED
-            {
-                c'4
-                d'4
-                e'4
-              %! RED
-            }
-
-        """
-        return super().tag
-
-    @tag.setter
-    def tag(self, argument) -> None:
-        self._tag = argument
 
     ### PUBLIC METHODS ###
 

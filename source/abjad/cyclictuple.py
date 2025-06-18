@@ -1,3 +1,7 @@
+"""
+Cyclic tuple.
+"""
+
 import collections
 import dataclasses
 import typing

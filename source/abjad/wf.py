@@ -1,3 +1,7 @@
+"""
+Functions to check the wellformedness of Abjad scores.
+"""
+
 import enum
 import typing
 

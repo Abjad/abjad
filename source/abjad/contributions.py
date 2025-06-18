@@ -1,3 +1,7 @@
+"""
+Format contributions.
+"""
+
 import dataclasses
 import enum
 

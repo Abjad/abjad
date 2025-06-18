@@ -1,3 +1,7 @@
+"""
+Enumeration functions.
+"""
+
 import functools
 import itertools
 import typing

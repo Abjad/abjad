@@ -1,3 +1,7 @@
+"""
+Classes to model pitch-theoretic set classes.
+"""
+
 import dataclasses
 
 from . import math as _math

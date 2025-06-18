@@ -1,3 +1,7 @@
+"""
+Functions to work with strings.
+"""
+
 import textwrap
 
 import roman

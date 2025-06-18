@@ -1,3 +1,7 @@
+"""
+Functions to bind indicators to score components.
+"""
+
 import copy
 import enum
 import importlib

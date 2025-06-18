@@ -1,3 +1,7 @@
+"""
+Functions to mutate score components.
+"""
+
 import collections
 import copy as python_copy
 import itertools

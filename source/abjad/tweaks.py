@@ -1,3 +1,7 @@
+"""
+Classes and functions to work with LilyPond tweaks.
+"""
+
 import dataclasses
 import typing
 

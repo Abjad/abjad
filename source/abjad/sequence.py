@@ -1,3 +1,7 @@
+"""
+Functions to work with lists.
+"""
+
 import builtins
 import collections
 import copy

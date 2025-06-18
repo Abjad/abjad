@@ -1,3 +1,7 @@
+"""
+Classes to model LilyPond overrides.
+"""
+
 import copy
 import dataclasses
 import typing
