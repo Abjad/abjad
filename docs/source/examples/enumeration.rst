@@ -9,12 +9,13 @@ Enumeration, of rhythmic cells
 
     >>> import  math
 
-Mikhïal Malt analyzes Brian Ferneyhough's `Unsichtbare Farben` (1999) in `The OM
-Composer's Book 2`. Malt explains that Ferneyhough used OpenMusic to create an
-"exhaustive catalogue of rhythmic cells" such that two conditions are met. First,
-rhythmic cells are subdivided into two pulses, with proportions from 1:1 to 1:11. Second,
-the second pulse of each cell is subdivided into 1, 2, 3, 4, 5, 6 parts. Malt adds that
-Ferneyhough later enumerates the retrograde of these cells.
+Mikhïal Malt analyzes Brian Ferneyhough's `Unsichtbare Farben` (1999) in `The
+OM Composer's Book 2`. Malt explains that Ferneyhough used OpenMusic to create
+an "exhaustive catalogue of rhythmic cells" such that two conditions are met.
+First, rhythmic cells are subdivided into two pulses, with proportions from 1:1
+to 1:11. Second, the second pulse of each cell is subdivided into 1, 2, 3, 4,
+5, 6 parts. Malt adds that Ferneyhough later enumerates the retrograde of these
+cells.
 
 The following functions recreate Malt's results in Abjad:
 
@@ -30,10 +31,12 @@ The following functions recreate Malt's results in Abjad:
     ...     lone_note = abjad.Note("c'", lone_note_duration)
     ...     proportion = inner * (1,)
     ...     pair = (outer, lone_note_denominator)
-    ...     inner_tuplet = abjad.makers.tuplet_from_proportion_and_pair(proportion, pair)
+    ...     duration = abjad.Duration(pair)
+    ...     inner_tuplet = abjad.makers.make_tuplet(duration, proportion)
     ...     pair = abjad.duration.with_denominator(inner_tuplet.multiplier(), inner)
     ...     inner_tuplet.ratio = abjad.Ratio(pair[1], pair[0])
-    ...     inner_tuplet.hide = inner_tuplet.ratio.is_trivial()
+    ...     if inner_tuplet.ratio.is_trivial():
+    ...         abjad.tweak(inner_tuplet, r"\tweak stencil ##f")
     ...     if retrograde:
     ...         contents = [inner_tuplet, lone_note]
     ...         label = f'"({outer} | {inner}) : 1"'
@@ -44,7 +47,8 @@ The following functions recreate Malt's results in Abjad:
     ...     markup = abjad.Markup(rf"\markup {label}")
     ...     note = abjad.select.note(outer_tuplet, 0)
     ...     abjad.attach(markup, note, direction=abjad.UP)
-    ...     outer_tuplet.hide = outer_tuplet.ratio.is_trivial()
+    ...     if outer_tuplet.ratio.is_trivial():
+    ...         abjad.tweak(outer_tuplet, r"\tweak stencil ##f")
     ...     abjad.tweak(inner_tuplet, r"\tweak staff-padding 0")
     ...     abjad.tweak(outer_tuplet, r"\tweak staff-padding 2")
     ...     return outer_tuplet
@@ -110,4 +114,4 @@ Here's the rhythmic retrograde of the same:
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
-:author:`[Bača (1.1, 3.2, 3.24)]`
+:author:`[Bača (1.1, 3.2, 3.24, 3.26)]`
