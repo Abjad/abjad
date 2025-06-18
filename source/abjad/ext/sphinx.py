@@ -17,9 +17,10 @@ from docutils.nodes import (
 )
 from docutils.parsers.rst import Directive, directives
 from sphinx.util import logging
-from sphinx.util.console import brown  # type: ignore
+from sphinx.util.console import brown
 from sphinx.util.nodes import set_source_info
 from sphinx.util.osutil import copyfile, ensuredir
+from uqbar.apis import SummarizingClassDocumenter
 from uqbar.book.extensions import Extension
 from uqbar.strings import normalize
 
@@ -33,6 +34,130 @@ from ..io import Illustrator, LilyPondIO, Player
 
 configuration = Configuration()
 logger = logging.getLogger(__name__)
+
+
+class AbjadClassDocumenter(SummarizingClassDocumenter):
+    """
+    Abjad class documenter.
+
+    Customizes Uqbar's Sphinx directives.
+    """
+
+    def __str__(self) -> str:
+        """
+        https://github.com/supriya-project/uqbar/blob/main/uqbar/apis/summarizers.py
+        """
+        name = getattr(self.client, "__name__")
+        if issubclass(self.client, Exception):  # type: ignore
+            return ".. autoexception:: {}".format(name)
+        attributes = self._classify_class_attributes()
+        (
+            class_methods,
+            data,
+            methods,
+            readonly_properties,
+            readwrite_properties,
+            special_methods,
+            static_methods,
+        ) = attributes
+        result = [".. autoclass:: {}".format(name)]
+        if issubclass(self.client, enum.Enum):  # type: ignore
+            result.extend(["   :members:", "   :undoc-members:"])
+        else:
+            result.extend(self._build_member_autosummary(attributes))
+        result.extend(
+            self._build_attribute_section(
+                special_methods, "automethod", "Special methods"
+            )
+        )
+        result.extend(self._build_attribute_section(methods, "automethod", "Methods"))
+        result.extend(
+            self._build_attribute_section(
+                sorted(class_methods + static_methods, key=lambda x: x.name),
+                "automethod",
+                "Class & static methods",
+            )
+        )
+        result.extend(
+            self._build_attribute_section(
+                readwrite_properties, "autoattribute", "Read/write properties"
+            )
+        )
+        result.extend(
+            self._build_attribute_section(
+                readonly_properties, "autoattribute", "Read-only properties"
+            )
+        )
+        return "\n".join(result)
+
+    def _build_attribute_section(
+        self, attributes, directive: str, title: str
+    ) -> list[str]:
+        """
+        https://github.com/supriya-project/uqbar/blob/main/uqbar/apis/summarizers.py
+        """
+        result: list[str] = []
+        if not attributes:
+            return result
+        result.extend(
+            [
+                "",
+                "   .. raw:: html",
+                "",
+                "      <hr/>",
+                "",
+                "   .. rubric:: {}".format(title),
+                "      :class: class-header",
+            ]
+        )
+        for attribute in attributes:
+            autodoc_directive = "   .. {}:: {}.{}".format(
+                directive, getattr(self.client, "__name__"), attribute.name
+            )
+            if attribute.defining_class is self.client:
+                result.append("")
+                result.append(autodoc_directive)
+            else:
+                # result.append("")
+                # result.append("   .. container:: inherited")
+                # result.append("")
+                # result.append("   {}".format(autodoc_directive))
+                pass
+        return result
+
+    def _build_member_autosummary(self, attributes) -> list[str]:
+        """
+        https://github.com/supriya-project/uqbar/blob/main/uqbar/apis/summarizers.py
+        """
+        result: list[str] = []
+        all_attributes: list = []
+        for attribute_section in attributes:
+            all_attributes.extend(
+                attribute
+                for attribute in attribute_section
+                if attribute.defining_class is self.client
+            )
+        all_attributes.sort(key=lambda x: x.name)
+        if not all_attributes:
+            return result
+        result.extend(
+            [
+                "",
+                "   .. raw:: html",
+                "",
+                "      <hr/>",
+                "",
+                "   .. rubric:: {}".format("Attributes Summary"),
+                "      :class: class-header",
+                "",
+                "   .. autosummary::",
+                "      :nosignatures:",
+                "",
+            ]
+        )
+        for attribute in all_attributes:
+            result.append("      {}".format(attribute.name))
+        return result
 
 
 class HiddenDoctestDirective(Directive):

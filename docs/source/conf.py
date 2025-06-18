@@ -79,7 +79,8 @@ todo_include_todos = True
 
 uqbar_api_member_documenter_classes = [
     "uqbar.apis.FunctionDocumenter",
-    "uqbar.apis.SummarizingClassDocumenter",
+    # "uqbar.apis.SummarizingClassDocumenter",
+    "abjad.ext.sphinx.AbjadClassDocumenter",
 ]
 uqbar_api_module_documenter_class = "uqbar.apis.SummarizingModuleDocumenter"
 uqbar_api_root_documenter_class = "uqbar.apis.SummarizingRootDocumenter"
