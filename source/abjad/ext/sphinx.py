@@ -40,7 +40,7 @@ class AbjadClassDocumenter(SummarizingClassDocumenter):
     """
     Abjad class documenter.
 
-    Customizes Uqbar's Sphinx directives.
+    https://github.com/supriya-project/uqbar/blob/main/uqbar/apis/summarizers.py
     """
 
     def __str__(self) -> str:
@@ -96,33 +96,33 @@ class AbjadClassDocumenter(SummarizingClassDocumenter):
         """
         https://github.com/supriya-project/uqbar/blob/main/uqbar/apis/summarizers.py
         """
+        # if getattr(self.client, "__name__") == "Tuplet" and "Special" in title:
+        #     breakpoint()
         result: list[str] = []
         if not attributes:
             return result
-        result.extend(
-            [
-                "",
-                "   .. raw:: html",
-                "",
-                "      <hr/>",
-                "",
-                "   .. rubric:: {}".format(title),
-                "      :class: class-header",
-            ]
-        )
+        preamble = [
+            "",
+            "   .. raw:: html",
+            "",
+            "      <hr/>",
+            "",
+            "   .. rubric:: {}".format(title),
+            "      :class: class-header",
+        ]
         for attribute in attributes:
-            autodoc_directive = "   .. {}:: {}.{}".format(
-                directive, getattr(self.client, "__name__"), attribute.name
-            )
+            # do not document __repr__, even if custom-defined on class
+            if attribute.name == "__repr__":
+                continue
+            # document only noninherited attributes
             if attribute.defining_class is self.client:
+                autodoc_directive = "   .. {}:: {}.{}".format(
+                    directive, getattr(self.client, "__name__"), attribute.name
+                )
                 result.append("")
                 result.append(autodoc_directive)
-            else:
-                # result.append("")
-                # result.append("   .. container:: inherited")
-                # result.append("")
-                # result.append("   {}".format(autodoc_directive))
-                pass
+        if result:
+            result = preamble + result
         return result
 
     def _build_member_autosummary(self, attributes) -> list[str]:
@@ -132,11 +132,20 @@ class AbjadClassDocumenter(SummarizingClassDocumenter):
         result: list[str] = []
         all_attributes: list = []
         for attribute_section in attributes:
+            """
             all_attributes.extend(
                 attribute
                 for attribute in attribute_section
                 if attribute.defining_class is self.client
             )
+            """
+            for attribute in attribute_section:
+                # do not summarize __repr__, even if custom-defined on class
+                if attribute.name == "__repr__":
+                    continue
+                if attribute.defining_class is not self.client:
+                    continue
+                all_attributes.append(attribute)
         all_attributes.sort(key=lambda x: x.name)
         if not all_attributes:
             return result
@@ -147,11 +156,11 @@ class AbjadClassDocumenter(SummarizingClassDocumenter):
                 "",
                 "      <hr/>",
                 "",
-                "   .. rubric:: {}".format("Attributes Summary"),
+                "   .. rubric:: {}".format("Attribute summary"),
                 "      :class: class-header",
                 "",
                 "   .. autosummary::",
-                "      :nosignatures:",
+                # "      :nosignatures:",
                 "",
             ]
         )
