@@ -20,7 +20,7 @@ from sphinx.util import logging
 from sphinx.util.console import brown
 from sphinx.util.nodes import set_source_info
 from sphinx.util.osutil import copyfile, ensuredir
-from uqbar.apis import SummarizingClassDocumenter
+from uqbar.apis import SummarizingClassDocumenter, SummarizingModuleDocumenter
 from uqbar.book.extensions import Extension
 from uqbar.strings import normalize
 
@@ -167,6 +167,44 @@ class AbjadClassDocumenter(SummarizingClassDocumenter):
         for attribute in all_attributes:
             result.append("      {}".format(attribute.name))
         return result
+
+
+class AbjadModuleDocumenter(SummarizingModuleDocumenter):
+    """
+    Abjad module documenter.
+
+    https://github.com/supriya-project/uqbar/blob/main/uqbar/apis/summarizers.py
+    """
+
+    def __str__(self) -> str:
+        result = self._build_preamble()
+        if self.is_nominative:
+            result.extend(["", str(self.member_documenters[0])])
+        else:
+            # true only for abjad, abjad.ext, abjad.parsers
+            if self.is_package:
+                subpackage_documenters = [
+                    _
+                    for _ in self.module_documenters or []
+                    if _.is_package or not _.is_nominative
+                ]
+                if subpackage_documenters:
+                    result.extend(
+                        self._build_toc(subpackage_documenters, show_full_paths=True)
+                    )
+            all_documenters = []
+            for section, documenters in self.member_documenters_by_section:
+                all_documenters.extend(documenters)
+            all_documenters.sort(key=lambda _: getattr(_.client, "__name__", ""))
+            local_documenters = [
+                documenter
+                for documenter in all_documenters
+                if documenter.client.__module__ == self.package_path
+            ]
+            result.extend(self._build_toc(all_documenters))
+            for local_documenter in local_documenters:
+                result.extend(["", str(local_documenter)])
+        return "\n".join(result)
 
 
 class HiddenDoctestDirective(Directive):

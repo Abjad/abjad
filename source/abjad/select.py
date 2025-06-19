@@ -2457,7 +2457,7 @@ def leaf(
     trim: bool | _enums.Horizontal | None = None,
 ) -> _score.Leaf:
     r"""
-    Selects leaf ``n` in ``argument``.
+    Selects leaf ``n`` in ``argument``.
 
     ..  container:: example
 

@@ -1,5 +1,5 @@
 """
-Clases to model score components.
+Classes to model score components.
 """
 
 import collections
@@ -39,7 +39,7 @@ def _indent_strings(strings):
 
 class Component:
     """
-    Component baseclass.
+    Component.
     """
 
     ### CLASS VARIABLES ###
@@ -404,9 +404,7 @@ class Component:
 
 class Leaf(Component):
     """
-    Leaf baseclass.
-
-    Leaves include notes, rests, chords and skips.
+    Leaf.
     """
 
     ### CLASS VARIABLES ##
