@@ -1,3 +1,7 @@
+"""
+Classes to model music pitch.
+"""
+
 import copy
 import dataclasses
 import fractions

@@ -1,3 +1,7 @@
+"""
+Functions to iterate Abjad components.
+"""
+
 import typing
 
 from . import _iterlib

@@ -1,5 +1,5 @@
 """
-Tools for modeling and manipulating timespans.
+Classes to work with timespans.
 """
 
 import collections

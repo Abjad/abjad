@@ -1,3 +1,7 @@
+"""
+Annotate, attach, detach.
+"""
+
 import copy
 import enum
 import importlib

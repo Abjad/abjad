@@ -1,5 +1,5 @@
 """
-Tools for modeling IRCAM-style rhythm trees.
+Classes to work with IRCAM-style rhythm trees.
 """
 
 import fractions

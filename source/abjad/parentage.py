@@ -1,3 +1,7 @@
+"""
+Classes to work with the parentage of score components.
+"""
+
 import collections
 import fractions
 

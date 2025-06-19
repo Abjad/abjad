@@ -1,3 +1,7 @@
+"""
+Functions to label score components.
+"""
+
 import dataclasses
 import typing
 

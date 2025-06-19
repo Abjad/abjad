@@ -1,3 +1,7 @@
+"""
+Format functions.
+"""
+
 from . import _indentlib
 from . import contributions as _contributions
 from . import enums as _enums

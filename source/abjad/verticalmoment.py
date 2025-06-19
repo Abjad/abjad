@@ -1,3 +1,7 @@
+"""
+Classes to model events that happen at the same time.
+"""
+
 import typing
 
 from . import enumerate as _enumerate

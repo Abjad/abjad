@@ -1,3 +1,7 @@
+"""
+Metric modulation.
+"""
+
 import dataclasses
 import typing
 

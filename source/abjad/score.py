@@ -1,3 +1,7 @@
+"""
+Clases to model score components.
+"""
+
 import collections
 import copy
 import fractions

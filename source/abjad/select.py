@@ -1,3 +1,7 @@
+"""
+Functions to select score components.
+"""
+
 import collections
 import enum
 import itertools

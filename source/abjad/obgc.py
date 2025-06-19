@@ -1,3 +1,7 @@
+"""
+On-beat grace container classes.
+"""
+
 import typing
 
 from . import _indentlib, _iterlib

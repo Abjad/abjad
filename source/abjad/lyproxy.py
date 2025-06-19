@@ -1,3 +1,7 @@
+"""
+LilyPond proxy classes for the Abjad parser.
+"""
+
 import typing
 
 from . import lyenv as _lyenv

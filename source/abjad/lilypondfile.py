@@ -1,3 +1,7 @@
+"""
+LilyPond file classes.
+"""
+
 import dataclasses
 
 from . import _indentlib

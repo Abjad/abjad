@@ -1,3 +1,7 @@
+"""
+Classes to work with indexed patterns.
+"""
+
 import collections
 import dataclasses
 import operator as operator_module

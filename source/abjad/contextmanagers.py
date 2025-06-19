@@ -1,3 +1,7 @@
+"""
+Context managers.
+"""
+
 import collections
 import filecmp
 import os

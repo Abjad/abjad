@@ -1,3 +1,7 @@
+"""
+Functions to iterate pitched components.
+"""
+
 import dataclasses
 import typing
 
