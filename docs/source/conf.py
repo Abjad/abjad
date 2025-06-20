@@ -84,7 +84,8 @@ uqbar_api_member_documenter_classes = [
 ]
 # uqbar_api_module_documenter_class = "uqbar.apis.SummarizingModuleDocumenter"
 uqbar_api_module_documenter_class = "abjad.ext.sphinx.AbjadModuleDocumenter"
-uqbar_api_root_documenter_class = "uqbar.apis.SummarizingRootDocumenter"
+# uqbar_api_root_documenter_class = "uqbar.apis.SummarizingRootDocumenter"
+uqbar_api_root_documenter_class = "abjad.ext.sphinx.AbjadRootDocumenter"
 uqbar_api_source_paths = ["abjad"]
 uqbar_api_title = "Abjad API"
 uqbar_book_console_setup = [

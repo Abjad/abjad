@@ -451,6 +451,10 @@ class Tuning:
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Accordion(Instrument):
+    """
+    Accordion.
+    """
+
     clefs: tuple[str, ...] = ("treble", "bass")
     context: str = "StaffGroup"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -459,6 +463,10 @@ class Accordion(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class AltoFlute(Instrument):
+    """
+    Alto flute.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("G3")
@@ -467,6 +475,10 @@ class AltoFlute(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class AltoSaxophone(Instrument):
+    """
+    Alto saxophone.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Eb3")
@@ -475,6 +487,10 @@ class AltoSaxophone(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class AltoTrombone(Instrument):
+    """
+    Alto trombone.
+    """
+
     clefs: tuple[str, ...] = ("bass", "tenor")
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -483,6 +499,10 @@ class AltoTrombone(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class AltoVoice(Instrument):
+    """
+    Alto voice.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -491,6 +511,10 @@ class AltoVoice(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BaritoneSaxophone(Instrument):
+    """
+    Baritone saxophone.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Eb2")
@@ -499,6 +523,10 @@ class BaritoneSaxophone(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BaritoneVoice(Instrument):
+    """
+    Baritone voice.
+    """
+
     clefs: tuple[str, ...] = ("bass",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -507,6 +535,10 @@ class BaritoneVoice(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BassClarinet(Instrument):
+    """
+    Bass clarinet.
+    """
+
     clefs: tuple[str, ...] = ("treble", "bass")
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Bb2")
@@ -515,6 +547,10 @@ class BassClarinet(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BassFlute(Instrument):
+    """
+    Bass flute.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C3")
@@ -523,6 +559,10 @@ class BassFlute(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BassSaxophone(Instrument):
+    """
+    Bass saxophone.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Bb1")
@@ -531,6 +571,10 @@ class BassSaxophone(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BassTrombone(Instrument):
+    """
+    Bass trombone.
+    """
+
     clefs: tuple[str, ...] = ("bass",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -539,6 +583,10 @@ class BassTrombone(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BassVoice(Instrument):
+    """
+    Bass voice.
+    """
+
     clefs: tuple[str, ...] = ("bass",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -547,6 +595,10 @@ class BassVoice(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Bassoon(Instrument):
+    """
+    Bassoon.
+    """
+
     clefs: tuple[str, ...] = ("bass", "tenor")
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -555,6 +607,10 @@ class Bassoon(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Cello(Instrument):
+    """
+    Cello.
+    """
+
     clefs: tuple[str, ...] = ("bass", "tenor", "treble")
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -566,6 +622,10 @@ class Cello(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class ClarinetInA(Instrument):
+    """
+    Clarinet in A.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("A3")
@@ -574,6 +634,10 @@ class ClarinetInA(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class ClarinetInBFlat(Instrument):
+    """
+    Clarinet in B-flat.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Bb3")
@@ -582,6 +646,10 @@ class ClarinetInBFlat(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class ClarinetInEFlat(Instrument):
+    """
+    Clarinet in E-flat.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Eb4")
@@ -590,6 +658,10 @@ class ClarinetInEFlat(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Contrabass(Instrument):
+    """
+    Contrabass.
+    """
+
     clefs: tuple[str, ...] = ("bass", "treble")
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C3")
@@ -601,6 +673,10 @@ class Contrabass(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class ContrabassClarinet(Instrument):
+    """
+    Contrabass clarinet.
+    """
+
     clefs: tuple[str, ...] = ("treble", "bass")
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Bb1")
@@ -609,6 +685,10 @@ class ContrabassClarinet(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class ContrabassFlute(Instrument):
+    """
+    Contrabass flute.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("G2")
@@ -617,6 +697,10 @@ class ContrabassFlute(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class ContrabassSaxophone(Instrument):
+    """
+    Contrabass saxophone.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Eb1")
@@ -625,6 +709,10 @@ class ContrabassSaxophone(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Contrabassoon(Instrument):
+    """
+    Contrabassoon.
+    """
+
     clefs: tuple[str, ...] = ("bass",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C3")
@@ -633,6 +721,10 @@ class Contrabassoon(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class EnglishHorn(Instrument):
+    """
+    English horn.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("F3")
@@ -641,6 +733,10 @@ class EnglishHorn(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Flute(Instrument):
+    """
+    Flute.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -649,6 +745,10 @@ class Flute(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class FrenchHorn(Instrument):
+    """
+    French horn.
+    """
+
     clefs: tuple[str, ...] = ("bass", "treble")
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("F3")
@@ -657,6 +757,10 @@ class FrenchHorn(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Glockenspiel(Instrument):
+    """
+    Glockenspiel.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C6")
@@ -665,6 +769,10 @@ class Glockenspiel(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Guitar(Instrument):
+    """
+    Guitar.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C3")
@@ -676,6 +784,10 @@ class Guitar(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Harp(Instrument):
+    """
+    Harp.
+    """
+
     clefs: tuple[str, ...] = ("treble", "bass")
     context: str = "StaffGroup"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -684,6 +796,10 @@ class Harp(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Harpsichord(Instrument):
+    """
+    Harpsichord.
+    """
+
     clefs: tuple[str, ...] = ("treble", "bass")
     context: str = "StaffGroup"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -692,6 +808,10 @@ class Harpsichord(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Marimba(Instrument):
+    """
+    Marimba.
+    """
+
     clefs: tuple[str, ...] = ("treble", "bass")
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -700,6 +820,10 @@ class Marimba(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class MezzoSopranoVoice(Instrument):
+    """
+    Mezzosoprano voice.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -708,6 +832,10 @@ class MezzoSopranoVoice(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Oboe(Instrument):
+    """
+    Oboe.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -716,6 +844,10 @@ class Oboe(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Percussion(Instrument):
+    """
+    Percussion.
+    """
+
     clefs: tuple[str, ...] = ("percussion",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -780,6 +912,10 @@ class Percussion(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Piano(Instrument):
+    """
+    Piano.
+    """
+
     clefs: tuple[str, ...] = ("treble", "bass")
     context: str = "StaffGroup"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -788,6 +924,10 @@ class Piano(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Piccolo(Instrument):
+    """
+    Piccolo.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C5")
@@ -796,6 +936,10 @@ class Piccolo(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class SopraninoSaxophone(Instrument):
+    """
+    Sopranino saxophone.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Eb4")
@@ -804,6 +948,10 @@ class SopraninoSaxophone(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class SopranoSaxophone(Instrument):
+    """
+    Soprano saxophone.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Bb3")
@@ -812,6 +960,10 @@ class SopranoSaxophone(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class SopranoVoice(Instrument):
+    """
+    Soprano voice.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -820,6 +972,10 @@ class SopranoVoice(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class TenorSaxophone(Instrument):
+    """
+    Tenor saxophone.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("Bb2")
@@ -828,6 +984,10 @@ class TenorSaxophone(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class TenorTrombone(Instrument):
+    """
+    Tenor trombone.
+    """
+
     clefs: tuple[str, ...] = ("tenor", "bass")
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -836,6 +996,10 @@ class TenorTrombone(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class TenorVoice(Instrument):
+    """
+    Tenor voice.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -844,6 +1008,10 @@ class TenorVoice(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Trumpet(Instrument):
+    """
+    Trumpet.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -852,6 +1020,10 @@ class Trumpet(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Tuba(Instrument):
+    """
+    Tuba.
+    """
+
     clefs: tuple[str, ...] = ("bass",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -860,6 +1032,10 @@ class Tuba(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Vibraphone(Instrument):
+    """
+    Vibraphone.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -868,6 +1044,10 @@ class Vibraphone(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Viola(Instrument):
+    """
+    Viola.
+    """
+
     clefs: tuple[str, ...] = ("alto", "treble")
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -879,6 +1059,10 @@ class Viola(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Violin(Instrument):
+    """
+    Violin.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C4")
@@ -890,6 +1074,10 @@ class Violin(Instrument):
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Xylophone(Instrument):
+    """
+    Xylophone.
+    """
+
     clefs: tuple[str, ...] = ("treble",)
     context: str = "Staff"
     middle_c_sounding_pitch: _pitch.NamedPitch = _pitch.NamedPitch("C5")

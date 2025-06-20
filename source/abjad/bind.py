@@ -1,5 +1,5 @@
 """
-Annotate, attach, detach.
+Functions to bind indicators to score components.
 """
 
 import copy

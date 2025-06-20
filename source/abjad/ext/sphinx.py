@@ -6,37 +6,24 @@ import pathlib
 import shutil
 import subprocess
 
+import docutils
 import sphinx
-from docutils.nodes import (
-    Element,
-    FixedTextElement,
-    General,
-    SkipNode,
-    image,
-    literal_block,
-)
-from docutils.parsers.rst import Directive, directives
-from sphinx.util import logging
-from sphinx.util.console import brown
-from sphinx.util.nodes import set_source_info
-from sphinx.util.osutil import copyfile, ensuredir
-from uqbar.apis import SummarizingClassDocumenter, SummarizingModuleDocumenter
+import uqbar
 from uqbar.book.extensions import Extension
-from uqbar.strings import normalize
 
+from .. import configuration as _configuration
+from .. import contextmanagers as _contextmanagers
 from .. import format as _format
+from .. import illustrators as _illustrators
+from .. import io as _io
 from .. import lilypondfile as _lilypondfile
 from .. import tag as _tag
-from ..configuration import Configuration
-from ..contextmanagers import TemporaryDirectoryChange
-from ..illustrators import illustrate
-from ..io import Illustrator, LilyPondIO, Player
 
-configuration = Configuration()
-logger = logging.getLogger(__name__)
+configuration = _configuration.Configuration()
+logger = sphinx.util.logging.getLogger(__name__)
 
 
-class AbjadClassDocumenter(SummarizingClassDocumenter):
+class AbjadClassDocumenter(uqbar.apis.summarizers.SummarizingClassDocumenter):
     """
     Abjad class documenter.
 
@@ -169,7 +156,7 @@ class AbjadClassDocumenter(SummarizingClassDocumenter):
         return result
 
 
-class AbjadModuleDocumenter(SummarizingModuleDocumenter):
+class AbjadModuleDocumenter(uqbar.apis.summarizers.SummarizingModuleDocumenter):
     """
     Abjad module documenter.
 
@@ -207,7 +194,86 @@ class AbjadModuleDocumenter(SummarizingModuleDocumenter):
         return "\n".join(result)
 
 
-class HiddenDoctestDirective(Directive):
+class AbjadRootDocumenter(uqbar.apis.documenters.RootDocumenter):
+    """
+    Abjad root documenter.
+
+    Writes abjad/docs/source/api/index.rst.
+    """
+
+    do_not_document = (
+        "abjad.ext",
+        "abjad.ext.sphinx",
+        "abjad.parsers.base",
+        "abjad.parsers.parser",
+        "abjad.parsers.scheme",
+    )
+
+    def __str__(self):
+        result = [
+            self.title,
+            "=" * len(self.title),
+            "",
+            ".. toctree::",
+            "   :hidden:",
+            "",
+        ]
+        assert len(self.module_documenters) == 1
+        for documenter in self.module_documenters:
+            path = documenter.package_path.replace(".", "/")
+            if documenter.is_package:
+                path += "/index"
+            result.append("   {}".format(path))
+        for module_documenter, documenters_by_section in self._recurse(self):
+            if module_documenter.package_name == "abjad":
+                continue
+            if module_documenter.package_path in self.do_not_document:
+                continue
+            package_path = module_documenter.package_path
+            reference_name = module_documenter.reference_name
+            result.extend(
+                [
+                    "",
+                    f".. rubric:: :ref:`{package_path} <{reference_name}>`",
+                    "   :class: section-header",
+                ]
+            )
+            flattened_documenters = []
+            for section_name, documenters in documenters_by_section:
+                flattened_documenters.extend(documenters)
+            function_documenters, class_documenters = [], []
+            for documenter in flattened_documenters:
+                if documenter.client.__name__[0].islower():
+                    function_documenters.append(documenter)
+                else:
+                    class_documenters.append(documenter)
+            function_documenters.sort(key=lambda _: _.client.__name__)
+            class_documenters.sort(key=lambda _: _.client.__name__)
+            flattened_documenters = function_documenters + class_documenters
+            result.extend(
+                [
+                    "",
+                    ".. autosummary::",
+                    "",
+                ]
+            )
+            for documenter in flattened_documenters:
+                result.append("   ~{}".format(documenter.package_path))
+        return "\n".join(result)
+
+    def _recurse(self, documenter):
+        result = []
+        if (
+            isinstance(documenter, uqbar.apis.documenters.ModuleDocumenter)
+            and not documenter.is_nominative
+        ):
+            result.append((documenter, documenter.member_documenters_by_section))
+        for module_documenter in documenter.module_documenters:
+            result.extend(self._recurse(module_documenter))
+        return result
+
+
+class HiddenDoctestDirective(docutils.parsers.rst.Directive):
     """
     A hidden doctest directive.
 
@@ -232,7 +298,7 @@ class HiddenDoctestDirective(Directive):
         return []
 
 
-class ShellDirective(Directive):
+class ShellDirective(docutils.parsers.rst.Directive):
     """
     A shell directive.
 
@@ -256,7 +322,7 @@ class ShellDirective(Directive):
     def run(self):
         self.assert_has_content()
         result = []
-        with TemporaryDirectoryChange(configuration.abjad_directory):
+        with _contextmanagers.TemporaryDirectoryChange(configuration.abjad_directory):
             cwd = pathlib.Path.cwd()
             for line in self.content:
                 result.append(f"{cwd.name}$ {line}")
@@ -269,13 +335,13 @@ class ShellDirective(Directive):
                 )
                 result.append(completed_process.stdout)
         code = "\n".join(result)
-        literal = literal_block(code, code)
+        literal = docutils.nodes.literal_block(code, code)
         literal["language"] = "console"
-        set_source_info(self, literal)
+        sphinx.util.nodes.set_source_info(self, literal)
         return [literal]
 
 
-class ThumbnailDirective(Directive):
+class ThumbnailDirective(docutils.parsers.rst.Directive):
     """
     A thumbnail directive.
     """
@@ -287,9 +353,9 @@ class ThumbnailDirective(Directive):
     final_argument_whitespace = True
     has_content = False
     option_spec = {
-        "class": directives.class_option,
-        "group": directives.unchanged,
-        "title": directives.unchanged,
+        "class": docutils.parsers.rst.directives.class_option,
+        "group": docutils.parsers.rst.directives.unchanged,
+        "title": docutils.parsers.rst.directives.unchanged,
     }
     optional_arguments = 0
     required_arguments = 1
@@ -313,12 +379,14 @@ class ThumbnailDirective(Directive):
         return [node]
 
 
-class thumbnail_block(image, General, Element):
+class thumbnail_block(
+    docutils.nodes.image, docutils.nodes.General, docutils.nodes.Element
+):
     __documentation_ignore_inherited__ = True
 
 
 def visit_thumbnail_block_html(self, node):
-    template = normalize(
+    template = uqbar.strings.normalize(
         """
         <a data-lightbox="{group}" href="{target_path}" title="{title}" data-title="{title}" class="{cls}">
             <img src="{thumbnail_path}" alt="{alt}"/>
@@ -347,11 +415,11 @@ def visit_thumbnail_block_html(self, node):
         title=title,
     )
     self.body.append(output)
-    raise SkipNode
+    raise docutils.nodes.SkipNode
 
 
 def visit_thumbnail_block_latex(self, node):
-    raise SkipNode
+    raise docutils.nodes.SkipNode
 
 
 def on_builder_inited(app):
@@ -365,13 +433,13 @@ class LilyPondExtension(Extension):
         IMAGE = 1
         AUDIO = 2
 
-    class lilypond_block(General, FixedTextElement):
+    class lilypond_block(docutils.nodes.General, docutils.nodes.FixedTextElement):
         pass
 
     @classmethod
     def setup_console(cls, console, monkeypatch):
         monkeypatch.setattr(
-            Illustrator,
+            _io.Illustrator,
             "__call__",
             lambda self: console.push_proxy(
                 cls(
@@ -386,7 +454,7 @@ class LilyPondExtension(Extension):
             ),
         )
         monkeypatch.setattr(
-            Player,
+            _io.Player,
             "__call__",
             lambda self: console.push_proxy(
                 cls(
@@ -409,8 +477,8 @@ class LilyPondExtension(Extension):
             latex=[cls.visit_block_latex, None],
             text=[cls.visit_block_text, cls.depart_block_text],
         )
-        cls.add_option("lilypond/no-trim", directives.flag)
-        cls.add_option("lilypond/pages", directives.unchanged)
+        cls.add_option("lilypond/no-trim", docutils.parsers.rst.directives.flag)
+        cls.add_option("lilypond/pages", docutils.parsers.rst.directives.unchanged)
         cls.add_option("lilypond/with-columns", int)
 
     def __init__(
@@ -433,7 +501,7 @@ class LilyPondExtension(Extension):
         if isinstance(self.illustrable, _lilypondfile.LilyPondFile):
             illustration = self.illustrable
         else:
-            illustration = illustrate(self.illustrable, **self.keywords)
+            illustration = _illustrators.illustrate(self.illustrable, **self.keywords)
         if self.kind == self.Kind.AUDIO:
             block = _lilypondfile.Block("midi")
             illustration["score"].items.append(block)
@@ -460,7 +528,7 @@ class LilyPondExtension(Extension):
         else:
             flags = ["-dcrop", "-dbackend=svg"]
             glob = f"{render_prefix}*.svg"
-        lilypond_io = LilyPondIO(
+        lilypond_io = _io.LilyPondIO(
             None,
             flags=flags,
             output_directory=output_directory,
@@ -481,19 +549,19 @@ class LilyPondExtension(Extension):
             pass
         else:
             embed_images(self, node, output_directory, render_prefix, source_path)
-        raise SkipNode
+        raise docutils.nodes.SkipNode
 
 
 table_row_open_template = '<div class="table-row">'
 table_row_close_template = "</div>"
-basic_image_template = normalize(
+basic_image_template = uqbar.strings.normalize(
     """
     <div class="uqbar-book">
         <a href="{source_path}"><img src="{relative_path}"/></a>
     </div>
     """
 )
-thumbnail_template = normalize(
+thumbnail_template = uqbar.strings.normalize(
     """
     <a data-lightbox="{group}" href="{fullsize_path}" title="{title}" data-title="{title}" class="{cls}">
         <img src="{thumbnail_path}" alt="{alt}"/>
@@ -569,15 +637,15 @@ def install_lightbox_static_files(app):
     for relative_file_path in sphinx.util.display.status_iterator(
         relative_file_paths,
         "installing lightbox files... ",
-        brown,
+        sphinx.util.console.brown,
         len(relative_file_paths),
     ):
         source_path = os.path.join(source_static_path, relative_file_path)
         target_path = os.path.join(target_static_path, relative_file_path)
         target_directory = os.path.dirname(target_path)
         if not os.path.exists(target_directory):
-            ensuredir(target_directory)
-        copyfile(source_path, target_path)
+            sphinx.util.osutil.ensuredir(target_directory)
+        sphinx.util.osutil.copyfile(source_path, target_path)
         if relative_file_path.endswith(".js"):
             app.add_js_file(relative_file_path, defer="defer")
         elif relative_file_path.endswith(".css"):
