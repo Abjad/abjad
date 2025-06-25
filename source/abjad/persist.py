@@ -1,3 +1,7 @@
+"""
+Functions to persist LilyPond files to disk.
+"""
+
 import os
 import pathlib
 import re

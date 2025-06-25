@@ -1,3 +1,7 @@
+"""
+Duration, offset, ratio.
+"""
+
 import dataclasses
 import fractions
 import math

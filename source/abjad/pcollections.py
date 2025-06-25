@@ -1,3 +1,7 @@
+"""
+Classes to work with collections of pitches.
+"""
+
 import collections
 import copy
 import dataclasses

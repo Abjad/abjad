@@ -1,5 +1,5 @@
 """
-Classes and functions for modeling spanners: beams, hairpins, slurs, etc.
+Functions to work with spanners.
 """
 
 import typing

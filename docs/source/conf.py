@@ -35,6 +35,10 @@ graphviz_dot_args = ["-s32"]
 graphviz_output_format = "svg"
 
 html_favicon = "_static/favicon.ico"
+html_js_files = [
+    "inject-autosummary-fqns.js",
+    "inject-fqns.js",
+]
 html_last_updated_fmt = "%b %d, %Y"
 html_logo = "_static/abjad-logo.png"
 html_show_sphinx = False
@@ -78,11 +82,15 @@ templates_path = ["_templates"]
 todo_include_todos = True
 
 uqbar_api_member_documenter_classes = [
-    "uqbar.apis.FunctionDocumenter",
-    "uqbar.apis.SummarizingClassDocumenter",
+    # "uqbar.apis.FunctionDocumenter",
+    "abjad.ext.sphinx.AbjadFunctionDocumenter",
+    # "uqbar.apis.SummarizingClassDocumenter",
+    "abjad.ext.sphinx.AbjadClassDocumenter",
 ]
-uqbar_api_module_documenter_class = "uqbar.apis.SummarizingModuleDocumenter"
-uqbar_api_root_documenter_class = "uqbar.apis.SummarizingRootDocumenter"
+# uqbar_api_module_documenter_class = "uqbar.apis.SummarizingModuleDocumenter"
+uqbar_api_module_documenter_class = "abjad.ext.sphinx.AbjadModuleDocumenter"
+# uqbar_api_root_documenter_class = "uqbar.apis.SummarizingRootDocumenter"
+uqbar_api_root_documenter_class = "abjad.ext.sphinx.AbjadRootDocumenter"
 uqbar_api_source_paths = ["abjad"]
 uqbar_api_title = "Abjad API"
 uqbar_book_console_setup = [

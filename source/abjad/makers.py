@@ -1,3 +1,7 @@
+"""
+Makers.
+"""
+
 import math
 
 from . import duration as _duration

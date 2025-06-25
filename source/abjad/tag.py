@@ -1,3 +1,7 @@
+"""
+Classes to work with Abjad tags.
+"""
+
 import dataclasses
 import typing
 

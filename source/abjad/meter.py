@@ -1,5 +1,5 @@
 """
-Tools for modeling musical meter.
+Meter.
 """
 
 import bisect

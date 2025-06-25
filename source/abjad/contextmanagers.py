@@ -1,3 +1,7 @@
+"""
+Context managers.
+"""
+
 import collections
 import filecmp
 import os
@@ -18,7 +22,7 @@ configuration = _configuration.Configuration()
 
 class ContextManager:
     """
-    An abstract context manager class.
+    Context manager.
     """
 
     __slots__ = ()
@@ -125,7 +129,7 @@ class FilesystemState(ContextManager):
 
 class ForbidUpdate(ContextManager):
     r"""
-    A context manager for forbidding score updates.
+    Forbid update context manager.
 
     ..  container:: example
 
@@ -260,7 +264,7 @@ class ForbidUpdate(ContextManager):
 
 class NullContextManager(ContextManager):
     """
-    A context manager that does nothing.
+    Null context manager.
     """
 
     __documentation_section__ = "Context managers"
@@ -285,7 +289,7 @@ class NullContextManager(ContextManager):
 
 class ProgressIndicator(ContextManager):
     """
-    A context manager for printing progress indications.
+    Progress indicator context manager.
     """
 
     ### CLASS VARIABLES ###
@@ -403,7 +407,9 @@ class ProgressIndicator(ContextManager):
 
 class RedirectedStreams(ContextManager):
     """
-    A context manager for capturing stdout and stderr output.
+    Redirected streams context manager.
+
+    Captures stdout and stderr output.
 
     ..  container:: example
 
@@ -489,7 +495,7 @@ class RedirectedStreams(ContextManager):
 
 class TemporaryDirectory(ContextManager):
     """
-    A temporary directory context manager.
+    Temporary directory context manager.
     """
 
     ### CLASS VARIABLES ###
@@ -542,7 +548,7 @@ class TemporaryDirectory(ContextManager):
 
 class TemporaryDirectoryChange(ContextManager):
     """
-    A context manager for temporarily changing the current working directory.
+    Temporary directory change context manager.
     """
 
     ### CLASS VARIABLES ###
@@ -625,7 +631,7 @@ class TemporaryDirectoryChange(ContextManager):
 
 class Timer(ContextManager):
     """
-    A timing context manager.
+    Timer context manager.
 
     ..  container:: example
 

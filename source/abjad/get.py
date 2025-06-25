@@ -1,3 +1,7 @@
+"""
+Score getter functions.
+"""
+
 import collections
 import enum
 import typing

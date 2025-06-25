@@ -75,3 +75,24 @@ def test_Tuplet_is_trivializable_01():
     """
 
     assert abjad.Tuplet("4:3", "c'2. c4").is_trivializable() is False
+
+
+def test_Tuplet_tag_01():
+    """
+    Tags tuplet.
+    """
+
+    tuplet = abjad.Tuplet("3:2", "c'4 d' e'", tag=abjad.Tag("RED"))
+    assert abjad.lilypond(tuplet, tags=True) == abjad.string.normalize(
+        r"""
+          %! RED
+        \tuplet 3/2
+          %! RED
+        {
+            c'4
+            d'4
+            e'4
+          %! RED
+        }
+        """
+    )

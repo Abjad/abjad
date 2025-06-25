@@ -1,3 +1,7 @@
+"""
+Configuration.
+"""
+
 import configparser
 import importlib
 import os

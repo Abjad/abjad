@@ -1,3 +1,7 @@
+"""
+Illustrators.
+"""
+
 import copy
 import dataclasses
 import typing
