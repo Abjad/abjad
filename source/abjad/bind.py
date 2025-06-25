@@ -151,7 +151,7 @@ class Wrapper:
         context: str | None = None,
         deactivate: bool = False,
         direction: _enums.Vertical | None = None,
-        indicator: typing.Any | None = None,
+        indicator: typing.Any = None,
         synthetic_offset: _duration.Offset | None = None,
         tag: _tag.Tag = _tag.Tag(),
     ) -> None:
@@ -843,16 +843,16 @@ def _unsafe_attach(
         return None
 
 
-def annotate(component, annotation, indicator) -> None:
+def annotate(component: _score.Component, key: str, value: object) -> None:
     r"""
-    Annotates ``component`` with ``indicator``.
-
-    Annotates first note in staff:
+    Annotates ``component`` with ``key`` equal to ``value``.
 
     ..  container:: example
 
+        Annotations do not affect LilyPond output.
+
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.annotate(staff[0], "bow_direction", abjad.DOWN)
+        >>> abjad.annotate(staff[0], "motive_number", 6)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -867,22 +867,13 @@ def annotate(component, annotation, indicator) -> None:
                 f'4
             }
 
-        >>> abjad.get.annotation(staff[0], "bow_direction")
-        <Vertical.DOWN: -1>
-
-        >>> abjad.get.annotation(staff[0], "bow_fraction") is None
-        True
-
-        >>> abjad.get.annotation(staff[0], "bow_fraction", 99)
-        99
+        >>> abjad.get.annotation(staff[0], "motive_number")
+        6
 
     """
-    if isinstance(annotation, _tag.Tag):
-        message = "use the tag=None keyword instead of annotate():\n"
-        message += f"   {repr(annotation)}"
-        raise Exception(message)
-    assert isinstance(annotation, str | enum.Enum), repr(annotation)
-    Wrapper(annotation=annotation, component=component, indicator=indicator)
+    assert isinstance(component, _score.Component), repr(component)
+    assert isinstance(key, str), repr(key)
+    Wrapper(annotation=key, component=component, indicator=value)
 
 
 @typing.overload
