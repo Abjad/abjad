@@ -38,7 +38,7 @@ def _are_logical_voice(components, prototype=None):
     return True
 
 
-def _get_annotation(component, annotation, default=None, unwrap: bool = True):
+def _get_annotation(component, annotation, default=None, *, unwrap: bool = True):
     assert isinstance(annotation, str | enum.Enum), repr(annotation)
     for wrapper in _get_annotation_wrappers(component):
         if wrapper.annotation == annotation:
@@ -194,7 +194,7 @@ def _get_indicator(
     component: _score.Component,
     prototype: type | tuple[type, ...] | None = None,
     *,
-    default: typing.Any | None = None,
+    default: typing.Any = None,
     unwrap: bool = True,
 ) -> typing.Any:
     if not isinstance(component, _score.Component):

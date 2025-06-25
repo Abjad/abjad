@@ -112,18 +112,19 @@ def after_grace_container(argument):
 
 
 def annotation(
-    argument,
-    annotation: typing.Any,
-    default: typing.Any | None = None,
+    component: _score.Component,
+    key: str,
+    default: typing.Any = None,
+    *,
     unwrap: bool = True,
 ) -> typing.Any:
     r"""
-    Gets annotation.
+    Gets annotation attached to ``component`` with ``key``.
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 e' e' f'")
-        >>> abjad.annotate(staff[0], 'default_instrument', abjad.Cello())
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.annotate(staff[0], "motive_number", 6)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -133,48 +134,26 @@ def annotation(
             \new Staff
             {
                 c'4
-                e'4
+                d'4
                 e'4
                 f'4
             }
 
-        >>> string = 'default_instrument'
-        >>> abjad.get.annotation(staff[0], string)
-        Cello(clefs=('bass', 'tenor', 'treble'), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[C2, G5]'), tuning=Tuning(pitches=(NamedPitch('c,'), NamedPitch('g,'), NamedPitch('d'), NamedPitch('a'))))
-
-        >>> abjad.get.annotation(staff[1], string) is None
-        True
-
-        >>> abjad.get.annotation(staff[2], string) is None
-        True
-
-        >>> abjad.get.annotation(staff[3], string) is None
-        True
-
-        Returns default when no annotation is found:
-
-        >>> abjad.get.annotation(staff[3], string, abjad.Violin())
-        Violin(clefs=('treble',), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[G3, G7]'), tuning=Tuning(pitches=(NamedPitch('g'), NamedPitch("d'"), NamedPitch("a'"), NamedPitch("e''"))))
+        >>> abjad.get.annotation(staff[0], "motive_number")
+        6
 
     ..  container:: example
 
-        REGRESSION: annotation is not picked up as effective indicator:
+        Returns ``default`` when no annotation with ``key`` is found:
 
-        >>> prototype = abjad.Instrument
-        >>> abjad.get.effective(staff[0], prototype) is None
-        True
-
-        >>> abjad.get.effective(staff[1], prototype) is None
-        True
-
-        >>> abjad.get.effective(staff[2], prototype) is None
-        True
-
-        >>> abjad.get.effective(staff[3], prototype) is None
-        True
+        >>> abjad.get.annotation(staff[1], "motive_number", "TBD")
+        'TBD'
 
     """
-    return _getlib._get_annotation(argument, annotation, default=default, unwrap=unwrap)
+    assert isinstance(component, _score.Component), repr(component)
+    assert isinstance(key, str), repr(key)
+    assert isinstance(unwrap, bool), repr(unwrap)
+    return _getlib._get_annotation(component, key, default, unwrap=unwrap)
 
 
 def annotation_wrappers(argument):
@@ -183,7 +162,7 @@ def annotation_wrappers(argument):
 
     ..  container:: example
 
-        >>> staff = abjad.Staff("c'4 e' e' f'")
+        >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.annotate(staff[0], 'default_instrument', abjad.Cello())
         >>> abjad.annotate(staff[0], 'default_clef', abjad.Clef('tenor'))
         >>> abjad.show(staff) # doctest: +SKIP
@@ -195,7 +174,7 @@ def annotation_wrappers(argument):
             \new Staff
             {
                 c'4
-                e'4
+                d'4
                 e'4
                 f'4
             }
@@ -908,7 +887,7 @@ def effective(
     prototype: type | tuple[type, ...],
     *,
     attributes: dict | None = None,
-    default: typing.Any | None = None,
+    default: typing.Any = None,
     n: int = 0,
     unwrap: bool = True,
 ) -> typing.Any:
@@ -2147,7 +2126,7 @@ def indicator(
     argument,
     prototype: type | tuple[type, ...] | None = None,
     *,
-    default: typing.Any | None = None,
+    default: typing.Any = None,
     unwrap: bool = True,
 ) -> typing.Any:
     r"""
