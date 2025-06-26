@@ -1386,13 +1386,29 @@ def has_duplicates(sequence):
     return len(set(sequence)) < len(sequence)
 
 
-def is_decreasing(sequence, *, strict: bool = True) -> bool:
+def is_decreasing(sequence, *, strict: bool = False) -> bool:
     """
     Is true when ``sequence`` is decreasing.
 
-    Is true when sequence is strictly decreasing:
+    ..  container:: example
+
+        Is true when sequence decreases monotonically:
+
+        >>> abjad.sequence.is_decreasing([5, 4, 3, 2, 1, 0])
+        True
+
+        >>> abjad.sequence.is_decreasing([3, 3, 3, 2, 1, 0])
+        True
+
+        >>> abjad.sequence.is_decreasing([3, 3, 3, 3, 3, 3])
+        True
+
+        >>> abjad.sequence.is_decreasing([])
+        True
 
     ..  container:: example
+
+        Is true when sequence is strictly decreasing:
 
         >>> abjad.sequence.is_decreasing([5, 4, 3, 2, 1, 0], strict=True)
         True
@@ -1406,24 +1422,8 @@ def is_decreasing(sequence, *, strict: bool = True) -> bool:
         >>> abjad.sequence.is_decreasing([], strict=True)
         True
 
-    ..  container:: example
-
-        Is true when sequence decreases monotonically:
-
-        >>> abjad.sequence.is_decreasing([5, 4, 3, 2, 1, 0], strict=False)
-        True
-
-        >>> abjad.sequence.is_decreasing([3, 3, 3, 2, 1, 0], strict=False)
-        True
-
-        >>> abjad.sequence.is_decreasing([3, 3, 3, 3, 3, 3], strict=False)
-        True
-
-        >>> abjad.sequence.is_decreasing([], strict=False)
-        True
-
     """
-    if strict:
+    if strict is True:
         try:
             previous = None
             for current in sequence:
@@ -1435,6 +1435,7 @@ def is_decreasing(sequence, *, strict: bool = True) -> bool:
         except TypeError:
             return False
     else:
+        assert strict is False
         try:
             previous = None
             for current in sequence:
@@ -1447,13 +1448,29 @@ def is_decreasing(sequence, *, strict: bool = True) -> bool:
             return False
 
 
-def is_increasing(sequence, *, strict: bool = True) -> bool:
+def is_increasing(sequence, *, strict: bool = False) -> bool:
     """
     Is true when ``sequence`` is increasing.
 
-    Is true when sequence is strictly increasing:
+    ..  container:: example
+
+        Is true when sequence increases monotonically:
+
+        >>> abjad.sequence.is_increasing([0, 1, 2, 3, 4, 5])
+        True
+
+        >>> abjad.sequence.is_increasing([0, 1, 2, 3, 3, 3])
+        True
+
+        >>> abjad.sequence.is_increasing([3, 3, 3, 3, 3, 3])
+        True
+
+        >>> abjad.sequence.is_increasing([])
+        True
 
     ..  container:: example
+
+        Is true when sequence is strictly increasing:
 
         >>> abjad.sequence.is_increasing([0, 1, 2, 3, 4, 5], strict=True)
         True
@@ -1467,24 +1484,8 @@ def is_increasing(sequence, *, strict: bool = True) -> bool:
         >>> abjad.sequence.is_increasing([], strict=True)
         True
 
-    ..  container:: example
-
-        Is true when sequence increases monotonically:
-
-        >>> abjad.sequence.is_increasing([0, 1, 2, 3, 4, 5], strict=False)
-        True
-
-        >>> abjad.sequence.is_increasing([0, 1, 2, 3, 3, 3], strict=False)
-        True
-
-        >>> abjad.sequence.is_increasing([3, 3, 3, 3, 3, 3], strict=False)
-        True
-
-        >>> abjad.sequence.is_increasing([], strict=False)
-        True
-
     """
-    if strict:
+    if strict is True:
         try:
             previous = None
             for current in sequence:
@@ -1496,6 +1497,7 @@ def is_increasing(sequence, *, strict: bool = True) -> bool:
         except TypeError:
             return False
     else:
+        assert strict is False
         try:
             previous = None
             for current in sequence:
@@ -2408,16 +2410,30 @@ def weight(sequence) -> typing.Any:
     return sum(weights)
 
 
-def zip(sequences, *, cyclic: bool = False, truncate: bool = True) -> list[tuple]:
+def zip(
+    sequences, *, cyclic: bool = False, do_not_truncate: bool = False
+) -> list[tuple]:
     """
     Zips ``sequences``.
 
-    Zips cyclically:
+    ..  container:: example
+
+        Zips ``sequences`` strictly:
+
+        >>> sequences = [[1, 2, 3, 4], [11, 12, 13], [21, 22, 23]]
+        >>> for triple in abjad.sequence.zip(sequences):
+        ...     triple
+        ...
+        (1, 11, 21)
+        (2, 12, 22)
+        (3, 13, 23)
 
     ..  container:: example
 
-        >>> sequence = [[1, 2, 3], ['a', 'b']]
-        >>> for item in abjad.sequence.zip(sequence, cyclic=True):
+        Zips ``sequences`` cyclically:
+
+        >>> sequences = [[1, 2, 3], ['a', 'b']]
+        >>> for item in abjad.sequence.zip(sequences, cyclic=True):
         ...     item
         ...
         (1, 'a')
@@ -2433,10 +2449,12 @@ def zip(sequences, *, cyclic: bool = False, truncate: bool = True) -> list[tuple
         (12, 20, 32)
         (10, 21, 33)
 
-        Zips without truncation:
+    ..  container:: example
 
-        >>> sequence = [[1, 2, 3, 4], [11, 12, 13], [21, 22, 23]]
-        >>> for item in abjad.sequence.zip(sequence, truncate=False):
+        Zips ``sequences`` and does not truncate:
+
+        >>> sequences = [[1, 2, 3, 4], [11, 12, 13], [21, 22, 23]]
+        >>> for item in abjad.sequence.zip(sequences, do_not_truncate=True):
         ...     item
         ...
         (1, 11, 21)
@@ -2444,27 +2462,14 @@ def zip(sequences, *, cyclic: bool = False, truncate: bool = True) -> list[tuple
         (3, 13, 23)
         (4,)
 
-    ..  container:: example
-
-        Zips strictly:
-
-        >>> sequences = [[1, 2, 3, 4], [11, 12, 13], [21, 22, 23]]
-        >>> for triple in abjad.sequence.zip(sequences):
-        ...     triple
-        ...
-        (1, 11, 21)
-        (2, 12, 22)
-        (3, 13, 23)
-
-    Returns list of tuples.
     """
-    for item in sequences:
-        if not isinstance(item, collections.abc.Iterable):
-            raise Exception(f"must be iterable: {item!r}.")
-    items: list[typing.Any] = []
-    if cyclic:
+    for sequence in sequences:
+        if not isinstance(sequence, collections.abc.Iterable):
+            raise Exception(f"must be iterable: {sequence!r}.")
+    result: list = []
+    if cyclic is True:
         if not min(len(_) for _ in sequences):
-            return items
+            return result
         maximum_length = max([len(_) for _ in sequences])
         for i in range(maximum_length):
             part = []
@@ -2472,8 +2477,8 @@ def zip(sequences, *, cyclic: bool = False, truncate: bool = True) -> list[tuple
                 index = i % len(item)
                 element = item[index]
                 part.append(element)
-            items.append(part)
-    elif not truncate:
+            result.append(part)
+    elif do_not_truncate is True:
         maximum_length = max([len(_) for _ in sequences])
         for i in range(maximum_length):
             part = []
@@ -2482,9 +2487,11 @@ def zip(sequences, *, cyclic: bool = False, truncate: bool = True) -> list[tuple
                     part.append(item[i])
                 except IndexError:
                     pass
-            items.append(part)
-    elif truncate:
+            result.append(part)
+    else:
+        assert cyclic is False
+        assert do_not_truncate is False
         for item in builtins.zip(*sequences):
-            items.append(item)
-    result = [tuple(_) for _ in items]
-    return result
+            result.append(item)
+    tuples = [tuple(_) for _ in result]
+    return tuples

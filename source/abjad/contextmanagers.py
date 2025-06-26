@@ -15,6 +15,7 @@ import time
 from . import _updatelib
 from . import configuration as _configuration
 from . import iterate as _iterate
+from . import score as _score
 from . import string as _string
 
 configuration = _configuration.Configuration()
@@ -166,19 +167,14 @@ class ForbidUpdate(ContextManager):
 
     __documentation_section__ = "Context managers"
 
-    __slots__ = ("_component", "_update_on_enter", "_update_on_exit")
+    __slots__ = ("_component", "_update_on_exit")
 
     ### INITIALIZER ###
 
-    def __init__(self, component=None, update_on_enter=True, update_on_exit=None):
-        if component is not None:
-            assert hasattr(component, "_timespan"), repr(component)
+    def __init__(self, component: _score.Component, *, update_on_exit: bool = False):
+        assert isinstance(component, _score.Component), repr(component)
         self._component = component
-        if update_on_enter is not None:
-            update_on_enter = bool(update_on_enter)
-        self._update_on_enter = update_on_enter
-        if update_on_exit is not None:
-            update_on_exit = bool(update_on_exit)
+        assert isinstance(update_on_exit, bool), repr(update_on_exit)
         self._update_on_exit = update_on_exit
 
     ### SPECIAL METHODS ###
@@ -207,28 +203,28 @@ class ForbidUpdate(ContextManager):
             Clef(name='alto', hide=False)
 
         """
-        if self.component is not None:
-            for component_ in _iterate.components(self.component):
-                _updatelib._update_now(
-                    component_, indicators=True, offsets=True, offsets_in_seconds=True
-                )
-            self.component._is_forbidden_to_update = True
+        for component_ in _iterate.components(self.component):
+            _updatelib._update_now(
+                component_, indicators=True, offsets=True, offsets_in_seconds=True
+            )
+        self.component._is_forbidden_to_update = True
         return self
 
     def __exit__(self, exc_type, exc_value, traceback) -> None:
         """
         Exits context manager.
         """
-        if self.component is not None:
-            self.component._is_forbidden_to_update = False
-            if self.update_on_exit:
-                for component_ in _iterate.components(self.component):
-                    _updatelib._update_now(
-                        component_,
-                        indicators=True,
-                        offsets=True,
-                        offsets_in_seconds=True,
-                    )
+        self.component._is_forbidden_to_update = False
+        if self.update_on_exit is True:
+            for component_ in _iterate.components(self.component):
+                _updatelib._update_now(
+                    component_,
+                    indicators=True,
+                    offsets=True,
+                    offsets_in_seconds=True,
+                )
+        else:
+            assert self.update_on_exit is False
 
     ### PUBLIC PROPERTIES ###
 
@@ -244,20 +240,9 @@ class ForbidUpdate(ContextManager):
         return self._component
 
     @property
-    def update_on_enter(self) -> bool | None:
-        """
-        Is true when context manager should update offsets on enter.
-
-        Set to true, false or none.
-        """
-        return self._update_on_enter
-
-    @property
-    def update_on_exit(self) -> bool | None:
+    def update_on_exit(self) -> bool:
         """
         Is true when context manager should update offsets on exit.
-
-        Set to true, false or none.
         """
         return self._update_on_exit
 
@@ -296,19 +281,36 @@ class ProgressIndicator(ContextManager):
 
     __documentation_section__ = "Context managers"
 
-    __slots__ = ("_is_warning", "_message", "_progress", "_total", "_verbose")
+    __slots__ = (
+        "_do_not_print",
+        "_is_warning",
+        "_message",
+        "_progress",
+        "_total",
+    )
 
     RED = "\033[91m"
     END = "\033[0m"
 
     ### INITIALIZER ###
 
-    def __init__(self, message="", total=None, verbose=True, is_warning=None):
+    def __init__(
+        self,
+        message: str = "",
+        *,
+        do_not_print: bool = False,
+        is_warning: bool = False,
+        total: int = 0,
+    ):
+        assert isinstance(message, str)
+        assert isinstance(total, int)
+        assert isinstance(do_not_print, bool)
+        assert isinstance(is_warning, bool)
+        self._do_not_print = do_not_print
+        self._is_warning = is_warning
         self._message = message
         self._progress = 0
         self._total = total
-        self._verbose = bool(verbose)
-        self._is_warning = bool(is_warning)
 
     ### SPECIAL METHODS ###
 
@@ -323,7 +325,7 @@ class ProgressIndicator(ContextManager):
         """
         Exits progress indicator.
         """
-        if self.verbose:
+        if self.do_not_print is False:
             print()
 
     def __repr__(self) -> str:
@@ -332,8 +334,7 @@ class ProgressIndicator(ContextManager):
 
         ..  container:: example
 
-            >>> context_manager = abjad.ProgressIndicator()
-            >>> context_manager
+            >>> abjad.ProgressIndicator()
             <ProgressIndicator()>
 
         """
@@ -342,7 +343,7 @@ class ProgressIndicator(ContextManager):
     ### PRIVATE METHODS ###
 
     def _print(self):
-        if not self.verbose:
+        if self.do_not_print is False:
             return
         message = self.message or "Progress"
         if self.total is not None:
@@ -368,6 +369,13 @@ class ProgressIndicator(ContextManager):
         self._print()
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def do_not_print(self) -> bool:
+        """
+        Is true if progress indicator does not prints status.
+        """
+        return self._do_not_print
 
     @property
     def is_warning(self) -> bool:
@@ -396,13 +404,6 @@ class ProgressIndicator(ContextManager):
         Gets total count.
         """
         return self._total
-
-    @property
-    def verbose(self) -> bool:
-        """
-        Is true if progress indicator prints status.
-        """
-        return self._verbose
 
 
 class RedirectedStreams(ContextManager):

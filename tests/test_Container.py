@@ -176,7 +176,7 @@ def test_Container___delitem___04():
         """
     )
 
-    assert abjad.wf.wellformed(voice, check_overlapping_beams=False)
+    assert abjad.wf.wellformed(voice, do_not_check_overlapping_beams=True)
 
 
 def test_Container___delitem___05():
@@ -2267,7 +2267,7 @@ def test_Container_pop_01():
     "Result is now d'8 [ ]"
 
     assert abjad.lilypond(result) == "d'8\n[\n]"
-    assert abjad.wf.wellformed(result, check_beamed_lone_notes=False)
+    assert abjad.wf.wellformed(result, do_not_check_beamed_lone_notes=True)
 
 
 def test_Container_pop_02():
@@ -2375,7 +2375,7 @@ def test_Container_remove_01():
     assert abjad.lilypond(note) == "d'8\n[\n]"
 
     assert abjad.wf.wellformed(voice)
-    assert abjad.wf.wellformed(note, check_beamed_lone_notes=False)
+    assert abjad.wf.wellformed(note, do_not_check_beamed_lone_notes=True)
 
 
 def test_Container_remove_02():

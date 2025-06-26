@@ -337,7 +337,8 @@ class Tuning:
     def voice_pitch_classes(
         self,
         pitch_classes: list[_pitch.NamedPitchClass],
-        allow_open_strings: bool = True,
+        *,
+        forbid_open_strings: bool = False,
     ) -> list[tuple[_pitch.NamedPitch | None, ...]]:
         r"""
         Voices ``pitch_classes``.
@@ -361,7 +362,7 @@ class Tuning:
             (NamedPitch("a'"), None, None, None)
 
             >>> pcs = [abjad.NamedPitchClass(_) for _ in ["a", "d"]]
-            >>> voicings = tuning.voice_pitch_classes(pcs, allow_open_strings=False)
+            >>> voicings = tuning.voice_pitch_classes(pcs, forbid_open_strings=True)
             >>> for voicing in voicings:
             ...     voicing
             ...
@@ -419,6 +420,7 @@ class Tuning:
         assert all(isinstance(_, _pitch.NamedPitchClass) for _ in pitch_classes), repr(
             pitch_classes
         )
+        assert isinstance(forbid_open_strings, bool), repr(forbid_open_strings)
         nones = [None] * (len(self.pitches) - len(pitch_classes))
         pcs_and_nones = pitch_classes + nones
         permutations = _enumerate.yield_permutations(pcs_and_nones)
@@ -433,7 +435,7 @@ class Tuning:
                     sequences.append([None])
                     continue
                 pitches = list(pitch_range.voice_pitch_class(pitch_class))
-                if not allow_open_strings:
+                if forbid_open_strings is True:
                     pitches = [
                         pitch for pitch in pitches if pitch != pitch_range.start_pitch
                     ]

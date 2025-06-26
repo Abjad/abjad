@@ -38,14 +38,15 @@ def _are_logical_voice(components, prototype=None):
     return True
 
 
-def _get_annotation(component, annotation, default=None, *, unwrap: bool = True):
+def _get_annotation(component, annotation, default=None, *, wrapper: bool = False):
     assert isinstance(annotation, str | enum.Enum), repr(annotation)
-    for wrapper in _get_annotation_wrappers(component):
-        if wrapper.annotation == annotation:
-            if unwrap is True:
-                return wrapper.get_item()
+    for wrapper_ in _get_annotation_wrappers(component):
+        if wrapper_.annotation == annotation:
+            if wrapper is False:
+                return wrapper_.get_item()
             else:
-                return wrapper
+                assert wrapper is True
+                return wrapper_
     return default
 
 
@@ -99,7 +100,7 @@ def _get_duration_in_seconds(component):
 
 
 def _get_effective(
-    component, prototype, *, attributes=None, command=None, n=0, unwrap=True
+    component, prototype, *, attributes=None, command=None, n=0, wrapper=False
 ):
     _updatelib._update_now(component, indicators=True)
     candidate_wrappers = {}
@@ -115,51 +116,51 @@ def _get_effective(
             else:
                 enclosing_voice_name = component_.name or id(component_)
         local_wrappers = []
-        for wrapper in component_._wrappers:
-            if wrapper.annotation:
+        for wrapper_ in component_._wrappers:
+            if wrapper_.annotation:
                 continue
-            if isinstance(wrapper.unbundle_indicator(), prototype):
+            if isinstance(wrapper_.unbundle_indicator(), prototype):
                 append_wrapper = True
                 if (
                     command is not None
-                    and wrapper.unbundle_indicator().command != command
+                    and wrapper_.unbundle_indicator().command != command
                 ):
                     continue
                 if attributes is not None:
                     for name, value in attributes.items():
-                        if getattr(wrapper.unbundle_indicator(), name, None) != value:
+                        if getattr(wrapper_.unbundle_indicator(), name, None) != value:
                             append_wrapper = False
                 if not append_wrapper:
                     continue
-                local_wrappers.append(wrapper)
+                local_wrappers.append(wrapper_)
         # active indicator takes precendence over inactive indicator
         if any(_.deactivate is True for _ in local_wrappers) and not all(
             _.deactivate is True for _ in local_wrappers
         ):
             local_wrappers = [_ for _ in local_wrappers if _.deactivate is not True]
-        for wrapper in local_wrappers:
-            offset = wrapper.start_offset
-            candidate_wrappers.setdefault(offset, []).append(wrapper)
+        for wrapper_ in local_wrappers:
+            offset = wrapper_.start_offset
+            candidate_wrappers.setdefault(offset, []).append(wrapper_)
         if not isinstance(component_, _score.Context):
             continue
-        for wrapper in component_._dependent_wrappers:
-            if wrapper.annotation:
+        for wrapper_ in component_._dependent_wrappers:
+            if wrapper_.annotation:
                 continue
-            if isinstance(wrapper.unbundle_indicator(), prototype):
+            if isinstance(wrapper_.unbundle_indicator(), prototype):
                 append_wrapper = True
                 if (
                     command is not None
-                    and wrapper.unbundle_indicator().command != command
+                    and wrapper_.unbundle_indicator().command != command
                 ):
                     continue
                 if attributes is not None:
                     for name, value in attributes.items():
-                        if getattr(wrapper.unbundle_indicator(), name, None) != value:
+                        if getattr(wrapper_.unbundle_indicator(), name, None) != value:
                             append_wrapper = False
                 if not append_wrapper:
                     continue
-                offset = wrapper.start_offset
-                candidate_wrappers.setdefault(offset, []).append(wrapper)
+                offset = wrapper_.start_offset
+                candidate_wrappers.setdefault(offset, []).append(wrapper_)
     if not candidate_wrappers:
         return
     all_offsets = sorted(candidate_wrappers)
@@ -169,10 +170,12 @@ def _get_effective(
         return
     elif len(candidate_wrappers) <= index:
         return
-    wrapper = candidate_wrappers[all_offsets[index]][0]
-    if unwrap:
-        return wrapper.unbundle_indicator()
-    return wrapper
+    wrapper_ = candidate_wrappers[all_offsets[index]][0]
+    if wrapper is False:
+        return wrapper_.unbundle_indicator()
+    else:
+        assert wrapper is True
+    return wrapper_
 
 
 def _get_grace_container(component):
@@ -195,11 +198,10 @@ def _get_indicator(
     prototype: type | tuple[type, ...] | None = None,
     *,
     default: typing.Any = None,
-    unwrap: bool = True,
+    wrapper: bool = False,
 ) -> typing.Any:
-    if not isinstance(component, _score.Component):
-        raise Exception("can only get indicator on component.")
-    indicators = component._get_indicators(prototype=prototype, unwrap=unwrap)
+    assert isinstance(component, _score.Component), repr(component)
+    indicators = component._get_indicators(prototype=prototype, wrapper=wrapper)
     if not indicators:
         return default
     elif len(indicators) == 1:

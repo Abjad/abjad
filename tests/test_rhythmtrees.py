@@ -361,24 +361,24 @@ def test_RhythmTreeLeaf___copy___01():
 
 
 def test_RhythmTreeLeaf___copy___02():
-    rtl = abjad.rhythmtrees.RhythmTreeLeaf((2, 1), is_pitched=True)
+    rtl = abjad.rhythmtrees.RhythmTreeLeaf((2, 1), is_unpitched=False)
     copied = copy.copy(rtl)
     assert repr(rtl) == repr(copied)
     assert rtl is not copied
 
 
 def test_RhythmTreeLeaf___eq___01():
-    a = abjad.rhythmtrees.RhythmTreeLeaf((1, 1), is_pitched=True)
-    b = abjad.rhythmtrees.RhythmTreeLeaf((1, 1), is_pitched=True)
+    a = abjad.rhythmtrees.RhythmTreeLeaf((1, 1), is_unpitched=False)
+    b = abjad.rhythmtrees.RhythmTreeLeaf((1, 1), is_unpitched=False)
     assert repr(a) == repr(b)
     assert a != b
 
 
 def test_RhythmTreeLeaf___eq___02():
-    a = abjad.rhythmtrees.RhythmTreeLeaf((1, 1), is_pitched=True)
-    b = abjad.rhythmtrees.RhythmTreeLeaf((1, 1), is_pitched=False)
-    c = abjad.rhythmtrees.RhythmTreeLeaf((2, 1), is_pitched=True)
-    d = abjad.rhythmtrees.RhythmTreeLeaf((2, 1), is_pitched=False)
+    a = abjad.rhythmtrees.RhythmTreeLeaf((1, 1), is_unpitched=True)
+    b = abjad.rhythmtrees.RhythmTreeLeaf((1, 1), is_unpitched=True)
+    c = abjad.rhythmtrees.RhythmTreeLeaf((2, 1), is_unpitched=False)
+    d = abjad.rhythmtrees.RhythmTreeLeaf((2, 1), is_unpitched=True)
     assert a != b
     assert a != c
     assert a != d

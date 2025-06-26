@@ -126,7 +126,7 @@ class Component:
             wrapper_ = copy.copy(wrapper)
             wrapper_._component = component
             wrapper_._bind_component(component)
-        for wrapper in list(self._get_indicators(unwrap=False)):
+        for wrapper in list(self._get_indicators(wrapper=True)):
             wrapper_ = copy.copy(wrapper)
             wrapper_._component = component
             wrapper_._bind_component(component)
@@ -210,18 +210,7 @@ class Component:
                 duration *= prolation
         return duration
 
-    def _get_indicator(self, prototype=None, *, attributes=None, unwrap=True):
-        indicators = self._get_indicators(
-            prototype=prototype, attributes=attributes, unwrap=unwrap
-        )
-        if not indicators:
-            raise ValueError(f"no attached indicators found matching {prototype!r}.")
-        if 1 < len(indicators):
-            message = f"multiple attached indicators found matching {prototype!r}."
-            raise ValueError(message)
-        return indicators[0]
-
-    def _get_indicators(self, prototype=None, *, attributes=None, unwrap=True):
+    def _get_indicators(self, prototype=None, *, attributes=None, wrapper=False):
         prototype = prototype or (object,)
         if not isinstance(prototype, tuple):
             prototype = (prototype,)
@@ -234,32 +223,33 @@ class Component:
         prototype_objects = tuple(prototype_objects)
         prototype_classes = tuple(prototype_classes)
         result = []
-        for wrapper in self._wrappers:
-            if wrapper.annotation:
+        for wrapper_ in self._wrappers:
+            if wrapper_.annotation:
                 continue
-            if isinstance(wrapper, prototype_classes):
-                result.append(wrapper)
-            elif any(wrapper == _ for _ in prototype_objects):
-                result.append(wrapper)
-            elif isinstance(wrapper.unbundle_indicator(), prototype_classes):
-                result.append(wrapper)
-            elif any(wrapper.unbundle_indicator() == _ for _ in prototype_objects):
-                result.append(wrapper)
+            if isinstance(wrapper_, prototype_classes):
+                result.append(wrapper_)
+            elif any(wrapper_ == _ for _ in prototype_objects):
+                result.append(wrapper_)
+            elif isinstance(wrapper_.unbundle_indicator(), prototype_classes):
+                result.append(wrapper_)
+            elif any(wrapper_.unbundle_indicator() == _ for _ in prototype_objects):
+                result.append(wrapper_)
         if attributes is not None:
             result_ = []
-            for wrapper in result:
+            for wrapper_ in result:
                 for name, value in attributes.items():
-                    if getattr(wrapper.unbundle_indicator(), name, None) != value:
+                    if getattr(wrapper_.unbundle_indicator(), name, None) != value:
                         break
                 else:
-                    result_.append(wrapper)
+                    result_.append(wrapper_)
             result = result_
-        if unwrap:
+        if wrapper is False:
             indicators = []
-            for wrapper in result:
-                indicators.append(wrapper.unbundle_indicator())
+            for wrapper_ in result:
+                indicators.append(wrapper_.unbundle_indicator())
             result = indicators
-        result = result
+        else:
+            assert wrapper is True, repr(wrapper)
         return result
 
     def _get_lilypond_format(self):
@@ -268,7 +258,7 @@ class Component:
         return string
 
     def _get_markup(self, direction=None):
-        wrappers = self._get_indicators(_indicators.Markup, unwrap=False)
+        wrappers = self._get_indicators(_indicators.Markup, wrapper=True)
         if direction is _enums.UP:
             return tuple(_.get_item() for _ in wrappers if _.direction is _enums.UP)
         elif direction is _enums.DOWN:
@@ -958,7 +948,7 @@ class Container(Component):
         result = self[i]
         wrappers = []
         for component in self._get_components(result):
-            wrappers_ = component._get_indicators(unwrap=False)
+            wrappers_ = component._get_indicators(wrapper=True)
             wrappers.extend(wrappers_)
         if isinstance(result, Component):
             result._set_parent(None)
@@ -1055,7 +1045,7 @@ class Container(Component):
                 argument = argument[0]
         wrappers = []
         for component in self._get_components(argument):
-            wrappers_ = component._get_indicators(unwrap=False)
+            wrappers_ = component._get_indicators(wrapper=True)
             wrappers.extend(wrappers_)
         if isinstance(i, int):
             argument = [argument]

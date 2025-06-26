@@ -915,9 +915,9 @@ class Meter:
         components: typing.Sequence[_score.Component],
         *,
         boundary_depth: int | None = None,
+        do_not_rewrite_tuplets: bool = False,
         initial_offset: _duration.Offset = _duration.Offset(0),
         maximum_dot_count: int | None = None,
-        rewrite_tuplets: bool = True,
     ) -> None:
         r"""
         Rewrites ``components`` according to ``meter``.
@@ -1991,7 +1991,7 @@ class Meter:
             >>> meter.rewrite(
             ...     staff[:],
             ...     boundary_depth=1,
-            ...     rewrite_tuplets=False,
+            ...     do_not_rewrite_tuplets=True,
             ... )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2026,7 +2026,7 @@ class Meter:
         if maximum_dot_count is not None:
             assert isinstance(maximum_dot_count, int)
             assert 0 <= maximum_dot_count
-        assert isinstance(rewrite_tuplets, bool)
+        assert isinstance(do_not_rewrite_tuplets, bool)
 
         def recurse(
             logical_tie: _select.LogicalTie,
@@ -2141,7 +2141,7 @@ class Meter:
                     boundary_offsets=boundary_offsets,
                     depth=0,
                 )
-            elif isinstance(item, _score.Tuplet) and not rewrite_tuplets:
+            elif isinstance(item, _score.Tuplet) and do_not_rewrite_tuplets is True:
                 pass
             else:
                 duration = sum([_._get_preprolated_duration() for _ in item])

@@ -116,7 +116,7 @@ def annotation(
     key: str,
     default: typing.Any = None,
     *,
-    unwrap: bool = True,
+    wrapper: bool = False,
 ) -> typing.Any:
     r"""
     Gets annotation attached to ``component`` with ``key``.
@@ -146,14 +146,14 @@ def annotation(
 
         Returns ``default`` when no annotation with ``key`` is found:
 
-        >>> abjad.get.annotation(staff[1], "motive_number", "TBD")
-        'TBD'
+        >>> abjad.get.annotation(staff[1], "motive_number", "unknown")
+        'unknown'
 
     """
     assert isinstance(component, _score.Component), repr(component)
     assert isinstance(key, str), repr(key)
-    assert isinstance(unwrap, bool), repr(unwrap)
-    return _getlib._get_annotation(component, key, default, unwrap=unwrap)
+    assert isinstance(wrapper, bool), repr(wrapper)
+    return _getlib._get_annotation(component, key, default, wrapper=wrapper)
 
 
 def annotation_wrappers(argument):
@@ -889,7 +889,7 @@ def effective(
     attributes: dict | None = None,
     default: typing.Any = None,
     n: int = 0,
-    unwrap: bool = True,
+    wrapper: bool = False,
 ) -> typing.Any:
     r"""
     Gets effective indicator.
@@ -1431,7 +1431,7 @@ def effective(
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
     result = _getlib._get_effective(
-        argument, prototype, attributes=attributes, n=n, unwrap=unwrap
+        argument, prototype, attributes=attributes, n=n, wrapper=wrapper
     )
     if result is None:
         result = default
@@ -1679,7 +1679,7 @@ def effective_wrapper(
     """
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    return effective(argument, prototype, attributes=attributes, n=n, unwrap=False)
+    return effective(argument, prototype, attributes=attributes, n=n, wrapper=True)
 
 
 def has_effective_indicator(
@@ -2127,7 +2127,7 @@ def indicator(
     prototype: type | tuple[type, ...] | None = None,
     *,
     default: typing.Any = None,
-    unwrap: bool = True,
+    wrapper: bool = False,
 ) -> typing.Any:
     r"""
     Gets indicator.
@@ -2270,7 +2270,7 @@ def indicator(
 
     Returns default when no indicator of ``prototype`` attaches to ``argument``.
     """
-    return _getlib._get_indicator(argument, prototype, default=default, unwrap=unwrap)
+    return _getlib._get_indicator(argument, prototype, default=default, wrapper=wrapper)
 
 
 def indicators(
@@ -2278,7 +2278,7 @@ def indicators(
     prototype: type | tuple[type, ...] | None = None,
     *,
     attributes: dict | None = None,
-    unwrap: bool = True,
+    wrapper: bool = False,
 ) -> list:
     r"""
     Get indicators.
@@ -2463,7 +2463,7 @@ def indicators(
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
     result = argument._get_indicators(
-        prototype=prototype, attributes=attributes, unwrap=unwrap
+        prototype=prototype, attributes=attributes, wrapper=wrapper
     )
     return list(result)
 
@@ -4477,7 +4477,7 @@ def wrapper(
     """
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    return indicator(argument, prototype=prototype, unwrap=False)
+    return indicator(argument, prototype=prototype, wrapper=True)
 
 
 def wrappers(
@@ -4609,7 +4609,7 @@ def wrappers(
     """
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    return indicators(argument, prototype=prototype, unwrap=False)
+    return indicators(argument, prototype=prototype, wrapper=True)
 
 
 class Lineage(collections.abc.Sequence):

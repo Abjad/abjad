@@ -2596,7 +2596,7 @@ class KeyCluster:
         Includes flat markup:
 
         >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-        >>> key_cluster = abjad.KeyCluster(include_flat_markup=True)
+        >>> key_cluster = abjad.KeyCluster()
         >>> abjad.attach(key_cluster, chord, direction=abjad.UP)
         >>> staff = abjad.Staff([chord])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -2622,7 +2622,7 @@ class KeyCluster:
         Includes natural markup:
 
         >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
-        >>> key_cluster = abjad.KeyCluster(include_natural_markup=True)
+        >>> key_cluster = abjad.KeyCluster()
         >>> abjad.attach(key_cluster, chord, direction=abjad.UP)
         >>> staff = abjad.Staff([chord])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -2661,24 +2661,23 @@ class KeyCluster:
         <c' e' g' b' d'' f''>8
         ^ \markup \center-column { \natural \flat }
 
-        The reason for this is that chords contain multiple note-heads: if key cluster
-        formatted tweaks instead of overrides, the five format commands shown above would
-        need to be duplicated immediately before each note-head.
+        The reason for this is that chords contain multiple note-heads: if key
+        cluster formatted tweaks instead of overrides, the five format commands
+        shown above would need to be duplicated immediately before each
+        note-head.
 
     """
 
-    include_flat_markup: bool = True
-    include_natural_markup: bool = True
+    hide_flat_markup: bool = False
+    hide_natural_markup: bool = False
 
     directed: typing.ClassVar[bool] = True
     site: typing.ClassVar[str] = "after"
 
     def __post_init__(self):
-        assert isinstance(self.include_flat_markup, bool), repr(
-            self.include_flat_markup
-        )
-        assert isinstance(self.include_natural_markup, bool), repr(
-            self.include_natural_markup
+        assert isinstance(self.hide_flat_markup, bool), repr(self.hide_flat_markup)
+        assert isinstance(self.hide_natural_markup, bool), repr(
+            self.hide_natural_markup
         )
 
     def _get_contributions(self, wrapper=None):
@@ -2692,11 +2691,12 @@ class KeyCluster:
             "\\once \\override NoteHead.text =\n"
             "\\markup \\filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25"
         )
-        if self.include_flat_markup and self.include_natural_markup:
+        if self.hide_flat_markup is False and self.hide_natural_markup is False:
             string = r"\center-column { \natural \flat }"
-        elif self.include_flat_markup:
+        elif self.hide_flat_markup is False:
             string = r"\center-column \flat"
         else:
+            assert self.hide_natural_markup is False
             string = r"\center-column \natural"
         string = rf"\markup {string}"
         if wrapper.direction is _enums.UP:
@@ -4298,7 +4298,7 @@ class RepeatTie:
         >>> abjad.get.indicators(voice[1], abjad.RepeatTie)
         [RepeatTie()]
 
-        >>> wrapper = abjad.get.indicator(voice[1], abjad.RepeatTie, unwrap=False)
+        >>> wrapper = abjad.get.indicator(voice[1], abjad.RepeatTie, wrapper=True)
         >>> wrapper.get_item()
         Bundle(indicator=RepeatTie(), tweaks=(Tweak(string='- \\tweak color #blue', i=None, tag=None),), comment=None)
 
