@@ -454,7 +454,7 @@ def count_function_calls(
     *,
     global_context: dict | None = None,
     local_context: dict | None = None,
-    fixed_point: bool = True,
+    only_one_time: bool = False,
 ) -> int:
     """
     Counts function calls required to execute ``argument``.
@@ -463,7 +463,7 @@ def count_function_calls(
     def extract_count(profile_output) -> int:
         return int(profile_output.splitlines()[2].split()[0])
 
-    if fixed_point:
+    if only_one_time is False:
         # profile at least twice to ensure consist results from profiler;
         # not sure why but profiler eventually levels off to consistent
         # output
@@ -478,6 +478,8 @@ def count_function_calls(
             assert isinstance(string, str)
             current_result = extract_count(string)
         return current_result
+    else:
+        assert only_one_time is True
     result = profile(
         argument,
         global_context=global_context,
@@ -891,30 +893,27 @@ def open_last_log() -> None:
 def profile(
     string: str,
     *,
+    do_not_strip_dirs: bool = False,
     global_context: dict | None = None,
     line_count: int = 12,
     local_context: dict | None = None,
     print_callers: bool = False,
     print_callees: bool = False,
     sort_by: str = "cumulative",
-    strip_dirs: bool = True,
-) -> str | None:
+) -> str:
     """
     Profiles ``string``.
 
     ..  container:: example
 
+        Wraps Python's built-in ``cProfile`` module. Set ``sort_by`` to
+        ``"cumulative"``, ``"time"``, ``"calls"``. See the `Python
+        documentation <https://docs.python.org/3/library/profile.html>`_ for
+        more information.
+
         >>> string = 'abjad.Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
         >>> result = abjad.io.profile(string, global_context=globals())
 
-    Then print result.
-
-    Wraps Python's built-in ``cProfile`` module.
-
-    Set ``sort_by`` to ``'cumulative'``, ``'time'`` or ``'calls'``.
-
-    See `Python's docs <https://docs.python.org/3/library/profile.html>`_ for more
-    information.
     """
     now_string = datetime.datetime.today().strftime("%a %b %d %H:%M:%S %Y")
     profile = cProfile.Profile()
@@ -925,13 +924,14 @@ def profile(
         profile = profile.runctx(string, global_context, local_context)
     stats_stream = io.StringIO()
     stats = pstats.Stats(profile, stream=stats_stream)
-    if strip_dirs:
+    if do_not_strip_dirs is False:
         stats.strip_dirs().sort_stats(sort_by).print_stats(line_count)
     else:
+        assert do_not_strip_dirs is True
         stats.sort_stats(sort_by).print_stats(line_count)
-    if print_callers:
+    if print_callers is True:
         stats.sort_stats(sort_by).print_callers(line_count)
-    if print_callees:
+    if print_callees is True:
         stats.sort_stats(sort_by).print_callees(line_count)
     result = now_string + "\n\n" + stats_stream.getvalue()
     stats_stream.close()

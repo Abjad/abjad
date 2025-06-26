@@ -94,7 +94,7 @@ def test_mutate_extract_02():
     for note in notes:
         assert abjad.wf.wellformed(note)
 
-    assert abjad.wf.wellformed(voice, check_overlapping_beams=False)
+    assert abjad.wf.wellformed(voice, do_not_check_overlapping_beams=True)
 
 
 def test_mutate_extract_03():

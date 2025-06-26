@@ -511,7 +511,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
     )
     score = _score.Score([staff_group], name="Score")
     for leaf in leaves:
-        markup_wrappers = _get.indicators(leaf, _indicators.Markup, unwrap=False)
+        markup_wrappers = _get.indicators(leaf, _indicators.Markup, wrapper=True)
         written_duration = leaf.written_duration
         if isinstance(leaf, _score.Note):
             if leaf.written_pitch < lowest_treble_pitch:

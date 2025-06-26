@@ -136,10 +136,10 @@ def check_beamed_long_notes(argument) -> tuple[list, int]:
         total += 1
         if leaf.written_duration < _duration.Duration((1, 4)):
             continue
-        start_wrapper = _get.effective(leaf, _indicators.StartBeam, unwrap=False)
+        start_wrapper = _get.effective(leaf, _indicators.StartBeam, wrapper=True)
         if start_wrapper is None:
             continue
-        stop_wrapper = _get.effective(leaf, _indicators.StopBeam, unwrap=False)
+        stop_wrapper = _get.effective(leaf, _indicators.StopBeam, wrapper=True)
         if stop_wrapper is None:
             violators.append(leaf)
             continue
@@ -947,70 +947,70 @@ _globals = globals()
 
 def _call_functions(
     component,
-    check_beamed_lone_notes: bool = True,
-    check_beamed_long_notes: bool = True,
-    check_duplicate_ids: bool = True,
-    check_empty_containers: bool = True,
-    check_missing_parents: bool = True,
-    check_notes_on_wrong_clef: bool = True,
-    check_orphaned_dependent_wrappers: bool = True,
-    check_out_of_range_pitches: bool = True,
-    check_overlapping_beams: bool = True,
-    check_overlapping_text_spanners: bool = True,
-    check_unmatched_stop_text_spans: bool = True,
-    check_unterminated_hairpins: bool = True,
-    check_unterminated_text_spanners: bool = True,
+    do_not_check_beamed_lone_notes: bool = False,
+    do_not_check_beamed_long_notes: bool = False,
+    do_not_check_duplicate_ids: bool = False,
+    do_not_check_empty_containers: bool = False,
+    do_not_check_missing_parents: bool = False,
+    do_not_check_notes_on_wrong_clef: bool = False,
+    do_not_check_orphaned_dependent_wrappers: bool = False,
+    do_not_check_out_of_range_pitches: bool = False,
+    do_not_check_overlapping_beams: bool = False,
+    do_not_check_overlapping_text_spanners: bool = False,
+    do_not_check_unmatched_stop_text_spans: bool = False,
+    do_not_check_unterminated_hairpins: bool = False,
+    do_not_check_unterminated_text_spanners: bool = False,
 ):
     triples = []
-    if check_beamed_lone_notes:
+    if do_not_check_beamed_lone_notes is False:
         name = "check_beamed_lone_notes"
         violators, count = _globals[name](component)
         triples.append((violators, count, name))
-    if check_beamed_long_notes:
+    if do_not_check_beamed_long_notes is False:
         name = "check_beamed_long_notes"
         violators, count = _globals[name](component)
         triples.append((violators, count, name))
-    if check_duplicate_ids:
+    if do_not_check_duplicate_ids is False:
         name = "check_duplicate_ids"
         violators, count = _globals[name](component)
         triples.append((violators, count, name))
-    if check_empty_containers:
+    if do_not_check_empty_containers is False:
         name = "check_empty_containers"
         violators, count = _globals[name](component)
         triples.append((violators, count, name))
-    if check_missing_parents:
+    if do_not_check_missing_parents is False:
         name = "check_missing_parents"
         violators, count = _globals[name](component)
         triples.append((violators, count, name))
-    if check_notes_on_wrong_clef:
+    if do_not_check_notes_on_wrong_clef is False:
         name = "check_notes_on_wrong_clef"
         violators, count = _globals[name](component)
         triples.append((violators, count, name))
-    if check_orphaned_dependent_wrappers:
+    if do_not_check_orphaned_dependent_wrappers is False:
         name = "check_orphaned_dependent_wrappers"
         violators, count = _globals[name](component)
         triples.append((violators, count, name))
-    if check_out_of_range_pitches:
+    if do_not_check_out_of_range_pitches is False:
         name = "check_out_of_range_pitches"
         violators, count = _globals[name](component)
         triples.append((violators, count, name))
-    if check_overlapping_beams:
+    if do_not_check_overlapping_beams is False:
         name = "check_overlapping_beams"
         violators, count = _globals[name](component)
         triples.append((violators, count, name))
-    if check_overlapping_text_spanners:
+    if do_not_check_overlapping_text_spanners is False:
         name = "check_overlapping_text_spanners"
         violators, count = _globals[name](component)
         triples.append((violators, count, name))
-    if check_unmatched_stop_text_spans:
+    if do_not_check_unmatched_stop_text_spans is False:
         name = "check_unmatched_stop_text_spans"
         violators, count = _globals[name](component)
         triples.append((violators, count, name))
-    if check_unterminated_hairpins:
+    if do_not_check_unterminated_hairpins is False:
         name = "check_unterminated_hairpins"
         violators, count = _globals[name](component)
         triples.append((violators, count, name))
-    if check_unterminated_text_spanners:
+    if do_not_check_unterminated_text_spanners is False:
         name = "check_unterminated_text_spanners"
         violators, count = _globals[name](component)
         triples.append((violators, count, name))
@@ -1019,38 +1019,38 @@ def _call_functions(
 
 def tabulate_wellformedness(
     component,
-    check_beamed_lone_notes: bool = True,
-    check_beamed_long_notes: bool = True,
-    check_duplicate_ids: bool = True,
-    check_empty_containers: bool = True,
-    check_missing_parents: bool = True,
-    check_notes_on_wrong_clef: bool = True,
-    check_orphaned_dependent_wrappers: bool = True,
-    check_out_of_range_pitches: bool = True,
-    check_overlapping_beams: bool = True,
-    check_overlapping_text_spanners: bool = True,
-    check_unmatched_stop_text_spans: bool = True,
-    check_unterminated_hairpins: bool = True,
-    check_unterminated_text_spanners: bool = True,
+    do_not_check_beamed_lone_notes: bool = False,
+    do_not_check_beamed_long_notes: bool = False,
+    do_not_check_duplicate_ids: bool = False,
+    do_not_check_empty_containers: bool = False,
+    do_not_check_missing_parents: bool = False,
+    do_not_check_notes_on_wrong_clef: bool = False,
+    do_not_check_orphaned_dependent_wrappers: bool = False,
+    do_not_check_out_of_range_pitches: bool = False,
+    do_not_check_overlapping_beams: bool = False,
+    do_not_check_overlapping_text_spanners: bool = False,
+    do_not_check_unmatched_stop_text_spans: bool = False,
+    do_not_check_unterminated_hairpins: bool = False,
+    do_not_check_unterminated_text_spanners: bool = False,
 ) -> tuple[int, str]:
     """
     Tabulates wellformedness.
     """
     triples = _call_functions(
         component,
-        check_beamed_lone_notes=check_beamed_lone_notes,
-        check_beamed_long_notes=check_beamed_long_notes,
-        check_duplicate_ids=check_duplicate_ids,
-        check_empty_containers=check_empty_containers,
-        check_missing_parents=check_missing_parents,
-        check_notes_on_wrong_clef=check_notes_on_wrong_clef,
-        check_orphaned_dependent_wrappers=check_orphaned_dependent_wrappers,
-        check_out_of_range_pitches=check_out_of_range_pitches,
-        check_overlapping_beams=check_overlapping_beams,
-        check_overlapping_text_spanners=check_overlapping_text_spanners,
-        check_unmatched_stop_text_spans=check_unmatched_stop_text_spans,
-        check_unterminated_hairpins=check_unterminated_hairpins,
-        check_unterminated_text_spanners=check_unterminated_text_spanners,
+        do_not_check_beamed_lone_notes=do_not_check_beamed_lone_notes,
+        do_not_check_beamed_long_notes=do_not_check_beamed_long_notes,
+        do_not_check_duplicate_ids=do_not_check_duplicate_ids,
+        do_not_check_empty_containers=do_not_check_empty_containers,
+        do_not_check_missing_parents=do_not_check_missing_parents,
+        do_not_check_notes_on_wrong_clef=do_not_check_notes_on_wrong_clef,
+        do_not_check_orphaned_dependent_wrappers=do_not_check_orphaned_dependent_wrappers,
+        do_not_check_out_of_range_pitches=do_not_check_out_of_range_pitches,
+        do_not_check_overlapping_beams=do_not_check_overlapping_beams,
+        do_not_check_overlapping_text_spanners=do_not_check_overlapping_text_spanners,
+        do_not_check_unmatched_stop_text_spans=do_not_check_unmatched_stop_text_spans,
+        do_not_check_unterminated_hairpins=do_not_check_unterminated_hairpins,
+        do_not_check_unterminated_text_spanners=do_not_check_unterminated_text_spanners,
     )
     strings = []
     total_violators = 0
@@ -1066,38 +1066,38 @@ def tabulate_wellformedness(
 
 def wellformed(
     component,
-    check_beamed_lone_notes: bool = True,
-    check_beamed_long_notes: bool = True,
-    check_duplicate_ids: bool = True,
-    check_empty_containers: bool = True,
-    check_missing_parents: bool = True,
-    check_notes_on_wrong_clef: bool = True,
-    check_orphaned_dependent_wrappers: bool = True,
-    check_out_of_range_pitches: bool = True,
-    check_overlapping_beams: bool = True,
-    check_overlapping_text_spanners: bool = True,
-    check_unmatched_stop_text_spans: bool = True,
-    check_unterminated_hairpins: bool = True,
-    check_unterminated_text_spanners: bool = True,
+    do_not_check_beamed_lone_notes: bool = False,
+    do_not_check_beamed_long_notes: bool = False,
+    do_not_check_duplicate_ids: bool = False,
+    do_not_check_empty_containers: bool = False,
+    do_not_check_missing_parents: bool = False,
+    do_not_check_notes_on_wrong_clef: bool = False,
+    do_not_check_orphaned_dependent_wrappers: bool = False,
+    do_not_check_out_of_range_pitches: bool = False,
+    do_not_check_overlapping_beams: bool = False,
+    do_not_check_overlapping_text_spanners: bool = False,
+    do_not_check_unmatched_stop_text_spans: bool = False,
+    do_not_check_unterminated_hairpins: bool = False,
+    do_not_check_unterminated_text_spanners: bool = False,
 ) -> bool:
     """
     Is true when ``component`` is wellformed.
     """
     triples = _call_functions(
         component,
-        check_beamed_lone_notes=check_beamed_lone_notes,
-        check_beamed_long_notes=check_beamed_long_notes,
-        check_duplicate_ids=check_duplicate_ids,
-        check_empty_containers=check_empty_containers,
-        check_missing_parents=check_missing_parents,
-        check_notes_on_wrong_clef=check_notes_on_wrong_clef,
-        check_orphaned_dependent_wrappers=check_orphaned_dependent_wrappers,
-        check_out_of_range_pitches=check_out_of_range_pitches,
-        check_overlapping_beams=check_overlapping_beams,
-        check_overlapping_text_spanners=check_overlapping_text_spanners,
-        check_unmatched_stop_text_spans=check_unmatched_stop_text_spans,
-        check_unterminated_hairpins=check_unterminated_hairpins,
-        check_unterminated_text_spanners=check_unterminated_text_spanners,
+        do_not_check_beamed_lone_notes=do_not_check_beamed_lone_notes,
+        do_not_check_beamed_long_notes=do_not_check_beamed_long_notes,
+        do_not_check_duplicate_ids=do_not_check_duplicate_ids,
+        do_not_check_empty_containers=do_not_check_empty_containers,
+        do_not_check_missing_parents=do_not_check_missing_parents,
+        do_not_check_notes_on_wrong_clef=do_not_check_notes_on_wrong_clef,
+        do_not_check_orphaned_dependent_wrappers=do_not_check_orphaned_dependent_wrappers,
+        do_not_check_out_of_range_pitches=do_not_check_out_of_range_pitches,
+        do_not_check_overlapping_beams=do_not_check_overlapping_beams,
+        do_not_check_overlapping_text_spanners=do_not_check_overlapping_text_spanners,
+        do_not_check_unmatched_stop_text_spans=do_not_check_unmatched_stop_text_spans,
+        do_not_check_unterminated_hairpins=do_not_check_unterminated_hairpins,
+        do_not_check_unterminated_text_spanners=do_not_check_unterminated_text_spanners,
     )
     for violators, total, name in triples:
         if violators:

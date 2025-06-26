@@ -42,7 +42,7 @@ def _before_attach(indicator, context, deactivate, component):
         return
     if deactivate is True:
         return
-    for wrapper in component._get_indicators(unwrap=False):
+    for wrapper in component._get_indicators(wrapper=True):
         if not isinstance(wrapper.unbundle_indicator(), type(indicator)):
             continue
         if getattr(indicator, "leak", None) != getattr(
@@ -485,7 +485,7 @@ class Wrapper:
             component,
             prototype,
             attributes={"command": command},
-            unwrap=False,
+            wrapper=True,
         )
         wrapper_site = None
         if wrapper is not None:
@@ -926,22 +926,24 @@ def attach(
     r"""
     Attaches ``attachable`` to (leaf or container) ``target``.
 
-    Acceptable types of ``attachable``:
+    ..  container:: example
 
-    ::
+        Acceptable types of ``attachable``:
 
-        * indicator
-        * abjad.Wrapper
-        * abjad.BeforeGraceContainer
-        * abjad.AfterGraceContainer
+        ::
 
-    The class of ``target`` is almost always ``abjad.Leaf``. A small number
-    of indicators (like ``abjad.LilyPondLiteral``) can attach to both ``abjad.Leaf``
-    and ``abjad.Container`` objects.
+            * indicator
+            * abjad.Wrapper
+            * abjad.BeforeGraceContainer
+            * abjad.AfterGraceContainer
 
-    Attaches clef to first note in staff:
+        The class of ``target`` is almost always ``abjad.Leaf``. A small number
+        of indicators (like ``abjad.LilyPondLiteral``) can attach to both
+        ``abjad.Leaf`` and ``abjad.Container`` objects.
 
     ..  container:: example
+
+        Attaches clef to first note in staff:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Clef("alto"), staff[0])

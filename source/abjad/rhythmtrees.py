@@ -300,7 +300,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
 
         Pitched rhythm-tree leaves makes notes:
 
-        >>> rtl = abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_pitched=True)
+        >>> rtl = abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_unpitched=False)
         >>> components = rtl(abjad.Duration(1, 4))
         >>> voice = abjad.Voice(components)
         >>> abjad.setting(voice[0]).Score.proportionalNotationDuration = "#1/12"
@@ -322,7 +322,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
 
         Unpitched rhythm-tree leaves make rests:
 
-        >>> rtl = abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_pitched=False)
+        >>> rtl = abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_unpitched=True)
         >>> components = rtl(abjad.Duration(1, 4))
         >>> voice = abjad.Voice(components)
         >>> abjad.setting(voice[0]).Score.proportionalNotationDuration = "#1/12"
@@ -346,13 +346,13 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         self,
         pair: tuple[int, int],
         *,
-        is_pitched: bool = True,
+        is_unpitched: bool = False,
         name: str | None = None,
     ) -> None:
         assert isinstance(pair, tuple), repr(pair)
         uqbar.containers.UniqueTreeNode.__init__(self, name=name)
         RhythmTreeNode.__init__(self, pair)
-        self.is_pitched = is_pitched
+        self.is_unpitched = is_unpitched
 
     def __call__(
         self, duration: _duration.Duration
@@ -362,9 +362,10 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         """
         assert isinstance(duration, _duration.Duration), repr(duration)
         pitches: list[int | None]
-        if self.is_pitched:
+        if self.is_unpitched is False:
             pitches = [0]
         else:
+            assert self.is_unpitched is True
             pitches = [None]
         pitch_lists = _makers.make_pitch_lists(pitches)
         duration *= _duration.Duration(self.pair)
@@ -387,7 +388,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         """
         properties = [
             f"{self.pair!r}",
-            f"is_pitched={self.is_pitched!r}",
+            f"is_unpitched={self.is_unpitched!r}",
         ]
         if self.name is not None:
             properties.append(f"name={self.name!r}")
@@ -398,15 +399,15 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         return [str(self._get_fraction_string())]
 
     @property
-    def is_pitched(self) -> bool:
+    def is_unpitched(self) -> bool:
         """
-        Is true when rhythm-tree leaf is pitched.
+        Is true when rhythm-tree leaf is unpitched.
         """
-        return self._is_pitched
+        return self._is_unpitched
 
-    @is_pitched.setter
-    def is_pitched(self, argument):
-        self._is_pitched = bool(argument)
+    @is_unpitched.setter
+    def is_unpitched(self, argument):
+        self._is_unpitched = bool(argument)
 
     @property
     def rtm_format(self) -> str:
@@ -415,16 +416,17 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
 
         ..  container:: example
 
-            >>> abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_pitched=True).rtm_format
+            >>> abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_unpitched=False).rtm_format
             '5'
 
-            >>> abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_pitched=False).rtm_format
+            >>> abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_unpitched=True).rtm_format
             '-5'
 
         """
         string = self._get_fraction_string()
-        if self.is_pitched:
+        if self.is_unpitched is False:
             return f"{string!s}"
+        assert self.is_unpitched is True
         return f"-{string!s}"
 
 
@@ -949,7 +951,7 @@ class RhythmTreeParser(Parser):
         else:
             assert isinstance(p[1], _duration.Duration), repr(p[1])
             pair = abs(p[1]).pair
-        p[0] = RhythmTreeLeaf(pair, is_pitched=0 < p[1])
+        p[0] = RhythmTreeLeaf(pair, is_unpitched=not 0 < p[1])
 
     def p_node__container(self, p):
         """
