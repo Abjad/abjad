@@ -200,7 +200,12 @@ def _get_indicator(
     wrapper: bool = False,
 ) -> typing.Any:
     assert isinstance(component, _score.Component), repr(component)
-    indicators = component._get_indicators(prototype=prototype, wrapper=wrapper)
+    assert isinstance(wrapper, bool), repr(wrapper)
+    if wrapper is True:
+        indicators = component._get_wrappers(prototype)
+    else:
+        assert wrapper is False
+        indicators = component._get_indicators(prototype)
     if not indicators:
         return default
     elif len(indicators) == 1:

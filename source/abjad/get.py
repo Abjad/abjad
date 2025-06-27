@@ -2243,6 +2243,9 @@ def indicator(
 
     Returns default when no indicator of ``prototype`` attaches to ``argument``.
     """
+    assert isinstance(wrapper, bool), repr(wrapper)
+    # if wrapper is True:
+    #     raise Exception("INDICATOR WITH WRAPPER")
     return _getlib._get_indicator(argument, prototype, default=default, wrapper=wrapper)
 
 
@@ -2435,9 +2438,12 @@ def indicators(
         raise Exception(message)
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    result = argument._get_indicators(
-        prototype=prototype, attributes=attributes, wrapper=wrapper
-    )
+    if wrapper is False:
+        result = argument._get_indicators(prototype=prototype, attributes=attributes)
+    else:
+        assert wrapper is True
+        result = argument._get_wrappers(prototype=prototype, attributes=attributes)
+    # TODO: remove cast to list() below?
     return list(result)
 
 
@@ -4450,6 +4456,7 @@ def wrapper(
     Raises exception when more than one indicator of ``prototype`` attach to
     ``argument``.
     """
+    # TODO: attribute is not being used; figure out what to do
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
     return indicator(argument, prototype=prototype, wrapper=True)

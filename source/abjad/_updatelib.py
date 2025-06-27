@@ -99,7 +99,7 @@ def _get_measure_start_offsets(component):
     prototype = _indicators.TimeSignature
     root = _parentage.Parentage(component).root
     for component_ in _iterate_entire_score(root):
-        wrappers_ = component_._get_indicators(prototype, wrapper=True)
+        wrappers_ = component_._get_wrappers(prototype)
         wrappers.extend(wrappers_)
     pairs = []
     for wrapper in wrappers:
@@ -267,7 +267,7 @@ def _update_all_indicators(root):
     """
     components = _iterate_entire_score(root)
     for component in components:
-        for wrapper in component._get_indicators(wrapper=True):
+        for wrapper in component._get_wrappers():
             if wrapper.context is not None:
                 wrapper._update_effective_context()
         component._indicators_are_current = True

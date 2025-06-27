@@ -42,7 +42,7 @@ def _before_attach(indicator, context, deactivate, component):
         return
     if deactivate is True:
         return
-    for wrapper in component._get_indicators(wrapper=True):
+    for wrapper in component._get_wrappers():
         if not isinstance(wrapper.unbundle_indicator(), type(indicator)):
             continue
         if getattr(indicator, "leak", None) != getattr(
