@@ -481,11 +481,10 @@ class Wrapper:
             indicator = self.indicator
         prototype = type(indicator)
         command = getattr(indicator, "command", None)
-        wrapper = _getlib._get_effective(
+        wrapper = _getlib._get_effective_wrapper(
             component,
             prototype,
             attributes={"command": command},
-            wrapper=True,
         )
         wrapper_site = None
         if wrapper is not None:

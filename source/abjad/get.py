@@ -1392,13 +1392,18 @@ def effective(
         (Note("f'2"), BarLine(abbreviation='||', site='after'))
 
     """
-    if not isinstance(argument, _score.Component):
-        raise Exception("can only get effective on components.")
+    assert isinstance(argument, _score.Component), repr(argument)
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    result = _getlib._get_effective(
-        argument, prototype, attributes=attributes, n=n, wrapper=wrapper
-    )
+    assert isinstance(wrapper, bool), repr(wrapper)
+    if wrapper is True:
+        result = _getlib._get_effective_wrapper(
+            argument, prototype, attributes=attributes, n=n
+        )
+    else:
+        result = _getlib._get_effective_indicator(
+            argument, prototype, attributes=attributes, n=n
+        )
     if result is None:
         result = default
     return result
@@ -1514,7 +1519,7 @@ def effective_staff(argument) -> typing.Optional["_score.Staff"]:
     """
     if not isinstance(argument, _score.Component):
         raise Exception("can only get effective staff on components.")
-    staff_change = _getlib._get_effective(argument, _indicators.StaffChange)
+    staff_change = _getlib._get_effective_indicator(argument, _indicators.StaffChange)
     if staff_change is not None:
         for component in argument._get_parentage():
             root = component
@@ -1842,7 +1847,9 @@ def has_effective_indicator(
         raise Exception("can only get effective indicator on component.")
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    indicator = _getlib._get_effective(argument, prototype, attributes=attributes)
+    indicator = _getlib._get_effective_indicator(
+        argument, prototype, attributes=attributes
+    )
     return indicator is not None
 
 
@@ -2469,7 +2476,9 @@ def is_bar_line_crossing(argument) -> bool:
     """
     if not isinstance(argument, _score.Component):
         raise Exception("can only get indicator on component.")
-    time_signature = _getlib._get_effective(argument, _indicators.TimeSignature)
+    time_signature = _getlib._get_effective_indicator(
+        argument, _indicators.TimeSignature
+    )
     if time_signature is None:
         time_signature_duration = _duration.Duration(4, 4)
     else:
