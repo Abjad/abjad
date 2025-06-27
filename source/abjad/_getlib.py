@@ -1,6 +1,5 @@
 import bisect
 import collections
-import typing
 
 from . import _updatelib
 from . import duration as _duration
@@ -190,27 +189,6 @@ def _get_grace_container(component):
         if component_.__class__.__name__ == "OnBeatGraceContainer":
             return True
     return False
-
-
-def _get_indicator(
-    component: _score.Component,
-    prototype: type | tuple[type, ...] | None = None,
-    *,
-    default: typing.Any = None,
-    wrapper: bool = False,
-) -> typing.Any:
-    assert isinstance(component, _score.Component), repr(component)
-    indicators = component._get_indicators(prototype=prototype, wrapper=wrapper)
-    if not indicators:
-        return default
-    elif len(indicators) == 1:
-        return list(indicators)[0]
-    else:
-        name = getattr(prototype, "__name__", "")
-        strings = "\n".join(["    " + str(_) for _ in indicators])
-        string = f"{len(indicators)} {name} indicators attached to {component}:"
-        string += f"\n{strings}"
-        raise Exception(string)
 
 
 def _get_leaf_from_leaf(leaf, n):

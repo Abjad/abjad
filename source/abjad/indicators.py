@@ -3373,7 +3373,7 @@ class Markup:
 
     def _get_lilypond_format(self, *, wrapper=None):
         string = self.string
-        if wrapper:
+        if wrapper is not None:
             direction = wrapper.direction or "-"
             direction = _string.to_tridirectional_lilypond_symbol(direction)
             string = rf"{direction} {self.string}"
@@ -4298,7 +4298,7 @@ class RepeatTie:
         >>> abjad.get.indicators(voice[1], abjad.RepeatTie)
         [RepeatTie()]
 
-        >>> wrapper = abjad.get.indicator(voice[1], abjad.RepeatTie, wrapper=True)
+        >>> wrapper = abjad.get.wrapper(voice[1], abjad.RepeatTie)
         >>> wrapper.get_item()
         Bundle(indicator=RepeatTie(), tweaks=(Tweak(string='- \\tweak color #blue', i=None, tag=None),), comment=None)
 
