@@ -1119,6 +1119,7 @@ def attach(
     assert not isinstance(nonbundle_attachable, _tweaks.Bundle)
     assert nonbundle_attachable is not None, repr(nonbundle_attachable)
     assert isinstance(target, _score.Component), repr(target)
+    assert isinstance(wrapper, bool), repr(wrapper)
     _before_attach(nonbundle_attachable, context, deactivate, target)
     result = _unsafe_attach(
         attachable,

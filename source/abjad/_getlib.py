@@ -1,6 +1,5 @@
 import bisect
 import collections
-import enum
 import typing
 
 from . import _updatelib
@@ -38,24 +37,20 @@ def _are_logical_voice(components, prototype=None):
     return True
 
 
-def _get_annotation(component, annotation, default=None, *, wrapper: bool = False):
-    assert isinstance(annotation, str | enum.Enum), repr(annotation)
+def _get_annotation(component, annotation, default=None):
+    assert isinstance(annotation, str), repr(annotation)
     for wrapper_ in _get_annotation_wrappers(component):
         if wrapper_.annotation == annotation:
-            if wrapper is False:
-                return wrapper_.get_item()
-            else:
-                assert wrapper is True
-                return wrapper_
+            return wrapper_.get_item()
     return default
 
 
 def _get_annotation_wrappers(argument):
-    result = []
+    wrappers = []
     for wrapper in getattr(argument, "_wrappers", []):
         if wrapper.annotation:
-            result.append(wrapper)
-    return result
+            wrappers.append(wrapper)
+    return wrappers
 
 
 def _get_duration(argument, *, in_seconds: bool = False, preprolated: bool = False):

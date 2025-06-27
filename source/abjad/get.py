@@ -115,8 +115,6 @@ def annotation(
     component: _score.Component,
     key: str,
     default: typing.Any = None,
-    *,
-    wrapper: bool = False,
 ) -> typing.Any:
     r"""
     Gets annotation attached to ``component`` with ``key``.
@@ -152,8 +150,7 @@ def annotation(
     """
     assert isinstance(component, _score.Component), repr(component)
     assert isinstance(key, str), repr(key)
-    assert isinstance(wrapper, bool), repr(wrapper)
-    return _getlib._get_annotation(component, key, default, wrapper=wrapper)
+    return _getlib._get_annotation(component, key, default)
 
 
 def annotation_wrappers(argument):
