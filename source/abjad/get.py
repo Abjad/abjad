@@ -153,37 +153,6 @@ def annotation(
     return _getlib._get_annotation(component, key, default)
 
 
-def annotation_wrappers(argument):
-    r"""
-    Gets annotation wrappers.
-
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.annotate(staff[0], 'default_instrument', abjad.Cello())
-        >>> abjad.annotate(staff[0], 'default_clef', abjad.Clef('tenor'))
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-
-        >>> for wrapper in abjad.get.annotation_wrappers(staff[0]): wrapper
-        Wrapper(annotation='default_instrument', context=None, deactivate=False, direction=None, indicator=Cello(clefs=('bass', 'tenor', 'treble'), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[C2, G5]'), tuning=Tuning(pitches=(NamedPitch('c,'), NamedPitch('g,'), NamedPitch('d'), NamedPitch('a')))), synthetic_offset=None, tag=Tag(string=''))
-        Wrapper(annotation='default_clef', context=None, deactivate=False, direction=None, indicator=Clef(name='tenor', hide=False), synthetic_offset=None, tag=Tag(string=''))
-
-    """
-    return _getlib._get_annotation_wrappers(argument)
-
-
 def before_grace_container(argument):
     r"""
     Gets before-grace container attached to leaf.
