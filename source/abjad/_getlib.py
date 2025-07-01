@@ -1,6 +1,5 @@
 import bisect
 import collections
-import typing
 
 from . import _updatelib
 from . import duration as _duration
@@ -82,7 +81,7 @@ def _get_duration_in_seconds(component):
                 duration += _get_duration_in_seconds(component_)
             return duration
     else:
-        mark = _get_effective(component, _indicators.MetronomeMark)
+        mark = _get_effective_indicator(component, _indicators.MetronomeMark)
         if mark is not None and not mark.is_imprecise:
             result = (
                 component._get_duration()
@@ -94,9 +93,7 @@ def _get_duration_in_seconds(component):
         raise _exceptions.MissingMetronomeMarkError
 
 
-def _get_effective(
-    component, prototype, *, attributes=None, command=None, n=0, wrapper=False
-):
+def _get_effective_wrapper(component, prototype, *, attributes=None, command=None, n=0):
     _updatelib._update_now(component, indicators=True)
     candidate_wrappers = {}
     parentage = component._get_parentage()
@@ -166,11 +163,17 @@ def _get_effective(
     elif len(candidate_wrappers) <= index:
         return
     wrapper_ = candidate_wrappers[all_offsets[index]][0]
-    if wrapper is False:
-        return wrapper_.unbundle_indicator()
-    else:
-        assert wrapper is True
     return wrapper_
+
+
+def _get_effective_indicator(
+    component, prototype, *, attributes=None, command=None, n=0
+):
+    wrapper = _get_effective_wrapper(
+        component, prototype, attributes=attributes, command=command, n=n
+    )
+    if wrapper is not None:
+        return wrapper.unbundle_indicator()
 
 
 def _get_grace_container(component):
@@ -186,27 +189,6 @@ def _get_grace_container(component):
         if component_.__class__.__name__ == "OnBeatGraceContainer":
             return True
     return False
-
-
-def _get_indicator(
-    component: _score.Component,
-    prototype: type | tuple[type, ...] | None = None,
-    *,
-    default: typing.Any = None,
-    wrapper: bool = False,
-) -> typing.Any:
-    assert isinstance(component, _score.Component), repr(component)
-    indicators = component._get_indicators(prototype=prototype, wrapper=wrapper)
-    if not indicators:
-        return default
-    elif len(indicators) == 1:
-        return list(indicators)[0]
-    else:
-        name = getattr(prototype, "__name__", "")
-        strings = "\n".join(["    " + str(_) for _ in indicators])
-        string = f"{len(indicators)} {name} indicators attached to {component}:"
-        string += f"\n{strings}"
-        raise Exception(string)
 
 
 def _get_leaf_from_leaf(leaf, n):
@@ -288,7 +270,7 @@ def _get_sounding_pitch(note):
     if "sounding pitch" in note._get_indicators(str):
         return note.written_pitch
     else:
-        instrument = _get_effective(note, _instruments.Instrument)
+        instrument = _get_effective_indicator(note, _instruments.Instrument)
         if instrument:
             sounding_pitch = instrument.middle_c_sounding_pitch
         else:
@@ -302,7 +284,7 @@ def _get_sounding_pitches(chord):
     if "sounding pitch" in chord._get_indicators(str):
         return chord.written_pitches
     else:
-        instrument = _get_effective(chord, _instruments.Instrument)
+        instrument = _get_effective_indicator(chord, _instruments.Instrument)
         if instrument:
             sounding_pitch = instrument.middle_c_sounding_pitch
         else:

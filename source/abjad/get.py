@@ -3,10 +3,10 @@ Score getter functions.
 """
 
 import collections
-import enum
 import typing
 
 from . import _getlib, _iterlib, _updatelib
+from . import bind as _bind
 from . import duration as _duration
 from . import indicators as _indicators
 from . import iterate as _iterate
@@ -848,14 +848,14 @@ def duration(
     )
 
 
+# TODO: change abjad.get.effective() to abjad.get.effective_indicator()
 def effective(
-    argument,
-    prototype: type | tuple[type, ...],
+    component: _score.Component,
+    prototype: typing.Any,
     *,
     attributes: dict | None = None,
     default: typing.Any = None,
     n: int = 0,
-    wrapper: bool = False,
 ) -> typing.Any:
     r"""
     Gets effective indicator.
@@ -1392,19 +1392,18 @@ def effective(
         (Note("f'2"), BarLine(abbreviation='||', site='after'))
 
     """
-    if not isinstance(argument, _score.Component):
-        raise Exception("can only get effective on components.")
+    assert isinstance(component, _score.Component), repr(component)
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    result = _getlib._get_effective(
-        argument, prototype, attributes=attributes, n=n, wrapper=wrapper
+    result = _getlib._get_effective_indicator(
+        component, prototype, attributes=attributes, n=n
     )
     if result is None:
-        result = default
+        return default
     return result
 
 
-def effective_staff(argument) -> typing.Optional["_score.Staff"]:
+def effective_staff(component: _score.Component) -> typing.Optional["_score.Staff"]:
     r"""
     Gets effective staff.
 
@@ -1512,28 +1511,28 @@ def effective_staff(argument) -> typing.Optional["_score.Staff"]:
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
 
     """
-    if not isinstance(argument, _score.Component):
+    if not isinstance(component, _score.Component):
         raise Exception("can only get effective staff on components.")
-    staff_change = _getlib._get_effective(argument, _indicators.StaffChange)
+    staff_change = _getlib._get_effective_indicator(component, _indicators.StaffChange)
     if staff_change is not None:
-        for component in argument._get_parentage():
-            root = component
+        for component_ in component._get_parentage():
+            root = component_
         effective_staff = root[staff_change.staff_name]
         return effective_staff
-    for component in argument._get_parentage():
-        if isinstance(component, _score.Staff):
-            effective_staff = component
+    for component_ in component._get_parentage():
+        if isinstance(component_, _score.Staff):
+            effective_staff = component_
             break
     return effective_staff
 
 
 def effective_wrapper(
-    argument,
-    prototype: type | tuple[type, ...],
+    component,
+    prototype: typing.Any,
     *,
     attributes: dict | None = None,
     n: int = 0,
-):
+) -> _bind.Wrapper:
     r"""
     Gets effective wrapper.
 
@@ -1645,12 +1644,15 @@ def effective_wrapper(
     """
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    return effective(argument, prototype, attributes=attributes, n=n, wrapper=True)
+    wrapper = _getlib._get_effective_wrapper(
+        component, prototype, attributes=attributes, n=n
+    )
+    return wrapper
 
 
 def has_effective_indicator(
     argument,
-    prototype: type | tuple[type, ...] | None = None,
+    prototype: typing.Any = None,
     *,
     attributes: dict | None = None,
 ) -> bool:
@@ -1842,13 +1844,15 @@ def has_effective_indicator(
         raise Exception("can only get effective indicator on component.")
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    indicator = _getlib._get_effective(argument, prototype, attributes=attributes)
+    indicator = _getlib._get_effective_indicator(
+        argument, prototype, attributes=attributes
+    )
     return indicator is not None
 
 
 def has_indicator(
     argument,
-    prototype: str | enum.Enum | type | tuple[type, ...] | None = None,
+    prototype: typing.Any = None,
     *,
     attributes: dict | None = None,
 ) -> bool:
@@ -2089,14 +2093,14 @@ def has_indicator(
 
 
 def indicator(
-    argument,
-    prototype: type | tuple[type, ...] | None = None,
+    component: _score.Component,
+    prototype: typing.Any = None,
     *,
+    attributes: dict | None = None,
     default: typing.Any = None,
-    wrapper: bool = False,
 ) -> typing.Any:
     r"""
-    Gets indicator.
+    Gets indicator that attaches to ``component`` and matches ``prototype``.
 
     ..  container:: example
 
@@ -2231,23 +2235,35 @@ def indicator(
         Note("f'16")                   None
         Note("ds'4")                   None
 
-    Raises exception when more than one indicator of ``prototype`` attach to
-    ``argument``.
+    Raises exception when more than one indicator attaches to ``component`` and
+    matches ``prototype``.
 
-    Returns default when no indicator of ``prototype`` attaches to ``argument``.
+    Returns ``default`` when no indicator attaches to ``component`` and matches
+    ``prototype``.
     """
-    return _getlib._get_indicator(argument, prototype, default=default, wrapper=wrapper)
+    assert isinstance(component, _score.Component), repr(component)
+    wrappers = component._get_wrappers(prototype, attributes=attributes)
+    if len(wrappers) == 0:
+        return default
+    if len(wrappers) == 1:
+        wrapper = wrappers[0]
+        indicator = wrapper.unbundle_indicator()
+        return indicator
+    name = getattr(prototype, "__name__", "")
+    strings = "\n".join(["    " + str(_) for _ in wrappers])
+    string = f"{len(wrappers)} {name} indicators attached to {component}:"
+    string += f"\n{strings}"
+    raise Exception(string)
 
 
 def indicators(
-    argument: _score.Component,
-    prototype: type | tuple[type, ...] | None = None,
+    component: _score.Component,
+    prototype: typing.Any = None,
     *,
     attributes: dict | None = None,
-    wrapper: bool = False,
 ) -> list:
     r"""
-    Get indicators.
+    Gets indicators that attach to ``component`` and match ``prototype``.
 
     ..  container:: example
 
@@ -2422,16 +2438,11 @@ def indicators(
         Note("ds'4")                   [Articulation(name='.')]
 
     """
-    if not isinstance(argument, _score.Component):
-        message = "can only get indicators on component"
-        message += f" (not {argument!r})."
-        raise Exception(message)
+    assert isinstance(component, _score.Component), repr(component)
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    result = argument._get_indicators(
-        prototype=prototype, attributes=attributes, wrapper=wrapper
-    )
-    return list(result)
+    indicators = component._get_indicators(prototype, attributes=attributes)
+    return indicators
 
 
 def is_bar_line_crossing(argument) -> bool:
@@ -2469,7 +2480,9 @@ def is_bar_line_crossing(argument) -> bool:
     """
     if not isinstance(argument, _score.Component):
         raise Exception("can only get indicator on component.")
-    time_signature = _getlib._get_effective(argument, _indicators.TimeSignature)
+    time_signature = _getlib._get_effective_indicator(
+        argument, _indicators.TimeSignature
+    )
     if time_signature is None:
         time_signature_duration = _duration.Duration(4, 4)
     else:
@@ -4313,10 +4326,11 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
 
 
 def wrapper(
-    argument,
-    prototype: type | tuple[type, ...] | None = None,
+    component: _score.Component,
+    prototype: typing.Any = None,
     *,
     attributes: dict | None = None,
+    default: dict | None = None,
 ):
     r"""
     Gets wrapper.
@@ -4438,22 +4452,34 @@ def wrapper(
         Note("fs'16"):
             Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
 
-    Raises exception when more than one indicator of ``prototype`` attach to
-    ``argument``.
+    Raises exception when more than one indicator attaches to ``component`` and
+    matches ``prototype``.
     """
+    assert isinstance(component, _score.Component), repr(component)
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    return indicator(argument, prototype=prototype, wrapper=True)
+    wrappers = component._get_wrappers(prototype, attributes=attributes)
+    if len(wrappers) == 0:
+        return default
+    if len(wrappers) == 1:
+        wrapper = wrappers[0]
+        return wrapper
+    name = getattr(prototype, "__name__", "")
+    strings = "\n".join(["    " + str(_) for _ in wrappers])
+    string = f"{len(wrappers)} {name} indicators attached to {component}:"
+    string += f"\n{strings}"
+    raise Exception(string)
 
 
 def wrappers(
-    argument,
-    prototype: type | tuple[type, ...] | None = None,
+    component: _score.Component,
+    prototype: typing.Any = None,
     *,
     attributes: dict | None = None,
+    debug: bool = False,
 ):
     r"""
-    Gets wrappers.
+    Gets wrappers that attach to ``component`` and match ``prototype``.
 
     ..  container:: example
 
@@ -4573,9 +4599,11 @@ def wrappers(
             [Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))]
 
     """
+    assert isinstance(component, _score.Component), repr(component)
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    return indicators(argument, prototype=prototype, wrapper=True)
+    wrappers = component._get_wrappers(prototype, attributes=attributes, debug=debug)
+    return wrappers
 
 
 class Lineage(collections.abc.Sequence):

@@ -51,7 +51,7 @@ def _get_grob_revert_contributions(component, contributions):
 def _get_indicator_contributions(component, contributions):
     wrappers = []
     for parent in component._get_parentage():
-        wrappers_ = parent._get_indicators(wrapper=True)
+        wrappers_ = parent._get_wrappers()
         wrappers.extend(wrappers_)
     up_markup_wrappers = []
     down_markup_wrappers = []

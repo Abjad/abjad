@@ -42,7 +42,7 @@ def _before_attach(indicator, context, deactivate, component):
         return
     if deactivate is True:
         return
-    for wrapper in component._get_indicators(wrapper=True):
+    for wrapper in component._get_wrappers():
         if not isinstance(wrapper.unbundle_indicator(), type(indicator)):
             continue
         if getattr(indicator, "leak", None) != getattr(
@@ -481,11 +481,10 @@ class Wrapper:
             indicator = self.indicator
         prototype = type(indicator)
         command = getattr(indicator, "command", None)
-        wrapper = _getlib._get_effective(
+        wrapper = _getlib._get_effective_wrapper(
             component,
             prototype,
             attributes={"command": command},
-            wrapper=True,
         )
         wrapper_site = None
         if wrapper is not None:
@@ -749,7 +748,6 @@ def _unsafe_attach(
     do_not_test: bool = False,
     synthetic_offset: _duration.Offset | None = None,
     tag: _tag.Tag | None = None,
-    wrapper: bool = False,
 ) -> Wrapper | None:
     if isinstance(attachable, _tweaks.Bundle):
         nonbundle_attachable = attachable.indicator
@@ -825,7 +823,7 @@ def _unsafe_attach(
     if tag is None:
         tag = _tag.Tag()
 
-    wrapper_ = Wrapper(
+    wrapper = Wrapper(
         annotation=annotation,
         check_duplicate_indicator=check_duplicate_indicator,
         component=component,
@@ -836,11 +834,7 @@ def _unsafe_attach(
         synthetic_offset=synthetic_offset,
         tag=tag,
     )
-
-    if wrapper is True:
-        return wrapper_
-    else:
-        return None
+    return wrapper
 
 
 def annotate(component: _score.Component, key: str, value: object) -> None:
@@ -1120,8 +1114,10 @@ def attach(
     assert nonbundle_attachable is not None, repr(nonbundle_attachable)
     assert isinstance(target, _score.Component), repr(target)
     assert isinstance(wrapper, bool), repr(wrapper)
+    # if wrapper is True:
+    #     raise Exception("AAA use abjad.get.wrapper() instead")
     _before_attach(nonbundle_attachable, context, deactivate, target)
-    result = _unsafe_attach(
+    wrapper_ = _unsafe_attach(
         attachable,
         target,
         check_duplicate_indicator=check_duplicate_indicator,
@@ -1131,9 +1127,12 @@ def attach(
         do_not_test=do_not_test,
         synthetic_offset=synthetic_offset,
         tag=tag,
-        wrapper=wrapper,
     )
-    return result
+    if wrapper is True:
+        return wrapper_
+    else:
+        assert wrapper is False
+        return None
 
 
 def detach(argument, target=None, by_id=False):

@@ -46,7 +46,7 @@ def iterate_out_of_range(argument) -> typing.Iterator[_score.Leaf]:
 
     """
     for leaf in _iterate.leaves(argument, pitched=True):
-        instrument = _getlib._get_effective(leaf, _instruments.Instrument)
+        instrument = _getlib._get_effective_indicator(leaf, _instruments.Instrument)
         if instrument is None:
             raise ValueError("no instrument found.")
         if not sounding_pitches_are_in_range(leaf, instrument.pitch_range):
@@ -226,7 +226,7 @@ def transpose_from_sounding_pitch(argument) -> None:
 
     """
     for leaf in _iterate.leaves(argument, pitched=True):
-        instrument = _getlib._get_effective(leaf, _instruments.Instrument)
+        instrument = _getlib._get_effective_indicator(leaf, _instruments.Instrument)
         if not instrument:
             continue
         sounding_pitch = instrument.middle_c_sounding_pitch
@@ -240,7 +240,7 @@ def transpose_from_sounding_pitch(argument) -> None:
             pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
             for note_head, pitch in zip(leaf.note_heads, pitches, strict=True):
                 note_head.written_pitch = pitch
-        wrapper = _get.indicator(leaf, _indicators.StartTrillSpan, wrapper=True)
+        wrapper = _get.wrapper(leaf, _indicators.StartTrillSpan)
         if wrapper is not None:
             start_trill_span = wrapper.unbundle_indicator()
             new_pitch = interval.transpose(start_trill_span.pitch)
@@ -298,7 +298,7 @@ def transpose_from_written_pitch(argument) -> None:
 
     """
     for leaf in _iterate.leaves(argument, pitched=True):
-        instrument = _getlib._get_effective(leaf, _instruments.Instrument)
+        instrument = _getlib._get_effective_indicator(leaf, _instruments.Instrument)
         if not instrument:
             continue
         sounding_pitch = instrument.middle_c_sounding_pitch
@@ -311,7 +311,7 @@ def transpose_from_written_pitch(argument) -> None:
             pitches = [interval.transpose(pitch) for pitch in leaf.written_pitches]
             for note_head, pitch in zip(leaf.note_heads, pitches, strict=True):
                 note_head.written_pitch = pitch
-        wrapper = _get.indicator(leaf, _indicators.StartTrillSpan, wrapper=True)
+        wrapper = _get.wrapper(leaf, _indicators.StartTrillSpan)
         if wrapper is not None:
             start_trill_span = wrapper.unbundle_indicator()
             new_pitch = interval.transpose(start_trill_span.pitch)
