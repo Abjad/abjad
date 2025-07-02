@@ -810,8 +810,6 @@ class Container(Component):
         "after",
     )
 
-    __documentation_section__ = "Containers"
-
     __slots__ = (
         "_identifier",
         "_components",
@@ -1940,8 +1938,6 @@ class AfterGraceContainer(Container):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = "Containers"
-
     __slots__ = ("_fraction", "_main_leaf")
 
     ### INITIALIZER ###
@@ -2175,8 +2171,6 @@ class BeforeGraceContainer(Container):
     """
 
     ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Containers"
 
     __slots__ = ("_command", "_main_leaf")
 
@@ -2544,8 +2538,6 @@ class Chord(Leaf):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = "Leaves"
-
     __slots__ = ("_note_heads",)
 
     ### INITIALIZER ###
@@ -2870,8 +2862,6 @@ class Cluster(Container):
 
     """
 
-    __documentation_section__ = "Containers"
-
     __slots__ = ()
 
     def _format_open_brackets_site(self, contributions):
@@ -2906,8 +2896,6 @@ class Context(Container):
     """
 
     ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Contexts"
 
     __slots__ = (
         "_lilypond_type",
@@ -3274,8 +3262,6 @@ class IndependentAfterGraceContainer(Container):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = "Containers"
-
     __slots__ = ("_fraction",)
 
     ### INITIALIZER ###
@@ -3343,8 +3329,6 @@ class MultimeasureRest(Leaf):
     """
 
     ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Leaves"
 
     __slots__ = ()
 
@@ -3453,8 +3437,6 @@ class NoteHead:
             >4
 
     """
-
-    __documentation_section__ = "Note-heads"
 
     __slots__ = (
         "_alternative",
@@ -3887,8 +3869,6 @@ class DrumNoteHead(NoteHead):
 
     """
 
-    __documentation_section__ = "Note-heads"
-
     __slots__ = ()
 
     def __init__(
@@ -3925,8 +3905,6 @@ class NoteHeadList(list):
         NoteHead("b'")
 
     """
-
-    __documentation_section__ = "Note-heads"
 
     def __init__(self, argument=()):
         note_heads = [NoteHead(_) for _ in argument]
@@ -4146,8 +4124,6 @@ class Note(Leaf):
     """
 
     ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Leaves"
 
     __slots__ = ("_note_head",)
 
@@ -4431,8 +4407,6 @@ class Rest(Leaf):
 
     """
 
-    __documentation_section__ = "Leaves"
-
     __slots__ = ()
 
     def __init__(
@@ -4504,8 +4478,6 @@ class Score(Context):
     """
 
     ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Contexts"
 
     __slots__ = ()
 
@@ -4618,8 +4590,6 @@ class Skip(Leaf):
             s4 * 5/4
 
     """
-
-    __documentation_section__ = "Leaves"
 
     __slots__ = ("_measure_initial_grace_note",)
 
@@ -4743,8 +4713,6 @@ class Staff(Context):
 
     """
 
-    __documentation_section__ = "Contexts"
-
     __slots__ = ()
 
     _default_lilypond_type = "Staff"
@@ -4804,8 +4772,6 @@ class StaffGroup(Context):
             >>
 
     """
-
-    __documentation_section__ = "Contexts"
 
     __slots__ = ()
 
@@ -4876,8 +4842,6 @@ class TremoloContainer(Container):
         Duration(1, 8)
 
     """
-
-    __documentation_section__ = "Containers"
 
     __slots__ = ("_count",)
 
@@ -5011,8 +4975,6 @@ class Tuplet(Container):
     """
 
     ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Containers"
 
     __slots__ = (
         "_ratio",
@@ -6405,8 +6367,6 @@ class Voice(Context):
     """
 
     ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Contexts"
 
     __slots__ = ()
 

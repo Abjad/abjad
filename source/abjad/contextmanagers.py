@@ -41,8 +41,6 @@ class FilesystemState(ContextManager):
     Filesystem state context manager.
     """
 
-    __documentation_section__ = "Context managers"
-
     __slots__ = ("_keep", "_remove")
 
     def __init__(self, keep=None, remove=None):
@@ -165,8 +163,6 @@ class ForbidUpdate(ContextManager):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = "Context managers"
-
     __slots__ = ("_component", "_update_on_exit")
 
     ### INITIALIZER ###
@@ -252,8 +248,6 @@ class NullContextManager(ContextManager):
     Null context manager.
     """
 
-    __documentation_section__ = "Context managers"
-
     __slots__ = ()
 
     def __init__(self):
@@ -278,8 +272,6 @@ class ProgressIndicator(ContextManager):
     """
 
     ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Context managers"
 
     __slots__ = (
         "_do_not_print",
@@ -432,8 +424,6 @@ class RedirectedStreams(ContextManager):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = "Context managers"
-
     __slots__ = ("_stdout", "_stderr", "_old_stderr", "_old_stdout")
 
     ### INITIALIZER ###
@@ -501,8 +491,6 @@ class TemporaryDirectory(ContextManager):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = "Context managers"
-
     __slots__ = ("_parent_directory", "_temporary_directory")
 
     ### INITIALIZER ###
@@ -553,8 +541,6 @@ class TemporaryDirectoryChange(ContextManager):
     """
 
     ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Context managers"
 
     __slots__ = ("_directory", "_original_directory", "_verbose")
 
@@ -663,8 +649,6 @@ class Timer(ContextManager):
     """
 
     ### CLASS VARIABLES ###
-
-    __documentation_section__ = "Context managers"
 
     __slots__ = (
         "_enter_message",
