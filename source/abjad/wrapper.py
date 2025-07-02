@@ -73,8 +73,6 @@ class Wrapper:
 
     """
 
-    __documentation_section__ = "Internals"
-
     __slots__ = (
         "_annotation",
         "_component",

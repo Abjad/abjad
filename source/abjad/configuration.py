@@ -45,8 +45,6 @@ class Configuration:
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = "System configuration"
-
     __slots__ = ("_cached_configuration_directory", "_settings")
 
     _configuration_directory_name = ".abjad"

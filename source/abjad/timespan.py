@@ -240,8 +240,6 @@ class Timespan:
     stop_offset: typing.Any = None
     annotation: typing.Any = None
 
-    __documentation_section__ = "Timespans"
-
     def __post_init__(self):
         if isinstance(self.start_offset, type(self)):
             raise Exception("can not initialize from timespan.")
@@ -1406,8 +1404,6 @@ class TimespanList(list):
 
     Operations on timespan currently work in place.
     """
-
-    __documentation_section__ = "Timespans"
 
     def __init__(self, argument=()):
         timespans = [self._coerce_item(_) for _ in argument]
