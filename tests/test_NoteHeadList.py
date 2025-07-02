@@ -96,7 +96,7 @@ def test_NoteHeadList___setitem___03():
         """
     )
 
-    assert abjad.wf.wellformed(chord)
+    assert abjad.wf.is_wellformed(chord)
 
 
 def test_NoteHeadList_append_01():

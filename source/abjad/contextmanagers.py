@@ -144,7 +144,7 @@ class ForbidUpdate(ContextManager):
         ...         abjad.mutate.replace(note, chord)
         ...
 
-        >>> abjad.wf.wellformed(staff)
+        >>> abjad.wf.is_wellformed(staff)
         True
 
         >>> abjad.show(staff) # doctest: +SKIP

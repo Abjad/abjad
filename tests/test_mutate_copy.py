@@ -69,8 +69,8 @@ def test_mutate_copy_01():
         """,
         print(abjad.lilypond(new)),
     )
-    assert abjad.wf.wellformed(score)
-    assert abjad.wf.wellformed(new)
+    assert abjad.wf.is_wellformed(score)
+    assert abjad.wf.is_wellformed(new)
 
 
 def test_mutate_copy_02():
@@ -142,8 +142,8 @@ def test_mutate_copy_02():
         """
     ), print(abjad.lilypond(new))
 
-    assert abjad.wf.wellformed(voice)
-    assert abjad.wf.wellformed(new)
+    assert abjad.wf.is_wellformed(voice)
+    assert abjad.wf.is_wellformed(new)
 
 
 def test_mutate_copy_03():
@@ -305,7 +305,7 @@ def test_mutate_copy_04():
         """
     ), print(abjad.lilypond(new_voice))
 
-    assert abjad.wf.wellformed(new_voice)
+    assert abjad.wf.is_wellformed(new_voice)
 
 
 def test_mutate_copy_05():
@@ -389,7 +389,7 @@ def test_mutate_copy_05():
         """
     ), print(abjad.lilypond(new_voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate_copy_06():
@@ -598,7 +598,7 @@ def test_mutate_copy_08():
         }
         """
     )
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate_copy_09():
@@ -624,4 +624,4 @@ def test_mutate_copy_09():
         }
         """
     ), print(string)
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)

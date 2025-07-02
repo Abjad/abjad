@@ -26,7 +26,7 @@ def test_MultimeasureRest___init___01():
         """
     )
 
-    assert abjad.wf.wellformed(multimeasure_rest)
+    assert abjad.wf.is_wellformed(multimeasure_rest)
 
 
 def test_MultimeasureRest___init___02():
@@ -50,7 +50,7 @@ def test_MultimeasureRest___init___02():
         """
     )
 
-    assert abjad.wf.wellformed(score)
+    assert abjad.wf.is_wellformed(score)
 
 
 def test_MultimeasureRest___init___03():

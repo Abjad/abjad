@@ -123,7 +123,7 @@ def test_Rest___init___04():
         """
     )
 
-    assert abjad.wf.wellformed(rest)
+    assert abjad.wf.is_wellformed(rest)
 
 
 def test_Rest___init___05():
@@ -144,7 +144,7 @@ def test_Rest___init___05():
         """
     )
 
-    assert abjad.wf.wellformed(rest)
+    assert abjad.wf.is_wellformed(rest)
 
 
 def test_Rest___init___06():
@@ -161,7 +161,7 @@ def test_Rest___init___06():
         """
     )
 
-    assert abjad.wf.wellformed(rest)
+    assert abjad.wf.is_wellformed(rest)
 
 
 def test_Rest___init___07():
@@ -178,7 +178,7 @@ def test_Rest___init___07():
         """
     )
 
-    assert abjad.wf.wellformed(rest)
+    assert abjad.wf.is_wellformed(rest)
 
 
 def test_Rest___init___08():
@@ -195,7 +195,7 @@ def test_Rest___init___08():
         """
     )
 
-    assert abjad.wf.wellformed(rest)
+    assert abjad.wf.is_wellformed(rest)
 
 
 def test_Rest___init___09():
@@ -212,7 +212,7 @@ def test_Rest___init___09():
         """
     )
 
-    assert abjad.wf.wellformed(rest)
+    assert abjad.wf.is_wellformed(rest)
 
 
 def test_Rest___init___10():
@@ -229,7 +229,7 @@ def test_Rest___init___10():
         """
     )
 
-    assert abjad.wf.wellformed(rest)
+    assert abjad.wf.is_wellformed(rest)
 
 
 def test_Rest___init___11():
@@ -247,7 +247,7 @@ def test_Rest___init___11():
         """
     )
 
-    assert abjad.wf.wellformed(rest)
+    assert abjad.wf.is_wellformed(rest)
 
 
 def test_Rest___init___12():
@@ -274,7 +274,7 @@ def test_Rest___init___12():
         """
     )
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Rest___init___13():
@@ -290,4 +290,4 @@ def test_Rest___init___13():
         """
     )
 
-    assert abjad.wf.wellformed(rest)
+    assert abjad.wf.is_wellformed(rest)

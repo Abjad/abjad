@@ -266,7 +266,7 @@ def test_Note___init___08():
         """
     )
 
-    assert abjad.wf.wellformed(note)
+    assert abjad.wf.is_wellformed(note)
 
 
 def test_Note___init___09():
@@ -285,7 +285,7 @@ def test_Note___init___09():
         """
     )
 
-    assert abjad.wf.wellformed(note)
+    assert abjad.wf.is_wellformed(note)
 
 
 def test_Note___init___10():
@@ -306,7 +306,7 @@ def test_Note___init___10():
         """
     ), print(abjad.lilypond(note))
 
-    assert abjad.wf.wellformed(note)
+    assert abjad.wf.is_wellformed(note)
 
 
 def test_Note___init___11():
@@ -323,7 +323,7 @@ def test_Note___init___11():
         """
     )
 
-    assert abjad.wf.wellformed(note)
+    assert abjad.wf.is_wellformed(note)
 
 
 def test_Note___init___12():

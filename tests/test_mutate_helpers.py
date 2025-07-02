@@ -254,7 +254,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_01():
     ), print(abjad.lilypond(staff))
 
     assert len(result) == 2
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_mutate__fuse_leaves_by_immediate_parent_02():
@@ -292,7 +292,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_02():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert len(result) == 1
 
 
@@ -305,7 +305,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_03():
     logical_tie = abjad.get.logical_tie(note)
     result = abjad.mutate._fuse_leaves_by_immediate_parent(logical_tie)
     assert len(result) == 1
-    assert abjad.wf.wellformed(note)
+    assert abjad.wf.is_wellformed(note)
 
 
 def test_mutate__fuse_leaves_by_immediate_parent_04():
@@ -333,7 +333,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_04():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
     assert len(result) == 1
 
 
@@ -366,7 +366,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_05():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
     assert len(result) == 1
 
 
@@ -395,7 +395,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_06():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
     assert len(result) == 1
 
 
@@ -431,7 +431,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_07():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert len(result) == 1
 
 
@@ -477,7 +477,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_08():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert len(result) == 1
 
 
@@ -534,7 +534,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_09():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert len(result) == 1
 
 
@@ -584,7 +584,7 @@ def test_mutate__fuse_leaves_by_immediate_parent_10():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert len(result) == 1
 
 

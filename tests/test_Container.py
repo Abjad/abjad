@@ -93,7 +93,7 @@ def test_Container___delitem___01():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
     # container leaves are still slurred
     assert abjad.lilypond(container) == abjad.string.normalize(
@@ -107,7 +107,7 @@ def test_Container___delitem___01():
         """
     ), print(abjad.lilypond(container))
 
-    assert abjad.wf.wellformed(container)
+    assert abjad.wf.is_wellformed(container)
 
 
 def test_Container___delitem___02():
@@ -131,7 +131,7 @@ def test_Container___delitem___02():
         """
     )
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___delitem___03():
@@ -154,7 +154,7 @@ def test_Container___delitem___03():
         """
     )
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___delitem___04():
@@ -176,7 +176,7 @@ def test_Container___delitem___04():
         """
     )
 
-    assert abjad.wf.wellformed(voice, do_not_check_overlapping_beams=True)
+    assert abjad.wf.is_wellformed(voice, do_not_check_overlapping_beams=True)
 
 
 def test_Container___delitem___05():
@@ -198,7 +198,7 @@ def test_Container___delitem___05():
         """
     )
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___delitem___06():
@@ -242,7 +242,7 @@ def test_Container___delitem___07():
         """
     )
 
-    assert abjad.wf.wellformed(tuplet)
+    assert abjad.wf.is_wellformed(tuplet)
 
 
 def test_Container___delitem___08():
@@ -295,8 +295,8 @@ def test_Container___delitem___08():
         """
     ), print(string)
 
-    assert abjad.wf.wellformed(voice)
-    assert abjad.wf.wellformed(leaf)
+    assert abjad.wf.is_wellformed(voice)
+    assert abjad.wf.is_wellformed(leaf)
 
 
 def test_Container___delitem___09():
@@ -334,7 +334,7 @@ def test_Container___delitem___09():
 
     assert len(voice._dependent_wrappers) == 0
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___getitem___01():
@@ -518,7 +518,7 @@ def test_Container___setitem___01():
         """
     )
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___setitem___02():
@@ -561,7 +561,7 @@ def test_Container___setitem___02():
         """
     )
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___setitem___03():
@@ -605,7 +605,7 @@ def test_Container___setitem___03():
         """
     )
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___setitem___04():
@@ -656,7 +656,7 @@ def test_Container___setitem___04():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___setitem___05():
@@ -700,7 +700,7 @@ def test_Container___setitem___05():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___setitem___06():
@@ -750,7 +750,7 @@ def test_Container___setitem___06():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___setitem___07():
@@ -814,7 +814,7 @@ def test_Container___setitem___07():
         """
     ), print(abjad.lilypond(voice_1))
 
-    assert abjad.wf.wellformed(voice_1)
+    assert abjad.wf.is_wellformed(voice_1)
 
     assert abjad.lilypond(voice_2) == abjad.string.normalize(
         r"""
@@ -828,7 +828,7 @@ def test_Container___setitem___07():
         """
     ), print(abjad.lilypond(voice_2))
 
-    assert abjad.wf.wellformed(voice_2)
+    assert abjad.wf.is_wellformed(voice_2)
 
 
 def test_Container___setitem___08():
@@ -903,7 +903,7 @@ def test_Container___setitem___08():
         """
     ), print(abjad.lilypond(voice_1))
 
-    assert abjad.wf.wellformed(voice_1)
+    assert abjad.wf.is_wellformed(voice_1)
 
     assert abjad.lilypond(voice_2) == abjad.string.normalize(
         r"""
@@ -915,7 +915,7 @@ def test_Container___setitem___08():
         """
     ), print(abjad.lilypond(voice_2))
 
-    assert abjad.wf.wellformed(voice_2)
+    assert abjad.wf.is_wellformed(voice_2)
 
 
 def test_Container___setitem___09():
@@ -939,7 +939,7 @@ def test_Container___setitem___09():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_Container___setitem___10():
@@ -967,7 +967,7 @@ def test_Container___setitem___10():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___setitem___11():
@@ -1023,7 +1023,7 @@ def test_Container___setitem___11():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___setitem___12():
@@ -1049,7 +1049,7 @@ def test_Container___setitem___12():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___setitem___13():
@@ -1077,7 +1077,7 @@ def test_Container___setitem___13():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___setitem___14():
@@ -1124,7 +1124,7 @@ def test_Container___setitem___14():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert len(container) == 0
 
 
@@ -1174,7 +1174,7 @@ def test_Container___setitem___15():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_Container___setitem___16():
@@ -1278,7 +1278,7 @@ def test_Container___setitem___17():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_Container___setitem___18():
@@ -1319,7 +1319,7 @@ def test_Container___setitem___18():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___setitem___19():
@@ -1345,7 +1345,7 @@ def test_Container___setitem___19():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container___setitem___20():
@@ -1483,7 +1483,7 @@ def test_Container_append_01():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container_append_02():
@@ -1510,7 +1510,7 @@ def test_Container_append_02():
         """
     ), print(abjad.lilypond(tuplet))
 
-    assert abjad.wf.wellformed(tuplet)
+    assert abjad.wf.is_wellformed(tuplet)
 
 
 def test_Container_append_03():
@@ -1638,7 +1638,7 @@ def test_Container_append_05():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container_append_06():
@@ -1676,7 +1676,7 @@ def test_Container_extend_01():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container_extend_02():
@@ -1707,7 +1707,7 @@ def test_Container_extend_02():
         """
     ), print(abjad.lilypond(voice_1))
 
-    assert abjad.wf.wellformed(voice_1)
+    assert abjad.wf.is_wellformed(voice_1)
 
 
 def test_Container_extend_03():
@@ -1731,7 +1731,7 @@ def test_Container_extend_03():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container_extend_04():
@@ -1755,7 +1755,7 @@ def test_Container_extend_04():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Container_extend_05():
@@ -1908,7 +1908,7 @@ def test_Container_extend_09():
         """
     ), print(abjad.lilypond(container))
 
-    assert abjad.wf.wellformed(container)
+    assert abjad.wf.is_wellformed(container)
 
 
 def test_Container_extend_10():
@@ -1942,7 +1942,7 @@ def test_Container_extend_10():
         """
     ), print(abjad.lilypond(container))
 
-    assert abjad.wf.wellformed(container)
+    assert abjad.wf.is_wellformed(container)
 
 
 def test_Container_index_01():
@@ -1967,7 +1967,7 @@ def test_Container_insert_01():
     abjad.beam(voice[:])
     voice.insert(0, abjad.Rest((1, 8)))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
@@ -1989,7 +1989,7 @@ def test_Container_insert_02():
     abjad.beam(voice[:])
     voice.insert(1, abjad.Note(1, (1, 8)))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
@@ -2011,7 +2011,7 @@ def test_Container_insert_03():
     abjad.beam(voice[:])
     voice.insert(4, abjad.Rest((1, 4)))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
@@ -2037,7 +2037,7 @@ def test_Container_insert_04():
     abjad.beam(voice[:])
     voice.insert(1000, abjad.Rest((1, 4)))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
@@ -2063,7 +2063,7 @@ def test_Container_insert_05():
     abjad.beam(voice[:])
     voice.insert(-1, abjad.Note(4.5, (1, 8)))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
@@ -2089,7 +2089,7 @@ def test_Container_insert_06():
     abjad.beam(voice[:])
     voice.insert(-1000, abjad.Rest((1, 8)))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
@@ -2117,8 +2117,8 @@ def test_Container_insert_07():
     note = voice[0]
     staff.insert(1, voice[0])
 
-    assert abjad.wf.wellformed(voice)
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(voice)
+    assert abjad.wf.is_wellformed(staff)
     assert note not in voice
     assert abjad.get.parentage(note).parent is staff
 
@@ -2128,7 +2128,7 @@ def test_Container_insert_08():
     abjad.beam(voice[:])
     voice.insert(1, abjad.Note("cs'8"))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
@@ -2262,12 +2262,12 @@ def test_Container_pop_01():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
     "Result is now d'8 [ ]"
 
     assert abjad.lilypond(result) == "d'8\n[\n]"
-    assert abjad.wf.wellformed(result, do_not_check_beamed_lone_notes=True)
+    assert abjad.wf.is_wellformed(result, do_not_check_beamed_lone_notes=True)
 
 
 def test_Container_pop_02():
@@ -2312,7 +2312,7 @@ def test_Container_pop_02():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
     assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
@@ -2324,7 +2324,7 @@ def test_Container_pop_02():
         """
     ), print(abjad.lilypond(container))
 
-    assert abjad.wf.wellformed(container)
+    assert abjad.wf.is_wellformed(container)
 
 
 def test_Container_remove_01():
@@ -2374,8 +2374,8 @@ def test_Container_remove_01():
 
     assert abjad.lilypond(note) == "d'8\n[\n]"
 
-    assert abjad.wf.wellformed(voice)
-    assert abjad.wf.wellformed(note, do_not_check_beamed_lone_notes=True)
+    assert abjad.wf.is_wellformed(voice)
+    assert abjad.wf.is_wellformed(note, do_not_check_beamed_lone_notes=True)
 
 
 def test_Container_remove_02():
@@ -2418,7 +2418,7 @@ def test_Container_remove_02():
         """
     )
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
     assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
@@ -2429,7 +2429,7 @@ def test_Container_remove_02():
         """
     )
 
-    assert abjad.wf.wellformed(container)
+    assert abjad.wf.is_wellformed(container)
 
 
 def test_Container_remove_03():

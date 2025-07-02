@@ -705,7 +705,7 @@ def check_unmatched_stop_text_spans(argument) -> tuple[list, int]:
                 \stopTextSpan
             }
 
-        >>> abjad.wf.wellformed(voice)
+        >>> abjad.wf.is_wellformed(voice)
         True
 
     """
@@ -804,7 +804,7 @@ def check_unterminated_hairpins(argument) -> tuple[list, int]:
                 \f
             }
 
-        >>> abjad.wf.wellformed(voice)
+        >>> abjad.wf.is_wellformed(voice)
         True
 
     ..  container:: example
@@ -832,7 +832,7 @@ def check_unterminated_hairpins(argument) -> tuple[list, int]:
                 \!
             }
 
-        >>> abjad.wf.wellformed(voice)
+        >>> abjad.wf.is_wellformed(voice)
         True
 
     """
@@ -907,7 +907,7 @@ def check_unterminated_text_spanners(argument) -> tuple[list, int]:
                 \stopTextSpan
             }
 
-        >>> abjad.wf.wellformed(voice)
+        >>> abjad.wf.is_wellformed(voice)
         True
 
     """
@@ -1034,7 +1034,7 @@ def tabulate_wellformedness(
     do_not_check_unterminated_text_spanners: bool = False,
 ) -> tuple[int, str]:
     """
-    Tabulates wellformedness.
+    Tabulates wellformedness of ``component``.
     """
     triples = _call_functions(
         component,
@@ -1064,7 +1064,7 @@ def tabulate_wellformedness(
     return total_violators, "\n".join(strings)
 
 
-def wellformed(
+def is_wellformed(
     component,
     do_not_check_beamed_lone_notes: bool = False,
     do_not_check_beamed_long_notes: bool = False,

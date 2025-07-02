@@ -160,7 +160,7 @@ def test_Staff___getitem___01():
     )
 
     assert len(staff) == 5
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert isinstance(staff[0], abjad.Note)
     assert isinstance(staff[1], abjad.Rest)
     assert isinstance(staff[2], abjad.Chord)
@@ -185,10 +185,10 @@ def test_Staff___getitem___02():
     )
 
     assert len(staff) == 5
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     components = staff[0:0]
     assert len(components) == 0
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_Staff___getitem___03():
@@ -203,13 +203,13 @@ def test_Staff___getitem___03():
     )
 
     assert len(staff) == 5
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     components = staff[0:1]
     assert len(components) == 1
     assert isinstance(components[0], abjad.Note)
     for x in staff:
         assert abjad.get.parentage(x).parent == staff
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_Staff___getitem___04():
@@ -224,13 +224,13 @@ def test_Staff___getitem___04():
     )
 
     assert len(staff) == 5
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     components = staff[-1:]
     assert len(components) == 1
     assert isinstance(components[0], abjad.Tuplet)
     for x in components:
         assert abjad.get.parentage(x).parent == staff
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_Staff___getitem___05():
@@ -245,7 +245,7 @@ def test_Staff___getitem___05():
     )
 
     assert len(staff) == 5
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     components = staff[1:-1]
     assert len(components) == 3
     assert isinstance(components[0], abjad.Rest)
@@ -253,7 +253,7 @@ def test_Staff___getitem___05():
     assert isinstance(components[2], abjad.Skip)
     for x in components:
         assert abjad.get.parentage(x).parent == staff
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_Staff___getitem___06():
@@ -268,7 +268,7 @@ def test_Staff___getitem___06():
     )
 
     assert len(staff) == 5
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     components = staff[2:]
     assert len(components) == 3
     assert isinstance(components[0], abjad.Chord)
@@ -276,7 +276,7 @@ def test_Staff___getitem___06():
     assert isinstance(components[2], abjad.Tuplet)
     for x in components:
         assert abjad.get.parentage(x).parent == staff
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_Staff___getitem___07():
@@ -291,7 +291,7 @@ def test_Staff___getitem___07():
     )
 
     assert len(staff) == 5
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     components = staff[:-2]
     assert len(components) == 3
     assert isinstance(components[0], abjad.Note)
@@ -299,7 +299,7 @@ def test_Staff___getitem___07():
     assert isinstance(components[2], abjad.Chord)
     for x in components:
         assert abjad.get.parentage(x).parent == staff
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_Staff___getitem___08():
@@ -314,7 +314,7 @@ def test_Staff___getitem___08():
     )
 
     assert len(staff) == 5
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     components = staff[:]
     assert len(components) == 5
     assert isinstance(components[0], abjad.Note)
@@ -365,7 +365,7 @@ def test_Staff___setitem___01():
     )
 
     assert len(staff) == 5
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert isinstance(staff[0], abjad.Note)
     assert isinstance(staff[1], abjad.Rest)
     assert isinstance(staff[2], abjad.Chord)
@@ -373,7 +373,7 @@ def test_Staff___setitem___01():
     assert isinstance(staff[4], abjad.Tuplet)
     staff[1] = abjad.Chord([12, 13, 15], (1, 4))
     assert len(staff) == 5
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert isinstance(staff[0], abjad.Note)
     assert isinstance(staff[1], abjad.Chord)
     assert isinstance(staff[2], abjad.Chord)
@@ -381,7 +381,7 @@ def test_Staff___setitem___01():
     assert isinstance(staff[4], abjad.Tuplet)
     staff[0] = abjad.Rest((1, 4))
     assert len(staff) == 5
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert isinstance(staff[0], abjad.Rest)
     assert isinstance(staff[1], abjad.Chord)
     assert isinstance(staff[2], abjad.Chord)
@@ -389,7 +389,7 @@ def test_Staff___setitem___01():
     assert isinstance(staff[4], abjad.Tuplet)
     staff[-2] = abjad.Tuplet("3:2", "c'8 c'8 c'8")
     assert len(staff) == 5
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert isinstance(staff[0], abjad.Rest)
     assert isinstance(staff[1], abjad.Chord)
     assert isinstance(staff[2], abjad.Chord)
@@ -397,7 +397,7 @@ def test_Staff___setitem___01():
     assert isinstance(staff[4], abjad.Tuplet)
     staff[-1] = abjad.Note(13, (1, 4))
     assert len(staff) == 5
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert isinstance(staff[0], abjad.Rest)
     assert isinstance(staff[1], abjad.Chord)
     assert isinstance(staff[2], abjad.Chord)
@@ -405,7 +405,7 @@ def test_Staff___setitem___01():
     assert isinstance(staff[4], abjad.Note)
     staff[-3] = abjad.Skip((1, 4))
     assert len(staff) == 5
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert isinstance(staff[0], abjad.Rest)
     assert isinstance(staff[1], abjad.Chord)
     assert isinstance(staff[2], abjad.Skip)
@@ -476,7 +476,7 @@ def test_Staff___setitem___07():
         assert x.written_pitch == "d'"
     for x in staff[4:8]:
         assert x.written_pitch == "c'"
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_Staff___setitem___08():
@@ -493,7 +493,7 @@ def test_Staff___setitem___08():
         assert x.written_duration == abjad.Duration(1, 4)
     for x in staff[4:8]:
         assert x.written_duration == abjad.Duration(1, 8)
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_Staff___setitem___09():
@@ -511,7 +511,7 @@ def test_Staff___setitem___09():
             assert isinstance(x, abjad.Tuplet)
         else:
             assert isinstance(x, abjad.Note)
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_Staff_append_01():
@@ -521,7 +521,7 @@ def test_Staff_append_01():
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4")
     staff.append(abjad.Note("c'4"))
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert len(staff) == 5
     assert staff._get_contents_duration() == abjad.Duration(5, 4)
 
@@ -533,7 +533,7 @@ def test_Staff_append_02():
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4")
     staff.append(abjad.Chord([2, 3, 4], (1, 4)))
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert len(staff) == 5
     assert staff._get_contents_duration() == abjad.Duration(5, 4)
 
@@ -545,7 +545,7 @@ def test_Staff_append_03():
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4")
     staff.append(abjad.Tuplet("3:2", "c'8 c'8 c'8"))
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert len(staff) == 5
     assert staff._get_contents_duration() == abjad.Duration(5, 4)
 
@@ -555,7 +555,7 @@ def test_Staff_engraver_consists_01():
     staff.consists_commands.append("Horizontal_bracket_engraver")
     staff.consists_commands.append("Instrument_name_engraver")
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
@@ -596,4 +596,4 @@ def test_Staff_engraver_removals_01():
         """
     )
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
