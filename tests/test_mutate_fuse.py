@@ -65,7 +65,7 @@ def test_mutate_fuse_04():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate_fuse_05():
@@ -101,7 +101,7 @@ def test_mutate_fuse_05():
     )
 
     assert abjad.get.duration(staff) == abjad.Duration(3, 8)
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_mutate_fuse_06():
@@ -167,7 +167,7 @@ def test_mutate_fuse_06():
     assert len(tuplet_1) == 0
     assert len(tuplet_2) == 0
     assert new is not tuplet_1 and new is not tuplet_2
-    assert abjad.wf.wellformed(new)
+    assert abjad.wf.is_wellformed(new)
 
 
 def test_mutate_fuse_07():
@@ -230,7 +230,7 @@ def test_mutate_fuse_07():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate_fuse_08():
@@ -298,7 +298,7 @@ def test_mutate_fuse_09():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate_fuse_10():

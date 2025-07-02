@@ -60,7 +60,7 @@ def test_Mutation_swap_01():
         """
     )
 
-    assert abjad.wf.wellformed(voice, do_not_check_overlapping_beams=True)
+    assert abjad.wf.is_wellformed(voice, do_not_check_overlapping_beams=True)
 
 
 def test_Mutation_swap_02():
@@ -122,7 +122,7 @@ def test_Mutation_swap_02():
         """
     )
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Mutation_swap_03():
@@ -184,7 +184,7 @@ def test_Mutation_swap_03():
         """
     )
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_Mutation_swap_04():
@@ -285,4 +285,4 @@ def test_Mutation_swap_07():
         """
     )
 
-    assert abjad.wf.wellformed(new_measure)
+    assert abjad.wf.is_wellformed(new_measure)

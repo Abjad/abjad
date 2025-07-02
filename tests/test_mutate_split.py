@@ -41,7 +41,7 @@ def test_mutate__set_leaf_duration_01():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate__set_leaf_duration_02():
@@ -88,7 +88,7 @@ def test_mutate__set_leaf_duration_02():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate__set_leaf_duration_03():
@@ -130,7 +130,7 @@ def test_mutate__set_leaf_duration_03():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate__set_leaf_duration_04():
@@ -179,7 +179,7 @@ def test_mutate__set_leaf_duration_04():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate__set_leaf_duration_05():
@@ -226,7 +226,7 @@ def test_mutate__set_leaf_duration_05():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate__set_leaf_duration_06():
@@ -242,7 +242,7 @@ def test_mutate__set_leaf_duration_06():
 
     abjad.mutate._set_leaf_duration(note, abjad.Duration(1, 32))
 
-    assert abjad.wf.wellformed(note)
+    assert abjad.wf.is_wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 1/4"
 
 
@@ -259,7 +259,7 @@ def test_mutate__set_leaf_duration_07():
 
     abjad.mutate._set_leaf_duration(note, abjad.Duration(3, 32))
 
-    assert abjad.wf.wellformed(note)
+    assert abjad.wf.is_wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 3/4"
 
 
@@ -276,7 +276,7 @@ def test_mutate__set_leaf_duration_08():
 
     abjad.mutate._set_leaf_duration(note, abjad.Duration(5, 32))
 
-    assert abjad.wf.wellformed(note)
+    assert abjad.wf.is_wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 5/4"
 
 
@@ -293,7 +293,7 @@ def test_mutate__set_leaf_duration_09():
 
     abjad.mutate._set_leaf_duration(note, abjad.Duration(1, 24))
 
-    assert abjad.wf.wellformed(note)
+    assert abjad.wf.is_wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 1/3"
 
 
@@ -310,7 +310,7 @@ def test_mutate__set_leaf_duration_10():
 
     abjad.mutate._set_leaf_duration(note, abjad.Duration(5, 24))
 
-    assert abjad.wf.wellformed(note)
+    assert abjad.wf.is_wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 5/3"
 
 
@@ -353,7 +353,7 @@ def test_mutate__set_leaf_duration_11():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate__split_container_by_duration_01():
@@ -420,7 +420,7 @@ def test_mutate__split_container_by_duration_01():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate__split_container_by_duration_02():
@@ -495,7 +495,7 @@ def test_mutate__split_container_by_duration_02():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate__split_leaf_by_durations_01():
@@ -537,7 +537,7 @@ def test_mutate__split_leaf_by_durations_01():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_mutate__split_leaf_by_durations_02():
@@ -576,7 +576,7 @@ def test_mutate__split_leaf_by_durations_02():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate__split_leaf_by_durations_03():
@@ -611,7 +611,7 @@ def test_mutate__split_leaf_by_durations_05():
     abjad.mutate._split_leaf_by_durations(staff[0], [abjad.Duration(1, 8)])
 
     assert len(staff) == 2
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_mutate__split_leaf_by_durations_06():
@@ -638,7 +638,7 @@ def test_mutate__split_leaf_by_durations_06():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_mutate__split_leaf_by_durations_07():
@@ -670,7 +670,7 @@ def test_mutate__split_leaf_by_durations_07():
 
     assert abjad.get.after_grace_container(new_leaves[0]) is None
     assert len(abjad.get.after_grace_container(new_leaves[1])) == 1
-    abjad.wf.wellformed(staff)
+    abjad.wf.is_wellformed(staff)
 
 
 def test_mutate__split_leaf_by_durations_08():
@@ -702,7 +702,7 @@ def test_mutate__split_leaf_by_durations_08():
         """
     ), print(abjad.lilypond(staff))
 
-    abjad.wf.wellformed(staff)
+    abjad.wf.is_wellformed(staff)
 
 
 def test_mutate__split_leaf_by_durations_09():
@@ -731,7 +731,7 @@ def test_mutate__split_leaf_by_durations_09():
         """
     ), print(abjad.lilypond(staff))
 
-    abjad.wf.wellformed(staff)
+    abjad.wf.is_wellformed(staff)
 
 
 def test_mutate__split_leaf_by_durations_10():
@@ -796,7 +796,7 @@ def test_mutate__split_leaf_by_durations_10():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate_split_01():
@@ -863,7 +863,7 @@ def test_mutate_split_01():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
     assert len(result) == 3
 
 
@@ -947,7 +947,7 @@ def test_mutate_split_02():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert len(result) == 6
 
 
@@ -1030,7 +1030,7 @@ def test_mutate_split_03():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert len(result) == 4
 
 
@@ -1114,7 +1114,7 @@ def test_mutate_split_04():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert len(result) == 8
 
 
@@ -1201,7 +1201,7 @@ def test_mutate_split_05():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert len(result) == 4
 
 
@@ -1296,7 +1296,7 @@ def test_mutate_split_06():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
     assert len(result) == 6
 
 
@@ -1342,7 +1342,7 @@ def test_mutate_split_07():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate_split_08():
@@ -1381,7 +1381,7 @@ def test_mutate_split_08():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate_split_09():
@@ -1408,7 +1408,7 @@ def test_mutate_split_09():
         """
     ), print(abjad.lilypond(voice_1))
 
-    assert abjad.wf.wellformed(voice_1)
+    assert abjad.wf.is_wellformed(voice_1)
 
     assert abjad.lilypond(voice_2) == abjad.string.normalize(
         r"""
@@ -1420,7 +1420,7 @@ def test_mutate_split_09():
         """
     ), print(abjad.lilypond(voice_2))
 
-    assert abjad.wf.wellformed(voice_2)
+    assert abjad.wf.is_wellformed(voice_2)
 
 
 def test_mutate_split_10():
@@ -1482,7 +1482,7 @@ def test_mutate_split_10():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_mutate_split_11():
@@ -1563,7 +1563,7 @@ def test_mutate_split_11():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate_split_12():
@@ -1664,7 +1664,7 @@ def test_mutate_split_12():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)
 
 
 def test_mutate_split_13():
@@ -1730,7 +1730,7 @@ def test_mutate_split_13():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate_split_14():
@@ -1788,7 +1788,7 @@ def test_mutate_split_14():
         """
     ), print(abjad.lilypond(voice))
 
-    assert abjad.wf.wellformed(voice)
+    assert abjad.wf.is_wellformed(voice)
 
 
 def test_mutate_split_15():
@@ -1817,4 +1817,4 @@ def test_mutate_split_15():
         """
     ), print(abjad.lilypond(staff))
 
-    assert abjad.wf.wellformed(staff)
+    assert abjad.wf.is_wellformed(staff)

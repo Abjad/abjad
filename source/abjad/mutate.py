@@ -1525,7 +1525,7 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
         (Note("f'4"), None)
         (Note("g'4"), None)
 
-        >>> abjad.wf.wellformed(staff)
+        >>> abjad.wf.is_wellformed(staff)
         True
 
     ..  container:: example
@@ -1580,7 +1580,7 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
         (Note("f'4"), Clef(name='alto', hide=False))
         (Note("g'4"), Clef(name='alto', hide=False))
 
-        >>> abjad.wf.wellformed(staff)
+        >>> abjad.wf.is_wellformed(staff)
         True
 
     ..  container:: example

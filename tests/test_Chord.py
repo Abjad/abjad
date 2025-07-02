@@ -256,8 +256,8 @@ def test_Chord___init___08():
     assert abjad.lilypond(skip) == "s8"
     assert abjad.lilypond(chord) == "<>8"
 
-    assert abjad.wf.wellformed(skip)
-    assert abjad.wf.wellformed(chord)
+    assert abjad.wf.is_wellformed(skip)
+    assert abjad.wf.is_wellformed(chord)
 
 
 def test_Chord___init___09():
@@ -270,7 +270,7 @@ def test_Chord___init___09():
 
     assert abjad.lilypond(chord) == "<>8"
     assert abjad.get.parentage(chord).parent is None
-    assert abjad.wf.wellformed(chord)
+    assert abjad.wf.is_wellformed(chord)
 
 
 def test_Chord___init___10():
@@ -283,7 +283,7 @@ def test_Chord___init___10():
 
     assert abjad.lilypond(chord) == "<>8"
     assert abjad.get.parentage(chord).parent is None
-    assert abjad.wf.wellformed(chord)
+    assert abjad.wf.is_wellformed(chord)
 
 
 def test_Chord___init___11():
@@ -296,7 +296,7 @@ def test_Chord___init___11():
 
     assert abjad.lilypond(chord) == "<>8"
     assert abjad.get.parentage(chord).parent is None
-    assert abjad.wf.wellformed(chord)
+    assert abjad.wf.is_wellformed(chord)
 
 
 def test_Chord___init___12():
@@ -309,8 +309,8 @@ def test_Chord___init___12():
 
     assert abjad.lilypond(rest) == "r8"
     assert abjad.lilypond(chord) == "<>8"
-    assert abjad.wf.wellformed(rest)
-    assert abjad.wf.wellformed(chord)
+    assert abjad.wf.is_wellformed(rest)
+    assert abjad.wf.is_wellformed(chord)
 
 
 def test_Chord___init___13():
@@ -322,7 +322,7 @@ def test_Chord___init___13():
     chord = abjad.Chord(tuplet[1])
 
     assert abjad.lilypond(chord) == "<>8"
-    assert abjad.wf.wellformed(chord)
+    assert abjad.wf.is_wellformed(chord)
     assert abjad.get.parentage(chord).parent is None
 
 
@@ -336,8 +336,8 @@ def test_Chord___init___14():
 
     assert abjad.lilypond(note) == "d'8"
     assert abjad.lilypond(chord) == "<d'>8"
-    assert abjad.wf.wellformed(note)
-    assert abjad.wf.wellformed(chord)
+    assert abjad.wf.is_wellformed(note)
+    assert abjad.wf.is_wellformed(chord)
 
 
 def test_Chord___init___15():
@@ -349,7 +349,7 @@ def test_Chord___init___15():
     chord = abjad.Chord(tuplet[1])
 
     assert abjad.lilypond(chord) == "<c'>8"
-    assert abjad.wf.wellformed(chord)
+    assert abjad.wf.is_wellformed(chord)
     assert abjad.get.parentage(chord).parent is None
 
 
@@ -362,7 +362,7 @@ def test_Chord___init___16():
     chord = abjad.Chord(staff[1])
 
     assert abjad.lilypond(chord) == "<d'>8"
-    assert abjad.wf.wellformed(chord)
+    assert abjad.wf.is_wellformed(chord)
     assert abjad.get.parentage(chord).parent is None
 
 

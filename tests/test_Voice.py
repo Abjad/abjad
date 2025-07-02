@@ -88,8 +88,8 @@ def test_Voice___delitem___01():
         """
     )
 
-    assert abjad.wf.wellformed(voice)
-    assert abjad.wf.wellformed(container)
+    assert abjad.wf.is_wellformed(voice)
+    assert abjad.wf.is_wellformed(container)
 
 
 def test_Voice___init__01():
