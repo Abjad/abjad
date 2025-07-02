@@ -17,9 +17,10 @@ from . import (
     persist,
     string,
     wf,
+    wrapper,
 )
 from ._version import __version__
-from .bind import Wrapper, annotate, attach, detach
+from .bind import annotate, attach, detach
 from .configuration import (
     Configuration,
     list_all_classes,
@@ -551,5 +552,6 @@ __all__ = [
     "trill_spanner",
     "tweak",
     "wf",
+    "wrapper",
     "yield_all_modules",
 ]

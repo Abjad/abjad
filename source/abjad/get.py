@@ -6,7 +6,6 @@ import collections
 import typing
 
 from . import _getlib, _iterlib, _updatelib
-from . import bind as _bind
 from . import duration as _duration
 from . import indicators as _indicators
 from . import iterate as _iterate
@@ -16,6 +15,7 @@ from . import score as _score
 from . import select as _select
 from . import tag as _tag
 from . import timespan as _timespan
+from . import wrapper as _wrapper
 
 
 def after_grace_container(argument):
@@ -1532,7 +1532,7 @@ def effective_wrapper(
     *,
     attributes: dict | None = None,
     n: int = 0,
-) -> _bind.Wrapper:
+) -> _wrapper.Wrapper:
     r"""
     Gets effective wrapper.
 
