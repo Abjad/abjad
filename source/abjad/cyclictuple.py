@@ -14,7 +14,9 @@ class CyclicTuple:
 
     ..  container:: example
 
-        Initializes from string:
+        Cyclic tuples overload the item-getting method of built-in tuples to
+        return a value for any integer index. Cyclic tuples otherwise behave
+        exactly like built-in tuples.
 
         >>> tuple_ = abjad.CyclicTuple('abcd')
 
@@ -33,11 +35,6 @@ class CyclicTuple:
         6 c
         7 d
 
-    Cyclic tuples overload the item-getting method of built-in tuples.
-
-    Cyclic tuples return a value for any integer index.
-
-    Cyclic tuples otherwise behave exactly like built-in tuples.
     """
 
     items: typing.Sequence = ()
