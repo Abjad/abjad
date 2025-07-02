@@ -402,7 +402,6 @@ def list_all_classes(modules="abjad", ignored_classes=None):
     ..  container:: example
 
         >>> for class_ in abjad.list_all_classes(modules="abjad"): class_
-        <class 'abjad.bind.Wrapper'>
         <class 'abjad.configuration.Configuration'>
         <class 'abjad.contextmanagers.ContextManager'>
         <class 'abjad.contextmanagers.FilesystemState'>
@@ -605,6 +604,7 @@ def list_all_classes(modules="abjad", ignored_classes=None):
         <class 'abjad.tweaks.Bundle'>
         <class 'abjad.tweaks.Tweak'>
         <class 'abjad.verticalmoment.VerticalMoment'>
+        <class 'abjad.wrapper.Wrapper'>
 
     """
     all_classes = set()
