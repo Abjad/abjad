@@ -255,6 +255,8 @@ def arithmetic_mean(argument) -> int | float | fractions.Fraction:
     """
     Gets arithmetic mean of ``argument``.
 
+    Raises exception when ``argument`` is not iterable.
+
     ..  container:: example
 
         >>> abjad.math.arithmetic_mean([1, 2, 2, 20, 30])
@@ -266,7 +268,6 @@ def arithmetic_mean(argument) -> int | float | fractions.Fraction:
         >>> abjad.math.arithmetic_mean([2, 2, 20.0])
         8.0
 
-    Raises exception when ``argument`` is not iterable.
     """
     if not isinstance(argument, collections.abc.Sequence):
         raise TypeError(argument)
@@ -308,6 +309,10 @@ def cumulative_products(argument):
     """
     Gets cumulative products of ``argument``.
 
+    Raises exception when ``argument`` is not iterable.
+
+    Returns new object of ``argument`` type.
+
     ..  container:: example
 
         >>> abjad.math.cumulative_products([1, 2, 3, 4, 5, 6, 7, 8])
@@ -316,9 +321,6 @@ def cumulative_products(argument):
         >>> abjad.math.cumulative_products([1, -2, 3, -4, 5, -6, 7, -8])
         [1, -2, -6, 24, 120, -720, -5040, 40320]
 
-    Raises exception when ``argument`` is not iterable.
-
-    Returns new object of ``argument`` type.
     """
     if not isinstance(argument, collections.abc.Iterable):
         raise TypeError(argument)
@@ -334,6 +336,10 @@ def cumulative_sums(argument, start=0):
     """
     Gets cumulative sums of ``argument``.
 
+    Raises exception when ``argument`` is not iterable.
+
+    Returns new object of ``argument`` type.
+
     ..  container:: example
 
         >>> abjad.math.cumulative_sums([1, 2, 3, 4, 5, 6, 7, 8], start=0)
@@ -342,9 +348,6 @@ def cumulative_sums(argument, start=0):
         >>> abjad.math.cumulative_sums([1, 2, 3, 4, 5, 6, 7, 8], start=None)
         [1, 3, 6, 10, 15, 21, 28, 36]
 
-    Raises exception when ``argument`` is not iterable.
-
-    Returns new object of ``argument`` type.
     """
     if start is None:
         result = []
@@ -363,6 +366,8 @@ def difference_series(argument):
     """
     Gets difference series of ``argument``.
 
+    Returns new object of ``argument`` type.
+
     ..  container:: example
 
         >>> abjad.math.difference_series([1, 1, 2, 3, 5, 5, 6])
@@ -371,7 +376,6 @@ def difference_series(argument):
         >>> abjad.math.difference_series([9, 6, 8, 5, 7, 4, 6])
         [-3, 2, -3, 2, -3, 2]
 
-    Returns new object of ``argument`` type.
     """
     result = []
     for i, n in enumerate(argument[1:]):
@@ -406,6 +410,8 @@ def divisors(n) -> list[int]:
     """
     Gets positive divisors of ``n`` in increasing order.
 
+    Raises not implemented error on ``0``.
+
     ..  container:: example
 
         >>> abjad.math.divisors(84)
@@ -432,7 +438,6 @@ def divisors(n) -> list[int]:
         >>> abjad.math.divisors(-27)
         [1, 3, 9, 27]
 
-    Raises not implemented error on ``0``.
     """
     if not isinstance(n, int):
         raise TypeError(f"must be integer: {n!r}.")
@@ -453,7 +458,9 @@ def divisors(n) -> list[int]:
 
 def factors(n) -> list[int]:
     """
-    Gets prime factors less than or equal to ``n`` .
+    Gets prime factors less than or equal to positive integer ``n`` .
+
+    Returns factors in increasing order.
 
     ..  container:: example
 
@@ -474,9 +481,6 @@ def factors(n) -> list[int]:
         18 [2, 3, 3]
         19 [19]
 
-    ``n`` must be a positive integer.
-
-    Returns factors in increasing order.
     """
     if not is_positive_integer(n):
         raise TypeError(f"must be positive integer: {n!r}.")
@@ -514,14 +518,15 @@ def greatest_common_divisor(*integers) -> int:
     """
     Calculates greatest common divisor of ``integers``.
 
+    Allows nonpositive input.
+
+    Raises not implemented error when zero is included in input.
+
     ..  container:: example
 
         >>> abjad.math.greatest_common_divisor(84, -94, -144)
         2
 
-    Allows nonpositive input.
-
-    Raises not implemented error when zero is included in input.
     """
     common_divisors = None
     for positive_integer in integers:
@@ -993,6 +998,9 @@ def partition_integer_by_ratio(n, ratio) -> list[int]:
 
     ..  container:: example
 
+        Partitions positive integer-equivalent ``n`` by ``ratio`` with positive
+        parts:
+
         >>> abjad.math.partition_integer_by_ratio(10, (1, 2))
         [3, 7]
 
@@ -1065,9 +1073,11 @@ def partition_integer_into_canonic_parts(
     """
     Partitions integer ``n`` into canonic parts.
 
-    Returns all parts positive on positive ``n``:
+    Returns tuple with parts that decrease monotonically.
 
     ..  container:: example
+
+        Returns all parts positive on positive ``n``:
 
         >>> for n in range(1, 11):
         ...     print(n, abjad.math.partition_integer_into_canonic_parts(n))
@@ -1120,7 +1130,6 @@ def partition_integer_into_canonic_parts(
         19 (3, 16)
         20 (4, 16)
 
-    Returns tuple with parts that decrease monotonically.
     """
     assert isinstance(n, int), repr(n)
     assert isinstance(decrease_parts_monotonically, bool)
@@ -1178,6 +1187,8 @@ def weight(argument) -> int:
     """
     Gets weight of ``argument``.
 
+    Defined equal to sum of the absolute value of items in ``argument``.
+
     ..  container:: example
 
         >>> abjad.math.weight([-1, -2, 3, 4, 5])
@@ -1188,7 +1199,6 @@ def weight(argument) -> int:
         >>> abjad.math.weight([])
         0
 
-    Defined equal to sum of the absolute value of items in ``argument``.
     """
     return sum([abs(_) for _ in argument])
 
@@ -1196,6 +1206,14 @@ def weight(argument) -> int:
 def yield_all_compositions_of_integer(n: int) -> typing.Iterator[tuple[int, ...]]:
     """
     Yields all compositions of positive integer ``n``.
+
+    Lists parts in descending lex order.
+
+    Parts sum to ``n``.
+
+    Finds small values of ``n`` easily.
+
+    Takes around 4 seconds for ``n`` equal to 17.
 
     ..  container:: example
 
@@ -1219,13 +1237,6 @@ def yield_all_compositions_of_integer(n: int) -> typing.Iterator[tuple[int, ...]
         (1, 1, 1, 2)
         (1, 1, 1, 1, 1)
 
-    Lists parts in descending lex order.
-
-    Parts sum to ``n``.
-
-    Finds small values of ``n`` easily.
-
-    Takes around 4 seconds for ``n`` equal to 17.
     """
     compositions = []
     integer = 0
@@ -1249,6 +1260,10 @@ def yield_all_compositions_of_integer(n: int) -> typing.Iterator[tuple[int, ...]
 class Infinity:
     """
     Infinity.
+
+    Initializes as a system singleton at start-up.
+
+    Available as a built-in after Abjad starts.
 
     ..  container:: example
 
@@ -1274,9 +1289,6 @@ class Infinity:
         >>> abjad.NegativeInfinity() < abjad.Infinity()
         True
 
-    Initializes as a system singleton at start-up.
-
-    Available as a built-in after Abjad starts.
     """
 
     ### CLASS VARIABLES ###
@@ -1296,49 +1308,39 @@ class Infinity:
         """
         return isinstance(argument, type(self))
 
-    def __float__(self):
+    def __float__(self) -> float:
         """
         Convert infinity to float.
-
-        Returns float.
         """
         return self._value
 
-    def __ge__(self, argument):
+    def __ge__(self, argument) -> bool:
         """
         Is true for all values of ``argument``.
-
-        Returns true.
         """
         return self._value >= argument
 
-    def __gt__(self, argument):
+    def __gt__(self, argument) -> bool:
         """
         Is true for all noninfinite values of ``argument``.
-
-        Returns true or false.
         """
         return self._value > argument
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes infinity.
         """
         return hash(self.__class__.__name__ + str(self))
 
-    def __le__(self, argument):
+    def __le__(self, argument) -> bool:
         """
         Is true when ``argument`` is infinite.
-
-        Returns true or false.
         """
         return self._value <= argument
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
         Is true for no values of ``argument``.
-
-        Returns true or false.
         """
         return self._value < argument
 
@@ -1363,6 +1365,10 @@ class NegativeInfinity(Infinity):
     """
     Negative infinity.
 
+    Initializes as a system singleton at start-up.
+
+    Available as a built-in after Abjad start.
+
     ..  container:: example
 
         All numbers compare greater than negative infinity:
@@ -1384,9 +1390,6 @@ class NegativeInfinity(Infinity):
         >>> abjad.NegativeInfinity() < abjad.Infinity()
         True
 
-    Initializes as a system singleton at start-up.
-
-    Available as a built-in after Abjad start.
     """
 
     ### CLASS VARIABLES ###

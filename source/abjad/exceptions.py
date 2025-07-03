@@ -13,7 +13,7 @@ class AssignabilityError(Exception):
 
 class ImpreciseMetronomeMarkError(Exception):
     """
-    MetronomeMark is imprecise.
+    Metronome mark is imprecise.
     """
 
     pass
@@ -61,7 +61,7 @@ class PersistentIndicatorError(Exception):
 
 class SchemeParserFinishedError(Exception):
     """
-    SchemeParser has finished parsing.
+    Scheme parser has finished parsing.
     """
 
     pass

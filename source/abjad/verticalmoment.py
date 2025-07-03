@@ -504,6 +504,8 @@ def iterate_vertical_moments(components, reverse=None):
     r'''
     Iterates vertical moments.
 
+    Returns tuple.
+
     ..  container:: example
 
         Iterates vertical moments:
@@ -641,7 +643,6 @@ def iterate_vertical_moments(components, reverse=None):
         [Note("a'4"), Note("e'8")]
         [Note("a'4"), Note("f'8")]
 
-    Returns tuple.
     '''
     moments = []
     components = _select.components(components)
@@ -677,6 +678,8 @@ def iterate_vertical_moments(components, reverse=None):
 def iterate_leaf_pairs(components) -> typing.Iterator:
     r"""
     Iterates leaf pairs.
+
+    Iterates leaf pairs left-to-right and top-to-bottom.
 
     ..  container:: example
 
@@ -727,7 +730,6 @@ def iterate_leaf_pairs(components) -> typing.Iterator:
         [Note('a,4'), Note('g,4')]
         [Note("g'4"), Note('g,4')]
 
-    Iterates leaf pairs left-to-right and top-to-bottom.
     """
     vertical_moments = iterate_vertical_moments(components)
     for moment_1, moment_2 in _sequence.nwise(vertical_moments):

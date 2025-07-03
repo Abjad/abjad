@@ -284,9 +284,9 @@ class Tuning:
         """
         Gets tuning pitch ranges by string number.
 
-        Violin tuning:
-
         ..  container:: example
+
+            Violin tuning:
 
             >>> pitches = [abjad.NamedPitch(_) for _ in "G3 D4 A4 E5".split()]
             >>> tuning = abjad.Tuning(tuple(pitches))
@@ -312,9 +312,9 @@ class Tuning:
         """
         Gets tuning pitches by string number.
 
-        Violin tuning:
-
         ..  container:: example
+
+            Violin tuning:
 
             >>> pitches = [abjad.NamedPitch(_) for _ in "G3 D4 A4 E5".split()]
             >>> tuning = abjad.Tuning(tuple(pitches))

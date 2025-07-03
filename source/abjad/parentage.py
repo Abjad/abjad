@@ -1363,6 +1363,8 @@ class Parentage(collections.abc.Sequence):
 
         ..  container:: example
 
+            Score root sets score index to ``()``:
+
             >>> staff_1 = abjad.Staff(r"\times 2/3 { c''2 b'2 a'2 }")
             >>> staff_2 = abjad.Staff("c'2 d'2")
             >>> score = abjad.Score([staff_1, staff_2])
@@ -1403,8 +1405,6 @@ class Parentage(collections.abc.Sequence):
             (Staff("c'2 d'2"), (1,))
             (Note("c'2"), (1, 0))
             (Note("d'2"), (1, 1))
-
-            Score root sets score index to ``()``.
 
         ..  container:: example
 

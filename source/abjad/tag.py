@@ -252,6 +252,14 @@ def activate(text: str, tag: Tag | typing.Callable) -> tuple[str, int, int]:
     r"""
     Activates ``tag`` in ``text``.
 
+    Tags can toggle indefinitely.
+
+    Returns (text, count, skipped) triple.
+
+    Count gives number of activated tags.
+
+    Skipped gives number of skipped tags.
+
     ..  container:: example
 
         Writes (deactivated) tag with ``"%@%"`` prefix into LilyPond input:
@@ -337,13 +345,6 @@ def activate(text: str, tag: Tag | typing.Callable) -> tuple[str, int, int]:
         >>> lilypond_file = abjad.LilyPondFile([string])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-    Tags can toggle indefinitely.
-
-    Returns (text, count, skipped) triple.
-
-    Count gives number of activated tags.
-
-    Skipped gives number of skipped tags.
     """
     assert isinstance(text, str), repr(text)
     assert isinstance(tag, Tag) or callable(tag), repr(tag)
@@ -489,7 +490,6 @@ def deactivate(
         >>> lilypond_file = abjad.LilyPondFile([string])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
 
-    Tags can toggle indefinitely.
     """
     assert isinstance(text, str), repr(text)
     assert isinstance(tag, Tag) or callable(tag), repr(tag)

@@ -240,7 +240,8 @@ class BarLine:
 
     ..  container:: example
 
-        Specify repeat bars like this:
+        Specify repeat bars like this; this allows you to bypass LilyPond's
+        ``\volta`` command:
 
         >>> staff = abjad.Staff("c'4 d' e' f' g' a' b' c''", name="Staff")
         >>> score = abjad.Score([staff], name="Score")
@@ -269,8 +270,6 @@ class BarLine:
                 }
             >>
 
-        This allows you to bypass LilyPond's ``\volta`` command.
-
     """
 
     abbreviation: str = "|"
@@ -293,7 +292,7 @@ class BarLine:
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class BeamCount:
     r"""
-    LilyPond ``\setLeftBeamCount``, ``\setRightBeamCount`` command.
+    LilyPond ``\setLeftBeamCount``, ``\setRightBeamCount`` commands.
 
     ..  container:: example
 
@@ -669,34 +668,32 @@ class Clef:
 
     ..  container:: example
 
-        Set ``hide=True`` when clef should not appear in output (but should still
-        determine effective clef).
+        Set ``hide=True`` when clef should not appear in output (but should
+        still determine effective clef).
 
-        ..  container:: example
+        >>> staff = abjad.Staff("c'4 d' e' f'")
+        >>> abjad.attach(abjad.Clef("treble"), staff[0])
+        >>> abjad.attach(abjad.Clef("alto", hide=True), staff[2])
+        >>> abjad.show(staff) # doctest: +SKIP
 
-            >>> staff = abjad.Staff("c'4 d' e' f'")
-            >>> abjad.attach(abjad.Clef("treble"), staff[0])
-            >>> abjad.attach(abjad.Clef("alto", hide=True), staff[2])
-            >>> abjad.show(staff) # doctest: +SKIP
+        >>> string = abjad.lilypond(staff)
+        >>> print(string)
+        \new Staff
+        {
+            \clef "treble"
+            c'4
+            d'4
+            e'4
+            f'4
+        }
 
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                \clef "treble"
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-
-            >>> for leaf in abjad.iterate.leaves(staff):
-            ...     leaf, abjad.get.effective(leaf, abjad.Clef)
-            ...
-            (Note("c'4"), Clef(name='treble', hide=False))
-            (Note("d'4"), Clef(name='treble', hide=False))
-            (Note("e'4"), Clef(name='alto', hide=True))
-            (Note("f'4"), Clef(name='alto', hide=True))
+        >>> for leaf in abjad.iterate.leaves(staff):
+        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
+        ...
+        (Note("c'4"), Clef(name='treble', hide=False))
+        (Note("d'4"), Clef(name='treble', hide=False))
+        (Note("e'4"), Clef(name='alto', hide=True))
+        (Note("f'4"), Clef(name='alto', hide=True))
 
     """
 
@@ -844,9 +841,9 @@ class Clef:
         """
         Changes ``staff_position`` to pitch.
 
-        Treble clef:
-
         ..  container:: example
+
+            Treble clef:
 
             >>> clef = abjad.Clef("treble")
             >>> for n in range(-6, 6):
@@ -1105,6 +1102,9 @@ class ColorFingering:
 
     ..  container:: example
 
+        Color fingerings indicate alternate woodwind fingerings by amount of
+        pitch of timbre deviation:
+
         >>> fingering = abjad.ColorFingering(1)
         >>> note = abjad.Note("c'4")
         >>> abjad.attach(fingering, note, direction=abjad.UP)
@@ -1142,9 +1142,6 @@ class ColorFingering:
                 f'4
             }
 
-    Color fingerings indicate alternate woodwind fingerings by amount of pitch of timbre
-    deviation.
-
     """
 
     number: int
@@ -1169,8 +1166,6 @@ class ColorFingering:
 
         ..  container:: example
 
-            First color fingering:
-
             >>> fingering = abjad.ColorFingering(1)
             >>> string = abjad.lilypond(fingering.markup)
             >>> print(string)
@@ -1191,8 +1186,6 @@ class Dynamic:
     Dynamic.
 
     ..  container:: example
-
-        Initializes from dynamic name:
 
         >>> voice = abjad.Voice("c'8 d'8 e'8 f'8")
         >>> dynamic = abjad.Dynamic("f")
@@ -1303,20 +1296,16 @@ class Dynamic:
 
     ..  container:: example
 
-        Use ``command`` like this:
+        Use ``command`` like this; use to override LilyPond output when a
+        custom dynamic has been defined in an external stylesheet. (In the
+        example above, ``\sub_f`` is a nonstandard LilyPond dynamic. LilyPond
+        will interpret the output above only when the command ``\sub_f`` is
+        defined somewhere in an external stylesheet.)
 
         >>> abjad.Dynamic("f", command=r"\sub_f").command
         '\\sub_f'
 
-        Use to override LilyPond output when a custom dynamic has been defined in an
-        external stylesheet. (In the example above, ``\sub_f`` is a nonstandard LilyPond
-        dynamic. LilyPond will interpret the output above only when the command
-        ``\sub_f`` is defined somewhere in an external stylesheet.)
-
-
     ..  container:: example
-
-        Direction:
 
         With ``direction`` unset:
 
@@ -2472,8 +2461,6 @@ class InstrumentName:
 
     ..  container:: example
 
-        Set instrument name to markup like this:
-
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> markup = abjad.Markup(r"\markup Cellos")
         >>> instrument_name = abjad.InstrumentName(markup)
@@ -2492,6 +2479,8 @@ class InstrumentName:
                 e'4
                 f'4
             }
+
+    ..  container:: example
 
         Set instrument name to custom-defined function like this:
 
@@ -2645,7 +2634,10 @@ class KeyCluster:
 
     ..  container:: example
 
-        Key cluster output includes overrides instead of tweaks:
+        Key cluster output includes overrides instead of tweaks. The reason for
+        this is that chords contain multiple note-heads: if key cluster
+        formatted tweaks instead of overrides, the five format commands shown
+        above would need to be duplicated immediately before each note-head:
 
         >>> chord = abjad.Chord("<c' e' g' b' d'' f''>8")
         >>> key_cluster = abjad.KeyCluster()
@@ -2660,11 +2652,6 @@ class KeyCluster:
         \markup \filled-box #'(-0.6 . 0.6) #'(-0.7 . 0.7) #0.25
         <c' e' g' b' d'' f''>8
         ^ \markup \center-column { \natural \flat }
-
-        The reason for this is that chords contain multiple note-heads: if key
-        cluster formatted tweaks instead of overrides, the five format commands
-        shown above would need to be duplicated immediately before each
-        note-head.
 
     """
 
@@ -2739,7 +2726,8 @@ class LilyPondLiteral:
 
     ..  container:: example
 
-        Use the absolute before and absolute after format sites like this:
+        Use the ``"absolute_before"`` and ``"absolute_after"`` format sites
+        like this:
 
         >>> voice = abjad.Voice("c'8 d'8 e'8 f'8")
         >>> abjad.slur(voice[:])
@@ -2884,7 +2872,11 @@ class LilyPondLiteral:
 
     ..  container:: example
 
-        Nondirected literal:
+        Nondirected literal. Proper use of the ``directed`` property entails
+        searching the LilyPond docs to understand whether LilyPond treats any
+        particular command as directed or not. Most LilyPond commands are
+        directed. LilyPond insists that a few commands (include ``\breathe``,
+        ``\key``, ``\mark``) must not be directed:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> literal = abjad.LilyPondLiteral(
@@ -2909,12 +2901,6 @@ class LilyPondLiteral:
                 e'4
                 f'4
             }
-
-        Proper use of the ``directed`` property entails searching the LilyPond
-        docs to understand whether LilyPond treats any particular command as
-        directed or not. Most LilyPond commands are directed. LilyPond insists
-        that a few commands (include ``\breathe``, ``\key``, ``\mark``) must
-        not be directed.
 
     ..  container:: example
 
@@ -3384,7 +3370,7 @@ class Markup:
 @dataclasses.dataclass(frozen=True, slots=True, unsafe_hash=True)
 class MetronomeMark:
     r"""
-    MetronomeMark.
+    Metronome mark.
 
     ..  container:: example
 
@@ -3843,17 +3829,18 @@ class MetronomeMark:
         """
         Gets metronome mark quarters per minute.
 
+        Gives tuple when metronome mark ``units_per_minute`` is a range.
+
+        Gives none when metronome mark is imprecise.
+
+        Gives fraction otherwise.
+
         ..  container:: example
 
             >>> mark = abjad.MetronomeMark(abjad.Duration(1, 8), 52)
             >>> mark.quarters_per_minute
             Fraction(104, 1)
 
-        Gives tuple when metronome mark ``units_per_minute`` is a range.
-
-        Gives none when metronome mark is imprecise.
-
-        Gives fraction otherwise.
         """
         if self.is_imprecise:
             return None
@@ -5460,6 +5447,8 @@ class StartTextSpan:
 
     ..  container:: example
 
+        Spacer text included below to prevent docs from clipping output:
+
         >>> voice = abjad.Voice("c'4 d' e' f'")
 
         >>> start_text_span = abjad.StartTextSpan(
@@ -5524,8 +5513,6 @@ class StartTextSpan:
                 \stopTextSpan
                 \stopTextSpanOne
             }
-
-        (Spacer text included to prevent docs from clipping output.)
 
     ..  container:: example
 
@@ -5700,6 +5687,11 @@ class StartTextSpan:
 
     ..  container:: example
 
+        Styles constrained to ``r'\abjad-dashed-line-with-arrow'``,
+        ``r'\abjad-dashed-line-with-hook'``, ``r'\abjad-invisible-line'``,
+        ``r'\abjad-solid-line-with-arrow'``,
+        ``r'\abjad-solid-line-with-hook'``, none:
+
         >>> voice = abjad.Voice("c'4 d' e' f'")
         >>> start_text_span = abjad.StartTextSpan(
         ...     left_text=abjad.Markup(r"\upright pont."),
@@ -5728,11 +5720,6 @@ class StartTextSpan:
                 f'4
                 \stopTextSpan
             }
-
-        Styles constrained to ``r'\abjad-dashed-line-with-arrow'``,
-        ``r'\abjad-dashed-line-with-hook'``, ``r'\abjad-invisible-line'``,
-        ``r'\abjad-solid-line-with-arrow'``, ``r'\abjad-solid-line-with-hook'``,
-        none.
 
     ..  container:: example
 
@@ -6257,7 +6244,8 @@ class StopGroup:
 
     ..  container:: example
 
-        REGRESSION. Leaked contributions appear last in postevent format site:
+        REGRESSION. Leaked contributions appear last in postevent format site.
+        The leaked text spanner does not inadvertantly leak the beam:
 
         >>> voice = abjad.Voice("c'8 d' e' f' r2")
         >>> abjad.beam(voice[:4])
@@ -6286,8 +6274,6 @@ class StopGroup:
                 \stopGroup
                 r2
             }
-
-        The leaked text spanner above does not inadvertantly leak the beam.
 
     """
 
@@ -6452,7 +6438,8 @@ class StopPhrasingSlur:
 
     ..  container:: example
 
-        REGRESSION. Leaked contributions appear last in postevent format site:
+        REGRESSION. Leaked contributions appear last in postevent format site.
+        The leaked text spanner does not inadvertantly leak the beam:
 
         >>> voice = abjad.Voice("c'8 d' e' f' r2")
         >>> abjad.beam(voice[:4])
@@ -6481,8 +6468,6 @@ class StopPhrasingSlur:
                 \)
                 r2
             }
-
-        The leaked text spanner above does not inadvertantly leak the beam.
 
     """
 
@@ -6945,9 +6930,9 @@ class TextMark:
     r"""
     LilyPond ``\textMark``, ``\textEndMark`` commands.
 
-    Text mark:
-
     ..  container:: example
+
+        Text mark:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> score = abjad.Score([staff])

@@ -1131,8 +1131,8 @@ class Timespan:
 
     def set_offsets(self, start_offset=None, stop_offset=None) -> "Timespan":
         """
-        Sets timespan start offset to ``start_offset`` and
-        stop offset to ``stop_offset``.
+        Sets timespan start offset to ``start_offset`` and stop offset to
+        ``stop_offset``.
 
         ..  container:: example
 
@@ -1141,15 +1141,19 @@ class Timespan:
             >>> timespan.set_offsets(stop_offset=(7, 8))
             Timespan(Offset((1, 2)), Offset((7, 8)))
 
-        Subtracts negative ``start_offset`` from existing stop offset:
+        ..  container:: example
 
-        >>> timespan.set_offsets(start_offset=(-1, 2))
-        Timespan(Offset((1, 1)), Offset((3, 2)))
+            Subtracts negative ``start_offset`` from existing stop offset:
 
-        Subtracts negative ``stop_offset`` from existing stop offset:
+            >>> timespan.set_offsets(start_offset=(-1, 2))
+            Timespan(Offset((1, 1)), Offset((3, 2)))
 
-        >>> timespan.set_offsets(stop_offset=(-1, 2))
-        Timespan(Offset((1, 2)), Offset((1, 1)))
+        ..  container:: example
+
+            Subtracts negative ``stop_offset`` from existing stop offset:
+
+            >>> timespan.set_offsets(stop_offset=(-1, 2))
+            Timespan(Offset((1, 2)), Offset((1, 1)))
 
         """
         if start_offset is not None:
@@ -2021,6 +2025,8 @@ class TimespanList(list):
         """
         Is true when all timespans are wellformed.
 
+        Is false when timespans are not all wellformed.
+
         ..  container:: example
 
             Is true when all timespans are wellformed:
@@ -2058,7 +2064,6 @@ class TimespanList(list):
             >>> abjad.TimespanList().all_are_wellformed
             True
 
-        Is false when timespans are not all wellformed.
         """
         return all(self._get_timespan(argument).is_wellformed() for argument in self)
 
@@ -2478,6 +2483,10 @@ class TimespanList(list):
         """
         Computes logical AND of timespans.
 
+        Same as setwise intersection.
+
+        Operates in place and returns timespan list.
+
         ..  container:: example
 
             Computes logical AND:
@@ -2526,9 +2535,6 @@ class TimespanList(list):
             >>> for _ in timespans: _
             Timespan(Offset((5, 1)), Offset((8, 1)))
 
-        Same as setwise intersection.
-
-        Operates in place and returns timespan list.
         """
         if 1 < len(self):
             result = self[0]
@@ -2545,6 +2551,8 @@ class TimespanList(list):
     def compute_logical_or(self) -> "TimespanList":
         """
         Computes logical OR of timespans.
+
+        Operates in place and returns timespan list.
 
         ..  container:: example
 
@@ -2611,7 +2619,6 @@ class TimespanList(list):
             Timespan(Offset((-2, 1)), Offset((2, 1)))
             Timespan(Offset((10, 1)), Offset((20, 1)))
 
-        Operates in place and returns timespan list.
         """
         timespans: list[Timespan] = []
         if self:
@@ -2628,6 +2635,8 @@ class TimespanList(list):
     def compute_logical_xor(self) -> "TimespanList":
         """
         Computes logical XOR of timespans.
+
+        Operates in place and returns timespan list.
 
         ..  container:: example
 
@@ -2726,7 +2735,6 @@ class TimespanList(list):
             >>> timespans
             TimespanList([])
 
-        Operates in place and returns timespan list.
         """
         all_fragments = []
         for i, timespan_1 in enumerate(self):
@@ -2841,6 +2849,8 @@ class TimespanList(list):
         """
         Computes overlap factor for each consecutive offset pair in timespans.
 
+        Returns mapping.
+
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
@@ -2862,7 +2872,6 @@ class TimespanList(list):
             (Offset((20, 1)), Offset((25, 1)), Fraction(2, 1))
             (Offset((25, 1)), Offset((30, 1)), Fraction(1, 1))
 
-        Returns mapping.
         """
         mapping: dict = dict()
         offsets = list(sorted(self.count_offsets().items))
@@ -2872,7 +2881,7 @@ class TimespanList(list):
             mapping[timespan] = overlap_factor
         return mapping
 
-    def count_offsets(self):
+    def count_offsets(self) -> OffsetCounter:
         """
         Counts offsets.
 
@@ -2965,7 +2974,6 @@ class TimespanList(list):
             (Offset((6, 1)), 1)
             (Offset((9, 1)), 1)
 
-        Returns counter.
         """
         return OffsetCounter(self)
 
@@ -3102,6 +3110,15 @@ class TimespanList(list):
         """
         Gets timespan that satisifies ``time_relation``.
 
+        Returns timespan when timespan list contains exactly one timespan that
+        satisfies ``time_relation``.
+
+        Raises exception when timespan list contains no timespan that satisfies
+        ``time_relation``.
+
+        Raises exception when timespan list contains more than one timespan
+        that satisfies ``time_relation``.
+
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
@@ -3121,14 +3138,6 @@ class TimespanList(list):
             >>> timespan
             Timespan(Offset((3, 1)), Offset((6, 1)))
 
-        Returns timespan when timespan list contains exactly one
-        timespan that satisfies ``time_relation``.
-
-        Raises exception when timespan list contains no timespan
-        that satisfies ``time_relation``.
-
-        Raises exception when timespan list contains more than one
-        timespan that satisfies ``time_relation``.
         """
         timespans = self.get_timespans_that_satisfy_time_relation(time_relation)
         if len(timespans) == 1:
@@ -3279,7 +3288,6 @@ class TimespanList(list):
             Timespan(Offset((6, 1)), Offset((10, 1)))
             '---'
 
-        Returns zero or more timespan_lists.
         """
         if not self:
             return ()
@@ -3307,6 +3315,8 @@ class TimespanList(list):
     def reflect(self, axis=None) -> "TimespanList":
         """
         Reflects timespans.
+
+        Operates in place.
 
         ..  container:: example
 
@@ -3346,7 +3356,6 @@ class TimespanList(list):
             Timespan(Offset((24, 1)), Offset((27, 1)))
             Timespan(Offset((27, 1)), Offset((30, 1)))
 
-        Operates in place and returns timespan list.
         """
         if axis is None:
             axis = self.axis
@@ -3361,6 +3370,8 @@ class TimespanList(list):
     def remove_degenerate_timespans(self) -> "TimespanList":
         """
         Removes degenerate timespans.
+
+        Operates in place.
 
         ..  container:: example
 
@@ -3378,7 +3389,6 @@ class TimespanList(list):
             Timespan(Offset((5, 1)), Offset((10, 1)))
             Timespan(Offset((5, 1)), Offset((25, 1)))
 
-        Operates in place and returns timespan list.
         """
         timespans = [x for x in self if x.is_wellformed()]
         self[:] = timespans
@@ -3387,6 +3397,8 @@ class TimespanList(list):
     def repeat_to_stop_offset(self, stop_offset) -> "TimespanList":
         """
         Repeats timespans to ``stop_offset``.
+
+        Operates in place.
 
         ..  container:: example
 
@@ -3407,7 +3419,6 @@ class TimespanList(list):
             Timespan(Offset((10, 1)), Offset((13, 1)))
             Timespan(Offset((13, 1)), Offset((15, 1)))
 
-        Operates in place and returns timespan list.
         """
         assert self.is_sorted
         stop_offset = _duration.Offset(stop_offset)
@@ -3427,6 +3438,8 @@ class TimespanList(list):
     def rotate(self, count) -> "TimespanList":
         """
         Rotates by ``count`` contiguous timespans.
+
+        Operates in place.
 
         ..  container:: example
 
@@ -3466,7 +3479,6 @@ class TimespanList(list):
             Timespan(Offset((6, 1)), Offset((9, 1)))
             Timespan(Offset((9, 1)), Offset((10, 1)))
 
-        Operates in place and returns timespan list.
         """
         assert isinstance(count, int)
         assert self.all_are_contiguous
@@ -3500,6 +3512,8 @@ class TimespanList(list):
     ) -> "TimespanList":
         """
         Rounds offsets of timespans in list to multiples of ``multiplier``.
+
+        Operates in place.
 
         ..  container:: example
 
@@ -3575,7 +3589,6 @@ class TimespanList(list):
             Timespan(Offset((5, 1)), Offset((5, 1)))
             Timespan(Offset((5, 1)), Offset((10, 1)))
 
-        Operates in place and returns timespan list.
         """
         timespans = []
         for timespan in self:
@@ -3591,6 +3604,8 @@ class TimespanList(list):
     def scale(self, multiplier, anchor=_enums.LEFT) -> "TimespanList":
         """
         Scales timespan by ``multiplier`` relative to ``anchor``.
+
+        Operates in place.
 
         ..  container:: example
 
@@ -3630,7 +3645,6 @@ class TimespanList(list):
             Timespan(Offset((0, 1)), Offset((6, 1)))
             Timespan(Offset((2, 1)), Offset((10, 1)))
 
-        Operates in place and returns timespan list.
         """
         timespans = []
         for timespan in self:
@@ -3773,6 +3787,8 @@ class TimespanList(list):
         """
         Stretches timespans by ``multiplier`` relative to ``anchor``.
 
+        Operates in place.
+
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
@@ -3809,7 +3825,6 @@ class TimespanList(list):
             Timespan(Offset((-2, 1)), Offset((4, 1)))
             Timespan(Offset((4, 1)), Offset((12, 1)))
 
-        Operates in place and returns timespan list.
         """
         timespans = []
         if anchor is None:
@@ -3823,6 +3838,8 @@ class TimespanList(list):
     def translate(self, translation=None) -> "TimespanList":
         """
         Translates timespans by ``translation``.
+
+        Operates in place.
 
         ..  container:: example
 
@@ -3843,7 +3860,6 @@ class TimespanList(list):
             Timespan(Offset((53, 1)), Offset((56, 1)))
             Timespan(Offset((56, 1)), Offset((60, 1)))
 
-        Operates in place and returns timespan list.
         """
         return self.translate_offsets(translation, translation)
 
@@ -3853,6 +3869,8 @@ class TimespanList(list):
         """
         Translates timespans by ``start_offset_translation`` and
         ``stop_offset_translation``.
+
+        Operates in place.
 
         ..  container:: example
 
@@ -3892,7 +3910,6 @@ class TimespanList(list):
             Timespan(Offset((3, 1)), Offset((26, 1)))
             Timespan(Offset((6, 1)), Offset((30, 1)))
 
-        Operates in place and returns timespan list.
         """
         timespans = []
         for timespan in self:

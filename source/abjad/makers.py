@@ -839,6 +839,8 @@ def make_pitch_lists(argument: list | str) -> list[list[_pitch.NamedPitch]]:
     """
     Changes list or string ``argument`` to list of pitch lists.
 
+    Use this function to format input for ``abjad.makers.make_leaves()``.
+
     ..  container:: example
 
         >>> abjad.makers.make_pitch_lists([3, None, [4, 5]])
@@ -850,7 +852,6 @@ def make_pitch_lists(argument: list | str) -> list[list[_pitch.NamedPitch]]:
         >>> abjad.makers.make_pitch_lists("e'' ef'' d''")
         [[NamedPitch("e''")], [NamedPitch("ef''")], [NamedPitch("d''")]]
 
-    Use this function to format input for ``abjad.makers.make_leaves()``.
     """
     pitch_lists = []
     if isinstance(argument, str):
@@ -870,6 +871,8 @@ def make_pitches(argument: list | str) -> list[_pitch.NamedPitch]:
     """
     Changes list or string ``argument`` to list of named pitches.
 
+    Use this function to format input for ``abjad.makers.make_notes()``.
+
     ..  container:: example
 
         >>> abjad.makers.make_pitches([3, 16, 16.5])
@@ -884,7 +887,6 @@ def make_pitches(argument: list | str) -> list[_pitch.NamedPitch]:
         >>> abjad.makers.make_pitches([3, "e''", abjad.NamedPitch("eqs''")])
         [NamedPitch("ef'"), NamedPitch("e''"), NamedPitch("eqs''")]
 
-    Use this function to format input for ``abjad.makers.make_notes()``.
     """
     if isinstance(argument, str):
         argument = argument.split()

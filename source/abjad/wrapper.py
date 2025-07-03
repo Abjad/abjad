@@ -22,6 +22,8 @@ class Wrapper:
 
     ..  container:: example
 
+        Attaches articulation to note and makes wrapper:
+
         >>> component = abjad.Note("c'4")
         >>> articulation = abjad.Articulation("accent")
         >>> abjad.attach(articulation, component, direction=abjad.UP)

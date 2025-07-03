@@ -5059,6 +5059,20 @@ def partition_by_durations(
     r"""
     Partitions items in ``argument`` by ``durations``.
 
+    Interprets ``fill`` as ``Exact`` when ``fill`` is none.
+
+    Parts must equal ``durations`` exactly when ``fill`` is ``Exact``.
+
+    Parts must be less than or equal to ``durations`` when ``fill`` is ``Less``.
+
+    Parts must be greater or equal to ``durations`` when ``fill`` is ``More``.
+
+    Reads ``durations`` cyclically when ``cyclic`` is true.
+
+    Reads component durations in seconds when ``in_seconds`` is true.
+
+    Returns remaining components at end in final part when ``overhang`` is true.
+
     ..  container:: example
 
         Cyclically partitions leaves into parts equal to exactly 3/8; returns
@@ -5833,19 +5847,6 @@ def partition_by_durations(
                 }
             }
 
-    Interprets ``fill`` as ``Exact`` when ``fill`` is none.
-
-    Parts must equal ``durations`` exactly when ``fill`` is ``Exact``.
-
-    Parts must be less than or equal to ``durations`` when ``fill`` is ``Less``.
-
-    Parts must be greater or equal to ``durations`` when ``fill`` is ``More``.
-
-    Reads ``durations`` cyclically when ``cyclic`` is true.
-
-    Reads component durations in seconds when ``in_seconds`` is true.
-
-    Returns remaining components at end in final part when ``overhang`` is true.
     """
     fill = fill or _enums.EXACT
     durations = [_duration.Duration(_) for _ in durations]
@@ -6769,7 +6770,9 @@ def tuplets(
 
     ..  container:: example
 
-        Selects tuplets at level -1:
+        Selects tuplets at level -1; tuplets at level -1 are bottom-level
+        tuplet: tuplets at level -1 contain only one tuplet (themselves) and do
+        not contain any other tuplets:
 
         >>> staff = abjad.Staff(
         ...     r"\times 2/3 { c'2 \times 2/3 { d'8 e' f' } } \times 2/3 { c'4 d' e' }"
@@ -6816,12 +6819,11 @@ def tuplets(
                 }
             }
 
-        Tuplets at level -1 are bottom-level tuplet: tuplets at level -1 contain only
-        one tuplet (themselves) and do not contain any other tuplets.
-
     ..  container:: example
 
-        Selects tuplets at level 1:
+        Selects tuplets at level 1; tuplets at level 1 are top-level tuplets:
+        level-1 tuplets contain only 1 tuplet (themselves) and are not
+        contained by any other tuplets:
 
         >>> staff = abjad.Staff(
         ...     r"\times 2/3 { c'2 \times 2/3 { d'8 e' f' } } \times 2/3 { c'4 d' e' }"
@@ -6868,9 +6870,6 @@ def tuplets(
                     e'4
                 }
             }
-
-        Tuplets at level 1 are top-level tuplets: level-1 tuplets contain only 1
-        tuplet (themselves) and are not contained by any other tuplets.
 
     """
     tuplets: list[_score.Tuplet] = []

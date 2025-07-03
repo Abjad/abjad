@@ -585,6 +585,9 @@ class Meter:
         """
         Is true when meter is compound.
 
+        Compound meters defined equal to those meters with a numerator
+        divisible by ``3`` (but not equal to ``3``).
+
         ..  container:: example
 
             Compound meters written over ``4``:
@@ -631,8 +634,6 @@ class Meter:
             11/8
             12/8    True
 
-        Compound meters defined equal to those meters with a numerator divisible by ``3``
-        (but not equal to ``3``).
         """
         if 3 in _math.divisors(self.numerator):
             if not self.numerator == 3:
@@ -643,6 +644,11 @@ class Meter:
     def is_simple(self) -> bool:
         """
         Is true when meter is simple.
+
+        Simple meters defined equal to those meters with a numerator not
+        divisible by ``3``.
+
+        Meters with numerator equal to ``3`` are also defined as simple.
 
         ..  container:: example
 
@@ -690,10 +696,6 @@ class Meter:
             11/8    True
             12/8
 
-        Simple meters defined equal to those meters with a numerator not divisible by
-        ``3``.
-
-        Meters with numerator equal to ``3`` are also defined as simple.
         """
         return not self.is_compound
 
@@ -2651,10 +2653,10 @@ class MetricAccentKernel:
         Offset((1, 2)): Fraction(1, 14)
         Offset((3, 4)): Fraction(1, 14)
 
-    Call the kernel against an expression from which offsets can be counted to
-    receive an impulse-response:
-
     ..  container:: example
+
+        Call the kernel against an expression from which offsets can be counted
+        to receive an impulse-response:
 
         >>> pairs = [(0, 8), (1, 8), (1, 8), (3, 8)]
         >>> offsets = [abjad.Offset(_) for _ in pairs]
