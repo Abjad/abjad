@@ -790,7 +790,7 @@ class Pattern:
         return dataclasses.replace(self, indices=new_indices)
 
     @classmethod
-    def from_vector(class_, vector):
+    def from_vector(class_, vector) -> "Pattern":
         """
         Makes pattern from boolean ``vector``.
 
@@ -846,26 +846,24 @@ class Pattern:
             10 True
             11
 
-        Returns pattern.
         """
         vector = [bool(_) for _ in vector]
         period = len(vector)
         indices = [i for i, x in enumerate(vector) if x]
         return class_(period=period, indices=indices)
 
-    def get_boolean_vector(self, total_length=None):
+    def get_boolean_vector(self, total_length=None) -> list[int]:
         """
         Gets boolean vector of pattern applied to input sequence with
         ``total_length``.
+
+        Returns list of ones and zeroes.
 
         ..  container:: example
 
             Gets boolean vector of acyclic pattern:
 
-            >>> pattern = abjad.Pattern(
-            ...     indices=[4, 5, 6, 7],
-            ... )
-
+            >>> pattern = abjad.Pattern(indices=[4, 5, 6, 7])
 
             >>> pattern.get_boolean_vector(4)
             [0, 0, 0, 0]
@@ -932,7 +930,8 @@ class Pattern:
 
         ..  container:: example
 
-            Two-part pattern with logical OR:
+            Two-part pattern with logical OR. Matches every index that is (one
+            of the first three indices) OR (one of the last three indices):
 
             >>> pattern = abjad.Pattern(
             ...     operator='or',
@@ -955,12 +954,11 @@ class Pattern:
             >>> pattern.get_boolean_vector(16)
             [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
 
-            Matches every index that is (one of the first three indices) OR
-            (one of the last three indices).
-
         ..  container:: example
 
-            Two-part pattern with mixed periodic and inverted parts:
+            Two-part pattern with mixed periodic and inverted parts. Matches
+            every index that is (equal to 0 % 2) AND (not one of the last three
+            indices):
 
             >>> pattern = abjad.Pattern(
             ...     operator='and',
@@ -984,9 +982,6 @@ class Pattern:
 
             >>> pattern.get_boolean_vector(16)
             [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0]
-
-            Matches every index that is (equal to 0 % 2) AND (not one of the
-            last three indices).
 
         ..  container:: example
 
@@ -1019,7 +1014,6 @@ class Pattern:
             >>> pattern.period == len(pattern.get_boolean_vector())
             True
 
-        Returns list of ones and zeroes.
         """
         total_length = total_length or len(self)
         boolean_vector = []
@@ -1031,6 +1025,8 @@ class Pattern:
     def get_matching_items(self, sequence):
         """
         Gets maching items from sequence.
+
+        Returns list.
 
         ..  container:: example
 
@@ -1058,7 +1054,6 @@ class Pattern:
             >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
             ['a', 'y', 'z']
 
-        Returns list.
         """
         assert isinstance(sequence, collections.abc.Iterable), repr(sequence)
         length = len(sequence)
@@ -1070,7 +1065,7 @@ class Pattern:
         return items
 
     @staticmethod
-    def index(indices, period=None, inverted=None):
+    def index(indices, period=None, inverted=None) -> "Pattern":
         """
         Makes pattern that matches ``indices``.
 
@@ -1090,7 +1085,6 @@ class Pattern:
             >>> pattern
             Pattern(indices=(2, 3, 5), inverted=None, operator=None, patterns=None, payload=None, period=None)
 
-        Returns pattern.
         """
         assert all(isinstance(_, int) for _ in indices), repr(indices)
         indices = indices or []
@@ -1101,7 +1095,7 @@ class Pattern:
         )
 
     @staticmethod
-    def index_all(inverted=None):
+    def index_all(inverted=None) -> "Pattern":
         """
         Makes pattern that matches all indices.
 
@@ -1113,12 +1107,11 @@ class Pattern:
             >>> pattern
             Pattern(indices=(0,), inverted=None, operator=None, patterns=None, payload=None, period=1)
 
-        Returns pattern.
         """
         return Pattern(indices=[0], inverted=inverted, period=1)
 
     @staticmethod
-    def index_first(n, inverted=None):
+    def index_first(n, inverted=None) -> "Pattern":
         """
         Makes pattern that matches the first ``n`` indices.
 
@@ -1146,7 +1139,6 @@ class Pattern:
             >>> pattern
             Pattern(indices=None, inverted=None, operator=None, patterns=None, payload=None, period=None)
 
-        Returns pattern.
         """
         assert isinstance(n, int), repr(n)
         if 0 < n:
@@ -1156,7 +1148,7 @@ class Pattern:
         return Pattern(indices=indices, inverted=inverted)
 
     @staticmethod
-    def index_last(n, inverted=None):
+    def index_last(n, inverted=None) -> "Pattern":
         """
         Makes pattern that matches the last ``n`` indices.
 
@@ -1176,7 +1168,6 @@ class Pattern:
             >>> pattern
             Pattern(indices=None, inverted=None, operator=None, patterns=None, payload=None, period=None)
 
-        Returns pattern.
         """
         assert isinstance(n, int), repr(n)
         if 0 < n:
@@ -1188,7 +1179,7 @@ class Pattern:
             indices = None
         return Pattern(indices=indices, inverted=inverted)
 
-    def matches_index(self, index, total_length, rotation=None):
+    def matches_index(self, index, total_length, rotation=None) -> bool:
         """
         Is true when pattern matches ``index`` taken under ``total_length``.
 
@@ -1517,7 +1508,8 @@ class Pattern:
             14
             15
 
-            Logical XOR:
+            Logical XOR; matches every index that is (one of the first three
+            indices); ignores ``operator``:
 
             >>> pattern = abjad.Pattern(
             ...     operator='xor',
@@ -1549,13 +1541,10 @@ class Pattern:
             14
             15
 
-            Matches every index that is (one of the first three indices).
-
-            Ignores ``operator``.
-
         ..  container:: example
 
-            Two-part pattern with logical OR:
+            Two-part pattern with logical OR; matches every index that is (one
+            of the first three indices) OR (one of the last three indices):
 
             >>> pattern = abjad.Pattern(
             ...     operator='or',
@@ -1621,12 +1610,10 @@ class Pattern:
             2 True
             3 True
 
-            Matches every index that is (one of the first three indices) OR
-            (one of the last three indices).
-
         ..  container:: example
 
-            Two-part pattern with logical AND:
+            Two-part pattern with logical AND; matches every index that is (one
+            of the first three indices) AND (one of the last three indices):
 
             >>> pattern = abjad.Pattern(
             ...     operator='and',
@@ -1692,12 +1679,10 @@ class Pattern:
             2 True
             3
 
-            Matches every index that is (one of the first three indices) AND
-            (one of the last three indices).
-
         ..  container:: example
 
-            Two-part pattern with logical XOR:
+            Two-part pattern with logical XOR; matches every index that is (one
+            of the first three indices) XOR (one of the last three indices):
 
             >>> pattern = abjad.Pattern(
             ...     operator='xor',
@@ -1763,12 +1748,11 @@ class Pattern:
             2
             3 True
 
-            Matches every index that is (one of the first three indices) XOR
-            (one of the last three indices).
-
         ..  container:: example
 
-            Two-part pattern with mixed periodic and inverted parts:
+            Two-part pattern with mixed periodic and inverted parts; matches
+            every index that is (equal to 0 % 2) AND (not one of the last three
+            indices):
 
             >>> pattern = abjad.Pattern(
             ...     operator='and',
@@ -1836,12 +1820,11 @@ class Pattern:
             2
             3
 
-            Matches every index that is (equal to 0 % 2) AND (not one of the
-            last three indices).
-
         ..  container:: example
 
-            Complex pattern with compound and simple parts:
+            Complex pattern with compound and simple parts; matches every index
+            that is ((equal to 0 % 2) AND (not one of the last three indices))
+            OR is (one of the first three indices):
 
             >>> pattern = abjad.Pattern(
             ...     operator='and',
@@ -1920,10 +1903,6 @@ class Pattern:
             2 True
             3
 
-            Matches every index that is ((equal to 0 % 2) AND (not one of the
-            last three indices)) OR is (one of the first three indices).
-
-        Returns true or false.
         """
         if not self.patterns:
             assert 0 <= total_length
@@ -1969,7 +1948,7 @@ class Pattern:
             result = not (result)
         return result
 
-    def reverse(self):
+    def reverse(self) -> "Pattern":
         """
         Reverses pattern.
 
@@ -2060,16 +2039,13 @@ class Pattern:
             >>> pattern
             Pattern(indices=None, inverted=None, operator='and', patterns=(Pattern(indices=(0,), inverted=None, operator=None, patterns=None, payload=None, period=2), Pattern(indices=(-3, -2, -1), inverted=True, operator=None, patterns=None, payload=None, period=None)), payload=None, period=None)
 
-            Reverses pattern:
+            Reverses pattern; new pattern matches every index that is (equal to
+            -1 % 2) AND (not one of the first three indices):
 
             >>> pattern = pattern.reverse()
             >>> pattern
             Pattern(indices=None, inverted=None, operator='and', patterns=(Pattern(indices=(-1,), inverted=None, operator=None, patterns=None, payload=None, period=2), Pattern(indices=(2, 1, 0), inverted=True, operator=None, patterns=None, payload=None, period=None)), payload=None, period=None)
 
-            New pattern matches every index that is (equal to -1 % 2) AND (not one of the
-            first three indices).
-
-        Returns new pattern.
         """
         if not self.patterns:
             indices = [-index - 1 for index in self.indices]
@@ -2077,7 +2053,7 @@ class Pattern:
         patterns = [_.reverse() for _ in self.patterns]
         return dataclasses.replace(self, patterns=patterns)
 
-    def rotate(self, n=0):
+    def rotate(self, n=0) -> "Pattern":
         """
         Rotates pattern by index ``n``.
 
@@ -2230,16 +2206,15 @@ class Pattern:
             >>> pattern
             Pattern(indices=None, inverted=None, operator='and', patterns=(Pattern(indices=(0,), inverted=None, operator=None, patterns=None, payload=None, period=2), Pattern(indices=(-3, -2, -1), inverted=True, operator=None, patterns=None, payload=None, period=None)), payload=None, period=None)
 
-            Rotates pattern two elements to the right:
+            Rotates pattern two elements to the right; new pattern matches
+            every index that is (equal to 2 % 2) AND (not the first, second or
+            last index in the pattern):
 
             >>> pattern = pattern.rotate(n=2)
             >>> pattern
             Pattern(indices=None, inverted=None, operator='and', patterns=(Pattern(indices=(2,), inverted=None, operator=None, patterns=None, payload=None, period=2), Pattern(indices=(-1, 0, 1), inverted=True, operator=None, patterns=None, payload=None, period=None)), payload=None, period=None)
 
-            New pattern matches every index that is (equal to 2 % 2) AND (not the first,
-            second or last index in the pattern).
 
-        Returns new pattern.
         """
         if not self.patterns:
             indices = [index + n for index in self.indices]
@@ -2296,7 +2271,9 @@ class PatternTuple:
     def __post_init__(self):
         self.items = tuple(self.items or [])
 
-    def get_matching_pattern(self, index, total_length, rotation=None):
+    def get_matching_pattern(
+        self, index, total_length, rotation=None
+    ) -> Pattern | None:
         """
         Gets pattern matching ``index``.
 
@@ -2314,7 +2291,8 @@ class PatternTuple:
             ...         ),
             ...     ])
 
-            Gets patterns that match the first ten indices:
+            Gets patterns that match the first ten indices; last three indices
+            match the second pattern:
 
             >>> for i in range(10):
             ...     match = patterns.get_matching_pattern(i, 10)
@@ -2331,9 +2309,8 @@ class PatternTuple:
             8 Pattern(indices=(-3, -2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None)
             9 Pattern(indices=(-3, -2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None)
 
-            Last three indices match the second pattern.
-
-            Gets patterns that match next ten indices:
+            Gets patterns that match next ten indices; last three indices no
+            longer match the second pattern:
 
             >>> for i in range(10, 20):
             ...     match = patterns.get_matching_pattern(i, 10)
@@ -2350,12 +2327,10 @@ class PatternTuple:
             18 None
             19 Pattern(indices=(1,), inverted=None, operator=None, patterns=None, payload=None, period=2)
 
-            Last three indices no longer match the second pattern.
-
         ..  container:: example
 
             Gets patterns that match the first ten indices, with rotation set
-            to ``1``:
+            to ``1``; matching indices of first pattern offset by ``1``:
 
             >>> for i in range(10):
             ...     match = patterns.get_matching_pattern(i, 10, rotation=1)
@@ -2372,10 +2347,8 @@ class PatternTuple:
             8 Pattern(indices=(-3, -2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None)
             9 Pattern(indices=(-3, -2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None)
 
-            Matching indices of first pattern offset by ``1``.
-
             Gets patterns that match next ten indices with rotation set to
-            ``1``:
+            ``1``; matching indices of first pattern offset by ``1``:
 
             >>> for i in range(10, 20):
             ...     match = patterns.get_matching_pattern(i, 10, rotation=1)
@@ -2391,8 +2364,6 @@ class PatternTuple:
             17 None
             18 Pattern(indices=(1,), inverted=None, operator=None, patterns=None, payload=None, period=2)
             19 None
-
-            Matching indices of first pattern offset by ``1``.
 
         ..  container:: example
 
@@ -2420,7 +2391,6 @@ class PatternTuple:
             8 Pattern(indices=(-3,), inverted=True, operator=None, patterns=None, payload=None, period=None)
             9 Pattern(indices=(-3,), inverted=True, operator=None, patterns=None, payload=None, period=None)
 
-        Returns pattern or none.
         """
         for pattern in reversed(self.items):
             if hasattr(pattern, "pattern"):
@@ -2430,6 +2400,7 @@ class PatternTuple:
                     return pattern
             elif pattern.matches_index(index, total_length, rotation=rotation):
                 return pattern
+        return None
 
     def get_matching_payload(self, index, total_length, rotation=None):
         """
@@ -2437,8 +2408,8 @@ class PatternTuple:
 
         ..  container:: example
 
-            Two patterns. Underlying notes with even divisions
-            assigned to the last three indices:
+            Two patterns. Underlying notes with even divisions assigned to the
+            last three indices:
 
             >>> patterns = abjad.PatternTuple([
             ...     abjad.Pattern(

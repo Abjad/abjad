@@ -23,49 +23,35 @@ class Duration(fractions.Fraction):
         >>> abjad.Duration(3)
         Duration(3, 1)
 
-    ..  container:: example
-
         Initializes from integer numerator and denominator:
 
         >>> abjad.Duration(3, 16)
         Duration(3, 16)
-
-    ..  container:: example
 
         Initializes from integer-equivalent numeric numerator:
 
         >>> abjad.Duration(3.0)
         Duration(3, 1)
 
-    ..  container:: example
-
         Initializes from integer-equivalent numeric numerator and denominator:
 
         >>> abjad.Duration(3.0, 16)
         Duration(3, 16)
-
-    ..  container:: example
 
         Initializes from integer-equivalent singleton:
 
         >>> abjad.Duration((3,))
         Duration(3, 1)
 
-    ..  container:: example
-
         Initializes from integer-equivalent pair:
 
         >>> abjad.Duration((3, 16))
         Duration(3, 16)
 
-    ..  container:: example
-
         Initializes from other duration:
 
         >>> abjad.Duration(abjad.Duration(3, 16))
         Duration(3, 16)
-
-    ..  container:: example
 
         Intializes from fraction:
 
@@ -73,11 +59,9 @@ class Duration(fractions.Fraction):
         >>> abjad.Duration(fractions.Fraction(3, 16))
         Duration(3, 16)
 
-    ..  container:: example
-
         Initializes from solidus string:
 
-        >>> abjad.Duration('3/16')
+        >>> abjad.Duration("3/16")
         Duration(3, 16)
 
     ..  container:: example
@@ -483,7 +467,9 @@ class Duration(fractions.Fraction):
 
         ..  container:: example
 
-            Gets dot count:
+            Dot count defined equal to number of dots required to notate
+            duration. Raises assignability error when duration is not
+            assignable.
 
             >>> for n in range(1, 16 + 1):
             ...     try:
@@ -513,9 +499,6 @@ class Duration(fractions.Fraction):
             15/16   3
             16/16   0
 
-        Dot count defined equal to number of dots required to notate duration.
-
-        Raises assignability error when duration is not assignable.
         """
         if not self.is_assignable:
             raise _exceptions.AssignabilityError
@@ -527,12 +510,9 @@ class Duration(fractions.Fraction):
     @property
     def equal_or_greater_assignable(self) -> "Duration":
         r"""
-        Gets assignable duration equal to or just greater than this
-        duration.
+        Gets assignable duration equal to or just greater than this duration.
 
         ..  container:: example
-
-            Gets equal-or-greater assignable duration:
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
@@ -573,8 +553,6 @@ class Duration(fractions.Fraction):
 
         ..  container:: example
 
-            Gets equal-or-greater power-of-two:
-
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_greater_power_of_two
@@ -608,8 +586,6 @@ class Duration(fractions.Fraction):
         Gets assignable duration equal or just less than this duration.
 
         ..  container:: example
-
-            Gets equal-or-lesser assignable duration:
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
@@ -651,8 +627,6 @@ class Duration(fractions.Fraction):
 
         ..  container:: example
 
-            Gets equal-or-lesser power-of-two:
-
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_lesser_power_of_two
@@ -685,8 +659,6 @@ class Duration(fractions.Fraction):
         Gets base-2 exponent.
 
         ..  container:: example
-
-            Gets equal-or-greater power-of-two:
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
@@ -721,7 +693,8 @@ class Duration(fractions.Fraction):
 
         ..  container:: example
 
-            Gets flag count:
+            Flag count defined equal to number of flags required to notate
+            duration.
 
             >>> for n in range(1, 16 + 1):
             ...     duration = abjad.Duration(n, 64)
@@ -745,8 +718,6 @@ class Duration(fractions.Fraction):
             15/64   1
             16/64   0
 
-        Flag count defined equal to number of flags required to notate
-        duration.
         """
         log = math.log(float(self.numerator) / self.denominator, 2)
         count = -int(math.floor(log)) - 2
@@ -758,8 +729,6 @@ class Duration(fractions.Fraction):
         Is true when duration is assignable.
 
         ..  container:: example
-
-            Is true when duration is assignable:
 
             >>> for numerator in range(0, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
@@ -798,12 +767,11 @@ class Duration(fractions.Fraction):
 
         ..  container:: example
 
-            Gets LilyPond duration string:
+            Raises assignability error when duration is not assignable.
 
-                >>> abjad.Duration(3, 16).lilypond_duration_string
-                '8.'
+            >>> abjad.Duration(3, 16).lilypond_duration_string
+            '8.'
 
-        Raises assignability error when duration is not assignable.
         """
         if not self.is_assignable:
             raise _exceptions.AssignabilityError(self)
@@ -826,11 +794,9 @@ class Duration(fractions.Fraction):
     @property
     def pair(self) -> tuple[int, int]:
         """
-        Gets numerator and denominator.
+        Gets numerator and denominator pair.
 
         ..  container:: example
-
-            Gets pair:
 
             >>> abjad.Duration(3, 16).pair
             (3, 16)
@@ -873,8 +839,6 @@ class Duration(fractions.Fraction):
         Gets reciprocal.
 
         ..  container:: example
-
-            Gets reciprocal:
 
             >>> abjad.Duration(3, 7).reciprocal()
             Duration(7, 3)
@@ -978,7 +942,7 @@ class Duration(fractions.Fraction):
 
         ..  container:: example
 
-            Changes duration to clock string:
+            Rounds down to nearest second.
 
             >>> note = abjad.Note("c'4")
             >>> duration = abjad.Duration(117)
@@ -998,7 +962,6 @@ class Duration(fractions.Fraction):
                 c'4
                 ^ \markup { 1'57'' }
 
-        Rounds down to nearest second.
         """
         minutes = int(self / 60)
         seconds = str(int(self - minutes * 60)).zfill(2)
@@ -1017,56 +980,40 @@ class Offset(Duration):
         >>> abjad.Offset(3)
         Offset((3, 1))
 
-    ..  container:: example
-
         Initializes from integer numerator and denominator:
 
         >>> abjad.Offset(3, 16)
         Offset((3, 16))
-
-    ..  container:: example
 
         Initializes from integer-equivalent numeric numerator:
 
         >>> abjad.Offset(3.0)
         Offset((3, 1))
 
-    ..  container:: example
-
         Initializes from integer-equivalent numeric numerator and denominator:
 
         >>> abjad.Offset(3.0, 16)
         Offset((3, 16))
-
-    ..  container:: example
 
         Initializes from integer-equivalent singleton:
 
         >>> abjad.Offset((3,))
         Offset((3, 1))
 
-    ..  container:: example
-
         Initializes from integer-equivalent pair:
 
         >>> abjad.Offset((3, 16))
         Offset((3, 16))
-
-    ..  container:: example
 
         Initializes from duration:
 
         >>> abjad.Offset(abjad.Duration(3, 16))
         Offset((3, 16))
 
-    ..  container:: example
-
         Initializes from other offset:
 
         >>> abjad.Offset(abjad.Offset(3, 16))
         Offset((3, 16))
-
-    ..  container:: example
 
         Initializes from other offset with displacement:
 
@@ -1074,19 +1021,15 @@ class Offset(Duration):
         >>> abjad.Offset(offset)
         Offset((3, 16), displacement=Duration(-1, 16))
 
-    ..  container:: example
-
         Intializes from fraction:
 
         >>> import fractions
         >>> abjad.Offset(fractions.Fraction(3, 16))
         Offset((3, 16))
 
-    ..  container:: example
-
         Initializes from solidus string:
 
-        >>> abjad.Offset('3/16')
+        >>> abjad.Offset("3/16")
         Offset((3, 16))
 
     ..  container:: example
@@ -1920,6 +1863,9 @@ class Ratio:
 
 
 def add_pairs(pair_1, pair_2):
+    """
+    Adds ``pair_1`` to ``pair_2``.
+    """
     assert isinstance(pair_1, tuple), repr(pair_1)
     assert isinstance(pair_2, tuple), repr(pair_2)
     if pair_1[1] == pair_2[1]:

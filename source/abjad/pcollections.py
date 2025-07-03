@@ -492,7 +492,6 @@ class PitchClassSet(frozenset):
             >>> pc_set.get_prime_form()
             PitchClassSet([0, 1, 2, 3, 6, 7])
 
-        Returns new pitch-class set.
         """
 
         def _transpose_to_zero(segment):
@@ -1820,11 +1819,11 @@ class PitchSet(frozenset):
 
     ..  container:: example
 
+        Predicates:
+
         >>> set_1 = abjad.PitchSet([-6, -5, -3, -1])
         >>> set_2 = abjad.PitchSet([-3, -1])
         >>> set_3 = abjad.PitchSet([1, 3, 4])
-
-        Predicates:
 
         >>> set_1.isdisjoint(set_3)
         True
@@ -1837,10 +1836,10 @@ class PitchSet(frozenset):
 
     ..  container:: example
 
+        Comparison:
+
         >>> set_1 = abjad.PitchSet([-26, -2.5, 6, 7, -1.5, 7])
         >>> set_2 = abjad.PitchSet([-1.5, 7, 9, 12])
-
-        Comparison:
 
         >>> set_1 == set_1
         True
@@ -2641,7 +2640,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            Inverts row about pitch-class 1:
+            Inverts row about pitch-class 1; same result as above:
 
             >>> inversion = row.invert(axis=1)
             >>> lilypond_file = abjad.illustrate(inversion)
@@ -2669,8 +2668,6 @@ class TwelveToneRow(PitchClassSegment):
                     \bar "|."
                     \override Score.BarLine.transparent = ##f
                 }
-
-            Same result as above.
 
         ..  container:: example
 

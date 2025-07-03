@@ -717,6 +717,8 @@ class Accidental:
         """
         Adds ``argument`` to accidental.
 
+        Returns new accidental.
+
         ..  container:: example
 
             >>> accidental = abjad.Accidental("qs")
@@ -727,7 +729,6 @@ class Accidental:
             >>> accidental + accidental + accidental
             Accidental(name='three-quarters sharp')
 
-        Returns new accidental.
         """
         if not isinstance(argument, type(self)):
             raise TypeError("can only add accidental to other accidental.")
@@ -1355,8 +1356,6 @@ class NamedIntervalClass(IntervalClass):
 
     ..  container:: example
 
-        Initializes from name:
-
         >>> abjad.NamedIntervalClass("-M9")
         NamedIntervalClass('-M2')
 
@@ -1367,7 +1366,7 @@ class NamedIntervalClass(IntervalClass):
     def __init__(self, name="P1"):
         super().__init__(name or "P1")
 
-    def __abs__(self):
+    def __abs__(self) -> "NamedIntervalClass":
         """
         Gets absolute value of named interval-class.
 
@@ -1376,15 +1375,12 @@ class NamedIntervalClass(IntervalClass):
             >>> abs(abjad.NamedIntervalClass("-M9"))
             NamedIntervalClass('+M2')
 
-        Returns new named interval-class.
         """
         return type(self)((self.quality, abs(self.number)))
 
-    def __add__(self, argument):
+    def __add__(self, argument) -> "NamedIntervalClass":
         """
         Adds ``argument`` to named interval-class.
-
-        Returns new named interval-class.
         """
         try:
             argument = type(self)(argument)
@@ -1395,7 +1391,7 @@ class NamedIntervalClass(IntervalClass):
         interval = NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
         return type(self)(interval)
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Is true when ``argument`` is a named interval-class with direction
         number, quality string and number equal to those of this named
@@ -1428,16 +1424,13 @@ class NamedIntervalClass(IntervalClass):
             >>> interval_class_3 == interval_class_3
             True
 
-        Returns true or false.
         """
         return super().__eq__(argument)
 
     # TODO: remove
-    def __float__(self):
+    def __float__(self) -> float:
         """
         Coerce to float.
-
-        Returns float.
         """
         return float(
             self._named_to_numbered(
@@ -1445,11 +1438,9 @@ class NamedIntervalClass(IntervalClass):
             )
         )
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes named interval-class.
-
-        Returns integer.
         """
         return super().__hash__()
 
@@ -1496,11 +1487,9 @@ class NamedIntervalClass(IntervalClass):
             return self_semitones < argument_semitones
         return self.number < argument.number
 
-    def __radd__(self, argument):
+    def __radd__(self, argument) -> "NamedIntervalClass":
         """
         Adds interval-class to ``argument``
-
-        Returns new named interval-class.
         """
         try:
             argument = type(self)(argument)
@@ -1508,17 +1497,15 @@ class NamedIntervalClass(IntervalClass):
             return NotImplemented
         return argument.__add__(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
         return f"{type(self).__name__}({self.name!r})"
 
-    def __sub__(self, argument):
+    def __sub__(self, argument) -> "NamedIntervalClass":
         """
         Subtracts ``argument`` from named interval-class.
-
-        Returns new named interval-class.
         """
         try:
             argument = type(self)(argument)
@@ -1557,7 +1544,7 @@ class NamedIntervalClass(IntervalClass):
         self._from_named_parts(direction, quality, diatonic_number)
 
     @property
-    def direction_number(self):
+    def direction_number(self) -> int:
         """
         Gets direction number of named interval-class.
 
@@ -1572,14 +1559,13 @@ class NamedIntervalClass(IntervalClass):
             >>> abjad.NamedIntervalClass("-M2").direction_number
             -1
 
-        Returns -1, 0 or 1.
         """
         if self.quality == "P" and abs(self.number) == 1:
             return 0
         return _math.sign(self.number)
 
     @property
-    def name(self):
+    def name(self) -> str:
         """
         Gets name of named interval-class.
 
@@ -1588,7 +1574,6 @@ class NamedIntervalClass(IntervalClass):
             >>> abjad.NamedIntervalClass("-M9").name
             '-M2'
 
-        Returns string.
         """
         return "{}{}{}".format(
             _direction_number_to_direction_symbol[self.direction_number],
@@ -1597,16 +1582,16 @@ class NamedIntervalClass(IntervalClass):
         )
 
     @property
-    def quality(self):
+    def quality(self) -> str:
         """
         Gets quality of named interval-class.
-
-        Returns string.
         """
         return self._quality
 
     @classmethod
-    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
+    def from_pitch_carriers(
+        class_, pitch_carrier_1, pitch_carrier_2
+    ) -> "NamedIntervalClass":
         """
         Makes named interval-class from ``pitch_carrier_1`` and
         ``pitch_carrier_2``
@@ -1651,7 +1636,6 @@ class NamedIntervalClass(IntervalClass):
             ...     )
             NamedIntervalClass('-m3')
 
-        Returns newly constructed named interval-class.
         """
         named_interval = NamedInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2
@@ -1710,7 +1694,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             self._quality, self._number
         )
 
-    def __eq__(self, argument):
+    def __eq__(self, argument) -> bool:
         """
         Compares ``name``.
 
@@ -1742,15 +1726,12 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             >>> interval_class_3 == interval_class_3
             True
 
-        Returns true or false.
         """
         return super().__eq__(argument)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes named inversion-equivalent interval-class.
-
-        Returns integer.
         """
         return super().__hash__()
 
@@ -1791,7 +1772,9 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         return quality, number
 
     @classmethod
-    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
+    def from_pitch_carriers(
+        class_, pitch_carrier_1, pitch_carrier_2
+    ) -> "NamedInversionEquivalentIntervalClass":
         """
         Makes named inversion-equivalent interval-class from ``pitch_carrier_1`` and
         ``pitch_carrier_2``.
@@ -1805,7 +1788,6 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             ...     )
             NamedInversionEquivalentIntervalClass('+M2')
 
-        Returns new named inversion-equivalent interval-class.
         """
         named_interval = NamedInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2
@@ -1825,14 +1807,10 @@ class NumberedIntervalClass(IntervalClass):
         >>> abjad.NumberedIntervalClass(-14)
         NumberedIntervalClass(-2)
 
-    ..  container:: example
-
         Initializes from float:
 
         >>> abjad.NumberedIntervalClass(-14.5)
         NumberedIntervalClass(-2.5)
-
-    ..  container:: example
 
         Initializes from string:
 
@@ -1852,19 +1830,15 @@ class NumberedIntervalClass(IntervalClass):
     def __init__(self, number=0):
         super().__init__(number or 0)
 
-    def __abs__(self):
+    def __abs__(self) -> "NumberedIntervalClass":
         """
         Gets absolute value of numbered interval-class.
-
-        Returns new numbered interval-class.
         """
         return type(self)(abs(self.number))
 
-    def __add__(self, argument):
+    def __add__(self, argument) -> "NumberedIntervalClass":
         """
         Adds ``argument`` to numbered interval-class.
-
-        Returns new numbered interval-class.
         """
         try:
             argument = type(self)(argument)
@@ -1907,23 +1881,19 @@ class NumberedIntervalClass(IntervalClass):
         return super().__eq__(argument)
 
     # TODO: remove
-    def __float__(self):
+    def __float__(self) -> float:
         """
         Coerce to semitones as float.
-
-        Returns float.
         """
         return float(self._number)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes numbered interval-class.
-
-        Returns integer.
         """
         return super().__hash__()
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
         Compares ``number``.
 
@@ -1954,7 +1924,6 @@ class NumberedIntervalClass(IntervalClass):
             >>> interval_class_3 < interval_class_3
             False
 
-        Returns true or false.
         """
         try:
             argument = type(self)(argument)
@@ -1962,11 +1931,9 @@ class NumberedIntervalClass(IntervalClass):
             return False
         return self.number < argument.number
 
-    def __radd__(self, argument):
+    def __radd__(self, argument) -> "NumberedIntervalClass":
         """
         Adds ``argument`` to numbered interval-class.
-
-        Returns new numbered interval-class.
         """
         try:
             argument = type(self)(argument)
@@ -1974,17 +1941,15 @@ class NumberedIntervalClass(IntervalClass):
             return NotImplemented
         return type(self)(float(self) + float(argument))
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
         return f"{type(self).__name__}({self.number!r})"
 
-    def __sub__(self, argument):
+    def __sub__(self, argument) -> "NumberedIntervalClass":
         """
         Subtracts ``argument`` from numbered interval-class.
-
-        Returns new numbered interval-class.
         """
         try:
             argument = type(self)(argument)
@@ -2021,7 +1986,7 @@ class NumberedIntervalClass(IntervalClass):
             return 1
 
     @property
-    def signed_string(self):
+    def signed_string(self) -> str:
         """
         Gets signed string.
         """
@@ -2081,7 +2046,6 @@ class NumberedIntervalClass(IntervalClass):
             ...     )
             NumberedIntervalClass(-2)
 
-        Returns numbered interval-class.
         """
         interval = NumberedInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2
@@ -2103,14 +2067,10 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         >>> abjad.NumberedInversionEquivalentIntervalClass(1)
         NumberedInversionEquivalentIntervalClass(1)
 
-    ..  container:: example
-
         Initializes from float:
 
         >>> abjad.NumberedInversionEquivalentIntervalClass(1.5)
         NumberedInversionEquivalentIntervalClass(1.5)
-
-    ..  container:: example
 
         Initializes from string:
 
@@ -2127,10 +2087,9 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         if 6 < self._number:
             self._number = 12 - self._number
 
-    def __abs__(self):
+    def __abs__(self) -> "NumberedInversionEquivalentIntervalClass":
         """
-        Gets absolute value of numbered inversion-equivalent
-        interval-class.
+        Gets absolute value of numbered inversion-equivalent interval-class.
 
         ..  container:: example
 
@@ -2140,11 +2099,10 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
             >>> abs(abjad.NumberedInversionEquivalentIntervalClass(1.5))
             NumberedInversionEquivalentIntervalClass(1.5)
 
-        Returns new numbered inversion-equivalent interval-class.
         """
         return type(self)(abs(self.number))
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
         Compares ``number``.
         """
@@ -2152,7 +2110,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
             return self.number < argument.number
         return False
 
-    def __neg__(self):
+    def __neg__(self) -> "NumberedInversionEquivalentIntervalClass":
         """
         Negates numbered inversion-equivalent interval-class.
 
@@ -2164,11 +2122,10 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
             >>> -abjad.NumberedInversionEquivalentIntervalClass(1.5)
             NumberedInversionEquivalentIntervalClass(1.5)
 
-        Returns new numbered inversion-equivalent interval-class.
         """
         return type(self)(self.number)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
@@ -2241,11 +2198,9 @@ class Interval:
         """
         return hash(self.__class__.__name__ + repr(self))
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
         Is true when interval is less than ``argument``
-
-        Returns true or false.
         """
         raise NotImplementedError
 
@@ -2341,20 +2296,16 @@ class Interval:
         return quality
 
     @property
-    def cents(self):
+    def cents(self) -> int | float:
         """
         Gets cents of interval.
-
-        Returns nonnegative number.
         """
         return 100 * self.semitones
 
     @property
-    def direction_number(self):
+    def direction_number(self) -> int:
         """
         Gets direction number of interval
-
-        Returns integer.
         """
         raise NotImplementedError
 
@@ -2368,29 +2319,23 @@ class Interval:
         raise NotImplementedError
 
     @property
-    def number(self):
+    def number(self) -> int | float:
         """
         Gets number of interval.
-
-        Returns integer.
         """
         raise NotImplementedError
 
     @property
-    def octaves(self):
+    def octaves(self) -> int:
         """
         Gets octaves of interval.
-
-        Returns nonnegative number.
         """
         raise NotImplementedError
 
     @property
-    def semitones(self):
+    def semitones(self) -> int | float:
         """
         Gets semitones of interval.
-
-        Returns integer or float.
         """
         raise NotImplementedError
 
@@ -2428,28 +2373,20 @@ class NamedInterval(Interval):
         >>> abjad.NamedInterval("+M9")
         NamedInterval('+M9')
 
-    ..  container:: example
-
         Initializes descending major third from number of semitones:
 
         >>> abjad.NamedInterval(-4)
         NamedInterval('-M3')
-
-    ..  container:: example
 
         Initializes from other named interval:
 
         >>> abjad.NamedInterval(abjad.NamedInterval(-4))
         NamedInterval('-M3')
 
-    ..  container:: example
-
         Initializes from numbered interval:
 
         >>> abjad.NamedInterval(abjad.NumberedInterval(3))
         NamedInterval('+m3')
-
-    ..  container:: example
 
         Initializes from pair of quality and diatonic number:
 
@@ -2547,19 +2484,15 @@ class NamedInterval(Interval):
         return False
 
     # TODO: remove
-    def __float__(self):
+    def __float__(self) -> float:
         """
         Coerce to semitones as float.
-
-        Returns float.
         """
         return float(self.semitones)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes named interval.
-
-        Returns number.
         """
         return super().__hash__()
 
@@ -2634,7 +2567,7 @@ class NamedInterval(Interval):
             return NotImplemented
         return argument.__add__(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
@@ -2961,6 +2894,8 @@ class NamedInterval(Interval):
         """
         Transposes ``pitch_carrier`` by named interval.
 
+        Returns new (copied) object of ``pitch_carrier`` type.
+
         ..  container:: example
 
             Transposes chord:
@@ -2971,7 +2906,6 @@ class NamedInterval(Interval):
             >>> interval.transpose(chord)
             Chord("<df' f' af'>4")
 
-        Returns new (copied) object of ``pitch_carrier`` type.
         """
         return super().transpose(pitch_carrier)
 
@@ -3091,19 +3025,15 @@ class NumberedInterval(Interval):
         return False
 
     # TODO: remove
-    def __float__(self):
+    def __float__(self) -> float:
         """
         Coerce to float.
-
-        Returns float.
         """
         return float(self.number)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes numbered interval.
-
-        Returns integer.
         """
         return super().__hash__()
 
@@ -3146,7 +3076,6 @@ class NumberedInterval(Interval):
             >>> interval_3 < interval_3
             False
 
-        Returns true or false.
         """
         if isinstance(argument, type(self)):
             return self.number < argument.number
@@ -3185,7 +3114,7 @@ class NumberedInterval(Interval):
             return NotImplemented
         return type(self)(float(self) + float(argument))
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
@@ -3287,7 +3216,7 @@ class NumberedInterval(Interval):
         return self.number
 
     @property
-    def signed_string(self):
+    def signed_string(self) -> str:
         """
         Gets signed string.
         """
@@ -3346,6 +3275,8 @@ class NumberedInterval(Interval):
         """
         Transposes ``pitch_carrier``
 
+        Returns newly constructed object of ``pitch_carrier`` type.
+
         ..  container:: example
 
             Transposes chord:
@@ -3356,7 +3287,6 @@ class NumberedInterval(Interval):
             >>> interval.transpose(chord)
             Chord("<df' f' af'>4")
 
-        Returns newly constructed object of ``pitch_carrier`` type.
         """
         return super().transpose(pitch_carrier)
 
@@ -3410,8 +3340,6 @@ class PitchClass:
     def __float__(self):
         """
         Coerce to float.
-
-        Returns float.
         """
         return float(self.number)
 
@@ -3421,11 +3349,9 @@ class PitchClass:
         """
         return hash(self.__class__.__name__ + repr(self))
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
         Is true when pitch-class is less than ``argument``.
-
-        Returns true or false.
         """
         raise NotImplementedError
 
@@ -3458,13 +3384,15 @@ class PitchClass:
         div %= 12
         return _math.integer_equivalent_number_to_integer(div)
 
-    def accidental(self):
+    @property
+    def accidental(self) -> Accidental:
         """
         Gets accidental of pitch-class.
         """
         raise NotImplementedError
 
-    def pitch_class_label(self):
+    @property
+    def pitch_class_label(self) -> str:
         """
         Gets pitch-class label of pitch-class.
         """
@@ -3649,11 +3577,9 @@ class NamedPitchClass(PitchClass):
         """
         return super().__eq__(argument)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes named pitch-class.
-
-        Returns integer.
         """
         return super().__hash__()
 
@@ -3688,7 +3614,7 @@ class NamedPitchClass(PitchClass):
         message = f"right-addition not defined on {type(self).__name__}."
         raise NotImplementedError(message)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
@@ -3756,7 +3682,7 @@ class NamedPitchClass(PitchClass):
         return f"{name}{accidental!s}"
 
     @property
-    def accidental(self):
+    def accidental(self) -> Accidental:
         """
         Gets accidental.
 
@@ -3811,7 +3737,7 @@ class NamedPitchClass(PitchClass):
         return result
 
     @property
-    def pitch_class_label(self):
+    def pitch_class_label(self) -> str:
         """
         Gets pitch-class label.
 
@@ -4004,11 +3930,9 @@ class NumberedPitchClass(PitchClass):
         if isinstance(argument, type(self)):
             return self.number == argument.number
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes numbered pitch-class.
-
-        Returns integer.
         """
         return super().__hash__()
 
@@ -4058,7 +3982,7 @@ class NumberedPitchClass(PitchClass):
         message = f"right-addition not defined on {type(self).__name__}."
         raise NotImplementedError(message)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
@@ -4135,7 +4059,7 @@ class NumberedPitchClass(PitchClass):
         return NamedPitchClass(self)._get_lilypond_format()
 
     @property
-    def accidental(self):
+    def accidental(self) -> Accidental:
         """
         Gets accidental.
 
@@ -4186,7 +4110,7 @@ class NumberedPitchClass(PitchClass):
         return self._number
 
     @property
-    def pitch_class_label(self):
+    def pitch_class_label(self) -> str:
         """
         Gets pitch-class / octave label.
 
@@ -4202,6 +4126,8 @@ class NumberedPitchClass(PitchClass):
     def invert(self, axis=None) -> "NumberedPitchClass":
         """
         Inverts numbered pitch-class.
+
+        Interprets axis of inversion equal to pitch-class 0.
 
         ..  container:: example
 
@@ -4222,7 +4148,6 @@ class NumberedPitchClass(PitchClass):
             NumberedPitchClass(10) NumberedPitchClass(2)
             NumberedPitchClass(11) NumberedPitchClass(1)
 
-        Interprets axis of inversion equal to pitch-class 0.
         """
         axis = axis or NumberedPitch("c")
         axis = NumberedPitch(axis)
@@ -4347,11 +4272,9 @@ class Pitch:
             self._octave = octave
 
     # TODO: remove
-    def __float__(self):
+    def __float__(self) -> float:
         """
         Coerce to float.
-
-        Returns float.
         """
         return float(self.number)
 
@@ -4361,11 +4284,9 @@ class Pitch:
         """
         return hash(self.__class__.__name__ + repr(self))
 
-    def __lt__(self, argument):
+    def __lt__(self, argument) -> bool:
         """
         Is true when pitch is less than ``argument``.
-
-        Returns true or false.
         """
         raise NotImplementedError
 
@@ -4432,29 +4353,23 @@ class Pitch:
         return hertz
 
     @property
-    def name(self):
+    def name(self) -> str:
         """
         Gets name of pitch.
-
-        Returns string.
         """
         raise NotImplementedError
 
     @property
-    def number(self):
+    def number(self) -> int | float:
         """
         Gets number of pitch.
-
-        Returns number.
         """
         raise NotImplementedError
 
     @property
-    def octave(self):
+    def octave(self) -> Octave:
         """
         Gets octave of pitch.
-
-        Returns octave.
         """
         raise NotImplementedError
 
@@ -4478,11 +4393,9 @@ class Pitch:
         pitch = class_(midi)
         return pitch
 
-    def get_name(self, locale=None):
+    def get_name(self, locale=None) -> str:
         """
         Gets name of pitch according to ``locale``.
-
-        Returns string.
         """
         raise NotImplementedError
 
@@ -4656,7 +4569,6 @@ class NamedPitch(Pitch):
             >>> pitch_3 == pitch_3
             True
 
-        Returns true or false.
         """
         if isinstance(argument, str):
             argument = NamedPitch(argument)
@@ -4669,7 +4581,7 @@ class NamedPitch(Pitch):
             )
         return False
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes numbered pitch.
         """
@@ -4752,7 +4664,6 @@ class NamedPitch(Pitch):
             >>> pitch_3 < pitch_3
             False
 
-        Returns true or false.
         """
         try:
             argument = type(self)(argument)
@@ -4779,7 +4690,7 @@ class NamedPitch(Pitch):
         message = f"right-addition not defined on {type(self).__name__}."
         raise NotImplementedError(message)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
@@ -4877,7 +4788,7 @@ class NamedPitch(Pitch):
         return contributions
 
     @property
-    def accidental(self) -> "Accidental":
+    def accidental(self) -> Accidental:
         """
         Gets accidental of named pitch.
 
@@ -4900,6 +4811,8 @@ class NamedPitch(Pitch):
         """
         Gets arrow of named pitch.
 
+        Returns up, down or none.
+
         ..  container:: example
 
             >>> abjad.NamedPitch("cs''").arrow is None
@@ -4916,7 +4829,6 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("cs''", arrow=abjad.DOWN)
             NamedPitch("cs''", arrow=Vertical.DOWN)
 
-        Returns up, down or none.
         """
         return self._pitch_class.arrow
 
@@ -5046,6 +4958,8 @@ class NamedPitch(Pitch):
         """
         Gets name of named pitch according to ``locale``.
 
+        Set ``locale`` to ``'us'`` or none.
+
         ..  container:: example
 
             >>> abjad.NamedPitch("cs''").get_name()
@@ -5054,7 +4968,6 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("cs''").get_name(locale="us")
             'C#5'
 
-        Set ``locale`` to ``'us'`` or none.
         """
         if locale is None:
             return self.name
@@ -5068,9 +4981,11 @@ class NamedPitch(Pitch):
         """
         Inverts named pitch around ``axis``.
 
-        Inverts pitch around middle C explicitly:
+        Interprets none-valued ``axis`` equal to middle C.
 
         ..  container:: example
+
+            Inverts pitch around middle C explicitly:
 
             >>> abjad.NamedPitch("d'").invert("c'")
             NamedPitch('bf')
@@ -5091,7 +5006,6 @@ class NamedPitch(Pitch):
             >>> abjad.NamedPitch("d'").invert("a")
             NamedPitch('e')
 
-        Interprets none-valued ``axis`` equal to middle C.
         """
         return super().invert(axis=axis)
 
@@ -5145,7 +5059,13 @@ class NamedPitch(Pitch):
 
     def simplify(self) -> "NamedPitch":
         """
-        Reduce alteration to between -2 and 2 while maintaining identical pitch number.
+        Reduce alteration to between -2 and 2 while maintaining identical pitch
+        number.
+
+        ..  note:: LilyPond by default only supports accidentals from
+                   double-flat to double-sharp.
+
+        ..  container:: example
 
             >>> abjad.NamedPitch("cssqs'").simplify()
             NamedPitch("dqs'")
@@ -5156,10 +5076,6 @@ class NamedPitch(Pitch):
             >>> float(abjad.NamedPitch("cfffqf'").simplify()) == float(abjad.NamedPitch("aqf"))
             True
 
-        ..  note:: LilyPond by default only supports accidentals from
-                   double-flat to double-sharp.
-
-        Returns named pitch.
         """
         alteration = self._get_alteration()
         if abs(alteration) <= 2:
@@ -5285,7 +5201,7 @@ class NumberedPitch(Pitch):
             )
         return False
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hashes numbered pitch.
         """
@@ -5404,7 +5320,7 @@ class NumberedPitch(Pitch):
         argument = type(self)(argument)
         return argument.__add__(self)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets repr.
         """
@@ -5492,6 +5408,8 @@ class NumberedPitch(Pitch):
         """
         Gets arrow of numbered pitch.
 
+        Returns up, down or none.
+
         ..  container:: example
 
             >>> abjad.NumberedPitch(13).arrow is None
@@ -5503,7 +5421,6 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(13, arrow=abjad.DOWN).arrow
             <Vertical.DOWN: -1>
 
-        Returns up, down or none.
         """
         return self._pitch_class.arrow
 
@@ -5602,6 +5519,8 @@ class NumberedPitch(Pitch):
         """
         Gets name of numbered pitch name according to ``locale``.
 
+        Set ``locale`` to ``"us"`` or none.
+
         ..  container:: example
 
             >>> abjad.NumberedPitch(13).get_name()
@@ -5610,7 +5529,6 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(13).get_name(locale="us")
             'C#5'
 
-        Set ``locale`` to ``"us"`` or none.
         """
         return NamedPitch(self).get_name(locale=locale)
 

@@ -49,14 +49,23 @@ class Tweak:
         return post_event, attribute, value
 
     def attribute(self) -> str:
+        """
+        Gets tweak attribute.
+        """
         post_event, attribute, value = self._parse()
         return attribute
 
     def is_post_event(self) -> bool:
+        """
+        Is true when tweak is post-event.
+        """
         post_event, attribute, value = self._parse()
         return post_event
 
     def value(self) -> str:
+        """
+        Gets tweak value.
+        """
         post_event, attribute, value = self._parse()
         return value
 

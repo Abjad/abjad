@@ -31,6 +31,7 @@ from . import score as _score
 configuration = _configuration.Configuration()
 
 
+# TODO: maybe move to separate module
 class AbjadGrapher(uqbar.graphs.Grapher):
     """
     Abjad grapher.
@@ -40,12 +41,19 @@ class AbjadGrapher(uqbar.graphs.Grapher):
         uqbar.graphs.Grapher.__init__(self, graphable, format_=format_, layout=layout)
 
     def get_output_directory(self) -> pathlib.Path:
+        """
+        Gets output directory.
+        """
         return pathlib.Path(configuration["abjad_output_directory"])
 
     def open_output_path(self, output_path):
+        """
+        Open ``output_path``.
+        """
         open_file(str(output_path))
 
 
+# TODO: maybe move to separate module
 class LilyPondIO:
     """
     LilyPond IO.
@@ -105,11 +113,17 @@ class LilyPondIO:
         return openable_paths, format_time, render_time, success, log
 
     def copy_stylesheets(self, render_directory):
+        """
+        Copies stylesheets.
+        """
         for directory in self.get_stylesheets_directories():
             for path in directory.glob("*.*ly"):
                 shutil.copy(path, render_directory)
 
     def get_lilypond_path(self):
+        """
+        Gets LilyPond path.
+        """
         lilypond_path = configuration.get("lilypond_path")
         if not lilypond_path:
             lilypond_paths = find_executable("lilypond")
@@ -122,14 +136,23 @@ class LilyPondIO:
     def get_openable_paths(
         self, output_paths: typing.Iterable[pathlib.Path]
     ) -> typing.Iterator[pathlib.Path]:
+        """
+        Gets openable paths.
+        """
         for path in output_paths:
             if path.suffix in (".pdf", ".mid", ".midi", ".svg", ".png"):
                 yield path
 
     def get_output_directory(self) -> pathlib.Path:
+        """
+        Gets output directory.
+        """
         return pathlib.Path(configuration["abjad_output_directory"])
 
     def get_render_command(self, input_path, lilypond_path) -> str:
+        """
+        Gets render command.
+        """
         parts = [
             str(lilypond_path),
             *self.flags,
@@ -141,14 +164,23 @@ class LilyPondIO:
         return " ".join(parts)
 
     def get_render_directory(self):
+        """
+        Gets render directory.
+        """
         return pathlib.Path(tempfile.mkdtemp())
 
     def get_render_prefix(self, string) -> str:
+        """
+        Gets render prefix.
+        """
         timestamp = re.sub(r"[^\w]", "-", datetime.datetime.now().isoformat())
         checksum = hashlib.sha1(string.encode()).hexdigest()[:7]
         return f"{timestamp}-{checksum}"
 
     def get_string(self) -> str:
+        """
+        Gets string.
+        """
         if isinstance(self.illustrable, _lilypondfile.LilyPondFile):
             lilypond_file = self.illustrable
         else:
@@ -156,6 +188,9 @@ class LilyPondIO:
         return lilypond_file._get_lilypond_format()
 
     def get_stylesheets_directories(self) -> list[pathlib.Path]:
+        """
+        Gets stylesheets directories.
+        """
         directories = []
         path = getattr(abjad, "__path__")
         abjad_path = pathlib.Path(path[0])
@@ -171,6 +206,9 @@ class LilyPondIO:
     def migrate_assets(
         self, render_prefix, render_directory, output_directory
     ) -> typing.Sequence[pathlib.Path]:
+        """
+        Migrates assets.
+        """
         migrated_assets = []
         for old_path in render_directory.iterdir():
             if not old_path.name.startswith(render_prefix):
@@ -181,15 +219,27 @@ class LilyPondIO:
         return migrated_assets
 
     def open_output_path(self, output_path):
+        """
+        Opens ``output_path``.
+        """
         open_file(str(output_path))
 
     def persist_log(self, string, input_path):
+        """
+        Persists log ``string`` to ``input_path``.
+        """
         input_path.write_text(string)
 
     def persist_string(self, string, input_path):
+        """
+        Persists ``string`` to ``input_path``.
+        """
         input_path.write_text(string)
 
     def run_command(self, command):
+        """
+        Runs ``command``.
+        """
         completed_process = subprocess.run(
             command,
             shell=True,
@@ -201,28 +251,39 @@ class LilyPondIO:
         return text, success
 
 
+# TODO: maybe move to separate module
 class Illustrator(LilyPondIO):
     """
     Illustrator.
     """
 
     def get_openable_paths(self, output_paths) -> typing.Iterator[pathlib.Path]:
+        """
+        Gets openable paths.
+        """
         for path in output_paths:
             if path.suffix == ".pdf":
                 yield path
 
 
+# TODO: maybe move to separate module
 class Player(LilyPondIO):
     """
     Player.
     """
 
     def get_openable_paths(self, output_paths) -> typing.Iterator[pathlib.Path]:
+        """
+        Gets openable paths.
+        """
         for path in output_paths:
             if path.suffix in (".mid", ".midi"):
                 yield path
 
     def get_string(self) -> str:
+        """
+        Gets string.
+        """
         lilypond_file = _illustrators.illustrate(self.illustrable, **self.keywords)
         assert "score" in lilypond_file, repr(lilypond_file)
         block = _lilypondfile.Block("midi")
@@ -345,23 +406,6 @@ def _graph_container(container):
         graph.append(leaf_cluster)
     graph._node_order = node_order
     return graph
-
-
-# TODO: remove because unused?
-def _compare_backup(path):
-    if isinstance(path, str):
-        paths = [path]
-    elif isinstance(path, pathlib.Path):
-        paths = [str(path)]
-    elif isinstance(path, tuple | list):
-        paths = [str(_) for _ in path]
-    else:
-        raise TypeError(path)
-    for path in paths:
-        backup_path = path + ".backup"
-        if not compare_files(path, backup_path):
-            return False
-    return True
 
 
 def _compare_lys(path_1, path_2):
@@ -496,9 +540,11 @@ def graph(
     layout="dot",
     return_timing=False,
     **keywords,
-):
+) -> tuple[float, float] | None:
     r"""
     Graphs ``argument``.
+
+    Opens image in default image viewer.
 
     ..  container:: example
 
@@ -612,24 +658,35 @@ def graph(
                 node_1 -> node_3;
             }
 
-    Opens image in default image viewer.
     """
     if isinstance(graphable, _score.Container):
         graphable = _graph_container(graphable)
     grapher = AbjadGrapher(graphable, format_=format_, layout=layout, **keywords)
     result = grapher()
     if not result:
-        return
+        return None
     _, format_time, render_time, success, log = result
     if not success:
         print(log)
     if return_timing:
         return format_time, render_time
+    return None
 
 
 def show(illustrable, *, flags: str = "", return_timing: bool = False, **keywords):
     r"""
-    Shows ``argument``.
+    Shows ``illustrable``.
+
+    Makes LilyPond input files and output PDF.
+
+    Writes LilyPond input file and output PDF to Abjad output directory.
+
+    Opens output PDF.
+
+    Returns none when ``return_timing`` is false.
+
+    Returns pair of ``abjad_formatting_time`` and ``lilypond_rendering_time``
+    when ``return_timing`` is true.
 
     ..  container:: example
 
@@ -644,35 +701,6 @@ def show(illustrable, *, flags: str = "", return_timing: bool = False, **keyword
             >>> print(string)
             c'4
 
-    ..  container:: example
-
-        Shows staff:
-
-        >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                c'4
-                d'4
-                e'4
-                f'4
-            }
-
-    Makes LilyPond input files and output PDF.
-
-    Writes LilyPond input file and output PDF to Abjad output directory.
-
-    Opens output PDF.
-
-    Returns none when ``return_timing`` is false.
-
-    Returns pair of ``abjad_formatting_time`` and ``lilypond_rendering_time``
-    when ``return_timing`` is true.
     """
     illustrator = Illustrator(illustrable, flags=flags.split(), **keywords)
     result = illustrator()
@@ -753,9 +781,11 @@ def execute_string(
     *,
     attribute_names: tuple[str] | None = None,
     local_namespace: dict | None = None,
-):
+) -> tuple | None:
     """
     Executes ``string``.
+
+    Returns ``attribute_names`` from executed string.
 
     ..  container:: example
 
@@ -767,7 +797,6 @@ def execute_string(
         ...     )
         (23, None)
 
-    Returns ``attribute_names`` from executed string.
     """
     assert isinstance(string, str)
     assert isinstance(attribute_names, tuple)
@@ -778,7 +807,7 @@ def execute_string(
     try:
         exec(string, local_namespace, local_namespace)
     except SyntaxError:
-        return
+        return None
     result = []
     for name in attribute_names:
         if name in local_namespace:
@@ -817,16 +846,17 @@ def make_subprocess(command: str) -> subprocess.Popen:
     """
     Makes Popen instance.
 
-    Defined equal to:
+    Redirects stderr to stdout.
+
+    Defined equal to::
 
         process = subprocess.Popen(
             command,
             shell=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
-            )
+        )
 
-    Redirects stderr to stdout.
     """
     # TODO: replace with subprocess.run()
     return subprocess.Popen(

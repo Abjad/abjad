@@ -453,7 +453,8 @@ def glissando(
 
     ..  container:: example
 
-        Allows both repeated pitches and ties:
+        Allows both repeated pitches and ties; ties are excluded when repeated
+        pitches are not allowed because all ties comprise repeated pitches:
 
         >>> voice = abjad.Voice("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8", name="Voice")
         >>> staff = abjad.Staff([voice], name="Staff")
@@ -491,9 +492,6 @@ def glissando(
                     d'8
                 }
             }
-
-        Ties are excluded when repeated pitches are not allowed because all ties
-        comprise repeated pitches.
 
     ..  container:: example
 
@@ -613,6 +611,9 @@ def glissando(
 
     ..  container:: example
 
+        ..  note:: Respects ``hide_middle_stems`` only when
+            ``hide_middle_note_heads=True``.
+
         With ``hide_middle_note_heads=True`` and ``hide_middle_stems=True``:
 
         >>> voice = abjad.Voice("c'8 d'8 e'8 f'8", name="Voice")
@@ -647,9 +648,6 @@ def glissando(
                 \revert Stem.transparent
                 f'8
             }
-
-        ..  note:: Respects ``hide_middle_stems`` only when
-            ``hide_middle_note_heads=True``.
 
     ..  container:: example
 
@@ -816,6 +814,8 @@ def glissando(
 
     ..  container:: example
 
+        ..  note:: Respects left-broken only with ``hide_middle_note_heads=True``.
+
         With ``left_broken=True`` (and ``hide_middle_note_heads=True``):
 
         >>> voice = abjad.Voice("c'8 d'8 e'8 f'8", name="Voice")
@@ -863,8 +863,6 @@ def glissando(
             \undo \hide NoteHead
             f'8
         }
-
-        ..  note:: Respects left-broken only with ``hide_middle_note_heads=True``.
 
     ..  container:: example
 
@@ -1400,8 +1398,8 @@ def horizontal_bracket(
 
     ..  container:: example
 
-        Bundle start-group indicators to tweak the padding and outside-staff priority
-        of nested analysis brackets:
+        Bundle start-group indicators to tweak the padding and outside-staff
+        priority of nested analysis brackets:
 
         >>> voice = abjad.Voice("c'4 d' e' f' c' d' e' f'")
         >>> voice.consists_commands.append("Horizontal_bracket_engraver")
@@ -1547,7 +1545,6 @@ def phrasing_slur(
                 \)
             }
 
-
     """
     start_phrasing_slur = _indicators.StartPhrasingSlur()
     stop_phrasing_slur = _indicators.StopPhrasingSlur()
@@ -1638,7 +1635,6 @@ def slur(
                 f'4
                 )
             }
-
 
     """
     start_slur = start_slur or _indicators.StartSlur()

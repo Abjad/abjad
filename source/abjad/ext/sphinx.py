@@ -113,10 +113,10 @@ class AbjadModuleDocumenter(uqbar.apis.documenters.ModuleDocumenter):
 
     Writes ...
 
-        abjad/docs/source/api/abjad/bind.rst
-        abjad/docs/source/api/abjad/configuration.rst
-        abjad/docs/source/api/abjad/contextmanagers.rst
-        < ... >
+        * abjad/docs/source/api/abjad/bind.rst
+        * abjad/docs/source/api/abjad/configuration.rst
+        * abjad/docs/source/api/abjad/contextmanagers.rst
+        * etc.
 
     ... to disk.
     """
@@ -299,7 +299,7 @@ class AbjadRootDocumenter(uqbar.apis.documenters.RootDocumenter):
 
 class HiddenDoctestDirective(docutils.parsers.rst.Directive):
     """
-    A hidden doctest directive.
+    Hidden doctest directive.
 
     Contributes no formatting to documents built by Sphinx.
     """
@@ -324,7 +324,7 @@ class HiddenDoctestDirective(docutils.parsers.rst.Directive):
 
 class ShellDirective(docutils.parsers.rst.Directive):
     """
-    A shell directive.
+    Shell directive.
 
     Represents a shell session.
 
@@ -367,7 +367,7 @@ class ShellDirective(docutils.parsers.rst.Directive):
 
 class ThumbnailDirective(docutils.parsers.rst.Directive):
     """
-    A thumbnail directive.
+    Thumbnail directive.
     """
 
     ### CLASS VARIABLES ###

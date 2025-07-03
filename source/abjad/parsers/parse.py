@@ -8,6 +8,8 @@ def parse(string: str, language: str = "english", *, tag=None):
     r"""
     Parses LilyPond ``string``.
 
+    Returns Abjad component.
+
     ..  container:: example
 
         Parses LilyPond string with English note names:
@@ -38,7 +40,6 @@ def parse(string: str, language: str = "english", *, tag=None):
           %! FOO
         }
 
-    Returns Abjad component.
     """
     if string.startswith("abj:"):
         return parse_reduced_ly_syntax(string[4:])

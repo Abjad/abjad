@@ -1215,7 +1215,6 @@ class SetClass:
             >>> set_class.prime_form
             PitchClassSet([0, 2, 6, 7])
 
-        Returns numbered pitch-class set.
         """
         prime_form = self._unrank(
             self.cardinality,
@@ -1228,6 +1227,8 @@ class SetClass:
     def from_pitches(pitches, lex_rank=None, transposition_only=None):
         """
         Makes set-class from ``pitches``.
+
+        Returns new set-class.
 
         ..  container:: example
 
@@ -1321,7 +1322,6 @@ class SetClass:
             >>> print(set_class)
             SC(3-17){0, 4, 7}
 
-        Returns new set-class.
         """
         pitch_class_set = _pcollections.PitchClassSet(pitches)
         prime_form = pitch_class_set.get_prime_form(
@@ -1347,6 +1347,8 @@ class SetClass:
     def list_set_classes(cardinality=None, lex_rank=None, transposition_only=None):
         """
         List set-classes.
+
+        Returns list of set-classes.
 
         ..  container:: example
 
@@ -1481,7 +1483,6 @@ class SetClass:
             SC(4-42){0, 4, 5, 7}
             SC(4-43){0, 4, 6, 7}
 
-        Returns list of set-classes.
         """
         if transposition_only:
             identifiers = SetClass._transposition_only_identifier_to_prime_form

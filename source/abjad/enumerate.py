@@ -12,11 +12,11 @@ from . import sequence as _sequence
 
 def _is_restricted_growth_function(sequence) -> bool:
     """
-    Is true when ``sequence`` is a restricted growth function.
+    Is true when ``sequence`` is a restricted growth function. A restricted
+    growth function is a sequence ``l`` such that ``l[0] == 1`` and such that
+    ``l[i] <= max(l[:i]) + 1`` for ``1 <= i <= len(l)``.
 
     ..  container:: example
-
-        Is true when sequence is a restricted growth function:
 
         >>> abjad.enumerate._is_restricted_growth_function([1, 1, 1, 1])
         True
@@ -32,16 +32,12 @@ def _is_restricted_growth_function(sequence) -> bool:
 
     ..  container:: example
 
-        Is false when sequence is not a restricted growth function:
-
         >>> abjad.enumerate._is_restricted_growth_function([1, 1, 1, 3])
         False
 
         >>> abjad.enumerate._is_restricted_growth_function([17])
         False
 
-    A restricted growth function is a sequence ``l`` such that ``l[0] == 1`` and such
-    that ``l[i] <= max(l[:i]) + 1`` for ``1 <= i <= len(l)``.
     """
     try:
         for i, n in enumerate(sequence):
@@ -60,11 +56,13 @@ def _partition_by_rgf(sequence, rgf: list[int]) -> list[list]:
     """
     Partitions ``sequence`` by restricted growth function ``rgf``.
 
-    >>> sequence = list(range(10))
-    >>> rgf = [1, 1, 2, 2, 1, 2, 3, 3, 2, 4]
+    ..  container:: example
 
-    >>> abjad.enumerate._partition_by_rgf(sequence, rgf)
-    [[0, 1, 4], [2, 3, 5, 8], [6, 7], [9]]
+        >>> sequence = list(range(10))
+        >>> rgf = [1, 1, 2, 2, 1, 2, 3, 3, 2, 4]
+
+        >>> abjad.enumerate._partition_by_rgf(sequence, rgf)
+        [[0, 1, 4], [2, 3, 5, 8], [6, 7], [9]]
 
     """
     rgf = list(rgf)
@@ -86,7 +84,7 @@ def _partition_by_rgf(sequence, rgf: list[int]) -> list[list]:
 
 def _yield_restricted_growth_functions(length) -> typing.Iterator[list[int]]:
     """
-    Yields restricted growth functions of ``length``.
+    Yields restricted growth functions of ``length`` in lex order.
 
     ..  container:: example
 
@@ -110,7 +108,6 @@ def _yield_restricted_growth_functions(length) -> typing.Iterator[list[int]]:
         [1, 2, 3, 3]
         [1, 2, 3, 4]
 
-    Yields restricted growth functions in lex order.
     """
     assert _math.is_positive_integer(length), repr(length)
     last_rgf = list(range(1, length + 1))
@@ -130,7 +127,7 @@ def _yield_restricted_growth_functions(length) -> typing.Iterator[list[int]]:
 
 def outer_product(argument):
     """
-    Yields outer product of sequences in ``argument``.
+    Yields outer product of sequences in ``argument``. Returns list of lists.
 
     ..  container:: example
 
@@ -189,7 +186,6 @@ def outer_product(argument):
         [3, 5, 7]
         [3, 5, 8]
 
-    Returns list of lists.
     """
 
     def _helper(sequence_1, sequence_2):
@@ -209,7 +205,7 @@ def yield_combinations(
     argument, minimum_length=None, maximum_length=None
 ) -> typing.Iterator:
     """
-    Yields combinations of sequence items.
+    Yields combinations of sequence items in binary string order.
 
     ..  container:: example
 
@@ -305,7 +301,6 @@ def yield_combinations(
         'ext'
         'text'
 
-    Yields combinations in binary string order.
     """
     length = len(argument)
     for i in range(2**length):
@@ -452,9 +447,9 @@ def yield_permutations(argument) -> typing.Iterator:
         yield _sequence.permute(argument, permutation)
 
 
-def yield_set_partitions(argument) -> typing.Iterator[list[list]]:
+def yield_set_partitions(sequence) -> typing.Iterator[list[list]]:
     """
-    Yields set partitions of sequence.
+    Yields set partitions of ``sequence`` in order of restricted growth function.
 
     ..  container:: example
 
@@ -477,17 +472,16 @@ def yield_set_partitions(argument) -> typing.Iterator[list[list]]:
         [[21], [22], [23, 24]]
         [[21], [22], [23], [24]]
 
-    Returns set partitions in order of restricted growth function.
     """
-    _argument = list(argument)
-    length = len(_argument)
+    _sequence = list(sequence)
+    length = len(_sequence)
     for rgf in _yield_restricted_growth_functions(length):
-        partition = _partition_by_rgf(_argument, rgf)
+        partition = _partition_by_rgf(_sequence, rgf)
         yield partition
 
 
 def yield_subsequences(
-    argument, minimum_length=0, maximum_length=None
+    sequence, minimum_length=0, maximum_length=None
 ) -> typing.Iterator:
     """
     Yields subsequences of ``sequence``.
@@ -556,8 +550,8 @@ def yield_subsequences(
         [2, 3, 4]
 
     """
-    _argument = argument
-    length = len(_argument)
+    _sequence = sequence
+    length = len(_sequence)
     if maximum_length is None:
         maximum_length = length
     for i in range(length):
@@ -565,5 +559,5 @@ def yield_subsequences(
         stop_j = min(maximum_length + i, length) + 1
         for j in range(start_j, stop_j):
             if i < j or i == 0:
-                subsequence = _argument[i:j]
+                subsequence = _sequence[i:j]
                 yield subsequence

@@ -928,6 +928,8 @@ def extract(argument):
 
     Leaves children of ``argument`` in score.
 
+    Returns ``argument``.
+
     ..  container:: example
 
         Extract tuplets:
@@ -1098,7 +1100,6 @@ def extract(argument):
                 e'4
             }
 
-    Returns ``argument``.
     """
     return _extract(argument)
 
@@ -1131,7 +1132,19 @@ def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
 
     ..  container:: example
 
-        Fuses parent-contiguous tuplets in selection:
+        Fuses parent-contiguous tuplets in selection.
+
+        Returns new tuplet in selection.
+
+        Fuses zero or more parent-contiguous ``tuplets``.
+
+        Allows in-score ``tuplets``.
+
+        Allows outside-of-score ``tuplets``.
+
+        All ``tuplets`` must carry the same multiplier.
+
+        All ``tuplets`` must be of the same type.
 
         >>> tuplet_1 = abjad.Tuplet("3:2", "c'8 d' e'")
         >>> tuplet_2 = abjad.Tuplet("3:2", "c'16 d' e'")
@@ -1196,18 +1209,6 @@ def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
                     }
                 }
             }
-
-        Returns new tuplet in selection.
-
-        Fuses zero or more parent-contiguous ``tuplets``.
-
-        Allows in-score ``tuplets``.
-
-        Allows outside-of-score ``tuplets``.
-
-        All ``tuplets`` must carry the same multiplier.
-
-        All ``tuplets`` must be of the same type.
 
     ..  container:: example
 
@@ -1405,7 +1406,7 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
     ..  container:: example
 
         Replaces in-score tuplet (and children of tuplet) with notes. Functions
-        exactly the same as container setitem:
+        exactly the same as container setitem; preserves both hairpin and slur:
 
         >>> tuplet_1 = abjad.Tuplet("3:2", "c'4 d'4 e'4")
         >>> tuplet_2 = abjad.Tuplet("3:2", "d'4 e'4 f'4")
@@ -1473,8 +1474,6 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
                     )
                 }
             }
-
-        Preserves both hairpin and slur.
 
     ..  container:: example
 
@@ -1839,9 +1838,9 @@ def split(
     r"""
     Splits ``argument`` by ``durations``.
 
-    Splits leaves cyclically and ties split notes:
-
     ..  container:: example
+
+        Splits leaves cyclically and ties split notes:
 
         >>> voice = abjad.Voice("c'1 d'1")
         >>> abjad.hairpin("p < f", voice[:])
@@ -2405,6 +2404,8 @@ def swap(argument, container):
     r"""
     Swaps ``argument`` for empty ``container``.
 
+    Returns none.
+
     ..  container:: example
 
         Swaps containers for tuplet:
@@ -2489,7 +2490,6 @@ def swap(argument, container):
         Note("e'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
         Note("f'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
 
-    Returns none.
     """
     if isinstance(argument, list):
         donors = argument
@@ -2503,11 +2503,12 @@ def swap(argument, container):
     _give_position_in_parent_to_container(donors, container)
 
 
+# TODO: move to pitch.py
 def transpose(argument, interval):
     r"""
     Transposes notes and chords in ``argument`` by ``interval``.
 
-    ..  todo:: Move to abjad.pitch package.
+    Returns none.
 
     ..  container:: example
 
@@ -2558,7 +2559,6 @@ def transpose(argument, interval):
                 <af' c'' ef''>4
             }
 
-    Returns none.
     """
     named_interval = _pitch.NamedInterval(interval)
     for item in _iterate.components(argument, (_score.Note, _score.Chord)):
@@ -2576,6 +2576,8 @@ def transpose(argument, interval):
 def wrap(argument, container):
     r"""
     Wraps ``argument`` in empty ``container``.
+
+    Returns none.
 
     ..  container:: example
 
@@ -2637,7 +2639,8 @@ def wrap(argument, container):
 
     ..  container:: example
 
-        Wraps outside-score notes in tuplet:
+        Wraps outside-score notes in tuplet; this usage merely substitutes for
+        the tuplet initializer:
 
         >>> pitches = abjad.makers.make_pitches([0, 2, 4])
         >>> durations = [abjad.Duration(1, 8)]
@@ -2656,8 +2659,6 @@ def wrap(argument, container):
                 d'8
                 e'8
             }
-
-        (This usage merely substitutes for the tuplet initializer.)
 
     ..  container:: example
 
@@ -2782,7 +2783,6 @@ def wrap(argument, container):
         Note("e'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
         Note("f'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
 
-    Returns none.
     """
     if not isinstance(container, _score.Container) or 0 < len(container):
         raise Exception(f"must be empty container: {container!r}.")

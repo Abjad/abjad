@@ -251,7 +251,8 @@ def leaves(
 
     ..  container:: example
 
-        Set ``exclude=<annotation>`` to exclude leaves with annotation:
+        Set ``exclude=<annotation>`` to exclude leaves with annotation.
+        Excludes leaves to which ``'RED'`` or ``'BLUE'`` attaches:
 
         >>> staff = abjad.Staff()
         >>> score = abjad.Score([staff], name="Score")
@@ -287,8 +288,6 @@ def leaves(
         ...
         Note("af'8")
         Note("gf'8")
-
-        Excludes leaves to which ``'RED'`` or ``'BLUE'`` attaches.
 
     ..  container:: example
 
@@ -942,6 +941,8 @@ def timeline(
     r"""
     Iterates leaves in ``argument`` in timeline order.
 
+    Iterates leaves when ``prototype`` is none.
+
     ..  container:: example
 
         Timeline-iterates leaves:
@@ -1087,7 +1088,6 @@ def timeline(
         Note("cs'16")
         Note("c'4")
 
-    Iterates leaves when ``prototype`` is none.
     """
     generator = leaves(argument, prototype=prototype, exclude=exclude)
     components = list(generator)

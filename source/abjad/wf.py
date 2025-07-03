@@ -38,6 +38,9 @@ def check_beamed_lone_notes(argument) -> tuple[list, int]:
 
     ..  container:: example
 
+        The example below feature Abjad voice containers because beams are
+        voice-persistent.
+
         Beamed single notes are not wellformed:
 
         >>> voice = abjad.Voice("c'8 d' e' f'")
@@ -62,8 +65,6 @@ def check_beamed_lone_notes(argument) -> tuple[list, int]:
         >>> abjad.wf.check_beamed_lone_notes(voice)
         ([Note("c'8")], 4)
 
-    The examples above feature Abjad voice containers because beams are
-    voice-persistent.
     """
     violators, total = [], 0
     for leaf in _iterate.leaves(argument):
@@ -79,6 +80,9 @@ def check_beamed_long_notes(argument) -> tuple[list, int]:
     Checks beamed long notes.
 
     ..  container:: example
+
+        The examples below feature Abjad voice containers because beams are
+        voice-persistent.
 
         Beamed quarter notes are not wellformed:
 
@@ -128,8 +132,6 @@ def check_beamed_long_notes(argument) -> tuple[list, int]:
         >>> abjad.wf.check_beamed_long_notes(voice)
         ([], 4)
 
-    The examples above feature Abjad voice containers because beams are
-    voice-persistent.
     """
     violators, total = [], 0
     for leaf in _iterate.leaves(argument):

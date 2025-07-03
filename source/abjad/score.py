@@ -271,7 +271,7 @@ class Component:
             _updatelib._update_now(self, offsets=True)
             return self._timespan
 
-    def _get_wrappers(self, prototype=None, *, attributes=None, debug=False):
+    def _get_wrappers(self, prototype=None, *, attributes=None):
         if prototype is None:
             prototype = object
         if not isinstance(prototype, tuple):
@@ -284,8 +284,6 @@ class Component:
                 prototype_objects.append(indicator_prototype)
         prototype_objects = tuple(prototype_objects)
         prototype_classes = tuple(prototype_classes)
-        if debug is True:
-            breakpoint()
         wrappers = []
         for wrapper in self._wrappers:
             if wrapper.annotation:
@@ -1835,7 +1833,18 @@ class AfterGraceContainer(Container):
     r"""
     After grace container.
 
+    After grace notes are played in the last moments of duration of the note
+    they follow.
+
+    Fill after grace containers with notes, rests or chords.
+
+    Attach after grace containers to notes, rests or chords.
+
     ..  container:: example
+
+        LilyPond positions after grace notes at a point 3/4 of the way after
+        the note they follow. The resulting spacing is usually too loose.
+        Customize ``fraction`` as shown here:
 
         >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
         >>> notes = [abjad.Note("c'16"), abjad.Note("d'16")]
@@ -1859,17 +1868,6 @@ class AfterGraceContainer(Container):
                 e'4
                 f'4
             }
-
-        LilyPond positions after grace notes at a point 3/4 of the way after
-        the note they follow. The resulting spacing is usually too loose.
-        Customize ``fraction`` as shown here.
-
-    After grace notes are played in the last moments of duration of the note
-    they follow.
-
-    Fill after grace containers with notes, rests or chords.
-
-    Attach after grace containers to notes, rests or chords.
 
     ..  container:: example
 
@@ -2011,6 +2009,18 @@ class BeforeGraceContainer(Container):
     r"""
     Grace container.
 
+    LilyPond provides four types of left-positioned grace music: acciaccaturas,
+    appoggiaturas, grace notes and slashed grace notes; see
+    ``abjad.BeforeGraceContainer.command`` to choose between these. LilyPond's
+    left-positioned grace music contrasts with "right-positioned" after-grace
+    music; see ``abjad.AfterGraceContainer``.
+
+    Note that neither LilyPond nor Abjad attempts to model the ways that
+    different categories of grace music have been performed historically.
+    Typographic differences in slurring and slashing are provided. But
+    distinctions between (for example) on-the-beat versus before-the-beat
+    performance are left implicit.
+
     .. container:: example
 
         Grace container models LilyPond's different types of "left-positioned"
@@ -2036,11 +2046,6 @@ class BeforeGraceContainer(Container):
                 e'4
                 f'4
             }
-
-        LilyPond engraves grace music at a reduced size.
-
-        LilyPond positions grace music immediately before a "main note" which
-        follows.
 
     ..  container:: example
 
@@ -2158,16 +2163,6 @@ class BeforeGraceContainer(Container):
                 f'4
             }
 
-    LilyPond provides four types of left-positioned grace music: acciaccaturas,
-    appoggiaturas, grace notes and slashed grace notes; see
-    ``abjad.BeforeGraceContainer.command`` to choose between these. LilyPond's
-    left-positioned grace music contrasts with "right-positioned" after-grace music; see
-    ``abjad.AfterGraceContainer``.
-
-    Note that neither LilyPond nor Abjad attempts to model the ways that different
-    categories of grace music have been performed historically. Typographic differences
-    in slurring and slashing are provided. But distinctions between (for example)
-    on-the-beat versus before-the-beat performance are left implicit.
     """
 
     ### CLASS VARIABLES ###
@@ -2752,7 +2747,6 @@ class Chord(Leaf):
                 >>> print(string)
                 <e'' f'' g''>4
 
-        Set note-heads with any iterable.
         """
         return self._note_heads
 
@@ -2829,7 +2823,6 @@ class Chord(Leaf):
             >>> chord.written_pitches
             (NamedPitch("f'"), NamedPitch("b'"), NamedPitch("d''"))
 
-        Set written pitches with any iterable.
         """
         return tuple(_.written_pitch for _ in self.note_heads)
 
@@ -3137,7 +3130,7 @@ class Context(Container):
     @property
     def lilypond_type(self) -> str:
         """
-        Gets lilypond type.
+        Gets and sets lilypond type of context.
 
         ..  container:: example
 
@@ -3148,7 +3141,6 @@ class Context(Container):
             >>> context.lilypond_type
             'ViolinStaff'
 
-        Gets and sets lilypond type of context.
         """
         return self._lilypond_type
 
@@ -3225,7 +3217,9 @@ class IndependentAfterGraceContainer(Container):
 
     ..  container:: example
 
-        After grace notes:
+        LilyPond positions after grace notes at a point 3/4 of the way after
+        the note they follow. The resulting spacing is usually too loose.
+        Customize ``fraction`` as shown:
 
         >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
         >>> notes = [abjad.Note("c'16"), abjad.Note("d'16")]
@@ -3250,14 +3244,6 @@ class IndependentAfterGraceContainer(Container):
                 f'4
             }
 
-        LilyPond positions after grace notes at a point 3/4 of the way
-        after the note they follow. The resulting spacing is usually too
-        loose. Customize ``fraction`` as shown above.
-
-    After grace notes are played in the last moments of the duration of the
-    note they follow.
-
-    Fill grace containers with notes, rests or chords.
     """
 
     ### CLASS VARIABLES ###
@@ -3980,6 +3966,12 @@ class NoteHeadList(list):
         r"""
         Gets note-head by ``pitch``.
 
+        Raises missing note-head error when chord contains no note-head with
+        ``pitch``.
+
+        Raises extra note-head error when chord contains more than one
+        note-head with ``pitch``.
+
         ..  container:: example
 
             Gets note-head by pitch name:
@@ -4024,10 +4016,6 @@ class NoteHeadList(list):
                     f''
                 >4
 
-        Raises missing note-head error when chord contains no note-head with ``pitch``.
-
-        Raises extra note-head error when chord contains more than one note-head with
-        ``pitch``.
         """
         result = []
         pitch = _pitch.NamedPitch(pitch)
@@ -5695,6 +5683,8 @@ class Tuplet(Container):
         r"""
         Rewrites dots of leaves in tuplet.
 
+        Not implemented for multiply nested tuplets.
+
         ..  container:: example
 
             Rewrites single dots as 3:2 prolation:
@@ -5831,7 +5821,6 @@ class Tuplet(Container):
                     e'8
                 }
 
-        Not implemented for multiply nested tuplets.
         """
         dot_counts = set()
         for component in self:
@@ -5856,6 +5845,8 @@ class Tuplet(Container):
     def toggle_prolation(self) -> None:
         r"""
         Toggles tuplet prolation.
+
+        Not implemented for nested tuplets.
 
         ..  container:: example
 
@@ -5965,7 +5956,6 @@ class Tuplet(Container):
                     e'4
                 }
 
-        Not implemented for nested tuplets.
         """
         if self.ratio.is_diminished():
             while self.ratio.is_diminished():
@@ -6050,6 +6040,8 @@ class Voice(Context):
     r"""
     Voice.
 
+    Voice-contexted indicators like dynamics work with nested voices.
+
     ..  container:: example
 
         >>> voice = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -6066,8 +6058,6 @@ class Voice(Context):
                 e'8
                 f'8
             }
-
-    Voice-contexted indicators like dynamics work with nested voices.
 
     ..  container:: example
 

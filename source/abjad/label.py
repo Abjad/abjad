@@ -323,6 +323,10 @@ def vertical_moments(
     r'''
     Labels vertical moments.
 
+    Set ``prototype`` to one of the classes shown above.
+
+    Returns none.
+
     ..  container:: example
 
         Labels indices:
@@ -644,9 +648,6 @@ def vertical_moments(
                 }
             >>
 
-    Set ``prototype`` to one of the classes shown above.
-
-    Returns none.
     '''
     prototype = prototype or int
     vertical_moments = _verticalmoment.iterate_vertical_moments(argument)
@@ -745,7 +746,7 @@ def vertical_moments(
 
 def with_durations(
     argument, *, denominator=None, direction=_enums.UP, in_seconds: bool = False
-):
+) -> None:
     r"""
     Labels logical ties in ``argument`` with durations.
 
@@ -805,7 +806,6 @@ def with_durations(
                 ]
             }
 
-    Returns none.
     """
     for logical_tie in _iterate.logical_ties(argument):
         duration = _getlib._get_duration(logical_tie, in_seconds=in_seconds)
@@ -1257,6 +1257,8 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
     r"""
     Labels logical ties in ``argument`` with pitches.
 
+    Returns none.
+
     ..  container:: example
 
         Labels logical ties with pitch names:
@@ -1511,7 +1513,6 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
                 \stopGroup
             }
 
-    Returns none.
     """
     prototype = prototype or _pitch.NamedPitch
     logical_ties = _iterate.logical_ties(argument)
@@ -1558,7 +1559,7 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
             _attach(label, leaf, direction=direction)
 
 
-def with_set_classes(argument, direction=_enums.UP, prototype=None):
+def with_set_classes(argument, direction=_enums.UP, prototype=None) -> None:
     r"""
     Labels selections ``argument`` with set-classes.
 
@@ -1699,7 +1700,6 @@ def with_set_classes(argument, direction=_enums.UP, prototype=None):
                 \stopGroup
             }
 
-    Returns none.
     """
     prototype = prototype or _setclass.SetClass()
     if prototype is _setclass.SetClass:
@@ -1728,9 +1728,11 @@ def with_start_offsets(
     direction=None,
     global_offset=None,
     markup_command=None,
-):
+) -> _duration.Duration:
     r"""
     Labels logical ties in ``argument`` with start offsets.
+
+    Returns total duration.
 
     ..  container:: example
 
@@ -1853,7 +1855,6 @@ def with_start_offsets(
             }
         >>
 
-    Returns total duration.
     """
     direction = direction or _enums.UP
     if global_offset is not None:
@@ -2038,9 +2039,11 @@ class ColorMap:
         items = list(self._color_dictionary.items())
         return list(sorted(items))
 
-    def get(self, key, alternative=None) -> str:
+    def get(self, key, alternative: typing.Any = None) -> str:
         """
         Gets ``key`` from color map.
+
+        Returns ``alternative`` when ``key`` is not found.
 
         ..  container:: example
 
@@ -2056,7 +2059,6 @@ class ColorMap:
             >>> color_map.get(11)
             '#green'
 
-        Returns ``alternative`` when ``key`` is not found.
         """
         try:
             return self[key]

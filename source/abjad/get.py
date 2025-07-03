@@ -250,9 +250,9 @@ def contents(argument) -> list[_score.Component]:
     r"""
     Gets contents.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
@@ -444,9 +444,9 @@ def descendants(argument) -> list[_score.Component]:
     r"""
     Gets descendants.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
@@ -611,9 +611,9 @@ def duration(
     r"""
     Gets duration.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
@@ -784,7 +784,7 @@ def duration(
 
     ..  container:: example
 
-        REGRESSION. Works with selections:
+        REGRESSION. Works with list of components:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.show(staff) # doctest: +SKIP
@@ -860,9 +860,9 @@ def effective(
     r"""
     Gets effective indicator.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> staff = abjad.Staff([music_voice])
@@ -1132,8 +1132,10 @@ def effective(
 
     ..  container:: example
 
-        Use synthetic offsets to hide a clef before the start of a staff
-        like this:
+        Use synthetic offsets to hide a clef before the start of a staff like
+        this. Note that ``hide=True`` is set on the offset clef to prevent
+        duplicate clef commands in LilyPond output. Note also that the order of
+        attachment (offset versus non-offset) makes no difference:
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> abjad.attach(
@@ -1174,12 +1176,6 @@ def effective(
 
         >>> abjad.get.effective(staff[0], abjad.Clef, n=-2) is None
         True
-
-        Note that ``hide=True`` is set on the offset clef to prevent
-        duplicate clef commands in LilyPond output.
-
-        Note also that the order of attachment (offset versus non-offset)
-        makes no difference.
 
     ..  container:: example
 
@@ -1396,20 +1392,23 @@ def effective(
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
     result = _getlib._get_effective_indicator(
-        component, prototype, attributes=attributes, n=n
+        component,
+        prototype,
+        attributes=attributes,
+        n=n,
     )
     if result is None:
         return default
     return result
 
 
-def effective_staff(component: _score.Component) -> typing.Optional["_score.Staff"]:
+def effective_staff(component: _score.Component) -> _score.Staff | None:
     r"""
     Gets effective staff.
 
-    REGRESSION. Works with grace notes (and containers):
-
     ..  container:: example
+
+        REGRESSION. Works with grace notes (and containers):
 
         >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
         >>> container = abjad.BeforeGraceContainer("cs'16")
@@ -2102,6 +2101,12 @@ def indicator(
     r"""
     Gets indicator that attaches to ``component`` and matches ``prototype``.
 
+    Raises exception when more than one indicator attaches to ``component`` and
+    matches ``prototype``.
+
+    Returns ``default`` when no indicator attaches to ``component`` and matches
+    ``prototype``.
+
     ..  container:: example
 
         REGRESSION. Works with grace notes (and containers):
@@ -2235,11 +2240,6 @@ def indicator(
         Note("f'16")                   None
         Note("ds'4")                   None
 
-    Raises exception when more than one indicator attaches to ``component`` and
-    matches ``prototype``.
-
-    Returns ``default`` when no indicator attaches to ``component`` and matches
-    ``prototype``.
     """
     assert isinstance(component, _score.Component), repr(component)
     wrappers = component._get_wrappers(prototype, attributes=attributes)
@@ -2683,7 +2683,7 @@ def is_sustained(argument) -> bool:
     return False
 
 
-def leaf(argument, n: int = 0) -> typing.Optional["_score.Leaf"]:
+def leaf(argument, n: int = 0) -> _score.Leaf | None:
     r"""
     Gets leaf ``n``.
 
@@ -3601,7 +3601,7 @@ def measure_number(argument) -> int:
     return argument._measure_number
 
 
-def parentage(argument) -> "_parentage.Parentage":
+def parentage(argument) -> _parentage.Parentage:
     r"""
     Gets parentage.
 
@@ -3874,8 +3874,7 @@ def parentage(argument) -> "_parentage.Parentage":
 
     """
     if not isinstance(argument, _score.Component):
-        message = "can only get parentage on component"
-        message += f" (not {argument})."
+        message = f"can only get parentage on component (not {argument})."
         raise Exception(message)
     return _parentage.Parentage(argument)
 
@@ -4019,9 +4018,9 @@ def pitches(argument) -> set[_pitch.NamedPitch]:
     return set(generator)
 
 
-def sounding_pitch(argument: _score.Note) -> _pitch.NamedPitch:
+def sounding_pitch(note: _score.Note) -> _pitch.NamedPitch:
     r"""
-    Gets sounding pitch of note.
+    Gets sounding pitch of ``note``.
 
     ..  container:: example
 
@@ -4052,14 +4051,14 @@ def sounding_pitch(argument: _score.Note) -> _pitch.NamedPitch:
         Note("g'8") NamedPitch("g''")
 
     """
-    if not isinstance(argument, _score.Note):
+    if not isinstance(note, _score.Note):
         raise Exception("can only get sounding pitch of note.")
-    return _getlib._get_sounding_pitch(argument)
+    return _getlib._get_sounding_pitch(note)
 
 
-def sounding_pitches(argument: _score.Chord) -> set[_pitch.NamedPitch]:
+def sounding_pitches(chord: _score.Chord) -> set[_pitch.NamedPitch]:
     r"""
-    Gets sounding pitches.
+    Gets sounding pitches of ``chord``.
 
     ..  container:: example
 
@@ -4091,15 +4090,15 @@ def sounding_pitches(argument: _score.Chord) -> set[_pitch.NamedPitch]:
             NamedPitch("fs'''")
 
     """
-    if not isinstance(argument, _score.Chord):
+    if not isinstance(chord, _score.Chord):
         raise Exception("can only get sounding pitches of chord.")
-    pitches = _getlib._get_sounding_pitches(argument)
+    pitches = _getlib._get_sounding_pitches(chord)
     return set(pitches)
 
 
 def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
     r"""
-    Gets timespan.
+    Gets timespan of ``argument``.
 
     ..  container:: example
 
@@ -4301,7 +4300,7 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
 
     ..  container:: example
 
-        REGRESION. Works with selection:
+        REGRESION. Works with list of components:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.show(staff) # doctest: +SKIP
@@ -4330,10 +4329,13 @@ def wrapper(
     prototype: typing.Any = None,
     *,
     attributes: dict | None = None,
-    default: dict | None = None,
-):
+    default: typing.Any = None,
+) -> typing.Any:
     r"""
     Gets wrapper.
+
+    Raises exception when more than one indicator attaches to ``component`` and
+    matches ``prototype``.
 
     ..  container:: example
 
@@ -4411,6 +4413,8 @@ def wrapper(
                 }
             }
 
+    ..  container:: example
+
         REGRESSION. Works with grace notes (and containers):
 
         >>> for component in abjad.select.components(staff):
@@ -4452,8 +4456,6 @@ def wrapper(
         Note("fs'16"):
             Wrapper(annotation=None, context=None, deactivate=False, direction=None, indicator=Articulation(name='.'), synthetic_offset=None, tag=Tag(string=''))
 
-    Raises exception when more than one indicator attaches to ``component`` and
-    matches ``prototype``.
     """
     assert isinstance(component, _score.Component), repr(component)
     if attributes is not None:
@@ -4476,8 +4478,7 @@ def wrappers(
     prototype: typing.Any = None,
     *,
     attributes: dict | None = None,
-    debug: bool = False,
-):
+) -> list[_wrapper.Wrapper]:
     r"""
     Gets wrappers that attach to ``component`` and match ``prototype``.
 
@@ -4602,7 +4603,7 @@ def wrappers(
     assert isinstance(component, _score.Component), repr(component)
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    wrappers = component._get_wrappers(prototype, attributes=attributes, debug=debug)
+    wrappers = component._get_wrappers(prototype, attributes=attributes)
     return wrappers
 
 
@@ -4702,26 +4703,22 @@ class Lineage(collections.abc.Sequence):
         """
         return self.components.__getitem__(argument)
 
-    def __len__(self):
+    def __len__(self) -> int:
         """
         Gets length of lineage.
-
-        Returns int.
         """
         return len(self._components)
 
     @property
-    def component(self):
+    def component(self) -> _score.Component:
         """
-        The component from which the lineage was derived.
+        Gets component from which lineage was derived.
         """
         return self._component
 
     @property
-    def components(self):
+    def components(self) -> tuple[_score.Component]:
         """
         Gets components.
-
-        Returns tuple.
         """
         return self._components
