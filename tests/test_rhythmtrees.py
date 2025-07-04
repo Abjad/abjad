@@ -33,17 +33,14 @@ def test_RhythmTreeContainer___call___02():
     rtm = "(1 (1 (2 (1 1 1 1)) 1))"
     rtc = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
     components = rtc(abjad.Duration(1, 4))
-    abjad.makers.tweak_tuplet_number_text(components)
     staff = abjad.Staff(components)
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
-            \tweak text #tuplet-number::calc-fraction-text
             \tuplet 1/1
             {
                 c'16
-                \tweak text #tuplet-number::calc-fraction-text
                 \tuplet 1/1
                 {
                     c'32
@@ -425,7 +422,6 @@ def test_RhythmTreeNode___call___03():
     rtm = "(1 (1 (2 (1 (2 (1 1)) 1)) 2))"
     rtc = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
     components = rtc(abjad.Duration(1, 4))
-    abjad.makers.tweak_tuplet_number_text(components)
     staff = abjad.Staff(components)
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
@@ -434,11 +430,9 @@ def test_RhythmTreeNode___call___03():
             \tuplet 5/4
             {
                 c'16
-                \tweak text #tuplet-number::calc-fraction-text
                 \tuplet 1/1
                 {
                     c'32
-                    \tweak text #tuplet-number::calc-fraction-text
                     \tuplet 1/1
                     {
                         c'32

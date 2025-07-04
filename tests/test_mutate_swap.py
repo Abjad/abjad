@@ -35,14 +35,12 @@ def test_Mutation_swap_01():
     )
 
     tuplet = abjad.Tuplet("4:3", [])
-    abjad.makers.tweak_tuplet_number_text(tuplet)
     abjad.mutate.swap(voice[:2], tuplet)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
-            \tweak text #tuplet-number::calc-fraction-text
             \tuplet 4/3
             {
                 c'8
@@ -157,7 +155,6 @@ def test_Mutation_swap_03():
     )
 
     tuplet = abjad.Tuplet("4:3", [])
-    abjad.makers.tweak_tuplet_number_text(tuplet)
     abjad.mutate.swap(voice[1:2], tuplet)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -169,7 +166,6 @@ def test_Mutation_swap_03():
                 [
                 d'8
             }
-            \tweak text #tuplet-number::calc-fraction-text
             \tuplet 4/3
             {
                 e'8

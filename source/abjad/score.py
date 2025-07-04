@@ -4645,60 +4645,6 @@ class Staff(Context):
                 f'8
             }
 
-    ..  container:: example
-
-        Can initialize from list of strings:
-
-        >>> staff = abjad.Staff([
-        ...     r"\times 9/10 { r8 c'16 c'16 bf'4~ bf'16 r16 }",
-        ...     r"\times 9/10 { bf'16 e''16 e''4 ~ e''16 r16 fs''16 af''16 }",
-        ...     r"\times 4/5 { a'16 r4 }",
-        ... ])
-        >>> abjad.makers.tweak_tuplet_number_text(staff)
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \tuplet 10/9
-                    {
-                        r8
-                        c'16
-                        c'16
-                        bf'4
-                        ~
-                        bf'16
-                        r16
-                    }
-                }
-                {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \tuplet 10/9
-                    {
-                        bf'16
-                        e''16
-                        e''4
-                        ~
-                        e''16
-                        r16
-                        fs''16
-                        af''16
-                    }
-                }
-                {
-                    \tuplet 5/4
-                    {
-                        a'16
-                        r4
-                    }
-                }
-            }
-
     """
 
     __slots__ = ()
@@ -4915,13 +4861,13 @@ class Tuplet(Container):
         >>> abjad.tweak(tuplet_2, r"\tweak staff-padding 2")
 
         >>> tuplet_3 = abjad.Tuplet("4:5", [tuplet_1, tuplet_2])
+        >>> abjad.tweak(tuplet_3, r"\tweak text #tuplet-number::calc-fraction-text")
         >>> abjad.tweak(tuplet_3, r"\tweak color #blue")
         >>> abjad.tweak(tuplet_3, r"\tweak staff-padding 4")
 
         >>> staff = abjad.Staff(r"\time 6/4 r4")
         >>> staff.append(tuplet_3)
         >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.makers.tweak_tuplet_number_text(score)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

@@ -2647,16 +2647,14 @@ def is_sustained(argument) -> bool:
 
     ..  container:: example
 
-        >>> tuplet = abjad.Tuplet("2:3", "c'4 ~ c' ~ c'")
-        >>> abjad.makers.tweak_tuplet_number_text(tuplet)
+        >>> tuplet = abjad.Tuplet("3:2", "c'4 ~ c' ~ c'")
         >>> abjad.show(tuplet) # doctest: +SKIP
 
         ..  container:: example
 
             >>> string = abjad.lilypond(tuplet)
             >>> print(string)
-            \tweak text #tuplet-number::calc-fraction-text
-            \tuplet 2/3
+            \tuplet 3/2
             {
                 c'4
                 ~
