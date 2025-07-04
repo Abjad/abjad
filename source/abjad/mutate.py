@@ -937,7 +937,8 @@ def extract(argument):
         >>> voice = abjad.Voice()
         >>> voice.append(abjad.Tuplet("2:3", "c'4 e'4"))
         >>> voice.append(abjad.Tuplet("2:3", "d'4 f'4"))
-        >>> abjad.makers.tweak_tuplet_number_text(voice)
+        >>> abjad.tweak(voice[0], r"\tweak text #tuplet-number::calc-fraction-text")
+        >>> abjad.tweak(voice[1], r"\tweak text #tuplet-number::calc-fraction-text")
         >>> leaves = abjad.select.leaves(voice)
         >>> staff = abjad.Staff([voice])
         >>> score = abjad.Score([staff], name="Score")
@@ -1004,7 +1005,8 @@ def extract(argument):
         >>> staff = abjad.Staff([voice])
         >>> voice.append(abjad.Tuplet("2:3", "c'4 e'4"))
         >>> voice.append(abjad.Tuplet("2:3", "d'4 f'4"))
-        >>> abjad.makers.tweak_tuplet_number_text(voice)
+        >>> abjad.tweak(voice[0], r"\tweak text #tuplet-number::calc-fraction-text")
+        >>> abjad.tweak(voice[1], r"\tweak text #tuplet-number::calc-fraction-text")
         >>> score = abjad.Score([staff], name="Score")
         >>> leaves = abjad.select.leaves(staff)
         >>> abjad.hairpin('p < f', leaves)
@@ -1066,11 +1068,10 @@ def extract(argument):
 
     ..  container:: example
 
-        Extracting out-of-score component does nothing and returns
-        component:
+        Extracting out-of-score component does nothing and returns component:
 
         >>> tuplet = abjad.Tuplet("2:3", "c'4 e'4")
-        >>> abjad.makers.tweak_tuplet_number_text(tuplet)
+        >>> abjad.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")
         >>> abjad.show(tuplet) # doctest: +SKIP
 
         ..  docs::
@@ -1305,7 +1306,7 @@ def logical_tie_to_tuplet(
 
         >>> logical_tie = abjad.select.logical_tie(voice[1])
         >>> tuplet = abjad.mutate.logical_tie_to_tuplet(logical_tie, [2, 1, 1, 1])
-        >>> abjad.makers.tweak_tuplet_number_text(tuplet)
+        >>> abjad.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")
         >>> tuplet
         Tuplet('5:3', "c'8 c'16 c'16 c'16")
 

@@ -117,7 +117,6 @@ class RhythmTreeNode:
             >>> string = '(1 ((1 (1 1)) (1 (1 1))))'
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
             >>> components = rtc(abjad.Duration(1, 1))
-            >>> abjad.makers.tweak_tuplet_number_text(components)
             >>> voice = abjad.Voice(components)
             >>> score = abjad.Score([voice])
             >>> abjad.setting(score).proportionalNotationDuration = "#1/12"
@@ -135,16 +134,13 @@ class RhythmTreeNode:
                 <<
                     \new Voice
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
                         \tuplet 1/1
                         {
-                            \tweak text #tuplet-number::calc-fraction-text
                             \tuplet 1/1
                             {
                                 c'4
                                 c'4
                             }
-                            \tweak text #tuplet-number::calc-fraction-text
                             \tuplet 1/1
                             {
                                 c'4
@@ -829,7 +825,7 @@ class RhythmTreeParser(Parser):
                 1))))
 
         >>> components = rtc(abjad.Duration(1, 2))
-        >>> abjad.makers.tweak_tuplet_number_text(components)
+        >>> abjad.tweak(components[0], r"\tweak text #tuplet-number::calc-fraction-text")
         >>> voice = abjad.Voice(components)
         >>> staff = abjad.Staff([voice])
         >>> score = abjad.Score([staff])
@@ -1104,7 +1100,6 @@ def parse(string: str) -> list[RhythmTreeContainer | RhythmTreeLeaf]:
         >>> string = "(2 (1 1))"
         >>> nodes = abjad.rhythmtrees.parse(string)
         >>> components = abjad.rhythmtrees.call(nodes)
-        >>> abjad.makers.tweak_tuplet_number_text(components)
         >>> voice = abjad.Voice(components)
         >>> leaf = abjad.select.leaf(voice, 0)
         >>> abjad.setting(leaf).Score.proportionalNotationDuration = "#1/12"
@@ -1116,7 +1111,6 @@ def parse(string: str) -> list[RhythmTreeContainer | RhythmTreeLeaf]:
             >>> print(string)
             \new Voice
             {
-                \tweak text #tuplet-number::calc-fraction-text
                 \tuplet 1/1
                 {
                     \set Score.proportionalNotationDuration = #1/12
@@ -1172,7 +1166,6 @@ def parse(string: str) -> list[RhythmTreeContainer | RhythmTreeLeaf]:
         >>> string = "(1 (1)) (1 (1 1)) (1 (1 2))"
         >>> nodes = abjad.rhythmtrees.parse(string)
         >>> components = abjad.rhythmtrees.call(nodes)
-        >>> abjad.makers.tweak_tuplet_number_text(components)
         >>> voice = abjad.Voice(components)
         >>> leaf = abjad.select.leaf(voice, 0)
         >>> abjad.setting(leaf).Score.proportionalNotationDuration = "#1/12"
@@ -1184,13 +1177,11 @@ def parse(string: str) -> list[RhythmTreeContainer | RhythmTreeLeaf]:
             >>> print(string)
             \new Voice
             {
-                \tweak text #tuplet-number::calc-fraction-text
                 \tuplet 1/1
                 {
                     \set Score.proportionalNotationDuration = #1/12
                     c'4
                 }
-                \tweak text #tuplet-number::calc-fraction-text
                 \tuplet 1/1
                 {
                     c'8
@@ -1254,7 +1245,6 @@ def parse(string: str) -> list[RhythmTreeContainer | RhythmTreeLeaf]:
         >>> string = "(1 (1 (1 (1 1)) 1))"
         >>> nodes = abjad.rhythmtrees.parse(string)
         >>> components = abjad.rhythmtrees.call(nodes, abjad.Duration(1, 2))
-        >>> abjad.makers.tweak_tuplet_number_text(components)
         >>> voice = abjad.Voice(components)
         >>> leaf = abjad.select.leaf(voice, 0)
         >>> abjad.setting(leaf).Score.proportionalNotationDuration = "#1/12"
@@ -1270,7 +1260,6 @@ def parse(string: str) -> list[RhythmTreeContainer | RhythmTreeLeaf]:
                 {
                     \set Score.proportionalNotationDuration = #1/12
                     c'4
-                    \tweak text #tuplet-number::calc-fraction-text
                     \tuplet 1/1
                     {
                         c'8

@@ -926,8 +926,8 @@ class Meter:
 
         ..  container:: example
 
-            Rewrites the contents of a measure in a staff using the default meter for
-            that measure's time signature:
+            Rewrites the contents of a measure in a staff using the default
+            meter for that measure's time signature:
 
             >>> string = "| 2/4 c'2 ~ |"
             >>> string += "| 4/4 c'32 d'2.. ~ d'16 e'32 ~ |"
@@ -1255,9 +1255,9 @@ class Meter:
 
         ..  container:: example
 
-            Split logical ties at different depths of the ``Meter``, if those logical
-            ties cross any offsets at that depth, but do not also both begin and end at
-            any of those offsets.
+            Split logical ties at different depths of the ``Meter``, if those
+            logical ties cross any offsets at that depth, but do not also both
+            begin and end at any of those offsets.
 
             Consider the default meter for ``9/8``:
 
@@ -1359,9 +1359,9 @@ class Meter:
                     }
                 }
 
-            For this ``9/8`` meter, and this input notation, a ``boundary_depth`` of
-            2 causes no change, as all logical ties already align to multiples of
-            1/8:
+            For this ``9/8`` meter, and this input notation, a
+            ``boundary_depth`` of 2 causes no change, as all logical ties
+            already align to multiples of 1/8:
 
             >>> string = "| 9/8 c'2 d'2 e'8 |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
@@ -1407,8 +1407,9 @@ class Meter:
             >>> staff_2[:] = container
             >>> score = abjad.Score([staff_1, staff_2])
 
-            In order to see the different time signatures on each staff, we need to move
-            some engravers from the Score context to the Staff context:
+            In order to see the different time signatures on each staff, we
+            need to move some engravers from the Score context to the Staff
+            context:
 
             >>> engravers = [
             ...     'Timing_translator',
@@ -1722,17 +1723,18 @@ class Meter:
                     }
                 >>
 
-            Note that the two time signatures are much more clearly disambiguated above.
+            Note that the two time signatures are much more clearly
+            disambiguated above.
 
         ..  container:: example
 
             Establishing meter recursively in measures with nested tuplets:
 
             >>> string = "| 4/4 c'16 ~ c'4 d'8. ~ "
-            >>> string += "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } "
-            >>> string += "f'4 |"
+            >>> string += "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } f'4 |"
             >>> container = abjad.parsers.reduced.parse_reduced_ly_syntax(string)
-            >>> abjad.makers.tweak_tuplet_number_text(container)
+            >>> tuplet = abjad.select.tuplet(container, -1)
+            >>> abjad.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")
             >>> staff = abjad.Staff()
             >>> staff.append(container)
             >>> score = abjad.Score([staff], name="Score")
@@ -1769,10 +1771,10 @@ class Meter:
                 }
 
             When establishing a meter on a selection of components which
-            contain containers, like tuplets or containers, ``abjad.Meter.rewrite()``
-            will recurse into those containers, treating them as measures whose
-            time signature is derived from the preprolated duration of the
-            container's contents:
+            contain containers, like tuplets or containers,
+            ``abjad.Meter.rewrite()`` will recurse into those containers,
+            treating them as measures whose time signature is derived from the
+            preprolated duration of the container's contents:
 
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)
@@ -1817,9 +1819,9 @@ class Meter:
 
         ..  container:: example
 
-            Default rewrite behavior doesn't subdivide the first note in this measure
-            because the first note in the measure starts at the beginning of a level-0
-            beat in meter:
+            Default rewrite behavior doesn't subdivide the first note in this
+            measure because the first note in the measure starts at the
+            beginning of a level-0 beat in meter:
 
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> score = abjad.Score([staff], name="Score")
@@ -1842,7 +1844,8 @@ class Meter:
                     c'4
                 }
 
-            Setting boundary depth to 1 subdivides the first note in this measure:
+            Setting boundary depth to 1 subdivides the first note in this
+            measure:
 
             >>> staff = abjad.Staff("c'4.. c'16 ~ c'4")
             >>> score = abjad.Score([staff], name="Score")
@@ -1874,7 +1877,10 @@ class Meter:
             >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
             >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
             >>> staff = abjad.Staff(string)
-            >>> abjad.makers.tweak_tuplet_number_text(staff)
+            >>> string = r"\tweak text #tuplet-number::calc-fraction-text"
+            >>> for tuplet in abjad.select.tuplets(staff):
+            ...     abjad.tweak(tuplet, string)
+
             >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 4)), staff[0])
             >>> abjad.show(staff) # doctest: +SKIP
@@ -1944,15 +1950,18 @@ class Meter:
                     c'4.
                 }
 
-            The tied note rewriting is good while the tuplet rewriting could use some
-            adjustment.
+            The tied note rewriting is good while the tuplet rewriting could
+            use some adjustment.
 
             Rewrites notes but not tuplets:
 
             >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
             >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
             >>> staff = abjad.Staff(string)
-            >>> abjad.makers.tweak_tuplet_number_text(staff)
+            >>> string = r"\tweak text #tuplet-number::calc-fraction-text"
+            >>> for tuplet in abjad.select.tuplets(staff):
+            ...     abjad.tweak(tuplet, string)
+
             >>> score = abjad.Score([staff], name="Score")
             >>> abjad.attach(abjad.TimeSignature((6, 4)), staff[0])
             >>> abjad.show(staff) # doctest: +SKIP

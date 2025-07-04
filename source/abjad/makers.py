@@ -8,7 +8,6 @@ from . import duration as _duration
 from . import get as _get
 from . import iterate as _iterate
 from . import math as _math
-from . import overrides as _overrides
 from . import pitch as _pitch
 from . import score as _score
 from . import sequence as _sequence
@@ -1289,26 +1288,3 @@ def tweak_tuplet_bracket_edge_height(argument) -> None:
         denominator = duration.denominator
         if not _math.is_nonnegative_integer_power_of_two(denominator):
             _tweaks.tweak(tuplet, r"\tweak edge-height #'(0.7 . 0)")
-
-
-def tweak_tuplet_number_text(argument) -> None:
-    r"""
-    Tweaks tuplet number text for tuplets in ``argument``. Sets tuplet
-    number text equal to ``#tuplet-number::calc-fraction-text`` when
-    any of these conditions is true:
-
-      * tuplet is an augmentation (like 3:4), or
-      * tuplet is nondyadic (like 4:3), or
-      * tuplet multiplier equals 1
-
-    Does not tweak tuplets for which none of these conditions holds.
-    """
-    for tuplet in _iterate.components(argument, _score.Tuplet):
-        if "text" in vars(_overrides.override(tuplet).TupletNumber):
-            continue
-        if (
-            tuplet.ratio.is_augmented()
-            or not tuplet.ratio.is_dyadic()
-            or tuplet.multiplier() == 1
-        ):
-            _tweaks.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")

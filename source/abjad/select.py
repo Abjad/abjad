@@ -271,9 +271,8 @@ def chord(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:10", "9:8", "9:10"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -305,10 +304,9 @@ def chord(
                 {
                     \context Voice = "Voice"
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
-                            \time 7/4
+                            \time 3/2
                             r16
                             bf'16
                             <a'' b''>16
@@ -327,8 +325,7 @@ def chord(
                             ~
                             <e' fs'>16
                         }
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             r16
                             bf'16
@@ -362,9 +359,8 @@ def chords(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:10", "9:8", "9:10"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -406,10 +402,9 @@ def chords(
                 {
                     \context Voice = "Voice"
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
-                            \time 7/4
+                            \time 3/2
                             r16
                             bf'16
                             \abjad-color-music #'red
@@ -434,8 +429,7 @@ def chords(
                             \abjad-color-music #'blue
                             <e' fs'>16
                         }
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             r16
                             bf'16
@@ -1067,9 +1061,8 @@ def flatten(argument, depth: int = 1) -> list:
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:10", "9:8", "9:10"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -1105,11 +1098,10 @@ def flatten(argument, depth: int = 1) -> list:
                 {
                     \context Voice = "Voice"
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             \abjad-color-music #'red
-                            \time 7/4
+                            \time 3/2
                             r16
                             \abjad-color-music #'red
                             bf'16
@@ -1131,8 +1123,7 @@ def flatten(argument, depth: int = 1) -> list:
                             ~
                             <e' fs'>16
                         }
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             \abjad-color-music #'red
                             r16
@@ -1157,9 +1148,8 @@ def flatten(argument, depth: int = 1) -> list:
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:10", "9:8", "9:10"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -1199,11 +1189,10 @@ def flatten(argument, depth: int = 1) -> list:
                 {
                     \context Voice = "Voice"
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             \abjad-color-music #'red
-                            \time 7/4
+                            \time 3/2
                             r16
                             \abjad-color-music #'blue
                             bf'16
@@ -1225,8 +1214,7 @@ def flatten(argument, depth: int = 1) -> list:
                             ~
                             <e' fs'>16
                         }
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             \abjad-color-music #'red
                             r16
@@ -2468,9 +2456,8 @@ def leaf(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:10", "9:8", "9:10"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -2502,10 +2489,9 @@ def leaf(
                 {
                     \context Voice = "Voice"
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
-                            \time 7/4
+                            \time 3/2
                             r16
                             bf'16
                             <a'' b''>16
@@ -2524,8 +2510,7 @@ def leaf(
                             ~
                             <e' fs'>16
                         }
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             r16
                             bf'16
@@ -4382,9 +4367,8 @@ def note(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:10", "9:8", "9:10"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -4416,10 +4400,9 @@ def note(
                 {
                     \context Voice = "Voice"
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
-                            \time 7/4
+                            \time 3/2
                             r16
                             bf'16
                             <a'' b''>16
@@ -4438,8 +4421,7 @@ def note(
                             ~
                             <e' fs'>16
                         }
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             r16
                             bf'16
@@ -4473,9 +4455,8 @@ def notes(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:10", "9:8", "9:10"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -4514,10 +4495,9 @@ def notes(
                 {
                     \context Voice = "Voice"
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
-                            \time 7/4
+                            \time 3/2
                             r16
                             \abjad-color-music #'red
                             bf'16
@@ -4540,8 +4520,7 @@ def notes(
                             ~
                             <e' fs'>16
                         }
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             r16
                             \abjad-color-music #'red
@@ -6060,9 +6039,8 @@ def rest(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:10", "9:8", "9:10"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -6094,10 +6072,9 @@ def rest(
                 {
                     \context Voice = "Voice"
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
-                            \time 7/4
+                            \time 3/2
                             r16
                             bf'16
                             <a'' b''>16
@@ -6116,8 +6093,7 @@ def rest(
                             ~
                             <e' fs'>16
                         }
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             \abjad-color-music #'green
                             r16
@@ -6151,9 +6127,8 @@ def rests(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:10", "9:8", "9:10"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -6189,11 +6164,10 @@ def rests(
                 {
                     \context Voice = "Voice"
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             \abjad-color-music #'red
-                            \time 7/4
+                            \time 3/2
                             r16
                             bf'16
                             <a'' b''>16
@@ -6213,8 +6187,7 @@ def rests(
                             ~
                             <e' fs'>16
                         }
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             \abjad-color-music #'red
                             r16
@@ -6251,9 +6224,8 @@ def run(argument, n: int, *, exclude: Exclude | None = None) -> list[_score.Leaf
         ...     "r16 d'16 d'16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 e'16 e'16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:10", "9:8", "9:10"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -6285,10 +6257,9 @@ def run(argument, n: int, *, exclude: Exclude | None = None) -> list[_score.Leaf
                 {
                     \context Voice = "Voice"
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
-                            \time 7/4
+                            \time 3/2
                             r16
                             c'16
                             c'16
@@ -6307,8 +6278,7 @@ def run(argument, n: int, *, exclude: Exclude | None = None) -> list[_score.Leaf
                             ~
                             <e' fs'>16
                         }
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             r16
                             \abjad-color-music #'green
@@ -6346,9 +6316,8 @@ def runs(
         ...     "r16 d'16 d'16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 e'16 e'16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:10", "9:8", "9:10"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -6384,10 +6353,9 @@ def runs(
                 {
                     \context Voice = "Voice"
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
-                            \time 7/4
+                            \time 3/2
                             r16
                             \abjad-color-music #'red
                             c'16
@@ -6416,8 +6384,7 @@ def runs(
                             \abjad-color-music #'blue
                             <e' fs'>16
                         }
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             r16
                             \abjad-color-music #'red
@@ -6627,9 +6594,8 @@ def tuplet(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:10", "9:8", "9:10"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
-        >>> abjad.makers.tweak_tuplet_number_text(tuplets)
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
         >>> abjad.setting(staff).autoBeaming = False
@@ -6639,7 +6605,7 @@ def tuplet(
 
         >>> result = abjad.select.tuplet(staff, -1)
         >>> result
-        Tuplet('9:10', "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 <fs' gs'>16")
+        Tuplet('9:8', "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 <fs' gs'>16")
 
         >>> abjad.label.color_leaves(result, "#green")
         >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -6661,10 +6627,9 @@ def tuplet(
                 {
                     \context Voice = "Voice"
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
-                            \time 7/4
+                            \time 3/2
                             r16
                             bf'16
                             <a'' b''>16
@@ -6683,8 +6648,7 @@ def tuplet(
                             ~
                             <e' fs'>16
                         }
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 9/10
+                        \tuplet 9/8
                         {
                             \abjad-color-music #'green
                             r16

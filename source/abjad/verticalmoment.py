@@ -109,38 +109,19 @@ class VerticalMoment:
             return hash(tuple([id(_) for _ in self.components]))
         return 0
 
-    def __len__(self):
+    def __len__(self) -> int:
         r"""
-        Length of vertical moment.
+        Gets length of vertical moment.
 
         ..  container:: example
 
-            >>> score = abjad.Score(
-            ... r'''
-            ...    \new Staff {
-            ...        \times 4/3 {
-            ...            d''8
-            ...            c''8
-            ...            b'8
-            ...        }
-            ...    }
-            ...    \new PianoStaff <<
-            ...        \new Staff {
-            ...            a'4
-            ...            g'4
-            ...        }
-            ...        \new Staff {
-            ...            \clef "bass"
-            ...            f'8
-            ...            e'8
-            ...            d'8
-            ...            c'8
-            ...        }
-            ...    >>
-            ...    '''
-            ...    )
-
-            >>> abjad.makers.tweak_tuplet_number_text(score)
+            >>> score = abjad.Score([
+            ...     abjad.Staff(r"\tuplet 3/2 { d''4 c''4 b'4 }"),
+            ...     abjad.StaffGroup([
+            ...         abjad.Staff("a'4 g'4"),
+            ...         abjad.Staff(r'''\clef "bass" f'8 e'8 d'8 c'8'''),
+            ...     ]),
+            ... ])
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
@@ -151,15 +132,14 @@ class VerticalMoment:
                 <<
                     \new Staff
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 3/4
+                        \tuplet 3/2
                         {
-                            d''8
-                            c''8
-                            b'8
+                            d''4
+                            c''4
+                            b'4
                         }
                     }
-                    \new PianoStaff
+                    \new StaffGroup
                     <<
                         \new Staff
                         {
@@ -210,37 +190,17 @@ class VerticalMoment:
     @property
     def attack_count(self) -> int:
         r"""
-        Positive integer number of pitch carriers starting at vertical
-        moment.
+        Positive integer number of pitch carriers starting at vertical moment.
 
         ..  container:: example
 
-            >>> score = abjad.Score(
-            ... r'''
-            ...    \new Staff {
-            ...        \times 4/3 {
-            ...            d''8
-            ...            c''8
-            ...            b'8
-            ...        }
-            ...    }
-            ...    \new PianoStaff <<
-            ...        \new Staff {
-            ...            a'4
-            ...            g'4
-            ...        }
-            ...        \new Staff {
-            ...            \clef "bass"
-            ...            f'8
-            ...            e'8
-            ...            d'8
-            ...            c'8
-            ...        }
-            ...    >>
-            ...    '''
-            ...    )
-
-            >>> abjad.makers.tweak_tuplet_number_text(score)
+            >>> score = abjad.Score([
+            ...     abjad.Staff(r"\tuplet 3/2 { d''4 c''4 b'4 }"),
+            ...     abjad.StaffGroup([
+            ...         abjad.Staff("a'4 g'4"),
+            ...         abjad.Staff(r'''\clef "bass" f'8 e'8 d'8 c'8'''),
+            ...     ]),
+            ... ])
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
@@ -251,15 +211,14 @@ class VerticalMoment:
                 <<
                     \new Staff
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 3/4
+                        \tuplet 3/2
                         {
-                            d''8
-                            c''8
-                            b'8
+                            d''4
+                            c''4
+                            b'4
                         }
                     }
-                    \new PianoStaff
+                    \new StaffGroup
                     <<
                         \new Staff
                         {
@@ -318,32 +277,13 @@ class VerticalMoment:
 
         ..  container:: example
 
-            >>> score = abjad.Score(
-            ... r'''
-            ...    \new Staff {
-            ...        \times 4/3 {
-            ...            d''8
-            ...            c''8
-            ...            b'8
-            ...        }
-            ...    }
-            ...    \new PianoStaff <<
-            ...        \new Staff {
-            ...            a'4
-            ...            g'4
-            ...        }
-            ...        \new Staff {
-            ...            \clef "bass"
-            ...            f'8
-            ...            e'8
-            ...            d'8
-            ...            c'8
-            ...        }
-            ...    >>
-            ...    '''
-            ...    )
-
-            >>> abjad.makers.tweak_tuplet_number_text(score)
+            >>> score = abjad.Score([
+            ...     abjad.Staff(r"\tuplet 3/2 { d''4 c''4 b'4 }"),
+            ...     abjad.StaffGroup([
+            ...         abjad.Staff("a'4 g'4"),
+            ...         abjad.Staff(r'''\clef "bass" f'8 e'8 d'8 c'8'''),
+            ...     ]),
+            ... ])
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::
@@ -354,15 +294,14 @@ class VerticalMoment:
                 <<
                     \new Staff
                     {
-                        \tweak text #tuplet-number::calc-fraction-text
-                        \tuplet 3/4
+                        \tuplet 3/2
                         {
-                            d''8
-                            c''8
-                            b'8
+                            d''4
+                            c''4
+                            b'4
                         }
                     }
-                    \new PianoStaff
+                    \new StaffGroup
                     <<
                         \new Staff
                         {
@@ -383,12 +322,12 @@ class VerticalMoment:
             >>> for moment in abjad.iterate_vertical_moments(score):
             ...     print(moment.offset, moment.leaves)
             ...
-            0 [Note("d''8"), Note("a'4"), Note("f'8")]
-            1/8 [Note("d''8"), Note("a'4"), Note("e'8")]
-            1/6 [Note("c''8"), Note("a'4"), Note("e'8")]
-            1/4 [Note("c''8"), Note("g'4"), Note("d'8")]
-            1/3 [Note("b'8"), Note("g'4"), Note("d'8")]
-            3/8 [Note("b'8"), Note("g'4"), Note("c'8")]
+            0 [Note("d''4"), Note("a'4"), Note("f'8")]
+            1/8 [Note("d''4"), Note("a'4"), Note("e'8")]
+            1/6 [Note("c''4"), Note("a'4"), Note("e'8")]
+            1/4 [Note("c''4"), Note("g'4"), Note("d'8")]
+            1/3 [Note("b'4"), Note("g'4"), Note("d'8")]
+            3/8 [Note("b'4"), Note("g'4"), Note("c'8")]
 
         """
         result = []
@@ -500,25 +439,23 @@ class VerticalMoment:
 ### FUNCTIONS ###
 
 
-def iterate_vertical_moments(components, reverse=None):
-    r'''
+def iterate_vertical_moments(components, *, reverse=False):
+    r"""
     Iterates vertical moments.
 
     Returns tuple.
 
     ..  container:: example
 
-        Iterates vertical moments:
+        Iterates vertical moments forward:
 
-        >>> score = abjad.Score([])
-        >>> staff = abjad.Staff(r"\times 4/3 { d''8 c''8 b'8 }")
-        >>> score.append(staff)
-        >>> staff_group = abjad.StaffGroup([])
-        >>> staff_group.lilypond_type = 'PianoStaff'
-        >>> staff_group.append(abjad.Staff("a'4 g'4"))
-        >>> staff_group.append(abjad.Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
-        >>> score.append(staff_group)
-        >>> abjad.makers.tweak_tuplet_number_text(score)
+        >>> score = abjad.Score([
+        ...     abjad.Staff(r"\tuplet 3/2 { d''4 c''4 b'4 }"),
+        ...     abjad.StaffGroup([
+        ...         abjad.Staff("a'4 g'4"),
+        ...         abjad.Staff(r'''\clef "bass" f'8 e'8 d'8 c'8'''),
+        ...     ]),
+        ... ])
         >>> abjad.show(score) # doctest: +SKIP
 
         ..  docs::
@@ -529,15 +466,14 @@ def iterate_vertical_moments(components, reverse=None):
             <<
                 \new Staff
                 {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \tuplet 3/4
+                    \tuplet 3/2
                     {
-                        d''8
-                        c''8
-                        b'8
+                        d''4
+                        c''4
+                        b'4
                     }
                 }
-                \new PianoStaff
+                \new StaffGroup
                 <<
                     \new Staff
                     {
@@ -558,13 +494,14 @@ def iterate_vertical_moments(components, reverse=None):
         >>> for vertical_moment in abjad.iterate_vertical_moments(score):
         ...     vertical_moment.leaves
         ...
-        [Note("d''8"), Note("a'4"), Note("f'8")]
-        [Note("d''8"), Note("a'4"), Note("e'8")]
-        [Note("c''8"), Note("a'4"), Note("e'8")]
-        [Note("c''8"), Note("g'4"), Note("d'8")]
-        [Note("b'8"), Note("g'4"), Note("d'8")]
-        [Note("b'8"), Note("g'4"), Note("c'8")]
+        [Note("d''4"), Note("a'4"), Note("f'8")]
+        [Note("d''4"), Note("a'4"), Note("e'8")]
+        [Note("c''4"), Note("a'4"), Note("e'8")]
+        [Note("c''4"), Note("g'4"), Note("d'8")]
+        [Note("b'4"), Note("g'4"), Note("d'8")]
+        [Note("b'4"), Note("g'4"), Note("c'8")]
 
+        >>> staff_group = score[1]
         >>> for vertical_moment in abjad.iterate_vertical_moments(staff_group):
         ...     vertical_moment.leaves
         ...
@@ -577,73 +514,25 @@ def iterate_vertical_moments(components, reverse=None):
 
         Iterates vertical moments in reverse:
 
-        >>> score = abjad.Score([])
-        >>> staff = abjad.Staff(r"\times 4/3 { d''8 c''8 b'8 }")
-        >>> score.append(staff)
-        >>> staff_group = abjad.StaffGroup([])
-        >>> staff_group.lilypond_type = 'PianoStaff'
-        >>> staff_group.append(abjad.Staff("a'4 g'4"))
-        >>> staff_group.append(abjad.Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
-        >>> score.append(staff_group)
-        >>> abjad.makers.tweak_tuplet_number_text(score)
-        >>> abjad.show(score) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(score)
-            >>> print(string)
-            \new Score
-            <<
-                \new Staff
-                {
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \tuplet 3/4
-                    {
-                        d''8
-                        c''8
-                        b'8
-                    }
-                }
-                \new PianoStaff
-                <<
-                    \new Staff
-                    {
-                        a'4
-                        g'4
-                    }
-                    \new Staff
-                    {
-                        \clef "bass"
-                        f'8
-                        e'8
-                        d'8
-                        c'8
-                    }
-                >>
-            >>
-
-        >>> for vertical_moment in abjad.iterate_vertical_moments(score, reverse=True):
-        ...     vertical_moment.leaves
+        >>> for vmoment in abjad.iterate_vertical_moments(score, reverse=True):
+        ...     vmoment.leaves
         ...
-        [Note("b'8"), Note("g'4"), Note("c'8")]
-        [Note("b'8"), Note("g'4"), Note("d'8")]
-        [Note("c''8"), Note("g'4"), Note("d'8")]
-        [Note("c''8"), Note("a'4"), Note("e'8")]
-        [Note("d''8"), Note("a'4"), Note("e'8")]
-        [Note("d''8"), Note("a'4"), Note("f'8")]
+        [Note("b'4"), Note("g'4"), Note("c'8")]
+        [Note("b'4"), Note("g'4"), Note("d'8")]
+        [Note("c''4"), Note("g'4"), Note("d'8")]
+        [Note("c''4"), Note("a'4"), Note("e'8")]
+        [Note("d''4"), Note("a'4"), Note("e'8")]
+        [Note("d''4"), Note("a'4"), Note("f'8")]
 
-        >>> for vertical_moment in abjad.iterate_vertical_moments(
-        ...     staff_group,
-        ...     reverse=True,
-        ...     ):
-        ...     vertical_moment.leaves
+        >>> for vmoment in abjad.iterate_vertical_moments(staff_group, reverse=True):
+        ...     vmoment.leaves
         ...
         [Note("g'4"), Note("c'8")]
         [Note("g'4"), Note("d'8")]
         [Note("a'4"), Note("e'8")]
         [Note("a'4"), Note("f'8")]
 
-    '''
+    """
     moments = []
     components = _select.components(components)
     components.sort(key=lambda _: _._get_timespan().start_offset)
