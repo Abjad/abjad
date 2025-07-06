@@ -475,7 +475,7 @@ class LilyPondFile:
         result = []
         strings = []
         if self.lilypond_version_token is True:
-            string = configuration.get_lilypond_version_string()
+            string = configuration.lilypond_version_string()
             string = rf'\version "{string}"'
             strings.append(string)
         elif isinstance(self.lilypond_version_token, str):

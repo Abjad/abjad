@@ -6,8 +6,7 @@ import copy
 import dataclasses
 import typing
 
-from . import _indentlib
-from . import contributions as _contributions
+from . import _contributions, _indentlib
 from . import enums as _enums
 from . import lyenv as _lyenv
 from . import string as _string

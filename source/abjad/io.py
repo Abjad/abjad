@@ -18,6 +18,7 @@ import traceback
 import typing
 
 import uqbar
+import uqbar.graphs
 
 import abjad
 
@@ -124,7 +125,7 @@ class LilyPondIO:
         """
         Gets LilyPond path.
         """
-        lilypond_path = configuration.get("lilypond_path")
+        lilypond_path = configuration["lilypond_path"]
         if not lilypond_path:
             lilypond_paths = find_executable("lilypond")
             if lilypond_paths:
@@ -196,8 +197,11 @@ class LilyPondIO:
         abjad_path = pathlib.Path(path[0])
         directory = abjad_path / "scm"
         directories.append(directory)
-        if "sphinx_stylesheets_directory" in configuration:
+        try:
             string = configuration["sphinx_stylesheets_directory"]
+        except KeyError:
+            string = ""
+        if string != "":
             for path in string.split(":"):
                 directory = pathlib.Path(path)
                 directories.append(directory)
@@ -915,8 +919,8 @@ def open_last_log() -> None:
     """
     Opens LilyPond log file in operating system-specific text editor.
     """
-    text_editor = configuration.get("text_editor")
-    file_path = configuration.lilypond_log_file_path
+    text_editor = configuration["text_editor"]
+    file_path = configuration.lilypond_log_file_path()
     open_file(str(file_path), application=text_editor)
 
 
@@ -993,7 +997,7 @@ def run_lilypond(
 
     Then appends redirected output of LilyPond output to the LilyPond log file.
     """
-    lilypond_path = configuration.get("lilypond_path")
+    lilypond_path = configuration["lilypond_path"]
     if lilypond_path is not None:
         assert isinstance(lilypond_path, str), repr(lilypond_path)
     if not lilypond_path:
@@ -1003,7 +1007,7 @@ def run_lilypond(
         else:
             lilypond_path = "lilypond"
     if lilypond_log_file_path is None:
-        lilypond_log_file_path = configuration.lilypond_log_file_path
+        lilypond_log_file_path = configuration.lilypond_log_file_path()
     ly_path_ = pathlib.Path(ly_path)
     # command = "{} {} -dbackend=cairo -dno-point-and-click --output={} {}"
     command = "{} {} -dno-point-and-click --output={} {}"

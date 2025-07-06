@@ -116,7 +116,7 @@ Instruments.
 import dataclasses
 import typing
 
-from . import contributions as _contributions
+from . import _contributions
 from . import enumerate as _enumerate
 from . import pcollections as _pcollections
 from . import pitch as _pitch

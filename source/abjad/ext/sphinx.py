@@ -11,6 +11,7 @@ import typing
 import docutils
 import sphinx
 import uqbar
+import uqbar.apis
 from uqbar.book.extensions import Extension
 
 from .. import configuration as _configuration
@@ -346,7 +347,9 @@ class ShellDirective(docutils.parsers.rst.Directive):
     def run(self):
         self.assert_has_content()
         result = []
-        with _contextmanagers.TemporaryDirectoryChange(configuration.abjad_directory):
+        with _contextmanagers.TemporaryDirectoryChange(
+            configuration.abjad_install_directory()
+        ):
             cwd = pathlib.Path.cwd()
             for line in self.content:
                 result.append(f"{cwd.name}$ {line}")

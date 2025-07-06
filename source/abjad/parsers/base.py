@@ -138,7 +138,7 @@ class Parser:
         """
         Gets output path for files associated with the parser.
         """
-        output_path = configuration.configuration_directory / "parsers"
+        output_path = configuration.abjad_configuration_directory() / "parsers"
         if not output_path.is_dir():
             try:
                 os.makedirs(output_path)

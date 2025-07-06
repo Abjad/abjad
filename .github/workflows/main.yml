@@ -62,7 +62,7 @@ jobs:
         # [dev] for black, flake8, etc
         python -m pip install --upgrade pip
         python -m pip install -e ".[dev]"
-        python -c "import abjad; print(abjad.Configuration().configuration_file_path)"
+        python -c "import abjad; print(abjad.configuration.Configuration().abjad_configuration_file_path())"
         python scripts/prime_parser_tables.py 2>/dev/null
 
     - name: Log Python dependencies

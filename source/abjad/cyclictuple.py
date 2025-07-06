@@ -16,15 +16,11 @@ class CyclicTuple:
 
         Cyclic tuples overload the item-getting method of built-in tuples to
         return a value for any integer index. Cyclic tuples otherwise behave
-        exactly like built-in tuples.
+        exactly like built-in tuples:
 
-        >>> tuple_ = abjad.CyclicTuple('abcd')
-
-        >>> tuple_
-        CyclicTuple(items=('a', 'b', 'c', 'd'))
-
+        >>> cycle = abjad.CyclicTuple("abcd")
         >>> for x in range(8):
-        ...     print(x, tuple_[x])
+        ...     print(x, cycle[x])
         ...
         0 a
         1 b
@@ -45,13 +41,6 @@ class CyclicTuple:
     def __contains__(self, item) -> bool:
         """
         Is true when cyclic tuple contains ``item``.
-
-        ..  container:: example
-
-            >>> tuple_ = abjad.CyclicTuple('abcd')
-            >>> 'a' in tuple_
-            True
-
         """
         return self.items.__contains__(item)
 

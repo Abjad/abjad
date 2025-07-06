@@ -8,8 +8,7 @@ import fractions
 import functools
 import typing
 
-from . import _indentlib, _updatelib
-from . import contributions as _contributions
+from . import _contributions, _indentlib, _updatelib
 from . import duration as _duration
 from . import enums as _enums
 from . import exceptions as _exceptions
