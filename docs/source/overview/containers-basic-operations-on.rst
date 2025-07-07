@@ -43,7 +43,7 @@ Item getting returns one component at a time:
 
     >>> container[2]
 
-Slicing returns a selection of components:
+Slicing returns a list of components:
 
 ::
 

@@ -209,7 +209,7 @@ too:
     >>> notes = abjad.sequence.flatten(descents)
     >>> staff = abjad.Staff(notes)
     >>> score = abjad.Score([staff], name="Score")
-    >>> selections = abjad.mutate.split(staff[:], [(3, 2)], cyclic=True)
+    >>> lists = abjad.mutate.split(staff[:], [(3, 2)], cyclic=True)
     >>> time_signature = abjad.TimeSignature((6, 4))
     >>> leaf = abjad.select.leaf(staff, 0)
     >>> abjad.attach(time_signature, leaf)
@@ -287,10 +287,10 @@ We define more functions:
     ...     edit_bass(score, extra_components)
     ...     strings_staff_group = score["Strings_Staff_Group"]
     ...     for voice in abjad.select.components(strings_staff_group, abjad.Voice):
-    ...         selections = abjad.mutate.split(voice[:], [(6, 4)], cyclic=True)
-    ...         for selection in selections:
+    ...         lists = abjad.mutate.split(voice[:], [(6, 4)], cyclic=True)
+    ...         for components in lists:
     ...             container = abjad.Container()
-    ...             abjad.mutate.wrap(selection, container)
+    ...             abjad.mutate.wrap(components, container)
 
     >>> def edit_violin_1(score, voice_to_descents):
     ...     voice = score["Violin_1_Voice"]

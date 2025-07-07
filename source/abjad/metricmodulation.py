@@ -525,10 +525,10 @@ class MetricModulation:
 
     def _initialize_rhythm(self, rhythm):
         if isinstance(rhythm, _score.Component):
-            selection = [rhythm]
+            list_ = [rhythm]
         else:
-            selection = rhythm
-        return selection
+            list_ = rhythm
+        return list_
 
     def _lhs_tuplet(self):
         left_rhythm = self._initialize_rhythm(self.left_rhythm)

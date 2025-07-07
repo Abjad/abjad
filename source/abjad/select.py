@@ -37,14 +37,14 @@ def _head_filter_subresult(result, head):
         else:
             if not all(isinstance(_, _score.Component) for _ in item):
                 raise NotImplementedError(item)
-            selection = []
+            components = []
             for component in item:
                 leaves = _iterlib._get_logical_tie_leaves(component)
                 if head == leaves[0]:
-                    selection.append(item)
+                    components.append(item)
                 else:
                     pass
-            result_.append(selection)
+            result_.append(components)
     assert isinstance(result_, list), repr(result_)
     return result_
 
@@ -69,14 +69,14 @@ def _tail_filter_subresult(result, tail):
         else:
             if not all(isinstance(_, _score.Component) for _ in item):
                 raise NotImplementedError(item)
-            selection = []
+            components = []
             for component in item:
                 leaves = _iterlib._get_logical_tie_leaves(component)
                 if tail == leaves[-1]:
-                    selection.append(item)
+                    components.append(item)
                 else:
                     pass
-            result_.append(selection)
+            result_.append(components)
     assert isinstance(result_, list), repr(result_)
     return result_
 
@@ -93,13 +93,13 @@ def _trim_subresult(result, trim):
         else:
             if not all(isinstance(_, _score.Component) for _ in item):
                 raise NotImplementedError(item)
-            selection = []
+            components = []
             for component in item:
                 if not isinstance(component, prototype):
                     found_good_component = True
                 if found_good_component:
-                    selection.append(component)
-            item = selection
+                    components.append(component)
+            item = components
         if found_good_component:
             result_.append(item)
     if trim is _enums.LEFT:
@@ -114,13 +114,13 @@ def _trim_subresult(result, trim):
             else:
                 if not all(isinstance(_, _score.Component) for _ in item):
                     raise NotImplementedError(item)
-                selection = []
+                components = []
                 for component in reversed(item):
                     if not isinstance(component, prototype):
                         found_good_component = True
                     if found_good_component:
-                        selection.insert(0, component)
-                item = selection
+                        components.insert(0, component)
+                item = components
             if found_good_component:
                 result__.insert(0, item)
         assert isinstance(result__, list), repr(result__)
@@ -157,14 +157,14 @@ class LogicalTie(collections.abc.Sequence):
 
     def __contains__(self, argument) -> bool:
         """
-        Is true when ``argument`` is in selection.
+        Is true when ``argument`` is in logical tie.
         """
         return argument in self.items
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when selection and ``argument`` are of the same type
-        and when items in selection equal item in ``argument``.
+        Is true when ``argument`` is logical tie and when items in ``argument``
+        equal those in logical tie.
         """
         if isinstance(argument, type(self)):
             return self.items == argument.items
@@ -174,19 +174,19 @@ class LogicalTie(collections.abc.Sequence):
 
     def __hash__(self) -> int:
         """
-        Hashes selection.
+        Hashes logical tie.
         """
         return id(self)
 
     def __len__(self) -> int:
         """
-        Gets number of items in selection.
+        Gets number of items in logical tie.
         """
         return len(self.items)
 
     def __repr__(self) -> str:
         """
-        Gets interpreter representation of selection.
+        Gets interpreter representation of logical tie.
         """
         return f"{type(self).__name__}(items={list(self.items)!r})"
 
@@ -216,7 +216,7 @@ class LogicalTie(collections.abc.Sequence):
     @property
     def items(self) -> tuple:
         """
-        Gets items in selection.
+        Gets items in logical tie.
         """
         return self._items
 
@@ -1407,14 +1407,14 @@ def get(
 
 def group(argument) -> list[list]:
     r"""
-    Groups ``argument`` in selection.
+    Groups ``argument``.
 
     ..  container:: example
 
         >>> staff = abjad.Staff(r'''
         ...     c'8 ~ c'16 c'16 r8 c'16 c'16
         ...     d'8 ~ d'16 d'16 r8 d'16 d'16
-        ...     ''')
+        ... ''')
         >>> abjad.setting(staff).autoBeaming = False
 
         >>> result = abjad.select.leaves(staff, pitched=True)
@@ -1474,12 +1474,12 @@ def group_by(argument, predicate=None) -> list[list]:
 
     ..  container:: example
 
-        Wraps selection in selection when ``predicate`` is none:
+        Wraps ``argument`` in list when ``predicate`` is none:
 
         >>> staff = abjad.Staff(r"""
         ...     c'8 ~ c'16 c'16 r8 c'16 c'16
         ...     d'8 ~ d'16 d'16 r8 d'16 d'16
-        ...     """)
+        ... """)
         >>> abjad.setting(staff).autoBeaming = False
 
         >>> result = abjad.select.leaves(staff, pitched=True)
@@ -1828,10 +1828,10 @@ def group_by_contiguity(argument) -> list[list]:
 
     '''
     result = []
-    selection = []
-    selection.extend(argument[:1])
+    components = []
+    components.extend(argument[:1])
     for item in argument[1:]:
-        this_timespan = _getlib._get_timespan(selection[-1])
+        this_timespan = _getlib._get_timespan(components[-1])
         that_timespan = _getlib._get_timespan(item)
         # remove displacement
         this_stop_offset = this_timespan.stop_offset
@@ -1840,12 +1840,12 @@ def group_by_contiguity(argument) -> list[list]:
         that_start_offset = _duration.Offset(that_start_offset.pair)
         # if this_timespan.stop_offset == that_timespan.start_offset:
         if this_stop_offset == that_start_offset:
-            selection.append(item)
+            components.append(item)
         else:
-            result.append(selection)
-            selection = [item]
-    if selection:
-        result.append(selection)
+            result.append(components)
+            components = [item]
+    if components:
+        result.append(components)
     return result
 
 
@@ -2351,13 +2351,13 @@ def group_by_measure(argument) -> list[list]:
         assert first_component._measure_number is not None
         return first_component._measure_number
 
-    selections = []
+    lists = []
     first_component = _get_first_component(argument)
     _updatelib._update_measure_numbers(first_component)
     pairs = itertools.groupby(argument, _get_measure_number)
     for value, group in pairs:
-        selections.append(list(group))
-    return selections
+        lists.append(list(group))
+    return lists
 
 
 def group_by_pitch(argument) -> list[list]:
@@ -2745,14 +2745,14 @@ def leaves(
 
     ..  container:: example
 
-        Trimmed leaves are the correct selection for ottava brackets.
+        Ottava brackets attach to trimmed leaves.
 
         Selects trimmed leaves:
 
         >>> staff = abjad.Staff(r"""
         ...     \tuplet 3/2 { r8 d' e' } f' r
         ...     r f' \tuplet 3/2 { e' d' r8 }
-        ...     """)
+        ... """)
         >>> abjad.setting(staff).autoBeaming = False
 
         >>> result = abjad.select.leaves(staff, trim=True)
@@ -3065,7 +3065,7 @@ def leaves(
 
     ..  container:: example
 
-        Pitched heads is the correct selection for most articulations.
+        Most articulations attach to pitched heads.
 
         Selects pitched heads in tuplets:
 
@@ -3125,7 +3125,7 @@ def leaves(
 
     ..  container:: example
 
-        Pitched tails in the correct selection for laissez vibrer.
+        Laissez vibrer indicators attach to pitched tails.
 
         Selects pitched tails in tuplets:
 
@@ -3185,7 +3185,7 @@ def leaves(
 
     ..  container:: example
 
-        Chord heads are the correct selection for arpeggios.
+        Arpeggios attach to chord heads.
 
         Selects chord heads in tuplets:
 
@@ -5897,8 +5897,8 @@ def partition_by_durations(
     if len(components_copy):
         if overhang:
             result.append(components_copy)
-    selections = [list(_) for _ in result]
-    return selections
+    lists = [list(_) for _ in result]
+    return lists
 
 
 def partition_by_proportion(argument, proportion: tuple[int, ...]) -> list[list]:
@@ -6017,8 +6017,8 @@ def partition_by_proportion(argument, proportion: tuple[int, ...]) -> list[list]
     assert all(isinstance(_, int) for _ in proportion), repr(proportion)
     counts = _math.partition_integer_by_proportion(len(argument), proportion)
     parts = _sequence.partition_by_counts(argument, counts=counts)
-    selections = [list(_) for _ in parts]
-    return selections
+    lists = [list(_) for _ in parts]
+    return lists
 
 
 def rest(
@@ -6964,8 +6964,8 @@ def with_next_leaf(argument, *, grace: bool | None = None) -> list[_score.Leaf]:
 
     ..  container:: example
 
-        Pitched logical ties (each with next leaf) is the correct selection
-        for single-pitch sustain pedal applications.
+        Single-pitch sustain pedal indicators attach to pitched logical ties
+        (each with next leaf).
 
         Selects pitched logical ties (each with next leaf):
 

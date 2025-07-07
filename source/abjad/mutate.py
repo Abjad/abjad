@@ -25,10 +25,10 @@ from . import tag as _tag
 
 
 def _are_contiguous_logical_voice(
-    selection, prototype=None, *, ignore_before_after_grace=None
+    components, prototype=None, *, ignore_before_after_grace=None
 ) -> bool:
     r"""
-    Is true when items in selection are contiguous components in the same logical voice.
+    Is true when ``components`` are contiguous and in the same logical voice.
 
     ..  container:: example
 
@@ -112,24 +112,24 @@ def _are_contiguous_logical_voice(
         True
 
     """
-    if not isinstance(selection, collections.abc.Sequence):
+    if not isinstance(components, collections.abc.Sequence):
         return False
     prototype = prototype or (_score.Component,)
     if not isinstance(prototype, tuple):
         prototype = (prototype,)
     assert isinstance(prototype, tuple)
-    if len(selection) == 0:
+    if len(components) == 0:
         return True
-    if all(isinstance(_, prototype) and _._parent is None for _ in selection):
+    if all(isinstance(_, prototype) and _._parent is None for _ in components):
         return True
-    first = selection[0]
+    first = components[0]
     if not isinstance(first, prototype):
         return False
     first_parentage = _parentage.Parentage(first)
     first_logical_voice = first_parentage.logical_voice()
     first_root = first_parentage.root
     previous = first
-    for current in selection[1:]:
+    for current in components[1:]:
         current_parentage = _parentage.Parentage(current)
         current_logical_voice = current_parentage.logical_voice()
         # false if wrong type of component found
@@ -151,10 +151,10 @@ def _are_contiguous_logical_voice(
 
 
 def _are_contiguous_same_parent(
-    self, prototype=None, *, ignore_before_after_grace=None
+    components, prototype=None, *, ignore_before_after_grace=None
 ) -> bool:
     r"""
-    Is true when items in selection are all contiguous components in the same parent.
+    Is true when ``components`` are all contiguous and in the same parent.
 
     ..  container:: example
 
@@ -242,18 +242,18 @@ def _are_contiguous_same_parent(
     if not isinstance(prototype, tuple):
         prototype = (prototype,)
     assert isinstance(prototype, tuple)
-    if len(self) == 0:
+    if len(components) == 0:
         return True
-    if all(isinstance(_, prototype) and _._parent is None for _ in self):
+    if all(isinstance(_, prototype) and _._parent is None for _ in components):
         return True
-    first = self[0]
+    first = components[0]
     if not isinstance(first, prototype):
         return False
     first_parent = first._parent
     same_parent = True
     strictly_contiguous = True
     previous = first
-    for current in self[1:]:
+    for current in components[1:]:
         if not isinstance(current, prototype):
             return False
         if current._parent is not first_parent:
@@ -270,28 +270,28 @@ def _are_contiguous_same_parent(
     return True
 
 
-def _attach_tie_to_leaves(selection):
-    for leaf in selection[:-1]:
+def _attach_tie_to_leaves(leaves):
+    for leaf in leaves[:-1]:
         _bind.detach(_indicators.Tie, leaf)
         _bind.attach(_indicators.Tie(), leaf)
 
 
-def _copy_selection(selection):
-    assert _are_contiguous_logical_voice(selection)
+def _copy_components(components):
+    assert _are_contiguous_logical_voice(components)
     new_components = []
-    for component in selection:
+    for component in components:
         if isinstance(component, _score.Container):
             new_component = component._copy_with_children()
         else:
             new_component = component.__copy__()
         new_components.append(new_component)
-    new_components = type(selection)(new_components)
+    new_components = type(components)(new_components)
     return new_components
 
 
 def _extract(component):
-    selection = [component]
-    parent, start, stop = _get_parent_and_start_stop_indices(selection)
+    components = [component]
+    parent, start, stop = _get_parent_and_start_stop_indices(components)
     if parent is not None:
         components = list(getattr(component, "components", ()))
         parent.__setitem__(slice(start, stop + 1), components)
@@ -366,23 +366,23 @@ def _get_leaves_grouped_by_immediate_parents(leaves):
     return result
 
 
-def _give_components_to_empty_container(selection, container):
-    assert _are_contiguous_same_parent(selection)
+def _give_components_to_empty_container(components, container):
+    assert _are_contiguous_same_parent(components)
     assert isinstance(container, _score.Container)
     assert not container
-    components = []
-    for component in selection:
-        components.extend(getattr(component, "components", ()))
-    container._components.extend(components)
+    components_ = []
+    for component in components:
+        components_.extend(getattr(component, "components", ()))
+    container._components.extend(components_)
     _set_parents(container)
 
 
-def _get_parent_and_start_stop_indices(selection, ignore_before_after_grace=None):
+def _get_parent_and_start_stop_indices(components, ignore_before_after_grace=None):
     assert _are_contiguous_same_parent(
-        selection, ignore_before_after_grace=ignore_before_after_grace
+        components, ignore_before_after_grace=ignore_before_after_grace
     )
-    if selection:
-        first, last = selection[0], selection[-1]
+    if components:
+        first, last = components[0], components[-1]
         parent = first._parent
         if parent is not None:
             first_index = parent.index(first)
@@ -391,14 +391,14 @@ def _get_parent_and_start_stop_indices(selection, ignore_before_after_grace=None
     return None, None, None
 
 
-def _give_position_in_parent_to_container(selection, container):
-    assert _are_contiguous_same_parent(selection)
+def _give_position_in_parent_to_container(components, container):
+    assert _are_contiguous_same_parent(components)
     assert isinstance(container, _score.Container)
-    parent, start, stop = _get_parent_and_start_stop_indices(selection)
+    parent, start, stop = _get_parent_and_start_stop_indices(components)
     if parent is not None:
         parent._components.__setitem__(slice(start, start), [container])
         container._set_parent(parent)
-        for component in selection:
+        for component in components:
             component._set_parent(None)
 
 
@@ -523,8 +523,8 @@ def _split_container_at_index(CONTAINER, i):
     halves = (left, right)
     nonempty_halves = [half for half in halves if len(half)]
     # add left and right parents to score if possible
-    selection = [CONTAINER]
-    parent, start, stop = _get_parent_and_start_stop_indices(selection)
+    components = [CONTAINER]
+    parent, start, stop = _get_parent_and_start_stop_indices(components)
     if parent is not None:
         parent._components.__setitem__(slice(start, stop + 1), nonempty_halves)
         for part in nonempty_halves:
@@ -665,7 +665,7 @@ def _split_leaf_by_durations(leaf, durations, *, cyclic=False, tag=None):
     durations = _sequence.truncate(durations, weight=leaf_duration)
     originally_tied = leaf._has_indicator(_indicators.Tie)
     originally_repeat_tied = leaf._has_indicator(_indicators.RepeatTie)
-    result_selections = []
+    result_lists = []
     # detach grace containers
     before_grace_container = leaf._before_grace_container
     if before_grace_container is not None:
@@ -678,9 +678,9 @@ def _split_leaf_by_durations(leaf, durations, *, cyclic=False, tag=None):
     for duration in durations:
         new_leaf = python_copy.copy(leaf)
         preprolated_duration = duration / leaf_prolation
-        selection = _set_leaf_duration(new_leaf, preprolated_duration, tag=tag)
-        result_selections.append(selection)
-    result_components = _sequence.flatten(result_selections, depth=-1)
+        components = _set_leaf_duration(new_leaf, preprolated_duration, tag=tag)
+        result_lists.append(components)
+    result_components = _sequence.flatten(result_lists, depth=-1)
     result_leaves = _select.leaves(result_components, grace=False)
     assert all(isinstance(_, _score.Component) for _ in result_components)
     assert all(isinstance(_, _score.Leaf) for _ in result_leaves)
@@ -826,8 +826,8 @@ def copy(argument, n=1) -> list[_score.Component]:
                 c''8
             }
 
-        >>> selection = staff[2:4]
-        >>> result = abjad.mutate.copy(selection)
+        >>> components = staff[2:4]
+        >>> result = abjad.mutate.copy(components)
         >>> new_staff = abjad.Staff(result)
         >>> abjad.show(new_staff) # doctest: +SKIP
 
@@ -846,11 +846,11 @@ def copy(argument, n=1) -> list[_score.Component]:
 
     """
     if isinstance(argument, _score.Component):
-        selection = [argument]
+        components = [argument]
     else:
-        selection = argument
+        components = argument
     if n == 1:
-        result = _copy_selection(selection)
+        result = _copy_components(components)
         if isinstance(argument, _score.Component):
             if len(result) == 1:
                 result = result[0]
@@ -1133,9 +1133,9 @@ def fuse(argument) -> _score.Tuplet | list[_score.Leaf]:
 
     ..  container:: example
 
-        Fuses parent-contiguous tuplets in selection.
+        Fuses parent-contiguous tuplets.
 
-        Returns new tuplet in selection.
+        Returns new tuplet.
 
         Fuses zero or more parent-contiguous ``tuplets``.
 
@@ -2788,17 +2788,17 @@ def wrap(argument, container):
     if not isinstance(container, _score.Container) or 0 < len(container):
         raise Exception(f"must be empty container: {container!r}.")
     if isinstance(argument, _score.Component):
-        selection = [argument]
+        components = [argument]
     else:
-        selection = argument
+        components = argument
     parent, start, stop = _get_parent_and_start_stop_indices(
-        selection, ignore_before_after_grace=True
+        components, ignore_before_after_grace=True
     )
-    if not _are_contiguous_logical_voice(selection, ignore_before_after_grace=True):
+    if not _are_contiguous_logical_voice(components, ignore_before_after_grace=True):
         message = "must be contiguous components in same logical voice:\n"
-        message += f"   {selection!r}."
+        message += f"   {components!r}."
         raise Exception(message)
-    container._components = list(selection)
+    container._components = list(components)
     _set_parents(container)
     if parent is not None:
         parent._components.insert(start, container)

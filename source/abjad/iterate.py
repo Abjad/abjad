@@ -823,8 +823,8 @@ def logical_ties(
                 ]
             }
 
-        >>> selection = voice[:2]
-        >>> for logical_tie in abjad.iterate.logical_ties(selection):
+        >>> components = voice[:2]
+        >>> for logical_tie in abjad.iterate.logical_ties(components):
         ...     logical_tie
         ...
         LogicalTie(items=[Note("c'8"), Note("c'8"), Note("c'8")])

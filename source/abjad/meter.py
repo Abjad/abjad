@@ -1770,11 +1770,11 @@ class Meter:
                     }
                 }
 
-            When establishing a meter on a selection of components which
-            contain containers, like tuplets or containers,
-            ``abjad.Meter.rewrite()`` will recurse into those containers,
-            treating them as measures whose time signature is derived from the
-            preprolated duration of the container's contents:
+            When establishing a meter on a list of components which contain
+            containers, like tuplets or containers, ``abjad.Meter.rewrite()``
+            will recurse into those containers, treating them as measures whose
+            time signature is derived from the preprolated duration of the
+            container's contents:
 
             >>> measure = staff[0]
             >>> time_signature = abjad.get.indicator(measure[0], abjad.TimeSignature)

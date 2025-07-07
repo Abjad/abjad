@@ -1383,16 +1383,16 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
 
     ..  container:: example
 
-        Labels logical ties with pitch names (filtered by selection):
+        Labels logical ties with pitch names:
 
         >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
         >>> string = 'Horizontal_bracket_engraver'
         >>> voice.consists_commands.append(string)
-        >>> selections = [voice[:2], voice[-2:]]
-        >>> for selection in selections:
-        ...     abjad.horizontal_bracket(selection)
+        >>> lists = [voice[:2], voice[-2:]]
+        >>> for list_ in lists:
+        ...     abjad.horizontal_bracket(list_)
         ...
-        >>> abjad.label.with_pitches(selections)
+        >>> abjad.label.with_pitches(lists)
         >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
         >>> abjad.override(voice).TextScript.staff_padding = 2
         >>> abjad.show(voice) # doctest: +SKIP
@@ -1427,16 +1427,16 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
 
     ..  container:: example
 
-        Labels logical ties with pitch numbers (filtered by selection):
+        Labels logical ties with pitch numbers:
 
         >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
         >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-        >>> selections = [voice[:2], voice[-2:]]
-        >>> for selection in selections:
-        ...     abjad.horizontal_bracket(selection)
+        >>> lists = [voice[:2], voice[-2:]]
+        >>> for list_ in lists:
+        ...     abjad.horizontal_bracket(list_)
         ...
         >>> prototype = abjad.NumberedPitch
-        >>> abjad.label.with_pitches(selections, prototype=prototype)
+        >>> abjad.label.with_pitches(lists, prototype=prototype)
         >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
         >>> abjad.override(voice).TextScript.staff_padding = 2
         >>> abjad.show(voice) # doctest: +SKIP
@@ -1471,16 +1471,16 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
 
     ..  container:: example
 
-        Labels logical ties with pitch-class numbers (filtered by selection):
+        Labels logical ties with pitch-class numbers:
 
         >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
         >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-        >>> selections = [voice[:2], voice[-2:]]
-        >>> for selection in selections:
-        ...     abjad.horizontal_bracket(selection)
+        >>> lists = [voice[:2], voice[-2:]]
+        >>> for list_ in lists:
+        ...     abjad.horizontal_bracket(list_)
         ...
         >>> prototype = abjad.NumberedPitchClass
-        >>> abjad.label.with_pitches(selections, prototype=prototype)
+        >>> abjad.label.with_pitches(lists, prototype=prototype)
         >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
         >>> abjad.override(voice).TextScript.staff_padding = 2
         >>> abjad.show(voice) # doctest: +SKIP
@@ -1561,20 +1561,20 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
 
 def with_set_classes(argument, direction=_enums.UP, prototype=None) -> None:
     r"""
-    Labels selections ``argument`` with set-classes.
+    Labels ``argument`` with set-classes.
 
     ..  container:: example
 
-        Labels selections with Forte-ranked transposition-inversion set-classes:
+        Labels lists of notes with Forte-ranked transposition-inversion set-classes:
 
         >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
         >>> voice = abjad.Voice(string)
         >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-        >>> selections = [voice[:4], voice[-4:]]
-        >>> for selection in selections:
-        ...     abjad.horizontal_bracket(selection)
+        >>> lists = [voice[:4], voice[-4:]]
+        >>> for list_ in lists:
+        ...     abjad.horizontal_bracket(list_)
         ...
-        >>> abjad.label.with_set_classes(selections)
+        >>> abjad.label.with_set_classes(lists)
         >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
         >>> abjad.override(voice).TextScript.staff_padding = 2
         >>> abjad.show(voice) # doctest: +SKIP
@@ -1610,17 +1610,17 @@ def with_set_classes(argument, direction=_enums.UP, prototype=None) -> None:
 
     ..  container:: example
 
-        Labels selections with lex-ranked transposition-inversion set-classes:
+        Labels lists of notes with lex-ranked transposition-inversion set-classes:
 
         >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
         >>> voice = abjad.Voice(string)
         >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-        >>> selections = [voice[:4], voice[-4:]]
-        >>> for selection in selections:
-        ...     abjad.horizontal_bracket(selection)
+        >>> lists = [voice[:4], voice[-4:]]
+        >>> for list_ in lists:
+        ...     abjad.horizontal_bracket(list_)
         ...
         >>> prototype = abjad.SetClass(lex_rank=True)
-        >>> abjad.label.with_set_classes(selections, prototype=prototype)
+        >>> abjad.label.with_set_classes(lists, prototype=prototype)
         >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
         >>> abjad.override(voice).TextScript.staff_padding = 2
         >>> abjad.show(voice) # doctest: +SKIP
@@ -1656,17 +1656,17 @@ def with_set_classes(argument, direction=_enums.UP, prototype=None) -> None:
 
     ..  container:: example
 
-        Labels selections with transposition-only set-classes:
+        Labels lists of notes with transposition-only set-classes:
 
         >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
         >>> voice = abjad.Voice(string)
         >>> voice.consists_commands.append('Horizontal_bracket_engraver')
-        >>> selections = [voice[:4], voice[-4:]]
-        >>> for selection in selections:
-        ...     abjad.horizontal_bracket(selection)
+        >>> lists = [voice[:4], voice[-4:]]
+        >>> for list_ in lists:
+        ...     abjad.horizontal_bracket(list_)
         ...
         >>> prototype = abjad.SetClass(lex_rank=True, transposition_only=True)
-        >>> abjad.label.with_set_classes(selections, prototype=prototype)
+        >>> abjad.label.with_set_classes(lists, prototype=prototype)
         >>> abjad.override(voice).HorizontalBracket.staff_padding = 3
         >>> abjad.override(voice).TextScript.staff_padding = 2
         >>> abjad.show(voice) # doctest: +SKIP
@@ -1705,8 +1705,8 @@ def with_set_classes(argument, direction=_enums.UP, prototype=None) -> None:
     if prototype is _setclass.SetClass:
         prototype = prototype()
     assert isinstance(prototype, _setclass.SetClass), repr(prototype)
-    for selection in argument:
-        generator = _iterate.pitches(selection)
+    for list_ in argument:
+        generator = _iterate.pitches(list_)
         pitch_class_set = _pcollections.PitchClassSet(generator)
         if not pitch_class_set:
             continue
@@ -1717,7 +1717,7 @@ def with_set_classes(argument, direction=_enums.UP, prototype=None) -> None:
         )
         string = str(set_class)
         label = _indicators.Markup(rf'\markup \tiny \line {{ "{string}" }}')
-        leaf = selection[0]
+        leaf = list_[0]
         _attach(label, leaf, direction=direction)
 
 

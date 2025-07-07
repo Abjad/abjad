@@ -220,7 +220,7 @@ def test_mutate__are_contiguous_same_parent_03():
 
 def test_mutate__are_contiguous_same_parent_04():
     """
-    Empty selection returns true.
+    Empty list returns true.
     """
 
     assert abjad.mutate._are_contiguous_same_parent([])

@@ -594,7 +594,7 @@ def test_mutate__split_leaf_by_durations_03():
 
 def test_mutate__split_leaf_by_durations_04():
     """
-    Returns selection of new leaves.
+    Returns list of new leaves.
     """
 
     note = abjad.Note("c'4")
