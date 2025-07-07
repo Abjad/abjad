@@ -918,15 +918,17 @@ class Timespan:
 
     ### PUBLIC METHODS ###
 
-    def divide_by_ratio(self, ratio) -> tuple["Timespan", ...]:
+    def divide_by_proportion(
+        self, proportion: tuple[int, ...]
+    ) -> tuple["Timespan", ...]:
         """
-        Divides timespan by ``ratio``.
+        Divides timespan by ``proportion``.
 
         ..  container:: example
 
             >>> timespan = abjad.Timespan((1, 2), (3, 2))
 
-            >>> for x in timespan.divide_by_ratio((1, 2, 1)):
+            >>> for x in timespan.divide_by_proportion((1, 2, 1)):
             ...     x
             ...
             Timespan(Offset((1, 2)), Offset((3, 4)))
@@ -934,10 +936,10 @@ class Timespan:
             Timespan(Offset((5, 4)), Offset((3, 2)))
 
         """
-        if isinstance(ratio, int):
-            ratio = ratio * (1,)
-        unit_duration = self.duration / sum(ratio)
-        part_durations = [numerator * unit_duration for numerator in ratio]
+        assert isinstance(proportion, tuple), repr(proportion)
+        assert all(isinstance(_, int) for _ in proportion), repr(proportion)
+        unit_duration = self.duration / sum(proportion)
+        part_durations = [numerator * unit_duration for numerator in proportion]
         start_offsets = _math.cumulative_sums(
             [self.start_offset] + part_durations, start=None
         )

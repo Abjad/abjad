@@ -5901,20 +5901,20 @@ def partition_by_durations(
     return selections
 
 
-def partition_by_ratio(argument, ratio: tuple[int, ...]) -> list[list]:
+def partition_by_proportion(argument, proportion: tuple[int, ...]) -> list[list]:
     r"""
-    Partitions items in ``argument`` by ``ratio``.
+    Partitions items in ``argument`` by ``proportion``.
 
     ..  container:: example
 
-        Partitions leaves by a ratio of 1:1:
+        Partitions leaves by a proportion of 1:1:
 
         >>> string = r"c'8 d' r \tuplet 3/2 { e' r f' } g' a' r"
         >>> staff = abjad.Staff(string)
         >>> abjad.setting(staff).autoBeaming = False
 
         >>> result = abjad.select.leaves(staff)
-        >>> result = abjad.select.partition_by_ratio(result, (1, 1))
+        >>> result = abjad.select.partition_by_proportion(result, (1, 1))
         >>> for item in result:
         ...     item
         ...
@@ -5960,14 +5960,14 @@ def partition_by_ratio(argument, ratio: tuple[int, ...]) -> list[list]:
 
     ..  container:: example
 
-        Partitions leaves by a ratio of 1:1:1:
+        Partitions leaves by a proportion of 1:1:1:
 
         >>> string = r"c'8 d' r \tuplet 3/2 { e' r f' } g' a' r"
         >>> staff = abjad.Staff(string)
         >>> abjad.setting(staff).autoBeaming = False
 
         >>> result = abjad.select.leaves(staff)
-        >>> result = abjad.select.partition_by_ratio(result, (1, 1, 1))
+        >>> result = abjad.select.partition_by_proportion(result, (1, 1, 1))
         >>> for item in result:
         ...     item
         ...
@@ -6013,8 +6013,9 @@ def partition_by_ratio(argument, ratio: tuple[int, ...]) -> list[list]:
             }
 
     """
-    ratio = ratio or (1,)
-    counts = _math.partition_integer_by_ratio(len(argument), ratio)
+    assert isinstance(proportion, tuple), repr(proportion)
+    assert all(isinstance(_, int) for _ in proportion), repr(proportion)
+    counts = _math.partition_integer_by_proportion(len(argument), proportion)
     parts = _sequence.partition_by_counts(argument, counts=counts)
     selections = [list(_) for _ in parts]
     return selections

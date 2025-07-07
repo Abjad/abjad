@@ -383,25 +383,28 @@ def difference_series(argument):
     return type(argument)(result)
 
 
-def divide_integer_by_ratio(n, ratio) -> list[fractions.Fraction | float]:
+# TODO: constrain `n` to integer
+def divide_integer_by_proportion(
+    n: int | float, proportion: tuple[int, ...]
+) -> list[fractions.Fraction | float]:
     """
-    Divides integer ``n`` by tuple ``ratio``.
+    Divides integer ``n`` by tuple ``proportion``.
 
     ..  container:: example
 
-        >>> abjad.math.divide_integer_by_ratio(1, (1, 1, 3))
+        >>> abjad.math.divide_integer_by_proportion(1, (1, 1, 3))
         [Fraction(1, 5), Fraction(1, 5), Fraction(3, 5)]
 
     ..  container:: example
 
-        >>> abjad.math.divide_integer_by_ratio(1.0, (1, 1, 3))
+        >>> abjad.math.divide_integer_by_proportion(1.0, (1, 1, 3))
         [0.2, 0.2, 0.6]
 
     """
     assert isinstance(n, int | float), repr(n)
-    assert isinstance(ratio, tuple), repr(ratio)
-    denominator = sum(ratio)
-    factors = [fractions.Fraction(_, denominator) for _ in ratio]
+    assert isinstance(proportion, tuple), repr(proportion)
+    denominator = sum(proportion)
+    factors = [fractions.Fraction(_, denominator) for _ in proportion]
     result = [n * _ for _ in factors]
     return result
 
@@ -990,69 +993,68 @@ def _least_common_multiple_helper(m, n):
     return result
 
 
-def partition_integer_by_ratio(n, ratio) -> list[int]:
+def partition_integer_by_proportion(n: int, proportion: tuple[int, ...]) -> list[int]:
     """
-    Partitions positive integer-equivalent ``n`` by ``ratio``.
+    Partitions positive integer-equivalent ``n`` by ``proportion``.
 
     Returns result with weight equal to absolute value of ``n``.
 
     ..  container:: example
 
-        Partitions positive integer-equivalent ``n`` by ``ratio`` with positive
+        Partitions positive integer-equivalent ``n`` by ``proportion`` with positive
         parts:
 
-        >>> abjad.math.partition_integer_by_ratio(10, (1, 2))
+        >>> abjad.math.partition_integer_by_proportion(10, (1, 2))
         [3, 7]
 
     ..  container:: example
 
-        Partitions positive integer-equivalent ``n`` by ``ratio`` with negative
+        Partitions positive integer-equivalent ``n`` by ``proportion`` with negative
         parts:
 
-        >>> abjad.math.partition_integer_by_ratio(10, (1, -2))
+        >>> abjad.math.partition_integer_by_proportion(10, (1, -2))
         [3, -7]
 
     ..  container:: example
 
-        Partitions negative integer-equivalent ``n`` by ``ratio``:
+        Partitions negative integer-equivalent ``n`` by ``proportion``:
 
-        >>> abjad.math.partition_integer_by_ratio(-10, (1, 2))
+        >>> abjad.math.partition_integer_by_proportion(-10, (1, 2))
         [-3, -7]
 
     ..  container:: example
 
-        Partitions negative integer-equivalent ``n`` by ``ratio`` with negative
+        Partitions negative integer-equivalent ``n`` by ``proportion`` with negative
         parts:
 
-        >>> abjad.math.partition_integer_by_ratio(-10, (1, -2))
+        >>> abjad.math.partition_integer_by_proportion(-10, (1, -2))
         [-3, 7]
 
     ..  container:: example
 
         More examples:
 
-        >>> abjad.math.partition_integer_by_ratio(10, (1,))
+        >>> abjad.math.partition_integer_by_proportion(10, (1,))
         [10]
 
-        >>> abjad.math.partition_integer_by_ratio(10, (1, 1))
+        >>> abjad.math.partition_integer_by_proportion(10, (1, 1))
         [5, 5]
 
-        >>> abjad.math.partition_integer_by_ratio(10, (1, -1, -1))
+        >>> abjad.math.partition_integer_by_proportion(10, (1, -1, -1))
         [3, -4, -3]
 
-        >>> abjad.math.partition_integer_by_ratio(-10, (1, 1, 1, 1))
+        >>> abjad.math.partition_integer_by_proportion(-10, (1, 1, 1, 1))
         [-3, -2, -3, -2]
 
-        >>> abjad.math.partition_integer_by_ratio(-10, (1, 1, 1, 1, 1))
+        >>> abjad.math.partition_integer_by_proportion(-10, (1, 1, 1, 1, 1))
         [-2, -2, -2, -2, -2]
 
     """
-    if not is_integer_equivalent_number(n):
-        raise TypeError(f"is not integer-equivalent number: {n!r}.")
-    if not all(is_integer_equivalent_number(_) for _ in ratio):
-        raise ValueError(f"must be integer tuple ratio, not {ratio!r}.")
+    # assert isinstance(n, int), repr(n)
+    assert isinstance(proportion, tuple), repr(proportion)
+    assert all(isinstance(_, int) for _ in proportion), repr(proportion)
     result = [0]
-    parts = [float(abs(n)) * abs(_) / weight(ratio) for _ in ratio]
+    parts = [float(abs(n)) * abs(_) / weight(proportion) for _ in proportion]
     cumulative_parts = cumulative_sums(parts, start=None)
     for part in cumulative_parts:
         rounded_part = int(round(part)) - sum(result)
@@ -1062,7 +1064,7 @@ def partition_integer_by_ratio(n, ratio) -> list[int]:
     result = result[1:]
     if sign(n) == -1:
         result = [-_ for _ in result]
-    ratio_signs = [sign(_) for _ in ratio]
+    ratio_signs = [sign(_) for _ in proportion]
     result = [pair[0] * pair[1] for pair in zip(ratio_signs, result)]
     return result
 

@@ -644,20 +644,20 @@ def partition_by_counts(
     return result
 
 
-def partition_by_ratio_of_lengths(sequence, ratio: tuple[int, ...]) -> list:
+def partition_by_proportion_of_lengths(sequence, proportion: tuple[int, ...]) -> list:
     r"""
-    Partitions ``sequence`` by ``ratio`` of lengths.
+    Partitions ``sequence`` by ``proportion`` of lengths.
 
     Returns list of ``sequence`` types.
 
     ..  container:: example
 
-        Partitions sequence by ``1:1:1`` ratio:
+        Partitions sequence by ``1:1:1`` proportion:
 
         >>> numbers = list(range(10))
-        >>> ratio = (1, 1, 1)
+        >>> proportion = (1, 1, 1)
 
-        >>> for part in abjad.sequence.partition_by_ratio_of_lengths(numbers, ratio):
+        >>> for part in abjad.sequence.partition_by_proportion_of_lengths(numbers, proportion):
         ...     part
         [0, 1, 2]
         [3, 4, 5, 6]
@@ -665,28 +665,29 @@ def partition_by_ratio_of_lengths(sequence, ratio: tuple[int, ...]) -> list:
 
     ..  container:: example
 
-        Partitions sequence by ``1:1:2`` ratio:
+        Partitions sequence by ``1:1:2`` proportion:
 
         >>> numbers = list(range(10))
-        >>> ratio = (1, 1, 2)
+        >>> proportion = (1, 1, 2)
 
-        >>> for part in abjad.sequence.partition_by_ratio_of_lengths(numbers, ratio):
+        >>> for part in abjad.sequence.partition_by_proportion_of_lengths(numbers, proportion):
         ...     part
         [0, 1, 2]
         [3, 4]
         [5, 6, 7, 8, 9]
 
     """
-    assert isinstance(ratio, tuple), repr(ratio)
+    assert isinstance(proportion, tuple), repr(proportion)
+    assert all(isinstance(_, int) for _ in proportion), repr(proportion)
     length = len(sequence)
-    counts = _math.partition_integer_by_ratio(length, ratio)
+    counts = _math.partition_integer_by_proportion(length, proportion)
     parts = partition_by_counts(sequence, counts, cyclic=False, overhang=_enums.EXACT)
     return parts
 
 
-def partition_by_ratio_of_weights(sequence, weights: typing.Sequence[int]) -> list:
+def partition_by_proportion_of_weights(sequence, weights: tuple[int, ...]) -> list:
     """
-    Partitions ``sequence`` by ratio of ``weights``.
+    Partitions ``sequence`` by proportion of ``weights``.
 
     Rounded weight-proportions of sequences returned equal to rounded ``weights``.
 
@@ -694,9 +695,9 @@ def partition_by_ratio_of_weights(sequence, weights: typing.Sequence[int]) -> li
 
     ..  container:: example
 
-        >>> ratio = (1, 1, 1)
+        >>> weights = (1, 1, 1)
         >>> sequence = list(10 * [1])
-        >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
+        >>> sequence = abjad.sequence.partition_by_proportion_of_weights(sequence, weights)
         >>> for item in sequence:
         ...     item
         ...
@@ -706,9 +707,9 @@ def partition_by_ratio_of_weights(sequence, weights: typing.Sequence[int]) -> li
 
     ..  container:: example
 
-        >>> ratio = (1, 1, 1, 1)
+        >>> weights = (1, 1, 1, 1)
         >>> sequence = list(10 * [1])
-        >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
+        >>> sequence = abjad.sequence.partition_by_proportion_of_weights(sequence, weights)
         >>> for item in sequence:
         ...     item
         ...
@@ -719,9 +720,9 @@ def partition_by_ratio_of_weights(sequence, weights: typing.Sequence[int]) -> li
 
     ..  container:: example
 
-        >>> ratio = (2, 2, 3)
+        >>> weights = (2, 2, 3)
         >>> sequence = list(10 * [1])
-        >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
+        >>> sequence = abjad.sequence.partition_by_proportion_of_weights(sequence, weights)
         >>> for item in sequence:
         ...     item
         ...
@@ -731,9 +732,9 @@ def partition_by_ratio_of_weights(sequence, weights: typing.Sequence[int]) -> li
 
     ..  container:: example
 
-        >>> ratio = (3, 2, 2)
+        >>> weights = (3, 2, 2)
         >>> sequence = list(10 * [1])
-        >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
+        >>> sequence = abjad.sequence.partition_by_proportion_of_weights(sequence, weights)
         >>> for item in sequence:
         ...     item
         ...
@@ -743,10 +744,10 @@ def partition_by_ratio_of_weights(sequence, weights: typing.Sequence[int]) -> li
 
     ..  container:: example
 
-        >>> ratio = (1, 1)
+        >>> weights = (1, 1)
         >>> items = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2]
         >>> sequence = list(items)
-        >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
+        >>> sequence = abjad.sequence.partition_by_proportion_of_weights(sequence, weights)
         >>> for item in sequence:
         ...     item
         ...
@@ -755,10 +756,10 @@ def partition_by_ratio_of_weights(sequence, weights: typing.Sequence[int]) -> li
 
     ..  container:: example
 
-        >>> ratio = (1, 1, 1)
+        >>> weights = (1, 1, 1)
         >>> items = [1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2]
         >>> sequence = list(items)
-        >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
+        >>> sequence = abjad.sequence.partition_by_proportion_of_weights(sequence, weights)
         >>> for item in sequence:
         ...     item
         ...
@@ -768,9 +769,9 @@ def partition_by_ratio_of_weights(sequence, weights: typing.Sequence[int]) -> li
 
     ..  container:: example
 
-        >>> ratio = (1, 1, 1)
+        >>> weights = (1, 1, 1)
         >>> sequence = list([5, 5])
-        >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
+        >>> sequence = abjad.sequence.partition_by_proportion_of_weights(sequence, weights)
         >>> for item in sequence:
         ...     item
         ...
@@ -780,9 +781,9 @@ def partition_by_ratio_of_weights(sequence, weights: typing.Sequence[int]) -> li
 
     ..  container:: example
 
-        >>> ratio = (1, 1, 1, 1)
+        >>> weights = (1, 1, 1, 1)
         >>> sequence = list([5, 5])
-        >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
+        >>> sequence = abjad.sequence.partition_by_proportion_of_weights(sequence, weights)
         >>> for item in sequence:
         ...     item
         ...
@@ -793,9 +794,9 @@ def partition_by_ratio_of_weights(sequence, weights: typing.Sequence[int]) -> li
 
     ..  container:: example
 
-        >>> ratio = (2, 2, 3)
+        >>> weights = (2, 2, 3)
         >>> sequence = list([5, 5])
-        >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
+        >>> sequence = abjad.sequence.partition_by_proportion_of_weights(sequence, weights)
         >>> for item in sequence:
         ...     item
         ...
@@ -805,9 +806,9 @@ def partition_by_ratio_of_weights(sequence, weights: typing.Sequence[int]) -> li
 
     ..  container:: example
 
-        >>> ratio = (3, 2, 2)
+        >>> weights = (3, 2, 2)
         >>> sequence = list([5, 5])
-        >>> sequence = abjad.sequence.partition_by_ratio_of_weights(sequence, ratio)
+        >>> sequence = abjad.sequence.partition_by_proportion_of_weights(sequence, weights)
         >>> for item in sequence:
         ...     item
         ...
@@ -817,8 +818,12 @@ def partition_by_ratio_of_weights(sequence, weights: typing.Sequence[int]) -> li
 
     """
     assert all(isinstance(_, int | float | fractions.Fraction) for _ in sequence)
+    assert isinstance(weights, tuple), repr(weights)
+    assert all(isinstance(_, int) for _ in weights), repr(weights)
     sequence_weight = _math.weight(sequence)
-    partitioned_weights = _math.partition_integer_by_ratio(sequence_weight, weights)
+    partitioned_weights = _math.partition_integer_by_proportion(
+        sequence_weight, tuple(weights)
+    )
     cumulative_weights = _math.cumulative_sums(partitioned_weights, start=None)
     items = []
     sublist: list[typing.Any] = []
