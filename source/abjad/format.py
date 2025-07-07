@@ -2,8 +2,7 @@
 Format functions.
 """
 
-from . import _indentlib
-from . import contributions as _contributions
+from . import _contributions, _indentlib
 from . import enums as _enums
 from . import indicators as _indicators
 from . import overrides as _overrides

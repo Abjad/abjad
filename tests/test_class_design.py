@@ -1,12 +1,47 @@
 import copy
+import importlib
 import inspect
 import pickle
+import types
 
 import pytest
+import uqbar.apis
 
 import abjad
 
-classes = abjad.list_all_classes()
+
+def _list_all_modules() -> list[types.ModuleType]:
+    module = importlib.import_module("abjad")
+    result = []
+    for path_string in module.__path__:
+        for source_path in uqbar.apis.collect_source_paths([path_string]):
+            package_path = uqbar.apis.source_path_to_package_path(source_path)
+            module_ = importlib.import_module(package_path)
+            result.append(module_)
+    return result
+
+
+def _list_all_classes():
+    all_classes = set()
+    for module in _list_all_modules():
+        if "parser" in module.__name__:
+            continue
+        name = module.__name__.split(".")[-1]
+        for name in dir(module):
+            item = getattr(module, name)
+            if isinstance(item, type):
+                if "sphinx" in repr(item):
+                    continue
+                if item.__name__.startswith("_"):
+                    continue
+                if "abjad.io" in str(item):
+                    continue
+                if "abjad" in repr(item):
+                    all_classes.add(item)
+    return list(sorted(all_classes, key=lambda _: (_.__module__, _.__name__)))
+
+
+classes = _list_all_classes()
 
 
 class_to_default_values = {

@@ -2,7 +2,6 @@
 Context managers.
 """
 
-import collections
 import filecmp
 import os
 import pathlib
@@ -18,44 +17,33 @@ from . import iterate as _iterate
 from . import score as _score
 from . import string as _string
 
-configuration = _configuration.Configuration()
+_Configuration = _configuration.Configuration()
 
 
-class ContextManager:
-    """
-    Context manager.
-    """
-
-    __slots__ = ()
-    _is_abstract = True
-
-    def __repr__(self) -> str:
-        """
-        Gets repr.
-        """
-        return f"<{type(self).__name__}()>"
-
-
-class FilesystemState(ContextManager):
+class FilesystemState:
     """
     Filesystem state context manager.
     """
 
     __slots__ = ("_keep", "_remove")
+    _is_abstract = True
 
-    def __init__(self, keep=None, remove=None):
+    def __init__(
+        self,
+        *,
+        keep: list[pathlib.Path] | None = None,
+        remove: list[pathlib.Path] | None = None,
+    ):
         keep = keep or []
-        assert isinstance(keep, collections.abc.Iterable), repr(keep)
-        keep = tuple([str(_) for _ in keep])
-        self._keep = keep
+        keep_tuple = tuple([str(_) for _ in keep])
+        self._keep = keep_tuple
         remove = remove or []
-        assert isinstance(remove, collections.abc.Iterable), repr(remove)
-        remove = tuple([str(_) for _ in remove])
-        self._remove = remove
+        remove_tuple = tuple([str(_) for _ in remove])
+        self._remove = remove_tuple
 
     def __enter__(self) -> "FilesystemState":
         """
-        Backs up filesystem assets.
+        Backs up filesystem paths.
         """
         for path in self.remove:
             assert not os.path.exists(path), repr(path)
@@ -75,7 +63,8 @@ class FilesystemState(ContextManager):
 
     def __exit__(self, exg_type, exc_value, trackeback) -> None:
         """
-        Restores filesytem assets and removes backups; also removes paths in remove list.
+        Restores filesytem paths and removes backups; also removes paths in
+        remove list.
         """
         backup_paths = (_ + ".backup" for _ in self.keep)
         for path in backup_paths:
@@ -108,72 +97,33 @@ class FilesystemState(ContextManager):
             assert not os.path.exists(path), repr(path)
 
     @property
-    def keep(self):
+    def keep(self) -> tuple[str, ...]:
         """
-        Gets asset paths to restore on exit.
-
-        Returns tuple.
+        Gets paths to restore on exit.
         """
         return self._keep
 
     @property
-    def remove(self):
+    def remove(self) -> tuple[str, ...]:
         """
         Gets paths to remove on exit.
-
-        Returns tuple.
         """
         return self._remove
 
 
-class ForbidUpdate(ContextManager):
-    r"""
+class ForbidUpdate:
+    """
     Forbid update context manager.
-
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c'8 d'8 ~ d'2 e'4")
-        >>> with abjad.ForbidUpdate(component=staff):
-        ...     for note in staff[:]:
-        ...         pitch_1 = note.written_pitch
-        ...         pitch_2 = pitch_1 + abjad.NamedInterval('M3')
-        ...         pitches = [pitch_1, pitch_2]
-        ...         chord = abjad.Chord(pitches, note.written_duration)
-        ...         abjad.mutate.replace(note, chord)
-        ...
-
-        >>> abjad.wf.is_wellformed(staff)
-        True
-
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(staff)
-            >>> print(string)
-            \new Staff
-            {
-                <c' e'>8
-                <d' fs'>8
-                <d' fs'>2
-                <e' gs'>4
-            }
-
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_component", "_update_on_exit")
-
-    ### INITIALIZER ###
+    _is_abstract = True
 
     def __init__(self, component: _score.Component, *, update_on_exit: bool = False):
         assert isinstance(component, _score.Component), repr(component)
         self._component = component
         assert isinstance(update_on_exit, bool), repr(update_on_exit)
         self._update_on_exit = update_on_exit
-
-    ### SPECIAL METHODS ###
 
     def __enter__(self) -> "ForbidUpdate":
         r"""
@@ -188,7 +138,7 @@ class ForbidUpdate(ContextManager):
             >>> abjad.attach(abjad.Clef("alto"), staff[0][0])
             >>> container = abjad.Container()
             >>> abjad.mutate.swap(staff[0], container)
-            >>> with abjad.ForbidUpdate(staff):
+            >>> with abjad.contextmanagers.ForbidUpdate(staff):
             ...     for note in staff[0]:
             ...         print(note)
             ...         print(abjad.get.effective(note, abjad.Clef))
@@ -222,33 +172,28 @@ class ForbidUpdate(ContextManager):
         else:
             assert self.update_on_exit is False
 
-    ### PUBLIC PROPERTIES ###
-
     @property
-    def component(self):
+    def component(self) -> _score.Component:
         """
         Gets component.
-
-        Set to component or none.
-
-        Returns component or none.
         """
         return self._component
 
     @property
     def update_on_exit(self) -> bool:
         """
-        Is true when context manager should update offsets on exit.
+        Is true when context manager updates offsets on exit.
         """
         return self._update_on_exit
 
 
-class NullContextManager(ContextManager):
+class NullContextManager:
     """
     Null context manager.
     """
 
     __slots__ = ()
+    _is_abstract = True
 
     def __init__(self):
         pass
@@ -266,152 +211,18 @@ class NullContextManager(ContextManager):
         pass
 
 
-class ProgressIndicator(ContextManager):
-    """
-    Progress indicator context manager.
-    """
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = (
-        "_do_not_print",
-        "_is_warning",
-        "_message",
-        "_progress",
-        "_total",
-    )
-
-    RED = "\033[91m"
-    END = "\033[0m"
-
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        message: str = "",
-        *,
-        do_not_print: bool = False,
-        is_warning: bool = False,
-        total: int = 0,
-    ):
-        assert isinstance(message, str)
-        assert isinstance(total, int)
-        assert isinstance(do_not_print, bool)
-        assert isinstance(is_warning, bool)
-        self._do_not_print = do_not_print
-        self._is_warning = is_warning
-        self._message = message
-        self._progress = 0
-        self._total = total
-
-    ### SPECIAL METHODS ###
-
-    def __enter__(self) -> "ProgressIndicator":
-        """
-        Enters progress indicator.
-        """
-        self._print()
-        return self
-
-    def __exit__(self, exc_type, exc_value, traceback) -> None:
-        """
-        Exits progress indicator.
-        """
-        if self.do_not_print is False:
-            print()
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation of context manager.
-
-        ..  container:: example
-
-            >>> abjad.ProgressIndicator()
-            <ProgressIndicator()>
-
-        """
-        return f"<{type(self).__name__}()>"
-
-    ### PRIVATE METHODS ###
-
-    def _print(self):
-        if self.do_not_print is False:
-            return
-        message = self.message or "Progress"
-        if self.total is not None:
-            message = f"{message}: {self.progress} / {self.total}"
-        else:
-            message = f"{message}: {self.progress}"
-        if self.is_warning and self.progress:
-            message = self.RED + message + self.END
-        print(message, end="")
-
-    ### PUBLIC METHODS ###
-
-    def advance(self):
-        """
-        Advances the progress indicator's progress count.  Overwrites
-        the current terminal line with the progress indicators message and new
-        count.
-        """
-        self._progress += 1
-        if self.verbose:
-            sys.stdout.flush()
-            print("\r", end="")
-        self._print()
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def do_not_print(self) -> bool:
-        """
-        Is true if progress indicator does not prints status.
-        """
-        return self._do_not_print
-
-    @property
-    def is_warning(self) -> bool:
-        """
-        Is true if progress indicator prints in red when its progress goes above zero.
-        """
-        return self._is_warning
-
-    @property
-    def message(self) -> str:
-        """
-        Gets message of progress indicator.
-        """
-        return self._message
-
-    @property
-    def progress(self) -> int:
-        """
-        Gets progress.
-        """
-        return self._progress
-
-    @property
-    def total(self) -> int | None:
-        """
-        Gets total count.
-        """
-        return self._total
-
-
-class RedirectedStreams(ContextManager):
+# TODO: typehint
+class RedirectedStreams:
     """
     Redirected streams context manager.
 
-    Captures stdout and stderr output.
-
     ..  container:: example
 
-        >>> abjad.RedirectedStreams()
-        <RedirectedStreams()>
+        Captures stdout and stderr output:
 
-        >>> from io import StringIO
-        >>> string_io = StringIO()
-        >>> with abjad.RedirectedStreams(stdout=string_io):
+        >>> import io
+        >>> string_io = io.StringIO()
+        >>> with abjad.contextmanagers.RedirectedStreams(stdout=string_io):
         ...     print("hello, world!")
         ...
         >>> result = string_io.getvalue()
@@ -422,15 +233,18 @@ class RedirectedStreams(ContextManager):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_stdout", "_stderr", "_old_stderr", "_old_stdout")
+    _is_abstract = True
 
-    ### INITIALIZER ###
-
-    def __init__(self, stdout=None, stderr=None):
-        self._stdout = stdout or sys.stdout
-        self._stderr = stderr or sys.stderr
+    def __init__(self, *, stdout=None, stderr=None):
+        if stdout is None:
+            self._stdout = sys.stdout
+        else:
+            self._stdout = stdout
+        if stderr is None:
+            self._stderr = sys.stderr
+        else:
+            self._stderr = stderr
 
     ### SPECIAL METHODS ###
 
@@ -456,19 +270,7 @@ class RedirectedStreams(ContextManager):
         sys.stdout = self._old_stdout
         sys.stderr = self._old_stderr
 
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation of context manager.
-
-        ..  container:: example
-
-            >>> context_manager = abjad.RedirectedStreams()
-            >>> context_manager
-            <RedirectedStreams()>
-
-        """
-        return super().__repr__()
-
+    # TODO: typehint
     @property
     def stderr(self):
         """
@@ -476,6 +278,7 @@ class RedirectedStreams(ContextManager):
         """
         return self._stderr
 
+    # TODO: typehint
     @property
     def stdout(self):
         """
@@ -484,22 +287,19 @@ class RedirectedStreams(ContextManager):
         return self._stdout
 
 
-class TemporaryDirectory(ContextManager):
+# TODO: remove in favor of something in standard library?
+class TemporaryDirectory:
     """
     Temporary directory context manager.
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_parent_directory", "_temporary_directory")
 
-    ### INITIALIZER ###
+    _is_abstract = True
 
     def __init__(self, parent_directory=None):
         self._parent_directory = parent_directory
         self._temporary_directory = None
-
-    ### SPECIAL METHODS ###
 
     def __enter__(self):
         """
@@ -518,8 +318,6 @@ class TemporaryDirectory(ContextManager):
         """
         shutil.rmtree(self._temporary_directory)
 
-    ### PUBLIC PROPERTIES ###
-
     @property
     def parent_directory(self) -> str:
         """
@@ -535,18 +333,16 @@ class TemporaryDirectory(ContextManager):
         return self._temporary_directory
 
 
-class TemporaryDirectoryChange(ContextManager):
+class TemporaryDirectoryChange:
     """
     Temporary directory change context manager.
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_directory", "_original_directory", "_verbose")
 
-    ### INITIALIZER ###
+    _is_abstract = True
 
-    def __init__(self, directory=None, verbose=None):
+    def __init__(self, directory=None, *, verbose: bool = False):
         if directory is None:
             pass
         elif isinstance(directory, pathlib.Path):
@@ -556,12 +352,9 @@ class TemporaryDirectoryChange(ContextManager):
         elif os.path.isfile(directory):
             directory = os.path.dirname(directory)
         self._directory = directory
-        self._original_directory = None
-        if verbose is not None:
-            verbose = bool(verbose)
-        self._verbose = bool(verbose)
-
-    ### SPECIAL METHODS ###
+        self._original_directory: str | None = None
+        assert isinstance(verbose, bool), repr(verbose)
+        self._verbose = verbose
 
     def __enter__(self) -> "TemporaryDirectoryChange":
         """
@@ -580,19 +373,12 @@ class TemporaryDirectoryChange(ContextManager):
         Exits context manager and returns to original working directory.
         """
         if self._directory is not None:
+            assert self._original_directory is not None
             os.chdir(self._original_directory)
             if self.verbose:
                 message = f"Returning to {self.original_directory} ..."
                 print(message)
         self._original_directory = None
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation of context manager.
-        """
-        return f"<{type(self).__name__}()>"
-
-    ### PUBLIC PROPERTIES ###
 
     @property
     def directory(self) -> str:
@@ -606,6 +392,7 @@ class TemporaryDirectoryChange(ContextManager):
         """
         Gets original directory of context manager.
         """
+        assert self._original_directory is not None
         return self._original_directory
 
     @property
@@ -616,13 +403,15 @@ class TemporaryDirectoryChange(ContextManager):
         return self._verbose
 
 
-class Timer(ContextManager):
+class Timer:
     """
     Timer context manager.
 
     ..  container:: example
 
-        >>> timer = abjad.Timer()
+        Prints elapsed time after timer finishes:
+
+        >>> timer = abjad.contextmanagers.Timer()
         >>> with timer:
         ...     for _ in range(1000000):
         ...         x = 1 + 1
@@ -630,9 +419,11 @@ class Timer(ContextManager):
         >>> timer.elapsed_time # doctest: +SKIP
         0.092742919921875
 
-        The timer can also be accessed from within the ``with`` block:
+    ..  container:: example
 
-        >>> with abjad.Timer() as timer: # doctest: +SKIP
+        Prints elapsed time while timer is running:
+
+        >>> with abjad.contextmanagers.Timer() as timer: # doctest: +SKIP
         ...     for _ in range(5):
         ...         for _ in range(1000000):
         ...             x = 1 + 1
@@ -644,11 +435,9 @@ class Timer(ContextManager):
         0.4057970047
         0.50649189949
 
-    Timers can be reused between ``with`` blocks. They will reset their clock
-    on entering any ``with`` block.
-    """
+        Timers can be reused between with-blocks.
 
-    ### CLASS VARIABLES ###
+    """
 
     __slots__ = (
         "_enter_message",
@@ -661,29 +450,27 @@ class Timer(ContextManager):
         "_verbose",
     )
 
-    ### INITIALIZER ###
+    _is_abstract = True
 
     def __init__(
         self,
-        exit_message=None,
-        enter_message=None,
-        print_continuously_from_background=False,
-        verbose=True,
+        *,
+        enter_message: str = "",
+        exit_message: str = "",
+        print_continuously_from_background: bool = False,
+        verbose: bool = True,
     ):
-        if enter_message is not None:
-            enter_message = str(enter_message)
+        assert isinstance(enter_message, str), repr(enter_message)
         self._enter_message = enter_message
-        if exit_message is not None:
-            exit_message = str(exit_message)
+        assert isinstance(exit_message, str), repr(exit_message)
         self._exit_message = exit_message
         self._print_continuously_from_background = print_continuously_from_background
-        self._process = None
+        self._process: subprocess.Popen | None = None
         self._timer_process = None
-        self._start_time = None
-        self._stop_time = None
+        self._start_time: float | None = None
+        self._stop_time: float | None = None
+        assert isinstance(verbose, bool), repr(verbose)
         self._verbose = bool(verbose)
-
-    ### SPECIAL METHODS ###
 
     def __enter__(self) -> "Timer":
         """
@@ -694,7 +481,9 @@ class Timer(ContextManager):
         self._stop_time = None
         self._start_time = time.time()
         if self.print_continuously_from_background:
-            path = configuration.abjad_directory.parent / "scripts" / "timer.py"
+            path = (
+                _Configuration.abjad_install_directory().parent / "scripts" / "timer.py"
+            )
             interval = str(int(self.print_continuously_from_background))
             process = subprocess.Popen([path, interval], shell=False)
             self._process = process
@@ -702,7 +491,7 @@ class Timer(ContextManager):
 
     def __exit__(self, exc_type, exc_value, traceback) -> None:
         """
-        Exit context manager.
+        Exits context manager.
         """
         self._stop_time = time.time()
         if self._process is not None:
@@ -710,12 +499,10 @@ class Timer(ContextManager):
         if self.exit_message and self.verbose:
             print(self.exit_message, self.elapsed_time)
 
-    ### PUBLIC PROPERTIES ###
-
     @property
     def elapsed_time(self) -> float | None:
         """
-        Elapsed time.
+        Gets elapsed time of timer.
         """
         if self.start_time is not None:
             if self.stop_time is not None:
@@ -726,48 +513,42 @@ class Timer(ContextManager):
     @property
     def enter_message(self) -> str:
         """
-        Timer enter message.
+        Gets timer enter message.
         """
         return self._enter_message
 
     @property
     def exit_message(self) -> str:
         """
-        Timer exit message.
+        Gets timer exit message.
         """
         return self._exit_message
 
     @property
     def print_continuously_from_background(self) -> bool:
         """
-        Is true when timer should print continuously from background.
+        Is true when timer prints continuously from background.
         """
         return self._print_continuously_from_background
 
     @property
-    def start_time(self):
+    def start_time(self) -> float | None:
         """
-        Start time of timer.
-
-        Returns time.
+        Gets start time of timer.
         """
         return self._start_time
 
     @property
-    def stop_time(self):
+    def stop_time(self) -> float | None:
         """
-        Stop time of timer.
-
-        Returns time.
+        Gets stop time of timer.
         """
         return self._stop_time
 
     @property
     def total_time_message(self) -> str:
         """
-        Gets total time message.
-
-        Truncated to the nearest second.
+        Gets total time message, truncated to nearest second.
         """
         assert self.elapsed_time is not None
         identifier = _string.pluralize("second", int(self.elapsed_time))
@@ -777,6 +558,6 @@ class Timer(ContextManager):
     @property
     def verbose(self) -> bool:
         """
-        Is true if timer should print messages.
+        Is true when timer prints messages.
         """
         return self._verbose

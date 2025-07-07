@@ -1862,40 +1862,21 @@ class Ratio:
         return Ratio(self.denominator, self.numerator)
 
 
-def add_pairs(pair_1, pair_2):
+def divide_pair(pair: tuple[int, int], n: int | Duration) -> tuple[int, int]:
     """
-    Adds ``pair_1`` to ``pair_2``.
-    """
-    assert isinstance(pair_1, tuple), repr(pair_1)
-    assert isinstance(pair_2, tuple), repr(pair_2)
-    if pair_1[1] == pair_2[1]:
-        numerator = pair_1[0] + pair_2[0]
-        pair = (numerator, pair_1[1])
-    else:
-        denominators = [pair_1[1], pair_2[1]]
-        denominator = _math.least_common_multiple(*denominators)
-        self_multiplier = denominator // pair_1[1]
-        argument_multiplier = denominator // pair_2[1]
-        self_numerator = self_multiplier * pair_1[0]
-        argument_numerator = argument_multiplier * pair_2[0]
-        pair = (self_numerator + argument_numerator, denominator)
-    return pair
-
-
-def divide_pair(pair, n) -> tuple[int, int]:
-    """
-    Divides ``pair`` by integer ``n``.
+    Divides ``pair`` by integer or duration ``n``.
     """
     assert isinstance(pair, tuple), repr(pair)
+    assert isinstance(n, int | Duration), repr(n)
     fraction = fractions.Fraction(*pair) / n
     denominator = _math.least_common_multiple(pair[1], fraction.denominator)
     pair = with_denominator(fraction, denominator)
     return pair
 
 
-def durations(durations) -> list[Duration]:
+def durations(items: list) -> list[Duration]:
     """
-    Changes ``durations`` to durations.
+    Changes ``items`` to durations.
 
     ..  container:: example
 
@@ -1903,7 +1884,7 @@ def durations(durations) -> list[Duration]:
         [Duration(15, 8), Duration(3, 8)]
 
     """
-    durations = [Duration(_) for _ in durations]
+    durations = [Duration(_) for _ in items]
     return durations
 
 
@@ -1936,7 +1917,7 @@ def fraction_from_dot_count(dot_count: int) -> fractions.Fraction:
     return fractions.Fraction(numerator, denominator)
 
 
-def pair(argument) -> tuple[int, int]:
+def pair(argument: typing.Any) -> tuple[int, int]:
     """
     Changes ``argument`` to pair.
 

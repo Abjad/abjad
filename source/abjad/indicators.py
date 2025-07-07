@@ -9,7 +9,7 @@ import functools
 import math
 import typing
 
-from . import contributions as _contributions
+from . import _contributions
 from . import duration as _duration
 from . import enums as _enums
 from . import math as _math

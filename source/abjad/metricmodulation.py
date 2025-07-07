@@ -5,8 +5,7 @@ Metric modulation.
 import dataclasses
 import typing
 
-from . import _getlib
-from . import contributions as _contributions
+from . import _contributions, _getlib
 from . import duration as _duration
 from . import illustrators as _illustrators
 from . import indicators as _indicators

@@ -2,11 +2,11 @@ import os
 
 import abjad
 
-configuration = abjad.Configuration()
-ly_path = configuration.abjad_directory / "test.ly"
-pdf_path = configuration.abjad_directory / "test.pdf"
-png_path = configuration.abjad_directory / "test.png"
-png_preview_path = configuration.abjad_directory / "test.preview.png"
+configuration = abjad.configuration.Configuration()
+ly_path = configuration.abjad_install_directory() / "test.ly"
+pdf_path = configuration.abjad_install_directory() / "test.pdf"
+png_path = configuration.abjad_install_directory() / "test.png"
+png_preview_path = configuration.abjad_install_directory() / "test.preview.png"
 paths = [ly_path, pdf_path, png_path, png_preview_path]
 
 
@@ -16,7 +16,7 @@ def test_persist_as_ly_01():
     """
 
     note = abjad.Note("c'4")
-    with abjad.FilesystemState(remove=[ly_path]):
+    with abjad.contextmanagers.FilesystemState(remove=[ly_path]):
         result = abjad.persist.as_ly(note, ly_path)
         assert os.path.isfile(ly_path)
         assert isinstance(result, tuple)
@@ -28,7 +28,7 @@ def test_persist_as_ly_02():
     """
 
     note = abjad.Note("c'4")
-    with abjad.FilesystemState(remove=[ly_path]):
+    with abjad.contextmanagers.FilesystemState(remove=[ly_path]):
         result = abjad.persist.as_ly(note, ly_path)
         assert isinstance(result, tuple)
         assert os.path.isfile(ly_path)
@@ -42,7 +42,7 @@ def test_persist_as_pdf_01():
     """
 
     note = abjad.Note("c'4")
-    with abjad.FilesystemState(remove=paths):
+    with abjad.contextmanagers.FilesystemState(remove=paths):
         result = abjad.persist.as_pdf(note, pdf_path)
         assert os.path.isfile(pdf_path)
         assert isinstance(result, tuple)
@@ -54,7 +54,7 @@ def test_persist_as_pdf_02():
     """
 
     note = abjad.Note("c'4")
-    with abjad.FilesystemState(remove=paths):
+    with abjad.contextmanagers.FilesystemState(remove=paths):
         result = abjad.persist.as_pdf(note, pdf_path)
         assert os.path.isfile(pdf_path)
         assert isinstance(result, tuple)
@@ -69,7 +69,7 @@ def test_persist_as_png_01():
     """
 
     note = abjad.Note("c'4")
-    with abjad.FilesystemState(remove=paths):
+    with abjad.contextmanagers.FilesystemState(remove=paths):
         result = abjad.persist.as_png(note, png_path)
         assert os.path.isfile(png_path)
         assert isinstance(result, tuple)
@@ -84,7 +84,7 @@ def test_persist_as_png_02():
     """
 
     note = abjad.Note("c'4")
-    with abjad.FilesystemState(remove=paths):
+    with abjad.contextmanagers.FilesystemState(remove=paths):
         result = abjad.persist.as_png(note, png_path, preview=True)
         assert os.path.isfile(png_path)
         assert os.path.isfile(png_preview_path)
