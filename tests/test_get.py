@@ -137,19 +137,19 @@ def test_get_effective_01():
     staff = abjad.Staff("c'4 d'4 e'4 f'4")
     abjad.annotate(staff[0], "instrument_annotation", abjad.Flute())
 
-    assert abjad.get.effective(staff[0], abjad.Instrument) is None
-    assert abjad.get.effective(staff[1], abjad.Instrument) is None
-    assert abjad.get.effective(staff[2], abjad.Instrument) is None
-    assert abjad.get.effective(staff[3], abjad.Instrument) is None
+    assert abjad.get.effective_indicator(staff[0], abjad.Instrument) is None
+    assert abjad.get.effective_indicator(staff[1], abjad.Instrument) is None
+    assert abjad.get.effective_indicator(staff[2], abjad.Instrument) is None
+    assert abjad.get.effective_indicator(staff[3], abjad.Instrument) is None
 
     staff = abjad.Staff("c'4 d'4 e'4 f'4")
     abjad.attach(abjad.Piccolo(), staff[0])
     abjad.annotate(staff[0], "instrument_annotation", abjad.Flute())
 
-    assert abjad.get.effective(staff[0], abjad.Instrument) == abjad.Piccolo()
-    assert abjad.get.effective(staff[1], abjad.Instrument) == abjad.Piccolo()
-    assert abjad.get.effective(staff[2], abjad.Instrument) == abjad.Piccolo()
-    assert abjad.get.effective(staff[3], abjad.Instrument) == abjad.Piccolo()
+    assert abjad.get.effective_indicator(staff[0], abjad.Instrument) == abjad.Piccolo()
+    assert abjad.get.effective_indicator(staff[1], abjad.Instrument) == abjad.Piccolo()
+    assert abjad.get.effective_indicator(staff[2], abjad.Instrument) == abjad.Piccolo()
+    assert abjad.get.effective_indicator(staff[3], abjad.Instrument) == abjad.Piccolo()
 
 
 def test_get_has_effective_indicator_01():

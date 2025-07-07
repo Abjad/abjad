@@ -280,10 +280,10 @@ def check_notes_on_wrong_clef(argument) -> tuple[list, int]:
     violators, total = [], set()
     for leaf in _iterate.leaves(argument):
         total.add(leaf)
-        instrument = _get.effective(leaf, _instruments.Instrument)
+        instrument = _get.effective_indicator(leaf, _instruments.Instrument)
         if instrument is None:
             continue
-        effective_clef = _get.effective(leaf, _indicators.Clef)
+        effective_clef = _get.effective_indicator(leaf, _indicators.Clef)
         if effective_clef is None:
             continue
         clefs = []
@@ -426,7 +426,7 @@ def check_out_of_range_pitches(
             continue
         if "unpitched" in argument._get_indicators(str):
             continue
-        instrument = _get.effective(leaf, _instruments.Instrument)
+        instrument = _get.effective_indicator(leaf, _instruments.Instrument)
         if instrument is None:
             continue
         if not _iterpitches.sounding_pitches_are_in_range(leaf, instrument.pitch_range):

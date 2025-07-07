@@ -6064,7 +6064,7 @@ class Voice(Context):
             }
 
         >>> for leaf in abjad.iterate.leaves(outer_red_voice):
-        ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
+        ...     dynamic = abjad.get.effective_indicator(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
         Note("e''8") Dynamic(name='f', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
@@ -6137,7 +6137,7 @@ class Voice(Context):
             }
 
         >>> for leaf in abjad.iterate.leaves(outer_red_voice):
-        ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
+        ...     dynamic = abjad.get.effective_indicator(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
         Note("e''8") None
@@ -6210,7 +6210,7 @@ class Voice(Context):
             }
 
         >>> for leaf in abjad.iterate.leaves(outer_red_voice):
-        ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
+        ...     dynamic = abjad.get.effective_indicator(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
         Note("e''8") None
@@ -6286,7 +6286,7 @@ class Voice(Context):
             }
 
         >>> for leaf in abjad.iterate.leaves(outer_red_voice):
-        ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
+        ...     dynamic = abjad.get.effective_indicator(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
         Note("e''8") None

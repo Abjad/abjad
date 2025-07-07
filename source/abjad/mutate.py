@@ -1497,7 +1497,7 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
             }
 
         >>> for leaf in staff:
-        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
+        ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
         (Note("c'2"), Clef(name='alto', hide=False))
         (Note("f'4"), Clef(name='alto', hide=False))
@@ -1519,7 +1519,7 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
             }
 
         >>> for leaf in staff:
-        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
+        ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
         (Chord("<d' e'>2"), None)
         (Note("f'4"), None)
@@ -1551,7 +1551,7 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
             }
 
         >>> for leaf in staff:
-        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
+        ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
         (Note("c'2"), Clef(name='alto', hide=False))
         (Note("f'4"), Clef(name='alto', hide=False))
@@ -1574,7 +1574,7 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
             }
 
         >>> for leaf in staff:
-        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
+        ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
         (Chord("<d' e'>2"), Clef(name='alto', hide=False))
         (Note("f'4"), Clef(name='alto', hide=False))
@@ -2479,7 +2479,7 @@ def swap(argument, container):
 
         >>> prototype = abjad.TimeSignature
         >>> for component in abjad.iterate.components(voice):
-        ...     time_signature = abjad.get.effective(component, prototype)
+        ...     time_signature = abjad.get.effective_indicator(component, prototype)
         ...     print(component, time_signature)
         ...
         Voice("{ 6:4 c'4 d'4 e'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 4), hide=False, partial=None)
@@ -2774,7 +2774,7 @@ def wrap(argument, container):
 
         >>> prototype = abjad.TimeSignature
         >>> for component in abjad.iterate.components(staff):
-        ...     time_signature = abjad.get.effective(component, prototype)
+        ...     time_signature = abjad.get.effective_indicator(component, prototype)
         ...     print(component, time_signature)
         ...
         Staff("{ c'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 8), hide=False, partial=None)

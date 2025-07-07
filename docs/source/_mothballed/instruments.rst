@@ -49,7 +49,7 @@ Get the instrument currently in effect for a component:
 ::
 
     >>> for note in staff:
-    ...     abjad.get.effective(note, abjad.Instrument)
+    ...     abjad.get.effective_indicator(note, abjad.Instrument)
     ...
 
 Detaching instruments from a component

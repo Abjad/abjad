@@ -1550,7 +1550,7 @@ def group_by_contiguity(argument) -> list[list]:
 
         Groups pitched leaves by contiguity:
 
-        >>> string = r"c'8 d' r \times 2/3 { e' r f' } g' a' r"
+        >>> string = r"c'8 d' r \tuplet 3/2 { e' r f' } g' a' r"
         >>> staff = abjad.Staff(string)
         >>> abjad.setting(staff).autoBeaming = False
         >>> staff.extend("r8 <c' e' g'>8 ~ <c' e' g'>4")
@@ -2622,8 +2622,8 @@ def leaves(
         Selects leaves:
 
         >>> staff = abjad.Staff(r"""
-        ...     \times 2/3 { r8 d' e' } f' r
-        ...     r f' \times 2/3 { e' d' r8 }
+        ...     \tuplet 3/2 { r8 d' e' } f' r
+        ...     r f' \tuplet 3/2 { e' d' r8 }
         ...     """)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -2689,8 +2689,8 @@ def leaves(
         Selects pitched leaves:
 
         >>> staff = abjad.Staff(r"""
-        ...     \times 2/3 { r8 d' e' } f' r
-        ...     r f' \times 2/3 { e' d' r8 }
+        ...     \tuplet 3/2 { r8 d' e' } f' r
+        ...     r f' \tuplet 3/2 { e' d' r8 }
         ...     """)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -2750,8 +2750,8 @@ def leaves(
         Selects trimmed leaves:
 
         >>> staff = abjad.Staff(r"""
-        ...     \times 2/3 { r8 d' e' } f' r
-        ...     r f' \times 2/3 { e' d' r8 }
+        ...     \tuplet 3/2 { r8 d' e' } f' r
+        ...     r f' \tuplet 3/2 { e' d' r8 }
         ...     """)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -2817,8 +2817,8 @@ def leaves(
         right):
 
         >>> staff = abjad.Staff(r"""
-        ...     \times 2/3 { r8 d' e' } f' r
-        ...     r f' \times 2/3 { e' d' r8 }
+        ...     \tuplet 3/2 { r8 d' e' } f' r
+        ...     r f' \tuplet 3/2 { e' d' r8 }
         ...     """)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -2885,8 +2885,8 @@ def leaves(
         REGRESSION: selects trimmed leaves (even when there are no rests to trim):
 
         >>> staff = abjad.Staff(r"""
-        ...     \times 2/3 { c'8 d' e' } f' r
-        ...     r f' \times 2/3 { e' d' c' }
+        ...     \tuplet 3/2 { c'8 d' e' } f' r
+        ...     r f' \tuplet 3/2 { e' d' c' }
         ...     """)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -2952,8 +2952,8 @@ def leaves(
         Selects leaves in tuplets:
 
         >>> staff = abjad.Staff(r"""
-        ...     \times 2/3 { r8 d' e' } f' r
-        ...     r f' \times 2/3 { e' d' r8 }
+        ...     \tuplet 3/2 { r8 d' e' } f' r
+        ...     r f' \tuplet 3/2 { e' d' r8 }
         ...     """)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -3012,8 +3012,8 @@ def leaves(
         Selects trimmed leaves in tuplets:
 
         >>> staff = abjad.Staff(r"""
-        ...     \times 2/3 { r8 d' e' } f' r
-        ...     r f' \times 2/3 { e' d' r8 }
+        ...     \tuplet 3/2 { r8 d' e' } f' r
+        ...     r f' \tuplet 3/2 { e' d' r8 }
         ...     """)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -3070,8 +3070,8 @@ def leaves(
         Selects pitched heads in tuplets:
 
         >>> staff = abjad.Staff(r"""
-        ...     \times 2/3 { c'8 d' ~ d' } e' r
-        ...     r e' \times 2/3 { d' ~ d' c' }
+        ...     \tuplet 3/2 { c'8 d' ~ d' } e' r
+        ...     r e' \tuplet 3/2 { d' ~ d' c' }
         ...     """)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -3130,8 +3130,8 @@ def leaves(
         Selects pitched tails in tuplets:
 
         >>> staff = abjad.Staff(r"""
-        ...     \times 2/3 { c'8 d' ~ d' } e' r
-        ...     r e' \times 2/3 { d' ~ d' c' }
+        ...     \tuplet 3/2 { c'8 d' ~ d' } e' r
+        ...     r e' \tuplet 3/2 { d' ~ d' c' }
         ...     """)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -3190,8 +3190,8 @@ def leaves(
         Selects chord heads in tuplets:
 
         >>> staff = abjad.Staff(r"""
-        ...     \times 2/3 { <c' e' g'>8 ~ <c' e' g'> d' } e' r
-        ...     r <g d' fs'> \times 2/3 { e' <c' d'> ~ <c' d'> }
+        ...     \tuplet 3/2 { <c' e' g'>8 ~ <c' e' g'> d' } e' r
+        ...     r <g d' fs'> \tuplet 3/2 { e' <c' d'> ~ <c' d'> }
         ...     """)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -3244,8 +3244,8 @@ def leaves(
         Excludes leaves with ``"HIDDEN"`` indicator:
 
         >>> staff = abjad.Staff(r"""
-        ...     \times 2/3 { r8 d' e' } f' r
-        ...     r f' \times 2/3 { e' d' r8 }
+        ...     \tuplet 3/2 { r8 d' e' } f' r
+        ...     r f' \tuplet 3/2 { e' d' r8 }
         ...     """)
         >>> abjad.attach("HIDDEN", staff[-1][-2])
         >>> abjad.attach("HIDDEN", staff[-1][-1])
@@ -3835,9 +3835,9 @@ def logical_ties(
         Selects pitched logical ties (starting) in each tuplet:
 
         >>> staff = abjad.Staff(r"""
-        ...     \times 2/3 { c'8 d' e'  ~ } e' f' ~
-        ...     \times 2/3 { f' g' a' ~ } a' b' ~
-        ...     \times 2/3 { b' c'' d'' }
+        ...     \tuplet 3/2 { c'8 d' e'  ~ } e' f' ~
+        ...     \tuplet 3/2 { f' g' a' ~ } a' b' ~
+        ...     \tuplet 3/2 { b' c'' d'' }
         ...     """)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -3906,9 +3906,9 @@ def logical_ties(
         Selects pitched logical ties (starting) in each of the last two tuplets:
 
         >>> staff = abjad.Staff(r"""
-        ...     \times 2/3 { c'8 d' e'  ~ } e' f' ~
-        ...     \times 2/3 { f' g' a' ~ } a' b' ~
-        ...     \times 2/3 { b' c'' d'' }
+        ...     \tuplet 3/2 { c'8 d' e'  ~ } e' f' ~
+        ...     \tuplet 3/2 { f' g' a' ~ } a' b' ~
+        ...     \tuplet 3/2 { b' c'' d'' }
         ...     """)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -5909,7 +5909,7 @@ def partition_by_ratio(argument, ratio: tuple[int, ...]) -> list[list]:
 
         Partitions leaves by a ratio of 1:1:
 
-        >>> string = r"c'8 d' r \times 2/3 { e' r f' } g' a' r"
+        >>> string = r"c'8 d' r \tuplet 3/2 { e' r f' } g' a' r"
         >>> staff = abjad.Staff(string)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -5962,7 +5962,7 @@ def partition_by_ratio(argument, ratio: tuple[int, ...]) -> list[list]:
 
         Partitions leaves by a ratio of 1:1:1:
 
-        >>> string = r"c'8 d' r \times 2/3 { e' r f' } g' a' r"
+        >>> string = r"c'8 d' r \tuplet 3/2 { e' r f' } g' a' r"
         >>> staff = abjad.Staff(string)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -6509,7 +6509,7 @@ def top(argument, *, exclude: Exclude | None = None) -> list[_score.Component]:
 
         Selects top components (up from leaves):
 
-        >>> string = r"c'8 d' r \times 2/3 { e' r f' } g' a' r"
+        >>> string = r"c'8 d' r \tuplet 3/2 { e' r f' } g' a' r"
         >>> staff = abjad.Staff(string)
         >>> abjad.setting(staff).autoBeaming = False
 
@@ -6683,7 +6683,7 @@ def tuplets(
         Selects tuplets at every level:
 
         >>> staff = abjad.Staff(
-        ...     r"\times 2/3 { c'2 \times 2/3 { d'8 e' f' } } \times 2/3 { c'4 d' e' }"
+        ...     r"\tuplet 3/2 { c'2 \tuplet 3/2 { d'8 e' f' } } \tuplet 3/2 { c'4 d' e' }"
         ... )
 
         >>> result = abjad.select.tuplets(staff)
@@ -6739,7 +6739,7 @@ def tuplets(
         not contain any other tuplets:
 
         >>> staff = abjad.Staff(
-        ...     r"\times 2/3 { c'2 \times 2/3 { d'8 e' f' } } \times 2/3 { c'4 d' e' }"
+        ...     r"\tuplet 3/2 { c'2 \tuplet 3/2 { d'8 e' f' } } \tuplet 3/2 { c'4 d' e' }"
         ... )
 
         >>> result = abjad.select.tuplets(staff, level=-1)
@@ -6790,7 +6790,7 @@ def tuplets(
         contained by any other tuplets:
 
         >>> staff = abjad.Staff(
-        ...     r"\times 2/3 { c'2 \times 2/3 { d'8 e' f' } } \times 2/3 { c'4 d' e' }"
+        ...     r"\tuplet 3/2 { c'2 \tuplet 3/2 { d'8 e' f' } } \tuplet 3/2 { c'4 d' e' }"
         ... )
 
         >>> result = abjad.select.tuplets(staff, level=1)

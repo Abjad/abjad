@@ -1874,8 +1874,8 @@ class Meter:
 
             Rewrites notes and tuplets:
 
-            >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
-            >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
+            >>> string = r"c'8 ~ c'8 ~ c'8 \tuplet 7/6 { c'4. r16 }"
+            >>> string += r" \tuplet 7/6 { r16 c'4. } c'8 ~ c'8 ~ c'8"
             >>> staff = abjad.Staff(string)
             >>> string = r"\tweak text #tuplet-number::calc-fraction-text"
             >>> for tuplet in abjad.select.tuplets(staff):
@@ -1955,8 +1955,8 @@ class Meter:
 
             Rewrites notes but not tuplets:
 
-            >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
-            >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
+            >>> string = r"c'8 ~ c'8 ~ c'8 \tuplet 7/6 { c'4. r16 }"
+            >>> string += r" \tuplet 7/6 { r16 c'4. } c'8 ~ c'8 ~ c'8"
             >>> staff = abjad.Staff(string)
             >>> string = r"\tweak text #tuplet-number::calc-fraction-text"
             >>> for tuplet in abjad.select.tuplets(staff):

@@ -495,7 +495,7 @@ def logical_ties(
 
         Iterates logical ties:
 
-        >>> string = r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16"
+        >>> string = r"c'4 ~ \tuplet 3/2 { c'16 d'8 } e'8 f'4 ~ f'16"
         >>> staff = abjad.Staff(string)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -658,8 +658,8 @@ def logical_ties(
 
         Logical tie triviality is controlled by a ternary flag.
 
-        >>> string = r"c'4 ~ \times 2/3 { c'8 d'4 }"
-        >>> string += r" e'4 ~ \times 2/3 { e'8 f' }"
+        >>> string = r"c'4 ~ \tuplet 3/2 { c'8 d'4 }"
+        >>> string += r" e'4 ~ \tuplet 3/2 { e'8 f' }"
         >>> staff = abjad.Staff(string)
         >>> abjad.makers.tweak_tuplet_bracket_edge_height(staff)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -732,8 +732,8 @@ def logical_ties(
 
         Logical tie pitchedness is controlled by a ternary flag.
 
-        >>> string = r"c'4 ~ \times 2/3 { c'8 r4 }"
-        >>> string += r"d'4 ~ \times 2/3 { d'8 r4 }"
+        >>> string = r"c'4 ~ \tuplet 3/2 { c'8 r4 }"
+        >>> string += r"d'4 ~ \tuplet 3/2 { d'8 r4 }"
         >>> staff = abjad.Staff(string)
         >>> abjad.show(staff) # doctest: +SKIP
 

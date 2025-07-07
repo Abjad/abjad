@@ -1738,7 +1738,7 @@ def with_start_offsets(
 
         Labels logical tie start offsets:
 
-        >>> string = r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4"
+        >>> string = r"\tuplet 3/2 { c'4 d'4 e'4 ~ } e'4 ef'4"
         >>> staff = abjad.Staff(string)
         >>> abjad.label.with_start_offsets(staff, direction=abjad.UP)
         Duration(1, 1)
