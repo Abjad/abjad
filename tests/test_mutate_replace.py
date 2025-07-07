@@ -323,9 +323,9 @@ def test_mutate_replace_06():
         """
     ), print(abjad.lilypond(staff))
 
-    voice_selection = staff[:1]
-    voice = voice_selection[0]
-    abjad.mutate.replace(voice_selection, staff[0][:])
+    components = staff[:1]
+    voice = components[0]
+    abjad.mutate.replace(components, staff[0][:])
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""

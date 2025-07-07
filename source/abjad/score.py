@@ -1577,9 +1577,9 @@ class Container(Component):
 
         """
         if isinstance(component, str):
-            selection = self._parse_string(component, language=language)
-            assert len(selection) == 1
-            component = selection[0]
+            components = self._parse_string(component, language=language)
+            assert len(components) == 1
+            component = components[0]
         assert isinstance(component, Component), repr(component)
         self.__setitem__(slice(len(self), len(self)), [component])
 
@@ -1730,9 +1730,9 @@ class Container(Component):
         """
         assert isinstance(i, int)
         if isinstance(component, str):
-            selection = self._parse_string(component, language=language)
-            assert len(selection) == 1, repr(selection)
-            component = selection[0]
+            components = self._parse_string(component, language=language)
+            assert len(components) == 1, repr(components)
+            component = components[0]
         assert isinstance(component, Component), repr(component)
         self.__setitem__(slice(i, i), [component])
         return

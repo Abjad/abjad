@@ -801,8 +801,8 @@ def duration(
                 f'4
             }
 
-        >>> selection = staff[:3]
-        >>> abjad.get.duration(selection)
+        >>> components = staff[:3]
+        >>> abjad.get.duration(components)
         Duration(3, 4)
 
     ..  container:: example
