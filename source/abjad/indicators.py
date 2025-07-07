@@ -639,7 +639,7 @@ class Clef:
         But Abjad components work fine:
 
         >>> for leaf in abjad.select.leaves(voice_1):
-        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
+        ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
         (Note("e'8"), Clef(name='treble', hide=False))
         (Note("g'8"), Clef(name='treble', hide=False))
@@ -649,7 +649,7 @@ class Clef:
         (Note("b'8"), Clef(name='treble', hide=False))
 
         >>> for leaf in abjad.select.leaves(voice_2):
-        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
+        ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
         (Note("c'4."), Clef(name='treble', hide=False))
         (Note('c,8'), Clef(name='bass', hide=False))
@@ -688,7 +688,7 @@ class Clef:
         }
 
         >>> for leaf in abjad.iterate.leaves(staff):
-        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
+        ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
         (Note("c'4"), Clef(name='treble', hide=False))
         (Note("d'4"), Clef(name='treble', hide=False))
@@ -1250,7 +1250,7 @@ class Dynamic:
             >>
 
         >>> for leaf in abjad.select.leaves(staff):
-        ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
+        ...     dynamic = abjad.get.effective_indicator(leaf, abjad.Dynamic)
         ...     print(f"{leaf!r}:")
         ...     print(f"    {dynamic!r}")
         Note("e'8"):
@@ -1470,7 +1470,7 @@ class Dynamic:
         }
 
         >>> for leaf in abjad.iterate.leaves(voice):
-        ...     dynamic = abjad.get.effective(leaf, abjad.Dynamic)
+        ...     dynamic = abjad.get.effective_indicator(leaf, abjad.Dynamic)
         ...     print(f"{leaf!r}:")
         ...     print(f"    {dynamic!r}")
         Note("c'4"):
@@ -3604,7 +3604,7 @@ class MetronomeMark:
 
         >>> for leaf in abjad.iterate.leaves(staff):
         ...     prototype = abjad.MetronomeMark
-        ...     leaf, abjad.get.effective(leaf, prototype)
+        ...     leaf, abjad.get.effective_indicator(leaf, prototype)
         ...
         (Note("c'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72, textual_indication=None, custom_markup=None, decimal=False, hide=False))
         (Note("d'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72, textual_indication=None, custom_markup=None, decimal=False, hide=False))
@@ -7294,7 +7294,7 @@ class TimeSignature:
 
         >>> for leaf in abjad.iterate.leaves(staff):
         ...     prototype = abjad.TimeSignature
-        ...     leaf, abjad.get.effective(leaf, prototype)
+        ...     leaf, abjad.get.effective_indicator(leaf, prototype)
         ...
         (Note("c'4"), TimeSignature(pair=(4, 4), hide=False, partial=None))
         (Note("d'4"), TimeSignature(pair=(4, 4), hide=False, partial=None))
@@ -7520,7 +7520,7 @@ class VoiceNumber:
             }
 
         >>> for leaf in abjad.select.leaves(staff):
-        ...     command = abjad.get.effective(leaf, abjad.VoiceNumber)
+        ...     command = abjad.get.effective_indicator(leaf, abjad.VoiceNumber)
         ...     print(f"{leaf}, {command}")
         Note("g'8"), VoiceNumber(n=1, leak=False)
         Note("a'8"), VoiceNumber(n=1, leak=False)

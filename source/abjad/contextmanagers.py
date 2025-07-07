@@ -134,14 +134,14 @@ class ForbidUpdate:
             REGRESSION. Indicators need to be updated after swap; context
             manager updates indicators before forbidding further updates:
 
-            >>> staff = abjad.Staff(r"\times 1/1 { c'4 d' }")
+            >>> staff = abjad.Staff(r"\tuplet 1/1 { c'4 d' }")
             >>> abjad.attach(abjad.Clef("alto"), staff[0][0])
             >>> container = abjad.Container()
             >>> abjad.mutate.swap(staff[0], container)
             >>> with abjad.contextmanagers.ForbidUpdate(staff):
             ...     for note in staff[0]:
             ...         print(note)
-            ...         print(abjad.get.effective(note, abjad.Clef))
+            ...         print(abjad.get.effective_indicator(note, abjad.Clef))
             ...
             Note("c'4")
             Clef(name='alto', hide=False)

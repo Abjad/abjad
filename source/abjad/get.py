@@ -809,7 +809,7 @@ def duration(
 
         Gets preprolated duration:
 
-        >>> staff = abjad.Staff(r"\times 2/3 { c'4 ~ c' } \times 2/3 { d' ~ d' }")
+        >>> staff = abjad.Staff(r"\tuplet 3/2 { c'4 ~ c' } \tuplet 3/2 { d' ~ d' }")
         >>> abjad.makers.tweak_tuplet_bracket_edge_height(staff)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -848,8 +848,7 @@ def duration(
     )
 
 
-# TODO: change abjad.get.effective() to abjad.get.effective_indicator()
-def effective(
+def effective_indicator(
     component: _score.Component,
     prototype: typing.Any,
     *,
@@ -927,7 +926,7 @@ def effective(
             }
 
         >>> for component in abjad.select.components(staff):
-        ...     clef = abjad.get.effective(component, abjad.Clef)
+        ...     clef = abjad.get.effective_indicator(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(clef)}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
         Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') None
@@ -980,7 +979,7 @@ def effective(
             }
 
         >>> for component in abjad.select.components(staff):
-        ...     clef = abjad.get.effective(component, abjad.Clef)
+        ...     clef = abjad.get.effective_indicator(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(clef)}")
         Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }") None
         Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice') None
@@ -1025,7 +1024,7 @@ def effective(
             }
 
         >>> for component in abjad.select.components(staff):
-        ...     clef = abjad.get.effective(component, abjad.Clef)
+        ...     clef = abjad.get.effective_indicator(component, abjad.Clef)
         ...     print(f"{repr(component):30} {repr(clef)}")
         Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") None
         TremoloContainer("c'16 e'16")  None
@@ -1058,7 +1057,7 @@ def effective(
             }
 
         >>> for component in abjad.iterate.components(staff):
-        ...     string = abjad.get.effective(component, str)
+        ...     string = abjad.get.effective_indicator(component, str)
         ...     print(component, repr(string))
         ...
         Staff("c'8 d'8 e'8 f'8") None
@@ -1091,7 +1090,7 @@ def effective(
             }
 
         >>> for n in (-1, 0, 1):
-        ...     color = abjad.get.effective(staff[0], str, n=n)
+        ...     color = abjad.get.effective_indicator(staff[0], str, n=n)
         ...     print(n, repr(color))
         ...
         -1 None
@@ -1099,7 +1098,7 @@ def effective(
         1 'blue'
 
         >>> for n in (-1, 0, 1):
-        ...     color = abjad.get.effective(staff[1], str, n=n)
+        ...     color = abjad.get.effective_indicator(staff[1], str, n=n)
         ...     print(n, repr(color))
         ...
         -1 None
@@ -1107,7 +1106,7 @@ def effective(
         1 'blue'
 
         >>> for n in (-1, 0, 1):
-        ...     color = abjad.get.effective(staff[2], str, n=n)
+        ...     color = abjad.get.effective_indicator(staff[2], str, n=n)
         ...     print(n, repr(color))
         ...
         -1 'red'
@@ -1115,7 +1114,7 @@ def effective(
         1 'yellow'
 
         >>> for n in (-1, 0, 1):
-        ...     color = abjad.get.effective(staff[3], str, n=n)
+        ...     color = abjad.get.effective_indicator(staff[3], str, n=n)
         ...     print(n, repr(color))
         ...
         -1 'red'
@@ -1123,7 +1122,7 @@ def effective(
         1 'yellow'
 
         >>> for n in (-1, 0, 1):
-        ...     color = abjad.get.effective(staff[4], str, n=n)
+        ...     color = abjad.get.effective_indicator(staff[4], str, n=n)
         ...     print(n, repr(color))
         ...
         -1 'blue'
@@ -1160,7 +1159,7 @@ def effective(
             }
 
         >>> for leaf in staff:
-        ...     clef = abjad.get.effective(leaf, abjad.Clef)
+        ...     clef = abjad.get.effective_indicator(leaf, abjad.Clef)
         ...     (leaf, clef)
         ...
         (Note("c'4"), Clef(name='alto', hide=False))
@@ -1168,13 +1167,13 @@ def effective(
         (Note("e'4"), Clef(name='alto', hide=False))
         (Note("f'4"), Clef(name='alto', hide=False))
 
-        >>> abjad.get.effective(staff[0], abjad.Clef)
+        >>> abjad.get.effective_indicator(staff[0], abjad.Clef)
         Clef(name='alto', hide=False)
 
-        >>> abjad.get.effective(staff[0], abjad.Clef, n=-1)
+        >>> abjad.get.effective_indicator(staff[0], abjad.Clef, n=-1)
         Clef(name='treble', hide=True)
 
-        >>> abjad.get.effective(staff[0], abjad.Clef, n=-2) is None
+        >>> abjad.get.effective_indicator(staff[0], abjad.Clef, n=-2) is None
         True
 
     ..  container:: example
@@ -1204,7 +1203,7 @@ def effective(
             }
 
         >>> for leaf in staff:
-        ...     clef = abjad.get.effective(leaf, abjad.Clef)
+        ...     clef = abjad.get.effective_indicator(leaf, abjad.Clef)
         ...     (leaf, clef)
         ...
         (Note("c'4"), Clef(name='treble', hide=False))
@@ -1212,13 +1211,13 @@ def effective(
         (Note("e'4"), Clef(name='treble', hide=False))
         (Note("f'4"), Clef(name='treble', hide=False))
 
-        >>> abjad.get.effective(staff[-1], abjad.Clef)
+        >>> abjad.get.effective_indicator(staff[-1], abjad.Clef)
         Clef(name='treble', hide=False)
 
-        >>> abjad.get.effective(staff[-1], abjad.Clef, n=1)
+        >>> abjad.get.effective_indicator(staff[-1], abjad.Clef, n=1)
         Clef(name='alto', hide=True)
 
-        >>> abjad.get.effective(staff[-1], abjad.Clef, n=2) is None
+        >>> abjad.get.effective_indicator(staff[-1], abjad.Clef, n=2) is None
         True
 
     ..  container:: example
@@ -1246,7 +1245,7 @@ def effective(
 
         >>> prototype = abjad.TimeSignature
         >>> for component in abjad.iterate.components(staff):
-        ...     time_signature = abjad.get.effective(component, prototype)
+        ...     time_signature = abjad.get.effective_indicator(component, prototype)
         ...     print(component, time_signature)
         ...
         Staff("c'4 d'4 e'4 f'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
@@ -1285,7 +1284,7 @@ def effective(
             }
 
         >>> for note in abjad.select.notes(staff):
-        ...     note, abjad.get.effective(note, abjad.StartTextSpan)
+        ...     note, abjad.get.effective_indicator(note, abjad.StartTextSpan)
         ...
         (Note("c'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None))
         (Note("d'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None))
@@ -1293,7 +1292,7 @@ def effective(
         (Note("f'4"), StartTextSpan(command='\\startTextSpan', concat_hspace_left=0.5, concat_hspace_right=None, left_broken_text=None, left_text=None, right_padding=None, right_text=None, style=None))
 
         >>> for note in abjad.select.notes(staff):
-        ...     note, abjad.get.effective(note, abjad.StopTextSpan)
+        ...     note, abjad.get.effective_indicator(note, abjad.StopTextSpan)
         ...
         (Note("c'4"), None)
         (Note("d'4"), None)
@@ -1302,7 +1301,7 @@ def effective(
 
         >>> attributes = {'parameter': 'TEXT_SPANNER'}
         >>> for note in abjad.select.notes(staff):
-        ...     indicator = abjad.get.effective(
+        ...     indicator = abjad.get.effective_indicator(
         ...         note,
         ...         object,
         ...         attributes=attributes,
@@ -1344,8 +1343,8 @@ def effective(
             }
 
         >>> for leaf in abjad.select.leaves(voice):
-        ...     start_beam = abjad.get.effective(leaf, abjad.StartBeam)
-        ...     stop_beam = abjad.get.effective(leaf, abjad.StopBeam)
+        ...     start_beam = abjad.get.effective_indicator(leaf, abjad.StartBeam)
+        ...     stop_beam = abjad.get.effective_indicator(leaf, abjad.StopBeam)
         ...     leaf, start_beam, stop_beam
         (Note("c'8"), StartBeam(), None)
         (Note("d'8"), StartBeam(), None)
@@ -1380,7 +1379,7 @@ def effective(
             >>
 
         >>> for leaf in abjad.select.leaves(score):
-        ...     bar_line = abjad.get.effective(leaf, abjad.BarLine)
+        ...     bar_line = abjad.get.effective_indicator(leaf, abjad.BarLine)
         ...     leaf, bar_line
         (Note("c'2"), None)
         (Note("d'2"), BarLine(abbreviation='||', site='after'))

@@ -474,7 +474,7 @@ class Parentage(collections.abc.Sequence):
             REGRESSION. Works with grace notes (and containers):
 
             >>> music_voice = abjad.Voice(
-            ...     r"\times 2/3 { c'4 d' e' } \times 2/3 { f' g' a' }",
+            ...     r"\tuplet 3/2 { c'4 d' e' } \tuplet 3/2 { f' g' a' }",
             ...     name="MusicVoice"
             ... )
             >>> container = abjad.BeforeGraceContainer("cs'16")
@@ -681,7 +681,7 @@ class Parentage(collections.abc.Sequence):
             Gets tuplet count:
 
             >>> staff = abjad.Staff(
-            ...     r"\times 2/3 { c'2 \times 2/3 { d'8 e' f' } } \times 2/3 { c'4 d' e' }"
+            ...     r"\tuplet 3/2 { c'2 \tuplet 3/2 { d'8 e' f' } } \tuplet 3/2 { c'4 d' e' }"
             ... )
             >>> abjad.show(staff) # doctest: +SKIP
 
@@ -1365,7 +1365,7 @@ class Parentage(collections.abc.Sequence):
 
             Score root sets score index to ``()``:
 
-            >>> staff_1 = abjad.Staff(r"\times 2/3 { c''2 b'2 a'2 }")
+            >>> staff_1 = abjad.Staff(r"\tuplet 3/2 { c''2 b'2 a'2 }")
             >>> staff_2 = abjad.Staff("c'2 d'2")
             >>> score = abjad.Score([staff_1, staff_2])
             >>> abjad.show(score) # doctest: +SKIP

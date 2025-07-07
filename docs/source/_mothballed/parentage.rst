@@ -9,7 +9,7 @@ Many score objects contain other score objects:
 
 ::
 
-    >>> string = r"\times 2/3 { c'4 d' e' } \times 2/3 { c'4 d' e' }"
+    >>> string = r"\tuplet 3/2 { c'4 d' e' } \tuplet 3/2 { c'4 d' e' }"
     >>> staff = abjad.Staff(string)
     >>> score = abjad.Score([staff])
     >>> abjad.show(score)

@@ -99,7 +99,7 @@ Instruments.
         >>
 
     >>> for leaf in abjad.select.leaves(voice_1):
-    ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
+    ...     leaf, abjad.get.effective_indicator(leaf, abjad.Instrument)
     ...
     (Note("e'8"), Flute(clefs=('treble',), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[C4, D7]')))
     (Note("g'8"), Flute(clefs=('treble',), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[C4, D7]')))
@@ -107,7 +107,7 @@ Instruments.
     (Note("a'8"), Flute(clefs=('treble',), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[C4, D7]')))
 
     >>> for leaf in abjad.select.leaves(voice_2):
-    ...     leaf, abjad.get.effective(leaf, abjad.Instrument)
+    ...     leaf, abjad.get.effective_indicator(leaf, abjad.Instrument)
     ...
     (Note("c'2"), Viola(clefs=('alto', 'treble'), context='Staff', middle_c_sounding_pitch=NamedPitch("c'"), pitch_range=PitchRange(range_string='[C3, D6]'), tuning=Tuning(pitches=(NamedPitch('c'), NamedPitch('g'), NamedPitch("d'"), NamedPitch("a'")))))
 

@@ -312,7 +312,7 @@ def attach(
             }
 
         >>> for leaf in abjad.select.leaves(staff):
-        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
+        ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
         (Note("c'4"), Clef(name='alto', hide=False))
         (Note("d'4"), Clef(name='alto', hide=False))
@@ -346,7 +346,7 @@ def attach(
             }
 
         >>> for leaf in abjad.select.leaves(staff):
-        ...     leaf, abjad.get.effective(leaf, abjad.Clef)
+        ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
         (Note("c'4"), Clef(name='alto', hide=False))
         (Note("d'4"), Clef(name='alto', hide=False))
@@ -397,7 +397,7 @@ def attach(
         are present:
 
         >>> for note in staff:
-        ...     clef = abjad.get.effective(staff[0], abjad.Clef)
+        ...     clef = abjad.get.effective_indicator(staff[0], abjad.Clef)
         ...     note, clef
         ...
         (Note("c'4"), Clef(name='treble', hide=False))
@@ -434,7 +434,7 @@ def attach(
             }
 
         >>> for note in staff:
-        ...     clef = abjad.get.effective(staff[0], abjad.Clef)
+        ...     clef = abjad.get.effective_indicator(staff[0], abjad.Clef)
         ...     note, clef
         ...
         (Note("c'4"), Clef(name='alto', hide=False))
