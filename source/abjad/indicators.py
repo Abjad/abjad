@@ -4286,7 +4286,7 @@ class RepeatTie:
         [RepeatTie()]
 
         >>> wrapper = abjad.get.wrapper(voice[1], abjad.RepeatTie)
-        >>> wrapper.get_item()
+        >>> wrapper.indicator
         Bundle(indicator=RepeatTie(), tweaks=(Tweak(string='- \\tweak color #blue', i=None, tag=None),), comment=None)
 
         >>> for leaf in voice:

@@ -268,7 +268,7 @@ def _update_all_indicators(root):
     components = _iterate_entire_score(root)
     for component in components:
         for wrapper in component._get_wrappers():
-            if wrapper.context is not None:
+            if wrapper.context_name is not None:
                 wrapper._update_effective_context()
         component._indicators_are_current = True
 

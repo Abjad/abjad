@@ -135,7 +135,7 @@ def _unsafe_attach(
     annotation = None
     if isinstance(indicator, _wrapper.Wrapper):
         annotation = indicator.annotation
-        context = context or indicator.context
+        context = context or indicator.context_name
         deactivate = deactivate or indicator.deactivate
         synthetic_offset = synthetic_offset or indicator.synthetic_offset
         tag = tag or indicator.tag
@@ -149,7 +149,7 @@ def _unsafe_attach(
         annotation=annotation,
         check_duplicate_indicator=check_duplicate_indicator,
         component=component,
-        context=context,
+        context_name=context,
         deactivate=deactivate,
         direction=direction,
         indicator=indicator,
@@ -669,7 +669,7 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
 
         >>> wrapper = abjad.get.wrappers(staff[0])[0]
         >>> abjad.detach(wrapper, wrapper.component)
-        (Wrapper(annotation=None, context='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string='')),)
+        (Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string='')),)
 
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -722,7 +722,7 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
                     result.append(wrapper)
                 elif isinstance(wrapper.unbundle_indicator(), indicator):
                     wrapper._detach()
-                    result.append(wrapper.get_item())
+                    result.append(wrapper.indicator)
             return tuple(result)
     else:
         if "AfterGraceContainer" in indicator.__class__.__name__:
@@ -745,7 +745,7 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
                         pass
                     else:
                         wrapper._detach()
-                        result.append(wrapper.get_item())
+                        result.append(wrapper.indicator)
             return tuple(result)
     items = []
     if after_grace_container is not None:

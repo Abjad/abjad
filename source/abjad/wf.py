@@ -145,11 +145,11 @@ def check_beamed_long_notes(argument) -> tuple[list, int]:
         if stop_wrapper is None:
             violators.append(leaf)
             continue
-        if stop_wrapper.leaked_start_offset < start_wrapper.leaked_start_offset:
+        if stop_wrapper.leaked_start_offset() < start_wrapper.leaked_start_offset():
             violators.append(leaf)
             continue
         leaf_start_offset = leaf._get_timespan().start_offset
-        if stop_wrapper.leaked_start_offset == leaf_start_offset:
+        if stop_wrapper.leaked_start_offset() == leaf_start_offset:
             violators.append(leaf)
     return violators, total
 
@@ -314,7 +314,7 @@ def check_orphaned_dependent_wrappers(argument) -> tuple[list, int]:
         >>> assert len(voice._dependent_wrappers) == 1
         >>> wrapper = voice._dependent_wrappers[0]
         >>> wrapper
-        Wrapper(annotation=None, context='Voice', deactivate=False, direction=None, indicator=StartBeam(), synthetic_offset=None, tag=Tag(string=''))
+        Wrapper(annotation=None, context_name='Voice', deactivate=False, direction=None, indicator=StartBeam(), synthetic_offset=None, tag=Tag(string=''))
 
         >>> wrapper.component
         Note("c'8")
@@ -334,7 +334,7 @@ def check_orphaned_dependent_wrappers(argument) -> tuple[list, int]:
         >>> assert wrapper.component not in voice
 
         >>> abjad.wf.check_orphaned_dependent_wrappers(voice)
-        ([Wrapper(annotation=None, context='Voice', deactivate=False, direction=None, indicator=StartBeam(), synthetic_offset=None, tag=Tag(string=''))], 1)
+        ([Wrapper(annotation=None, context_name='Voice', deactivate=False, direction=None, indicator=StartBeam(), synthetic_offset=None, tag=Tag(string=''))], 1)
 
     """
     violators, total = [], 0
@@ -631,7 +631,7 @@ def check_overlapping_text_spanners(argument) -> tuple[list, int]:
             priority = 1
         else:
             priority = 0
-        return (wrapper.leaked_start_offset, priority)
+        return (wrapper.leaked_start_offset(), priority)
 
     context_name_to_wrappers = _aggregate_context_wrappers(argument)
     for _, wrappers in context_name_to_wrappers.items():
@@ -714,7 +714,7 @@ def check_unmatched_stop_text_spans(argument) -> tuple[list, int]:
     violators, total = [], 0
     context_name_to_wrappers = _aggregate_context_wrappers(argument)
     for _, wrappers in context_name_to_wrappers.items():
-        wrappers.sort(key=lambda _: _.leaked_start_offset)
+        wrappers.sort(key=lambda _: _.leaked_start_offset())
         open_spanners: dict = {}
         for wrapper in wrappers:
             if isinstance(wrapper.unbundle_indicator(), _indicators.StartTextSpan):
@@ -843,7 +843,7 @@ def check_unterminated_hairpins(argument) -> tuple[list, int]:
     for _, wrappers in context_name_to_wrappers.items():
         last_dynamic = None
         last_tag = _tag.Tag()
-        wrappers.sort(key=lambda _: _.leaked_start_offset)
+        wrappers.sort(key=lambda _: _.leaked_start_offset())
         for wrapper in wrappers:
             parameter = getattr(wrapper.unbundle_indicator(), "parameter", None)
             if parameter == "DYNAMIC" or isinstance(
@@ -916,7 +916,7 @@ def check_unterminated_text_spanners(argument) -> tuple[list, int]:
     violators, total = [], 0
     context_name_to_wrappers = _aggregate_context_wrappers(argument)
     for _, wrappers in context_name_to_wrappers.items():
-        wrappers.sort(key=lambda _: _.leaked_start_offset)
+        wrappers.sort(key=lambda _: _.leaked_start_offset())
         open_spanners: dict = {}
         for wrapper in wrappers:
             if wrapper.deactivate is True:

@@ -249,9 +249,9 @@ def transpose_from_sounding_pitch(argument) -> None:
             )
             wrapper_tag = wrapper.tag
             _bind.detach(wrapper, leaf)
-            if wrapper.bundled():
+            if wrapper.is_bundled():
                 new_bundle = dataclasses.replace(
-                    wrapper.get_item(), indicator=new_start_trill_span
+                    wrapper.indicator, indicator=new_start_trill_span
                 )
                 _bind.attach(new_bundle, leaf, tag=wrapper_tag)
             else:
@@ -319,9 +319,9 @@ def transpose_from_written_pitch(argument) -> None:
                 start_trill_span, pitch=new_pitch
             )
             _bind.detach(wrapper, leaf)
-            if wrapper.bundled():
+            if wrapper.is_bundled():
                 new_bundle = dataclasses.replace(
-                    wrapper.get_item, indicator=new_start_trill_span
+                    wrapper.indicator, indicator=new_start_trill_span
                 )
                 _bind.attach(new_bundle, leaf)
             else:
