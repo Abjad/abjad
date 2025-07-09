@@ -3174,40 +3174,6 @@ class Context(Container):
         """
         return self._remove_commands
 
-    @property
-    def tag(self) -> _tag.Tag | None:
-        r"""
-        Gets tag.
-
-        ..  container:: example
-
-            >>> context = abjad.Context(
-            ...     "c'4 d' e' f'",
-            ...     lilypond_type="CustomContext",
-            ...     tag=abjad.Tag("RED"),
-            ...     )
-            >>> abjad.show(context) # doctest: +SKIP
-
-            >>> string = abjad.lilypond(context, tags=True)
-            >>> print(string)
-            %! RED
-            \new CustomContext
-            %! RED
-            {
-                c'4
-                d'4
-                e'4
-                f'4
-            %! RED
-            }
-
-        """
-        return super().tag
-
-    @tag.setter
-    def tag(self, argument) -> None:
-        self._tag = argument
-
 
 class IndependentAfterGraceContainer(Container):
     r"""
@@ -3342,31 +3308,6 @@ class MultimeasureRest(Leaf):
 
     def _get_compact_representation(self):
         return f"R{self._get_formatted_duration()}"
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def tag(self) -> _tag.Tag | None:
-        r"""
-        Gets and sets tag.
-
-        ..  container:: example
-
-            >>> tag = abjad.Tag('MULTIMEASURE_REST')
-            >>> rest = abjad.MultimeasureRest(1, tag=tag)
-            >>> rest.multiplier = (3, 8)
-
-            >>> string = abjad.lilypond(rest, tags=True)
-            >>> print(string)
-              %! MULTIMEASURE_REST
-            R1 * 3/8
-
-        """
-        return super().tag
-
-    @tag.setter
-    def tag(self, argument) -> None:
-        self._tag = argument
 
 
 @functools.total_ordering
@@ -4490,52 +4431,6 @@ class Score(Context):
             name=name,
             tag=tag,
         )
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def tag(self) -> _tag.Tag | None:
-        r"""
-        Gets and sets tag.
-
-        ..  container:: example
-
-            >>> voice = abjad.Voice("c'4 d' e' f'", tag=abjad.Tag("RED"))
-            >>> staff = abjad.Staff([voice], tag=abjad.Tag("BLUE"))
-            >>> score = abjad.Score([staff], tag=abjad.Tag("GREEN"))
-            >>> abjad.show(score) # doctest: +SKIP
-
-            >>> string = abjad.lilypond(score, tags=True)
-            >>> print(string)
-              %! GREEN
-            \new Score
-              %! GREEN
-            <<
-                  %! BLUE
-                \new Staff
-                  %! BLUE
-                {
-                      %! RED
-                    \new Voice
-                      %! RED
-                    {
-                        c'4
-                        d'4
-                        e'4
-                        f'4
-                      %! RED
-                    }
-                  %! BLUE
-                }
-              %! GREEN
-            >>
-
-        """
-        return super().tag
-
-    @tag.setter
-    def tag(self, argument) -> None:
-        self._tag = argument
 
 
 class Skip(Leaf):
@@ -6327,35 +6222,3 @@ class Voice(Context):
             name=name,
             tag=tag,
         )
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def tag(self) -> _tag.Tag | None:
-        r"""
-        Gets and sets voice tag.
-
-        ..  container:: example
-
-            >>> voice = abjad.Voice("c'4 d' e' f'", tag=abjad.Tag("RED"))
-            >>> abjad.show(voice) # doctest: +SKIP
-
-            >>> string = abjad.lilypond(voice, tags=True)
-            >>> print(string)
-              %! RED
-            \new Voice
-              %! RED
-            {
-                c'4
-                d'4
-                e'4
-                f'4
-              %! RED
-            }
-
-        """
-        return super().tag
-
-    @tag.setter
-    def tag(self, argument) -> None:
-        self._tag = argument
