@@ -40,7 +40,7 @@ def _get_annotation(component, annotation, default=None):
     assert isinstance(annotation, str), repr(annotation)
     for wrapper_ in _get_annotation_wrappers(component):
         if wrapper_.annotation == annotation:
-            return wrapper_.get_item()
+            return wrapper_.indicator
     return default
 
 
@@ -131,7 +131,7 @@ def _get_effective_wrapper(component, prototype, *, attributes=None, command=Non
         ):
             local_wrappers = [_ for _ in local_wrappers if _.deactivate is not True]
         for wrapper_ in local_wrappers:
-            offset = wrapper_.start_offset
+            offset = wrapper_.start_offset()
             candidate_wrappers.setdefault(offset, []).append(wrapper_)
         if not isinstance(component_, _score.Context):
             continue
@@ -151,7 +151,7 @@ def _get_effective_wrapper(component, prototype, *, attributes=None, command=Non
                             append_wrapper = False
                 if not append_wrapper:
                     continue
-                offset = wrapper_.start_offset
+                offset = wrapper_.start_offset()
                 candidate_wrappers.setdefault(offset, []).append(wrapper_)
     if not candidate_wrappers:
         return
@@ -245,13 +245,13 @@ def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=Non
         if key not in wrappers:
             wrappers[key] = wrapper
         elif (
-            wrappers[key].site_adjusted_start_offset
-            < wrapper.site_adjusted_start_offset
+            wrappers[key].site_adjusted_start_offset()
+            < wrapper.site_adjusted_start_offset()
         ):
             wrappers[key] = wrapper
         elif (
-            wrappers[key].site_adjusted_start_offset
-            == wrapper.site_adjusted_start_offset
+            wrappers[key].site_adjusted_start_offset()
+            == wrapper.site_adjusted_start_offset()
         ):
             if isinstance(
                 wrappers[key].unbundle_indicator(), _indicators.StartHairpin

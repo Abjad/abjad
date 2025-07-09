@@ -60,12 +60,12 @@ def _get_indicator_contributions(component, contributions):
     for wrapper in wrappers:
         if wrapper.annotation:
             continue
-        elif not hasattr(wrapper.get_item(), "_get_contributions"):
+        elif not hasattr(wrapper.indicator, "_get_contributions"):
             continue
         elif (
-            wrapper.context is None
-            and hasattr(wrapper.get_item(), "format_leaf_children")
-            and not getattr(wrapper.get_item(), "format_leaf_children")
+            wrapper.context_name is None
+            and hasattr(wrapper.indicator, "format_leaf_children")
+            and not getattr(wrapper.indicator, "format_leaf_children")
             and wrapper.component is not component
         ):
             continue
@@ -76,7 +76,7 @@ def _get_indicator_contributions(component, contributions):
                 down_markup_wrappers.append(wrapper)
             elif wrapper.direction in (_enums.CENTER, None):
                 neutral_markup_wrappers.append(wrapper)
-        elif wrapper.context is not None:
+        elif wrapper.context_name is not None:
             if wrapper.component is component:
                 context_wrappers.append(wrapper)
         else:
@@ -91,7 +91,7 @@ def _get_indicator_contributions(component, contributions):
         noncontext_wrappers,
     ):
         for wrapper in wrappers:
-            item = wrapper.get_item()
+            item = wrapper.indicator
             contributions_ = None
             try:
                 contributions_ = item._get_contributions(wrapper=wrapper)

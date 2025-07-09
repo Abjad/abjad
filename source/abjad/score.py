@@ -125,8 +125,7 @@ class Component:
             wrapper_ = copy.copy(wrapper)
             wrapper_._component = component
             wrapper_._bind_component(component)
-        # TODO: remove cast to list() in line below?
-        for wrapper in list(self._get_wrappers()):
+        for wrapper in self._get_wrappers():
             wrapper_ = copy.copy(wrapper)
             wrapper_._component = component
             wrapper_._bind_component(component)
@@ -225,10 +224,10 @@ class Component:
     def _get_markup(self, direction=None):
         wrappers = self._get_wrappers(_indicators.Markup)
         if direction is _enums.UP:
-            return tuple(_.get_item() for _ in wrappers if _.direction is _enums.UP)
+            return tuple(_.indicator for _ in wrappers if _.direction is _enums.UP)
         elif direction is _enums.DOWN:
-            return tuple(_.get_item() for _ in wrappers if _.direction is _enums.DOWN)
-        indicators = [_.get_item() for _ in wrappers]
+            return tuple(_.indicator for _ in wrappers if _.direction is _enums.DOWN)
+        indicators = [_.indicator for _ in wrappers]
         return indicators
 
     def _get_parentage(self):
