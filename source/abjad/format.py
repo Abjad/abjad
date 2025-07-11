@@ -97,15 +97,6 @@ def _get_indicator_contributions(component, contributions):
             try:
                 contributions_ = item._get_contributions(wrapper=wrapper)
             except TypeError:
-                pass
-            if contributions_ is None:
-                try:
-                    contributions_ = item._get_contributions(
-                        component=wrapper.component
-                    )
-                except TypeError:
-                    pass
-            if contributions_ is None:
                 contributions_ = item._get_contributions()
             contributions_.tag_contributions(wrapper.tag, deactivate=wrapper.deactivate)
             if getattr(item, "check_effective_context", False) is True:
