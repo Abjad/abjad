@@ -80,6 +80,7 @@ def _unsafe_attach(
     deactivate: bool = False,
     direction: _enums.Vertical | None = None,
     do_not_test: bool = False,
+    hide: bool = False,
     synthetic_offset: _duration.Offset | None = None,
     tag: _tag.Tag | None = None,
 ) -> None:
@@ -137,6 +138,7 @@ def _unsafe_attach(
         annotation = indicator.annotation
         context = context or indicator.context_name
         deactivate = deactivate or indicator.deactivate
+        hide = hide or indicator.hide
         synthetic_offset = synthetic_offset or indicator.synthetic_offset
         tag = tag or indicator.tag
         indicator._detach()
@@ -152,6 +154,7 @@ def _unsafe_attach(
         context_name=context,
         deactivate=deactivate,
         direction=direction,
+        hide=hide,
         indicator=indicator,
         synthetic_offset=synthetic_offset,
         tag=tag,
@@ -200,6 +203,7 @@ def attach(
     deactivate: bool = False,
     direction: _enums.Vertical | None = None,
     do_not_test: bool = False,
+    hide: bool = False,
     synthetic_offset: _duration.Offset | None = None,
     tag: _tag.Tag | None = None,
 ) -> None:
@@ -459,6 +463,7 @@ def attach(
         deactivate=deactivate,
         direction=direction,
         do_not_test=do_not_test,
+        hide=hide,
         synthetic_offset=synthetic_offset,
         tag=tag,
     )

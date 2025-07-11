@@ -42,6 +42,7 @@ class Wrapper:
         "_deactivate",
         "_direction",
         "_effective_context",
+        "_hide",
         "_indicator",
         "_synthetic_offset",
         "_tag",
@@ -56,6 +57,7 @@ class Wrapper:
         context_name: str | None = None,
         deactivate: bool = False,
         direction: _enums.Vertical | str | None = None,
+        hide: bool = False,
         indicator: typing.Any = None,
         synthetic_offset: _duration.Offset | None = None,
         tag: _tag.Tag = _tag.Tag(),
@@ -69,6 +71,7 @@ class Wrapper:
         assert isinstance(deactivate, bool), repr(deactivate)
         if direction is not None:
             assert isinstance(direction, _enums.Vertical | str), repr(direction)
+        assert isinstance(hide, bool), repr(hide)
         assert not isinstance(indicator, type(self)), repr(indicator)
         if synthetic_offset is not None:
             prototype = _duration.Offset
@@ -80,6 +83,7 @@ class Wrapper:
         self._deactivate = deactivate
         self._direction = direction
         self._effective_context: _score.Context | None = None
+        self._hide = hide
         self._indicator = indicator
         self._synthetic_offset = synthetic_offset
         self._tag = tag
@@ -100,6 +104,7 @@ class Wrapper:
             context_name=self.context_name,
             deactivate=self.deactivate,
             direction=self.direction,
+            hide=self.hide,
             indicator=copy.copy(self.indicator),
             synthetic_offset=self.synthetic_offset,
             tag=self.tag,
@@ -117,6 +122,8 @@ class Wrapper:
             return False
         if self.deactivate != argument.deactivate:
             return False
+        if self.hide != argument.hide:
+            return False
         if self.indicator != argument.indicator:
             return False
         if self.synthetic_offset != argument.synthetic_offset:
@@ -128,6 +135,7 @@ class Wrapper:
     def __hash__(self) -> int:
         return hash(self.__class__.__name__ + str(self))
 
+    # TODO: add self.hide
     def __repr__(self) -> str:
         parameters = f"""
             annotation={self.annotation!r},
@@ -345,6 +353,13 @@ class Wrapper:
         Gets direction of indicator.
         """
         return self._direction
+
+    @property
+    def hide(self) -> bool:
+        """
+        Is true when indcator does not appear in LilyPond output.
+        """
+        return self._hide
 
     @property
     def indicator(self) -> typing.Any:

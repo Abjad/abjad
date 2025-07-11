@@ -6,6 +6,7 @@ from . import _contributions, _indentlib
 from . import enums as _enums
 from . import indicators as _indicators
 from . import overrides as _overrides
+from . import parentage as _parentage
 
 
 def _get_context_setting_contributions(component, contributions):
@@ -49,7 +50,8 @@ def _get_grob_revert_contributions(component, contributions):
 
 def _get_indicator_contributions(component, contributions):
     wrappers = []
-    for parent in component._get_parentage():
+    parentage = _parentage.Parentage(component)
+    for parent in parentage:
         wrappers_ = parent._get_wrappers()
         wrappers.extend(wrappers_)
     up_markup_wrappers = []
@@ -60,16 +62,15 @@ def _get_indicator_contributions(component, contributions):
     for wrapper in wrappers:
         if wrapper.annotation:
             continue
-        elif not hasattr(wrapper.indicator, "_get_contributions"):
+        if not hasattr(wrapper.indicator, "_get_contributions"):
             continue
-        elif (
+        if (
             wrapper.context_name is None
-            and hasattr(wrapper.indicator, "format_leaf_children")
-            and not getattr(wrapper.indicator, "format_leaf_children")
+            and getattr(wrapper.indicator, "format_leaf_children", False) is not True
             and wrapper.component is not component
         ):
             continue
-        elif isinstance(wrapper.unbundle_indicator(), _indicators.Markup):
+        if isinstance(wrapper.unbundle_indicator(), _indicators.Markup):
             if wrapper.direction is _enums.UP:
                 up_markup_wrappers.append(wrapper)
             elif wrapper.direction is _enums.DOWN:
