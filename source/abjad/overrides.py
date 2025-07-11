@@ -111,7 +111,7 @@ class LilyPondOverride:
         )
         assert isinstance(self.value, prototype), repr(self.value)
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         if not self.once:
             revert_format = "\n".join(self.revert_format_pieces)
@@ -306,7 +306,7 @@ class LilyPondSetting:
         assert isinstance(self.is_unset, bool)
         assert isinstance(self.value, bool | int | float | str), repr(self.value)
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         string = "\n".join(self.format_pieces)
         contributions.context_settings.append(string)

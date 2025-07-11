@@ -183,12 +183,13 @@ class Articulation:
     def __post_init__(self):
         assert isinstance(self.name, str), repr(self.name)
 
-    def _get_lilypond_format(self, wrapper=None):
+    def _get_lilypond_format(self, *, wrapper=None):
+        assert wrapper is not None
         if self.name:
             string = self.shortcut_to_word.get(self.name)
             if not string:
                 string = self.name
-            if wrapper is not None and wrapper.direction:
+            if wrapper.direction is not None:
                 direction_ = _string.to_tridirectional_lilypond_symbol(
                     wrapper.direction
                 )
@@ -200,6 +201,7 @@ class Articulation:
             return ""
 
     def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format(wrapper=wrapper)
@@ -281,7 +283,7 @@ class BarLine:
     def _get_lilypond_format(self):
         return rf'\bar "{self.abbreviation}"'
 
-    def _get_contributions(self, *, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
@@ -306,7 +308,7 @@ class BeamCount:
 
     site: typing.ClassVar[str] = "before"
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = rf"\set stemLeftBeamCount = {self.left}"
@@ -388,7 +390,7 @@ class BendAfter:
     def _get_lilypond_format(self):
         return rf"- \bendAfter #'{self.bend_amount}"
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
@@ -494,7 +496,7 @@ class BreathMark:
     def _get_lilypond_format(self):
         return r"\breathe"
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
@@ -778,8 +780,7 @@ class Clef:
     def _get_lilypond_format(self):
         return rf'\clef "{self.name}"'
 
-    def _get_contributions(self, component=None):
-        # breakpoint()
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         if not self.hide:
             site = getattr(contributions, self.site)
@@ -1157,8 +1158,8 @@ class ColorFingering:
     def _get_lilypond_format(self):
         return self.markup._get_lilypond_format()
 
-    def _get_contributions(self, *, component=None, wrapper=None):
-        return self.markup._get_contributions(component=component, wrapper=wrapper)
+    def _get_contributions(self, *, wrapper=None):
+        return self.markup._get_contributions(wrapper=wrapper)
 
     @property
     def markup(self) -> typing.Optional["Markup"]:
@@ -1931,7 +1932,8 @@ class Dynamic:
                 string = f"{direction} {string}"
         return string
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         command = self._get_lilypond_format(wrapper=wrapper)
         if self.leak:
@@ -2397,7 +2399,7 @@ class Fermata:
     def _get_lilypond_format(self):
         return rf"\{self.command}"
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
@@ -2445,7 +2447,7 @@ class Glissando:
     def __post_init__(self):
         assert isinstance(self.zero_padding, bool), repr(self.zero_padding)
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         strings = []
@@ -2569,7 +2571,7 @@ class InstrumentName:
         result.append(string)
         return result
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         strings = self._get_lilypond_format()
@@ -2669,7 +2671,8 @@ class KeyCluster:
             self.hide_natural_markup
         )
 
-    def _get_contributions(self, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         contributions.grob_overrides.append(
@@ -2953,7 +2956,7 @@ class LilyPondLiteral:
         assert isinstance(self.site, str), repr(self.site)
         assert self.site in self.allowable_sites, repr(self.site)
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         if isinstance(self.argument, str):
@@ -3136,7 +3139,7 @@ class KeySignature:
         assert isinstance(self.mode, Mode), repr(self.mode)
         return rf"\key {self.tonic.name} \{self.mode.name}"
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
@@ -3211,7 +3214,7 @@ class LaissezVibrer:
     def _get_lilypond_format(self):
         return r"\laissezVibrer"
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
@@ -3352,7 +3355,8 @@ class Markup:
     def __post_init__(self):
         assert isinstance(self.string, str), repr(self.string)
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format(wrapper=wrapper)
@@ -3741,7 +3745,7 @@ class MetronomeMark:
         else:
             return r"\tempo \default"
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         if not self.hide:
@@ -4025,7 +4029,7 @@ class Ottava:
                 message += f"\n    {indicator!r} is already attached to {classname}."
                 raise Exception(message)
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         n = self.n or 0
@@ -4121,7 +4125,7 @@ class RehearsalMark:
             result = r"\mark \default"
         return result
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
@@ -4249,7 +4253,7 @@ class Repeat:
     def _get_lilypond_format(self):
         return rf"\repeat {self.repeat_type} {self.repeat_count}"
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
@@ -4400,7 +4404,8 @@ class RepeatTie:
             return [string]
         return True
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         strings = []
@@ -4475,7 +4480,7 @@ class ShortInstrumentName:
         assert isinstance(self.context, str), repr(self.context)
         assert isinstance(self.site, str), repr(self.site)
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         strings = self._get_lilypond_format()
@@ -4563,7 +4568,7 @@ class StaffChange:
             return r"\change Staff = ##f"
         return rf"\change Staff = {self.staff_name}"
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
@@ -4644,7 +4649,8 @@ class StartBeam:
             string = f"{symbol} {string}"
         return string
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         string = self._add_direction("[", wrapper)
         contributions.after.start_beam.append(string)
@@ -4690,7 +4696,7 @@ class StartGroup:
     site: typing.ClassVar[str] = "after"
     spanner_start: typing.ClassVar[bool] = True
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = r"\startGroup"
@@ -5109,7 +5115,8 @@ class StartHairpin:
             raise ValueError(self.shape)
         return strings
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         strings = self._get_lilypond_format(wrapper=wrapper)
@@ -5163,7 +5170,8 @@ class StartPhrasingSlur:
             string = f"{symbol} {string}"
         return string
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._add_direction(r"\(", wrapper=wrapper)
@@ -5247,7 +5255,7 @@ class StartPianoPedal:
     def __post_init__(self):
         assert self.kind in ("sustain", "sostenuto", "corda"), repr(self.kind)
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         if self.kind == "corda":
@@ -5396,7 +5404,8 @@ class StartSlur:
             string = f"{symbol} {string}"
         return string
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._add_direction("(", wrapper=wrapper)
@@ -5787,7 +5796,8 @@ class StartTextSpan:
         assert isinstance(self.command, str), repr(self.command)
         assert isinstance(self.style, str | None), repr(self.style)
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         if self.style is not None:
@@ -5984,7 +5994,8 @@ class StartTrillSpan:
         if self.pitch is not None:
             assert isinstance(self.pitch, _pitch.NamedPitch), repr(self.pitch)
 
-    def _get_contributions(self, *, component=None):
+    def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = r"\startTrillSpan"
@@ -5993,7 +6004,7 @@ class StartTrillSpan:
             if self.pitch:
                 pitch = self.pitch
             else:
-                pitch = component.written_pitch + self.interval
+                pitch = wrapper.component.written_pitch + self.interval
             string = string + f" {pitch.name}"
             if self.force_trill_pitch_head_accidental is True:
                 # LilyPond's TrillPitchHead does not obey LilyPond's \accidentalStyle;
@@ -6097,7 +6108,7 @@ class StemTremolo:
     def _get_lilypond_format(self):
         return f":{self.tremolo_flags!s}"
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
@@ -6174,7 +6185,7 @@ class StopBeam:
     site: typing.ClassVar[str] = "after"
     spanner_stop: typing.ClassVar[bool] = True
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = "]"
@@ -6288,7 +6299,7 @@ class StopGroup:
     spanner_stop: typing.ClassVar[bool] = True
     time_orientation: typing.ClassVar[_enums.Horizontal] = _enums.RIGHT
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = r"\stopGroup"
@@ -6368,7 +6379,7 @@ class StopHairpin:
     site: typing.ClassVar[str] = "after"
     spanner_stop: typing.ClassVar[bool] = True
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = r"\!"
@@ -6481,7 +6492,7 @@ class StopPhrasingSlur:
     site: typing.ClassVar[str] = "after"
     spanner_stop: typing.ClassVar[bool] = True
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = r"\)"
@@ -7154,8 +7165,8 @@ class Tie:
             return [string]
         return True
 
-    # def _get_contributions(self, *, component=None, wrapper=None):
     def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._add_direction("~", wrapper=wrapper)
@@ -7324,6 +7335,7 @@ class TimeSignature:
             assert isinstance(self.partial, _duration.Duration), repr(self.partial)
 
     def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         if not self.is_dyadic() and not self.hide:
@@ -7552,6 +7564,7 @@ class VoiceNumber:
         assert isinstance(self.leak, bool), repr(self.leak)
 
     def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         string = self._get_lilypond_format()
         if self.leak:

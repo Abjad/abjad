@@ -167,7 +167,7 @@ class Instrument:
             return string
         return True
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         strings = self._get_lilypond_format()

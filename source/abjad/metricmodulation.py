@@ -450,13 +450,11 @@ class MetricModulation:
         markup = self._get_markup()
         return markup.string
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
         contributions = _contributions.ContributionsBySite()
         if not self.hide:
             markup = self._get_markup()
-            contributions = markup._get_contributions(
-                component=component, wrapper=wrapper
-            )
+            contributions = markup._get_contributions(wrapper=wrapper)
         return contributions
 
     def _get_markup(self):

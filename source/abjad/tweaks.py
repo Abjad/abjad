@@ -106,16 +106,11 @@ class Bundle:
                 raise Exception(f"duplicate {attribute!r} attribute.")
         assert isinstance(self.comment, str | None), repr(self.comment)
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
         try:
             contributions = self.indicator._get_contributions(wrapper=wrapper)
         except TypeError:
-            if component is None and wrapper is not None:
-                component = wrapper.component
-            try:
-                contributions = self.indicator._get_contributions(component=component)
-            except TypeError:
-                contributions = self.indicator._get_contributions()
+            contributions = self.indicator._get_contributions()
         lists = contributions.get_contribution_lists()
         if len(lists) == 2 and ["<>"] in lists:
             lists.remove(["<>"])
