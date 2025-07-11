@@ -103,7 +103,7 @@ class Arpeggio:
     def _get_lilypond_format(self):
         return r"\arpeggio"
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         site.articulations.append(r"\arpeggio")
@@ -199,7 +199,7 @@ class Articulation:
         else:
             return ""
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format(wrapper=wrapper)
@@ -281,7 +281,7 @@ class BarLine:
     def _get_lilypond_format(self):
         return rf'\bar "{self.abbreviation}"'
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self, *, component=None):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
@@ -779,6 +779,7 @@ class Clef:
         return rf'\clef "{self.name}"'
 
     def _get_contributions(self, component=None):
+        # breakpoint()
         contributions = _contributions.ContributionsBySite()
         if not self.hide:
             site = getattr(contributions, self.site)
@@ -1915,6 +1916,7 @@ class Dynamic:
         return string
 
     def _get_lilypond_format(self, *, wrapper=None):
+        # breakpoint()
         if self.command:
             string = self.command
         elif self.is_effort():
@@ -6601,7 +6603,7 @@ class StopPianoPedal:
         assert self.kind in ("sustain", "sostenuto", "corda")
         assert isinstance(self.leak, bool), repr(self.leak)
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         if self.kind == "corda":
@@ -6725,7 +6727,7 @@ class StopSlur:
     def __post_init__(self):
         assert isinstance(self.leak, bool), repr(self.leak)
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = ")"
@@ -6829,7 +6831,7 @@ class StopTextSpan:
         assert self.command.startswith("\\"), repr(self.command)
         assert isinstance(self.leak, bool), repr(self.leak)
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self.command
@@ -6913,7 +6915,7 @@ class StopTrillSpan:
     def __post_init__(self):
         assert isinstance(self.leak, bool), repr(self.leak)
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = r"\stopTrillSpan"
@@ -7023,7 +7025,7 @@ class TextMark:
     def _get_lilypond_format(self):
         return self.string
 
-    def _get_contributions(self, component=None):
+    def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._get_lilypond_format()
@@ -7152,7 +7154,8 @@ class Tie:
             return [string]
         return True
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    # def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         string = self._add_direction("~", wrapper=wrapper)
@@ -7320,7 +7323,7 @@ class TimeSignature:
         if self.partial is not None:
             assert isinstance(self.partial, _duration.Duration), repr(self.partial)
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         if not self.is_dyadic() and not self.hide:
@@ -7548,7 +7551,7 @@ class VoiceNumber:
         assert self.n in (1, 2, 3, 4, None), repr(self.n)
         assert isinstance(self.leak, bool), repr(self.leak)
 
-    def _get_contributions(self, *, component=None, wrapper=None):
+    def _get_contributions(self, *, wrapper=None):
         contributions = _contributions.ContributionsBySite()
         string = self._get_lilypond_format()
         if self.leak:
