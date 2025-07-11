@@ -574,7 +574,7 @@ class Meter:
             >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
             >>> meter = abjad.Meter(rtc)
             >>> meter.implied_time_signature
-            TimeSignature(pair=(4, 4), hide=False, partial=None)
+            TimeSignature(pair=(4, 4), partial=None)
 
         """
         pair = self.root_node.pair
@@ -816,10 +816,10 @@ class Meter:
             >>> for meter in abjad.Meter.fit_meters(offset_counter, meters):
             ...     print(meter.implied_time_signature)
             ...
-            TimeSignature(pair=(4, 4), hide=False, partial=None)
-            TimeSignature(pair=(4, 4), hide=False, partial=None)
-            TimeSignature(pair=(4, 4), hide=False, partial=None)
-            TimeSignature(pair=(4, 4), hide=False, partial=None)
+            TimeSignature(pair=(4, 4), partial=None)
+            TimeSignature(pair=(4, 4), partial=None)
+            TimeSignature(pair=(4, 4), partial=None)
+            TimeSignature(pair=(4, 4), partial=None)
 
         ..  container:: example
 
@@ -831,11 +831,11 @@ class Meter:
             >>> for meter in abjad.Meter.fit_meters(offset_counter, meters):
             ...     print(meter.implied_time_signature)
             ...
-            TimeSignature(pair=(3, 4), hide=False, partial=None)
-            TimeSignature(pair=(4, 4), hide=False, partial=None)
-            TimeSignature(pair=(3, 4), hide=False, partial=None)
-            TimeSignature(pair=(5, 4), hide=False, partial=None)
-            TimeSignature(pair=(5, 4), hide=False, partial=None)
+            TimeSignature(pair=(3, 4), partial=None)
+            TimeSignature(pair=(4, 4), partial=None)
+            TimeSignature(pair=(3, 4), partial=None)
+            TimeSignature(pair=(5, 4), partial=None)
+            TimeSignature(pair=(5, 4), partial=None)
 
         """
         assert all(isinstance(_, Meter) for _ in meters), repr(meters)

@@ -339,7 +339,6 @@ class MetricModulation:
 
     left_rhythm: typing.Any
     right_rhythm: typing.Any
-    hide: bool = False
     left_markup: _indicators.Markup | None = None
     right_markup: _indicators.Markup | None = None
     scale: tuple[int | float, int | float] = (1, 1)
@@ -347,7 +346,6 @@ class MetricModulation:
     directed: typing.ClassVar[bool] = True
 
     def __post_init__(self):
-        assert isinstance(self.hide, bool), repr(self.hide)
         if self.left_markup is not None:
             assert isinstance(self.left_markup, _indicators.Markup), repr(
                 self.left_markup
@@ -452,7 +450,7 @@ class MetricModulation:
 
     def _get_contributions(self, *, wrapper=None):
         contributions = _contributions.ContributionsBySite()
-        if not self.hide:
+        if wrapper.hide is False:
             markup = self._get_markup()
             contributions = markup._get_contributions(wrapper=wrapper)
         return contributions
