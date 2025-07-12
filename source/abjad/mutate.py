@@ -1499,9 +1499,9 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
         >>> for leaf in staff:
         ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
-        (Note("c'2"), Clef(name='alto', hide=False))
-        (Note("f'4"), Clef(name='alto', hide=False))
-        (Note("g'4"), Clef(name='alto', hide=False))
+        (Note("c'2"), Clef(name='alto'))
+        (Note("f'4"), Clef(name='alto'))
+        (Note("g'4"), Clef(name='alto'))
 
         >>> chord = abjad.Chord("<d' e'>2")
         >>> abjad.mutate.replace(staff[0], chord)
@@ -1553,9 +1553,9 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
         >>> for leaf in staff:
         ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
-        (Note("c'2"), Clef(name='alto', hide=False))
-        (Note("f'4"), Clef(name='alto', hide=False))
-        (Note("g'4"), Clef(name='alto', hide=False))
+        (Note("c'2"), Clef(name='alto'))
+        (Note("f'4"), Clef(name='alto'))
+        (Note("g'4"), Clef(name='alto'))
 
         >>> chord = abjad.Chord("<d' e'>2")
         >>> abjad.mutate.replace(staff[0], chord, wrappers=True)
@@ -1576,9 +1576,9 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
         >>> for leaf in staff:
         ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
-        (Chord("<d' e'>2"), Clef(name='alto', hide=False))
-        (Note("f'4"), Clef(name='alto', hide=False))
-        (Note("g'4"), Clef(name='alto', hide=False))
+        (Chord("<d' e'>2"), Clef(name='alto'))
+        (Note("f'4"), Clef(name='alto'))
+        (Note("g'4"), Clef(name='alto'))
 
         >>> abjad.wf.is_wellformed(staff)
         True
@@ -2483,14 +2483,14 @@ def swap(argument, container):
         ...     time_signature = abjad.get.effective_indicator(component, prototype)
         ...     print(component, time_signature)
         ...
-        Voice("{ 6:4 c'4 d'4 e'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 4), hide=False, partial=None)
-        Tuplet('6:4', "c'4 d'4 e'4 d'4 e'4 f'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
-        Note("c'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
-        Note("d'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
-        Note("e'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
-        Note("d'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
-        Note("e'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
-        Note("f'4") TimeSignature(pair=(3, 4), hide=False, partial=None)
+        Voice("{ 6:4 c'4 d'4 e'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 4), partial=None)
+        Tuplet('6:4', "c'4 d'4 e'4 d'4 e'4 f'4") TimeSignature(pair=(3, 4), partial=None)
+        Note("c'4") TimeSignature(pair=(3, 4), partial=None)
+        Note("d'4") TimeSignature(pair=(3, 4), partial=None)
+        Note("e'4") TimeSignature(pair=(3, 4), partial=None)
+        Note("d'4") TimeSignature(pair=(3, 4), partial=None)
+        Note("e'4") TimeSignature(pair=(3, 4), partial=None)
+        Note("f'4") TimeSignature(pair=(3, 4), partial=None)
 
     """
     if isinstance(argument, list):
@@ -2778,12 +2778,12 @@ def wrap(argument, container):
         ...     time_signature = abjad.get.effective_indicator(component, prototype)
         ...     print(component, time_signature)
         ...
-        Staff("{ c'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 8), hide=False, partial=None)
-        Container("c'4 d'4 e'4 f'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
-        Note("c'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
-        Note("d'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
-        Note("e'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
-        Note("f'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Staff("{ c'4 d'4 e'4 f'4 }") TimeSignature(pair=(3, 8), partial=None)
+        Container("c'4 d'4 e'4 f'4") TimeSignature(pair=(3, 8), partial=None)
+        Note("c'4") TimeSignature(pair=(3, 8), partial=None)
+        Note("d'4") TimeSignature(pair=(3, 8), partial=None)
+        Note("e'4") TimeSignature(pair=(3, 8), partial=None)
+        Note("f'4") TimeSignature(pair=(3, 8), partial=None)
 
     """
     if not isinstance(container, _score.Container) or 0 < len(container):

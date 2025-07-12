@@ -934,17 +934,17 @@ def effective_indicator(
         BeforeGraceContainer("cs'16")  None
         Note("cs'16")                  None
         Note("d'4")                    None
-        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") Clef(name='alto', hide=False)
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Clef(name='alto', hide=False)
-        Chord("<e' g'>16")             Clef(name='alto', hide=False)
-        Note("gs'16")                  Clef(name='alto', hide=False)
-        Note("a'16")                   Clef(name='alto', hide=False)
-        Note("as'16")                  Clef(name='alto', hide=False)
-        Voice("e'4", name='MusicVoice') Clef(name='alto', hide=False)
-        Note("e'4")                    Clef(name='alto', hide=False)
-        Note("f'4")                    Clef(name='alto', hide=False)
-        AfterGraceContainer("fs'16")   Clef(name='alto', hide=False)
-        Note("fs'16")                  Clef(name='alto', hide=False)
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") Clef(name='alto')
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Clef(name='alto')
+        Chord("<e' g'>16")             Clef(name='alto')
+        Note("gs'16")                  Clef(name='alto')
+        Note("a'16")                   Clef(name='alto')
+        Note("as'16")                  Clef(name='alto')
+        Voice("e'4", name='MusicVoice') Clef(name='alto')
+        Note("e'4")                    Clef(name='alto')
+        Note("f'4")                    Clef(name='alto')
+        AfterGraceContainer("fs'16")   Clef(name='alto')
+        Note("fs'16")                  Clef(name='alto')
 
     ..  container:: example
 
@@ -986,9 +986,9 @@ def effective_indicator(
         Note("c'4")                    None
         Note("d'4")                    None
         Note("e'4")                    None
-        IndependentAfterGraceContainer("gf'16") Clef(name='alto', hide=False)
-        Note("gf'16")                  Clef(name='alto', hide=False)
-        Note("f'4")                    Clef(name='alto', hide=False)
+        IndependentAfterGraceContainer("gf'16") Clef(name='alto')
+        Note("gf'16")                  Clef(name='alto')
+        Note("f'4")                    Clef(name='alto')
 
     ..  container:: example
 
@@ -1031,10 +1031,10 @@ def effective_indicator(
         Note("c'16")                   None
         Note("e'16")                   None
         Note("cs'4")                   None
-        TremoloContainer("d'16 f'16")  Clef(name='alto', hide=False)
-        Note("d'16")                   Clef(name='alto', hide=False)
-        Note("f'16")                   Clef(name='alto', hide=False)
-        Note("ds'4")                   Clef(name='alto', hide=False)
+        TremoloContainer("d'16 f'16")  Clef(name='alto')
+        Note("d'16")                   Clef(name='alto')
+        Note("f'16")                   Clef(name='alto')
+        Note("ds'4")                   Clef(name='alto')
 
     ..  container:: example
 
@@ -1138,8 +1138,9 @@ def effective_indicator(
 
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> abjad.attach(
-        ...     abjad.Clef("treble", hide=True),
+        ...     abjad.Clef("treble"),
         ...     staff[0],
+        ...     hide=True,
         ...     synthetic_offset=abjad.Offset(-1),
         ... )
         >>> abjad.attach(abjad.Clef("alto"), staff[0])
@@ -1162,16 +1163,16 @@ def effective_indicator(
         ...     clef = abjad.get.effective_indicator(leaf, abjad.Clef)
         ...     (leaf, clef)
         ...
-        (Note("c'4"), Clef(name='alto', hide=False))
-        (Note("d'4"), Clef(name='alto', hide=False))
-        (Note("e'4"), Clef(name='alto', hide=False))
-        (Note("f'4"), Clef(name='alto', hide=False))
+        (Note("c'4"), Clef(name='alto'))
+        (Note("d'4"), Clef(name='alto'))
+        (Note("e'4"), Clef(name='alto'))
+        (Note("f'4"), Clef(name='alto'))
 
         >>> abjad.get.effective_indicator(staff[0], abjad.Clef)
-        Clef(name='alto', hide=False)
+        Clef(name='alto')
 
         >>> abjad.get.effective_indicator(staff[0], abjad.Clef, n=-1)
-        Clef(name='treble', hide=True)
+        Clef(name='treble')
 
         >>> abjad.get.effective_indicator(staff[0], abjad.Clef, n=-2) is None
         True
@@ -1183,10 +1184,11 @@ def effective_indicator(
         >>> staff = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> abjad.attach(abjad.Clef("treble"), staff[0])
         >>> abjad.attach(
-        ...     abjad.Clef("alto", hide=True),
+        ...     abjad.Clef("alto"),
         ...     staff[-1],
+        ...     hide=True,
         ...     synthetic_offset=abjad.Offset(1),
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -1206,16 +1208,16 @@ def effective_indicator(
         ...     clef = abjad.get.effective_indicator(leaf, abjad.Clef)
         ...     (leaf, clef)
         ...
-        (Note("c'4"), Clef(name='treble', hide=False))
-        (Note("d'4"), Clef(name='treble', hide=False))
-        (Note("e'4"), Clef(name='treble', hide=False))
-        (Note("f'4"), Clef(name='treble', hide=False))
+        (Note("c'4"), Clef(name='treble'))
+        (Note("d'4"), Clef(name='treble'))
+        (Note("e'4"), Clef(name='treble'))
+        (Note("f'4"), Clef(name='treble'))
 
         >>> abjad.get.effective_indicator(staff[-1], abjad.Clef)
-        Clef(name='treble', hide=False)
+        Clef(name='treble')
 
         >>> abjad.get.effective_indicator(staff[-1], abjad.Clef, n=1)
-        Clef(name='alto', hide=True)
+        Clef(name='alto')
 
         >>> abjad.get.effective_indicator(staff[-1], abjad.Clef, n=2) is None
         True
@@ -1248,11 +1250,11 @@ def effective_indicator(
         ...     time_signature = abjad.get.effective_indicator(component, prototype)
         ...     print(component, time_signature)
         ...
-        Staff("c'4 d'4 e'4 f'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
-        Note("c'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
-        Note("d'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
-        Note("e'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
-        Note("f'4") TimeSignature(pair=(3, 8), hide=False, partial=None)
+        Staff("c'4 d'4 e'4 f'4") TimeSignature(pair=(3, 8), partial=None)
+        Note("c'4") TimeSignature(pair=(3, 8), partial=None)
+        Note("d'4") TimeSignature(pair=(3, 8), partial=None)
+        Note("e'4") TimeSignature(pair=(3, 8), partial=None)
+        Note("f'4") TimeSignature(pair=(3, 8), partial=None)
 
     ..  container:: example
 
@@ -1617,27 +1619,27 @@ def effective_wrapper(
         Note("d'4")
             None
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }")
-            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
+            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto'), synthetic_offset=None, tag=Tag(string=''))
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16")
-            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
+            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto'), synthetic_offset=None, tag=Tag(string=''))
         Chord("<e' g'>16")
-            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
+            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto'), synthetic_offset=None, tag=Tag(string=''))
         Note("gs'16")
-            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
+            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto'), synthetic_offset=None, tag=Tag(string=''))
         Note("a'16")
-            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
+            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto'), synthetic_offset=None, tag=Tag(string=''))
         Note("as'16")
-            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
+            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto'), synthetic_offset=None, tag=Tag(string=''))
         Voice("e'4", name='MusicVoice')
-            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
+            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto'), synthetic_offset=None, tag=Tag(string=''))
         Note("e'4")
-            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
+            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto'), synthetic_offset=None, tag=Tag(string=''))
         Note("f'4")
-            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
+            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto'), synthetic_offset=None, tag=Tag(string=''))
         AfterGraceContainer("fs'16")
-            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
+            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto'), synthetic_offset=None, tag=Tag(string=''))
         Note("fs'16")
-            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string=''))
+            Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto'), synthetic_offset=None, tag=Tag(string=''))
 
     """
     if attributes is not None:
@@ -2183,7 +2185,7 @@ def indicator(
         Note("d'4")                    None
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") None
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") None
-        Chord("<e' g'>16")             Clef(name='alto', hide=False)
+        Chord("<e' g'>16")             Clef(name='alto')
         Note("gs'16")                  None
         Note("a'16")                   None
         Note("as'16")                  None
@@ -2235,7 +2237,7 @@ def indicator(
         Note("e'16")                   None
         Note("cs'4")                   None
         TremoloContainer("d'16 f'16")  None
-        Note("d'16")                   Clef(name='alto', hide=False)
+        Note("d'16")                   Clef(name='alto')
         Note("f'16")                   None
         Note("ds'4")                   None
 
@@ -2363,7 +2365,7 @@ def indicators(
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
             []
         Chord("<e' g'>16"):
-            [LilyPondLiteral(argument='\\set fontSize = #-3', site='before', directed=False), StartBeam(), LilyPondLiteral(argument='\\slash', site='before', directed=False), StartSlur(), VoiceNumber(n=1, leak=False), Clef(name='alto', hide=False), Articulation(name='>')]
+            [LilyPondLiteral(argument='\\set fontSize = #-3', site='before', directed=False), StartBeam(), LilyPondLiteral(argument='\\slash', site='before', directed=False), StartSlur(), VoiceNumber(n=1, leak=False), Clef(name='alto'), Articulation(name='>')]
         Note("gs'16"):
             [Articulation(name='.')]
         Note("a'16"):
@@ -2432,7 +2434,7 @@ def indicators(
         Note("e'16")                   [Articulation(name='.')]
         Note("cs'4")                   [Articulation(name='.')]
         TremoloContainer("d'16 f'16")  []
-        Note("d'16")                   [Clef(name='alto', hide=False), Articulation(name='.')]
+        Note("d'16")                   [Clef(name='alto'), Articulation(name='.')]
         Note("f'16")                   [Articulation(name='.')]
         Note("ds'4")                   [Articulation(name='.')]
 

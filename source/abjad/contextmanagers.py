@@ -144,9 +144,9 @@ class ForbidUpdate:
             ...         print(abjad.get.effective_indicator(note, abjad.Clef))
             ...
             Note("c'4")
-            Clef(name='alto', hide=False)
+            Clef(name='alto')
             Note("d'4")
-            Clef(name='alto', hide=False)
+            Clef(name='alto')
 
         """
         for component_ in _iterate.components(self.component):

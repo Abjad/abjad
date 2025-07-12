@@ -14,7 +14,7 @@ from . import tweaks as _tweaks
 from . import wrapper as _wrapper
 
 
-def _before_attach(indicator, context, deactivate, component):
+def _before_attach(indicator, context, deactivate, hide, synthetic_offset, component):
     if getattr(indicator, "temporarily_do_not_check", False) is True:
         return
     if hasattr(indicator, "allowable_sites"):
@@ -42,6 +42,8 @@ def _before_attach(indicator, context, deactivate, component):
         return
     if deactivate is True:
         return
+    if synthetic_offset is not None:
+        return
     for wrapper in component._get_wrappers():
         if not isinstance(wrapper.unbundle_indicator(), type(indicator)):
             continue
@@ -58,6 +60,8 @@ def _before_attach(indicator, context, deactivate, component):
             if hasattr(indicator, "hide"):
                 if indicator.hide != wrapper.unbundle_indicator().hide:
                     continue
+            if hide != wrapper.hide:
+                continue
             if getattr(indicator, "site", None) != getattr(
                 wrapper.unbundle_indicator(), "site", None
             ):
@@ -318,10 +322,10 @@ def attach(
         >>> for leaf in abjad.select.leaves(staff):
         ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
-        (Note("c'4"), Clef(name='alto', hide=False))
-        (Note("d'4"), Clef(name='alto', hide=False))
-        (Note("e'4"), Clef(name='alto', hide=False))
-        (Note("f'4"), Clef(name='alto', hide=False))
+        (Note("c'4"), Clef(name='alto'))
+        (Note("d'4"), Clef(name='alto'))
+        (Note("e'4"), Clef(name='alto'))
+        (Note("f'4"), Clef(name='alto'))
 
         This example sets ``context="MusicStaff"`` to show that the alto clef
         governs all notes in a custom staff context (rather than the default
@@ -352,10 +356,10 @@ def attach(
         >>> for leaf in abjad.select.leaves(staff):
         ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
-        (Note("c'4"), Clef(name='alto', hide=False))
-        (Note("d'4"), Clef(name='alto', hide=False))
-        (Note("e'4"), Clef(name='alto', hide=False))
-        (Note("f'4"), Clef(name='alto', hide=False))
+        (Note("c'4"), Clef(name='alto'))
+        (Note("d'4"), Clef(name='alto'))
+        (Note("e'4"), Clef(name='alto'))
+        (Note("f'4"), Clef(name='alto'))
 
     ..  container:: example
 
@@ -404,10 +408,10 @@ def attach(
         ...     clef = abjad.get.effective_indicator(staff[0], abjad.Clef)
         ...     note, clef
         ...
-        (Note("c'4"), Clef(name='treble', hide=False))
-        (Note("d'4"), Clef(name='treble', hide=False))
-        (Note("e'4"), Clef(name='treble', hide=False))
-        (Note("f'4"), Clef(name='treble', hide=False))
+        (Note("c'4"), Clef(name='treble'))
+        (Note("d'4"), Clef(name='treble'))
+        (Note("e'4"), Clef(name='treble'))
+        (Note("f'4"), Clef(name='treble'))
 
         But a lone inactivate indicator is effective when no active indicator
         is present. Note that ``tag`` must be an ``abjad.Tag`` when
@@ -441,10 +445,10 @@ def attach(
         ...     clef = abjad.get.effective_indicator(staff[0], abjad.Clef)
         ...     note, clef
         ...
-        (Note("c'4"), Clef(name='alto', hide=False))
-        (Note("d'4"), Clef(name='alto', hide=False))
-        (Note("e'4"), Clef(name='alto', hide=False))
-        (Note("f'4"), Clef(name='alto', hide=False))
+        (Note("c'4"), Clef(name='alto'))
+        (Note("d'4"), Clef(name='alto'))
+        (Note("e'4"), Clef(name='alto'))
+        (Note("f'4"), Clef(name='alto'))
 
     """
     if isinstance(indicator, _tweaks.Bundle):
@@ -454,7 +458,10 @@ def attach(
     assert not isinstance(nonbundle_indicator, _tweaks.Bundle)
     assert nonbundle_indicator is not None, repr(nonbundle_indicator)
     assert isinstance(component, _score.Component), repr(component)
-    _before_attach(nonbundle_indicator, context, deactivate, component)
+    assert isinstance(hide, bool), repr(hide)
+    _before_attach(
+        nonbundle_indicator, context, deactivate, hide, synthetic_offset, component
+    )
     _unsafe_attach(
         indicator,
         component,
@@ -674,7 +681,7 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
 
         >>> wrapper = abjad.get.wrappers(staff[0])[0]
         >>> abjad.detach(wrapper, wrapper.component)
-        (Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto', hide=False), synthetic_offset=None, tag=Tag(string='')),)
+        (Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto'), synthetic_offset=None, tag=Tag(string='')),)
 
         >>> abjad.show(staff) # doctest: +SKIP
 

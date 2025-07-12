@@ -643,20 +643,20 @@ class Clef:
         >>> for leaf in abjad.select.leaves(voice_1):
         ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
-        (Note("e'8"), Clef(name='treble', hide=False))
-        (Note("g'8"), Clef(name='treble', hide=False))
-        (Note("f'8"), Clef(name='treble', hide=False))
-        (Note("a'8"), Clef(name='treble', hide=False))
-        (Note("g'8"), Clef(name='treble', hide=False))
-        (Note("b'8"), Clef(name='treble', hide=False))
+        (Note("e'8"), Clef(name='treble'))
+        (Note("g'8"), Clef(name='treble'))
+        (Note("f'8"), Clef(name='treble'))
+        (Note("a'8"), Clef(name='treble'))
+        (Note("g'8"), Clef(name='treble'))
+        (Note("b'8"), Clef(name='treble'))
 
         >>> for leaf in abjad.select.leaves(voice_2):
         ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
-        (Note("c'4."), Clef(name='treble', hide=False))
-        (Note('c,8'), Clef(name='bass', hide=False))
-        (Note('b,,8'), Clef(name='bass', hide=False))
-        (Note('a,,8'), Clef(name='bass', hide=False))
+        (Note("c'4."), Clef(name='treble'))
+        (Note('c,8'), Clef(name='bass'))
+        (Note('b,,8'), Clef(name='bass'))
+        (Note('a,,8'), Clef(name='bass'))
 
     ..  container:: example
 
@@ -675,7 +675,7 @@ class Clef:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Clef("treble"), staff[0])
-        >>> abjad.attach(abjad.Clef("alto", hide=True), staff[2])
+        >>> abjad.attach(abjad.Clef("alto"), staff[2], hide=True)
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> string = abjad.lilypond(staff)
@@ -692,15 +692,14 @@ class Clef:
         >>> for leaf in abjad.iterate.leaves(staff):
         ...     leaf, abjad.get.effective_indicator(leaf, abjad.Clef)
         ...
-        (Note("c'4"), Clef(name='treble', hide=False))
-        (Note("d'4"), Clef(name='treble', hide=False))
-        (Note("e'4"), Clef(name='alto', hide=True))
-        (Note("f'4"), Clef(name='alto', hide=True))
+        (Note("c'4"), Clef(name='treble'))
+        (Note("d'4"), Clef(name='treble'))
+        (Note("e'4"), Clef(name='alto'))
+        (Note("f'4"), Clef(name='alto'))
 
     """
 
     name: str = "treble"
-    hide: bool = dataclasses.field(compare=False, default=False)
 
     context: typing.ClassVar[str] = "Staff"
     # find_context_on_attach: typing.ClassVar[bool] = True
@@ -736,7 +735,6 @@ class Clef:
 
     def __post_init__(self):
         assert isinstance(self.name, str), repr(self.name)
-        assert isinstance(self.hide, bool), repr(self.hide)
 
     def _calculate_middle_c_position(self, clef_name):
         alteration = 0
@@ -777,16 +775,17 @@ class Clef:
             "tab": None,
         }[clef_name]
 
-    def _get_lilypond_format(self):
-        return rf'\clef "{self.name}"'
-
-    def _get_contributions(self):
+    def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
-        if not self.hide:
+        if wrapper.hide is False:
             site = getattr(contributions, self.site)
             string = self._get_lilypond_format()
             site.commands.append(string)
         return contributions
+
+    def _get_lilypond_format(self):
+        return rf'\clef "{self.name}"'
 
     @classmethod
     def from_pitches(class_, pitches) -> "Clef":
@@ -802,7 +801,7 @@ class Clef:
             >>> staff = abjad.Staff(notes)
             >>> pitches = abjad.iterate.pitches(staff)
             >>> abjad.Clef.from_pitches(pitches)
-            Clef(name='bass', hide=False)
+            Clef(name='bass')
 
             Chooses between treble and bass based on minimal number of ledger lines.
 
@@ -1256,15 +1255,15 @@ class Dynamic:
         ...     print(f"{leaf!r}:")
         ...     print(f"    {dynamic!r}")
         Note("e'8"):
-            Dynamic(name='f', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
+            Dynamic(name='f', command=None, leak=False, name_is_textual=False, ordinal=None)
         Note("g'8"):
-            Dynamic(name='f', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
+            Dynamic(name='f', command=None, leak=False, name_is_textual=False, ordinal=None)
         Note("f'8"):
-            Dynamic(name='f', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
+            Dynamic(name='f', command=None, leak=False, name_is_textual=False, ordinal=None)
         Note("a'8"):
-            Dynamic(name='f', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
+            Dynamic(name='f', command=None, leak=False, name_is_textual=False, ordinal=None)
         Note("c'2"):
-            Dynamic(name='mf', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
+            Dynamic(name='mf', command=None, leak=False, name_is_textual=False, ordinal=None)
 
     ..  container:: example exception
 
@@ -1457,7 +1456,7 @@ class Dynamic:
 
         >>> voice = abjad.Voice("c'4 d' e' f'")
         >>> abjad.attach(abjad.Dynamic("f"), voice[0])
-        >>> abjad.attach(abjad.Dynamic("mf", hide=True), voice[2])
+        >>> abjad.attach(abjad.Dynamic("mf"), voice[2], hide=True)
         >>> abjad.show(voice) # doctest: +SKIP
 
         >>> string = abjad.lilypond(voice)
@@ -1476,13 +1475,13 @@ class Dynamic:
         ...     print(f"{leaf!r}:")
         ...     print(f"    {dynamic!r}")
         Note("c'4"):
-            Dynamic(name='f', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
+            Dynamic(name='f', command=None, leak=False, name_is_textual=False, ordinal=None)
         Note("d'4"):
-            Dynamic(name='f', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
+            Dynamic(name='f', command=None, leak=False, name_is_textual=False, ordinal=None)
         Note("e'4"):
-            Dynamic(name='mf', command=None, hide=True, leak=False, name_is_textual=False, ordinal=None)
+            Dynamic(name='mf', command=None, leak=False, name_is_textual=False, ordinal=None)
         Note("f'4"):
-            Dynamic(name='mf', command=None, hide=True, leak=False, name_is_textual=False, ordinal=None)
+            Dynamic(name='mf', command=None, leak=False, name_is_textual=False, ordinal=None)
 
     ..  container:: example
 
@@ -1642,7 +1641,7 @@ class Dynamic:
         >>> import copy
         >>> dynamic = abjad.Dynamic("pp", leak=True)
         >>> copy.copy(dynamic)
-        Dynamic(name='pp', command=None, hide=False, leak=True, name_is_textual=False, ordinal=None)
+        Dynamic(name='pp', command=None, leak=True, name_is_textual=False, ordinal=None)
 
     ..  container:: example
 
@@ -1714,13 +1713,12 @@ class Dynamic:
         >>> import dataclasses
         >>> dynamic = abjad.Dynamic("appena udibile", name_is_textual=True)
         >>> dataclasses.replace(dynamic)
-        Dynamic(name='appena udibile', command=None, hide=False, leak=False, name_is_textual=True, ordinal=None)
+        Dynamic(name='appena udibile', command=None, leak=False, name_is_textual=True, ordinal=None)
 
     """
 
     name: "str" = "f"
     command: str | None = None
-    hide: bool = dataclasses.field(compare=False, default=False)
     leak: bool = dataclasses.field(compare=False, default=False)
     name_is_textual: bool = False
     ordinal: int | _math.Infinity | _math.NegativeInfinity | None = None
@@ -1743,7 +1741,6 @@ class Dynamic:
         if self.command is not None:
             assert isinstance(self.command, str), repr(self.command)
             assert self.command.startswith("\\"), repr(self.command)
-        assert isinstance(self.hide, bool), repr(self.hide)
         assert isinstance(self.leak, bool), repr(self.leak)
         assert isinstance(self.name_is_textual, bool), repr(self.name_is_textual)
         if self.ordinal is not None:
@@ -1916,8 +1913,20 @@ class Dynamic:
         string = f"{direction} #(make-dynamic-script {string})"
         return string
 
+    def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
+        contributions = _contributions.ContributionsBySite()
+        command = self._get_lilypond_format(wrapper=wrapper)
+        if self.leak:
+            contributions.after.leak.append(_EMPTY_CHORD)
+            if wrapper.hide is False:
+                contributions.after.leaks.append(command)
+        else:
+            if wrapper.hide is False:
+                contributions.after.articulations.append(command)
+        return contributions
+
     def _get_lilypond_format(self, *, wrapper=None):
-        # breakpoint()
         if self.command:
             string = self.command
         elif self.is_effort():
@@ -1931,19 +1940,6 @@ class Dynamic:
                 direction = _string.to_tridirectional_lilypond_symbol(direction_)
                 string = f"{direction} {string}"
         return string
-
-    def _get_contributions(self, *, wrapper=None):
-        assert wrapper is not None
-        contributions = _contributions.ContributionsBySite()
-        command = self._get_lilypond_format(wrapper=wrapper)
-        if self.leak:
-            contributions.after.leak.append(_EMPTY_CHORD)
-            if not self.hide:
-                contributions.after.leaks.append(command)
-        else:
-            if not self.hide:
-                contributions.after.articulations.append(command)
-        return contributions
 
     def get_ordinal(self) -> int | _math.Infinity | _math.NegativeInfinity | None:
         """
@@ -3587,11 +3583,8 @@ class MetronomeMark:
         >>> score = abjad.Score([staff])
         >>> metronome_mark_1 = abjad.MetronomeMark(abjad.Duration(1, 4), 72)
         >>> abjad.attach(metronome_mark_1, staff[0])
-        >>> metronome_mark_2 = abjad.MetronomeMark(
-        ...     textual_indication="Allegro",
-        ...     hide=True,
-        ... )
-        >>> abjad.attach(metronome_mark_2, staff[2])
+        >>> metronome_mark_2 = abjad.MetronomeMark(textual_indication="Allegro")
+        >>> abjad.attach(metronome_mark_2, staff[2], hide=True)
         >>> abjad.show(score) # doctest: +SKIP
 
         >>> string = abjad.lilypond(score)
@@ -3612,10 +3605,10 @@ class MetronomeMark:
         ...     prototype = abjad.MetronomeMark
         ...     leaf, abjad.get.effective_indicator(leaf, prototype)
         ...
-        (Note("c'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72, textual_indication=None, custom_markup=None, decimal=False, hide=False))
-        (Note("d'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72, textual_indication=None, custom_markup=None, decimal=False, hide=False))
-        (Note("e'4"), MetronomeMark(reference_duration=None, units_per_minute=None, textual_indication='Allegro', custom_markup=None, decimal=False, hide=True))
-        (Note("f'4"), MetronomeMark(reference_duration=None, units_per_minute=None, textual_indication='Allegro', custom_markup=None, decimal=False, hide=True))
+        (Note("c'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72, textual_indication=None, custom_markup=None, decimal=False))
+        (Note("d'4"), MetronomeMark(reference_duration=Duration(1, 4), units_per_minute=72, textual_indication=None, custom_markup=None, decimal=False))
+        (Note("e'4"), MetronomeMark(reference_duration=None, units_per_minute=None, textual_indication='Allegro', custom_markup=None, decimal=False))
+        (Note("f'4"), MetronomeMark(reference_duration=None, units_per_minute=None, textual_indication='Allegro', custom_markup=None, decimal=False))
 
     ..  container:: example
 
@@ -3660,7 +3653,6 @@ class MetronomeMark:
     textual_indication: str | None = None
     custom_markup: Markup | None = None
     decimal: bool | str = False
-    hide: bool = dataclasses.field(compare=False, default=False)
 
     context: typing.ClassVar[str] = "Score"
     # TODO: make this work:
@@ -3691,7 +3683,6 @@ class MetronomeMark:
             assert isinstance(self.custom_markup, Markup)
         if self.decimal is not None:
             assert isinstance(self.decimal, bool | str), repr(self.decimal)
-        assert isinstance(self.hide, bool), repr(self.hide)
 
     def __lt__(self, argument) -> bool:
         """
@@ -3730,6 +3721,15 @@ class MetronomeMark:
         string = f"{self._dotted}={self.units_per_minute}"
         return string
 
+    def _get_contributions(self, *, wrapper=None):
+        assert wrapper is not None
+        contributions = _contributions.ContributionsBySite()
+        site = getattr(contributions, self.site)
+        if wrapper.hide is False:
+            string = self._get_lilypond_format()
+            site.commands.append(string)
+        return contributions
+
     def _get_lilypond_format(self):
         equation = None
         if self.reference_duration is not None and self.units_per_minute is not None:
@@ -3744,14 +3744,6 @@ class MetronomeMark:
             return rf"\tempo {self.textual_indication}"
         else:
             return r"\tempo \default"
-
-    def _get_contributions(self):
-        contributions = _contributions.ContributionsBySite()
-        site = getattr(contributions, self.site)
-        if not self.hide:
-            string = self._get_lilypond_format()
-            site.commands.append(string)
-        return contributions
 
     def _get_markup(self):
         if self.custom_markup is not None:
@@ -7291,8 +7283,8 @@ class TimeSignature:
         >>> score = abjad.Score([staff], name="Score")
         >>> time_signature = abjad.TimeSignature((4, 4))
         >>> abjad.attach(time_signature, staff[0])
-        >>> time_signature = abjad.TimeSignature((2, 4), hide=True)
-        >>> abjad.attach(time_signature, staff[2])
+        >>> time_signature = abjad.TimeSignature((2, 4))
+        >>> abjad.attach(time_signature, staff[2], hide=True)
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> string = abjad.lilypond(staff)
@@ -7310,15 +7302,14 @@ class TimeSignature:
         ...     prototype = abjad.TimeSignature
         ...     leaf, abjad.get.effective_indicator(leaf, prototype)
         ...
-        (Note("c'4"), TimeSignature(pair=(4, 4), hide=False, partial=None))
-        (Note("d'4"), TimeSignature(pair=(4, 4), hide=False, partial=None))
-        (Note("e'4"), TimeSignature(pair=(2, 4), hide=True, partial=None))
-        (Note("f'4"), TimeSignature(pair=(2, 4), hide=True, partial=None))
+        (Note("c'4"), TimeSignature(pair=(4, 4), partial=None))
+        (Note("d'4"), TimeSignature(pair=(4, 4), partial=None))
+        (Note("e'4"), TimeSignature(pair=(2, 4), partial=None))
+        (Note("f'4"), TimeSignature(pair=(2, 4), partial=None))
 
     """
 
     pair: tuple[int, int]
-    hide: bool = dataclasses.field(compare=False, default=False)
     partial: _duration.Duration | None = None
 
     check_effective_context: typing.ClassVar[bool] = True
@@ -7338,16 +7329,16 @@ class TimeSignature:
         assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
-        if not self.is_dyadic() and not self.hide:
+        if not self.is_dyadic() and wrapper.hide is False:
             string = '#(ly:expect-warning "strange time signature found")'
             site.commands.append(string)
-        strings = self._get_lilypond_format()
+        strings = self._get_lilypond_format(wrapper)
         site.commands.extend(strings)
         return contributions
 
-    def _get_lilypond_format(self):
+    def _get_lilypond_format(self, wrapper):
         result = []
-        if self.hide:
+        if wrapper.hide:
             return result
         if self.partial is None:
             result.append(rf"\time {self.numerator}/{self.denominator}")
@@ -7406,7 +7397,7 @@ class TimeSignature:
         ..  container:: example
 
             >>> abjad.TimeSignature.from_string("6/8")
-            TimeSignature(pair=(6, 8), hide=False, partial=None)
+            TimeSignature(pair=(6, 8), partial=None)
 
         """
         assert isinstance(string, str), repr(string)

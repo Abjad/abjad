@@ -5961,15 +5961,15 @@ class Voice(Context):
         ...     dynamic = abjad.get.effective_indicator(leaf, abjad.Dynamic)
         ...     print(leaf, dynamic)
         ...
-        Note("e''8") Dynamic(name='f', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
-        Note("d''8") Dynamic(name='f', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
-        Note("c''4") Dynamic(name='f', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
-        Note("b'4") Dynamic(name='f', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
-        Note("c''8") Dynamic(name='f', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
+        Note("e''8") Dynamic(name='f', command=None, leak=False, name_is_textual=False, ordinal=None)
+        Note("d''8") Dynamic(name='f', command=None, leak=False, name_is_textual=False, ordinal=None)
+        Note("c''4") Dynamic(name='f', command=None, leak=False, name_is_textual=False, ordinal=None)
+        Note("b'4") Dynamic(name='f', command=None, leak=False, name_is_textual=False, ordinal=None)
+        Note("c''8") Dynamic(name='f', command=None, leak=False, name_is_textual=False, ordinal=None)
         Note("e'4") None
         Note("f'4") None
         Note("e'8") None
-        Note("d''8") Dynamic(name='f', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
+        Note("d''8") Dynamic(name='f', command=None, leak=False, name_is_textual=False, ordinal=None)
 
     ..  container:: example
 
@@ -6039,9 +6039,9 @@ class Voice(Context):
         Note("c''4") None
         Note("b'4") None
         Note("c''8") None
-        Note("e'4") Dynamic(name='p', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
-        Note("f'4") Dynamic(name='p', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
-        Note("e'8") Dynamic(name='p', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
+        Note("e'4") Dynamic(name='p', command=None, leak=False, name_is_textual=False, ordinal=None)
+        Note("f'4") Dynamic(name='p', command=None, leak=False, name_is_textual=False, ordinal=None)
+        Note("e'8") Dynamic(name='p', command=None, leak=False, name_is_textual=False, ordinal=None)
         Note("d''8") None
 
     ..  container:: example
@@ -6109,13 +6109,13 @@ class Voice(Context):
         ...
         Note("e''8") None
         Note("d''8") None
-        Note("c''4") Dynamic(name='mf', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
-        Note("b'4") Dynamic(name='mf', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
-        Note("c''8") Dynamic(name='mf', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
+        Note("c''4") Dynamic(name='mf', command=None, leak=False, name_is_textual=False, ordinal=None)
+        Note("b'4") Dynamic(name='mf', command=None, leak=False, name_is_textual=False, ordinal=None)
+        Note("c''8") Dynamic(name='mf', command=None, leak=False, name_is_textual=False, ordinal=None)
         Note("e'4") None
         Note("f'4") None
         Note("e'8") None
-        Note("d''8") Dynamic(name='mf', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
+        Note("d''8") Dynamic(name='mf', command=None, leak=False, name_is_textual=False, ordinal=None)
 
     ..  container:: example
 
@@ -6185,13 +6185,13 @@ class Voice(Context):
         ...
         Note("e''8") None
         Note("d''8") None
-        Note("c''4") Dynamic(name='mf', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
-        Note("b'4") Dynamic(name='mf', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
-        Note("c''8") Dynamic(name='mf', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
-        Note("e'4") Dynamic(name='p', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
-        Note("f'4") Dynamic(name='p', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
-        Note("e'8") Dynamic(name='p', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
-        Note("d''8") Dynamic(name='mf', command=None, hide=False, leak=False, name_is_textual=False, ordinal=None)
+        Note("c''4") Dynamic(name='mf', command=None, leak=False, name_is_textual=False, ordinal=None)
+        Note("b'4") Dynamic(name='mf', command=None, leak=False, name_is_textual=False, ordinal=None)
+        Note("c''8") Dynamic(name='mf', command=None, leak=False, name_is_textual=False, ordinal=None)
+        Note("e'4") Dynamic(name='p', command=None, leak=False, name_is_textual=False, ordinal=None)
+        Note("f'4") Dynamic(name='p', command=None, leak=False, name_is_textual=False, ordinal=None)
+        Note("e'8") Dynamic(name='p', command=None, leak=False, name_is_textual=False, ordinal=None)
+        Note("d''8") Dynamic(name='mf', command=None, leak=False, name_is_textual=False, ordinal=None)
 
     """
 

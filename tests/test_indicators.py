@@ -2,87 +2,10 @@ import pytest
 
 import abjad
 
-
-def test_indicators_01():
-    """
-    Classes ignore "hide" in definitions of __eq__.
-
-    Test will be removed when "hide" migrates from indicators to wrapper.
-    """
-
-    assert abjad.Clef("treble", hide=False) == abjad.Clef("treble", hide=False)
-    assert abjad.Clef("treble", hide=False) == abjad.Clef("treble", hide=True)
-    assert abjad.Clef("treble", hide=True) == abjad.Clef("treble", hide=False)
-    assert abjad.Clef("treble", hide=True) == abjad.Clef("treble", hide=True)
-    assert abjad.Clef("treble", hide=False) != abjad.Clef("alto", hide=False)
-    assert abjad.Clef("treble", hide=False) != abjad.Clef("alto", hide=True)
-    assert abjad.Clef("treble", hide=True) != abjad.Clef("alto", hide=False)
-    assert abjad.Clef("treble", hide=True) != abjad.Clef("alto", hide=True)
-
-    assert abjad.Dynamic("p", hide=False) == abjad.Dynamic("p", hide=False)
-    assert abjad.Dynamic("p", hide=False) == abjad.Dynamic("p", hide=True)
-    assert abjad.Dynamic("p", hide=True) == abjad.Dynamic("p", hide=False)
-    assert abjad.Dynamic("p", hide=True) == abjad.Dynamic("p", hide=True)
-    assert abjad.Dynamic("p", hide=False) != abjad.Dynamic("f", hide=False)
-    assert abjad.Dynamic("p", hide=False) != abjad.Dynamic("f", hide=True)
-    assert abjad.Dynamic("p", hide=True) != abjad.Dynamic("f", hide=False)
-    assert abjad.Dynamic("p", hide=True) != abjad.Dynamic("f", hide=True)
-
-    assert abjad.MetronomeMark(
-        abjad.Duration(1, 4), 60, hide=False
-    ) == abjad.MetronomeMark(abjad.Duration(1, 4), 60, hide=False)
-    assert abjad.MetronomeMark(
-        abjad.Duration(1, 4), 60, hide=False
-    ) == abjad.MetronomeMark(abjad.Duration(1, 4), 60, hide=True)
-    assert abjad.MetronomeMark(
-        abjad.Duration(1, 4), 60, hide=True
-    ) == abjad.MetronomeMark(abjad.Duration(1, 4), 60, hide=False)
-    assert abjad.MetronomeMark(
-        abjad.Duration(1, 4), 60, hide=True
-    ) == abjad.MetronomeMark(abjad.Duration(1, 4), 60, hide=True)
-    assert abjad.MetronomeMark(
-        abjad.Duration(1, 4), 60, hide=False
-    ) != abjad.MetronomeMark(abjad.Duration(1, 4), 72, hide=False)
-    assert abjad.MetronomeMark(
-        abjad.Duration(1, 4), 60, hide=False
-    ) != abjad.MetronomeMark(abjad.Duration(1, 4), 72, hide=True)
-    assert abjad.MetronomeMark(
-        abjad.Duration(1, 4), 60, hide=True
-    ) != abjad.MetronomeMark(abjad.Duration(1, 4), 72, hide=False)
-    assert abjad.MetronomeMark(
-        abjad.Duration(1, 4), 60, hide=True
-    ) != abjad.MetronomeMark(abjad.Duration(1, 4), 72, hide=True)
-
-    assert abjad.TimeSignature(((3, 4)), hide=False) == abjad.TimeSignature(
-        ((3, 4)), hide=False
-    )
-    assert abjad.TimeSignature(((3, 4)), hide=False) == abjad.TimeSignature(
-        ((3, 4)), hide=True
-    )
-    assert abjad.TimeSignature(((3, 4)), hide=True) == abjad.TimeSignature(
-        ((3, 4)), hide=False
-    )
-    assert abjad.TimeSignature(((3, 4)), hide=True) == abjad.TimeSignature(
-        ((3, 4)), hide=True
-    )
-    assert abjad.TimeSignature(((3, 4)), hide=False) != abjad.TimeSignature(
-        ((4, 4)), hide=False
-    )
-    assert abjad.TimeSignature(((3, 4)), hide=False) != abjad.TimeSignature(
-        ((4, 4)), hide=True
-    )
-    assert abjad.TimeSignature(((3, 4)), hide=True) != abjad.TimeSignature(
-        ((4, 4)), hide=False
-    )
-    assert abjad.TimeSignature(((3, 4)), hide=True) != abjad.TimeSignature(
-        ((4, 4)), hide=True
-    )
-
-
 # TODO: parameterize each test below:
 
 
-def test_indicators_02():
+def test_indicators_01():
     """
     Conditions:
         * indicator_1, indicator_2 attach to same leaf
@@ -105,7 +28,7 @@ def test_indicators_02():
     """
 
 
-def test_indicators_03():
+def test_indicators_02():
     """
     Conditions:
         * indicator_1, indicator_2 attach to same leaf
@@ -121,7 +44,7 @@ def test_indicators_03():
         abjad.attach(abjad.Clef("alto"), staff[0])
 
 
-def test_indicators_04():
+def test_indicators_03():
     """
     Conditions:
         * indicator_1, indicator_2 attach to same leaf
@@ -132,12 +55,14 @@ def test_indicators_04():
         * raises exception
     """
     staff = abjad.Staff("c'4 d' e' f'")
-    abjad.attach(abjad.Clef("treble", hide=True), staff[0])
+    # abjad.attach(abjad.Clef("treble", hide=True), staff[0])
+    abjad.attach(abjad.Clef("treble"), staff[0], hide=True)
     with pytest.raises(Exception):
-        abjad.attach(abjad.Clef("treble", hide=True), staff[0])
+        # abjad.attach(abjad.Clef("treble", hide=True), staff[0])
+        abjad.attach(abjad.Clef("treble"), staff[0], hide=True)
 
 
-def test_indicators_05():
+def test_indicators_04():
     """
     Conditions:
         * indicator_1, indicator_2 attach to same leaf
@@ -153,7 +78,7 @@ def test_indicators_05():
         abjad.attach(abjad.Clef("treble", hide=True), staff[0])
 
 
-def test_indicators_06():
+def test_indicators_05():
     """
     Conditions:
         * indicator_1, indicator_2 attach to same leaf
@@ -164,12 +89,13 @@ def test_indicators_06():
         * raises exception
     """
     staff = abjad.Staff("c'4 d' e' f'")
-    abjad.attach(abjad.Clef("treble", hide=True), staff[0])
+    # abjad.attach(abjad.Clef("treble", hide=True), staff[0])
+    abjad.attach(abjad.Clef("treble"), staff[0], hide=True)
     with pytest.raises(Exception):
         abjad.attach(abjad.Clef("treble"), staff[0])
 
 
-def test_indicators_07():
+def test_indicators_06():
     """
     Conditions:
         * indicator_1, indicator_2 attach to same leaf
@@ -181,10 +107,11 @@ def test_indicators_07():
     """
     staff = abjad.Staff("c'4 d' e' f'")
     abjad.attach(abjad.Clef("treble"), staff[0])
-    abjad.attach(abjad.Clef("alto", hide=True), staff[0])
+    # abjad.attach(abjad.Clef("alto", hide=True), staff[0])
+    abjad.attach(abjad.Clef("alto"), staff[0], hide=True)
 
 
-def test_indicators_08():
+def test_indicators_07():
     """
     Conditions:
         * indicator_1, indicator_2 attach to same leaf
@@ -195,11 +122,12 @@ def test_indicators_08():
         * ok
     """
     staff = abjad.Staff("c'4 d' e' f'")
-    abjad.attach(abjad.Clef("treble", hide=True), staff[0])
+    # abjad.attach(abjad.Clef("treble", hide=True), staff[0])
+    abjad.attach(abjad.Clef("treble"), staff[0], hide=True)
     abjad.attach(abjad.Clef("alto"), staff[0])
 
 
-def test_indicators_09():
+def test_indicators_08():
     """
     Conditions:
         * indicator_1, indicator_2 attach to same leaf
@@ -226,7 +154,7 @@ def test_indicators_09():
     abjad.attach(abjad.Ottava(1, site="after"), voice[0])
 
 
-def test_indicators_10():
+def test_indicators_09():
     """
     Conditions:
         * indicator_1, indicator_2 attach to same leaf
@@ -249,7 +177,7 @@ def test_indicators_10():
     abjad.attach(abjad.Ottava(0, site="after"), voice[0])
 
 
-def test_indicators_11():
+def test_indicators_10():
     """
     Conditions:
         * indicator_1, indicator_2 attach to same leaf
@@ -276,7 +204,7 @@ def test_indicators_11():
     assert "attempting to attach conflicting indicator" in str(e)
 
 
-def test_indicators_12():
+def test_indicators_11():
     """
     Conditions:
         * indicator_1, indicator_2 attach to same leaf
