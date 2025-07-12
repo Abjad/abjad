@@ -14,7 +14,14 @@ from . import tweaks as _tweaks
 from . import wrapper as _wrapper
 
 
-def _before_attach(indicator, context, deactivate, hide, synthetic_offset, component):
+def _before_attach(
+    indicator: typing.Any,
+    context: str | None,
+    deactivate: bool,
+    hide: bool,
+    synthetic_offset: _duration.Offset | None,
+    component: _score.Component,
+) -> None:
     if getattr(indicator, "temporarily_do_not_check", False) is True:
         return
     if hasattr(indicator, "allowable_sites"):
@@ -76,8 +83,8 @@ def _before_attach(indicator, context, deactivate, hide, synthetic_offset, compo
 
 
 def _unsafe_attach(
-    indicator,
-    target,
+    indicator: typing.Any,
+    component,
     *,
     check_duplicate_indicator: bool = False,
     context: str | None = None,
@@ -97,18 +104,19 @@ def _unsafe_attach(
         message = "use the tag=None keyword instead of attach():\n"
         message += f"   {repr(indicator)}"
         raise Exception(message)
+    assert isinstance(component, _score.Component), repr(component)
 
     if tag is not None and not isinstance(tag, _tag.Tag):
         raise Exception(f"must be be tag: {repr(tag)}")
     assert nonbundle_indicator is not None, repr(nonbundle_indicator)
-    assert isinstance(target, _score.Component), repr(target)
+    assert isinstance(component, _score.Component), repr(component)
     grace_prototype = (_score.AfterGraceContainer, _score.BeforeGraceContainer)
     if context is not None and isinstance(nonbundle_indicator, grace_prototype):
         raise Exception(f"set context only for indicators, not {indicator!r}.")
     if deactivate is True and tag is None:
         raise Exception("tag must exist when deactivate is true.")
     if hasattr(nonbundle_indicator, "_attachment_test_all") and not do_not_test:
-        result = nonbundle_indicator._attachment_test_all(target)
+        result = nonbundle_indicator._attachment_test_all(component)
         if result is not True:
             assert isinstance(result, list), repr(result)
             result = ["  " + _ for _ in result]
@@ -117,11 +125,11 @@ def _unsafe_attach(
             message = "\n".join(result)
             raise Exception(message)
     if isinstance(nonbundle_indicator, grace_prototype):
-        if not isinstance(target, _score.Leaf):
+        if not isinstance(component, _score.Leaf):
             raise Exception("grace containers attach to single leaf only.")
-        nonbundle_indicator._attach(target)
+        nonbundle_indicator._attach(component)
         return None
-    if isinstance(target, _score.Container):
+    if isinstance(component, _score.Container):
         acceptable = False
         if isinstance(
             nonbundle_indicator, dict | str | enum.Enum | _tag.Tag | _wrapper.Wrapper
@@ -130,13 +138,11 @@ def _unsafe_attach(
         if getattr(nonbundle_indicator, "can_attach_to_containers", False):
             acceptable = True
         if not acceptable:
-            message = f"can not attach {indicator!r} to containers: {target!r}"
+            message = f"can not attach {indicator!r} to containers: {component!r}"
             raise Exception(message)
-    elif not isinstance(target, _score.Leaf):
-        message = f"indicator {indicator!r} must attach to leaf, not {target!r}."
+    elif not isinstance(component, _score.Leaf):
+        message = f"indicator {indicator!r} must attach to leaf, not {component!r}."
         raise Exception(message)
-    component = target
-    assert isinstance(component, _score.Component), repr(component)
     annotation = None
     if isinstance(indicator, _wrapper.Wrapper):
         annotation = indicator.annotation
@@ -165,6 +171,9 @@ def _unsafe_attach(
     )
 
 
+# TODO: remove abjad.Wrapper.annotation;
+#       store annotations in abjad.Component._annotations dictionary instead;
+#       annotations do not need context_name, hide, synthetic_offset, etc.
 def annotate(component: _score.Component, key: str, value: object) -> None:
     r"""
     Annotates ``component`` with ``key`` equal to ``value``.
@@ -203,8 +212,10 @@ def attach(
     component: _score.Component,
     *,
     check_duplicate_indicator: bool = False,
+    # TODO: change `context` to `context_name`
     context: str | None = None,
     deactivate: bool = False,
+    # TODO: remove _enums.Vertical and consolidate direction in some other way
     direction: _enums.Vertical | None = None,
     do_not_test: bool = False,
     hide: bool = False,
@@ -460,7 +471,12 @@ def attach(
     assert isinstance(component, _score.Component), repr(component)
     assert isinstance(hide, bool), repr(hide)
     _before_attach(
-        nonbundle_indicator, context, deactivate, hide, synthetic_offset, component
+        nonbundle_indicator,
+        context,
+        deactivate,
+        hide,
+        synthetic_offset,
+        component,
     )
     _unsafe_attach(
         indicator,
@@ -539,7 +555,8 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
         But document-tagging like this makes sense for score and two diferent parts:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(markup_1, staff[0], direction=abjad.UP, tag=abjad.Tag(string="+SCORE"))
+        >>> tag = abjad.Tag(string="+SCORE")
+        >>> abjad.attach(markup_1, staff[0], direction=abjad.UP, tag=tag)
         >>> abjad.attach(
         ...     markup_2,
         ...     staff[0],
@@ -572,11 +589,11 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
             f'4
         }
 
-        The question is then how to detach just one of the two markups that compare equal
-        to each other?
+        The question is then how to detach just one of the two markups that
+        compare equal to each other?
 
-        Passing in one of the markup objects directory doesn't work. This is because
-        detach tests for equality to input argument:
+        Passing in one of the markup objects directory doesn't work. This is
+        because detach tests for equality to input argument:
 
         >>> markups = abjad.detach(markup_2, staff[0])
         >>> for markup in markups:
@@ -601,7 +618,8 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
         We start again:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
-        >>> abjad.attach(markup_1, staff[0], direction=abjad.UP, tag=abjad.Tag(string="+SCORE"))
+        >>> tag = abjad.Tag(string="+SCORE")
+        >>> abjad.attach(markup_1, staff[0], direction=abjad.UP, tag=tag)
         >>> abjad.attach(
         ...     markup_2,
         ...     staff[0],
@@ -634,8 +652,9 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
             f'4
         }
 
-        This time we set ``by_id`` to true. Now detach checks the exact id of its input
-        argument (rather than just testing for equality). This gives us what we want:
+        This time we set ``by_id`` to true. Now detach checks the exact id of
+        its input argument (rather than just testing for equality). This gives
+        us what we want:
 
         >>> markups = abjad.detach(markup_2, staff[0], by_id=True)
         >>> for markup in markups:
@@ -660,7 +679,8 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
 
     ..  container:: example
 
-        REGRESSION. Attach-detach-attach pattern works correctly when detaching wrappers:
+        REGRESSION. Attach-detach-attach pattern works correctly when detaching
+        wrappers:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> abjad.attach(abjad.Clef("alto"), staff[0])
@@ -680,9 +700,7 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
             }
 
         >>> wrapper = abjad.get.wrappers(staff[0])[0]
-        >>> abjad.detach(wrapper, wrapper.component)
-        (Wrapper(annotation=None, context_name='Staff', deactivate=False, direction=None, indicator=Clef(name='alto'), synthetic_offset=None, tag=Tag(string='')),)
-
+        >>> wrappers = abjad.detach(wrapper, wrapper.component)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::

@@ -43,6 +43,8 @@ class Component:
 
     ### CLASS VARIABLES ###
 
+    _allowable_sites: tuple[str, ...] = ()
+
     __slots__ = (
         "_indicators_are_current",
         "_is_forbidden_to_update",
