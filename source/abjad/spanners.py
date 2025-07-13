@@ -1067,7 +1067,7 @@ def glissando(
             return False
         return True
 
-    leaves = _select.leaves(argument)
+    leaves: list[_score.Leaf] = _select.leaves(argument)
     total = len(leaves) - 1
     for i, leaf in enumerate(leaves):
         if leaf is not leaves[0]:
@@ -1349,7 +1349,7 @@ def hairpin(
     if start_dynamic is not None:
         assert isinstance(start_dynamic, _indicators.Dynamic), repr(start_dynamic)
 
-    leaves = _select.leaves(argument)
+    leaves: list[_score.Leaf] = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
 
@@ -1467,7 +1467,7 @@ def horizontal_bracket(
     """
     start_group = start_group or _indicators.StartGroup()
     stop_group = stop_group or _indicators.StopGroup()
-    leaves = _select.leaves(argument)
+    leaves: list[_score.Leaf] = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     _bind.attach(start_group, start_leaf, tag=tag)
@@ -1507,7 +1507,7 @@ def ottava(
     """
     assert isinstance(start_ottava, _indicators.Ottava), repr(start_ottava)
     assert isinstance(stop_ottava, _indicators.Ottava), repr(stop_ottava)
-    leaves = _select.leaves(argument)
+    leaves: list[_score.Leaf] = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     _bind.attach(start_ottava, start_leaf, tag=tag)
@@ -1548,7 +1548,7 @@ def phrasing_slur(
     """
     start_phrasing_slur = _indicators.StartPhrasingSlur()
     stop_phrasing_slur = _indicators.StopPhrasingSlur()
-    leaves = _select.leaves(argument)
+    leaves: list[_score.Leaf] = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     start_phrasing_slur = start_phrasing_slur or _indicators.StartPhrasingSlur()
@@ -1598,7 +1598,7 @@ def piano_pedal(
     """
     start_piano_pedal = start_piano_pedal or _indicators.StartPianoPedal()
     stop_piano_pedal = stop_piano_pedal or _indicators.StopPianoPedal()
-    leaves = _select.leaves(argument)
+    leaves: list[_score.Leaf] = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     _bind.attach(start_piano_pedal, start_leaf, context=context, tag=tag)
@@ -1639,7 +1639,7 @@ def slur(
     """
     start_slur = start_slur or _indicators.StartSlur()
     stop_slur = stop_slur or _indicators.StopSlur()
-    leaves = _select.leaves(argument)
+    leaves: list[_score.Leaf] = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     _bind.attach(start_slur, start_leaf, direction=direction, tag=tag)
@@ -1781,7 +1781,7 @@ def text_spanner(
     """
     start_text_span = start_text_span or _indicators.StartTextSpan()
     stop_text_span = stop_text_span or _indicators.StopTextSpan()
-    leaves = _select.leaves(argument)
+    leaves: list[_score.Leaf] = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     _bind.attach(start_text_span, start_leaf, direction=direction, tag=tag)
@@ -1996,7 +1996,7 @@ def tie(
         def inequality(item):
             return item >= _duration.Duration(repeat)
 
-    leaves = _select.leaves(argument)
+    leaves: list[_score.Leaf] = _select.leaves(argument)
     if len(leaves) < 2:
         raise Exception(f"must be two or more notes (not {leaves!r}).")
     for leaf in leaves:
@@ -2049,7 +2049,7 @@ def trill_spanner(
     """
     start_trill_span = start_trill_span or _indicators.StartTrillSpan()
     stop_trill_span = stop_trill_span or _indicators.StopTrillSpan()
-    leaves = _select.leaves(argument)
+    leaves: list[_score.Leaf] = _select.leaves(argument)
     start_leaf = leaves[0]
     stop_leaf = leaves[-1]
     _bind.attach(start_trill_span, start_leaf, tag=tag)
