@@ -4,9 +4,12 @@ Classes to work with the parentage of score components.
 
 import collections
 import fractions
+import typing
 
 from . import math as _math
 from . import score as _score
+
+T = typing.TypeVar("T", bound=_score.Component)
 
 
 class Parentage(collections.abc.Sequence):

@@ -455,14 +455,17 @@ def chords(
     return items
 
 
+T = typing.TypeVar("T", bound=_score.Component)
+
+
 def components(
     argument,
-    prototype=None,
+    prototype: typing.Type[T] | tuple[typing.Type[T], ...] | None = None,
     *,
     exclude: Exclude | None = None,
     grace: bool | None = None,
     reverse: bool | None = None,
-) -> list[_score.Component]:
+) -> list[T]:
     r"""
     Selects components.
 
@@ -2539,9 +2542,11 @@ def leaf(
     )[n]
 
 
-@typing.overload
 def leaves(
     argument,
+    prototype: (
+        typing.Type[_score.Leaf] | tuple[typing.Type[_score.Leaf], ...] | None
+    ) = None,
     *,
     exclude: Exclude | None = None,
     grace: bool | None = None,
@@ -2551,69 +2556,6 @@ def leaves(
     tail: bool | None = None,
     trim: bool | _enums.Horizontal | None = None,
 ) -> list[_score.Leaf]:
-    pass
-
-
-@typing.overload
-def leaves(
-    argument,
-    prototype: typing.Type[_score.Chord],
-    *,
-    exclude: Exclude | None = None,
-    grace: bool | None = None,
-    head: bool | None = None,
-    pitched: bool | None = None,
-    reverse: bool | None = None,
-    tail: bool | None = None,
-    trim: bool | _enums.Horizontal | None = None,
-) -> list[_score.Chord]:
-    pass
-
-
-@typing.overload
-def leaves(
-    argument,
-    prototype: typing.Type[_score.MultimeasureRest],
-    *,
-    exclude: Exclude | None = None,
-    grace: bool | None = None,
-    head: bool | None = None,
-    pitched: bool | None = None,
-    reverse: bool | None = None,
-    tail: bool | None = None,
-    trim: bool | _enums.Horizontal | None = None,
-) -> list[_score.MultimeasureRest]:
-    pass
-
-
-@typing.overload
-def leaves(
-    argument,
-    prototype: typing.Type[_score.Note],
-    *,
-    exclude: Exclude | None = None,
-    grace: bool | None = None,
-    head: bool | None = None,
-    pitched: bool | None = None,
-    reverse: bool | None = None,
-    tail: bool | None = None,
-    trim: bool | _enums.Horizontal | None = None,
-) -> list[_score.Note]:
-    pass
-
-
-def leaves(
-    argument,
-    prototype=None,
-    *,
-    exclude: Exclude | None = None,
-    grace: bool | None = None,
-    head: bool | None = None,
-    pitched: bool | None = None,
-    reverse: bool | None = None,
-    tail: bool | None = None,
-    trim: bool | _enums.Horizontal | None = None,
-):
     r'''
     Selects leaves in ``argument``.
 
@@ -3617,12 +3559,17 @@ def leaves(
         prototype = (_score.Chord, _score.Note)
     elif prototype is None:
         prototype = _score.Leaf
-    prototype = prototype or _score.Component
     if not isinstance(prototype, tuple):
-        prototype = (prototype,)
-    result = []
-    components = _components_alias(
-        argument, prototype=prototype, exclude=exclude, grace=grace, reverse=reverse
+        prototype_typed: tuple[type[_score.Leaf], ...] = (prototype,)
+    else:
+        prototype_typed = prototype
+    result: list[_score.Leaf] = []
+    components: list[_score.Leaf] = _components_alias(
+        argument,
+        prototype=prototype_typed,
+        exclude=exclude,
+        grace=grace,
+        reverse=reverse,
     )
     if components:
         if trim in (True, _enums.LEFT):
