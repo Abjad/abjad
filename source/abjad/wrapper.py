@@ -135,13 +135,13 @@ class Wrapper:
     def __hash__(self) -> int:
         return hash(self.__class__.__name__ + str(self))
 
-    # TODO: add self.hide
     def __repr__(self) -> str:
         parameters = f"""
             annotation={self.annotation!r},
             context_name={self.context_name!r},
             deactivate={self.deactivate!r},
             direction={self.direction!r},
+            hide={self.hide!r},
             indicator={self.indicator!r},
             synthetic_offset={self.synthetic_offset!r},
             tag={self.tag!r}

@@ -1451,8 +1451,8 @@ class Dynamic:
 
     ..  container:: example
 
-        Set ``hide=True`` when dynamic should not appear in output (but should still
-        determine effective dynamic):
+        Set ``hide=True`` when dynamic should not appear in output (but should
+        still determine effective dynamic):
 
         >>> voice = abjad.Voice("c'4 d' e' f'")
         >>> abjad.attach(abjad.Dynamic("f"), voice[0])
@@ -7276,8 +7276,8 @@ class TimeSignature:
 
     ..  container:: example
 
-        Set ``hide=True`` time signature should not appear in output (but should still
-        determine effective time signature):
+        Set ``hide=True`` time signature should not appear in output (but
+        should still determine effective time signature):
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> score = abjad.Score([staff], name="Score")
@@ -7338,7 +7338,7 @@ class TimeSignature:
 
     def _get_lilypond_format(self, wrapper):
         result = []
-        if wrapper.hide:
+        if wrapper.hide is True:
             return result
         if self.partial is None:
             result.append(rf"\time {self.numerator}/{self.denominator}")
