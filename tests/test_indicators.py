@@ -2,8 +2,6 @@ import pytest
 
 import abjad
 
-# TODO: parameterize each test below:
-
 
 def test_indicators_01():
     """
@@ -11,7 +9,8 @@ def test_indicators_01():
         * indicator_1, indicator_2 attach to same leaf
         * class(indicator_1) is class(indicator_2)
         * indicator_1 == indicator_2
-        * indicator_1.hide == indicator_2.hide == False
+        * indicator_1 is not hidden
+        * indicator_2 is not hidden
     Result:
         * raises exception
     """
@@ -20,12 +19,6 @@ def test_indicators_01():
     with pytest.raises(Exception) as e:
         abjad.attach(abjad.Clef("treble"), staff[0])
     assert "attempting to attach conflicting indicator" in str(e)
-    """
-    abjad.attach(abjad.VoiceNumber(1), staff[0])
-    with pytest.raises(Exception) as e:
-        abjad.attach(abjad.VoiceNumber(1), staff[0])
-    assert "attempting to attach conflicting indicator" in str(e)
-    """
 
 
 def test_indicators_02():
@@ -34,7 +27,8 @@ def test_indicators_02():
         * indicator_1, indicator_2 attach to same leaf
         * class(indicator_1) is class(indicator_2)
         * indicator_1 != indicator_2
-        * indicator_1.hide == indicator_2.hide == False
+        * indicator_1 is not hidden
+        * indicator_2 is not hidden
     Result:
         * raises exception
     """
@@ -50,15 +44,14 @@ def test_indicators_03():
         * indicator_1, indicator_2 attach to same leaf
         * class(indicator_1) is class(indicator_2)
         * indicator_1 == indicator_2
-        * indicator_1.hide == indicator_2.hide == True
+        * indicator_1 is hidden
+        * indicator_2 is hidden
     Result:
         * raises exception
     """
     staff = abjad.Staff("c'4 d' e' f'")
-    # abjad.attach(abjad.Clef("treble", hide=True), staff[0])
     abjad.attach(abjad.Clef("treble"), staff[0], hide=True)
     with pytest.raises(Exception):
-        # abjad.attach(abjad.Clef("treble", hide=True), staff[0])
         abjad.attach(abjad.Clef("treble"), staff[0], hide=True)
 
 
@@ -68,7 +61,8 @@ def test_indicators_04():
         * indicator_1, indicator_2 attach to same leaf
         * class(indicator_1) is class(indicator_2)
         * indicator_1 == indicator_2
-        * indicator_1.hide == False and indicator_2.hide == True
+        * indicator_1 is not hidden
+        * indicator_2 is hidden
     Result:
         * raises exception
     """
@@ -84,12 +78,12 @@ def test_indicators_05():
         * indicator_1, indicator_2 attach to same leaf
         * class(indicator_1) is class(indicator_2)
         * indicator_1 == indicator_2
-        * indicator_1.hide == True and indicator_2.hide == False
+        * indicator_1 is hidden
+        * indicator_2 is not hidden
     Result:
         * raises exception
     """
     staff = abjad.Staff("c'4 d' e' f'")
-    # abjad.attach(abjad.Clef("treble", hide=True), staff[0])
     abjad.attach(abjad.Clef("treble"), staff[0], hide=True)
     with pytest.raises(Exception):
         abjad.attach(abjad.Clef("treble"), staff[0])
@@ -101,13 +95,13 @@ def test_indicators_06():
         * indicator_1, indicator_2 attach to same leaf
         * class(indicator_1) is class(indicator_2)
         * indicator_1 =! indicator_2
-        * indicator_1.hide == False and indicator_2.hide == True
+        * indicator_1 is not hidden
+        * indicator_2 is hidden
     Result:
         * ok
     """
     staff = abjad.Staff("c'4 d' e' f'")
     abjad.attach(abjad.Clef("treble"), staff[0])
-    # abjad.attach(abjad.Clef("alto", hide=True), staff[0])
     abjad.attach(abjad.Clef("alto"), staff[0], hide=True)
 
 
@@ -117,12 +111,12 @@ def test_indicators_07():
         * indicator_1, indicator_2 attach to same leaf
         * class(indicator_1) is class(indicator_2)
         * indicator_1 != indicator_2
-        * indicator_1.hide == True and indicator_2.hide == False
+        * indicator_1 is hidden
+        * indicator_2 is not hidden
     Result:
         * ok
     """
     staff = abjad.Staff("c'4 d' e' f'")
-    # abjad.attach(abjad.Clef("treble", hide=True), staff[0])
     abjad.attach(abjad.Clef("treble"), staff[0], hide=True)
     abjad.attach(abjad.Clef("alto"), staff[0])
 

@@ -314,7 +314,7 @@ def check_orphaned_dependent_wrappers(argument) -> tuple[list, int]:
         >>> assert len(voice._dependent_wrappers) == 1
         >>> wrapper = voice._dependent_wrappers[0]
         >>> wrapper
-        Wrapper(annotation=None, context_name='Voice', deactivate=False, direction=None, indicator=StartBeam(), synthetic_offset=None, tag=Tag(string=''))
+        Wrapper(annotation=None, context_name='Voice', deactivate=False, direction=None, hide=False, indicator=StartBeam(), synthetic_offset=None, tag=Tag(string=''))
 
         >>> wrapper.component
         Note("c'8")
@@ -334,7 +334,7 @@ def check_orphaned_dependent_wrappers(argument) -> tuple[list, int]:
         >>> assert wrapper.component not in voice
 
         >>> abjad.wf.check_orphaned_dependent_wrappers(voice)
-        ([Wrapper(annotation=None, context_name='Voice', deactivate=False, direction=None, indicator=StartBeam(), synthetic_offset=None, tag=Tag(string=''))], 1)
+        ([Wrapper(annotation=None, context_name='Voice', deactivate=False, direction=None, hide=False, indicator=StartBeam(), synthetic_offset=None, tag=Tag(string=''))], 1)
 
     """
     violators, total = [], 0

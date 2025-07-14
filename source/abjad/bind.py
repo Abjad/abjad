@@ -64,9 +64,6 @@ def _before_attach(
                 is True
             ):
                 continue
-            if hasattr(indicator, "hide"):
-                if indicator.hide != wrapper.unbundle_indicator().hide:
-                    continue
             if hide != wrapper.hide:
                 continue
             if getattr(indicator, "site", None) != getattr(
