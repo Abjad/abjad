@@ -347,7 +347,8 @@ class ShellDirective(docutils.parsers.rst.Directive):
     def run(self):
         self.assert_has_content()
         result = []
-        with _contextmanagers.TemporaryDirectoryChange(
+        # with _contextmanagers.TemporaryDirectoryChange(
+        with _contextmanagers.temporary_directory_change(
             configuration.abjad_install_directory()
         ):
             cwd = pathlib.Path.cwd()

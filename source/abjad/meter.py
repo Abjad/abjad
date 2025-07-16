@@ -888,8 +888,8 @@ class Meter:
         for offset_tuple in inventory:
             assert isinstance(offset_tuple, tuple)
             assert all(isinstance(_, _duration.Offset) for _ in offset_tuple)
-        old_flag_count = _duration.Duration(1, self.denominator).flag_count
-        new_flag_count = _duration.Duration(1, denominator).flag_count
+        old_flag_count = _duration.Duration(1, self.denominator).flag_count()
+        new_flag_count = _duration.Duration(1, denominator).flag_count()
         extra_depth = new_flag_count - old_flag_count
         assert isinstance(extra_depth, int), repr(extra_depth)
         for _ in range(extra_depth):
@@ -2160,7 +2160,7 @@ class Meter:
                     denominator = 4 * duration.denominator
                     pair = _duration.with_denominator(duration, denominator)
                 else:
-                    pair = duration.pair
+                    pair = duration.pair()
                 rtc_ = make_best_guess_rtc(pair)
                 sub_metrical_hierarchy = Meter(rtc_)
                 sub_boundary_depth: int | None = 1
@@ -2211,11 +2211,11 @@ def _is_acceptable_logical_tie(
     assert isinstance(logical_tie_duration, _duration.Duration)
     assert isinstance(logical_tie_starts_in_offsets, bool)
     assert isinstance(logical_tie_stops_in_offsets, bool)
-    if not logical_tie_duration.is_assignable:
+    if not logical_tie_duration.is_assignable():
         return False
     if (
         maximum_dot_count is not None
-        and maximum_dot_count < logical_tie_duration.dot_count
+        and maximum_dot_count < logical_tie_duration.dot_count()
     ):
         return False
     if not logical_tie_starts_in_offsets and not logical_tie_stops_in_offsets:

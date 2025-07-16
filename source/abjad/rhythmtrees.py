@@ -72,10 +72,10 @@ class RhythmTreeNode:
             assert isinstance(fraction, fractions.Fraction), repr(fraction)
             duration = _duration.Duration(fraction)
             assert isinstance(duration, _duration.Duration), repr(duration)
-            result.append(duration.pair)
+            result.append(duration.pair())
             node = node.parent
-        pair = _duration.Duration(node.pair)
-        result.append(pair.pair)
+        duration = _duration.Duration(node.pair)
+        result.append(duration.pair())
         return tuple(reversed(result))
 
     def _update_offsets_of_entire_tree(self):
@@ -584,7 +584,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
         assert isinstance(rtc, RhythmTreeContainer), repr(rtc)
         new_duration = _duration.Duration(self.duration)
         new_duration += _duration.Duration(rtc.duration)
-        container = RhythmTreeContainer(new_duration.pair)
+        container = RhythmTreeContainer(new_duration.pair())
         container.extend(self[:])
         container.extend(rtc[:])
         return container
@@ -636,7 +636,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             assert isinstance(basic_prolated_fraction, fractions.Fraction)
             basic_written_duration = _duration.Duration(basic_prolated_fraction)
             basic_written_duration = (
-                basic_written_duration.equal_or_greater_power_of_two
+                basic_written_duration.equal_or_greater_power_of_two()
             )
             assert isinstance(basic_written_duration, _duration.Duration)
             tuplet = _score.Tuplet("1:1", [])
@@ -929,7 +929,7 @@ class RhythmTreeParser(Parser):
             pair = p[2]
         else:
             assert isinstance(p[2], _duration.Duration)
-            pair = p[2].pair
+            pair = p[2].pair()
         p[0] = RhythmTreeContainer(pair, children=p[3])
 
     def p_error(self, p):
@@ -946,7 +946,7 @@ class RhythmTreeParser(Parser):
             pair = (abs(p[1]), 1)
         else:
             assert isinstance(p[1], _duration.Duration), repr(p[1])
-            pair = abs(p[1]).pair
+            pair = abs(p[1]).pair()
         p[0] = RhythmTreeLeaf(pair, is_unpitched=not 0 < p[1])
 
     def p_node__container(self, p):
