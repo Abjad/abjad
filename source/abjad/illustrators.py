@@ -262,7 +262,7 @@ def components(
     score = _score.Score([staff], name="Score", simultaneous=False)
     if not time_signatures:
         duration = _get.duration(components)
-        time_signature = _indicators.TimeSignature(duration.pair)
+        time_signature = _indicators.TimeSignature(duration.pair())
         _bind.attach(time_signature, _select.leaf(components, 0))
     else:
         leaves = _select.leaves(components, grace=False)
