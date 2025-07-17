@@ -39,15 +39,15 @@ def _are_logical_voice(components, prototype=None):
 def _get_annotation(component, annotation, default=None):
     assert isinstance(annotation, str), repr(annotation)
     for wrapper_ in _get_annotation_wrappers(component):
-        if wrapper_.annotation == annotation:
-            return wrapper_.indicator
+        if wrapper_.annotation() == annotation:
+            return wrapper_.indicator()
     return default
 
 
 def _get_annotation_wrappers(argument):
     wrappers = []
     for wrapper in getattr(argument, "_wrappers", []):
-        if wrapper.annotation:
+        if wrapper.annotation():
             wrappers.append(wrapper)
     return wrappers
 
@@ -109,7 +109,7 @@ def _get_effective_wrapper(component, prototype, *, attributes=None, command=Non
                 enclosing_voice_name = component_.name or id(component_)
         local_wrappers = []
         for wrapper_ in component_._wrappers:
-            if wrapper_.annotation:
+            if wrapper_.annotation():
                 continue
             if isinstance(wrapper_.unbundle_indicator(), prototype):
                 append_wrapper = True
@@ -136,7 +136,7 @@ def _get_effective_wrapper(component, prototype, *, attributes=None, command=Non
         if not isinstance(component_, _score.Context):
             continue
         for wrapper_ in component_._dependent_wrappers:
-            if wrapper_.annotation:
+            if wrapper_.annotation():
                 continue
             if isinstance(wrapper_.unbundle_indicator(), prototype):
                 append_wrapper = True
@@ -223,14 +223,14 @@ def _get_leaf_from_leaf(leaf, n):
 def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=None):
     wrappers = {}
     for wrapper in dependent_wrappers:
-        if wrapper.annotation:
+        if wrapper.annotation():
             continue
         if not getattr(wrapper.unbundle_indicator(), "persistent", False):
             continue
         assert isinstance(wrapper.unbundle_indicator().persistent, bool)
         should_omit = False
         if omit_with_indicator is not None:
-            for component in wrapper.component._get_parentage():
+            for component in wrapper.component()._get_parentage():
                 if component._has_indicator(omit_with_indicator):
                     should_omit = True
                     continue

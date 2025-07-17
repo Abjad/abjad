@@ -64,7 +64,7 @@ def _before_attach(
                 is True
             ):
                 continue
-            if hide != wrapper.hide:
+            if hide != wrapper.hide():
                 continue
             if getattr(indicator, "site", None) != getattr(
                 wrapper.unbundle_indicator(), "site", None
@@ -102,7 +102,6 @@ def _unsafe_attach(
         message += f"   {repr(indicator)}"
         raise Exception(message)
     assert isinstance(component, _score.Component), repr(component)
-
     if tag is not None and not isinstance(tag, _tag.Tag):
         raise Exception(f"must be be tag: {repr(tag)}")
     assert nonbundle_indicator is not None, repr(nonbundle_indicator)
@@ -142,14 +141,14 @@ def _unsafe_attach(
         raise Exception(message)
     annotation = None
     if isinstance(indicator, _wrapper.Wrapper):
-        annotation = indicator.annotation
-        context = context or indicator.context_name
-        deactivate = deactivate or indicator.deactivate
-        hide = hide or indicator.hide
-        synthetic_offset = synthetic_offset or indicator.synthetic_offset
-        tag = tag or indicator.tag
+        annotation = indicator.annotation()
+        context = context or indicator.context_name()
+        deactivate = deactivate or indicator.deactivate()
+        hide = hide or indicator.hide()
+        synthetic_offset = synthetic_offset or indicator.synthetic_offset()
+        tag = tag or indicator.tag()
         indicator._detach()
-        indicator = indicator.indicator
+        indicator = indicator.indicator()
     if hasattr(nonbundle_indicator, "context"):
         context = context or nonbundle_indicator.context
     if tag is None:
@@ -697,7 +696,7 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
             }
 
         >>> wrapper = abjad.get.wrappers(staff[0])[0]
-        >>> wrappers = abjad.detach(wrapper, wrapper.component)
+        >>> wrappers = abjad.detach(wrapper, wrapper.component())
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -749,7 +748,7 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
                     result.append(wrapper)
                 elif isinstance(wrapper.unbundle_indicator(), indicator):
                     wrapper._detach()
-                    result.append(wrapper.indicator)
+                    result.append(wrapper.indicator())
             return tuple(result)
     else:
         if "AfterGraceContainer" in indicator.__class__.__name__:
@@ -772,7 +771,7 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
                         pass
                     else:
                         wrapper._detach()
-                        result.append(wrapper.indicator)
+                        result.append(wrapper.indicator())
             return tuple(result)
     items = []
     if after_grace_container is not None:
