@@ -1636,9 +1636,11 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
         donor._wrappers.remove(wrapper)
         wrapper._component = recipient
         recipient._wrappers.append(wrapper)
-        if wrapper.context_name is not None:
+        context_name = wrapper.context_name()
+        if context_name is not None:
             context = wrapper._find_correct_effective_context(
-                wrapper.component, wrapper.context_name
+                wrapper.component(),
+                context_name,
             )
             assert context is not None
             context._dependent_wrappers.append(wrapper)
