@@ -60,25 +60,26 @@ def _get_indicator_contributions(component, contributions):
     context_wrappers = []
     noncontext_wrappers = []
     for wrapper in wrappers:
-        if wrapper.annotation():
+        if wrapper.get_annotation():
             continue
-        if not hasattr(wrapper.indicator(), "_get_contributions"):
+        if not hasattr(wrapper.get_indicator(), "_get_contributions"):
             continue
         if (
-            wrapper.context_name() is None
-            and getattr(wrapper.indicator(), "format_leaf_children", False) is not True
-            and wrapper.component() is not component
+            wrapper.get_context_name() is None
+            and getattr(wrapper.get_indicator(), "format_leaf_children", False)
+            is not True
+            and wrapper.get_component() is not component
         ):
             continue
         if isinstance(wrapper.unbundle_indicator(), _indicators.Markup):
-            if wrapper.direction() is _enums.UP:
+            if wrapper.get_direction() is _enums.UP:
                 up_markup_wrappers.append(wrapper)
-            elif wrapper.direction() is _enums.DOWN:
+            elif wrapper.get_direction() is _enums.DOWN:
                 down_markup_wrappers.append(wrapper)
-            elif wrapper.direction() in (_enums.CENTER, None):
+            elif wrapper.get_direction() in (_enums.CENTER, None):
                 neutral_markup_wrappers.append(wrapper)
-        elif wrapper.context_name() is not None:
-            if wrapper.component() is component:
+        elif wrapper.get_context_name() is not None:
+            if wrapper.get_component() is component:
                 context_wrappers.append(wrapper)
         else:
             noncontext_wrappers.append(wrapper)
@@ -92,14 +93,14 @@ def _get_indicator_contributions(component, contributions):
         noncontext_wrappers,
     ):
         for wrapper in wrappers:
-            item = wrapper.indicator()
+            item = wrapper.get_indicator()
             contributions_ = None
             try:
                 contributions_ = item._get_contributions(wrapper=wrapper)
             except TypeError:
                 contributions_ = item._get_contributions()
             contributions_.tag_contributions(
-                wrapper.tag(), deactivate=wrapper.deactivate()
+                wrapper.get_tag(), deactivate=wrapper.get_deactivate()
             )
             if getattr(item, "check_effective_context", False) is True:
                 if wrapper._get_effective_context() is None:

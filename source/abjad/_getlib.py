@@ -39,15 +39,15 @@ def _are_logical_voice(components, prototype=None):
 def _get_annotation(component, annotation, default=None):
     assert isinstance(annotation, str), repr(annotation)
     for wrapper_ in _get_annotation_wrappers(component):
-        if wrapper_.annotation() == annotation:
-            return wrapper_.indicator()
+        if wrapper_.get_annotation() == annotation:
+            return wrapper_.get_indicator()
     return default
 
 
 def _get_annotation_wrappers(argument):
     wrappers = []
     for wrapper in getattr(argument, "_wrappers", []):
-        if wrapper.annotation():
+        if wrapper.get_annotation():
             wrappers.append(wrapper)
     return wrappers
 
@@ -109,7 +109,7 @@ def _get_effective_wrapper(component, prototype, *, attributes=None, command=Non
                 enclosing_voice_name = component_.name or id(component_)
         local_wrappers = []
         for wrapper_ in component_._wrappers:
-            if wrapper_.annotation():
+            if wrapper_.get_annotation():
                 continue
             if isinstance(wrapper_.unbundle_indicator(), prototype):
                 append_wrapper = True
@@ -126,17 +126,19 @@ def _get_effective_wrapper(component, prototype, *, attributes=None, command=Non
                     continue
                 local_wrappers.append(wrapper_)
         # active indicator takes precendence over inactive indicator
-        if any(_.deactivate is True for _ in local_wrappers) and not all(
-            _.deactivate is True for _ in local_wrappers
+        if any(_.get_deactivate() is True for _ in local_wrappers) and not all(
+            _.get_deactivate() is True for _ in local_wrappers
         ):
-            local_wrappers = [_ for _ in local_wrappers if _.deactivate is not True]
+            local_wrappers = [
+                _ for _ in local_wrappers if _.get_deactivate() is not True
+            ]
         for wrapper_ in local_wrappers:
             offset = wrapper_.start_offset()
             candidate_wrappers.setdefault(offset, []).append(wrapper_)
         if not isinstance(component_, _score.Context):
             continue
         for wrapper_ in component_._dependent_wrappers:
-            if wrapper_.annotation():
+            if wrapper_.get_annotation():
                 continue
             if isinstance(wrapper_.unbundle_indicator(), prototype):
                 append_wrapper = True
@@ -223,14 +225,14 @@ def _get_leaf_from_leaf(leaf, n):
 def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=None):
     wrappers = {}
     for wrapper in dependent_wrappers:
-        if wrapper.annotation():
+        if wrapper.get_annotation():
             continue
         if not getattr(wrapper.unbundle_indicator(), "persistent", False):
             continue
         assert isinstance(wrapper.unbundle_indicator().persistent, bool)
         should_omit = False
         if omit_with_indicator is not None:
-            for component in wrapper.component()._get_parentage():
+            for component in wrapper.get_component()._get_parentage():
                 if component._has_indicator(omit_with_indicator):
                     should_omit = True
                     continue

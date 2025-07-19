@@ -27,12 +27,12 @@ def test_wrapper_Wrapper___copy___02():
     abjad.attach(clef, staff_1[0], tag=tag)
     wrapper = abjad.get.wrapper(staff_1[0], abjad.Clef)
 
-    assert wrapper.tag() == tag
+    assert wrapper.get_tag() == tag
 
     staff_2 = abjad.mutate.copy(staff_1)
     wrapper = abjad.get.wrapper(staff_2[0], abjad.Clef)
 
-    assert wrapper.tag() == tag
+    assert wrapper.get_tag() == tag
 
 
 def test_wrapper_Wrapper___copy___03():
@@ -45,9 +45,9 @@ def test_wrapper_Wrapper___copy___03():
     abjad.attach(clef, staff_1[0], deactivate=True, tag=abjad.Tag("RED"))
     wrapper_1 = abjad.get.wrapper(staff_1[0], abjad.Clef)
 
-    assert wrapper_1.deactivate() is True
+    assert wrapper_1.get_deactivate() is True
 
     staff_2 = abjad.mutate.copy(staff_1)
     wrapper_2 = abjad.get.wrapper(staff_2[0], abjad.Clef)
 
-    assert wrapper_2.deactivate() is True
+    assert wrapper_2.get_deactivate() is True

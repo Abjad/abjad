@@ -313,7 +313,7 @@ def check_orphaned_dependent_wrappers(argument) -> tuple[list, int]:
         >>> voice = abjad.Voice("c'8 [ d' e' f'")
         >>> assert len(voice._dependent_wrappers) == 1
         >>> wrapper = voice._dependent_wrappers[0]
-        >>> wrapper.component()
+        >>> wrapper.get_component()
         Note("c'8")
 
         >>> abjad.wf.check_orphaned_dependent_wrappers(voice)
@@ -328,7 +328,7 @@ def check_orphaned_dependent_wrappers(argument) -> tuple[list, int]:
 
         >>> voice._dependent_wrappers.append(wrapper)
         >>> assert len(voice._dependent_wrappers) == 1
-        >>> assert wrapper.component() not in voice
+        >>> assert wrapper.get_component() not in voice
 
         >>> abjad.wf.check_orphaned_dependent_wrappers(voice)
         ([Wrapper(annotation=None, context_name='Voice', deactivate=False, direction=None, hide=False, indicator=StartBeam(), synthetic_offset=None, tag=Tag(string=''))], 1)
@@ -339,7 +339,7 @@ def check_orphaned_dependent_wrappers(argument) -> tuple[list, int]:
         assert isinstance(context, _score.Context)
         for wrapper in context._dependent_wrappers:
             total += 1
-            parentage = _get.parentage(wrapper.component())
+            parentage = _get.parentage(wrapper.get_component())
             if context not in parentage:
                 violators.append(wrapper)
     return violators, total
@@ -492,10 +492,10 @@ def check_overlapping_beams(argument) -> tuple[list, int]:
     violators, total = [], 0
     context_name_to_wrappers = _aggregate_context_wrappers(argument)
     for _, wrappers in context_name_to_wrappers.items():
-        wrappers.sort(key=lambda _: _get.timespan(_.component()).start_offset)
+        wrappers.sort(key=lambda _: _get.timespan(_.get_component()).start_offset)
         open_beam_count = 0
         for wrapper in wrappers:
-            if _get.is_grace_music(wrapper.component()) is True:
+            if _get.is_grace_music(wrapper.get_component()) is True:
                 continue
             total += 1
             if isinstance(wrapper.unbundle_indicator(), _indicators.StartBeam):
@@ -503,7 +503,7 @@ def check_overlapping_beams(argument) -> tuple[list, int]:
             elif isinstance(wrapper.unbundle_indicator(), _indicators.StopBeam):
                 open_beam_count -= 1
             if open_beam_count < 0 or 1 < open_beam_count:
-                violators.append(wrapper.component())
+                violators.append(wrapper.get_component())
     return violators, total
 
 
@@ -635,7 +635,7 @@ def check_overlapping_text_spanners(argument) -> tuple[list, int]:
         wrappers.sort(key=key)
         open_spanners: dict = {}
         for wrapper in wrappers:
-            if wrapper.deactivate() is True:
+            if wrapper.get_deactivate() is True:
                 continue
             if isinstance(wrapper.unbundle_indicator(), _indicators.StartTextSpan):
                 total += 1
@@ -645,8 +645,8 @@ def check_overlapping_text_spanners(argument) -> tuple[list, int]:
                 if command not in open_spanners:
                     open_spanners[command] = []
                 if open_spanners[command]:
-                    violators.append(wrapper.component())
-                open_spanners[command].append(wrapper.component())
+                    violators.append(wrapper.get_component())
+                open_spanners[command].append(wrapper.get_component())
             elif isinstance(wrapper.unbundle_indicator(), _indicators.StopTextSpan):
                 command = wrapper.unbundle_indicator().command
                 command = command.replace("stop", "")
@@ -721,13 +721,13 @@ def check_unmatched_stop_text_spans(argument) -> tuple[list, int]:
                 command = command.replace("Start", "")
                 if command not in open_spanners:
                     open_spanners[command] = []
-                open_spanners[command].append(wrapper.component())
+                open_spanners[command].append(wrapper.get_component())
             elif isinstance(wrapper.unbundle_indicator(), _indicators.StopTextSpan):
                 command = wrapper.unbundle_indicator().command
                 command = command.replace("stop", "")
                 command = command.replace("Stop", "")
                 if command not in open_spanners or not open_spanners[command]:
-                    violators.append(wrapper.component())
+                    violators.append(wrapper.get_component())
                 else:
                     open_spanners[command].pop()
     return violators, total
@@ -847,14 +847,14 @@ def check_unterminated_hairpins(argument) -> tuple[list, int]:
                 wrapper.unbundle_indicator(), _indicators.StopHairpin
             ):
                 last_dynamic = wrapper.unbundle_indicator()
-                last_tag = wrapper.tag()
+                last_tag = wrapper.get_tag()
                 if isinstance(wrapper.unbundle_indicator(), _indicators.StartHairpin):
                     total += 1
         if (
             isinstance(last_dynamic, _indicators.StartHairpin)
             and _tag.Tag("RIGHT_BROKEN").string not in last_tag.string
         ):
-            violators.append(wrapper.component())
+            violators.append(wrapper.get_component())
     return violators, total
 
 
@@ -916,7 +916,7 @@ def check_unterminated_text_spanners(argument) -> tuple[list, int]:
         wrappers.sort(key=lambda _: _.leaked_start_offset())
         open_spanners: dict = {}
         for wrapper in wrappers:
-            if wrapper.deactivate() is True:
+            if wrapper.get_deactivate() is True:
                 continue
             if isinstance(wrapper.unbundle_indicator(), _indicators.StartTextSpan):
                 total += 1
@@ -925,7 +925,7 @@ def check_unterminated_text_spanners(argument) -> tuple[list, int]:
                 command = command.replace("Start", "")
                 if command not in open_spanners:
                     open_spanners[command] = []
-                open_spanners[command].append(wrapper.component())
+                open_spanners[command].append(wrapper.get_component())
             elif isinstance(wrapper.unbundle_indicator(), _indicators.StopTextSpan):
                 command = wrapper.unbundle_indicator().command
                 command = command.replace("stop", "")
