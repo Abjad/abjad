@@ -178,17 +178,6 @@ class OnBeatGraceContainer(_score.Container):
             result.extend(contributions)
         return result
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def grace_leaf_duration(self) -> _duration.Duration | None:
-        """
-        Gets grace leaf duration.
-        """
-        return self._grace_leaf_duration
-
-    ### PUBLIC METHODS ###
-
     def attach_lilypond_one_voice(self) -> None:
         r"""
         Attaches LilyPond ``\oneVoice`` command.
@@ -245,6 +234,12 @@ class OnBeatGraceContainer(_score.Container):
         assert len(polyphony_container) == 2, repr(polyphony_container)
         return polyphony_container
 
+    def grace_leaf_duration(self) -> _duration.Duration | None:
+        """
+        Gets grace leaf duration.
+        """
+        return self._grace_leaf_duration
+
     def match_first_nongrace_leaf(self) -> None:
         """
         Matches first nongrace leaf.
@@ -279,12 +274,12 @@ class OnBeatGraceContainer(_score.Container):
         """
         Sets grace leaf multipliers.
         """
-        if self.grace_leaf_duration is None:
+        if self.grace_leaf_duration() is None:
             return
         for leaf in _select.leaves(self):
             duration = _get.duration(leaf)
-            if duration != self.grace_leaf_duration:
-                multiplier = self.grace_leaf_duration / duration
+            if duration != self.grace_leaf_duration():
+                multiplier = self.grace_leaf_duration() / duration
                 leaf.multiplier = _duration.pair(multiplier)
 
 

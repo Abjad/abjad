@@ -703,40 +703,6 @@ class Pattern:
     def _make_subscript_string(self):
         return str(self)
 
-    @property
-    def weight(self):
-        """
-        Gets weight of pattern.
-
-        ..  container:: example
-
-            Gets weight of cyclic pattern:
-
-            >>> pattern = abjad.Pattern(
-            ...     indices=[0, 1, 7],
-            ...     period=8,
-            ... )
-
-            >>> pattern.weight
-            3
-
-        ..  container:: example
-
-            Gets weight of acyclic pattern:
-
-            >>> pattern = abjad.Pattern(
-            ...     indices=[0, 2, 3],
-            ... )
-
-            >>> pattern.weight
-            3
-
-        Weight defined equal to number of indices in pattern.
-
-        Returns nonnegative integer.
-        """
-        return len(self.indices)
-
     ### PUBLIC METHODS ###
 
     def advance(self, count: int | None = None) -> "Pattern":
@@ -2221,6 +2187,39 @@ class Pattern:
             return dataclasses.replace(self, indices=indices)
         patterns = [_.rotate(n=n) for _ in self.patterns]
         return dataclasses.replace(self, patterns=patterns)
+
+    def weight(self):
+        """
+        Gets weight of pattern.
+
+        ..  container:: example
+
+            Gets weight of cyclic pattern:
+
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ... )
+
+            >>> pattern.weight()
+            3
+
+        ..  container:: example
+
+            Gets weight of acyclic pattern:
+
+            >>> pattern = abjad.Pattern(
+            ...     indices=[0, 2, 3],
+            ... )
+
+            >>> pattern.weight()
+            3
+
+        Weight defined equal to number of indices in pattern.
+
+        Returns nonnegative integer.
+        """
+        return len(self.indices)
 
 
 @dataclasses.dataclass(slots=True, unsafe_hash=True)

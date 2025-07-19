@@ -251,7 +251,7 @@ class SchemeParser(Parser):
     def t_error(self, t):
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
-        if self.debug:
+        if self.debug():
             print(f"SchemeParser-{id(self)}: Illegal character {t.value[0]!r}")
         # t.lexer.skip(1)
 
@@ -304,7 +304,7 @@ class SchemeParser(Parser):
         p[0] = p[1]
         self.result = p[0]
         self.cursor_end = p.slice[0].cursor_end
-        if self.debug:
+        if self.debug():
             print("PARSED {!r}".format(self.lexer.lexdata[: self.cursor_end]))
         raise exceptions.SchemeParserFinishedError
 
@@ -653,23 +653,21 @@ class SchemeParser(Parser):
 
     def p_error(self, p):
         if p:
-            if self.debug:
+            if self.debug():
                 print("SchemeParser-{}: Syntax error at {!r}".format(id(self), p.value))
             self._parser.errok()
         else:
-            if self.debug:
+            if self.debug():
                 print("SchemeParser-{}: Syntax error at EOF".format(id(self)))
 
     ### PUBLIC PROPERTIES ###
 
-    @property
     def lexer_rules_object(self):
         """
         Lexer rules object of Scheme parser.
         """
         return self
 
-    @property
     def parser_rules_object(self):
         """
         Parser rules object of Scheme parser.

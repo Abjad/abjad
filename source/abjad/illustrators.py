@@ -266,7 +266,7 @@ def components(
         _bind.attach(time_signature, _select.leaf(components, 0))
     else:
         leaves = _select.leaves(components, grace=False)
-        durations = [_.duration for _ in time_signatures]
+        durations = [_.get_duration() for _ in time_signatures]
         parts = _select.partition_by_durations(leaves, durations)
         assert len(parts) == len(time_signatures)
         previous_time_signature = None

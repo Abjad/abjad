@@ -106,6 +106,8 @@ class Duration(fractions.Fraction):
                 return fractions.Fraction.__new__(class_, argument)
             except (AttributeError, TypeError):
                 pass
+            if hasattr(argument, "get_duration"):
+                return argument.get_duration()
             if (
                 isinstance(argument, tuple)
                 and len(argument) == 2
@@ -116,10 +118,12 @@ class Duration(fractions.Fraction):
                 return fractions.Fraction.__new__(
                     class_, int(argument[0]), int(argument[1])
                 )
-            try:
-                return fractions.Fraction.__new__(class_, argument.duration)
-            except AttributeError:
-                pass
+            if hasattr(argument, "duration"):
+                try:
+                    return fractions.Fraction.__new__(class_, argument.duration)
+                except TypeError:
+                    pass
+                return fractions.Fraction.__new__(class_, argument.duration())
             if isinstance(argument, str) and "/" not in argument:
                 result = Duration._initialize_from_lilypond_duration_string(argument)
                 return fractions.Fraction.__new__(class_, result)

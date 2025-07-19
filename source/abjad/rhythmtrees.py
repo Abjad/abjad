@@ -36,7 +36,7 @@ class RhythmTreeNode:
         self._offset = _duration.Offset(0)
         self._offsets_are_current = False
         self._pair = (0, 1)
-        self.pair = pair
+        self.set_pair(pair)
 
     ### PRIVATE METHODS ###
 
@@ -54,7 +54,7 @@ class RhythmTreeNode:
         return inventory
 
     def _get_fraction_string(self):
-        n, d = self.pair
+        n, d = self.pair()
         if d == 1:
             string = str(n)
         else:
@@ -66,7 +66,7 @@ class RhythmTreeNode:
         node = self
         assert hasattr(node, "parent"), repr(node)
         while node.parent is not None:
-            pair = _duration.Duration(node.pair)
+            pair = _duration.Duration(node.pair())
             parent_contents_duration = node.parent._get_contents_duration()
             fraction = pair / parent_contents_duration
             assert isinstance(fraction, fractions.Fraction), repr(fraction)
@@ -74,7 +74,7 @@ class RhythmTreeNode:
             assert isinstance(duration, _duration.Duration), repr(duration)
             result.append(duration.pair())
             node = node.parent
-        duration = _duration.Duration(node.pair)
+        duration = _duration.Duration(node.pair())
         result.append(duration.pair())
         return tuple(reversed(result))
 
@@ -88,7 +88,7 @@ class RhythmTreeNode:
                 else:
                     child._offset = current_offset
                     child._offsets_are_current = True
-                    current_offset += _duration.Duration(child.duration)
+                    current_offset += _duration.Duration(child.duration())
             return current_offset
 
         offset = _duration.Offset(0)
@@ -107,7 +107,6 @@ class RhythmTreeNode:
 
     ### PUBLIC PROPERTIES ###
 
-    @property
     def duration(self) -> _duration.Duration:
         r"""
         Gets duration of rhythm-tree node.
@@ -150,44 +149,44 @@ class RhythmTreeNode:
                     }
                 >>
 
-            >>> rtc.duration
+            >>> rtc.duration()
             Duration(1, 1)
 
-            >>> rtc[1].duration
+            >>> rtc[1].duration()
             Duration(1, 2)
 
-            >>> rtc[1][1].duration
+            >>> rtc[1][1].duration()
             Duration(1, 4)
 
         """
-        numerator = self.prolation.numerator * self.pair[0]
-        denominator = self.prolation.denominator * self.pair[1]
+        numerator = self.prolation().numerator * self.pair()[0]
+        denominator = self.prolation().denominator * self.pair()[1]
         return _duration.Duration((numerator, denominator))
 
-    @property
     def pair(self) -> tuple[int, int]:
         """
         Gets pair of rhythm-tree node.
 
         ..  container:: example
 
-            >>> abjad.rhythmtrees.RhythmTreeLeaf((1, 1)).pair
+            >>> abjad.rhythmtrees.RhythmTreeLeaf((1, 1)).pair()
             (1, 1)
 
-            >>> abjad.rhythmtrees.RhythmTreeLeaf((2, 4)).pair
+            >>> abjad.rhythmtrees.RhythmTreeLeaf((2, 4)).pair()
             (2, 4)
 
         """
         return self._pair
 
-    @pair.setter
-    def pair(self, pair):
+    def set_pair(self, pair):
+        """
+        Sets pair of rhythm-tree node.
+        """
         assert isinstance(pair, tuple), repr(pair)
         assert 0 < fractions.Fraction(*pair)
         self._pair = pair
         self._mark_entire_tree_for_later_update()
 
-    @property
     def pretty_rtm_format(self) -> str:
         """
         Gets pretty-printed RTM format of rhythm-tree node.
@@ -197,7 +196,7 @@ class RhythmTreeNode:
             >>> string = '(1 ((1 (1 1)) (1 (1 1))))'
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
 
-            >>> print(rtc.pretty_rtm_format)
+            >>> print(rtc.pretty_rtm_format())
             (1 (
                 (1 (
                     1
@@ -206,26 +205,24 @@ class RhythmTreeNode:
                     1
                     1))))
 
-            >>> print(rtc[0].pretty_rtm_format)
+            >>> print(rtc[0].pretty_rtm_format())
             (1 (
                 1
                 1))
 
-            >>> print(rtc[0][0].pretty_rtm_format)
+            >>> print(rtc[0][0].pretty_rtm_format())
             1
 
         """
         assert hasattr(self, "_pretty_rtm_format_pieces"), repr(self)
         return "\n".join(self._pretty_rtm_format_pieces())
 
-    @property
     def prolation(self) -> fractions.Fraction:
         """
         Gets prolation of rhythm-tree node.
         """
-        return _math.cumulative_products(self.prolations)[-1]
+        return _math.cumulative_products(self.prolations())[-1]
 
-    @property
     def prolations(self) -> tuple[fractions.Fraction, ...]:
         """
         Gets prolations of rhythm-tree node.
@@ -236,56 +233,54 @@ class RhythmTreeNode:
         for child, parent in pairs:
             parent_contents_duration = parent._get_contents_duration()
             assert isinstance(parent_contents_duration, _duration.Duration)
-            parent_preprolated_duration = _duration.Duration(parent.pair)
+            parent_preprolated_duration = _duration.Duration(parent.pair())
             duration = parent_preprolated_duration / parent_contents_duration
             prolation = fractions.Fraction(duration)
             prolations.append(prolation)
         return tuple(prolations)
 
-    @property
     def start_offset(self) -> _duration.Offset:
         """
         Gets start offset of rhythm-tree node.
 
         ..  container:: example
 
-            >>> string = '(1 ((1 (1 1)) (1 (1 1))))'
+            >>> string = "(1 ((1 (1 1)) (1 (1 1))))"
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
 
-            >>> rtc.start_offset
+            >>> rtc.start_offset()
             Offset((0, 1))
 
-            >>> rtc[1].start_offset
+            >>> rtc[1].start_offset()
             Offset((1, 2))
 
-            >>> rtc[1][1].start_offset
+            >>> rtc[1][1].start_offset()
             Offset((3, 4))
 
         """
         self._update_offsets_of_entire_tree_if_necessary()
         return self._offset
 
-    @property
     def stop_offset(self) -> _duration.Offset:
         """
         Gets stop offset of rhythm-tree node.
 
         ..  container:: example
 
-            >>> string = '(1 ((1 (1 1)) (1 (1 1))))'
+            >>> string = "(1 ((1 (1 1)) (1 (1 1))))"
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
 
-            >>> rtc.stop_offset
+            >>> rtc.stop_offset()
             Offset((1, 1))
 
-            >>> rtc[0].stop_offset
+            >>> rtc[0].stop_offset()
             Offset((1, 2))
 
-            >>> rtc[0][0].stop_offset
+            >>> rtc[0][0].stop_offset()
             Offset((1, 4))
 
         """
-        return self.start_offset + _duration.Duration(self.duration)
+        return self.start_offset() + _duration.Duration(self.duration())
 
 
 class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
@@ -346,9 +341,10 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         name: str | None = None,
     ) -> None:
         assert isinstance(pair, tuple), repr(pair)
+        assert isinstance(is_unpitched, bool), repr(is_unpitched)
         uqbar.containers.UniqueTreeNode.__init__(self, name=name)
         RhythmTreeNode.__init__(self, pair)
-        self.is_unpitched = is_unpitched
+        self.set_is_unpitched(is_unpitched)
 
     def __call__(
         self, duration: _duration.Duration
@@ -358,13 +354,13 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         """
         assert isinstance(duration, _duration.Duration), repr(duration)
         pitches: list[int | None]
-        if self.is_unpitched is False:
+        if self.is_unpitched() is False:
             pitches = [0]
         else:
-            assert self.is_unpitched is True
+            assert self.is_unpitched() is True
             pitches = [None]
         pitch_lists = _makers.make_pitch_lists(pitches)
-        duration *= _duration.Duration(self.pair)
+        duration *= _duration.Duration(self.pair())
         components = _makers.make_leaves(pitch_lists, [duration])
         return components
 
@@ -373,7 +369,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         Gets Graphviz graph of rhythm-tree leaf.
         """
         graph = uqbar.graphs.Graph(name="G")
-        label = str(_duration.Duration(self.pair))
+        label = str(_duration.Duration(self.pair()))
         node = uqbar.graphs.Node(attributes={"label": label, "shape": "box"})
         graph.append(node)
         return graph
@@ -383,8 +379,8 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         Gets interpreter representation of rhythm-tree leaf.
         """
         properties = [
-            f"{self.pair!r}",
-            f"is_unpitched={self.is_unpitched!r}",
+            f"{self.pair()!r}",
+            f"is_unpitched={self.is_unpitched()!r}",
         ]
         if self.name is not None:
             properties.append(f"name={self.name!r}")
@@ -394,35 +390,35 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
     def _pretty_rtm_format_pieces(self):
         return [str(self._get_fraction_string())]
 
-    @property
     def is_unpitched(self) -> bool:
         """
         Is true when rhythm-tree leaf is unpitched.
         """
         return self._is_unpitched
 
-    @is_unpitched.setter
-    def is_unpitched(self, argument):
+    def set_is_unpitched(self, argument) -> None:
+        """
+        Sets ``is_unpitched``.
+        """
         self._is_unpitched = bool(argument)
 
-    @property
     def rtm_format(self) -> str:
         """
         Gets RTM format of rhythm-tree leaf.
 
         ..  container:: example
 
-            >>> abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_unpitched=False).rtm_format
+            >>> abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_unpitched=False).rtm_format()
             '5'
 
-            >>> abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_unpitched=True).rtm_format
+            >>> abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_unpitched=True).rtm_format()
             '-5'
 
         """
         string = self._get_fraction_string()
-        if self.is_unpitched is False:
+        if self.is_unpitched() is False:
             return f"{string!s}"
-        assert self.is_unpitched is True
+        assert self.is_unpitched() is True
         return f"-{string!s}"
 
 
@@ -442,10 +438,10 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
         Use RTM format strings to view the structure of rhythm-tree containers:
 
-        >>> print(rtc.rtm_format)
+        >>> print(rtc.rtm_format())
         (1 (1 2 2))
 
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (1 (
             1
             2
@@ -571,19 +567,19 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
             The pair of ``c`` equals the sum of the pairs of ``a`` and ``b``:
 
-            >>> rtc_a.pair
+            >>> rtc_a.pair()
             (1, 1)
 
-            >>> rtc_b.pair
+            >>> rtc_b.pair()
             (1, 1)
 
-            >>> rtc_c.pair
+            >>> rtc_c.pair()
             (2, 1)
 
         """
         assert isinstance(rtc, RhythmTreeContainer), repr(rtc)
-        new_duration = _duration.Duration(self.duration)
-        new_duration += _duration.Duration(rtc.duration)
+        new_duration = _duration.Duration(self.duration())
+        new_duration += _duration.Duration(rtc.duration())
         container = RhythmTreeContainer(new_duration.pair())
         container.extend(self[:])
         container.extend(rtc[:])
@@ -642,7 +638,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             tuplet = _score.Tuplet("1:1", [])
             for node in rtc.children:
                 if isinstance(node, type(self)):
-                    tuplet_duration_ = _duration.Duration(node.pair)
+                    tuplet_duration_ = _duration.Duration(node.pair())
                     tuplet_duration_ *= basic_written_duration
                     components = recurse(node, tuplet_duration_)
                     tuplet.extend(components)
@@ -659,7 +655,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             tuplet.ratio = ratio
             return [tuplet]
 
-        tuplet_duration_ = duration * _duration.Duration(self.pair)
+        tuplet_duration_ = duration * _duration.Duration(self.pair())
         assert isinstance(tuplet_duration_, _duration.Duration)
         components = recurse(self, tuplet_duration_)
         assert all(isinstance(_, _score.Leaf | _score.Tuplet) for _ in components)
@@ -715,7 +711,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
         nodes.extend(self.depth_first())
         for node in nodes:
             graphviz_node = uqbar.graphs.Node()
-            label = str(_duration.Duration(node.pair))
+            label = str(_duration.Duration(node.pair()))
             graphviz_node.attributes["label"] = label
             if isinstance(node, type(self)):
                 graphviz_node.attributes["shape"] = "triangle"
@@ -740,12 +736,12 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
         """
         Gets interpreter representation of rhythm-tree container.
         """
-        return f"{type(self).__name__}({self.pair})"
+        return f"{type(self).__name__}({self.pair()})"
 
     ### PRIVATE METHODS ###
 
     def _get_contents_duration(self):
-        durations = [_duration.Duration(_.pair) for _ in self]
+        durations = [_duration.Duration(_.pair()) for _ in self]
         duration = sum(durations)
         return duration
 
@@ -773,7 +769,6 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
     def rtm_format(self) -> str:
         """
         Gets RTM format of rhythm-tree container.
@@ -783,17 +778,17 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             >>> string = '(1 ((1 (1 1)) (1 (1 1))))'
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
 
-            >>> rtc.rtm_format
+            >>> rtc.rtm_format()
             '(1 ((1 (1 1)) (1 (1 1))))'
 
-            >>> rtc[0].rtm_format
+            >>> rtc[0].rtm_format()
             '(1 (1 1))'
 
-            >>> rtc[0][0].rtm_format
+            >>> rtc[0][0].rtm_format()
             '1'
 
         """
-        string = " ".join([x.rtm_format for x in self])
+        string = " ".join([x.rtm_format() for x in self])
         fraction_string = self._get_fraction_string()
         return f"({fraction_string} ({string}))"
 
@@ -812,7 +807,7 @@ class RhythmTreeParser(Parser):
         >>> string = '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
         >>> rtc = parser(string)[0]
 
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (3 (
             1
             (1 (
@@ -873,13 +868,9 @@ class RhythmTreeParser(Parser):
 
     """
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
     def lexer_rules_object(self):
         return self
 
-    @property
     def parser_rules_object(self):
         return self
 

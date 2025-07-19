@@ -1155,23 +1155,14 @@ class ColorFingering:
         assert isinstance(self.number, int), repr(self.number)
 
     def _get_lilypond_format(self):
-        return self.markup._get_lilypond_format()
+        return self.get_markup()._get_lilypond_format()
 
     def _get_contributions(self, *, wrapper=None):
-        return self.markup._get_contributions(wrapper=wrapper)
+        return self.get_markup()._get_contributions(wrapper=wrapper)
 
-    @property
-    def markup(self) -> typing.Optional["Markup"]:
-        r"""
+    def get_markup(self) -> typing.Optional["Markup"]:
+        """
         Gets markup of color fingering.
-
-        ..  container:: example
-
-            >>> fingering = abjad.ColorFingering(1)
-            >>> string = abjad.lilypond(fingering.markup)
-            >>> print(string)
-            \markup { \override #'(circle-padding . 0.25) \circle \finger 1 }
-
         """
         if self.number is None:
             return None
@@ -2541,7 +2532,6 @@ class InstrumentName:
         assert isinstance(self.markup, str | Markup), repr(self.markup)
         assert isinstance(self.context, str), repr(self.context)
 
-    @property
     def _lilypond_type(self):
         if isinstance(self.context, type):
             return self.context.__name__
@@ -2557,7 +2547,7 @@ class InstrumentName:
         elif context is not None:
             context = context.lilypond_type
         else:
-            context = self._lilypond_type
+            context = self._lilypond_type()
         if isinstance(self.markup, Markup):
             string = self.markup.string
         else:
@@ -2963,8 +2953,7 @@ class LilyPondLiteral:
         site.commands.extend(pieces)
         return contributions
 
-    @property
-    def post_event(self):
+    def post_event(self) -> bool:
         """
         Is true when literal is directed.
         """
@@ -3142,17 +3131,17 @@ class KeySignature:
         site.commands.append(string)
         return contributions
 
-    @property
-    def name(self) -> str:
+    def get_name(self) -> str:
         """
         Gets name of key signature.
 
         ..  container:: example
 
-            >>> abjad.KeySignature(abjad.NamedPitchClass("e"), abjad.Mode("major")).name
+            >>> pc = abjad.NamedPitchClass("e")
+            >>> abjad.KeySignature(pc, abjad.Mode("major")).get_name()
             'E major'
 
-            >>> abjad.KeySignature(abjad.NamedPitchClass("e"), abjad.Mode("minor")).name
+            >>> abjad.KeySignature(pc, abjad.Mode("minor")).get_name()
             'e minor'
 
         """
@@ -3690,25 +3679,25 @@ class MetronomeMark:
         than that of this metronome mark.
         """
         assert isinstance(argument, type(self)), repr(argument)
-        self_quarters_per_minute = self.quarters_per_minute or 0
-        argument_quarters_per_minute = argument.quarters_per_minute or 0
-        assert isinstance(self_quarters_per_minute, int | float | fractions.Fraction)
+        self_get_quarters_per_minute = self.get_quarters_per_minute() or 0
+        argument_get_quarters_per_minute = argument.get_quarters_per_minute() or 0
         assert isinstance(
-            argument_quarters_per_minute, (int, float, fractions.Fraction)
+            self_get_quarters_per_minute, int | float | fractions.Fraction
         )
-        return self_quarters_per_minute < argument_quarters_per_minute
+        assert isinstance(
+            argument_get_quarters_per_minute, (int, float, fractions.Fraction)
+        )
+        return self_get_quarters_per_minute < argument_get_quarters_per_minute
 
-    @property
     def _dotted(self):
         return self.reference_duration.lilypond_duration_string()
 
-    @property
     def _equation(self):
         if self.reference_duration is None:
             return
         if isinstance(self.units_per_minute, tuple):
             first, second = self.units_per_minute
-            string = f"{self._dotted}={first}-{second}"
+            string = f"{self._dotted()}={first}-{second}"
             return string
         elif isinstance(self.units_per_minute, fractions.Fraction):
             markup = MetronomeMark.make_tempo_equation_markup(
@@ -3718,7 +3707,7 @@ class MetronomeMark:
             )
             string = markup.string
             return string
-        string = f"{self._dotted}={self.units_per_minute}"
+        string = f"{self._dotted()}={self.units_per_minute}"
         return string
 
     def _get_contributions(self, *, wrapper=None):
@@ -3733,7 +3722,7 @@ class MetronomeMark:
     def _get_lilypond_format(self):
         equation = None
         if self.reference_duration is not None and self.units_per_minute is not None:
-            equation = self._equation
+            equation = self._equation()
         if self.custom_markup is not None:
             return rf"\tempo {self.custom_markup.string}"
         elif self.textual_indication and equation:
@@ -3786,11 +3775,10 @@ class MetronomeMark:
             "d": d,
         }
 
-    @property
-    def is_imprecise(self) -> bool:
+    def get_is_imprecise(self) -> bool:
         """
         Is true if metronome mark is entirely textual or if metronome mark's
-        units_per_minute is a range.
+        ``units_per_minute`` is a range.
 
         ..  container:: example
 
@@ -3798,21 +3786,21 @@ class MetronomeMark:
 
             >>> duration = abjad.Duration(1, 4)
 
-            >>> abjad.MetronomeMark(textual_indication="Langsam").is_imprecise
+            >>> abjad.MetronomeMark(textual_indication="Langsam").get_is_imprecise()
             True
 
-            >>> abjad.MetronomeMark(duration, (35, 50), "Langsam").is_imprecise
+            >>> abjad.MetronomeMark(duration, (35, 50), "Langsam").get_is_imprecise()
             True
 
-            >>> abjad.MetronomeMark(duration, (35, 50)).is_imprecise
+            >>> abjad.MetronomeMark(duration, (35, 50)).get_is_imprecise()
             True
 
             Precise metronome marks:
 
-            >>> abjad.MetronomeMark(duration, 60).is_imprecise
+            >>> abjad.MetronomeMark(duration, 60).get_is_imprecise()
             False
 
-            >>> abjad.MetronomeMark(duration, 60, "Langsam").is_imprecise
+            >>> abjad.MetronomeMark(duration, 60, "Langsam").get_is_imprecise()
             False
 
         """
@@ -3822,8 +3810,7 @@ class MetronomeMark:
                     return False
         return True
 
-    @property
-    def quarters_per_minute(self) -> tuple | None | fractions.Fraction:
+    def get_quarters_per_minute(self) -> tuple | None | fractions.Fraction:
         """
         Gets metronome mark quarters per minute.
 
@@ -3836,11 +3823,11 @@ class MetronomeMark:
         ..  container:: example
 
             >>> mark = abjad.MetronomeMark(abjad.Duration(1, 8), 52)
-            >>> mark.quarters_per_minute
+            >>> mark.get_quarters_per_minute()
             Fraction(104, 1)
 
         """
-        if self.is_imprecise:
+        if self.get_is_imprecise():
             return None
         if isinstance(self.units_per_minute, tuple):
             low = (
@@ -7363,14 +7350,13 @@ class TimeSignature:
         """
         return self.pair[1]
 
-    @property
-    def duration(self) -> _duration.Duration:
+    def get_duration(self) -> _duration.Duration:
         """
         Gets duration of time signature.
 
         ..  container:: example
 
-            >>> abjad.TimeSignature((3, 8)).duration
+            >>> abjad.TimeSignature((3, 8)).get_duration()
             Duration(3, 8)
 
         """

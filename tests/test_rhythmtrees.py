@@ -135,16 +135,16 @@ def test_RhythmTreeContainer___getitem___01():
 def test_RhythmTreeContainer___init___01():
     container = abjad.rhythmtrees.RhythmTreeContainer((1, 1))
     assert container.children == ()
-    assert container.pair == (1, 1)
-    assert container.start_offset == 0
+    assert container.pair() == (1, 1)
+    assert container.start_offset() == 0
     assert container.parent is None
 
 
 def test_RhythmTreeContainer___init___02():
     container = abjad.rhythmtrees.RhythmTreeContainer((2, 1), children=[])
     assert container.children == ()
-    assert container.pair == (2, 1)
-    assert container.start_offset == 0
+    assert container.pair() == (2, 1)
+    assert container.start_offset() == 0
     assert container.parent is None
 
 
@@ -152,24 +152,24 @@ def test_RhythmTreeContainer___init___03():
     leaf_a = abjad.rhythmtrees.RhythmTreeLeaf((1, 1))
     leaf_b = abjad.rhythmtrees.RhythmTreeLeaf((2, 1))
     leaf_c = abjad.rhythmtrees.RhythmTreeLeaf((1, 1))
-    assert leaf_a.start_offset == 0
+    assert leaf_a.start_offset() == 0
     assert leaf_a.parent is None
-    assert leaf_b.start_offset == 0
+    assert leaf_b.start_offset() == 0
     assert leaf_b.parent is None
-    assert leaf_c.start_offset == 0
+    assert leaf_c.start_offset() == 0
     assert leaf_c.parent is None
     container = abjad.rhythmtrees.RhythmTreeContainer(
         (4, 1), children=[leaf_a, leaf_b, leaf_c]
     )
     assert container.children == (leaf_a, leaf_b, leaf_c)
-    assert container.pair == (4, 1)
-    assert container.start_offset == 0
+    assert container.pair() == (4, 1)
+    assert container.start_offset() == 0
     assert container.parent is None
-    assert leaf_a.start_offset == 0
+    assert leaf_a.start_offset() == 0
     assert leaf_a.parent is container
-    assert leaf_b.start_offset == 1
+    assert leaf_b.start_offset() == 1
     assert leaf_b.parent is container
-    assert leaf_c.start_offset == 3
+    assert leaf_c.start_offset() == 3
     assert leaf_c.parent is container
 
 
@@ -346,8 +346,8 @@ def test_RhythmTreeContainer_rtm_format_01():
         (1, 1),
         children=[leaf_a, subcontainer, leaf_d],
     )
-    assert subcontainer.rtm_format == "(2 (3 2))"
-    assert container.rtm_format == "(1 (3 (2 (3 2)) 1))"
+    assert subcontainer.rtm_format() == "(2 (3 2))"
+    assert container.rtm_format() == "(1 (3 (2 (3 2)) 1))"
 
 
 def test_RhythmTreeLeaf___copy___01():
@@ -483,26 +483,26 @@ def test_RhythmTreeNode_duration_01():
             abjad.rhythmtrees.RhythmTreeLeaf((2, 1)),
         ],
     )
-    assert rtc.duration == abjad.Duration(1, 1)
-    assert rtc[0].duration == abjad.Duration(1, 5)
-    assert rtc[1].duration == abjad.Duration(2, 5)
-    assert rtc[1][0].duration == abjad.Duration(6, 25)
-    assert rtc[1][1].duration == abjad.Duration(4, 25)
-    assert rtc[2].duration == abjad.Duration(2, 5)
+    assert rtc.duration() == abjad.Duration(1, 1)
+    assert rtc[0].duration() == abjad.Duration(1, 5)
+    assert rtc[1].duration() == abjad.Duration(2, 5)
+    assert rtc[1][0].duration() == abjad.Duration(6, 25)
+    assert rtc[1][1].duration() == abjad.Duration(4, 25)
+    assert rtc[2].duration() == abjad.Duration(2, 5)
     rtc[1].append(rtc.pop())
-    assert rtc.duration == abjad.Duration(1, 1)
-    assert rtc[0].duration == abjad.Duration(1, 3)
-    assert rtc[1].duration == abjad.Duration(2, 3)
-    assert rtc[1][0].duration == abjad.Duration(6, 21)
-    assert rtc[1][1].duration == abjad.Duration(4, 21)
-    assert rtc[1][2].duration == abjad.Duration(4, 21)
-    rtc.pair = (19, 1)
-    assert rtc.duration == abjad.Duration(19, 1)
-    assert rtc[0].duration == abjad.Duration(19, 3)
-    assert rtc[1].duration == abjad.Duration(38, 3)
-    assert rtc[1][0].duration == abjad.Duration(114, 21)
-    assert rtc[1][1].duration == abjad.Duration(76, 21)
-    assert rtc[1][2].duration == abjad.Duration(76, 21)
+    assert rtc.duration() == abjad.Duration(1, 1)
+    assert rtc[0].duration() == abjad.Duration(1, 3)
+    assert rtc[1].duration() == abjad.Duration(2, 3)
+    assert rtc[1][0].duration() == abjad.Duration(6, 21)
+    assert rtc[1][1].duration() == abjad.Duration(4, 21)
+    assert rtc[1][2].duration() == abjad.Duration(4, 21)
+    rtc.set_pair((19, 1))
+    assert rtc.duration() == abjad.Duration(19, 1)
+    assert rtc[0].duration() == abjad.Duration(19, 3)
+    assert rtc[1].duration() == abjad.Duration(38, 3)
+    assert rtc[1][0].duration() == abjad.Duration(114, 21)
+    assert rtc[1][1].duration() == abjad.Duration(76, 21)
+    assert rtc[1][2].duration() == abjad.Duration(76, 21)
 
 
 def test_RhythmTreeNode_offset_01():
@@ -520,28 +520,28 @@ def test_RhythmTreeNode_offset_01():
             abjad.rhythmtrees.RhythmTreeLeaf((2, 1)),
         ],
     )
-    assert rtc.start_offset == abjad.Offset(0)
-    assert rtc[0].start_offset == abjad.Offset(0)
-    assert rtc[1].start_offset == abjad.Offset(1, 5)
-    assert rtc[1][0].start_offset == abjad.Offset(1, 5)
-    assert rtc[1][1].start_offset == abjad.Offset(11, 25)
-    assert rtc[2].start_offset == abjad.Offset(3, 5)
+    assert rtc.start_offset() == abjad.Offset(0)
+    assert rtc[0].start_offset() == abjad.Offset(0)
+    assert rtc[1].start_offset() == abjad.Offset(1, 5)
+    assert rtc[1][0].start_offset() == abjad.Offset(1, 5)
+    assert rtc[1][1].start_offset() == abjad.Offset(11, 25)
+    assert rtc[2].start_offset() == abjad.Offset(3, 5)
     node = rtc.pop()
-    assert node.start_offset == abjad.Offset(0)
+    assert node.start_offset() == abjad.Offset(0)
     rtc[1].append(node)
-    assert rtc.start_offset == abjad.Offset(0)
-    assert rtc[0].start_offset == abjad.Offset(0)
-    assert rtc[1].start_offset == abjad.Offset(1, 3)
-    assert rtc[1][0].start_offset == abjad.Offset(1, 3)
-    assert rtc[1][1].start_offset == abjad.Offset(13, 21)
-    assert rtc[1][2].start_offset == abjad.Offset(17, 21)
-    rtc.pair = (19, 1)
-    assert rtc.start_offset == abjad.Offset(0)
-    assert rtc[0].start_offset == abjad.Offset(0)
-    assert rtc[1].start_offset == abjad.Offset(19, 3)
-    assert rtc[1][0].start_offset == abjad.Offset(19, 3)
-    assert rtc[1][1].start_offset == abjad.Offset(247, 21)
-    assert rtc[1][2].start_offset == abjad.Offset(323, 21)
+    assert rtc.start_offset() == abjad.Offset(0)
+    assert rtc[0].start_offset() == abjad.Offset(0)
+    assert rtc[1].start_offset() == abjad.Offset(1, 3)
+    assert rtc[1][0].start_offset() == abjad.Offset(1, 3)
+    assert rtc[1][1].start_offset() == abjad.Offset(13, 21)
+    assert rtc[1][2].start_offset() == abjad.Offset(17, 21)
+    rtc.set_pair((19, 1))
+    assert rtc.start_offset() == abjad.Offset(0)
+    assert rtc[0].start_offset() == abjad.Offset(0)
+    assert rtc[1].start_offset() == abjad.Offset(19, 3)
+    assert rtc[1][0].start_offset() == abjad.Offset(19, 3)
+    assert rtc[1][1].start_offset() == abjad.Offset(247, 21)
+    assert rtc[1][2].start_offset() == abjad.Offset(323, 21)
 
 
 def test_RhythmTreeNode_parent_01():

@@ -151,15 +151,6 @@ class Instrument:
             self.middle_c_sounding_pitch
         )
 
-    @property
-    def _lilypond_type(self):
-        if isinstance(self.context, type):
-            return self.context.__name__
-        elif isinstance(self.context, str):
-            return self.context
-        else:
-            return type(self.context).__name__
-
     def _attachment_test_all(self, leaf):
         assert hasattr(leaf, "written_duration")
         if leaf._has_indicator(Instrument):
@@ -177,6 +168,14 @@ class Instrument:
 
     def _get_lilypond_format(self, context=None):
         return []
+
+    def _get_lilypond_type(self):
+        if isinstance(self.context, type):
+            return self.context.__name__
+        elif isinstance(self.context, str):
+            return self.context
+        else:
+            return type(self.context).__name__
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
@@ -204,8 +203,7 @@ class StringNumber:
         assert isinstance(self.numbers, tuple), repr(self.numbers)
         assert all(0 < _ < 7 for _ in self.numbers)
 
-    @property
-    def roman_numerals(self) -> tuple[str, ...]:
+    def get_roman_numerals(self) -> tuple[str, ...]:
         """
         Gets roman numerals of string number indicator.
 
@@ -214,13 +212,13 @@ class StringNumber:
             String I:
 
             >>> indicator = abjad.StringNumber((1,))
-            >>> indicator.roman_numerals
+            >>> indicator.get_roman_numerals()
             ('i',)
 
             Strings II and III:
 
             >>> indicator = abjad.StringNumber((2, 3))
-            >>> indicator.roman_numerals
+            >>> indicator.get_roman_numerals()
             ('ii', 'iii')
 
         """
@@ -253,31 +251,6 @@ class Tuning:
         assert isinstance(self.pitches, tuple), repr(self.pitches)
         assert all(isinstance(_, _pitch.NamedPitch) for _ in self.pitches)
 
-    @property
-    def pitch_ranges(self) -> list[_pcollections.PitchRange]:
-        """
-        Gets two-octave pitch-ranges for each pitch in this tuning.
-
-        ..  container:: example
-
-            >>> pitches = [abjad.NamedPitch(_) for _ in "G3 D4 A4 E5".split()]
-            >>> tuning = abjad.Tuning(tuple(pitches))
-            >>> for range_ in tuning.pitch_ranges:
-            ...     range_
-            PitchRange(range_string='[G3, G5]')
-            PitchRange(range_string='[D4, D6]')
-            PitchRange(range_string='[A4, A6]')
-            PitchRange(range_string='[E5, E7]')
-
-        """
-        result = []
-        for pitch in self.pitches or []:
-            pitch_range: _pcollections.PitchRange = _pcollections.PitchRange(
-                f"[{pitch.name}, {(pitch + 24).name}]"
-            )
-            result.append(pitch_range)
-        return result
-
     def get_pitch_ranges_by_string_number(
         self, string_number: StringNumber
     ) -> tuple[_pcollections.PitchRange, ...]:
@@ -298,7 +271,7 @@ class Tuning:
         if not isinstance(string_number, StringNumber):
             string_number = StringNumber(string_number)
         assert isinstance(string_number, StringNumber)
-        pitch_ranges = self.pitch_ranges
+        pitch_ranges = self.get_pitch_ranges()
         result = []
         for number in string_number.numbers:
             index = -number
@@ -333,6 +306,30 @@ class Tuning:
             pitch = self.pitches[index]
             result.append(pitch)
         return tuple(result)
+
+    def get_pitch_ranges(self) -> list[_pcollections.PitchRange]:
+        """
+        Gets two-octave pitch-ranges for each pitch in this tuning.
+
+        ..  container:: example
+
+            >>> pitches = [abjad.NamedPitch(_) for _ in "G3 D4 A4 E5".split()]
+            >>> tuning = abjad.Tuning(tuple(pitches))
+            >>> for range_ in tuning.get_pitch_ranges():
+            ...     range_
+            PitchRange(range_string='[G3, G5]')
+            PitchRange(range_string='[D4, D6]')
+            PitchRange(range_string='[A4, A6]')
+            PitchRange(range_string='[E5, E7]')
+
+        """
+        result = []
+        for pitch in self.pitches or []:
+            pitch_range: _pcollections.PitchRange = _pcollections.PitchRange(
+                f"[{pitch.name}, {(pitch + 24).name}]"
+            )
+            result.append(pitch_range)
+        return result
 
     def voice_pitch_classes(
         self,
@@ -425,7 +422,7 @@ class Tuning:
         pcs_and_nones = pitch_classes + nones
         permutations = _enumerate.yield_permutations(pcs_and_nones)
         unique_tuples = set([tuple(_) for _ in permutations])
-        pitch_ranges = self.pitch_ranges
+        pitch_ranges = self.get_pitch_ranges()
         result: list[tuple[_pitch.NamedPitch | None, ...]] = []
         for permutation in unique_tuples:
             sequences: list = []
