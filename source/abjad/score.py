@@ -625,7 +625,7 @@ class Leaf(Component):
                 return False
 
     def _get_formatted_duration(self):
-        strings = [self.written_duration.lilypond_duration_string()]
+        strings = [self.written_duration.get_lilypond_duration_string()]
         if self.multiplier is not None:
             string = f"{self.multiplier[0]}/{self.multiplier[1]}"
             strings.append(string)
@@ -703,7 +703,7 @@ class Leaf(Component):
     @written_duration.setter
     def written_duration(self, argument):
         duration = _duration.Duration(argument)
-        if not duration.is_assignable():
+        if not duration.get_is_assignable():
             message = f"not assignable duration: {duration!r}."
             raise _exceptions.AssignabilityError(message)
         self._written_duration = duration
@@ -5379,7 +5379,7 @@ class Tuplet(Container):
                 continue
             assert isinstance(component, Leaf), repr(component)
             duration = self.multiplier() * component.written_duration
-            if not duration.is_assignable():
+            if not duration.get_is_assignable():
                 return False
         return True
 
@@ -5671,7 +5671,7 @@ class Tuplet(Container):
         for component in self:
             if isinstance(component, Tuplet):
                 return
-            dot_count = component.written_duration.dot_count()
+            dot_count = component.written_duration.get_dot_count()
             dot_counts.add(dot_count)
         if 1 < len(dot_counts):
             return
@@ -5683,7 +5683,7 @@ class Tuplet(Container):
         multiplier = dot_multiplier * self.multiplier()
         self.ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
         dot_multiplier_duration = _duration.Duration(dot_multiplier)
-        dot_multiplier_reciprocal_duration = dot_multiplier_duration.reciprocal()
+        dot_multiplier_reciprocal_duration = dot_multiplier_duration.get_reciprocal()
         for component in self:
             component.written_duration *= dot_multiplier_reciprocal_duration
 

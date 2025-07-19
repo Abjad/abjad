@@ -452,7 +452,7 @@ class Duration(fractions.Fraction):
         result = 2 ** (int(math.ceil(math.log(n, 2))) + i)
         return result
 
-    def dot_count(self) -> int:
+    def get_dot_count(self) -> int:
         r"""
         Gets dot count.
 
@@ -466,7 +466,7 @@ class Duration(fractions.Fraction):
             ...     try:
             ...         duration = abjad.Duration(n, 16)
             ...         sixteenths = abjad.duration.with_denominator(duration, 16)
-            ...         dot_count = duration.dot_count()
+            ...         dot_count = duration.get_dot_count()
             ...         string = f"{sixteenths[0]}/{sixteenths[1]}\t{dot_count}"
             ...         print(string)
             ...     except abjad.AssignabilityError:
@@ -491,7 +491,7 @@ class Duration(fractions.Fraction):
             16/16   0
 
         """
-        if not self.is_assignable():
+        if not self.get_is_assignable():
             raise _exceptions.AssignabilityError
         binary_string = _math.integer_to_binary_string(self.numerator)
         digit_sum = sum([int(x) for x in list(binary_string)])
@@ -521,7 +521,7 @@ class Duration(fractions.Fraction):
         pairs = [with_denominator(_, lcd) for _ in durations_]
         return pairs
 
-    def equal_or_greater_assignable(self) -> "Duration":
+    def get_equal_or_greater_assignable(self) -> "Duration":
         r"""
         Gets assignable duration equal to or just greater than this duration.
 
@@ -529,7 +529,7 @@ class Duration(fractions.Fraction):
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
-            ...     result = duration.equal_or_greater_assignable()
+            ...     result = duration.get_equal_or_greater_assignable()
             ...     sixteenths = abjad.duration.with_denominator(duration, 16)
             ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
             ...
@@ -554,12 +554,12 @@ class Duration(fractions.Fraction):
         good_denominator = _math.greatest_power_of_two_less_equal(self.denominator)
         current_numerator = self.numerator
         candidate = type(self)(current_numerator, good_denominator)
-        while not candidate.is_assignable():
+        while not candidate.get_is_assignable():
             current_numerator += 1
             candidate = type(self)(current_numerator, good_denominator)
         return candidate
 
-    def equal_or_greater_power_of_two(self) -> "Duration":
+    def get_equal_or_greater_power_of_two(self) -> "Duration":
         r"""
         Gets duration equal or just greater power of two.
 
@@ -567,7 +567,7 @@ class Duration(fractions.Fraction):
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
-            ...     result = duration.equal_or_greater_power_of_two()
+            ...     result = duration.get_equal_or_greater_power_of_two()
             ...     sixteenths = abjad.duration.with_denominator(duration, 16)
             ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
             ...
@@ -592,7 +592,7 @@ class Duration(fractions.Fraction):
         denominator_exponent = -int(math.ceil(math.log(self, 2)))
         return type(self)(1, 2) ** denominator_exponent
 
-    def equal_or_lesser_assignable(self) -> "Duration":
+    def get_equal_or_lesser_assignable(self) -> "Duration":
         r"""
         Gets assignable duration equal or just less than this duration.
 
@@ -600,7 +600,7 @@ class Duration(fractions.Fraction):
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
-            ...     result = duration.equal_or_lesser_assignable()
+            ...     result = duration.get_equal_or_lesser_assignable()
             ...     sixteenths = abjad.duration.with_denominator(duration, 16)
             ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
             ...
@@ -625,12 +625,12 @@ class Duration(fractions.Fraction):
         good_denominator = self._least_power_of_two_greater_equal(self.denominator)
         current_numerator = self.numerator
         candidate = type(self)(current_numerator, good_denominator)
-        while not candidate.is_assignable():
+        while not candidate.get_is_assignable():
             current_numerator -= 1
             candidate = type(self)(current_numerator, good_denominator)
         return candidate
 
-    def equal_or_lesser_power_of_two(self) -> "Duration":
+    def get_equal_or_lesser_power_of_two(self) -> "Duration":
         r"""
         Gets duration of the form ``d**2`` equal to or just less than this
         duration.
@@ -639,7 +639,7 @@ class Duration(fractions.Fraction):
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
-            ...     result = duration.equal_or_lesser_power_of_two()
+            ...     result = duration.get_equal_or_lesser_power_of_two()
             ...     sixteenths = abjad.duration.with_denominator(duration, 16)
             ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
             ...
@@ -661,9 +661,9 @@ class Duration(fractions.Fraction):
             16/16   1
 
         """
-        return type(self)(1, 2) ** self.exponent()
+        return type(self)(1, 2) ** self.get_exponent()
 
-    def exponent(self) -> int:
+    def get_exponent(self) -> int:
         r"""
         Gets base-2 exponent.
 
@@ -671,9 +671,9 @@ class Duration(fractions.Fraction):
 
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
-            ...     exponent = duration.exponent()
+            ...     exponent = duration.get_exponent()
             ...     sixteenths = abjad.duration.with_denominator(duration, 16)
-            ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{duration.exponent()!s}")
+            ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{duration.get_exponent()!s}")
             ...
             1/16	4
             2/16	3
@@ -695,7 +695,7 @@ class Duration(fractions.Fraction):
         """
         return -int(math.floor(math.log(self, 2)))
 
-    def flag_count(self) -> int:
+    def get_flag_count(self) -> int:
         r"""
         Gets flag count.
 
@@ -707,7 +707,7 @@ class Duration(fractions.Fraction):
             >>> for n in range(1, 16 + 1):
             ...     duration = abjad.Duration(n, 64)
             ...     sixty_fourths = abjad.duration.with_denominator(duration, 64)
-            ...     print(f"{sixty_fourths[0]}/{sixty_fourths[1]}\t{duration.flag_count()}")
+            ...     print(f"{sixty_fourths[0]}/{sixty_fourths[1]}\t{duration.get_flag_count()}")
             ...
             1/64    4
             2/64    3
@@ -779,7 +779,7 @@ class Duration(fractions.Fraction):
         )
         return Duration(fraction)
 
-    def is_assignable(self) -> bool:
+    def get_is_assignable(self) -> bool:
         r"""
         Is true when duration is assignable.
 
@@ -788,7 +788,7 @@ class Duration(fractions.Fraction):
             >>> for numerator in range(0, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
             ...     sixteenths = abjad.duration.with_denominator(duration, 16)
-            ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{duration.is_assignable()}")
+            ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{duration.get_is_assignable()}")
             ...
             0/16    False
             1/16    True
@@ -862,7 +862,7 @@ class Duration(fractions.Fraction):
         except Exception:
             return False
 
-    def lilypond_duration_string(self) -> str:
+    def get_lilypond_duration_string(self) -> str:
         """
         Gets LilyPond duration string.
 
@@ -870,13 +870,13 @@ class Duration(fractions.Fraction):
 
             Raises assignability error when duration is not assignable.
 
-            >>> abjad.Duration(3, 16).lilypond_duration_string()
+            >>> abjad.Duration(3, 16).get_lilypond_duration_string()
             '8.'
 
         """
-        if not self.is_assignable():
+        if not self.get_is_assignable():
             raise _exceptions.AssignabilityError(self)
-        undotted_rational = self.equal_or_lesser_power_of_two()
+        undotted_rational = self.get_equal_or_lesser_power_of_two()
         if undotted_rational <= 1:
             undotted_duration_string = str(undotted_rational.denominator)
         elif undotted_rational == type(self)(2, 1):
@@ -887,30 +887,30 @@ class Duration(fractions.Fraction):
             undotted_duration_string = r"\maxima"
         else:
             raise ValueError(f"can not process undotted rational: {undotted_rational}")
-        dot_count = self.dot_count()
+        dot_count = self.get_dot_count()
         dot_string = "." * dot_count
         dotted_duration_string = undotted_duration_string + dot_string
         return dotted_duration_string
 
-    def pair(self) -> tuple[int, int]:
+    def get_pair(self) -> tuple[int, int]:
         """
         Gets numerator and denominator pair.
 
         ..  container:: example
 
-            >>> abjad.Duration(3, 16).pair()
+            >>> abjad.Duration(3, 16).get_pair()
             (3, 16)
 
         """
         return self.numerator, self.denominator
 
-    def reciprocal(self) -> "Duration":
+    def get_reciprocal(self) -> "Duration":
         """
         Gets reciprocal.
 
         ..  container:: example
 
-            >>> abjad.Duration(3, 7).reciprocal()
+            >>> abjad.Duration(3, 7).get_reciprocal()
             Duration(7, 3)
 
         """
@@ -1043,7 +1043,7 @@ class Offset(Duration):
         displacement = None
         for argument in arguments:
             try:
-                displacement = argument.displacement()
+                displacement = argument.get_displacement()
                 break
             except AttributeError:
                 pass
@@ -1052,7 +1052,7 @@ class Offset(Duration):
             displacement = Duration(displacement)
         displacement = displacement or None
         if len(arguments) == 1 and isinstance(arguments[0], Duration):
-            arguments = arguments[0].pair()
+            arguments = arguments[0].get_pair()
         self = Duration.__new__(class_, *arguments)
         self._displacement = displacement
         return self
@@ -1083,7 +1083,7 @@ class Offset(Duration):
             False
 
         """
-        return type(self)(self.pair(), displacement=self.displacement())
+        return type(self)(self.get_pair(), displacement=self.get_displacement())
 
     def __deepcopy__(self, *arguments) -> "Offset":
         """
@@ -1168,7 +1168,7 @@ class Offset(Duration):
             True
 
         """
-        if isinstance(argument, type(self)) and self.pair() == argument.pair():
+        if isinstance(argument, type(self)) and self.get_pair() == argument.get_pair():
             return self._get_displacement() == argument._get_displacement()
         return super().__eq__(argument)
 
@@ -1227,7 +1227,7 @@ class Offset(Duration):
             True
 
         """
-        if isinstance(argument, type(self)) and self.pair() == argument.pair():
+        if isinstance(argument, type(self)) and self.get_pair() == argument.get_pair():
             return self._get_displacement() >= argument._get_displacement()
         return super().__ge__(argument)
 
@@ -1286,7 +1286,7 @@ class Offset(Duration):
             False
 
         """
-        if isinstance(argument, type(self)) and self.pair() == argument.pair():
+        if isinstance(argument, type(self)) and self.get_pair() == argument.get_pair():
             return self._get_displacement() > argument._get_displacement()
         return Duration.__gt__(self, argument)
 
@@ -1295,7 +1295,7 @@ class Offset(Duration):
         """
         Hashes offset.
         """
-        return hash((self.pair(), self._get_displacement()))
+        return hash((self.get_pair(), self._get_displacement()))
 
     def __le__(self, argument) -> bool:
         """
@@ -1352,7 +1352,7 @@ class Offset(Duration):
             True
 
         """
-        if isinstance(argument, type(self)) and self.pair() == argument.pair():
+        if isinstance(argument, type(self)) and self.get_pair() == argument.get_pair():
             return self._get_displacement() <= argument._get_displacement()
         return super().__le__(argument)
 
@@ -1428,7 +1428,7 @@ class Offset(Duration):
             False
 
         """
-        if isinstance(argument, type(self)) and self.pair() == argument.pair():
+        if isinstance(argument, type(self)) and self.get_pair() == argument.get_pair():
             return self._get_displacement() < argument._get_displacement()
         return super().__lt__(argument)
 
@@ -1445,10 +1445,10 @@ class Offset(Duration):
             Offset((1, 4), displacement=Duration(-1, 16))
 
         """
-        if self.displacement() is None:
-            return f"{type(self).__name__}({self.pair()})"
+        if self.get_displacement() is None:
+            return f"{type(self).__name__}({self.get_pair()})"
         else:
-            string = f"{self.pair()}, displacement={self.displacement()!r}"
+            string = f"{self.get_pair()}, displacement={self.get_displacement()!r}"
             return f"{type(self).__name__}({string})"
 
     def __sub__(self, argument):
@@ -1486,11 +1486,11 @@ class Offset(Duration):
             return self - argument
 
     def _get_displacement(self):
-        if self.displacement() is None:
+        if self.get_displacement() is None:
             return Duration(0)
-        return self.displacement()
+        return self.get_displacement()
 
-    def displacement(self):
+    def get_displacement(self):
         """
         Gets displacement.
 
@@ -1499,7 +1499,7 @@ class Offset(Duration):
             Gets displacement equal to none:
 
             >>> offset = abjad.Offset(1, 4)
-            >>> offset.displacement() is None
+            >>> offset.get_displacement() is None
             True
 
         ..  container:: example
@@ -1507,7 +1507,7 @@ class Offset(Duration):
             Gets displacement equal to a negative sixteenth:
 
             >>> offset = abjad.Offset(1, 4, displacement=(-1, 16))
-            >>> offset.displacement()
+            >>> offset.get_displacement()
             Duration(-1, 16)
 
         ..  container:: example
@@ -1515,7 +1515,7 @@ class Offset(Duration):
             Stores zero-valued displacement as none:
 
             >>> offset = abjad.Offset(1, 4, displacement=0)
-            >>> offset.displacement() is None
+            >>> offset.get_displacement() is None
             True
 
             >>> offset

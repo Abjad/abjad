@@ -480,19 +480,19 @@ class MetricModulation:
         left_rhythm = self._initialize_rhythm(self.left_rhythm)
         right_rhythm = self._initialize_rhythm(self.right_rhythm)
         if self._note_to_note():
-            left_exponent = left_rhythm[0].written_duration.exponent()
-            left_dots = left_rhythm[0].written_duration.dot_count()
-            right_exponent = right_rhythm[0].written_duration.exponent()
-            right_dots = right_rhythm[0].written_duration.dot_count()
+            left_exponent = left_rhythm[0].written_duration.get_exponent()
+            left_dots = left_rhythm[0].written_duration.get_dot_count()
+            right_exponent = right_rhythm[0].written_duration.get_exponent()
+            right_dots = right_rhythm[0].written_duration.get_dot_count()
             return (left_exponent, left_dots, right_exponent, right_dots)
         elif self._lhs_tuplet():
-            tuplet_exponent = left_rhythm[0][0].written_duration.exponent()
-            tuplet_dots = left_rhythm[0][0].written_duration.dot_count()
+            tuplet_exponent = left_rhythm[0][0].written_duration.get_exponent()
+            tuplet_dots = left_rhythm[0][0].written_duration.get_dot_count()
             # tuplet_n, tuplet_d = left_rhythm[0].multiplier
             tuplet_n = left_rhythm[0].ratio.denominator
             tuplet_d = left_rhythm[0].ratio.numerator
-            note_exponent = right_rhythm[0].written_duration.exponent()
-            note_dots = right_rhythm[0].written_duration.dot_count()
+            note_exponent = right_rhythm[0].written_duration.get_exponent()
+            note_dots = right_rhythm[0].written_duration.get_dot_count()
             return (
                 tuplet_exponent,
                 tuplet_dots,
@@ -502,10 +502,10 @@ class MetricModulation:
                 note_dots,
             )
         elif self._rhs_tuplet():
-            note_exponent = left_rhythm[0].written_duration.exponent()
-            note_dots = left_rhythm[0].written_duration.dot_count()
-            tuplet_exponent = right_rhythm[0][0].written_duration.exponent()
-            tuplet_dots = right_rhythm[0][0].written_duration.dot_count()
+            note_exponent = left_rhythm[0].written_duration.get_exponent()
+            note_dots = left_rhythm[0].written_duration.get_dot_count()
+            tuplet_exponent = right_rhythm[0][0].written_duration.get_exponent()
+            tuplet_dots = right_rhythm[0][0].written_duration.get_dot_count()
             # tuplet_n, tuplet_d = right_rhythm[0].multiplier
             tuplet_n = right_rhythm[0].ratio.denominator
             tuplet_d = right_rhythm[0].ratio.numerator
