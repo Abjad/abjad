@@ -379,11 +379,11 @@ class MetricModulation:
             ...     right_rhythm=notes,
             ... )
 
-            >>> metric_modulation_1.ratio
+            >>> metric_modulation_1.ratio()
             (2, 3)
-            >>> metric_modulation_2.ratio
+            >>> metric_modulation_2.ratio()
             (2, 3)
-            >>> metric_modulation_3.ratio
+            >>> metric_modulation_3.ratio()
             (4, 5)
 
             >>> metric_modulation_1 == metric_modulation_1
@@ -410,7 +410,7 @@ class MetricModulation:
         """
         # custom definition because input rhythms don't compare:
         if isinstance(argument, type(self)):
-            if self.ratio == argument.ratio:
+            if self.ratio() == argument.ratio():
                 return True
         return False
 
@@ -563,7 +563,6 @@ class MetricModulation:
             return True
         return False
 
-    @property
     def ratio(self) -> tuple[int, int]:
         """
         Gets ratio of metric modulation.
@@ -574,7 +573,7 @@ class MetricModulation:
             ...     left_rhythm=abjad.Tuplet("3:2", [abjad.Note("c'4")]),
             ...     right_rhythm=abjad.Note("c'4"),
             ... )
-            >>> metric_modulation.ratio
+            >>> metric_modulation.ratio()
             (2, 3)
 
         """

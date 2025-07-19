@@ -176,8 +176,8 @@ class ContextSpeccedMusic(Music):
 
         Returns context.
         """
-        if self.lilypond_type in self.known_contexts:
-            context = self.known_contexts[self.lilypond_type]([])
+        if self.lilypond_type in self.known_contexts():
+            context = self.known_contexts()[self.lilypond_type]([])
         else:
             raise Exception(f"context type not supported: {self.lilypond_type}.")
 
@@ -199,7 +199,6 @@ class ContextSpeccedMusic(Music):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
     def known_contexts(self):
         """
         Known contexts.
@@ -2738,7 +2737,7 @@ class LilyPondParser(Parser):
         self._language_pitch_names = _lyenv.language_pitch_names
         self._markup_functions = _lyenv.markup_functions
         self._markup_list_functions = _lyenv.markup_list_functions
-        self.default_language = default_language
+        self.set_default_language(default_language)
         self.tag = tag
 
         # attach parser and lexer rules
@@ -3031,7 +3030,7 @@ class LilyPondParser(Parser):
         self._last_chord = None
         # LilyPond's default!
         # self._last_chord = _score.Chord(['c', 'g', "c'"], (1, 4))
-        self._pitch_names = self._language_pitch_names[self.default_language]
+        self._pitch_names = self._language_pitch_names[self.default_language()]
         self._repeated_chords = {}
 
     def _resolve_event_identifier(self, identifier):
@@ -3688,7 +3687,6 @@ class LilyPondParser(Parser):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
     def available_languages(self) -> tuple[str, ...]:
         r"""
         Tuple of pitch-name languages supported by LilyPondParser.
@@ -3696,7 +3694,7 @@ class LilyPondParser(Parser):
         ..  container:: example
 
             >>> parser = abjad.parser.LilyPondParser()
-            >>> for language in parser.available_languages:
+            >>> for language in parser.available_languages():
             ...     print(language)
             ...
             catalan
@@ -3716,7 +3714,6 @@ class LilyPondParser(Parser):
         """
         return tuple(sorted(self._language_pitch_names.keys()))
 
-    @property
     def default_language(self) -> str:
         """
         Gets and sets default language of parser.
@@ -3725,35 +3722,35 @@ class LilyPondParser(Parser):
 
             >>> parser = abjad.parser.LilyPondParser()
 
-            >>> parser.default_language
+            >>> parser.default_language()
             'english'
 
             >>> parser('{ c df e fs }')
             Container('c4 df4 e4 fs4')
 
-            >>> parser.default_language = 'nederlands'
-            >>> parser.default_language
+            >>> parser.set_default_language("nederlands")
+            >>> parser.default_language()
             'nederlands'
 
-            >>> parser('{ c des e fis }')
+            >>> parser("{ c des e fis }")
             Container('c4 df4 e4 fs4')
 
         """
         return self._default_language
 
-    @default_language.setter
-    def default_language(self, argument):
-        assert argument in self.available_languages
+    def set_default_language(self, argument):
+        """
+        Sets default language.
+        """
+        assert argument in self.available_languages()
         self._default_language = argument
 
-    @property
     def lexer_rules_object(self):
         """
         Lexer rules object of LilyPond parser.
         """
         return self._lexdef
 
-    @property
     def parser_rules_object(self):
         """
         Parser rules object of LilyPond parser.

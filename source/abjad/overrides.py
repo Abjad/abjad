@@ -70,7 +70,7 @@ class LilyPondOverride:
         ...    ),
         ...    value=r"\markup \bold { over pressure }",
         ... )
-        >>> print(override.override_string)
+        >>> print(override.override_string())
         \once \override Staff.TextSpanner.bound-details.left.text = \markup \bold { over pressure }
 
         >>> override = abjad.LilyPondOverride(
@@ -80,7 +80,7 @@ class LilyPondOverride:
         ...    property_path="bound_details__left__text",
         ...    value=r"\markup \bold { over pressure }",
         ... )
-        >>> print(override.override_string)
+        >>> print(override.override_string())
         \once \override Staff.TextSpanner.bound-details.left.text = \markup \bold { over pressure }
 
     """
@@ -114,10 +114,10 @@ class LilyPondOverride:
     def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         if not self.once:
-            revert_format = "\n".join(self.revert_format_pieces)
+            revert_format = "\n".join(self.revert_format_pieces())
             contributions.grob_reverts.append(revert_format)
         if not self.is_revert:
-            override_format = "\n".join(self.override_format_pieces)
+            override_format = "\n".join(self.override_format_pieces())
             contributions.grob_overrides.append(override_format)
         return contributions
 
@@ -142,7 +142,6 @@ class LilyPondOverride:
         path = ".".join(parts)
         return path
 
-    @property
     def override_format_pieces(self) -> tuple[str, ...]:
         r"""
         Gets LilyPond grob override \override format pieces.
@@ -160,7 +159,7 @@ class LilyPondOverride:
             ...    ),
             ...    value=r"\markup \bold { over pressure }",
             ... )
-            >>> for line in override.override_format_pieces:
+            >>> for line in override.override_format_pieces():
             ...     line
             ...
             '\\once \\override Staff.TextSpanner.bound-details.left.text = \\markup \\bold { over pressure }'
@@ -179,7 +178,6 @@ class LilyPondOverride:
         result.extend(value_pieces[1:])
         return tuple(result)
 
-    @property
     def override_string(self) -> str:
         r"""
         Gets LilyPond grob override \override string.
@@ -191,13 +189,12 @@ class LilyPondOverride:
             ...     property_path="style",
             ...     value="#'zigzag",
             ... )
-            >>> override.override_string
+            >>> override.override_string()
             "\\override Glissando.style = #'zigzag"
 
         """
-        return "\n".join(self.override_format_pieces)
+        return "\n".join(self.override_format_pieces())
 
-    @property
     def revert_format_pieces(self) -> tuple[str, ...]:
         r"""
         Gets LilyPond grob override \revert format pieces.
@@ -209,14 +206,13 @@ class LilyPondOverride:
             ...     property_path="style",
             ...     value="#'zigzag",
             ... )
-            >>> override.revert_format_pieces
+            >>> override.revert_format_pieces()
             ('\\revert Glissando.style',)
 
         """
         result = rf"\revert {self._revert_property_path_string()}"
         return (result,)
 
-    @property
     def revert_string(self) -> str:
         r"""
         Gets LilyPond grob override \revert string.
@@ -228,11 +224,11 @@ class LilyPondOverride:
             ...     property_path="style",
             ...     value="#'zigzag",
             ... )
-            >>> override.revert_string
+            >>> override.revert_string()
             '\\revert Glissando.style'
 
         """
-        return "\n".join(self.revert_format_pieces)
+        return "\n".join(self.revert_format_pieces())
 
     def tweak_string(self, directed=True, grob=False) -> str:
         r"""
@@ -287,7 +283,7 @@ class LilyPondSetting:
         ...    value="##f",
         ... )
 
-        >>> print("\n".join(context_setting.format_pieces))
+        >>> print("\n".join(context_setting.format_pieces()))
         \set Score.autoBeaming = ##f
 
     """
@@ -308,11 +304,10 @@ class LilyPondSetting:
 
     def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
-        string = "\n".join(self.format_pieces)
+        string = "\n".join(self.format_pieces())
         contributions.context_settings.append(string)
         return contributions
 
-    @property
     def format_pieces(self) -> tuple[str, ...]:
         r"""
         Gets LilyPond context setting ``\set`` or ``\unset`` format pieces.
@@ -582,7 +577,7 @@ class OverrideInterface(Interface):
                     property_path=attribute,
                     value=value,
                 )
-                override_string = override.override_string
+                override_string = override.override_string()
                 result.append(override_string)
             else:
                 override = LilyPondOverride(
@@ -591,7 +586,7 @@ class OverrideInterface(Interface):
                     is_revert=True,
                     property_path=attribute,
                 )
-                revert_string = override.revert_string
+                revert_string = override.revert_string()
                 result.append(revert_string)
         result.sort()
         return result

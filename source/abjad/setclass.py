@@ -1073,7 +1073,7 @@ class SetClass:
             SC(4-29){0, 2, 6, 7}
 
         """
-        string = f"SC({self.cardinality}-{self.rank}){self.prime_form!s}"
+        string = f"SC({self.cardinality}-{self.rank}){self.prime_form()!s}"
         string = string.replace("PC", "")
         return string
 
@@ -1088,7 +1088,6 @@ class SetClass:
         prime_form = _pcollections.PitchClassSet(prime_form)
         return prime_form
 
-    @property
     def is_inversion_equivalent(self) -> bool:
         """
         Is true when set-class is inversion-equivalent.
@@ -1101,7 +1100,7 @@ class SetClass:
             >>> print(set_class)
             SC(4-29){0, 1, 3, 7}
 
-            >>> pitch_class_set = set_class.prime_form
+            >>> pitch_class_set = set_class.prime_form()
             >>> inverted_pitch_class_set = pitch_class_set.invert()
             >>> inverted_set_class = abjad.SetClass.from_pitches(
             ...     inverted_pitch_class_set
@@ -1109,7 +1108,7 @@ class SetClass:
             >>> print(inverted_set_class)
             SC(4-29){0, 1, 3, 7}
 
-            >>> set_class.is_inversion_equivalent
+            >>> set_class.is_inversion_equivalent()
             True
 
         ..  container:: example
@@ -1123,7 +1122,7 @@ class SetClass:
             >>> print(set_class)
             SC(4-29){0, 3, 6, 9}
 
-            >>> pitch_class_set = set_class.prime_form
+            >>> pitch_class_set = set_class.prime_form()
             >>> inverted_pitch_class_set = pitch_class_set.invert()
             >>> inverted_set_class = abjad.SetClass.from_pitches(
             ...     inverted_pitch_class_set,
@@ -1132,7 +1131,7 @@ class SetClass:
             >>> print(inverted_set_class)
             SC(4-29){0, 3, 6, 9}
 
-            >>> set_class.is_inversion_equivalent
+            >>> set_class.is_inversion_equivalent()
             True
 
         ..  container:: example
@@ -1147,7 +1146,7 @@ class SetClass:
             >>> print(set_class)
             SC(4-29){0, 2, 6, 7}
 
-            >>> pitch_class_set = set_class.prime_form
+            >>> pitch_class_set = set_class.prime_form()
             >>> inverted_pitch_class_set = pitch_class_set.invert()
             >>> inverted_set_class = abjad.SetClass.from_pitches(
             ...     inverted_pitch_class_set,
@@ -1157,11 +1156,11 @@ class SetClass:
             >>> print(inverted_set_class)
             SC(4-15){0, 1, 5, 7}
 
-            >>> set_class.is_inversion_equivalent
+            >>> set_class.is_inversion_equivalent()
             False
 
         """
-        prime_form = self.prime_form
+        prime_form = self.prime_form()
         inverted_pitch_class_set = prime_form.invert()
         inverted_set_class = type(self).from_pitches(
             inverted_pitch_class_set,
@@ -1170,7 +1169,6 @@ class SetClass:
         )
         return self == inverted_set_class
 
-    @property
     def prime_form(self) -> _pcollections.PitchClassSet:
         """
         Gets prime form.
@@ -1183,7 +1181,7 @@ class SetClass:
             >>> print(set_class)
             SC(4-29){0, 1, 3, 7}
 
-            >>> set_class.prime_form
+            >>> set_class.prime_form()
             PitchClassSet([0, 1, 3, 7])
 
         ..  container:: example
@@ -1197,7 +1195,7 @@ class SetClass:
             >>> print(set_class)
             SC(4-29){0, 3, 6, 9}
 
-            >>> set_class.prime_form
+            >>> set_class.prime_form()
             PitchClassSet([0, 3, 6, 9])
 
         ..  container:: example
@@ -1212,7 +1210,7 @@ class SetClass:
             >>> print(set_class)
             SC(4-29){0, 2, 6, 7}
 
-            >>> set_class.prime_form
+            >>> set_class.prime_form()
             PitchClassSet([0, 2, 6, 7])
 
         """

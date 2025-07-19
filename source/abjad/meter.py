@@ -35,7 +35,7 @@ class Meter:
 
         >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
         >>> meter = abjad.Meter(rtc)
-        >>> print(meter.pretty_rtm_format)
+        >>> print(meter.pretty_rtm_format())
         (4/4 (
             1/4
             1/4
@@ -47,7 +47,7 @@ class Meter:
         >>> string = "(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))"
         >>> rtc = abjad.rhythmtrees.parse(string)[0]
         >>> meter = abjad.Meter(rtc)
-        >>> print(meter.pretty_rtm_format)
+        >>> print(meter.pretty_rtm_format())
         (4/4 (
             (2/4 (
                 1/4
@@ -64,7 +64,7 @@ class Meter:
 
         >>> rtc = abjad.meter.make_best_guess_rtc((6, 4))
         >>> meter = abjad.Meter(rtc)
-        >>> print(meter.pretty_rtm_format)
+        >>> print(meter.pretty_rtm_format())
         (6/4 (
             (3/4 (
                 1/4
@@ -80,7 +80,7 @@ class Meter:
         >>> string = "(6/4 (1/4 1/4 1/4 1/4 1/4 1/4))"
         >>> rtc = abjad.rhythmtrees.parse(string)[0]
         >>> meter = abjad.Meter(rtc)
-        >>> print(meter.pretty_rtm_format)
+        >>> print(meter.pretty_rtm_format())
         (6/4 (
             1/4
             1/4
@@ -94,7 +94,7 @@ class Meter:
         >>> string = "(6/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))"
         >>> rtc = abjad.rhythmtrees.parse(string)[0]
         >>> meter = abjad.Meter(rtc)
-        >>> print(meter.pretty_rtm_format)
+        >>> print(meter.pretty_rtm_format())
         (6/4 (
             (2/4 (
                 1/4
@@ -112,7 +112,7 @@ class Meter:
         >>> string = f"(6/4 ({part} {part} {part} {part}))"
         >>> rtc = abjad.rhythmtrees.parse(string)[0]
         >>> meter = abjad.Meter(rtc)
-        >>> print(meter.pretty_rtm_format)
+        >>> print(meter.pretty_rtm_format())
         (6/4 (
             (3/8 (
                 1/8
@@ -140,7 +140,7 @@ class Meter:
         >>> string = "(7/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4)) (3/4 (1/4 1/4 1/4))))"
         >>> rtc = abjad.rhythmtrees.parse(string)[0]
         >>> meter = abjad.Meter(rtc)
-        >>> print(meter.pretty_rtm_format)
+        >>> print(meter.pretty_rtm_format())
         (7/4 (
             (2/4 (
                 1/4
@@ -158,7 +158,7 @@ class Meter:
         >>> string = "(7/4 ((2/4 (1/4 1/4)) (3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))"
         >>> rtc = abjad.rhythmtrees.parse(string)[0]
         >>> meter = abjad.Meter(rtc)
-        >>> print(meter.pretty_rtm_format)
+        >>> print(meter.pretty_rtm_format())
         (7/4 (
             (2/4 (
                 1/4
@@ -176,7 +176,7 @@ class Meter:
         >>> string = "(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))"
         >>> rtc = abjad.rhythmtrees.parse(string)[0]
         >>> meter = abjad.Meter(rtc)
-        >>> print(meter.pretty_rtm_format)
+        >>> print(meter.pretty_rtm_format())
         (7/4 (
             (3/4 (
                 1/4
@@ -193,15 +193,11 @@ class Meter:
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = (
         "_denominator",
         "_numerator",
         "_root_node",
     )
-
-    ### INITIALIZER ###
 
     def __init__(
         self,
@@ -209,20 +205,18 @@ class Meter:
     ) -> None:
         assert isinstance(root_node, _rhythmtrees.RhythmTreeContainer), repr(root_node)
         for node in [root_node] + list(root_node.depth_first()):
-            assert node.prolation == 1, (repr(node), repr(node.prolation))
-        numerator, denominator = root_node.pair
+            assert node.prolation() == 1, (repr(node), repr(node.prolation()))
+        numerator, denominator = root_node.pair()
         self._denominator = denominator
         self._numerator = numerator
         self._root_node = root_node
 
-    ### SPECIAL METHODS ###
-
     def __eq__(self, argument) -> bool:
         """
-        Compares ``root_node.rtm_format`` of self to that of ``argument``.
+        Compares ``root_node.rtm_format()`` of self to that of ``argument``.
         """
         if isinstance(argument, type(self)):
-            return self.root_node.rtm_format == argument.root_node.rtm_format
+            return self.root_node().rtm_format() == argument.root_node().rtm_format()
         return False
 
     def __graph__(self, **keywords) -> uqbar.graphs.Graph:
@@ -384,7 +378,7 @@ class Meter:
                 edge = uqbar.graphs.Edge(attributes={"style": "dotted"})
                 edge.attach(leaf_two_node, offset_node)
 
-        offsets = _sequence.flatten(self.depthwise_offset_inventory, depth=-1)
+        offsets = _sequence.flatten(self.depthwise_offset_inventory(), depth=-1)
         offset_counter = _timespan.OffsetCounter(offsets)
         graph = uqbar.graphs.Graph(
             name="G",
@@ -414,16 +408,16 @@ class Meter:
                 uqbar.graphs.Edge().attach(
                     node_mapping[node.parent], node_mapping[node]
                 )
-        offset = leaves[0].start_offset
+        offset = leaves[0].start_offset()
         offset_subgraph = uqbar.graphs.Graph(
             name="cluster_offsets", attributes={"style": "rounded"}
         )
         graph.append(offset_subgraph)
         make_offset_node(offset, leaves[0])
         for one, two in _sequence.nwise(leaves):
-            offset = one.stop_offset
+            offset = one.stop_offset()
             make_offset_node(offset, one, two)
-        offset = leaves[-1].stop_offset
+        offset = leaves[-1].stop_offset()
         make_offset_node(offset, leaves[-1], is_last=True)
         return graph
 
@@ -468,12 +462,12 @@ class Meter:
             nodes.append(node)
             return nodes
 
-        nodes = recurse(self.root_node)
+        nodes = recurse(self.root_node())
         assert isinstance(nodes, list)
         for node in nodes:
-            pair = _duration.with_denominator(node.start_offset, self.denominator)
+            pair = _duration.with_denominator(node.start_offset(), self.denominator())
             start_offset = pair
-            pair = _duration.with_denominator(node.stop_offset, self.denominator)
+            pair = _duration.with_denominator(node.stop_offset(), self.denominator())
             stop_offset = pair
             yield start_offset, stop_offset
 
@@ -481,11 +475,8 @@ class Meter:
         """
         Gets repr.
         """
-        return f"{type(self).__name__}({self.rtm_format!r})"
+        return f"{type(self).__name__}({self.rtm_format()!r})"
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
     def denominator(self) -> int:
         """
         Gets denominator of meter.
@@ -494,13 +485,12 @@ class Meter:
 
             >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
             >>> meter = abjad.Meter(rtc)
-            >>> meter.denominator
+            >>> meter.denominator()
             4
 
         """
         return self._denominator
 
-    @property
     def depthwise_offset_inventory(self) -> tuple:
         """
         Gets depthwise offset inventory of meter.
@@ -510,7 +500,7 @@ class Meter:
             >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
             >>> meter = abjad.Meter(rtc)
             >>> for depth, offsets in enumerate(
-            ...     meter.depthwise_offset_inventory):
+            ...     meter.depthwise_offset_inventory()):
             ...     print(f"{depth}:")
             ...     for offset in offsets:
             ...         print(f"    {offset!r}")
@@ -535,14 +525,13 @@ class Meter:
         """
         inventory = []
         all_offsets = set()
-        all_offsets.add(_duration.Offset(self.numerator, self.denominator))
-        for depth, nodes in sorted(self.root_node._depthwise_inventory().items()):
+        all_offsets.add(_duration.Offset(self.numerator(), self.denominator()))
+        for depth, nodes in sorted(self.root_node()._depthwise_inventory().items()):
             for node in nodes:
-                all_offsets.add(_duration.Offset(node.start_offset))
+                all_offsets.add(_duration.Offset(node.start_offset()))
             inventory.append(tuple(sorted(all_offsets)))
         return tuple(inventory)
 
-    @property
     def duration(self) -> _duration.Duration:
         """
         Gets duration of meter.
@@ -551,20 +540,18 @@ class Meter:
 
             >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
             >>> meter = abjad.Meter(rtc)
-            >>> meter.duration
+            >>> meter.duration()
             Duration(7, 4)
 
         """
-        return _duration.Duration(self.numerator, self.denominator)
+        return _duration.Duration(self.numerator(), self.denominator())
 
-    @property
     def fraction_string(self) -> str:
         """
         Gets fraction string.
         """
-        return f"{self.pair[0]}/{self.pair[1]}"
+        return f"{self.pair()[0]}/{self.pair()[1]}"
 
-    @property
     def implied_time_signature(self) -> _indicators.TimeSignature:
         """
         Gets implied time signature of meter.
@@ -573,14 +560,13 @@ class Meter:
 
             >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
             >>> meter = abjad.Meter(rtc)
-            >>> meter.implied_time_signature
+            >>> meter.implied_time_signature()
             TimeSignature(pair=(4, 4), partial=None)
 
         """
-        pair = self.root_node.pair
+        pair = self.root_node().pair()
         return _indicators.TimeSignature(pair)
 
-    @property
     def is_compound(self) -> bool:
         """
         Is true when meter is compound.
@@ -595,8 +581,8 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     rtc = abjad.meter.make_best_guess_rtc((numerator, 4))
             ...     meter = abjad.Meter(rtc)
-            ...     string = True if meter.is_compound else ''
-            ...     print(str(meter.fraction_string), string)
+            ...     string = True if meter.is_compound() else ''
+            ...     print(str(meter.fraction_string()), string)
             ...
             1/4
             2/4
@@ -618,8 +604,8 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     rtc = abjad.meter.make_best_guess_rtc((numerator, 8))
             ...     meter = abjad.Meter(rtc)
-            ...     string = True if meter.is_compound else ''
-            ...     print(str(meter.fraction_string), string)
+            ...     string = True if meter.is_compound() else ''
+            ...     print(str(meter.fraction_string()), string)
             ...
             1/8
             2/8
@@ -635,12 +621,11 @@ class Meter:
             12/8    True
 
         """
-        if 3 in _math.divisors(self.numerator):
-            if not self.numerator == 3:
+        if 3 in _math.divisors(self.numerator()):
+            if not self.numerator() == 3:
                 return True
         return False
 
-    @property
     def is_simple(self) -> bool:
         """
         Is true when meter is simple.
@@ -657,8 +642,8 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     rtc = abjad.meter.make_best_guess_rtc((numerator, 4))
             ...     meter = abjad.Meter(rtc)
-            ...     string = True if meter.is_simple else ''
-            ...     print(str(meter.fraction_string), string)
+            ...     string = True if meter.is_simple() else ''
+            ...     print(str(meter.fraction_string()), string)
             ...
             1/4     True
             2/4     True
@@ -680,8 +665,8 @@ class Meter:
             >>> for numerator in range(1, 13):
             ...     rtc = abjad.meter.make_best_guess_rtc((numerator, 8))
             ...     meter = abjad.Meter(rtc)
-            ...     string = True if meter.is_simple else ''
-            ...     print(str(meter.fraction_string), string)
+            ...     string = True if meter.is_simple() else ''
+            ...     print(str(meter.fraction_string()), string)
             ...
             1/8     True
             2/8     True
@@ -697,9 +682,8 @@ class Meter:
             12/8
 
         """
-        return not self.is_compound
+        return not self.is_compound()
 
-    @property
     def numerator(self) -> int:
         """
         Gets numerator of meter.
@@ -708,13 +692,12 @@ class Meter:
 
             >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
             >>> meter = abjad.Meter(rtc)
-            >>> meter.numerator
+            >>> meter.numerator()
             7
 
         """
         return self._numerator
 
-    @property
     def pair(self) -> tuple[int, int]:
         """
         Gets pair of numerator and denominator of meter.
@@ -723,13 +706,12 @@ class Meter:
 
             >>> rtc = abjad.meter.make_best_guess_rtc((6, 4))
             >>> meter = abjad.Meter(rtc)
-            >>> meter.pair
+            >>> meter.pair()
             (6, 4)
 
         """
-        return (self.numerator, self.denominator)
+        return (self.numerator(), self.denominator())
 
-    @property
     def pretty_rtm_format(self) -> str:
         """
         Gets pretty RTM format of meter.
@@ -738,7 +720,7 @@ class Meter:
 
             >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
             >>> meter = abjad.Meter(rtc)
-            >>> print(meter.pretty_rtm_format)
+            >>> print(meter.pretty_rtm_format())
             (7/4 (
                 (3/4 (
                     1/4
@@ -752,9 +734,8 @@ class Meter:
                     1/4))))
 
         """
-        return self.root_node.pretty_rtm_format
+        return self.root_node().pretty_rtm_format()
 
-    @property
     def root_node(self) -> _rhythmtrees.RhythmTreeContainer:
         """
         Gets root node of meter.
@@ -763,7 +744,7 @@ class Meter:
 
             >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
             >>> meter = abjad.Meter(rtc)
-            >>> for item in meter.root_node:
+            >>> for item in meter.root_node():
             ...     item
             RhythmTreeContainer((3, 4))
             RhythmTreeContainer((2, 4))
@@ -772,7 +753,6 @@ class Meter:
         """
         return self._root_node
 
-    @property
     def rtm_format(self) -> str:
         """
         Gets RTM format of meter.
@@ -781,11 +761,11 @@ class Meter:
 
             >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
             >>> meter = abjad.Meter(rtc)
-            >>> meter.rtm_format
+            >>> meter.rtm_format()
             '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
 
         """
-        return self._root_node.rtm_format
+        return self._root_node.rtm_format()
 
     ### PUBLIC METHODS ###
 
@@ -814,7 +794,7 @@ class Meter:
             >>> offsets = [abjad.Offset(_) for _ in pairs]
             >>> offset_counter = abjad.OffsetCounter(offsets)
             >>> for meter in abjad.Meter.fit_meters(offset_counter, meters):
-            ...     print(meter.implied_time_signature)
+            ...     print(meter.implied_time_signature())
             ...
             TimeSignature(pair=(4, 4), partial=None)
             TimeSignature(pair=(4, 4), partial=None)
@@ -829,7 +809,7 @@ class Meter:
             >>> offsets = [abjad.Offset(_) for _ in pairs]
             >>> offset_counter = abjad.OffsetCounter(offsets)
             >>> for meter in abjad.Meter.fit_meters(offset_counter, meters):
-            ...     print(meter.implied_time_signature)
+            ...     print(meter.implied_time_signature())
             ...
             TimeSignature(pair=(3, 4), partial=None)
             TimeSignature(pair=(4, 4), partial=None)
@@ -869,7 +849,7 @@ class Meter:
             >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
             >>> meter = abjad.Meter(rtc)
             >>> kernel = meter.generate_offset_kernel_to_denominator(8)
-            >>> for offset, weight in sorted(kernel.kernel.items()):
+            >>> for offset, weight in sorted(kernel.kernel().items()):
             ...     print(f"{offset!r}\t{weight!r}")
             ...
             Offset((0, 1))	Fraction(3, 16)
@@ -883,12 +863,12 @@ class Meter:
             Offset((1, 1))	Fraction(3, 16)
 
         """
-        assert _math.is_positive_integer_power_of_two(denominator // self.denominator)
-        inventory = list(self.depthwise_offset_inventory)
+        assert _math.is_positive_integer_power_of_two(denominator // self.denominator())
+        inventory = list(self.depthwise_offset_inventory())
         for offset_tuple in inventory:
             assert isinstance(offset_tuple, tuple)
             assert all(isinstance(_, _duration.Offset) for _ in offset_tuple)
-        old_flag_count = _duration.Duration(1, self.denominator).flag_count()
+        old_flag_count = _duration.Duration(1, self.denominator()).flag_count()
         new_flag_count = _duration.Duration(1, denominator).flag_count()
         extra_depth = new_flag_count - old_flag_count
         assert isinstance(extra_depth, int), repr(extra_depth)
@@ -966,7 +946,7 @@ class Meter:
 
             >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
             >>> meter = abjad.Meter(rtc)
-            >>> print(meter.pretty_rtm_format)
+            >>> print(meter.pretty_rtm_format())
             (4/4 (
                 1/4
                 1/4
@@ -1046,7 +1026,7 @@ class Meter:
             >>> string = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
             >>> meter = abjad.Meter(rtc)
-            >>> print(meter.pretty_rtm_format) # doctest: +SKIP
+            >>> print(meter.pretty_rtm_format()) # doctest: +SKIP
             (4/4 (
                 (2/4 (
                     1/4
@@ -1263,7 +1243,7 @@ class Meter:
 
             >>> rtc = abjad.meter.make_best_guess_rtc((9, 8))
             >>> meter = abjad.Meter(rtc)
-            >>> print(meter.pretty_rtm_format)
+            >>> print(meter.pretty_rtm_format())
             (9/8 (
                 (3/8 (
                     1/8
@@ -2123,7 +2103,7 @@ class Meter:
         first_start_offset = nongrace_components[0]._get_timespan().start_offset
         last_start_offset = nongrace_components[-1]._get_timespan().start_offset
         difference = last_start_offset - first_start_offset + initial_offset
-        assert difference < self.implied_time_signature.duration
+        assert difference < self.implied_time_signature().get_duration()
         # build offset inventory, adjusted for initial offset and prolation
         first_offset = components[0]._get_timespan().start_offset
         first_offset -= initial_offset
@@ -2133,7 +2113,7 @@ class Meter:
             parentage = _parentage.Parentage(components[0]._parent)
             prolation = parentage.prolation
         offset_inventory = []
-        for offsets in self.depthwise_offset_inventory:
+        for offsets in self.depthwise_offset_inventory():
             offsets = [(_ * prolation) + first_offset for _ in offsets]
             offset_inventory.append(tuple(offsets))
         # build boundary offset inventory, if applicable
@@ -2566,7 +2546,7 @@ def illustrate_meter_list(
     if range_ is not None:
         assert isinstance(range_, tuple), repr(range_)
     assert isinstance(scale, float), repr(scale)
-    durations = [_.duration for _ in meter_list]
+    durations = [_.duration() for _ in meter_list]
     total_duration = sum(durations)
     offsets = _math.cumulative_sums(durations, start=0)
     timespans = _timespan.TimespanList()
@@ -2594,9 +2574,9 @@ def illustrate_meter_list(
     postscript_strings = []
     rational_x_offset = _duration.Offset(0)
     for meter in meter_list:
-        kernel_denominator = denominator or meter.denominator
+        kernel_denominator = denominator or meter.denominator()
         kernel = MetricAccentKernel.from_meter(meter, kernel_denominator)
-        for offset, weight in sorted(kernel.kernel.items()):
+        for offset, weight in sorted(kernel.kernel().items()):
             assert isinstance(weight, fractions.Fraction)
             weight_as_float = float(weight) * -40
             ps_x_offset = float(rational_x_offset + offset)
@@ -2605,10 +2585,10 @@ def illustrate_meter_list(
             postscript_strings.append(f"{_timespan._fpa(ps_x_offset)} -2 moveto")
             postscript_strings.append(f"0 {_timespan._fpa(weight_as_float)} rlineto")
             postscript_strings.append("stroke")
-        rational_x_offset += meter.duration
+        rational_x_offset += meter.duration()
     fraction_pairs = []
     for meter, offset in zip(meter_list, offsets):
-        numerator, denominator = meter.numerator, meter.denominator
+        numerator, denominator = meter.numerator(), meter.denominator()
         x_translation = float(offset) * postscript_scale
         x_translation -= postscript_x_offset
         top_string = rf"\translate #'({x_translation} . 1)"
@@ -2651,7 +2631,7 @@ class MetricAccentKernel:
         >>> rtc = abjad.meter.make_best_guess_rtc((7, 8))
         >>> hierarchy = abjad.Meter(rtc)
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
-        >>> for offset, weight in kernel.kernel.items():
+        >>> for offset, weight in kernel.kernel().items():
         ...     print(f"{offset!r}: {weight!r}")
         Offset((0, 1)): Fraction(3, 14)
         Offset((7, 8)): Fraction(3, 14)
@@ -2750,8 +2730,8 @@ class MetricAccentKernel:
         to that of ``self``.
         """
         if isinstance(argument, type(self)):
-            if self.kernel == argument.kernel:
-                if self.duration == argument.duration:
+            if self.kernel() == argument.kernel():
+                if self.duration() == argument.duration():
                     return True
         return False
 
@@ -2765,11 +2745,10 @@ class MetricAccentKernel:
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(kernel={self.kernel})"
+        return f"{type(self).__name__}(kernel={self.kernel()})"
 
     ### PUBLIC PROPERTIES ###
 
-    @property
     def duration(self) -> _duration.Duration:
         """
         Gets duration.
@@ -2779,7 +2758,6 @@ class MetricAccentKernel:
         else:
             return _duration.Duration(0)
 
-    @property
     def kernel(self) -> dict[_duration.Offset, fractions.Fraction]:
         """
         The kernel dictionary.
@@ -2840,7 +2818,7 @@ class _MeterFittingSession:
         self._maximum_run_length = maximum_run_length
         self._meters = tuple(meters)
         self._offset_counter = offset_counter
-        self._ordered_offsets = tuple(sorted(self.offset_counter.items))
+        self._ordered_offsets = tuple(sorted(self.offset_counter().items))
         self._kernel_denominator = kernel_denominator
         self._kernels = {}
         for meter in self._meters:
@@ -2848,7 +2826,7 @@ class _MeterFittingSession:
                 self._kernel_denominator
             )
             self._kernels[kernel] = meter
-        mak = sorted(self._kernels, key=lambda _: _.duration)[-1]
+        mak = sorted(self._kernels, key=lambda _: _.duration())[-1]
         assert isinstance(mak, MetricAccentKernel), repr(mak)
         self._longest_kernel = mak
 
@@ -2860,7 +2838,7 @@ class _MeterFittingSession:
         """
         selected_kernels: list[MetricAccentKernel] = []
         current_offset = _duration.Offset(0)
-        while current_offset < self.ordered_offsets[-1]:
+        while current_offset < self.ordered_offsets()[-1]:
             kernel_scores: list[_MeterFittingSession.KernelScore] = []
             kernels = self._get_kernels(selected_kernels)
             offset_counter = self._get_offset_counter_at(current_offset)
@@ -2868,19 +2846,20 @@ class _MeterFittingSession:
                 offset_counter
             )
             if not offset_counter:
-                winning_kernel = self.longest_kernel
+                winning_kernel = self.longest_kernel()
                 assert isinstance(winning_kernel, MetricAccentKernel)
                 if selected_kernels:
                     winning_kernel = selected_kernels[-1]
                     assert isinstance(winning_kernel, MetricAccentKernel)
             else:
+                self_maximum_run_length = self.maximum_run_length()
                 for kernel in kernels:
                     if (
-                        self.maximum_run_length
+                        self_maximum_run_length is not None
                         and 1 < len(kernels)
-                        and self.maximum_run_length <= len(selected_kernels)
+                        and self_maximum_run_length <= len(selected_kernels)
                     ):
-                        last_n_kernels = selected_kernels[-self.maximum_run_length :]
+                        last_n_kernels = selected_kernels[-self_maximum_run_length:]
                         if len(set(last_n_kernels)) == 1:
                             if kernel == last_n_kernels[-1]:
                                 continue
@@ -2895,19 +2874,19 @@ class _MeterFittingSession:
                 winning_kernel = kernel_scores[-1].kernel
                 assert isinstance(winning_kernel, MetricAccentKernel)
             selected_kernels.append(winning_kernel)
-            current_offset += winning_kernel.duration
-        selected_meters = [self.kernels[_] for _ in selected_kernels]
+            current_offset += winning_kernel.duration()
+        selected_meters = [self.kernels()[_] for _ in selected_kernels]
         assert all(isinstance(_, Meter) for _ in selected_meters), repr(selected_meters)
         return selected_meters
 
     ### PRIVATE METHODS ###
 
     def _get_kernels(self, selected_kernels):
-        return tuple(self.kernels)
+        return tuple(self.kernels())
 
     def _get_lookahead_score(self, current_offset, kernel, kernels):
         lookahead_scores = []
-        lookahead_offset = current_offset + kernel.duration
+        lookahead_offset = current_offset + kernel.duration()
         lookahead_offset_counter = self._get_offset_counter_at(lookahead_offset)
         for lookahead_kernel in kernels:
             lookahead_scores.append(lookahead_kernel(lookahead_offset_counter))
@@ -2915,78 +2894,70 @@ class _MeterFittingSession:
         return lookahead_score
 
     def _get_offset_counter_at(self, start_offset) -> _timespan.OffsetCounter:
-        if start_offset in self.cached_offset_counters:
-            return _timespan.OffsetCounter(self.cached_offset_counters[start_offset])
+        if start_offset in self.cached_offset_counters():
+            return _timespan.OffsetCounter(self.cached_offset_counters()[start_offset])
         offset_to_weight: dict[_duration.Offset, fractions.Fraction] = {}
-        assert self.longest_kernel is not None
-        stop_offset = start_offset + self.longest_kernel.duration
-        index = bisect.bisect_left(self.ordered_offsets, start_offset)
-        if index == len(self.ordered_offsets):
+        assert self.longest_kernel() is not None
+        stop_offset = start_offset + self.longest_kernel().duration()
+        index = bisect.bisect_left(self.ordered_offsets(), start_offset)
+        if index == len(self.ordered_offsets()):
             return _timespan.OffsetCounter(offset_to_weight)
-        offset = self.ordered_offsets[index]
+        offset = self.ordered_offsets()[index]
         while offset <= stop_offset:
-            count = self.offset_counter.items[offset]
+            count = self.offset_counter().items[offset]
             offset_to_weight[offset - start_offset] = count
             index += 1
-            if index == len(self.ordered_offsets):
+            if index == len(self.ordered_offsets()):
                 break
-            offset = self.ordered_offsets[index]
-        self.cached_offset_counters[start_offset] = offset_to_weight
+            offset = self.ordered_offsets()[index]
+        self.cached_offset_counters()[start_offset] = offset_to_weight
         offset_counter = _timespan.OffsetCounter(offset_to_weight)
         return offset_counter
 
     ### PUBLIC PROPERTIES ###
 
-    @property
     def cached_offset_counters(self) -> dict:
         """
         Gets cached offset counters
         """
         return self._cached_offset_counters
 
-    @property
     def kernel_denominator(self) -> int:
         """
         Gets kernel denominator.
         """
         return self._kernel_denominator
 
-    @property
     def kernels(self) -> dict:
         """
         Gets kernels-to-meter dictionary.
         """
         return self._kernels
 
-    @property
     def longest_kernel(self) -> MetricAccentKernel:
         """
         Gets longest kernel.
         """
         return self._longest_kernel
 
-    @property
     def maximum_run_length(self) -> int | None:
         """
         Gets maximum meter repetitions.
         """
         return self._maximum_run_length
 
-    @property
     def meters(self) -> tuple[Meter, ...]:
         """
         Gets meters.
         """
         return self._meters
 
-    @property
     def offset_counter(self) -> _timespan.OffsetCounter:
         """
         Gets offset counter.
         """
         return self._offset_counter
 
-    @property
     def ordered_offsets(self) -> tuple[_duration.Offset, ...]:
         """
         Gets ordered offsets.
@@ -3008,20 +2979,20 @@ def make_best_guess_rtc(
     ..  container:: example
 
         >>> rtc = abjad.meter.make_best_guess_rtc((2, 4))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (2/4 (
             1/4
             1/4))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((3, 4))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (3/4 (
             1/4
             1/4
             1/4))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (4/4 (
             1/4
             1/4
@@ -3029,7 +3000,7 @@ def make_best_guess_rtc(
             1/4))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((5, 4))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (5/4 (
             (3/4 (
                 1/4
@@ -3040,7 +3011,7 @@ def make_best_guess_rtc(
                 1/4))))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((5, 4), increase_monotonic=True)
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (5/4 (
             (2/4 (
                 1/4
@@ -3051,7 +3022,7 @@ def make_best_guess_rtc(
                 1/4))))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((6, 4))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (6/4 (
             (3/4 (
                 1/4
@@ -3063,7 +3034,7 @@ def make_best_guess_rtc(
                 1/4))))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (7/4 (
             (3/4 (
                 1/4
@@ -3077,7 +3048,7 @@ def make_best_guess_rtc(
                 1/4))))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((7, 4), increase_monotonic=True)
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (7/4 (
             (2/4 (
                 1/4
@@ -3091,7 +3062,7 @@ def make_best_guess_rtc(
                 1/4))))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((8, 4))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (8/4 (
             (2/4 (
                 1/4
@@ -3107,7 +3078,7 @@ def make_best_guess_rtc(
                 1/4))))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((9, 4))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (9/4 (
             (3/4 (
                 1/4
@@ -3125,20 +3096,20 @@ def make_best_guess_rtc(
     ..  container:: example
 
         >>> rtc = abjad.meter.make_best_guess_rtc((2, 8))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (2/8 (
             1/8
             1/8))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((3, 8))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (3/8 (
             1/8
             1/8
             1/8))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((4, 8))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (4/8 (
             1/8
             1/8
@@ -3146,7 +3117,7 @@ def make_best_guess_rtc(
             1/8))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((5, 8))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (5/8 (
             (3/8 (
                 1/8
@@ -3157,7 +3128,7 @@ def make_best_guess_rtc(
                 1/8))))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((5, 8), increase_monotonic=True)
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (5/8 (
             (2/8 (
                 1/8
@@ -3168,7 +3139,7 @@ def make_best_guess_rtc(
                 1/8))))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((6, 8))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (6/8 (
             (3/8 (
                 1/8
@@ -3180,7 +3151,7 @@ def make_best_guess_rtc(
                 1/8))))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((7, 8))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (7/8 (
             (3/8 (
                 1/8
@@ -3194,7 +3165,7 @@ def make_best_guess_rtc(
                 1/8))))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((7, 8), increase_monotonic=True)
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (7/8 (
             (2/8 (
                 1/8
@@ -3208,7 +3179,7 @@ def make_best_guess_rtc(
                 1/8))))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((8, 8))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (8/8 (
             (2/8 (
                 1/8
@@ -3224,7 +3195,7 @@ def make_best_guess_rtc(
                 1/8))))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((9, 8))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (9/8 (
             (3/8 (
                 1/8
@@ -3240,7 +3211,7 @@ def make_best_guess_rtc(
                 1/8))))
 
         >>> rtc = abjad.meter.make_best_guess_rtc((12, 8))
-        >>> print(rtc.pretty_rtm_format)
+        >>> print(rtc.pretty_rtm_format())
         (12/8 (
             (3/8 (
                 1/8
@@ -3282,7 +3253,7 @@ def make_best_guess_rtc(
         assert isinstance(increase_monotonic, bool)
         if factors:
             factor, factors = factors[0], factors[1:]
-            pair = _duration.divide_pair(rtc.pair, factor)
+            pair = _duration.divide_pair(rtc.pair(), factor)
             if factor in (2, 3, 4):
                 if factors:
                     for _ in range(factor):
@@ -3330,7 +3301,7 @@ def make_best_guess_rtc(
                     rtc.append(grouping)
         else:
             pair_ = (1, denominator)
-            for _ in range(rtc.pair[0]):
+            for _ in range(rtc.pair()[0]):
                 rtl = _rhythmtrees.RhythmTreeLeaf(pair_)
                 rtc.append(rtl)
 

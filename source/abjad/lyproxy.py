@@ -18,18 +18,18 @@ class LilyPondContext:
         LilyPondContext(name='MensuralStaff')
 
         >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-        ...     is_global_context = 'X' if lilypond_context.is_global_context else ' '
-        ...     is_score_context = 'X' if lilypond_context.is_score_context else ' '
-        ...     is_staff_group_context = 'X' if lilypond_context.is_staff_group_context else ' '
-        ...     is_staff_context = 'X' if lilypond_context.is_staff_context else ' '
-        ...     is_bottom_context = 'X' if lilypond_context.is_bottom_context else ' '
+        ...     is_global_context = 'X' if lilypond_context.is_global_context() else ' '
+        ...     is_score_context = 'X' if lilypond_context.is_score_context() else ' '
+        ...     is_staff_group_context = 'X' if lilypond_context.is_staff_group_context() else ' '
+        ...     is_staff_context = 'X' if lilypond_context.is_staff_context() else ' '
+        ...     is_bottom_context = 'X' if lilypond_context.is_bottom_context() else ' '
         ...     print('[{}] [{}] [{}] [{}] [{}] {}'.format(
         ...         is_global_context,
         ...         is_score_context,
         ...         is_staff_group_context,
         ...         is_staff_context,
         ...         is_bottom_context,
-        ...         lilypond_context.name,
+        ...         lilypond_context.name(),
         ...         ))
         ...
         [ ] [ ] [X] [ ] [ ] ChoirStaff
@@ -78,7 +78,7 @@ class LilyPondContext:
 
     def __new__(class_, name="Voice"):
         if isinstance(name, class_):
-            name = name.name
+            name = name.name()
         if name in class_._identity_map:
             obj = class_._identity_map[name]
         else:
@@ -96,30 +96,29 @@ class LilyPondContext:
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(name={self.name!r})"
+        return f"{type(self).__name__}(name={self.name()!r})"
 
     ### PUBLIC PROPERTIES ###
 
-    @property
     def accepted_by(self) -> tuple["LilyPondContext", ...]:
         r"""
         Gets contexts accepting LilyPond context.
 
         ..  container:: example
 
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> for accepting_context in context.accepted_by:
+            >>> context = abjad.LilyPondContext("MensuralStaff")
+            >>> for accepting_context in context.accepted_by():
             ...     accepting_context
             ...
             LilyPondContext(name='OneStaff')
             LilyPondContext(name='Score')
 
             >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-            ...     print(f'{lilypond_context.name}:')
-            ...     accepted_by = lilypond_context.accepted_by
+            ...     print(f"{lilypond_context.name()}:")
+            ...     accepted_by = lilypond_context.accepted_by()
             ...     if accepted_by:
-            ...         accepted_by = ',\n    '.join(_.name for _ in accepted_by)
-            ...         print(f'    {accepted_by}')
+            ...         accepted_by = ",\n    ".join(_.name() for _ in accepted_by)
+            ...         print(f"    {accepted_by}")
             ...
             ChoirStaff:
                 ChoirStaff,
@@ -264,20 +263,19 @@ class LilyPondContext:
         accepting_contexts = set()
         for lilypond_type, context_info in _lyenv.contexts.items():
             assert isinstance(context_info, dict), repr(context_info)
-            if self.name in context_info["accepts"]:
+            if self.name() in context_info["accepts"]:
                 accepting_context = LilyPondContext(lilypond_type)
                 accepting_contexts.add(accepting_context)
-        return tuple(sorted(accepting_contexts, key=lambda x: x.name))
+        return tuple(sorted(accepting_contexts, key=lambda x: x.name()))
 
-    @property
     def accepts(self) -> tuple["LilyPondContext", ...]:
         r"""
         Gets contexts accepted by LilyPond context.
 
         ..  container:: example
 
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> for accepted_context in context.accepts:
+            >>> context = abjad.LilyPondContext("MensuralStaff")
+            >>> for accepted_context in context.accepts():
             ...     accepted_context
             ...
             LilyPondContext(name='CueVoice')
@@ -285,24 +283,23 @@ class LilyPondContext:
             LilyPondContext(name='NullVoice')
 
         """
-        dictionary = _lyenv.contexts[self.name]
+        dictionary = _lyenv.contexts[self.name()]
         assert isinstance(dictionary, dict), repr(dictionary)
         accepts = (LilyPondContext(name=name) for name in dictionary["accepts"])
-        return tuple(sorted(accepts, key=lambda x: x.name))
+        return tuple(sorted(accepts, key=lambda x: x.name()))
 
-    @property
     def alias(self) -> typing.Optional["LilyPondContext"]:
         r"""
         Gets alias of LilyPond context.
 
         ..  container:: example
 
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> context.alias
+            >>> context = abjad.LilyPondContext("MensuralStaff")
+            >>> context.alias()
             LilyPondContext(name='Staff')
 
         """
-        dictionary = _lyenv.contexts[self.name]
+        dictionary = _lyenv.contexts[self.name()]
         assert isinstance(dictionary, dict)
         aliases = dictionary["aliases"]
         if aliases:
@@ -312,22 +309,21 @@ class LilyPondContext:
             return LilyPondContext(name=alias)
         return None
 
-    @property
     def default_child(self) -> typing.Optional["LilyPondContext"]:
         r"""
         Gets default child of LilyPond context.
 
         ..  container:: example
 
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> context.default_child
+            >>> context = abjad.LilyPondContext("MensuralStaff")
+            >>> context.default_child()
             LilyPondContext(name='MensuralVoice')
 
             >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-            ...     print(f'{lilypond_context.name}:')
-            ...     default_child = lilypond_context.default_child
+            ...     print(f"{lilypond_context.name()}:")
+            ...     default_child = lilypond_context.default_child()
             ...     if default_child:
-            ...         print(f'    {default_child.name}')
+            ...         print(f"    {default_child.name()}")
             ...
             ChoirStaff:
                 Staff
@@ -380,28 +376,27 @@ class LilyPondContext:
             Voice:
 
         """
-        if self.is_bottom_context:
+        if self.is_bottom_context():
             return None
-        dictionary = _lyenv.contexts[self.name]
+        dictionary = _lyenv.contexts[self.name()]
         assert isinstance(dictionary, dict), repr(dictionary)
         default_child_name = dictionary.get("default_child", None)
         if default_child_name is None:
-            alias = self.alias
+            alias = self.alias()
             if alias is not None:
-                return alias.default_child
+                return alias.default_child()
         if default_child_name and default_child_name in _lyenv.contexts:
             return LilyPondContext(name=default_child_name)
         return None
 
-    @property
     def engravers(self) -> tuple["LilyPondEngraver", ...]:
         r"""
         Gets engravers belonging to LilyPond context.
 
         ..  container:: example
 
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> for engraver in context.engravers:
+            >>> context = abjad.LilyPondContext("MensuralStaff")
+            >>> for engraver in context.engravers():
             ...     engraver
             ...
             LilyPondEngraver(name='Accidental_engraver')
@@ -434,23 +429,22 @@ class LilyPondContext:
 
         """
         engravers = set()
-        dictionary = _lyenv.contexts[self.name]
+        dictionary = _lyenv.contexts[self.name()]
         assert isinstance(dictionary, dict), repr(dictionary)
         for engraver_name in dictionary["consists"]:
             engraver = LilyPondEngraver(name=engraver_name)
             engravers.add(engraver)
-        engravers_ = tuple(sorted(engravers, key=lambda x: x.name))
+        engravers_ = tuple(sorted(engravers, key=lambda x: x.name()))
         return engravers_
 
-    @property
     def grobs(self) -> tuple["LilyPondGrob", ...]:
         r"""
         Gets grobs created by LilyPond context.
 
         ..  container:: example
 
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> for grob in context.grobs:
+            >>> context = abjad.LilyPondContext("MensuralStaff")
+            >>> for grob in context.grobs():
             ...     grob
             ...
             LilyPondGrob(name='Accidental')
@@ -493,11 +487,10 @@ class LilyPondContext:
 
         """
         grobs: typing.Set[LilyPondGrob] = set()
-        for engraver in self.engravers:
-            grobs.update(engraver.grobs)
-        return tuple(sorted(grobs, key=lambda x: x.name))
+        for engraver in self.engravers():
+            grobs.update(engraver.grobs())
+        return tuple(sorted(grobs, key=lambda x: x.name()))
 
-    @property
     def is_bottom_context(self) -> bool:
         r"""
         Is true if LilyPond context is a bottom context.
@@ -505,8 +498,8 @@ class LilyPondContext:
         ..  container:: example
 
             >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-            ...     is_bottom_context = 'X' if lilypond_context.is_bottom_context else ' '
-            ...     print(f'[{is_bottom_context}] {lilypond_context.name}')
+            ...     is_bottom_context = 'X' if lilypond_context.is_bottom_context() else ' '
+            ...     print(f"[{is_bottom_context}] {lilypond_context.name()}")
             ...
             [ ] ChoirStaff
             [X] ChordNames
@@ -543,27 +536,25 @@ class LilyPondContext:
             [X] Voice
 
         """
-        if not self.accepts:
+        if not self.accepts():
             return True
         return False
 
-    @property
     def is_custom(self) -> bool:
         r"""
         Is true if LilyPond context is user-created.
 
         ..  container:: example
 
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> context.is_custom
+            >>> context = abjad.LilyPondContext("MensuralStaff")
+            >>> context.is_custom()
             False
 
         """
-        dictionary = _lyenv.contexts[self.name]
+        dictionary = _lyenv.contexts[self.name()]
         assert isinstance(dictionary, dict), repr(dictionary)
         return bool(dictionary.get("is_custom", False))
 
-    @property
     def is_global_context(self) -> bool:
         r"""
         Is true if LilyPond context is a global context.
@@ -571,8 +562,8 @@ class LilyPondContext:
         ..  container:: example
 
             >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-            ...     is_global_context = 'X' if lilypond_context.is_global_context else ' '
-            ...     print(f'[{is_global_context}] {lilypond_context.name}')
+            ...     is_global_context = 'X' if lilypond_context.is_global_context() else ' '
+            ...     print(f"[{is_global_context}] {lilypond_context.name()}")
             ...
             [ ] ChoirStaff
             [ ] ChordNames
@@ -609,15 +600,14 @@ class LilyPondContext:
             [ ] Voice
 
         """
-        if not self.accepts:
+        if not self.accepts():
             return False
         elif self is type(self)("Global"):
             return True
-        elif self.alias is type(self)("Global"):
+        elif self.alias() is type(self)("Global"):
             return True
         return False
 
-    @property
     def is_score_context(self) -> bool:
         r"""
         Is true if LilyPond context is a score context.
@@ -625,8 +615,8 @@ class LilyPondContext:
         ..  container:: example
 
             >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-            ...     is_score_context = 'X' if lilypond_context.is_score_context else ' '
-            ...     print(f'[{is_score_context}] {lilypond_context.name}')
+            ...     is_score_context = 'X' if lilypond_context.is_score_context() else ' '
+            ...     print(f"[{is_score_context}] {lilypond_context.name()}")
             ...
             [ ] ChoirStaff
             [ ] ChordNames
@@ -663,15 +653,14 @@ class LilyPondContext:
             [ ] Voice
 
         """
-        if not self.accepts:
+        if not self.accepts():
             return False
         elif self is type(self)("Score"):
             return True
-        elif self.alias is type(self)("Score"):
+        elif self.alias() is type(self)("Score"):
             return True
         return False
 
-    @property
     def is_staff_context(self) -> bool:
         r"""
         Is true if LilyPond context is a staff context.
@@ -679,8 +668,8 @@ class LilyPondContext:
         ..  container:: example
 
             >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-            ...     is_staff_context = 'X' if lilypond_context.is_staff_context else ' '
-            ...     print(f'[{is_staff_context}] {lilypond_context.name}')
+            ...     is_staff_context = 'X' if lilypond_context.is_staff_context() else ' '
+            ...     print(f"[{is_staff_context}] {lilypond_context.name()}")
             ...
             [ ] ChoirStaff
             [ ] ChordNames
@@ -717,15 +706,14 @@ class LilyPondContext:
             [ ] Voice
 
         """
-        if not self.accepts:
+        if not self.accepts():
             return False
         elif self is type(self)("Staff"):
             return True
-        elif self.alias is type(self)("Staff"):
+        elif self.alias() is type(self)("Staff"):
             return True
         return False
 
-    @property
     def is_staff_group_context(self) -> bool:
         r"""
         Is true if LilyPond context is a staff group context.
@@ -733,8 +721,8 @@ class LilyPondContext:
         ..  container:: example
 
             >>> for lilypond_context in abjad.LilyPondContext.list_all_contexts():
-            ...     is_staff_group_context = 'X' if lilypond_context.is_staff_group_context else ' '
-            ...     print(f'[{is_staff_group_context}] {lilypond_context.name}')
+            ...     is_staff_group_context = 'X' if lilypond_context.is_staff_group_context() else ' '
+            ...     print(f"[{is_staff_group_context}] {lilypond_context.name()}")
             ...
             [X] ChoirStaff
             [ ] ChordNames
@@ -773,36 +761,34 @@ class LilyPondContext:
         """
         return not any(
             [
-                self.is_global_context,
-                self.is_score_context,
-                self.is_staff_context,
-                self.is_bottom_context,
+                self.is_global_context(),
+                self.is_score_context(),
+                self.is_staff_context(),
+                self.is_bottom_context(),
             ]
         )
 
-    @property
     def name(self) -> str:
         r"""
         Gets name of LilyPond context.
 
         ..  container:: example
 
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> context.name
+            >>> context = abjad.LilyPondContext("MensuralStaff")
+            >>> context.name()
             'MensuralStaff'
 
         """
         return self._name
 
-    @property
     def property_names(self) -> tuple[str, ...]:
         r"""
         Gets property names of LilyPond context.
 
         ..  container:: example
 
-            >>> context = abjad.LilyPondContext('MensuralStaff')
-            >>> for property_name in context.property_names:
+            >>> context = abjad.LilyPondContext("MensuralStaff")
+            >>> for property_name in context.property_names():
             ...     property_name
             ...
             'accidentalGrouping'
@@ -867,8 +853,8 @@ class LilyPondContext:
 
         """
         property_names: typing.Set[str] = set()
-        for engraver in self.engravers:
-            property_names.update(engraver.property_names)
+        for engraver in self.engravers():
+            property_names.update(engraver.property_names())
         return tuple(sorted(property_names))
 
     ### PUBLIC METHODS ###
@@ -938,18 +924,18 @@ class LilyPondContext:
         ..  container:: example
 
             >>> custom_context = abjad.LilyPondContext.register(
-            ...     accepted_by=['Score', 'StaffGroup'],
-            ...     alias='Staff',
-            ...     name='BowingStaff',
-            ...     removes=['Note_heads_engraver'],
+            ...     accepted_by=["Score", "StaffGroup"],
+            ...     alias="Staff",
+            ...     name="BowingStaff",
+            ...     removes=["Note_heads_engraver"],
             ...     )
             >>> custom_context
             LilyPondContext(name='BowingStaff')
 
-            >>> custom_context.is_custom
+            >>> custom_context.is_custom()
             True
 
-            >>> for engraver in custom_context.engravers:
+            >>> for engraver in custom_context.engravers():
             ...     engraver
             ...
             LilyPondEngraver(name='Accidental_engraver')
@@ -980,7 +966,7 @@ class LilyPondContext:
             LilyPondEngraver(name='Time_signature_engraver')
 
             >>> score_context = abjad.LilyPondContext('Score')
-            >>> custom_context in score_context.accepts
+            >>> custom_context in score_context.accepts()
             True
 
             >>> custom_context.unregister()
@@ -997,47 +983,47 @@ class LilyPondContext:
             else:
                 alias_ = alias
             assert isinstance(alias_, class_)
-            context_entry["accepts"].update(_.name for _ in alias_.accepts)
-            context_entry["consists"].update(_.name for _ in alias_.engravers)
-            context_entry["aliases"] = set([alias_.name])
+            context_entry["accepts"].update(_.name() for _ in alias_.accepts())
+            context_entry["consists"].update(_.name() for _ in alias_.engravers())
+            context_entry["aliases"] = set([alias_.name()])
         if accepts:
             for x in accepts:
                 if not isinstance(x, class_):
                     x = class_(name=x)
                 assert isinstance(x, class_)
-                context_entry["accepts"].add(x.name)
+                context_entry["accepts"].add(x.name())
         if denies:
             for x in denies:
                 if not isinstance(x, class_):
                     x = class_(name=x)
                 assert isinstance(x, class_)
-                if x.name in context_entry["accepts"]:
-                    context_entry["accepts"].remove(x.name)
+                if x.name() in context_entry["accepts"]:
+                    context_entry["accepts"].remove(x.name())
         if consists:
             for x in consists:
                 if not isinstance(x, LilyPondEngraver):
                     x = LilyPondEngraver(name=x)
                 assert isinstance(x, LilyPondEngraver)
-                context_entry["consists"].add(x.name)
+                context_entry["consists"].add(x.name())
         if removes:
             for x in removes:
                 if not isinstance(x, LilyPondEngraver):
                     x = LilyPondEngraver(name=x)
                 assert isinstance(x, LilyPondEngraver)
-                if x.name in context_entry["consists"]:
-                    context_entry["consists"].remove(x.name)
+                if x.name() in context_entry["consists"]:
+                    context_entry["consists"].remove(x.name())
         if default_child is not None:
             if not isinstance(default_child, class_):
                 default_child = class_(name=default_child)
             assert isinstance(default_child, class_)
-            context_entry["default_child"] = default_child.name
+            context_entry["default_child"] = default_child.name()
         accepting_contexts = set()
         if accepted_by:
             for x in accepted_by:
                 if not isinstance(x, class_):
                     x = class_(name=x)
                 assert isinstance(x, class_)
-                accepting_contexts.add(x.name)
+                accepting_contexts.add(x.name())
         assert isinstance(name, str)
         _lyenv.contexts[name] = context_entry
         for accepting_context in accepting_contexts:
@@ -1054,13 +1040,13 @@ class LilyPondContext:
         ..  container:: example
 
             >>> custom_context = abjad.LilyPondContext.register(
-            ...     accepted_by=['Score', 'StaffGroup'],
-            ...     alias='Staff',
-            ...     name='FingeringStaff',
-            ...     )
+            ...     accepted_by=["Score", "StaffGroup"],
+            ...     alias="Staff",
+            ...     name="FingeringStaff",
+            ... )
 
-            >>> score_context = abjad.LilyPondContext('Score')
-            >>> for accepted_context in score_context.accepts:
+            >>> score_context = abjad.LilyPondContext("Score")
+            >>> for accepted_context in score_context.accepts():
             ...     accepted_context
             ...
             LilyPondContext(name='ChoirStaff')
@@ -1089,7 +1075,7 @@ class LilyPondContext:
             >>> custom_context.unregister()
 
             >>> score_context = abjad.LilyPondContext('Score')
-            >>> for accepted_context in score_context.accepts:
+            >>> for accepted_context in score_context.accepts():
             ...     accepted_context
             ...
             LilyPondContext(name='ChoirStaff')
@@ -1115,15 +1101,15 @@ class LilyPondContext:
             LilyPondContext(name='VaticanaStaff')
 
         """
-        assert self.is_custom
-        del _lyenv.contexts[self.name]
-        del self._identity_map[self.name]
+        assert self.is_custom()
+        del _lyenv.contexts[self.name()]
+        del self._identity_map[self.name()]
         for lilypond_type, context_info in _lyenv.contexts.items():
             assert isinstance(context_info, dict), repr(context_info)
             set_ = context_info["accepts"]
             assert isinstance(set_, set), repr(set_)
-            if self.name in set_:
-                set_.remove(self.name)
+            if self.name() in set_:
+                set_.remove(self.name())
 
 
 class LilyPondEngraver:
@@ -1163,7 +1149,7 @@ class LilyPondEngraver:
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(name={self.name!r})"
+        return f"{type(self).__name__}(name={self.name()!r})"
 
     ### PUBLIC METHODS ###
 
@@ -1319,47 +1305,44 @@ class LilyPondEngraver:
 
     ### PUBLIC PROPERTIES ###
 
-    @property
     def grobs(self) -> tuple["LilyPondGrob", ...]:
         """
         Gets LilyPond engraver's created grobs.
 
         ..  container:: example
 
-            >>> engraver = abjad.LilyPondEngraver('Auto_beam_engraver')
-            >>> for grob in engraver.grobs:
+            >>> engraver = abjad.LilyPondEngraver("Auto_beam_engraver")
+            >>> for grob in engraver.grobs():
             ...     grob
             ...
             LilyPondGrob(name='Beam')
 
         """
-        dictionary = _lyenv.engravers[self.name]
+        dictionary = _lyenv.engravers[self.name()]
         assert isinstance(dictionary, dict), repr(dictionary)
         return tuple(LilyPondGrob(name=name) for name in dictionary["grobs_created"])
 
-    @property
     def name(self) -> str:
         """
         Gets name of LilyPond engraver.
 
         ..  container:: example
 
-            >>> engraver = abjad.LilyPondEngraver('Auto_beam_engraver')
-            >>> engraver.name
+            >>> engraver = abjad.LilyPondEngraver("Auto_beam_engraver")
+            >>> engraver.name()
             'Auto_beam_engraver'
 
         """
         return self._name
 
-    @property
     def property_names(self) -> tuple[str, ...]:
         """
         Gets LilyPond engraver's property names.
 
         ..  container:: example
 
-            >>> engraver = abjad.LilyPondEngraver('Auto_beam_engraver')
-            >>> for property_name in engraver.property_names:
+            >>> engraver = abjad.LilyPondEngraver("Auto_beam_engraver")
+            >>> for property_name in engraver.property_names():
             ...     property_name
             ...
             'autoBeaming'
@@ -1370,7 +1353,7 @@ class LilyPondEngraver:
             'subdivideBeams'
 
         """
-        dictionary = _lyenv.engravers[self.name]
+        dictionary = _lyenv.engravers[self.name()]
         assert isinstance(dictionary, dict), repr(dictionary)
         property_names: typing.Set[str] = set()
         property_names.update(dictionary["properties_read"])
@@ -1415,19 +1398,18 @@ class LilyPondGrob:
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(name={self.name!r})"
+        return f"{type(self).__name__}(name={self.name()!r})"
 
     ### PUBLIC PROPERTIES ###
 
-    @property
     def interfaces(self) -> tuple["LilyPondGrobInterface", ...]:
         """
         Gets interfaces of LilyPond grob.
 
         ..  container:: example
 
-            >>> grob = abjad.LilyPondGrob('Beam')
-            >>> for interface in grob.interfaces:
+            >>> grob = abjad.LilyPondGrob("Beam")
+            >>> for interface in grob.interfaces():
             ...     interface
             ...
             LilyPondGrobInterface(name='beam-interface')
@@ -1439,32 +1421,31 @@ class LilyPondGrob:
 
         """
         return tuple(
-            LilyPondGrobInterface(_) for _ in sorted(_lyenv.grob_interfaces[self.name])
+            LilyPondGrobInterface(_)
+            for _ in sorted(_lyenv.grob_interfaces[self.name()])
         )
 
-    @property
     def name(self) -> str:
         """
         Gets name of LilyPond grob.
 
         ..  container:: example
 
-            >>> grob = abjad.LilyPondGrob('Beam')
-            >>> grob.name
+            >>> grob = abjad.LilyPondGrob("Beam")
+            >>> grob.name()
             'Beam'
 
         """
         return self._name
 
-    @property
     def property_names(self) -> tuple[str, ...]:
         """
         Gets property names of LilyPond grob.
 
         ..  container:: example
 
-            >>> grob = abjad.LilyPondGrob('Beam')
-            >>> for property_name in grob.property_names:
+            >>> grob = abjad.LilyPondGrob("Beam")
+            >>> for property_name in grob.property_names():
             ...     property_name
             ...
             'X-extent'
@@ -1534,8 +1515,8 @@ class LilyPondGrob:
 
         """
         property_names: typing.Set[str] = set()
-        for interface in self.interfaces:
-            property_names.update(interface.property_names)
+        for interface in self.interfaces():
+            property_names.update(interface.property_names())
         return tuple(sorted(property_names))
 
     ### PUBLIC METHODS ###
@@ -1701,7 +1682,7 @@ class LilyPondGrobInterface:
 
     ..  container:: example
 
-        >>> abjad.LilyPondGrobInterface('beam-interface')
+        >>> abjad.LilyPondGrobInterface("beam-interface")
         LilyPondGrobInterface(name='beam-interface')
 
     """
@@ -1734,7 +1715,7 @@ class LilyPondGrobInterface:
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(name={self.name!r})"
+        return f"{type(self).__name__}(name={self.name()!r})"
 
     ### PUBLIC METHODS ###
 
@@ -1893,29 +1874,27 @@ class LilyPondGrobInterface:
 
     ### PUBLIC PROPERTIES ###
 
-    @property
     def name(self) -> str:
         """
         Gets name of LilyPond grob interface.
 
         ..  container:: example
 
-            >>> interface = abjad.LilyPondGrobInterface('beam-interface')
-            >>> interface.name
+            >>> interface = abjad.LilyPondGrobInterface("beam-interface")
+            >>> interface.name()
             'beam-interface'
 
         """
         return self._name
 
-    @property
     def property_names(self) -> tuple[str, ...]:
         """
         Gets property names of LilyPond grob interface.
 
         ..  container:: example
 
-            >>> interface = abjad.LilyPondGrobInterface('beam-interface')
-            >>> for property_name in interface.property_names:
+            >>> interface = abjad.LilyPondGrobInterface("beam-interface")
+            >>> for property_name in interface.property_names():
             ...     property_name
             ...
             'X-positions'
@@ -1943,7 +1922,7 @@ class LilyPondGrobInterface:
             'skip-quanting'
 
         """
-        names = _lyenv.interface_properties[self.name]
+        names = _lyenv.interface_properties[self.name()]
         assert isinstance(names, list), repr(names)
         assert all(isinstance(_, str) for _ in names), repr(names)
         return tuple(names)

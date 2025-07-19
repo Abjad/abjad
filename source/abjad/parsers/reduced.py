@@ -658,7 +658,6 @@ class ReducedLyParser(Parser):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
     def debug(self):
         """
         Gets debug boolean of reduced ly parser.
@@ -667,14 +666,12 @@ class ReducedLyParser(Parser):
         """
         return self._debug
 
-    @property
     def lexer_rules_object(self):
         """
         Lexer rules object of reduced ly parser.
         """
         return self
 
-    @property
     def parser_rules_object(self):
         """
         Parser rules object of reduced ly parser.

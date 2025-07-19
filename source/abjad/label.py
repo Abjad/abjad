@@ -1950,94 +1950,8 @@ class ColorMap:
                     raise KeyError("duplicated pitch-class in color map: {pc!r}.")
                 self._color_dictionary[pc.number] = color
 
-    def __hash__(self):
-        """
-        Makes hash.
-        """
+    def __hash__(self) -> int:
         return hash(repr(self))
-
-    @property
-    def is_twelve_tone_complete(self) -> bool:
-        """
-        Is true when color map contains all 12-ET pitch-classes.
-
-        ..  container:: example
-
-            >>> color_map = abjad.ColorMap(
-            ...     colors=["#red", "#green", "#blue"],
-            ...     pitch_iterables=[
-            ...         [-8, 2, 10, 21],
-            ...         [0, 11, 32, 41],
-            ...         [15, 25, 42, 43],
-            ...     ],
-            ... )
-
-            >>> color_map.is_twelve_tone_complete
-            True
-
-        """
-        pcs = range(12)
-        return set(pcs).issubset(set(self._color_dictionary.keys()))
-
-    @property
-    def is_twenty_four_tone_complete(self) -> bool:
-        """
-        Is true when color map contains all 24-ET pitch-classes.
-
-        ..  container:: example
-
-            >>> color_map = abjad.ColorMap(
-            ...     colors=["#red", "#green", "#blue"],
-            ...     pitch_iterables=[
-            ...         [-8, 2, 10, 21],
-            ...         [0, 11, 32, 41],
-            ...         [15, 25, 42, 43],
-            ...     ],
-            ... )
-
-            >>> color_map.is_twenty_four_tone_complete
-            False
-
-        """
-        pcs = [x / 2.0 for x in range(24)]
-        pcs = [int(x) if int(x) == x else x for x in pcs]
-        return set(pcs).issubset(set(self._color_dictionary.keys()))
-
-    @property
-    def pairs(self) -> list[tuple[int, str]]:
-        """
-        Gets pairs.
-
-        ..  container:: example
-
-            >>> color_map = abjad.ColorMap(
-            ...     colors=["#red", "#green", "#blue"],
-            ...     pitch_iterables=[
-            ...         [-8, 2, 10, 21],
-            ...         [0, 11, 32, 41],
-            ...         [15, 25, 42, 43],
-            ...     ],
-            ... )
-
-            >>> for pair in color_map.pairs:
-            ...     pair
-            ...
-            (0, '#green')
-            (1, '#blue')
-            (2, '#red')
-            (3, '#blue')
-            (4, '#red')
-            (5, '#green')
-            (6, '#blue')
-            (7, '#blue')
-            (8, '#green')
-            (9, '#red')
-            (10, '#red')
-            (11, '#green')
-
-        """
-        items = list(self._color_dictionary.items())
-        return list(sorted(items))
 
     def get(self, key, alternative: typing.Any = None) -> str:
         """
@@ -2064,3 +1978,83 @@ class ColorMap:
             return self[key]
         except (KeyError, TypeError, ValueError):
             return alternative
+
+    def get_is_twelve_tone_complete(self) -> bool:
+        """
+        Is true when color map contains all 12-ET pitch-classes.
+
+        ..  container:: example
+
+            >>> color_map = abjad.ColorMap(
+            ...     colors=["#red", "#green", "#blue"],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...     ],
+            ... )
+
+            >>> color_map.get_is_twelve_tone_complete()
+            True
+
+        """
+        pcs = range(12)
+        return set(pcs).issubset(set(self._color_dictionary.keys()))
+
+    def get_is_twenty_four_tone_complete(self) -> bool:
+        """
+        Is true when color map contains all 24-ET pitch-classes.
+
+        ..  container:: example
+
+            >>> color_map = abjad.ColorMap(
+            ...     colors=["#red", "#green", "#blue"],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...     ],
+            ... )
+
+            >>> color_map.get_is_twenty_four_tone_complete()
+            False
+
+        """
+        pcs = [x / 2.0 for x in range(24)]
+        pcs = [int(x) if int(x) == x else x for x in pcs]
+        return set(pcs).issubset(set(self._color_dictionary.keys()))
+
+    def pairs(self) -> list[tuple[int, str]]:
+        """
+        Gets pairs.
+
+        ..  container:: example
+
+            >>> color_map = abjad.ColorMap(
+            ...     colors=["#red", "#green", "#blue"],
+            ...     pitch_iterables=[
+            ...         [-8, 2, 10, 21],
+            ...         [0, 11, 32, 41],
+            ...         [15, 25, 42, 43],
+            ...     ],
+            ... )
+
+            >>> for pair in color_map.pairs():
+            ...     pair
+            ...
+            (0, '#green')
+            (1, '#blue')
+            (2, '#red')
+            (3, '#blue')
+            (4, '#red')
+            (5, '#green')
+            (6, '#blue')
+            (7, '#blue')
+            (8, '#green')
+            (9, '#red')
+            (10, '#red')
+            (11, '#green')
+
+        """
+        items = list(self._color_dictionary.items())
+        return list(sorted(items))

@@ -137,7 +137,7 @@ class AbjadModuleDocumenter(uqbar.apis.documenters.ModuleDocumenter):
                 ]
                 if subpackage_documenters:
                     result.extend(self._build_toc(subpackage_documenters))
-            flattened_documenters = []
+            flattened_documenters: list = []
             for section, documenters in self.member_documenters_by_section:
                 flattened_documenters.extend(documenters)
             flattened_documenters.sort(key=lambda _: getattr(_.client, "__name__", ""))
@@ -205,7 +205,9 @@ class AbjadModuleDocumenter(uqbar.apis.documenters.ModuleDocumenter):
     @property
     def member_documenters_by_section(
         self,
-    ) -> list[tuple[str, list[uqbar.apis.documenters.MemberDocumenter]]]:
+    ) -> typing.Sequence[
+        tuple[str, typing.Sequence[uqbar.apis.documenters.MemberDocumenter]]
+    ]:
         result: typing.MutableMapping[
             str, list[uqbar.apis.documenters.MemberDocumenter]
         ] = {}

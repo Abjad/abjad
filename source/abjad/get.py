@@ -2487,7 +2487,7 @@ def is_bar_line_crossing(argument) -> bool:
     if time_signature is None:
         time_signature_duration = _duration.Duration(4, 4)
     else:
-        time_signature_duration = time_signature.duration
+        time_signature_duration = time_signature.get_duration()
     partial = getattr(time_signature, "partial", 0)
     partial = partial or 0
     start_offset = timespan(argument).start_offset
@@ -4687,7 +4687,7 @@ class Lineage(collections.abc.Sequence):
         """
         if isinstance(argument, type(self)):
             if len(self) == len(argument):
-                for c, d in zip(self.components, argument.components):
+                for c, d in zip(self.get_components(), argument.get_components()):
                     if c is not d:
                         return False
                 else:
@@ -4700,7 +4700,7 @@ class Lineage(collections.abc.Sequence):
 
         Returns component or tuple.
         """
-        return self.components.__getitem__(argument)
+        return self.get_components().__getitem__(argument)
 
     def __len__(self) -> int:
         """
@@ -4708,15 +4708,13 @@ class Lineage(collections.abc.Sequence):
         """
         return len(self._components)
 
-    @property
-    def component(self) -> _score.Component:
+    def get_component(self) -> _score.Component:
         """
         Gets component from which lineage was derived.
         """
         return self._component
 
-    @property
-    def components(self) -> tuple[_score.Component]:
+    def get_components(self) -> tuple[_score.Component]:
         """
         Gets components.
         """

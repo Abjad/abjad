@@ -82,7 +82,7 @@ def _get_duration_in_seconds(component):
             return duration
     else:
         mark = _get_effective_indicator(component, _indicators.MetronomeMark)
-        if mark is not None and not mark.is_imprecise:
+        if mark is not None and not mark.get_is_imprecise():
             result = (
                 component._get_duration()
                 / mark.reference_duration
