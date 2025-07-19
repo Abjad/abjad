@@ -6375,7 +6375,7 @@ class LilyPondSyntacticalDefinition:
         duration = p[1].duration
         multiplier = p[1].multiplier
         if dots:
-            duration = duration.lilypond_duration_string()
+            duration = duration.get_lilypond_duration_string()
             duration += "." * dots
             duration = _duration.Duration.from_lilypond_duration_string(duration)
         p[0] = LilyPondDuration(duration, multiplier)

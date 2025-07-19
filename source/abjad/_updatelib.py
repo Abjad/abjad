@@ -143,7 +143,7 @@ def _get_obgc_leaf_offsets(leaf):
     first_nongrace_leaf_start_offset = first_nongrace_leaf._start_offset
     assert first_nongrace_leaf_start_offset is not None
     first_nongrace_leaf_start_offset = _duration.Offset(
-        first_nongrace_leaf_start_offset.pair()
+        first_nongrace_leaf_start_offset.get_pair()
     )
     start_displacement = _duration.Duration(0)
     sibling = leaf._sibling(-1)
@@ -154,10 +154,10 @@ def _get_obgc_leaf_offsets(leaf):
     if start_displacement == 0:
         start_displacement = None
     start_offset = _duration.Offset(
-        first_nongrace_leaf_start_offset.pair(), displacement=start_displacement
+        first_nongrace_leaf_start_offset.get_pair(), displacement=start_displacement
     )
     stop_offset = _duration.Offset(
-        first_nongrace_leaf_start_offset.pair(), displacement=stop_displacement
+        first_nongrace_leaf_start_offset.get_pair(), displacement=stop_displacement
     )
     return start_offset, stop_offset
 
@@ -237,7 +237,7 @@ def _make_metronome_mark_map(root):
 # TODO: reimplement with some type of bisection
 def _to_measure_number(component, measure_start_offsets):
     component_start_offset = component._get_timespan().start_offset
-    displacement = component_start_offset.displacement()
+    displacement = component_start_offset.get_displacement()
     if displacement is not None:
         component_start_offset = _duration.Offset(
             component_start_offset, displacement=None

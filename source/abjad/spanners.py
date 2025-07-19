@@ -145,7 +145,7 @@ def beam(
 
     def _is_beamable(argument, beam_rests=False):
         if isinstance(argument, _score.Chord | _score.Note):
-            if 0 < argument.written_duration.flag_count():
+            if 0 < argument.written_duration.get_flag_count():
                 return True
         if beam_rests and isinstance(argument, silent_prototype):
             return True
@@ -216,11 +216,11 @@ def beam(
         previous_leaf = original_leaves[this_index - 1]
         previous = 0
         if _is_beamable(previous_leaf, beam_rests=beam_rests):
-            previous = previous_leaf.written_duration.flag_count()
+            previous = previous_leaf.written_duration.get_flag_count()
         next_leaf = original_leaves[this_index + 1]
         next_ = 0
         if _is_beamable(next_leaf, beam_rests=beam_rests):
-            next_ = next_leaf.written_duration.flag_count()
+            next_ = next_leaf.written_duration.get_flag_count()
         return previous, next_
 
     span_beam_count = span_beam_count or 1
@@ -238,7 +238,7 @@ def beam(
         if i == total_parts - 1:
             is_last_part = True
         first_leaf = part[0]
-        flag_count = first_leaf.written_duration.flag_count()
+        flag_count = first_leaf.written_duration.get_flag_count()
         if len(part) == 1:
             if not _is_beamable(first_leaf, beam_rests=False):
                 continue
@@ -256,7 +256,7 @@ def beam(
             _bind.attach(beam_count, first_leaf, tag=tag)
         last_leaf = part[-1]
         if _is_beamable(last_leaf, beam_rests=False):
-            flag_count = last_leaf.written_duration.flag_count()
+            flag_count = last_leaf.written_duration.get_flag_count()
             if is_last_part:
                 left = flag_count
                 right = 0
@@ -287,7 +287,7 @@ def beam(
                 continue
             if isinstance(middle_leaf, silent_prototype):
                 continue
-            flag_count = middle_leaf.written_duration.flag_count()
+            flag_count = middle_leaf.written_duration.get_flag_count()
             previous, next_ = _leaf_neighbors(middle_leaf, original_leaves)
             if previous == next_ == 0:
                 left = right = flag_count
