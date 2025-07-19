@@ -189,9 +189,9 @@ class Articulation:
             string = self.shortcut_to_word.get(self.name)
             if not string:
                 string = self.name
-            if wrapper.direction() is not None:
+            if wrapper.get_direction() is not None:
                 direction_ = _string.to_tridirectional_lilypond_symbol(
-                    wrapper.direction()
+                    wrapper.get_direction()
                 )
                 direction = direction_
             else:
@@ -778,7 +778,7 @@ class Clef:
     def _get_contributions(self, *, wrapper=None):
         assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
-        if wrapper.hide() is False:
+        if wrapper.get_hide() is False:
             site = getattr(contributions, self.site)
             string = self._get_lilypond_format()
             site.commands.append(string)
@@ -1876,7 +1876,7 @@ class Dynamic:
         ]
         after = {"f": -0.2, "m": -0.1, "p": -0.25, "r": 0, "s": 0, "z": -0.2}[name[-1]]
         # direction = self.direction
-        direction = wrapper.direction() or _enums.DOWN
+        direction = wrapper.get_direction() or _enums.DOWN
         direction = _string.to_tridirectional_lilypond_symbol(direction)
         strings = []
         strings.append(f"{direction} #(make-dynamic-script")
@@ -1896,7 +1896,7 @@ class Dynamic:
 
     @staticmethod
     def _format_textual(string, *, wrapper=None):
-        if wrapper.direction() is None:
+        if wrapper.get_direction() is None:
             direction = _enums.DOWN
         direction = _string.to_tridirectional_lilypond_symbol(direction)
         assert isinstance(string, str), repr(string)
@@ -1910,10 +1910,10 @@ class Dynamic:
         command = self._get_lilypond_format(wrapper=wrapper)
         if self.leak:
             contributions.after.leak.append(_EMPTY_CHORD)
-            if wrapper.hide() is False:
+            if wrapper.get_hide() is False:
                 contributions.after.leaks.append(command)
         else:
-            if wrapper.hide() is False:
+            if wrapper.get_hide() is False:
                 contributions.after.articulations.append(command)
         return contributions
 
@@ -1926,8 +1926,8 @@ class Dynamic:
             string = self._format_textual(self.name, wrapper=wrapper)
         else:
             string = rf"\{self.name}"
-            if wrapper.direction() is not None:
-                direction_ = wrapper.direction()
+            if wrapper.get_direction() is not None:
+                direction_ = wrapper.get_direction()
                 direction = _string.to_tridirectional_lilypond_symbol(direction_)
                 string = f"{direction} {string}"
         return string
@@ -2677,9 +2677,9 @@ class KeyCluster:
             assert self.hide_natural_markup is False
             string = r"\center-column \natural"
         string = rf"\markup {string}"
-        if wrapper.direction() is _enums.UP:
+        if wrapper.get_direction() is _enums.UP:
             string = rf"^ {string}"
-        elif wrapper.direction() is _enums.DOWN:
+        elif wrapper.get_direction() is _enums.DOWN:
             string = rf"_ {string}"
         site.markup.append(string)
         return contributions
@@ -3351,7 +3351,7 @@ class Markup:
     def _get_lilypond_format(self, *, wrapper=None):
         string = self.string
         if wrapper is not None:
-            direction = wrapper.direction() or "-"
+            direction = wrapper.get_direction() or "-"
             direction = _string.to_tridirectional_lilypond_symbol(direction)
             string = rf"{direction} {self.string}"
         return string
@@ -3714,7 +3714,7 @@ class MetronomeMark:
         assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
-        if wrapper.hide() is False:
+        if wrapper.get_hide() is False:
             string = self._get_lilypond_format()
             site.commands.append(string)
         return contributions
@@ -4271,7 +4271,7 @@ class RepeatTie:
         [RepeatTie()]
 
         >>> wrapper = abjad.get.wrapper(voice[1], abjad.RepeatTie)
-        >>> wrapper.indicator()
+        >>> wrapper.get_indicator()
         Bundle(indicator=RepeatTie(), tweaks=(Tweak(string='- \\tweak color #blue', i=None, tag=None),), comment=None)
 
         >>> for leaf in voice:
@@ -4388,8 +4388,8 @@ class RepeatTie:
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
         strings = []
-        if wrapper.direction() is not None:
-            string = _string.to_tridirectional_lilypond_symbol(wrapper.direction())
+        if wrapper.get_direction() is not None:
+            string = _string.to_tridirectional_lilypond_symbol(wrapper.get_direction())
             strings.append(string)
         strings.append(r"\repeatTie")
         site.spanner_starts.extend(strings)
@@ -4623,8 +4623,8 @@ class StartBeam:
     spanner_start: typing.ClassVar[bool] = True
 
     def _add_direction(self, string, wrapper):
-        if wrapper.direction() is not None:
-            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction())
+        if wrapper.get_direction() is not None:
+            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.get_direction())
             string = f"{symbol} {string}"
         return string
 
@@ -5036,8 +5036,8 @@ class StartHairpin:
         assert self.shape in self.known_shapes, repr(self.shape)
 
     def _add_direction(self, string, *, wrapper=None):
-        if wrapper.direction() is not None:
-            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction())
+        if wrapper.get_direction() is not None:
+            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.get_direction())
             string = f"{symbol} {string}"
         return string
 
@@ -5144,8 +5144,8 @@ class StartPhrasingSlur:
     spanner_start: typing.ClassVar[bool] = True
 
     def _add_direction(self, string, *, wrapper=None):
-        if wrapper.direction() is not None:
-            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction())
+        if wrapper.get_direction() is not None:
+            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.get_direction())
             string = f"{symbol} {string}"
         return string
 
@@ -5378,8 +5378,8 @@ class StartSlur:
     spanner_start: typing.ClassVar[bool] = True
 
     def _add_direction(self, string, *, wrapper=None):
-        if wrapper.direction() is not None:
-            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction())
+        if wrapper.get_direction() is not None:
+            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.get_direction())
             string = f"{symbol} {string}"
         return string
 
@@ -5798,8 +5798,8 @@ class StartTextSpan:
         return contributions
 
     def _add_direction(self, string, *, wrapper=None):
-        if wrapper.direction() is not None:
-            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction())
+        if wrapper.get_direction() is not None:
+            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.get_direction())
             string = f"{symbol} {string}"
         return string
 
@@ -5983,7 +5983,7 @@ class StartTrillSpan:
             if self.pitch:
                 pitch = self.pitch
             else:
-                pitch = wrapper.component().written_pitch + self.interval
+                pitch = wrapper.get_component().written_pitch + self.interval
             string = string + f" {pitch.name}"
             if self.force_trill_pitch_head_accidental is True:
                 # LilyPond's TrillPitchHead does not obey LilyPond's \accidentalStyle;
@@ -7131,8 +7131,8 @@ class Tie:
     site: typing.ClassVar[str] = "after"
 
     def _add_direction(self, string, *, wrapper=None):
-        if wrapper.direction() is not None:
-            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.direction())
+        if wrapper.get_direction() is not None:
+            symbol = _string.to_tridirectional_lilypond_symbol(wrapper.get_direction())
             string = f"{symbol} {string}"
         return string
 
@@ -7316,7 +7316,7 @@ class TimeSignature:
         assert wrapper is not None
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
-        if not self.is_dyadic() and wrapper.hide() is False:
+        if not self.is_dyadic() and wrapper.get_hide() is False:
             string = '#(ly:expect-warning "strange time signature found")'
             site.commands.append(string)
         strings = self._get_lilypond_format(wrapper)
@@ -7325,7 +7325,7 @@ class TimeSignature:
 
     def _get_lilypond_format(self, wrapper):
         result = []
-        if wrapper.hide() is True:
+        if wrapper.get_hide() is True:
             return result
         if self.partial is None:
             result.append(rf"\time {self.numerator}/{self.denominator}")
