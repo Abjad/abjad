@@ -300,7 +300,7 @@ def test_init(input_, semitones, name):
         return
     instance = class_(input_)
     assert float(instance) == semitones
-    assert instance.name == name
+    assert instance.get_name() == name
     abjad.NamedInterval(instance)
     abjad.NamedIntervalClass(instance)
     abjad.NumberedInterval(instance)

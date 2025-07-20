@@ -151,12 +151,12 @@ def test_Note___copy___06():
     new_note = copy.deepcopy(note)
 
     assert new_note is not note
-    assert abjad.get.parentage(note).parent is staff
-    assert abjad.get.parentage(new_note).parent is not staff
-    assert isinstance(abjad.get.parentage(new_note).parent, abjad.Staff)
+    assert abjad.get.parentage(note).get_parent() is staff
+    assert abjad.get.parentage(new_note).get_parent() is not staff
+    assert isinstance(abjad.get.parentage(new_note).get_parent(), abjad.Staff)
     assert abjad.lilypond(new_note) == abjad.lilypond(note)
-    assert abjad.lilypond(abjad.get.parentage(note).parent) == abjad.lilypond(
-        abjad.get.parentage(new_note).parent
+    assert abjad.lilypond(abjad.get.parentage(note).get_parent()) == abjad.lilypond(
+        abjad.get.parentage(new_note).get_parent()
     )
 
 
@@ -337,9 +337,9 @@ def test_Note___init___12():
 
     assert isinstance(tuplet[0], abjad.Rest)
     assert isinstance(note, abjad.Note)
-    assert abjad.get.parentage(tuplet[0]).parent is tuplet
+    assert abjad.get.parentage(tuplet[0]).get_parent() is tuplet
     assert tuplet[0].written_duration == duration
-    assert abjad.get.parentage(note).parent is None
+    assert abjad.get.parentage(note).get_parent() is None
 
 
 def test_Note___init___13():
@@ -355,8 +355,8 @@ def test_Note___init___13():
 
     assert isinstance(voice[1], abjad.Rest)
     assert isinstance(note, abjad.Note)
-    assert abjad.get.parentage(voice[1]).parent is voice
-    assert abjad.get.parentage(note).parent is None
+    assert abjad.get.parentage(voice[1]).get_parent() is voice
+    assert abjad.get.parentage(note).get_parent() is None
 
 
 def test_Note___init___14():
@@ -371,7 +371,7 @@ def test_Note___init___14():
     assert isinstance(note, abjad.Note)
     assert dir(skip) == dir(abjad.Skip((1, 4)))
     assert dir(note) == dir(abjad.Note("c'4"))
-    assert abjad.get.parentage(note).parent is None
+    assert abjad.get.parentage(note).get_parent() is None
     assert note.written_duration == duration
 
 
@@ -386,9 +386,9 @@ def test_Note___init___15():
 
     assert isinstance(tuplet[0], abjad.Skip)
     assert isinstance(note, abjad.Note)
-    assert abjad.get.parentage(tuplet[0]).parent is tuplet
+    assert abjad.get.parentage(tuplet[0]).get_parent() is tuplet
     assert tuplet[0].written_duration == duration
-    assert abjad.get.parentage(note).parent is None
+    assert abjad.get.parentage(note).get_parent() is None
 
 
 def test_Note___init___16():
@@ -404,8 +404,8 @@ def test_Note___init___16():
 
     assert isinstance(voice[1], abjad.Skip)
     assert isinstance(note, abjad.Note)
-    assert abjad.get.parentage(voice[1]).parent is voice
-    assert abjad.get.parentage(note).parent is None
+    assert abjad.get.parentage(voice[1]).get_parent() is voice
+    assert abjad.get.parentage(note).get_parent() is None
 
 
 def test_Note___init___17():

@@ -53,7 +53,7 @@ def _is_immediate_child_of_outermost_voice(component):
     parentage = _parentage.Parentage(component)
     context = parentage.get(_score.Voice, -1) or parentage.get(_score.Context)
     if context is not None:
-        return parentage.component._parent is context
+        return parentage.get_component()._parent is context
     return None
 
 
@@ -159,7 +159,7 @@ class LogicalTie(collections.abc.Sequence):
         """
         Is true when ``argument`` is in logical tie.
         """
-        return argument in self.items
+        return argument in self.get_items()
 
     def __eq__(self, argument) -> bool:
         """
@@ -167,9 +167,9 @@ class LogicalTie(collections.abc.Sequence):
         equal those in logical tie.
         """
         if isinstance(argument, type(self)):
-            return self.items == argument.items
+            return self.get_items() == argument.get_items()
         elif isinstance(argument, collections.abc.Sequence):
-            return self.items == tuple(argument)
+            return self.get_items() == tuple(argument)
         return False
 
     def __hash__(self) -> int:
@@ -182,13 +182,13 @@ class LogicalTie(collections.abc.Sequence):
         """
         Gets number of items in logical tie.
         """
-        return len(self.items)
+        return len(self.get_items())
 
     def __repr__(self) -> str:
         """
         Gets interpreter representation of logical tie.
         """
-        return f"{type(self).__name__}(items={list(self.items)!r})"
+        return f"{type(self).__name__}(items={list(self.get_items())!r})"
 
     def __getitem__(self, argument):
         """
@@ -196,7 +196,7 @@ class LogicalTie(collections.abc.Sequence):
 
         Returns component or list (not logical tie).
         """
-        result = self.items.__getitem__(argument)
+        result = self.get_items().__getitem__(argument)
         if isinstance(result, tuple):
             result = list(result)
         return result
@@ -205,47 +205,41 @@ class LogicalTie(collections.abc.Sequence):
         for leaf in list(self):
             leaf._scale(multiplier)
 
-    @property
-    def head(self) -> _score.Leaf:
+    def get_head(self) -> _score.Leaf:
         """
         Reference to element ``0`` in logical tie.
         """
-        assert self.items
-        return self.items[0]
+        assert self.get_items()
+        return self.get_items()[0]
 
-    @property
-    def items(self) -> tuple:
+    def get_items(self) -> tuple:
         """
         Gets items in logical tie.
         """
         return self._items
 
-    @property
-    def is_pitched(self) -> bool:
+    def get_is_pitched(self) -> bool:
         """
         Is true when logical tie head is a note or chord.
         """
-        return hasattr(self.head, "written_pitch") or hasattr(
-            self.head, "written_pitches"
+        return hasattr(self.get_head(), "written_pitch") or hasattr(
+            self.get_head(), "written_pitches"
         )
 
-    @property
-    def is_trivial(self) -> bool:
+    def get_is_trivial(self) -> bool:
         """
         Is true when length of logical tie is less than or equal to ``1``.
         """
         return len(self) <= 1
 
-    @property
-    def tail(self) -> _score.Leaf:
+    def get_tail(self) -> _score.Leaf:
         """
         Gets last leaf in logical tie.
         """
-        assert self.items
-        return self.items[-1]
+        assert self.get_items()
+        return self.get_items()[-1]
 
-    @property
-    def written_duration(self) -> _duration.Duration:
+    def get_written_duration(self) -> _duration.Duration:
         """
         Sum of written duration of all components in logical tie.
         """
@@ -4235,8 +4229,8 @@ def logical_ties(
     for logical_tie in generator:
         if (
             grace is None
-            or (grace is True and _get.is_grace_music(logical_tie.head))
-            or (grace is False and not _get.is_grace_music(logical_tie.head))
+            or (grace is True and _get.is_grace_music(logical_tie.get_head()))
+            or (grace is False and not _get.is_grace_music(logical_tie.get_head()))
         ):
             result.append(logical_tie)
     return result

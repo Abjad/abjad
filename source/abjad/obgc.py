@@ -22,7 +22,7 @@ from . import tweaks as _tweaks
 def _is_obgc_nongrace_voice(component):
     if not isinstance(component, _score.Voice):
         return False
-    component = _get.parentage(component).parent
+    component = _get.parentage(component).get_parent()
     return _is_obgc_polyphony_container(component)
 
 
@@ -189,7 +189,7 @@ class OnBeatGraceContainer(_score.Container):
             return
         if _get.has_indicator(next_leaf, _indicators.VoiceNumber):
             return
-        next_leaf_parent = _get.parentage(next_leaf).parent
+        next_leaf_parent = _get.parentage(next_leaf).get_parent()
         if isinstance(next_leaf_parent, OnBeatGraceContainer):
             return
         if _is_obgc_nongrace_voice(next_leaf_parent):
@@ -207,7 +207,7 @@ class OnBeatGraceContainer(_score.Container):
         """
         Gets first nongrace leaf.
         """
-        polyphony_container = _get.parentage(self).parent
+        polyphony_container = _get.parentage(self).get_parent()
         assert type(polyphony_container) is _score.Container
         assert len(polyphony_container) == 2, repr(polyphony_container)
         nongrace_voice = polyphony_container[1]
@@ -218,7 +218,7 @@ class OnBeatGraceContainer(_score.Container):
         """
         Gets nongrace voice.
         """
-        polyphony_container = _get.parentage(self).parent
+        polyphony_container = _get.parentage(self).get_parent()
         assert type(polyphony_container) is _score.Container
         assert len(polyphony_container) == 2, repr(polyphony_container)
         nongrace_voice = polyphony_container[1]
@@ -229,7 +229,7 @@ class OnBeatGraceContainer(_score.Container):
         """
         Gets polyphony container.
         """
-        polyphony_container = _get.parentage(self).parent
+        polyphony_container = _get.parentage(self).get_parent()
         assert type(polyphony_container) is _score.Container
         assert len(polyphony_container) == 2, repr(polyphony_container)
         return polyphony_container

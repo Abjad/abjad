@@ -11,7 +11,7 @@ Instruments.
     ...     if issubclass(class_, abjad.Instrument):
     ...         instrument = class_()
     ...         instrument_name = instrument.__class__.__name__
-    ...         range_string = instrument.pitch_range.range_string
+    ...         range_string = instrument.pitch_range.get_range_string()
     ...         print(f"{instrument_name}: {range_string}")
     Accordion: [E1, C8]
     AltoFlute: [G3, G6]
@@ -434,7 +434,9 @@ class Tuning:
                 pitches = list(pitch_range.voice_pitch_class(pitch_class))
                 if forbid_open_strings is True:
                     pitches = [
-                        pitch for pitch in pitches if pitch != pitch_range.start_pitch
+                        pitch
+                        for pitch in pitches
+                        if pitch != pitch_range.get_start_pitch()
                     ]
                 if not pitches:
                     pitches = [None]

@@ -2111,7 +2111,7 @@ class Meter:
             prolation = fractions.Fraction(1)
         else:
             parentage = _parentage.Parentage(components[0]._parent)
-            prolation = parentage.prolation
+            prolation = parentage.get_prolation()
         offset_inventory = []
         for offsets in self.depthwise_offset_inventory():
             offsets = [(_ * prolation) + first_offset for _ in offsets]

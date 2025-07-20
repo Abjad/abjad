@@ -208,7 +208,7 @@ def test_Staff___getitem___03():
     assert len(components) == 1
     assert isinstance(components[0], abjad.Note)
     for x in staff:
-        assert abjad.get.parentage(x).parent == staff
+        assert abjad.get.parentage(x).get_parent() == staff
     assert abjad.wf.is_wellformed(staff)
 
 
@@ -229,7 +229,7 @@ def test_Staff___getitem___04():
     assert len(components) == 1
     assert isinstance(components[0], abjad.Tuplet)
     for x in components:
-        assert abjad.get.parentage(x).parent == staff
+        assert abjad.get.parentage(x).get_parent() == staff
     assert abjad.wf.is_wellformed(staff)
 
 
@@ -252,7 +252,7 @@ def test_Staff___getitem___05():
     assert isinstance(components[1], abjad.Chord)
     assert isinstance(components[2], abjad.Skip)
     for x in components:
-        assert abjad.get.parentage(x).parent == staff
+        assert abjad.get.parentage(x).get_parent() == staff
     assert abjad.wf.is_wellformed(staff)
 
 
@@ -275,7 +275,7 @@ def test_Staff___getitem___06():
     assert isinstance(components[1], abjad.Skip)
     assert isinstance(components[2], abjad.Tuplet)
     for x in components:
-        assert abjad.get.parentage(x).parent == staff
+        assert abjad.get.parentage(x).get_parent() == staff
     assert abjad.wf.is_wellformed(staff)
 
 
@@ -298,7 +298,7 @@ def test_Staff___getitem___07():
     assert isinstance(components[1], abjad.Rest)
     assert isinstance(components[2], abjad.Chord)
     for x in components:
-        assert abjad.get.parentage(x).parent == staff
+        assert abjad.get.parentage(x).get_parent() == staff
     assert abjad.wf.is_wellformed(staff)
 
 
@@ -322,7 +322,7 @@ def test_Staff___getitem___08():
     assert isinstance(components[2], abjad.Chord)
     assert isinstance(components[3], abjad.Skip)
     assert isinstance(components[4], abjad.Tuplet)
-    assert all(abjad.get.parentage(_).parent is staff for _ in staff)
+    assert all(abjad.get.parentage(_).get_parent() is staff for _ in staff)
 
 
 def test_Staff___init___01():

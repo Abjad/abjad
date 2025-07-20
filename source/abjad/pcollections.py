@@ -106,7 +106,7 @@ class PitchClassSegment:
         """
         Gets repr.
         """
-        items = [_.number for _ in self.items]
+        items = [_.get_number() for _ in self.items]
         return f"{type(self).__name__}({items!r})"
 
     def __rmul__(self, n) -> "PitchClassSegment":
@@ -134,7 +134,7 @@ class PitchClassSegment:
             'PC<10, 10.5, 6, 7, 10.5, 7>'
 
         """
-        string = ", ".join([str(_.number) for _ in self])
+        string = ", ".join([str(_.get_number()) for _ in self])
         return f"PC<{string}>"
 
     def invert(self, axis=None) -> "PitchClassSegment":
@@ -316,18 +316,17 @@ class PitchClassSet(frozenset):
             closure(name)
 
     def __repr__(self):
-        numbers = [_.number for _ in self]
+        numbers = [_.get_number() for _ in self]
         numbers.sort()
         return f"{type(self).__name__}({numbers!r})"
 
     def __str__(self) -> str:
-        numbers = [_.number for _ in self]
+        numbers = [_.get_number() for _ in self]
         numbers.sort()
         string = ", ".join(str(_) for _ in numbers)
         return f"PC{{{string}}}"
 
-    @property
-    def cardinality(self):
+    def get_cardinality(self):
         return len(self)
 
     def get_normal_order(self) -> "PitchClassSegment":
@@ -382,7 +381,7 @@ class PitchClassSet(frozenset):
         pitch_classes = list(self)
         pitch_classes.sort()
         candidates = []
-        for i in range(self.cardinality):
+        for i in range(self.get_cardinality()):
             candidate_list = [_pitch.NumberedPitch(_) for _ in pitch_classes]
             candidate = _sequence.rotate(candidate_list, n=-i)
             candidates.append(candidate)
@@ -495,9 +494,9 @@ class PitchClassSet(frozenset):
         """
 
         def _transpose_to_zero(segment):
-            numbers = [_.number for _ in segment]
-            first_number = segment[0].number
-            numbers = [pc.number - first_number for pc in segment]
+            numbers = [_.get_number() for _ in segment]
+            first_number = segment[0].get_number()
+            numbers = [pc.get_number() - first_number for pc in segment]
             pcs = [_ % 12 for _ in numbers]
             return type(segment)(pcs)
 
@@ -520,7 +519,7 @@ class PitchClassSet(frozenset):
                 if right_pc < left_pc:
                     normal_order = normal_orders[-1]
                     break
-        pcs = [_.number for _ in normal_order]
+        pcs = [_.get_number() for _ in normal_order]
         first_pc = pcs[0]
         pcs = [pc - first_pc for pc in pcs]
         prime_form = type(self)(pcs)
@@ -658,7 +657,7 @@ class PitchRange:
 
     def __init__(self, range_string="[A0, C8]"):
         if isinstance(range_string, type(self)):
-            range_string = range_string.range_string
+            range_string = range_string.get_range_string()
         assert isinstance(range_string, str), repr(range_string)
         namespace = self._parse_range_string(range_string)
         assert isinstance(namespace.start_pitch, _pitch.NamedPitch | type(None))
@@ -853,14 +852,14 @@ class PitchRange:
         """
         if isinstance(argument, str | _pitch.NamedPitch):
             pitch = _pitch.NamedPitch(argument)
-            if self.start_pitch is None:
+            if self.get_start_pitch() is None:
                 start_pitch = _pitch.NamedPitch(-1000)
             else:
-                start_pitch = _pitch.NamedPitch(self.start_pitch)
-            if self.stop_pitch is None:
+                start_pitch = _pitch.NamedPitch(self.get_start_pitch())
+            if self.get_stop_pitch() is None:
                 stop_pitch = _pitch.NamedPitch(1000)
             else:
-                stop_pitch = _pitch.NamedPitch(self.stop_pitch)
+                stop_pitch = _pitch.NamedPitch(self.get_stop_pitch())
         else:
             raise Exception(f"must be named pitch or string (not {argument!r}).")
         if self._open_bracket == "[":
@@ -876,8 +875,8 @@ class PitchRange:
 
     def __eq__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a pitch range with ``range_string`` equal to this
-        pitch range.
+        Is true when ``argument`` is a pitch range with ``range_string`` equal
+        to this pitch range.
 
         ..  container:: example
 
@@ -908,7 +907,7 @@ class PitchRange:
 
         """
         if isinstance(argument, type(self)):
-            return self.range_string == argument.range_string
+            return self.get_range_string() == argument.get_range_string()
         return False
 
     def __hash__(self) -> int:
@@ -951,22 +950,22 @@ class PitchRange:
 
         """
         assert isinstance(argument, type(self)), repr(argument)
-        if self.start_pitch is None:
+        if self.get_start_pitch() is None:
             self_start_pitch = _pitch.NamedPitch(-1000)
         else:
-            self_start_pitch = _pitch.NamedPitch(self.start_pitch)
-        if self.stop_pitch is None:
+            self_start_pitch = _pitch.NamedPitch(self.get_start_pitch())
+        if self.get_stop_pitch() is None:
             self_stop_pitch = _pitch.NamedPitch(1000)
         else:
-            self_stop_pitch = _pitch.NamedPitch(self.stop_pitch)
-        if argument.start_pitch is None:
+            self_stop_pitch = _pitch.NamedPitch(self.get_stop_pitch())
+        if argument.get_start_pitch() is None:
             argument_start_pitch = _pitch.NamedPitch(-1000)
         else:
-            argument_start_pitch = _pitch.NamedPitch(argument.start_pitch)
-        if argument.stop_pitch is None:
+            argument_start_pitch = _pitch.NamedPitch(argument.get_start_pitch())
+        if argument.get_stop_pitch() is None:
             argument_stop_pitch = _pitch.NamedPitch(1000)
         else:
-            argument_stop_pitch = _pitch.NamedPitch(argument.stop_pitch)
+            argument_stop_pitch = _pitch.NamedPitch(argument.get_stop_pitch())
         if self_start_pitch == argument_start_pitch:
             return self_stop_pitch < argument_stop_pitch
         return self_start_pitch < argument_start_pitch
@@ -975,7 +974,7 @@ class PitchRange:
         """
         Gets pitch range interpreter representation.
         """
-        return f"{type(self).__name__}(range_string={self.range_string!r})"
+        return f"{type(self).__name__}(range_string={self.get_range_string()!r})"
 
     def _parse_range_string(self, range_string):
         assert isinstance(range_string, str), repr(range_string)
@@ -1016,55 +1015,52 @@ class PitchRange:
             stop_pitch=stop_pitch,
         )
 
-    @property
-    def range_string(self) -> str:
+    def get_range_string(self) -> str:
         """
         Gets range string of pitch range.
 
         ..  container:: example
 
-            >>> abjad.PitchRange("[C3, C7]").range_string
+            >>> abjad.PitchRange("[C3, C7]").get_range_string()
             '[C3, C7]'
 
-            >>> abjad.PitchRange("[-inf, C7]").range_string
+            >>> abjad.PitchRange("[-inf, C7]").get_range_string()
             '[-inf, C7]'
 
-            >>> abjad.PitchRange("[C3, +inf]").range_string
+            >>> abjad.PitchRange("[C3, +inf]").get_range_string()
             '[C3, +inf]'
 
-            >>> abjad.PitchRange("[-inf, +inf]").range_string
+            >>> abjad.PitchRange("[-inf, +inf]").get_range_string()
             '[-inf, +inf]'
 
         """
         return self._range_string
 
-    @property
-    def start_pitch(self) -> _pitch.NamedPitch | None:
+    def get_start_pitch(self) -> _pitch.NamedPitch | None:
         """
         Start pitch of pitch range.
 
         ..  container:: example
 
-            >>> abjad.PitchRange("[C3, C7]").start_pitch
+            >>> abjad.PitchRange("[C3, C7]").get_start_pitch()
             NamedPitch('c')
 
-            >>> abjad.PitchRange("[-inf, C7]").start_pitch is None
+            >>> abjad.PitchRange("[-inf, C7]").get_start_pitch() is None
             True
 
         """
         return self._start_pitch
 
-    @property
-    def stop_pitch(self) -> _pitch.NamedPitch | None:
+    def get_stop_pitch(self) -> _pitch.NamedPitch | None:
         """
         Stop pitch of pitch range.
 
         ..  container:: example
 
-            >>> abjad.PitchRange("[C3, C7]").stop_pitch
+            >>> abjad.PitchRange("[C3, C7]").get_stop_pitch()
             NamedPitch("c''''")
 
-            >>> abjad.PitchRange("[C8, +inf]").stop_pitch is None
+            >>> abjad.PitchRange("[C8, +inf]").get_stop_pitch() is None
             True
 
         """
@@ -1110,10 +1106,10 @@ class PitchRange:
 
         """
         named_pitch_class = _pitch.NamedPitchClass(pitch_class)
-        pair = (named_pitch_class.name, self.start_pitch.octave.number)
+        pair = (named_pitch_class.name, self.get_start_pitch().octave.number)
         named_pitch = _pitch.NamedPitch(pair)
         result = []
-        while named_pitch <= self.stop_pitch:
+        while named_pitch <= self.get_stop_pitch():
             if named_pitch in self:
                 result.append(named_pitch)
             named_pitch += 12
@@ -1234,7 +1230,7 @@ class PitchSegment:
         """
         Gets repr.
         """
-        numbers = [_.number for _ in self.items]
+        numbers = [_.get_number() for _ in self.items]
         return f"{type(self).__name__}({numbers})"
 
     def __str__(self) -> str:
@@ -1249,7 +1245,7 @@ class PitchSegment:
             '<-2, -1.5, 6, 7, -1.5, 7>'
 
         """
-        string = ", ".join([str(_.number) for _ in self])
+        string = ", ".join([str(_.get_number()) for _ in self])
         return f"<{string}>"
 
     def invert(self, axis=None) -> "PitchSegment":
@@ -1927,7 +1923,7 @@ class PitchSet(frozenset):
         Gets repr.
         """
         if self:
-            numbers = [_.number for _ in sorted(self)]
+            numbers = [_.get_number() for _ in sorted(self)]
             string = f"{type(self).__name__}({numbers!r})"
         else:
             string = f"{type(self).__name__}()"
@@ -1937,7 +1933,7 @@ class PitchSet(frozenset):
         """
         Gets string.
         """
-        string = ", ".join([str(_.number) for _ in sorted(self)])
+        string = ", ".join([str(_.get_number()) for _ in sorted(self)])
         return f"{{{string}}}"
 
 
@@ -2250,7 +2246,7 @@ class TwelveToneRow(PitchClassSegment):
         new_pitch_classes = []
         for pitch_class in pitch_classes:
             pitch_class = _pitch.NumberedPitchClass(pitch_class)
-            i = pitch_class.number
+            i = pitch_class.get_number()
             new_pitch_class = self[i]
             new_pitch_classes.append(new_pitch_class)
         result = type(pitch_classes)(new_pitch_classes)
@@ -2577,13 +2573,9 @@ class TwelveToneRow(PitchClassSegment):
         """
         return PitchClassSegment(self.items) * argument
 
-    @property
-    def _contents_string(self):
-        return ", ".join([str(abs(pc)) for pc in self])
-
     @staticmethod
     def _validate_pitch_classes(pitch_classes):
-        numbers = [pc.number for pc in pitch_classes]
+        numbers = [pc.get_number() for pc in pitch_classes]
         numbers.sort()
         if not numbers == list(range(12)):
             message = f"must contain all twelve pitch-classes: {pitch_classes!r}."
@@ -3266,14 +3258,14 @@ def voice_horizontally(
         pitch = _pitch.NamedPitch((pc.name, initial_octave))
         pitches.append(pitch)
         for pc in pcs[1:]:
-            number = _pitch.NamedPitch((pc.name, initial_octave)).number
-            semitones = abs((number - pitches[-1].number))
+            number = _pitch.NamedPitch((pc.name, initial_octave)).get_number()
+            semitones = abs((number - pitches[-1].get_number()))
             while 6 < semitones:
-                if number < pitches[-1].number:
+                if number < pitches[-1].get_number():
                     number += 12
                 else:
                     number -= 12
-                semitones = abs((number - pitches[-1].number))
+                semitones = abs((number - pitches[-1].get_number()))
             pitch = _pitch.NamedPitch(number)
             pitches.append(pitch)
     return tuple(pitches)
