@@ -58,6 +58,7 @@ class_to_default_values = {
     abjad.Meter: (abjad.meter.make_best_guess_rtc((4, 4)),),
     abjad.MetricModulation: (abjad.Note("c'4"), abjad.Note("c'4.")),
     abjad.MetronomeMark: (abjad.Duration(1, 4), 90),
+    abjad.Parentage: (abjad.Note("c'4"),),
     abjad.Ratio: (6, 4),
     abjad.ShortInstrumentName: (r"\markup Vc.",),
     abjad.StaffChange: ("RH_Staff",),
@@ -93,6 +94,8 @@ def test_abjad___deepcopy___(class_):
     if inspect.isabstract(class_):
         return
     if getattr(class_, "_is_abstract", None) is True:
+        return
+    if getattr(class_, "_do_not_test_deepcopy", False) is True:
         return
     if issubclass(class_, Exception):
         return
@@ -209,6 +212,8 @@ def test_abjad_pickle(class_):
     if inspect.isabstract(class_):
         return
     if getattr(class_, "_is_abstract", None) is True:
+        return
+    if getattr(class_, "_do_not_test_deepcopy", False) is True:
         return
     if issubclass(class_, Exception):
         return

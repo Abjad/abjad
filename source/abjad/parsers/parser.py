@@ -3165,9 +3165,9 @@ class LilyPondParser(Parser):
         d_oct, d_step, d_tones = (
             b_oct - a_oct,
             b_step - a_step,
-            float(pitch_b.number) - float(pitch_a.number),
+            float(pitch_b.get_number()) - float(pitch_a.get_number()),
         )
-        tmp_alt = float(pitch_c.number) + d_tones
+        tmp_alt = float(pitch_c.get_number()) + d_tones
         # print 'TMP_ALT: %f' % tmp_alt
         new_oct = c_oct + d_oct
         new_step = c_step + d_step
@@ -3176,17 +3176,17 @@ class LilyPondParser(Parser):
         new_step, new_alt = normalize_alteration(new_step, new_alt)
         new_oct, new_step = normalize_octave(new_oct, new_step)
         # print 'NEW(norm):', new_oct, new_step, new_alt
-        octave_ticks = _pitch.Octave(new_oct).ticks
+        octave_ticks = _pitch.Octave(new_oct).get_ticks()
         pitch_class_name = _pitch._diatonic_pc_number_to_diatonic_pc_name[new_step % 7]
         accidental = str(_pitch.Accidental(new_alt))
         tmp_pitch = _pitch.NamedPitch(pitch_class_name + accidental + octave_ticks)
         # print 'TMP(pitch): %r' % tmp_pitch
-        new_alt += tmp_alt - float(tmp_pitch.number)
+        new_alt += tmp_alt - float(tmp_pitch.get_number())
         # print 'NEW(alt): %f' % new_alt
         new_step, new_alt = normalize_alteration(new_step, new_alt)
         new_oct, new_step = normalize_octave(new_oct, new_step)
         # print 'NEW(norm):', new_oct, new_step, new_alt
-        octave_ticks = _pitch.Octave(new_oct).ticks
+        octave_ticks = _pitch.Octave(new_oct).get_ticks()
         pitch_class_name = _pitch._diatonic_pc_number_to_diatonic_pc_name[new_step % 7]
         accidental = str(_pitch.Accidental(new_alt))
         return _pitch.NamedPitch(pitch_class_name + accidental + octave_ticks)

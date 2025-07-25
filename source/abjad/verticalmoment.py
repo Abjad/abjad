@@ -74,13 +74,9 @@ class VerticalMoment:
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument) -> bool:
-        """
-        Is true when ``argument`` is a vertical moment with the same components as this
-        vertical moment.
-        """
         if isinstance(argument, type(self)):
             if len(self) == len(argument):
-                for c, d in zip(self.components, argument.components):
+                for c, d in zip(self.get_components(), argument.get_components()):
                     if c is not d:
                         return False
                 else:
@@ -105,8 +101,8 @@ class VerticalMoment:
 
         Redefined in tandem with __eq__.
         """
-        if self.components:
-            return hash(tuple([id(_) for _ in self.components]))
+        if self.get_components():
+            return hash(tuple([id(_) for _ in self.get_components()]))
         return 0
 
     def __len__(self) -> int:
@@ -171,24 +167,21 @@ class VerticalMoment:
 
         Returns nonnegative integer.
         """
-        return len(self.components)
+        return len(self.get_components())
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Gets interpreter representation of vertical moment.
-
-        Returns string.
         """
-        if not self.components:
+        if not self.get_components():
             return f"{type(self).__name__}()"
-        length = len(self.leaves)
-        result = f"{type(self).__name__}({str(self.offset)}, <<{length}>>)"
+        length = len(self.get_leaves())
+        result = f"{type(self).__name__}({str(self.get_offset())}, <<{length}>>)"
         return result
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def attack_count(self) -> int:
+    def get_attack_count(self) -> int:
         r"""
         Positive integer number of pitch carriers starting at vertical moment.
 
@@ -237,7 +230,7 @@ class VerticalMoment:
                 >>
 
             >>> for moment in abjad.iterate_vertical_moments(score):
-            ...     print(moment, moment.attack_count)
+            ...     print(moment, moment.get_attack_count())
             ...
             VerticalMoment(0, <<3>>) 3
             VerticalMoment(1/8, <<3>>) 1
@@ -248,30 +241,27 @@ class VerticalMoment:
 
         """
         leaves = []
-        for leaf in self.start_leaves:
+        for leaf in self.get_start_leaves():
             if isinstance(leaf, _score.Note | _score.Chord):
                 leaves.append(leaf)
         return len(leaves)
 
-    @property
-    def components(self):
+    def get_components(self):
         """
         Tuple of zero or more components happening at vertical moment.
 
-        It is always the case that ``self.components =
-        self.overlap_components + self.start_components``.
+        It is always the case that ``self.get_components() ==
+        self.get_overlap_components() + self.get_start_components()``.
         """
         return self._components
 
-    @property
-    def governors(self):
+    def get_governors(self):
         """
         Tuple of one or more containers in which vertical moment is evaluated.
         """
         return self._governors
 
-    @property
-    def leaves(self) -> list[_score.Leaf]:
+    def get_leaves(self) -> list[_score.Leaf]:
         r"""
         Tuple of zero or more leaves at vertical moment.
 
@@ -320,7 +310,7 @@ class VerticalMoment:
                 >>
 
             >>> for moment in abjad.iterate_vertical_moments(score):
-            ...     print(moment.offset, moment.leaves)
+            ...     print(moment.get_offset(), moment.get_leaves())
             ...
             0 [Note("d''4"), Note("a'4"), Note("f'8")]
             1/8 [Note("d''4"), Note("a'4"), Note("e'8")]
@@ -331,58 +321,53 @@ class VerticalMoment:
 
         """
         result = []
-        for component in self.components:
+        for component in self.get_components():
             if isinstance(component, _score.Leaf):
                 result.append(component)
         return result
 
-    @property
-    def notes(self):
+    def get_notes(self):
         """
         Tuple of zero or more notes at vertical moment.
         """
         result = []
-        for component in self.components:
+        for component in self.get_components():
             if isinstance(component, _score.Note):
                 result.append(component)
         result = tuple(result)
         return result
 
-    @property
-    def notes_and_chords(self):
+    def get_notes_and_chords(self):
         """
         Tuple of zero or more notes and chords at vertical moment.
         """
         result = []
         prototype = (_score.Chord, _score.Note)
-        for component in self.components:
+        for component in self.get_components():
             if isinstance(component, prototype):
                 result.append(component)
         result = tuple(result)
         return result
 
-    @property
-    def offset(self):
+    def get_offset(self):
         """
         Rational-valued score offset at which vertical moment is evaluated.
         """
         return self._offset
 
-    @property
-    def overlap_components(self):
+    def get_overlap_components(self):
         """
         Tuple of components in vertical moment starting before vertical
         moment, ordered by score index.
         """
         result = []
-        for component in self.components:
-            if component.start < self.offset:
+        for component in self.get_components():
+            if component.start < self.get_offset():
                 result.append(component)
         result = tuple(result)
         return result
 
-    @property
-    def overlap_leaves(self):
+    def get_overlap_leaves(self):
         """
         Tuple of leaves in vertical moment starting before vertical moment,
         ordered by score index.
@@ -391,8 +376,7 @@ class VerticalMoment:
         result = tuple(result)
         return result
 
-    @property
-    def overlap_notes(self):
+    def get_overlap_notes(self):
         """
         Tuple of notes in vertical moment starting before vertical moment,
         ordered by score index.
@@ -402,36 +386,33 @@ class VerticalMoment:
         result = tuple(result)
         return result
 
-    @property
-    def start_components(self):
+    def get_start_components(self):
         """
         Tuple of components in vertical moment starting with at vertical
         moment, ordered by score index.
         """
         result = []
-        for component in self.components:
-            if component._get_timespan().start_offset == self.offset:
+        for component in self.get_components():
+            if component._get_timespan().start_offset == self.get_offset():
                 result.append(component)
         result = tuple(result)
         return result
 
-    @property
-    def start_leaves(self):
+    def get_start_leaves(self):
         """
         Tuple of leaves in vertical moment starting with vertical moment,
         ordered by score index.
         """
-        result = [x for x in self.start_components if isinstance(x, _score.Leaf)]
+        result = [x for x in self.get_start_components() if isinstance(x, _score.Leaf)]
         result = tuple(result)
         return result
 
-    @property
-    def start_notes(self):
+    def get_start_notes(self):
         """
         Tuple of notes in vertical moment starting with vertical moment,
         ordered by score index.
         """
-        result = [x for x in self.start_components if isinstance(x, _score.Note)]
+        result = [x for x in self.get_start_components() if isinstance(x, _score.Note)]
         result = tuple(result)
         return result
 
@@ -492,7 +473,7 @@ def iterate_vertical_moments(components, *, reverse=False):
             >>
 
         >>> for vertical_moment in abjad.iterate_vertical_moments(score):
-        ...     vertical_moment.leaves
+        ...     vertical_moment.get_leaves()
         ...
         [Note("d''4"), Note("a'4"), Note("f'8")]
         [Note("d''4"), Note("a'4"), Note("e'8")]
@@ -503,7 +484,7 @@ def iterate_vertical_moments(components, *, reverse=False):
 
         >>> staff_group = score[1]
         >>> for vertical_moment in abjad.iterate_vertical_moments(staff_group):
-        ...     vertical_moment.leaves
+        ...     vertical_moment.get_leaves()
         ...
         [Note("a'4"), Note("f'8")]
         [Note("a'4"), Note("e'8")]
@@ -515,7 +496,7 @@ def iterate_vertical_moments(components, *, reverse=False):
         Iterates vertical moments in reverse:
 
         >>> for vmoment in abjad.iterate_vertical_moments(score, reverse=True):
-        ...     vmoment.leaves
+        ...     vmoment.get_leaves()
         ...
         [Note("b'4"), Note("g'4"), Note("c'8")]
         [Note("b'4"), Note("g'4"), Note("d'8")]
@@ -525,7 +506,7 @@ def iterate_vertical_moments(components, *, reverse=False):
         [Note("d''4"), Note("a'4"), Note("f'8")]
 
         >>> for vmoment in abjad.iterate_vertical_moments(staff_group, reverse=True):
-        ...     vmoment.leaves
+        ...     vmoment.get_leaves()
         ...
         [Note("g'4"), Note("c'8")]
         [Note("g'4"), Note("d'8")]
@@ -622,13 +603,13 @@ def iterate_leaf_pairs(components) -> typing.Iterator:
     """
     vertical_moments = iterate_vertical_moments(components)
     for moment_1, moment_2 in _sequence.nwise(vertical_moments):
-        for pair in _enumerate.yield_pairs(moment_1.start_leaves):
+        for pair in _enumerate.yield_pairs(moment_1.get_start_leaves()):
             yield list(pair)
-        sequences = [moment_1.leaves, moment_2.start_leaves]
+        sequences = [moment_1.get_leaves(), moment_2.get_start_leaves()]
         for pair in _enumerate.outer_product(sequences):
             yield list(pair)
     else:
-        for pair in _enumerate.yield_pairs(moment_2.start_leaves):
+        for pair in _enumerate.yield_pairs(moment_2.get_start_leaves()):
             yield list(pair)
 
 

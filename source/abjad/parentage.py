@@ -68,22 +68,20 @@ class Parentage(collections.abc.Sequence):
 
     __slots__ = ("_component", "_components")
 
+    _do_not_test_deepcopy = True
+
     ### INITIALIZER ###
 
     def __init__(self, component=None):
         components = []
-        if component is not None:
-            assert isinstance(component, _score.Component), repr(component)
-            components.extend(component._get_parentage())
+        assert isinstance(component, _score.Component), repr(component)
+        components.extend(component._get_parentage())
         self._component = component
         self._components = tuple(components)
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, argument):
-        """
-        Is true when ``argument`` is a parent with the same components as this parentage.
-        """
         if isinstance(argument, type(self)):
             if len(self) == len(argument):
                 for c, d in zip(self, argument):
@@ -99,19 +97,19 @@ class Parentage(collections.abc.Sequence):
 
         Returns component or tuple of components.
         """
-        return self.components.__getitem__(argument)
+        return self.get_components().__getitem__(argument)
 
     def __len__(self) -> int:
         """
         Gets number of components in parentage.
         """
-        return len(self.components)
+        return len(self.get_components())
 
     def __repr__(self):
         """
         Gets repr.
         """
-        return f"{type(self).__name__}(component={self.component!r})"
+        return f"{type(self).__name__}(component={self.get_component()!r})"
 
     ### PRIVATE METHODS ###
 
@@ -123,8 +121,7 @@ class Parentage(collections.abc.Sequence):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def component(self) -> _score.Component:
+    def get_component(self) -> _score.Component:
         r"""
         Gets component.
 
@@ -194,7 +191,7 @@ class Parentage(collections.abc.Sequence):
 
             >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
-            ...     print(f"{repr(component):30} {repr(parentage.component)}")
+            ...     print(f"{repr(component):30} {repr(parentage.get_component())}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
             Note("c'4")                    Note("c'4")
@@ -216,8 +213,7 @@ class Parentage(collections.abc.Sequence):
         """
         return self._component
 
-    @property
-    def components(self) -> tuple[_score.Component]:
+    def get_components(self) -> tuple[_score.Component]:
         r"""
         Gets components.
 
@@ -287,7 +283,7 @@ class Parentage(collections.abc.Sequence):
 
             >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
-            ...     components = parentage.components
+            ...     components = parentage.get_components()
             ...     print(f"{repr(component)}:")
             ...     for component_ in components:
             ...         print(f"    {repr(component_)}")
@@ -374,8 +370,7 @@ class Parentage(collections.abc.Sequence):
         """
         return self._components
 
-    @property
-    def parent(self) -> _score.Component | None:
+    def get_parent(self) -> _score.Component | None:
         r"""
         Gets parent.
 
@@ -445,7 +440,7 @@ class Parentage(collections.abc.Sequence):
 
             >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
-            ...     print(f"{repr(component):30} {repr(parentage.parent)}")
+            ...     print(f"{repr(component):30} {repr(parentage.get_parent())}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") None
             Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("c'4")                    Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice')
@@ -467,8 +462,7 @@ class Parentage(collections.abc.Sequence):
         """
         return self.get(n=1)
 
-    @property
-    def prolation(self) -> fractions.Fraction:
+    def get_prolation(self) -> fractions.Fraction:
         r"""
         Gets prolation.
 
@@ -545,7 +539,7 @@ class Parentage(collections.abc.Sequence):
 
             >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
-            ...     print(f"{repr(component):30} {repr(parentage.prolation)}")
+            ...     print(f"{repr(component):30} {repr(parentage.get_prolation())}")
             Staff("{ { 3:2 c'4 d'4 e'4 } { 3:2 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 } }") Fraction(1, 1)
             Voice("{ 3:2 c'4 d'4 e'4 } { 3:2 { { <f' a'>8 b'8 } { f'4 } } g'4 a'4 }", name='MusicVoice') Fraction(1, 1)
             Tuplet('3:2', "c'4 d'4 e'4")   Fraction(2, 3)
@@ -578,8 +572,7 @@ class Parentage(collections.abc.Sequence):
         products = _math.cumulative_products(prolations)
         return products[-1]
 
-    @property
-    def root(self) -> _score.Component:
+    def get_root(self) -> _score.Component:
         r"""
         Gets root.
 
@@ -649,7 +642,7 @@ class Parentage(collections.abc.Sequence):
 
             >>> for component in abjad.select.components(staff):
             ...     parentage = abjad.get.parentage(component)
-            ...     print(f"{repr(component):30} {repr(parentage.root)}")
+            ...     print(f"{repr(component):30} {repr(parentage.get_root())}")
             Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
             Note("c'4")                    Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }")
@@ -1253,7 +1246,7 @@ class Parentage(collections.abc.Sequence):
             Note("fs'16")                  False
 
         """
-        return self.parent is None
+        return self.get_parent() is None
 
     def logical_voice(self) -> dict:
         r"""

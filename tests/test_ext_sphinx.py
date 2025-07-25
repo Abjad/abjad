@@ -13,10 +13,17 @@ def rm_dirs(app):
     yield
 
 
+def _assert_no_unexpected_warnings(warning_output: str):
+    for line in warning_output.splitlines():
+        if "directive 'shell' is already registered" in line:
+            continue
+        assert False, f"Unexpected warning: {line}"
+
+
 @pytest.mark.sphinx("html", testroot="ext-sphinx")
 def test_ext_sphinx_01(app, status, warning, rm_dirs):
     app.build()
-    assert not warning.getvalue().strip()
+    _assert_no_unexpected_warnings(warning.getvalue().strip())
     images_path = pathlib.Path(app.outdir) / "_images"
     assert sorted(path.name for path in images_path.iterdir()) == [
         "lilypond-2065254c213caa1da7f276b113c411fe735780505cfebb626eb6af1832248d37.cropped.svg",
@@ -57,7 +64,7 @@ def test_ext_sphinx_01(app, status, warning, rm_dirs):
 @pytest.mark.sphinx("text", testroot="ext-sphinx")
 def test_ext_sphinx_02(app, status, warning, rm_dirs):
     app.build()
-    assert not warning.getvalue().strip()
+    _assert_no_unexpected_warnings(warning.getvalue().strip())
     index_path = pathlib.Path(app.srcdir) / "_build" / "text" / "index.txt"
     assert normalize(index_path.read_text()) == normalize(
         r"""

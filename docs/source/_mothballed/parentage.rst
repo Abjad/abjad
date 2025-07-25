@@ -26,13 +26,13 @@ Use parentage to find the immediate parent of a component:
 
 ::
 
-    >>> parentage.parent
+    >>> parentage.get_parent()
 
 Or the root of the score in the which the component resides:
 
 ::
 
-    >>> parentage.root
+    >>> parentage.get_root()
 
 Or to find the depth at which the component is embedded in its score:
 

@@ -127,7 +127,7 @@ def _are_contiguous_logical_voice(
         return False
     first_parentage = _parentage.Parentage(first)
     first_logical_voice = first_parentage.logical_voice()
-    first_root = first_parentage.root
+    first_root = first_parentage.get_root()
     previous = first
     for current in components[1:]:
         current_parentage = _parentage.Parentage(current)
@@ -139,7 +139,7 @@ def _are_contiguous_logical_voice(
         if current_logical_voice != first_logical_voice:
             return False
         # false if components are in same score and are discontiguous
-        if current_parentage.root == first_root:
+        if current_parentage.get_root() == first_root:
             if not _immediately_precedes(
                 previous,
                 current,
@@ -348,7 +348,10 @@ def _fuse_tuplets(tuplets, *, tag=None):
     assert isinstance(first_tuplet, _score.Tuplet)
     new_tuplet = _score.Tuplet(first_tuplet.ratio, [], tag=tag)
     wrapped = False
-    if _get.parentage(tuplets[0]).root is not _get.parentage(tuplets[-1]).root:
+    if (
+        _get.parentage(tuplets[0]).get_root()
+        is not _get.parentage(tuplets[-1]).get_root()
+    ):
         dummy_container = _score.Container(tuplets)
         wrapped = True
     swap(tuplets, new_tuplet)
@@ -622,8 +625,8 @@ def _split_container_by_duration(CONTAINER, duration, *, tag=None):
     if did_split_leaf:
         if isinstance(leaf_left_of_split, _score.Note):
             if (
-                _get.parentage(leaf_left_of_split).root
-                is _get.parentage(leaf_right_of_split).root
+                _get.parentage(leaf_left_of_split).get_root()
+                is _get.parentage(leaf_right_of_split).get_root()
             ):
                 leaves_around_split = (
                     leaf_left_of_split,
@@ -646,7 +649,7 @@ def _split_simultaneous_by_duration(CONTAINER, duration, *, tag=None):
     right_container = CONTAINER.__copy__()
     left_container.extend(left_components)
     right_container.extend(right_components)
-    if _get.parentage(CONTAINER).parent is not None:
+    if _get.parentage(CONTAINER).get_parent() is not None:
         containers = [left_container, right_container]
         replace(CONTAINER, containers)
     # return list-wrapped halves of container
@@ -674,7 +677,7 @@ def _split_leaf_by_durations(leaf, durations, *, cyclic=False, tag=None):
     if after_grace_container is not None:
         _bind.detach(after_grace_container, leaf)
     # do other things
-    leaf_prolation = _get.parentage(leaf).prolation
+    leaf_prolation = _get.parentage(leaf).get_prolation()
     for duration in durations:
         new_leaf = python_copy.copy(leaf)
         preprolated_duration = duration / leaf_prolation
@@ -688,7 +691,7 @@ def _split_leaf_by_durations(leaf, durations, *, cyclic=False, tag=None):
     for leaf_ in result_leaves:
         _bind.detach(object, leaf_)
     # replace leaf with flattened result
-    if _get.parentage(leaf).parent is not None:
+    if _get.parentage(leaf).get_parent() is not None:
         replace(leaf, result_components)
     # move indicators
     first_result_leaf = result_leaves[0]

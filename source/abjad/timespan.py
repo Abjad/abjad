@@ -823,7 +823,7 @@ class Timespan:
         if isinstance(argument, Timespan):
             pass
         elif hasattr(argument, "timespan"):
-            argument = argument.timespan
+            argument = argument.get_timespan()
         elif hasattr(argument, "_get_timespan"):
             argument = argument._get_timespan()
         else:
@@ -835,7 +835,7 @@ class Timespan:
         if isinstance(argument, Timespan):
             pass
         elif hasattr(argument, "timespan"):
-            argument = argument.timespan
+            argument = argument.get_timespan()
         elif hasattr(argument, "_get_timespan"):
             argument = argument._get_timespan()
         start_offset = getattr(argument, "start_offset", None)
@@ -846,11 +846,11 @@ class Timespan:
 
     def _get_timespan(self, argument):
         if isinstance(argument, Timespan):
-            start_offset, stop_offset = argument.offsets
+            start_offset, stop_offset = argument.get_offsets()
         elif hasattr(argument, "timespan"):
-            start_offset, stop_offset = argument.timespan.offsets
+            start_offset, stop_offset = argument.get_timespan().get_offsets()
         elif hasattr(argument, "_get_timespan"):
-            start_offset, stop_offset = argument._get_timespan().offsets
+            start_offset, stop_offset = argument._get_timespan().get_offsets()
         else:
             raise ValueError(argument)
         return dataclasses.replace(
@@ -877,40 +877,37 @@ class Timespan:
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def axis(self) -> _duration.Offset:
+    def get_axis(self) -> _duration.Offset:
         """
         Gets arithmetic mean of timespan start- and stop-offsets.
 
         ..  container:: example
 
-            >>> abjad.Timespan(0, 10).axis
+            >>> abjad.Timespan(0, 10).get_axis()
             Offset((5, 1))
 
         """
         return (self.start_offset + self.stop_offset) / 2
 
-    @property
-    def duration(self) -> _duration.Duration:
+    def get_duration(self) -> _duration.Duration:
         """
         Gets duration of timespan.
 
         ..  container:: example
 
-            >>> abjad.Timespan(0, 10).duration
+            >>> abjad.Timespan(0, 10).get_duration()
             Duration(10, 1)
 
         """
         return self.stop_offset - self.start_offset
 
-    @property
-    def offsets(self) -> tuple[_duration.Offset, _duration.Offset]:
+    def get_offsets(self) -> tuple[_duration.Offset, _duration.Offset]:
         """
         Gets offsets.
 
         ..  container:: example
 
-            >>> abjad.Timespan(0, 10).offsets
+            >>> abjad.Timespan(0, 10).get_offsets()
             (Offset((0, 1)), Offset((10, 1)))
 
         """
@@ -938,7 +935,7 @@ class Timespan:
         """
         assert isinstance(proportion, tuple), repr(proportion)
         assert all(isinstance(_, int) for _ in proportion), repr(proportion)
-        unit_duration = self.duration / sum(proportion)
+        unit_duration = self.get_duration() / sum(proportion)
         part_durations = [numerator * unit_duration for numerator in proportion]
         start_offsets = _math.cumulative_sums(
             [self.start_offset] + part_durations, start=None
@@ -990,7 +987,7 @@ class Timespan:
 
         """
         if self._implements_timespan_interface(timespan):
-            result = _duration.Duration(sum(x.duration for x in self & timespan))
+            result = _duration.Duration(sum(x.get_duration() for x in self & timespan))
             return result
         return None
 
@@ -1026,7 +1023,7 @@ class Timespan:
 
         """
         if axis is None:
-            axis = self.axis
+            axis = self.get_axis()
         start_distance = self.start_offset - axis
         stop_distance = self.stop_offset - axis
         new_start_offset = axis - stop_distance
@@ -1101,7 +1098,7 @@ class Timespan:
         """
         multiplier = fractions.Fraction(multiplier)
         assert 0 < multiplier
-        new_duration = multiplier * self.duration
+        new_duration = multiplier * self.get_duration()
         if anchor == _enums.LEFT:
             new_start_offset = self.start_offset
             new_stop_offset = self.start_offset + new_duration
@@ -1766,7 +1763,7 @@ class TimespanList(list):
         elif range_ is not None:
             minimum, maximum = range_
         else:
-            minimum, maximum = self.start_offset, self.stop_offset
+            minimum, maximum = self.get_start_offset(), self.get_stop_offset()
         if scale is None:
             scale = 1.0
         assert 0 < scale
@@ -1847,7 +1844,7 @@ class TimespanList(list):
 
         """
         result = type(self)()
-        result.append(self.timespan)
+        result.append(self.get_timespan())
         for timespan in self:
             result = result - timespan
         return result
@@ -1901,11 +1898,11 @@ class TimespanList(list):
     @staticmethod
     def _get_offsets(argument):
         try:
-            return argument.start_offset, argument.stop_offset
+            return argument.get_start_offset(), argument.get_stop_offset()
         except AttributeError:
             pass
         try:
-            return argument.timespan.offsets
+            return argument.get_timespan().get_offsets()
         except AttributeError:
             pass
         raise TypeError(argument)
@@ -1915,8 +1912,7 @@ class TimespanList(list):
         start_offset, stop_offset = Timespan._get_offsets(argument)
         return Timespan(start_offset, stop_offset)
 
-    @property
-    def all_are_contiguous(self) -> bool:
+    def get_all_are_contiguous(self) -> bool:
         """
         Is true when all timespans are contiguous.
 
@@ -1931,7 +1927,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.all_are_contiguous
+            >>> timespans.get_all_are_contiguous()
             True
 
         ..  container:: example
@@ -1947,14 +1943,14 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.all_are_contiguous
+            >>> timespans.get_all_are_contiguous()
             False
 
         ..  container:: example
 
             Is true when timespan list is empty:
 
-            >>> abjad.TimespanList().all_are_contiguous
+            >>> abjad.TimespanList().get_all_are_contiguous()
             True
 
         """
@@ -1968,8 +1964,7 @@ class TimespanList(list):
             last_stop_offset = timespan.stop_offset
         return True
 
-    @property
-    def all_are_nonoverlapping(self) -> bool:
+    def get_all_are_nonoverlapping(self) -> bool:
         """
         Is true when all timespans are nonoverlapping.
 
@@ -1984,7 +1979,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.all_are_nonoverlapping
+            >>> timespans.get_all_are_nonoverlapping()
             True
 
         ..  container:: example
@@ -2000,14 +1995,14 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.all_are_nonoverlapping
+            >>> timespans.get_all_are_nonoverlapping()
             False
 
         ..  container:: example
 
             Is true when timespan list is empty:
 
-            >>> abjad.TimespanList().all_are_nonoverlapping
+            >>> abjad.TimespanList().get_all_are_nonoverlapping()
             True
 
         """
@@ -2022,8 +2017,7 @@ class TimespanList(list):
                 last_stop_offset = timespan.stop_offset
         return True
 
-    @property
-    def all_are_wellformed(self) -> bool:
+    def get_all_are_wellformed(self) -> bool:
         """
         Is true when all timespans are wellformed.
 
@@ -2040,7 +2034,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.all_are_wellformed
+            >>> timespans.get_all_are_wellformed()
             True
 
         ..  container:: example
@@ -2056,21 +2050,20 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.all_are_wellformed
+            >>> timespans.get_all_are_wellformed()
             True
 
         ..  container:: example
 
             Is true when timespan list is empty:
 
-            >>> abjad.TimespanList().all_are_wellformed
+            >>> abjad.TimespanList().get_all_are_wellformed()
             True
 
         """
         return all(self._get_timespan(argument).is_wellformed() for argument in self)
 
-    @property
-    def axis(self) -> _duration.Offset | None:
+    def get_axis(self) -> _duration.Offset | None:
         """
         Gets axis defined equal to arithmetic mean of start- and stop-offsets.
 
@@ -2085,7 +2078,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.axis
+            >>> timespans.get_axis()
             Offset((5, 1))
 
         ..  container:: example
@@ -2101,25 +2094,26 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.axis
+            >>> timespans.get_axis()
             Offset((14, 1))
 
         ..  container:: example
 
             Gets none when timespan list is empty:
 
-            >>> abjad.TimespanList().axis is None
+            >>> abjad.TimespanList().get_axis() is None
             True
 
         """
         if self:
-            assert isinstance(self.start_offset, _duration.Offset)
-            assert isinstance(self.stop_offset, _duration.Offset)
-            return (self.start_offset + self.stop_offset) / 2
+            start_offset = self.get_start_offset()
+            stop_offset = self.get_stop_offset()
+            assert isinstance(start_offset, _duration.Offset)
+            assert isinstance(stop_offset, _duration.Offset)
+            return (start_offset + stop_offset) / 2
         return None
 
-    @property
-    def duration(self) -> _duration.Duration:
+    def get_duration(self) -> _duration.Duration:
         """
         Gets duration of timespan list.
 
@@ -2134,7 +2128,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.duration
+            >>> timespans.get_duration()
             Duration(10, 1)
 
         ..  container:: example
@@ -2150,24 +2144,26 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.duration
+            >>> timespans.get_duration()
             Duration(32, 1)
 
         ..  container:: example
 
             Gets zero when timespan list is empty:
 
-            >>> abjad.TimespanList().duration
+            >>> abjad.TimespanList().get_duration()
             Duration(0, 1)
 
         """
-        if self.stop_offset != infinity and self.start_offset != negative_infinity:
-            return self.stop_offset - self.start_offset
+        if (
+            self.get_stop_offset() != infinity
+            and self.get_start_offset() != negative_infinity
+        ):
+            return self.get_stop_offset() - self.get_start_offset()
         else:
             return _duration.Duration(0)
 
-    @property
-    def is_sorted(self) -> bool:
+    def get_is_sorted(self) -> bool:
         """
         Is true when timespans are in time order.
 
@@ -2182,7 +2178,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.is_sorted
+            >>> timespans.get_is_sorted()
             True
 
         ..  container:: example
@@ -2196,7 +2192,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.is_sorted
+            >>> timespans.get_is_sorted()
             False
 
         """
@@ -2211,8 +2207,7 @@ class TimespanList(list):
                     return False
         return True
 
-    @property
-    def start_offset(self) -> _duration.Offset | _math.NegativeInfinity:
+    def get_start_offset(self) -> _duration.Offset | _math.NegativeInfinity:
         """
         Gets start offset.
 
@@ -2229,7 +2224,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.start_offset
+            >>> timespans.get_start_offset()
             Offset((0, 1))
 
         ..  container:: example
@@ -2245,14 +2240,14 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.start_offset
+            >>> timespans.get_start_offset()
             Offset((-2, 1))
 
         ..  container:: example
 
             Gets negative infinity when timespan list is empty:
 
-            >>> abjad.TimespanList().start_offset
+            >>> abjad.TimespanList().get_start_offset()
             NegativeInfinity()
 
         """
@@ -2261,8 +2256,7 @@ class TimespanList(list):
         else:
             return negative_infinity
 
-    @property
-    def stop_offset(self) -> _duration.Offset | _math.Infinity:
+    def get_stop_offset(self) -> _duration.Offset | _math.Infinity:
         """
         Gets stop offset.
 
@@ -2279,7 +2273,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.stop_offset
+            >>> timespans.get_stop_offset()
             Offset((10, 1))
 
         ..  container:: example
@@ -2295,7 +2289,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.stop_offset
+            >>> timespans.get_stop_offset()
             Offset((30, 1))
 
         ..  container:: example
@@ -2303,7 +2297,7 @@ class TimespanList(list):
 
             Gets infinity when timespan list is empty:
 
-            >>> abjad.TimespanList().stop_offset
+            >>> abjad.TimespanList().get_stop_offset()
             Infinity()
 
         """
@@ -2312,8 +2306,7 @@ class TimespanList(list):
         else:
             return infinity
 
-    @property
-    def timespan(self):
+    def get_timespan(self):
         """
         Gets timespan of timespan list.
 
@@ -2328,9 +2321,9 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> abjad.show(timespans.timespan, range_=(0, 10), scale=0.5) # doctest: +SKIP
+            >>> abjad.show(timespans.get_timespan(), range_=(0, 10), scale=0.5) # doctest: +SKIP
 
-            >>> timespans.timespan
+            >>> timespans.get_timespan()
             Timespan(Offset((0, 1)), Offset((10, 1)))
 
         ..  container:: example
@@ -2346,21 +2339,21 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> abjad.show(timespans.timespan, range_=(0, 30), scale=0.5) # doctest: +SKIP
+            >>> abjad.show(timespans.get_timespan(), range_=(0, 30), scale=0.5) # doctest: +SKIP
 
-            >>> timespans.timespan
+            >>> timespans.get_timespan()
             Timespan(Offset((-2, 1)), Offset((30, 1)))
 
         ..  container:: example
 
             Gets infinite timespan when list is empty:
 
-            >>> abjad.TimespanList().timespan
+            >>> abjad.TimespanList().get_timespan()
             Timespan(NegativeInfinity(), Infinity())
 
         Returns timespan.
         """
-        return Timespan(self.start_offset, self.stop_offset)
+        return Timespan(self.get_start_offset(), self.get_stop_offset())
 
     ### PUBLIC METHODS ###
 
@@ -2456,7 +2449,7 @@ class TimespanList(list):
             assert minimum <= maximum
         timespans = type(self)()
         for timespan in self:
-            if minimum is not None and timespan.duration < minimum:
+            if minimum is not None and timespan.get_duration() < minimum:
                 if anchor is _enums.LEFT:
                     new_timespan = timespan.set_duration(minimum)
                 else:
@@ -2466,7 +2459,7 @@ class TimespanList(list):
                         start_offset=new_start_offset,
                         stop_offset=timespan.stop_offset,
                     )
-            elif maximum is not None and maximum < timespan.duration:
+            elif maximum is not None and maximum < timespan.get_duration():
                 if anchor is _enums.LEFT:
                     new_timespan = timespan.set_duration(maximum)
                 else:
@@ -2837,14 +2830,14 @@ class TimespanList(list):
 
         """
         if timespan is None:
-            timespan = self.timespan
+            timespan = self.get_timespan()
         timespans = self.get_timespans_that_satisfy_time_relation(
             lambda _: bool(_ & timespan)
         )
         total_overlap = _duration.Duration(
             sum(x.get_overlap_with_timespan(timespan) for x in timespans)
         )
-        overlap_factor = fractions.Fraction(total_overlap / timespan.duration)
+        overlap_factor = fractions.Fraction(total_overlap / timespan.get_duration())
         return overlap_factor
 
     def compute_overlap_factor_mapping(self) -> dict:
@@ -3060,7 +3053,7 @@ class TimespanList(list):
         assert isinstance(inventory_count, type(None) | int)
         if isinstance(inventory_count, int):
             assert 0 < inventory_count
-        bounding_timespan = self.timespan
+        bounding_timespan = self.get_timespan()
         global_overlap_factors = []
         empty_timespans_pairs = []
         result_timespan_lists = []
@@ -3072,7 +3065,7 @@ class TimespanList(list):
                 result_timespan_lists.append(result_timespans)
         for current_timespan in self:
             current_overlap_factor = (
-                current_timespan.duration / bounding_timespan.duration
+                current_timespan.get_duration() / bounding_timespan.get_duration()
             )
             if empty_timespans_pairs:
                 i, empty_timespans = empty_timespans_pairs.pop()
@@ -3360,7 +3353,7 @@ class TimespanList(list):
 
         """
         if axis is None:
-            axis = self.axis
+            axis = self.get_axis()
         timespans = []
         for timespan in self:
             timespan = timespan.reflect(axis=axis)
@@ -3422,18 +3415,18 @@ class TimespanList(list):
             Timespan(Offset((13, 1)), Offset((15, 1)))
 
         """
-        assert self.is_sorted
+        assert self.get_is_sorted()
         stop_offset = _duration.Offset(stop_offset)
-        assert self.stop_offset <= stop_offset
+        assert self.get_stop_offset() <= stop_offset
         current_timespan_index = 0
         if self:
-            while self.stop_offset < stop_offset:
+            while self.get_stop_offset() < stop_offset:
                 current_timespan = self[current_timespan_index]
-                translation = self.stop_offset - current_timespan.start_offset
+                translation = self.get_stop_offset() - current_timespan.start_offset
                 new_timespan = current_timespan.translate(translation)
                 self.append(new_timespan)
                 current_timespan_index += 1
-            if stop_offset < self.stop_offset:
+            if stop_offset < self.get_stop_offset():
                 self[-1] = self[-1].set_offsets(stop_offset=stop_offset)
         return self
 
@@ -3483,16 +3476,16 @@ class TimespanList(list):
 
         """
         assert isinstance(count, int)
-        assert self.all_are_contiguous
+        assert self.get_all_are_contiguous()
         elements_to_move = count % len(self)
         if elements_to_move == 0:
             return self
         left_timespans = self[:-elements_to_move]
         right_timespans = self[-elements_to_move:]
         split_offset = right_timespans[0].start_offset
-        translation_to_left = split_offset - self.start_offset
+        translation_to_left = split_offset - self.get_start_offset()
         translation_to_left *= -1
-        translation_to_right = self.stop_offset - split_offset
+        translation_to_right = self.get_stop_offset() - split_offset
         translated_right_timespans = []
         for right_timespan in right_timespans:
             translated_right_timespan = right_timespan.translate_offsets(
@@ -3778,7 +3771,9 @@ class TimespanList(list):
         if not self:
             return timespan_lists
         offsets = sorted(set(_duration.Offset(x) for x in offsets))
-        offsets = [x for x in offsets if self.start_offset < x < self.stop_offset]
+        offsets = [
+            x for x in offsets if self.get_start_offset() < x < self.get_stop_offset()
+        ]
         for offset in offsets:
             shards = [x for x in timespan_lists[-1].split_at_offset(offset) if x]
             if shards:
@@ -3830,7 +3825,7 @@ class TimespanList(list):
         """
         timespans = []
         if anchor is None:
-            anchor = self.start_offset
+            anchor = self.get_start_offset()
         for timespan in self:
             timespan = timespan.stretch(multiplier, anchor)
             timespans.append(timespan)
@@ -4012,7 +4007,7 @@ def _make_timespan_list_markup(
     )
     string = "\n".join(postscript_strings)
     postscript = string
-    x_extent = float(timespans.stop_offset)
+    x_extent = float(timespans.get_stop_offset())
     x_extent *= postscript_scale
     x_extent += postscript_x_offset
     y_extent = height + 1.5

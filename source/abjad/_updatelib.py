@@ -97,7 +97,7 @@ def _get_independent_after_grace_leaf_offsets(leaf):
 def _get_measure_start_offsets(component):
     wrappers = []
     prototype = _indicators.TimeSignature
-    root = _parentage.Parentage(component).root
+    root = _parentage.Parentage(component).get_root()
     for component_ in _iterate_entire_score(root):
         wrappers_ = component_._get_wrappers(prototype)
         wrappers.extend(wrappers_)
@@ -308,7 +308,7 @@ def _update_clocktime_offsets(component, timespans):
             pair = timespan.annotation
             clocktime_start_offset, clocktime_duration = pair
             local_offset = component._start_offset - timespan.start_offset
-            multiplier = local_offset / timespan.duration
+            multiplier = local_offset / timespan.get_duration()
             duration = multiplier * clocktime_duration
             offset = clocktime_start_offset + duration
             component._start_offset_in_seconds = _duration.Offset(offset)
@@ -316,7 +316,7 @@ def _update_clocktime_offsets(component, timespans):
             pair = timespan.annotation
             clocktime_start_offset, clocktime_duration = pair
             local_offset = component._stop_offset - timespan.start_offset
-            multiplier = local_offset / timespan.duration
+            multiplier = local_offset / timespan.get_duration()
             duration = multiplier * clocktime_duration
             offset = clocktime_start_offset + duration
             component._stop_offset_in_seconds = _duration.Offset(offset)
@@ -401,7 +401,7 @@ def _update_component_offsets(component):
 
 def _update_measure_numbers(component):
     measure_start_offsets = _get_measure_start_offsets(component)
-    root = _parentage.Parentage(component).root
+    root = _parentage.Parentage(component).get_root()
     for component in _iterate_entire_score(root):
         measure_number = _to_measure_number(component, measure_start_offsets)
         component._measure_number = measure_number

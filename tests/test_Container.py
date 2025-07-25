@@ -2120,7 +2120,7 @@ def test_Container_insert_07():
     assert abjad.wf.is_wellformed(voice)
     assert abjad.wf.is_wellformed(staff)
     assert note not in voice
-    assert abjad.get.parentage(note).parent is staff
+    assert abjad.get.parentage(note).get_parent() is staff
 
 
 def test_Container_insert_08():

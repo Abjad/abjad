@@ -314,8 +314,8 @@ def test_init(input_, semitones, name):
                 group_dict["number"],
             )
         )
-        if (math.sign(float(instance)) == instance.direction_number) and abs(
-            instance.number
+        if (math.sign(float(instance)) == instance.get_direction_number()) and abs(
+            instance.get_number()
         ) != 1:
             direction = math.sign(float(instance))
             assert float(inflected_up) == (abs(float(instance)) + 0.5) * direction
