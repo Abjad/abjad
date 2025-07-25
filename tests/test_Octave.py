@@ -80,5 +80,5 @@ values = [
 
 @pytest.mark.parametrize("input_, expected_number", values)
 def test_init_from_pitch(input_, expected_number):
-    octave = abjad.NamedPitch(input_).octave
+    octave = abjad.NamedPitch(input_).get_octave()
     assert octave.number == expected_number

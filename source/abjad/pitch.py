@@ -692,6 +692,9 @@ class Accidental:
         elif isinstance(self.name, numbers.Number):
             semitones = float(self.name)
             assert (semitones % 1.0) in (0.0, 0.5)
+        elif hasattr(self.name, "get_accidental"):
+            _arrow = self.name.get_accidental().arrow
+            semitones = self.name.get_accidental().semitones
         elif hasattr(self.name, "accidental"):
             _arrow = self.name.accidental.arrow
             semitones = self.name.accidental.semitones
@@ -1013,8 +1016,8 @@ class Octave:
     def __post_init__(self):
         if isinstance(self.number, int | float):
             self.number = int(self.number)
-        elif hasattr(self.number, "octave"):
-            self.number = self.number.octave.number
+        elif hasattr(self.number, "get_octave"):
+            self.number = self.number.get_octave().number
         elif isinstance(self.number, type(self)):
             self.number = self.number.number
         else:
@@ -1112,7 +1115,7 @@ class Octave:
             number = int(math.floor(pitch / 12)) + 4
             return class_(number)
         if hasattr(pitch, "name"):
-            name = pitch.name
+            name = pitch.get_name()
         elif isinstance(pitch, str):
             name = pitch
         else:
@@ -1478,8 +1481,8 @@ class NamedIntervalClass(IntervalClass):
         except Exception:
             return False
         if self.get_number() == argument.get_number():
-            self_semitones = NamedInterval(self).semitones
-            argument_semitones = NamedInterval(argument).semitones
+            self_semitones = NamedInterval(self).get_semitones()
+            argument_semitones = NamedInterval(argument).get_semitones()
             return self_semitones < argument_semitones
         return self.get_number() < argument.get_number()
 
@@ -1785,7 +1788,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         named_interval = NamedInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2
         )
-        string = named_interval.name
+        string = named_interval.get_name()
         return class_(string)
 
 
@@ -2290,7 +2293,7 @@ class Interval:
         """
         Gets cents of interval.
         """
-        return 100 * self.semitones
+        return 100 * self.get_semitones()
 
     def get_direction_number(self) -> int:
         """
@@ -2312,15 +2315,13 @@ class Interval:
         """
         raise NotImplementedError
 
-    @property
-    def octaves(self) -> int:
+    def get_octaves(self) -> int:
         """
         Gets octaves of interval.
         """
         raise NotImplementedError
 
-    @property
-    def semitones(self) -> int | float:
+    def get_semitones(self) -> int | float:
         """
         Gets semitones of interval.
         """
@@ -2467,7 +2468,7 @@ class NamedInterval(Interval):
 
         """
         if isinstance(argument, type(self)):
-            return self.name == argument.name
+            return self.get_name() == argument.get_name()
         return False
 
     # TODO: remove
@@ -2475,7 +2476,7 @@ class NamedInterval(Interval):
         """
         Coerce to semitones as float.
         """
-        return float(self.semitones)
+        return float(self.get_semitones())
 
     def __hash__(self) -> int:
         """
@@ -2500,7 +2501,7 @@ class NamedInterval(Interval):
 
         """
         if isinstance(argument, type(self)):
-            return self.semitones < argument.semitones
+            return self.get_semitones() < argument.get_semitones()
         return False
 
     def __mul__(self, argument) -> "NamedInterval":
@@ -2558,7 +2559,7 @@ class NamedInterval(Interval):
         """
         Gets repr.
         """
-        return f"{type(self).__name__}({self.name!r})"
+        return f"{type(self).__name__}({self.get_name()!r})"
 
     def __rmul__(self, argument) -> "NamedInterval":
         """
@@ -2667,14 +2668,13 @@ class NamedInterval(Interval):
         """
         return self._interval_class
 
-    @property
-    def name(self) -> str:
+    def get_name(self) -> str:
         """
         Gets name of named interval.
 
         ..  container:: example
 
-            >>> abjad.NamedInterval("+M9").name
+            >>> abjad.NamedInterval("+M9").get_name()
             '+M9'
 
         """
@@ -2697,11 +2697,10 @@ class NamedInterval(Interval):
         """
         number = self._interval_class._number
         direction = _math.sign(number)
-        number = abs(number) + (7 * self.octaves)
+        number = abs(number) + (7 * self.get_octaves())
         return number * direction
 
-    @property
-    def octaves(self) -> int:
+    def get_octaves(self) -> int:
         """
         Gets octaves of interval.
         """
@@ -2713,26 +2712,25 @@ class NamedInterval(Interval):
         """
         return self._interval_class.get_quality()
 
-    @property
-    def semitones(self) -> int:
+    def get_semitones(self) -> int:
         """
         Gets semitones of named interval.
 
         ..  container:: example
 
-            >>> abjad.NamedInterval("+M9").semitones
+            >>> abjad.NamedInterval("+M9").get_semitones()
             14
 
-            >>> abjad.NamedInterval("-M9").semitones
+            >>> abjad.NamedInterval("-M9").get_semitones()
             -14
 
-            >>> abjad.NamedInterval("P1").semitones
+            >>> abjad.NamedInterval("P1").get_semitones()
             0
 
-            >>> abjad.NamedInterval("+P8").semitones
+            >>> abjad.NamedInterval("+P8").get_semitones()
             12
 
-            >>> abjad.NamedInterval("-P8").semitones
+            >>> abjad.NamedInterval("-P8").get_semitones()
             -12
 
         """
@@ -2744,26 +2742,25 @@ class NamedInterval(Interval):
         diatonic_number += 7 * self._octaves
         return self._named_to_numbered(direction, quality, diatonic_number)
 
-    @property
-    def staff_spaces(self) -> float | int:
+    def get_staff_spaces(self) -> float | int:
         """
         Gets staff spaces of named interval.
 
         ..  container:: example
 
-            >>> abjad.NamedInterval("+M9").staff_spaces
+            >>> abjad.NamedInterval("+M9").get_staff_spaces()
             8
 
-            >>> abjad.NamedInterval("-M9").staff_spaces
+            >>> abjad.NamedInterval("-M9").get_staff_spaces()
             -8
 
-            >>> abjad.NamedInterval("P1").staff_spaces
+            >>> abjad.NamedInterval("P1").get_staff_spaces()
             0
 
-            >>> abjad.NamedInterval("+P8").staff_spaces
+            >>> abjad.NamedInterval("+P8").get_staff_spaces()
             7
 
-            >>> abjad.NamedInterval("-P8").staff_spaces
+            >>> abjad.NamedInterval("-P8").get_staff_spaces()
             -7
 
         """
@@ -3174,24 +3171,22 @@ class NumberedInterval(Interval):
         """
         number = self._interval_class._number
         direction = _math.sign(number)
-        number = abs(number) + (12 * self.octaves)
+        number = abs(number) + (12 * self.get_octaves())
         return number * direction
 
-    @property
-    def octaves(self) -> int:
+    def get_octaves(self) -> int:
         """
         Gets octaves of interval.
         """
         return self._octaves
 
-    @property
-    def semitones(self) -> int | float:
+    def get_semitones(self) -> int | float:
         """
         Gets semitones corresponding to numbered interval.
 
         ..  container:: example
 
-            >>> abjad.NumberedInterval(-14).semitones
+            >>> abjad.NumberedInterval(-14).get_semitones()
             -14
 
         """
@@ -3367,15 +3362,13 @@ class PitchClass:
         div %= 12
         return _math.integer_equivalent_number_to_integer(div)
 
-    @property
-    def accidental(self) -> Accidental:
+    def get_accidental(self) -> Accidental:
         """
         Gets accidental of pitch-class.
         """
         raise NotImplementedError
 
-    @property
-    def pitch_class_label(self) -> str:
+    def get_pitch_class_label(self) -> str:
         """
         Gets pitch-class label of pitch-class.
         """
@@ -3522,7 +3515,7 @@ class NamedPitchClass(PitchClass):
             NamedPitchClass('b')
 
         """
-        dummy_pitch = NamedPitch((self.name, 4))
+        dummy_pitch = NamedPitch((self.get_name(), 4))
         pitch = named_interval.transpose(dummy_pitch)
         return type(self)(pitch)
 
@@ -3601,7 +3594,7 @@ class NamedPitchClass(PitchClass):
         """
         Gets repr.
         """
-        return f"{type(self).__name__}({self.name!r})"
+        return f"{type(self).__name__}({self.get_name()!r})"
 
     def __sub__(self, argument) -> "NamedInversionEquivalentIntervalClass":
         """
@@ -3620,8 +3613,8 @@ class NamedPitchClass(PitchClass):
 
         """
         assert isinstance(argument, type(self))
-        pitch_1 = NamedPitch((self.name, 4))
-        pitch_2 = NamedPitch((argument.name, 4))
+        pitch_1 = NamedPitch((self.get_name(), 4))
+        pitch_2 = NamedPitch((argument.get_name(), 4))
         mdi = NamedInterval.from_pitch_carriers(pitch_1, pitch_2)
         pair = (mdi.get_quality(), mdi.get_number())
         dic = NamedInversionEquivalentIntervalClass(pair)
@@ -3629,7 +3622,7 @@ class NamedPitchClass(PitchClass):
 
     def _apply_accidental(self, accidental=None):
         accidental = Accidental(accidental)
-        new_accidental = self.accidental + accidental
+        new_accidental = self.get_accidental() + accidental
         new_name = self._get_diatonic_pc_name() + str(new_accidental)
         return type(self)(new_name)
 
@@ -3643,11 +3636,11 @@ class NamedPitchClass(PitchClass):
 
     def _from_pitch_or_pitch_class(self, pitch_or_pitch_class):
         if isinstance(pitch_or_pitch_class, Pitch):
-            pitch_or_pitch_class = pitch_or_pitch_class.pitch_class
+            pitch_or_pitch_class = pitch_or_pitch_class.get_pitch_class()
         self._diatonic_pc_number = pitch_or_pitch_class._get_diatonic_pc_number()
         self._accidental = Accidental(
             pitch_or_pitch_class._get_alteration(),
-            arrow=pitch_or_pitch_class.arrow,
+            arrow=pitch_or_pitch_class.get_arrow(),
         )
 
     def _get_alteration(self):
@@ -3664,21 +3657,19 @@ class NamedPitchClass(PitchClass):
         accidental = Accidental(self._get_alteration())
         return f"{name}{accidental!s}"
 
-    @property
-    def accidental(self) -> Accidental:
+    def get_accidental(self) -> Accidental:
         """
         Gets accidental.
 
         ..  container:: example
 
-            >>> abjad.NamedPitchClass("cs").accidental
+            >>> abjad.NamedPitchClass("cs").get_accidental()
             Accidental(name='sharp')
 
         """
         return self._accidental
 
-    @property
-    def arrow(self):
+    def get_arrow(self):
         """
         Gets arrow of named pitch-class.
 
@@ -3686,14 +3677,13 @@ class NamedPitchClass(PitchClass):
         """
         return self._accidental.arrow
 
-    @property
-    def name(self) -> str:
+    def get_name(self) -> str:
         """
         Gets name of named pitch-class.
 
         ..  container:: example
 
-            >>> abjad.NamedPitchClass("cs").name
+            >>> abjad.NamedPitchClass("cs").get_name()
             'cs'
 
         """
@@ -3718,19 +3708,18 @@ class NamedPitchClass(PitchClass):
         result %= 12
         return result
 
-    @property
-    def pitch_class_label(self) -> str:
+    def get_pitch_class_label(self) -> str:
         """
         Gets pitch-class label.
 
         ..  container:: example
 
-            >>> abjad.NamedPitchClass("cs").pitch_class_label
+            >>> abjad.NamedPitchClass("cs").get_pitch_class_label()
             'C#'
 
         """
         pc = self._get_diatonic_pc_name().upper()
-        return f"{pc}{self.accidental.get_symbol()}"
+        return f"{pc}{self.get_accidental().get_symbol()}"
 
     def invert(self, axis=None) -> "NamedPitchClass":
         """
@@ -3776,7 +3765,7 @@ class NamedPitchClass(PitchClass):
 
         """
         interval = NamedInterval(n)
-        pitch = NamedPitch((self.name, 4))
+        pitch = NamedPitch((self.get_name(), 4))
         pitch = interval.transpose(pitch)
         return type(self)(pitch)
 
@@ -4023,7 +4012,7 @@ class NumberedPitchClass(PitchClass):
         self._number = self._to_nearest_quarter_tone(number)
 
     def _from_pitch_or_pitch_class(self, pitch_or_pitch_class):
-        self._arrow = pitch_or_pitch_class.arrow
+        self._arrow = pitch_or_pitch_class.get_arrow()
         self._number = self._to_nearest_quarter_tone(float(pitch_or_pitch_class))
 
     def _get_alteration(self):
@@ -4032,7 +4021,7 @@ class NumberedPitchClass(PitchClass):
         return float(self) - pc_number
 
     def _get_diatonic_pc_name(self):
-        return self.name[0]
+        return self.get_name()[0]
 
     def _get_diatonic_pc_number(self):
         return _diatonic_pc_name_to_diatonic_pc_number[self._get_diatonic_pc_name()]
@@ -4040,21 +4029,19 @@ class NumberedPitchClass(PitchClass):
     def _get_lilypond_format(self):
         return NamedPitchClass(self)._get_lilypond_format()
 
-    @property
-    def accidental(self) -> Accidental:
+    def get_accidental(self) -> Accidental:
         """
         Gets accidental.
 
         ..  container:: example
 
-            >>> abjad.NumberedPitchClass(1).accidental
+            >>> abjad.NumberedPitchClass(1).get_accidental()
             Accidental(name='sharp')
 
         """
-        return NamedPitch(self.get_number()).accidental
+        return NamedPitch(self.get_number()).get_accidental()
 
-    @property
-    def arrow(self):
+    def get_arrow(self):
         """
         Gets arrow of numbered pitch-class.
 
@@ -4062,14 +4049,13 @@ class NumberedPitchClass(PitchClass):
         """
         return self._arrow
 
-    @property
-    def name(self) -> str:
+    def get_name(self) -> str:
         """
         Gets name of numbered pitch-class.
 
         ..  container:: example
 
-            >>> abjad.NumberedPitchClass(13).name
+            >>> abjad.NumberedPitchClass(13).get_name()
             'cs'
 
         """
@@ -4090,19 +4076,18 @@ class NumberedPitchClass(PitchClass):
         """
         return self._number
 
-    @property
-    def pitch_class_label(self) -> str:
+    def get_pitch_class_label(self) -> str:
         """
         Gets pitch-class / octave label.
 
         ..  container:: example
 
-            >>> abjad.NumberedPitchClass(13).pitch_class_label
+            >>> abjad.NumberedPitchClass(13).get_pitch_class_label()
             'C#'
 
         """
         name = self._get_diatonic_pc_name().upper()
-        return f"{name}{self.accidental.get_symbol()}"
+        return f"{name}{self.get_accidental().get_symbol()}"
 
     def invert(self, axis=None) -> "NumberedPitchClass":
         """
@@ -4318,23 +4303,20 @@ class Pitch:
         else:
             raise TypeError(item_class)
 
-    @property
-    def arrow(self):
+    def get_arrow(self):
         """
         Gets arrow of pitch.
         """
         raise NotImplementedError
 
-    @property
-    def hertz(self) -> float:
+    def get_hertz(self) -> float:
         """
         Gets frequency of pitch in Hertz.
         """
         hertz = pow(2.0, (float(self.get_number()) - 9.0) / 12.0) * 440.0
         return hertz
 
-    @property
-    def name(self) -> str:
+    def get_name(self) -> str:
         """
         Gets name of pitch.
         """
@@ -4346,15 +4328,13 @@ class Pitch:
         """
         raise NotImplementedError
 
-    @property
-    def octave(self) -> Octave:
+    def get_octave(self) -> Octave:
         """
         Gets octave of pitch.
         """
         raise NotImplementedError
 
-    @property
-    def pitch_class(self):
+    def get_pitch_class(self):
         """
         Gets pitch-class of pitch.
 
@@ -4373,7 +4353,7 @@ class Pitch:
         pitch = class_(midi)
         return pitch
 
-    def get_name(self, locale=None) -> str:
+    def get_name_in_locale(self, locale=None) -> str:
         """
         Gets name of pitch according to ``locale``.
         """
@@ -4516,7 +4496,7 @@ class NamedPitch(Pitch):
             NamedPitch("cs''", arrow=Vertical.UP)
 
         """
-        return type(self)(self, arrow=self.arrow)
+        return type(self)(self, arrow=self.get_arrow())
 
     def __eq__(self, argument) -> bool:
         """
@@ -4555,9 +4535,9 @@ class NamedPitch(Pitch):
         if isinstance(argument, type(self)):
             return (
                 self.get_number() == argument.get_number()
-                and self.accidental == argument.accidental
-                and self.arrow == argument.arrow
-                and self.octave == argument.octave
+                and self.get_accidental() == argument.get_accidental()
+                and self.get_arrow() == argument.get_arrow()
+                and self.get_octave() == argument.get_octave()
             )
         return False
 
@@ -4610,7 +4590,7 @@ class NamedPitch(Pitch):
         self_dpn = self._get_diatonic_pitch_number()
         argument_dpn = argument._get_diatonic_pitch_number()
         if self_dpn == argument_dpn:
-            return self.accidental <= argument.accidental
+            return self.get_accidental() <= argument.get_accidental()
         return self_dpn <= argument_dpn
 
     def __lt__(self, argument) -> bool:
@@ -4652,7 +4632,7 @@ class NamedPitch(Pitch):
         self_dpn = self._get_diatonic_pitch_number()
         argument_dpn = argument._get_diatonic_pitch_number()
         if self_dpn == argument_dpn:
-            return self.accidental < argument.accidental
+            return self.get_accidental() < argument.get_accidental()
         return self_dpn < argument_dpn
 
     def __radd__(self, interval):
@@ -4674,10 +4654,12 @@ class NamedPitch(Pitch):
         """
         Gets repr.
         """
-        if self.arrow is not None:
-            return f"{type(self).__name__}({self.name!r}, arrow={self.arrow})"
+        if self.get_arrow() is not None:
+            return (
+                f"{type(self).__name__}({self.get_name()!r}, arrow={self.get_arrow()})"
+            )
         else:
-            return f"{type(self).__name__}({self.name!r})"
+            return f"{type(self).__name__}({self.get_name()!r})"
 
     def __sub__(self, argument) -> "NamedInterval":
         """
@@ -4700,8 +4682,8 @@ class NamedPitch(Pitch):
 
     def _apply_accidental(self, accidental):
         name = self._get_diatonic_pc_name()
-        name += str(self.accidental + Accidental(accidental))
-        name += self.octave.get_ticks()
+        name += str(self.get_accidental() + Accidental(accidental))
+        name += self.get_octave().get_ticks()
         return type(self)(name)
 
     def _from_named_parts(self, dpc_number, alteration, octave):
@@ -4726,18 +4708,18 @@ class NamedPitch(Pitch):
         if not isinstance(pitch_or_pitch_class, Pitch):
             name += "'"
         if isinstance(pitch_or_pitch_class, Pitch):
-            self._pitch_class = NamedPitchClass(pitch_or_pitch_class.pitch_class)
-            self._octave = pitch_or_pitch_class.octave
+            self._pitch_class = NamedPitchClass(pitch_or_pitch_class.get_pitch_class())
+            self._octave = pitch_or_pitch_class.get_octave()
         else:
             self._pitch_class = NamedPitchClass(pitch_or_pitch_class)
             self._octave = Octave()
 
     def _get_alteration(self):
-        return self.accidental.semitones
+        return self.get_accidental().semitones
 
     def _get_diatonic_pc_name(self):
         return _diatonic_pc_number_to_diatonic_pc_name[
-            self.pitch_class._diatonic_pc_number
+            self.get_pitch_class()._diatonic_pc_number
         ]
 
     def _get_diatonic_pc_number(self):
@@ -4746,16 +4728,16 @@ class NamedPitch(Pitch):
         return diatonic_pc_number
 
     def _get_diatonic_pitch_number(self):
-        diatonic_pitch_number = 7 * (self.octave.number - 4)
+        diatonic_pitch_number = 7 * (self.get_octave().number - 4)
         diatonic_pitch_number += self._get_diatonic_pc_number()
         return diatonic_pitch_number
 
     def _get_lilypond_format(self):
-        return self.name
+        return self.get_name()
 
     def _list_contributions(self):
         contributions = []
-        if self.arrow is None:
+        if self.get_arrow() is None:
             return contributions
         string = r"\once \override Accidental.stencil ="
         string += " #ly:text-interface::print"
@@ -4767,27 +4749,25 @@ class NamedPitch(Pitch):
         contributions.append(string)
         return contributions
 
-    @property
-    def accidental(self) -> Accidental:
+    def get_accidental(self) -> Accidental:
         """
         Gets accidental of named pitch.
 
         ..  container:: example
 
-            >>> abjad.NamedPitch("c''").accidental
+            >>> abjad.NamedPitch("c''").get_accidental()
             Accidental(name='natural')
 
-            >>> abjad.NamedPitch("cs''").accidental
+            >>> abjad.NamedPitch("cs''").get_accidental()
             Accidental(name='sharp')
 
-            >>> abjad.NamedPitch("df''").accidental
+            >>> abjad.NamedPitch("df''").get_accidental()
             Accidental(name='flat')
 
         """
-        return self.pitch_class.accidental
+        return self.get_pitch_class().get_accidental()
 
-    @property
-    def arrow(self):
+    def get_arrow(self):
         """
         Gets arrow of named pitch.
 
@@ -4795,13 +4775,13 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            >>> abjad.NamedPitch("cs''").arrow is None
+            >>> abjad.NamedPitch("cs''").get_arrow() is None
             True
 
-            >>> abjad.NamedPitch("cs''", arrow=abjad.UP).arrow
+            >>> abjad.NamedPitch("cs''", arrow=abjad.UP).get_arrow()
             <Vertical.UP: 1>
 
-            >>> abjad.NamedPitch("cs''", arrow=abjad.DOWN).arrow
+            >>> abjad.NamedPitch("cs''", arrow=abjad.DOWN).get_arrow()
             <Vertical.DOWN: -1>
 
             Displays arrow in interpreter representation:
@@ -4810,45 +4790,43 @@ class NamedPitch(Pitch):
             NamedPitch("cs''", arrow=Vertical.DOWN)
 
         """
-        return self._pitch_class.arrow
+        return self._pitch_class.get_arrow()
 
-    @property
-    def hertz(self) -> float:
+    def get_hertz(self) -> float:
         """
         Gets frequency of named pitch in Hertz.
 
         ..  container:: example
 
-            >>> abjad.NamedPitch("c''").hertz
+            >>> abjad.NamedPitch("c''").get_hertz()
             523.25...
 
-            >>> abjad.NamedPitch("cs''").hertz
+            >>> abjad.NamedPitch("cs''").get_hertz()
             554.36...
 
-            >>> abjad.NamedPitch("df''").hertz
+            >>> abjad.NamedPitch("df''").get_hertz()
             554.36...
 
         """
-        return super().hertz
+        return super().get_hertz()
 
-    @property
-    def name(self) -> str:
+    def get_name(self) -> str:
         """
         Gets name of named pitch.
 
         ..  container:: example
 
-            >>> abjad.NamedPitch("c''").name
+            >>> abjad.NamedPitch("c''").get_name()
             "c''"
 
-            >>> abjad.NamedPitch("cs''").name
+            >>> abjad.NamedPitch("cs''").get_name()
             "cs''"
 
-            >>> abjad.NamedPitch("df''").name
+            >>> abjad.NamedPitch("df''").get_name()
             "df''"
 
         """
-        return f"{self.pitch_class.name}{self.octave.get_ticks()}"
+        return f"{self.get_pitch_class().get_name()}{self.get_octave().get_ticks()}"
 
     def get_number(self) -> int | float:
         """
@@ -4869,47 +4847,45 @@ class NamedPitch(Pitch):
             -1
 
         """
-        diatonic_pc_number = self.pitch_class._get_diatonic_pc_number()
+        diatonic_pc_number = self.get_pitch_class()._get_diatonic_pc_number()
         pc_number = _diatonic_pc_number_to_pitch_class_number[diatonic_pc_number]
-        alteration = self.pitch_class._get_alteration()
-        octave_base_pitch = (self.octave.number - 4) * 12
+        alteration = self.get_pitch_class()._get_alteration()
+        octave_base_pitch = (self.get_octave().number - 4) * 12
         return _math.integer_equivalent_number_to_integer(
             pc_number + alteration + octave_base_pitch
         )
 
-    @property
-    def octave(self) -> Octave:
+    def get_octave(self) -> Octave:
         """
         Gets octave of named pitch.
 
         ..  container:: example
 
-            >>> abjad.NamedPitch("c''").octave
+            >>> abjad.NamedPitch("c''").get_octave()
             Octave(number=5)
 
-            >>> abjad.NamedPitch("cs''").octave
+            >>> abjad.NamedPitch("cs''").get_octave()
             Octave(number=5)
 
-            >>> abjad.NamedPitch("df''").octave
+            >>> abjad.NamedPitch("df''").get_octave()
             Octave(number=5)
 
         """
         return self._octave
 
-    @property
-    def pitch_class(self) -> NamedPitchClass:
+    def get_pitch_class(self) -> NamedPitchClass:
         """
         Gets pitch-class of named pitch.
 
         ..  container:: example
 
-            >>> abjad.NamedPitch("c''").pitch_class
+            >>> abjad.NamedPitch("c''").get_pitch_class()
             NamedPitchClass('c')
 
-            >>> abjad.NamedPitch("cs''").pitch_class
+            >>> abjad.NamedPitch("cs''").get_pitch_class()
             NamedPitchClass('cs')
 
-            >>> abjad.NamedPitch("df''").pitch_class
+            >>> abjad.NamedPitch("df''").get_pitch_class()
             NamedPitchClass('df')
 
         """
@@ -4933,7 +4909,7 @@ class NamedPitch(Pitch):
         """
         return super().from_hertz(hertz)
 
-    def get_name(self, locale=None) -> str:
+    def get_name_in_locale(self, locale=None) -> str:
         """
         Gets name of named pitch according to ``locale``.
 
@@ -4941,18 +4917,20 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            >>> abjad.NamedPitch("cs''").get_name()
+            >>> abjad.NamedPitch("cs''").get_name_in_locale()
             "cs''"
 
-            >>> abjad.NamedPitch("cs''").get_name(locale="us")
+            >>> abjad.NamedPitch("cs''").get_name_in_locale(locale="us")
             'C#5'
 
         """
         if locale is None:
-            return self.name
+            return self.get_name()
         elif locale == "us":
             name = self._get_diatonic_pc_name().upper()
-            return f"{name}{self.accidental.get_symbol()}{self.octave.number}"
+            return (
+                f"{name}{self.get_accidental().get_symbol()}{self.get_octave().number}"
+            )
         else:
             raise ValueError(f'must be "us" or none: {locale!r}.')
 
@@ -5027,12 +5005,12 @@ class NamedPitch(Pitch):
         else:
             assert accidental == "flats"
             dictionary = _pitch_class_number_to_pitch_class_name_with_flats
-        name = dictionary[self.pitch_class.get_number()]
-        candidate = type(self)((name, self.octave.number))
+        name = dictionary[self.get_pitch_class().get_number()]
+        candidate = type(self)((name, self.get_octave().number))
         if candidate.get_number() == self.get_number() - 12:
-            candidate = type(self)(candidate, octave=candidate.octave.number + 1)
+            candidate = type(self)(candidate, octave=candidate.get_octave().number + 1)
         elif candidate.get_number() == self.get_number() + 12:
-            candidate = type(self)(candidate, octave=candidate.octave.number - 1)
+            candidate = type(self)(candidate, octave=candidate.get_octave().number - 1)
         assert candidate.get_number() == self.get_number()
         return candidate
 
@@ -5060,7 +5038,7 @@ class NamedPitch(Pitch):
         if abs(alteration) <= 2:
             return self
         diatonic_pc_number = self._get_diatonic_pc_number()
-        octave = int(self.octave)
+        octave = int(self.get_octave())
         while alteration > 2:
             step_size = 2
             if diatonic_pc_number == 2:  # e to f
@@ -5082,7 +5060,7 @@ class NamedPitch(Pitch):
         diatonic_pc_name = _diatonic_pc_number_to_diatonic_pc_name[diatonic_pc_number]
         accidental = Accidental(alteration)
         pitch_name = f"{diatonic_pc_name}{accidental!s}{octave!s}"
-        return type(self)(pitch_name, arrow=self.arrow)
+        return type(self)(pitch_name, arrow=self.get_arrow())
 
     def transpose(self, n=0) -> "NamedPitch":
         """
@@ -5102,9 +5080,9 @@ class NamedPitch(Pitch):
 
         """
         interval = NamedInterval(n)
-        pitch_number = self.get_number() + interval.semitones
+        pitch_number = self.get_number() + interval.get_semitones()
         diatonic_pc_number = self._get_diatonic_pc_number()
-        diatonic_pc_number += interval.staff_spaces
+        diatonic_pc_number += interval.get_staff_spaces()
         diatonic_pc_number %= 7
         diatonic_pc_name = _diatonic_pc_number_to_diatonic_pc_name[diatonic_pc_number]
         pc = _diatonic_pc_name_to_pitch_class_number[diatonic_pc_name]
@@ -5175,8 +5153,8 @@ class NumberedPitch(Pitch):
         if isinstance(argument, type(self)):
             return (
                 self.get_number() == argument.get_number()
-                and self.arrow == argument.arrow
-                and self.octave == argument.octave
+                and self.get_arrow() == argument.get_arrow()
+                and self.get_octave() == argument.get_octave()
             )
         return False
 
@@ -5352,38 +5330,36 @@ class NumberedPitch(Pitch):
         octave_number, pc_number = divmod(self._number, 12)
         self._octave = Octave(octave_number + 4)
         self._pitch_class = NumberedPitchClass(
-            pc_number, arrow=pitch_or_pitch_class.arrow
+            pc_number, arrow=pitch_or_pitch_class.get_arrow()
         )
 
     def _get_diatonic_pc_name(self):
-        return self.pitch_class._get_diatonic_pc_name()
+        return self.get_pitch_class()._get_diatonic_pc_name()
 
     def _get_diatonic_pc_number(self):
         return self.numbered_pitch_class._get_diatonic_pc_number()
 
     def _get_diatonic_pitch_number(self):
-        result = 7 * (self.octave.number - 4)
+        result = 7 * (self.get_octave().number - 4)
         result += self._get_diatonic_pc_number()
         return result
 
     def _get_lilypond_format(self):
-        return self.name
+        return self.get_name()
 
-    @property
-    def accidental(self) -> Accidental:
+    def get_accidental(self) -> Accidental:
         """
         Gets accidental of numbered pitch.
 
         ..  container:: example
 
-            >>> abjad.NumberedPitchClass(13).accidental
+            >>> abjad.NumberedPitchClass(13).get_accidental()
             Accidental(name='sharp')
 
         """
-        return self.pitch_class.accidental
+        return self.get_pitch_class().get_accidental()
 
-    @property
-    def arrow(self):
+    def get_arrow(self):
         """
         Gets arrow of numbered pitch.
 
@@ -5391,49 +5367,47 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            >>> abjad.NumberedPitch(13).arrow is None
+            >>> abjad.NumberedPitch(13).get_arrow() is None
             True
 
-            >>> abjad.NumberedPitch(13, arrow=abjad.UP).arrow
+            >>> abjad.NumberedPitch(13, arrow=abjad.UP).get_arrow()
             <Vertical.UP: 1>
 
-            >>> abjad.NumberedPitch(13, arrow=abjad.DOWN).arrow
+            >>> abjad.NumberedPitch(13, arrow=abjad.DOWN).get_arrow()
             <Vertical.DOWN: -1>
 
         """
-        return self._pitch_class.arrow
+        return self._pitch_class.get_arrow()
 
-    @property
-    def hertz(self) -> float:
+    def get_hertz(self) -> float:
         """
         Gets frequency of numbered pitch in Hertz.
 
         ..  container:: example
 
-            >>> abjad.NumberedPitch(9).hertz
+            >>> abjad.NumberedPitch(9).get_hertz()
             440.0
 
-            >>> abjad.NumberedPitch(0).hertz
+            >>> abjad.NumberedPitch(0).get_hertz()
             261.62...
 
-            >>> abjad.NumberedPitch(12).hertz
+            >>> abjad.NumberedPitch(12).get_hertz()
             523.25...
 
         """
-        return super().hertz
+        return super().get_hertz()
 
-    @property
-    def name(self) -> str:
+    def get_name(self) -> str:
         """
         Gets name of numbered pitch.
 
         ..  container:: example
 
-            >>> abjad.NumberedPitch(13).name
+            >>> abjad.NumberedPitch(13).get_name()
             "cs''"
 
         """
-        return f"{self.pitch_class.name}{self.octave.get_ticks()}"
+        return f"{self.get_pitch_class().get_name()}{self.get_octave().get_ticks()}"
 
     def get_number(self) -> int | float:
         """
@@ -5445,31 +5419,29 @@ class NumberedPitch(Pitch):
             13
 
         """
-        pc_number = float(self.pitch_class)
-        octave_base_pitch = (self.octave.number - 4) * 12
+        pc_number = float(self.get_pitch_class())
+        octave_base_pitch = (self.get_octave().number - 4) * 12
         return _math.integer_equivalent_number_to_integer(pc_number + octave_base_pitch)
 
-    @property
-    def octave(self) -> Octave:
+    def get_octave(self) -> Octave:
         """
         Gets octave of numbered pitch.
 
         ..  container:: example
 
-            >>> abjad.NumberedPitch(13).octave
+            >>> abjad.NumberedPitch(13).get_octave()
             Octave(number=5)
 
         """
         return self._octave
 
-    @property
-    def pitch_class(self) -> NumberedPitchClass:
+    def get_pitch_class(self) -> NumberedPitchClass:
         """
         Gets pitch-class of numbered pitch.
 
         ..  container:: example
 
-            >>> abjad.NumberedPitch(13).pitch_class
+            >>> abjad.NumberedPitch(13).get_pitch_class()
             NumberedPitchClass(1)
 
         """
@@ -5493,7 +5465,7 @@ class NumberedPitch(Pitch):
         """
         return super().from_hertz(hertz)
 
-    def get_name(self, locale: str | None = None) -> str:
+    def get_name_in_locale(self, locale: str | None = None) -> str:
         """
         Gets name of numbered pitch name according to ``locale``.
 
@@ -5504,11 +5476,11 @@ class NumberedPitch(Pitch):
             >>> abjad.NumberedPitch(13).get_name()
             "cs''"
 
-            >>> abjad.NumberedPitch(13).get_name(locale="us")
+            >>> abjad.NumberedPitch(13).get_name_in_locale(locale="us")
             'C#5'
 
         """
-        return NamedPitch(self).get_name(locale=locale)
+        return NamedPitch(self).get_name_in_locale(locale=locale)
 
     def interpolate(self, stop_pitch, fraction) -> "NumberedPitch":
         """
@@ -5556,7 +5528,7 @@ class NumberedPitch(Pitch):
         assert 0 <= fraction <= 1, repr(fraction)
         stop_pitch = type(self)(stop_pitch)
         distance = stop_pitch - self
-        distance = abs(distance.semitones)
+        distance = abs(distance.get_semitones())
         distance = fraction * distance
         distance = int(distance)
         if stop_pitch < self:

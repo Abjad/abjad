@@ -995,7 +995,7 @@ class PitchRange:
             raise Exception(f"named pitches only (not {range_string!r}).")
         else:
             start_pitch = _pitch.NamedPitch(start_pitch_string)
-            start_pitch_repr = start_pitch.get_name(locale="us")
+            start_pitch_repr = start_pitch.get_name_in_locale(locale="us")
 
         if stop_pitch_string == "1000":
             stop_pitch = None
@@ -1004,7 +1004,7 @@ class PitchRange:
             raise Exception(f"named pitches only (not {range_string!r}).")
         else:
             stop_pitch = _pitch.NamedPitch(stop_pitch_string)
-            stop_pitch_repr = stop_pitch.get_name(locale="us")
+            stop_pitch_repr = stop_pitch.get_name_in_locale(locale="us")
         start, stop = open_bracket, close_bracket
         normalized_range_string = f"{start}{start_pitch_repr}, {stop_pitch_repr}{stop}"
         return types.SimpleNamespace(
@@ -1106,7 +1106,10 @@ class PitchRange:
 
         """
         named_pitch_class = _pitch.NamedPitchClass(pitch_class)
-        pair = (named_pitch_class.name, self.get_start_pitch().octave.number)
+        pair = (
+            named_pitch_class.get_name(),
+            self.get_start_pitch().get_octave().number,
+        )
         named_pitch = _pitch.NamedPitch(pair)
         result = []
         while named_pitch <= self.get_stop_pitch():
@@ -3255,10 +3258,10 @@ def voice_horizontally(
     pitches = []
     if pcs:
         pc = pcs[0]
-        pitch = _pitch.NamedPitch((pc.name, initial_octave))
+        pitch = _pitch.NamedPitch((pc.get_name(), initial_octave))
         pitches.append(pitch)
         for pc in pcs[1:]:
-            number = _pitch.NamedPitch((pc.name, initial_octave)).get_number()
+            number = _pitch.NamedPitch((pc.get_name(), initial_octave)).get_number()
             semitones = abs((number - pitches[-1].get_number()))
             while 6 < semitones:
                 if number < pitches[-1].get_number():
@@ -3306,11 +3309,11 @@ def voice_vertically(
     pitches = []
     if pcs:
         pc = _pitch.NamedPitchClass(pcs[0])
-        pitch = _pitch.NamedPitch((pc.name, initial_octave))
+        pitch = _pitch.NamedPitch((pc.get_name(), initial_octave))
         pitches.append(pitch)
         for pc in pcs[1:]:
             pc = _pitch.NamedPitchClass(pc)
-            pitch = _pitch.NamedPitch((pc.name, initial_octave))
+            pitch = _pitch.NamedPitch((pc.get_name(), initial_octave))
             while pitch < pitches[-1]:
                 pitch += 12
             pitches.append(pitch)

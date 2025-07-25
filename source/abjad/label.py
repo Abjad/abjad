@@ -669,7 +669,7 @@ def vertical_moments(
             pitches = _pcollections.PitchSegment(generator)
             if not pitches:
                 continue
-            pitch_classes = [pitch.pitch_class.get_number() for pitch in pitches]
+            pitch_classes = [pitch.get_pitch_class().get_number() for pitch in pitches]
             pitch_classes = list(set(pitch_classes))
             pitch_classes.sort()
             pitch_classes.reverse()
@@ -1523,7 +1523,7 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
         label = None
         if prototype is _pitch.NamedPitch:
             if isinstance(leaf, _score.Note):
-                string = leaf.written_pitch.get_name(locale=locale)
+                string = leaf.written_pitch.get_name_in_locale(locale=locale)
                 if "#" in string:
                     string = '"' + string + '"'
                 label = _indicators.Markup(rf"\markup {{ {string} }}")
@@ -1532,7 +1532,7 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
                 pitches = reversed(pitches)
                 names = []
                 for pitch in pitches:
-                    name = pitch.get_name(locale=locale)
+                    name = pitch.get_name_in_locale(locale=locale)
                     name = '"' + name + '"'
                     names.append(name)
                 string = " ".join(names)
@@ -1549,12 +1549,12 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
                 label = _indicators.Markup(rf"\markup \column {{ {string} }}")
         elif prototype is _pitch.NumberedPitchClass:
             if isinstance(leaf, _score.Note):
-                pitch = leaf.written_pitch.pitch_class.get_number()
+                pitch = leaf.written_pitch.get_pitch_class().get_number()
                 label = _indicators.Markup(rf"\markup {pitch}")
             elif isinstance(leaf, _score.Chord):
                 pitches = leaf.written_pitches
                 pitches = reversed(pitches)
-                pitches = [str(_.pitch_class.get_number()) for _ in pitches]
+                pitches = [str(_.get_pitch_class().get_number()) for _ in pitches]
                 string = " ".join(pitches)
                 label = _indicators.Markup(rf"\markup \column {{ {string} }}")
         if label is not None:
