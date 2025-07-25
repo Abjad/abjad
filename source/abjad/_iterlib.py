@@ -168,9 +168,11 @@ def _get_sibling_with_graces(component, n):
 
 
 def _is_unpitched(leaf):
-    if hasattr(leaf, "written_pitch"):
+    # if hasattr(leaf, "written_pitch"):
+    if hasattr(leaf, "get_written_pitch"):
         return False
-    if hasattr(leaf, "written_pitches"):
+    # if hasattr(leaf, "written_pitches"):
+    if hasattr(leaf, "get_written_pitches"):
         return False
     return True
 

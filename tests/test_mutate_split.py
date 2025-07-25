@@ -94,7 +94,7 @@ def test_mutate__set_leaf_duration_02():
 def test_mutate__set_leaf_duration_03():
     """
     Changes leaf to nontied duration.
-    Same as voice.written_duration = abjad.Duration(3, 16).
+    Same as voice.set_written_duration(abjad.Duration(3, 16)).
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -589,7 +589,7 @@ def test_mutate__split_leaf_by_durations_03():
 
     assert len(staff) == 1
     assert isinstance(staff[0], abjad.Note)
-    assert staff[0].written_duration == abjad.Duration(1, 4)
+    assert staff[0].get_written_duration() == abjad.Duration(1, 4)
 
 
 def test_mutate__split_leaf_by_durations_04():

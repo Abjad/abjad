@@ -379,7 +379,9 @@ class GuileProxy:
                 pitch = self._make_relative_leaf(component, pitch)
                 if component in self.client._repeated_chords:
                     for repeated_chord in self.client._repeated_chords[component]:
-                        repeated_chord.written_pitches = component.written_pitches
+                        repeated_chord.set_written_pitches(
+                            component.get_written_pitches()
+                        )
             elif isinstance(component, _score.Container):
                 for child in component:
                     pitch = recurse(child, pitch)
@@ -446,13 +448,17 @@ class GuileProxy:
                     _bind.detach(key_signature, music)
                     _bind._unsafe_attach(new_key_signature, music)
             if isinstance(music, _score.Note):
-                music.written_pitch = LilyPondParser._transpose_enharmonically(
-                    from_pitch, to_pitch, music.written_pitch
+                music.set_written_pitch(
+                    LilyPondParser._transpose_enharmonically(
+                        from_pitch, to_pitch, music.get_written_pitch()
+                    )
                 )
             elif isinstance(music, _score.Chord):
                 for note_head in music.note_heads:
-                    note_head.written_pitch = LilyPondParser._transpose_enharmonically(
-                        from_pitch, to_pitch, note_head.written_pitch
+                    note_head.set_written_pitch(
+                        LilyPondParser._transpose_enharmonically(
+                            from_pitch, to_pitch, note_head.get_written_pitch()
+                        )
                     )
             elif isinstance(music, _score.Container):
                 for component in music:
@@ -518,8 +524,8 @@ class GuileProxy:
         if self._is_unrelativable(leaf):
             return pitch
         elif isinstance(leaf, _score.Note):
-            pitch = self._to_relative_octave(leaf.written_pitch, pitch)
-            leaf.written_pitch = pitch
+            pitch = self._to_relative_octave(leaf.get_written_pitch(), pitch)
+            leaf.set_written_pitch(pitch)
         elif isinstance(leaf, _score.Chord):
             # TODO: This is not ideal w/r/t post events as LilyPond does
             # not sort chord contents
@@ -527,8 +533,8 @@ class GuileProxy:
             for i, chord_pitch in enumerate(chord_pitches):
                 pitch = self._to_relative_octave(chord_pitch, pitch)
                 chord_pitches[i] = pitch
-            leaf.written_pitches = chord_pitches
-            pitch = min(leaf.written_pitches)
+            leaf.set_written_pitches(chord_pitches)
+            pitch = min(leaf.get_written_pitches())
         return pitch
 
     def _make_unrelativable(self, music):
@@ -4603,7 +4609,7 @@ class LilyPondSyntacticalDefinition:
         self, p
     ):
         "event_chord : CHORD_REPETITION optional_notemode_duration post_events"
-        pitches = self.client._last_chord.written_pitches
+        pitches = self.client._last_chord.get_written_pitches()
         duration = p[2].duration
         chord = _score.Chord(pitches, duration, tag=self.tag)
         self.client._chord_pitch_orders[chord] = pitches
@@ -4625,7 +4631,7 @@ class LilyPondSyntacticalDefinition:
         rest = _score.MultimeasureRest(p[2].duration, tag=self.tag)
         if p[2].multiplier is not None:
             multiplier = fractions.Fraction(p[2].multiplier)
-            rest.multiplier = _duration.pair(multiplier)
+            rest.set_multiplier(_duration.pair(multiplier))
         self.client._process_post_events(rest, p[3])
         p[0] = rest
 
@@ -5745,14 +5751,14 @@ class LilyPondSyntacticalDefinition:
         pitches = []
         post_events = []
         for node in p[1]:
-            pitches.append(node[0].written_pitch)
+            pitches.append(node[0].get_written_pitch())
             chord.note_heads.append(node[0])
             post_events.extend(node[1])
         post_events.extend(p[3])
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
             multiplier = fractions.Fraction(p[2].multiplier)
-            chord.multiplier = _duration.pair(multiplier)
+            chord.set_multiplier(_duration.pair(multiplier))
         self.client._process_post_events(chord, post_events)
         p[0] = chord
 
@@ -6254,7 +6260,7 @@ class LilyPondSyntacticalDefinition:
             rest = _score.Skip(p[2].duration, tag=self.tag)
         if p[2].multiplier is not None:
             multiplier = fractions.Fraction(p[2].multiplier)
-            rest.multiplier = _duration.pair(multiplier)
+            rest.set_multiplier(_duration.pair(multiplier))
         p[0] = rest
 
     def p_simple_element__pitch__exclamations__questions__octave_check__optional_notemode_duration__optional_rest(
@@ -6269,7 +6275,7 @@ class LilyPondSyntacticalDefinition:
             leaf = _score.Rest(p[5].duration, tag=self.tag)
         if p[5].multiplier is not None:
             multiplier = fractions.Fraction(p[5].multiplier)
-            leaf.multiplier = _duration.pair(multiplier)
+            leaf.set_multiplier(_duration.pair(multiplier))
         # TODO: handle exclamations, questions, octave_check
         p[0] = leaf
 

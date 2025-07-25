@@ -270,7 +270,7 @@ def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=Non
 
 def _get_sounding_pitch(note):
     if "sounding pitch" in note._get_indicators(str):
-        return note.written_pitch
+        return note.get_written_pitch()
     else:
         instrument = _get_effective_indicator(note, _instruments.Instrument)
         if instrument:
@@ -278,13 +278,13 @@ def _get_sounding_pitch(note):
         else:
             sounding_pitch = _pitch.NamedPitch("C4")
         interval = _pitch.NamedPitch("C4") - sounding_pitch
-        sounding_pitch = interval.transpose(note.written_pitch)
+        sounding_pitch = interval.transpose(note.get_written_pitch())
         return sounding_pitch
 
 
 def _get_sounding_pitches(chord):
     if "sounding pitch" in chord._get_indicators(str):
-        return chord.written_pitches
+        return chord.get_written_pitches()
     else:
         instrument = _get_effective_indicator(chord, _instruments.Instrument)
         if instrument:
@@ -293,7 +293,7 @@ def _get_sounding_pitches(chord):
             sounding_pitch = _pitch.NamedPitch("C4")
         interval = _pitch.NamedPitch("C4") - sounding_pitch
         sounding_pitches = [
-            interval.transpose(pitch) for pitch in chord.written_pitches
+            interval.transpose(pitch) for pitch in chord.get_written_pitches()
         ]
         return tuple(sounding_pitches)
 

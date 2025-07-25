@@ -106,7 +106,7 @@ class Component:
 
         Returns new component.
         """
-        component = type(self)(*self.__getnewargs__(), tag=self.tag)
+        component = type(self)(*self.__getnewargs__(), tag=self.get_tag())
         if hasattr(self, "identifier"):
             component.identifier = self.identifier
         if hasattr(self, "lilypond_type"):
@@ -370,8 +370,8 @@ class Component:
                 return sibling
 
     def _tag_strings(self, strings):
-        if self.tag is not None:
-            strings = _tag.double_tag(strings, self.tag)
+        if self.get_tag() is not None:
+            strings = _tag.double_tag(strings, self.get_tag())
         return strings
 
     def _update_later(self, offsets=False, offsets_in_seconds=False):
@@ -382,10 +382,7 @@ class Component:
             elif offsets_in_seconds:
                 component._offsets_in_seconds_are_current = False
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def tag(self) -> _tag.Tag | None:
+    def get_tag(self) -> _tag.Tag | None:
         """
         Gets component tag.
         """
@@ -393,8 +390,10 @@ class Component:
             assert isinstance(self._tag, _tag.Tag), repr(self._tag)
         return self._tag
 
-    @tag.setter
-    def tag(self, argument):
+    def set_tag(self, argument):
+        """
+        Sets component tag.
+        """
         if argument is not None:
             assert isinstance(argument, _tag.Tag), repr(argument)
         self._tag = argument
@@ -433,8 +432,8 @@ class Leaf(Component):
         Component.__init__(self, tag=tag)
         self._after_grace_container = None
         self._before_grace_container = None
-        self.multiplier = multiplier
-        self.written_duration = written_duration
+        self.set_multiplier(multiplier)
+        self.set_written_duration(written_duration)
 
     ### SPECIAL METHODS ###
 
@@ -443,7 +442,7 @@ class Leaf(Component):
         Shallow copies leaf.
         """
         leaf = Component.__copy__(self, *arguments)
-        leaf.multiplier = self.multiplier
+        leaf.set_multiplier(self.get_multiplier())
         before_grace_container = self._before_grace_container
         if before_grace_container is not None:
             grace_container = before_grace_container._copy_with_children()
@@ -460,7 +459,7 @@ class Leaf(Component):
 
         Returns tuple.
         """
-        return (self.written_duration,)
+        return (self.get_written_duration(),)
 
     def __repr__(self) -> str:
         """
@@ -576,8 +575,8 @@ class Leaf(Component):
 
     def _format_leaf_nucleus(self):
         strings = self._get_body()
-        if self.tag is not None and self.tag.string:
-            strings = _tag.double_tag(strings, self.tag)
+        if self.get_tag() is not None and self.get_tag().string:
+            strings = _tag.double_tag(strings, self.get_tag())
         return strings
 
     def _format_opening_site(self, contributions):
@@ -625,17 +624,17 @@ class Leaf(Component):
                 return False
 
     def _get_formatted_duration(self):
-        strings = [self.written_duration.get_lilypond_duration_string()]
-        if self.multiplier is not None:
-            string = f"{self.multiplier[0]}/{self.multiplier[1]}"
+        strings = [self.get_written_duration().get_lilypond_duration_string()]
+        if self.get_multiplier() is not None:
+            string = f"{self.get_multiplier()[0]}/{self.get_multiplier()[1]}"
             strings.append(string)
         result = " * ".join(strings)
         return result
 
     def _get_preprolated_duration(self):
-        duration = self.written_duration
-        if self.multiplier is not None:
-            duration *= fractions.Fraction(*self.multiplier)
+        duration = self.get_written_duration()
+        if self.get_multiplier() is not None:
+            duration *= fractions.Fraction(*self.get_multiplier())
         return duration
 
     def _get_subtree(self):
@@ -675,33 +674,33 @@ class Leaf(Component):
 
     def _scale(self, multiplier):
         assert isinstance(multiplier, fractions.Fraction), repr(multiplier)
-        self.written_duration *= multiplier
+        self_written_duration = self.get_written_duration() * multiplier
+        self.set_written_duration(self_written_duration)
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def multiplier(self) -> tuple[int, int] | None:
+    def get_multiplier(self) -> tuple[int, int] | None:
         """
         Gets leaf duration multiplier.
         """
         return self._multiplier
 
-    @multiplier.setter
-    def multiplier(self, argument):
+    def set_multiplier(self, argument):
+        """
+        Sets leaf duration multiplier.
+        """
         if argument is not None:
             assert isinstance(argument, tuple), repr(argument)
             assert len(argument) == 2, repr(argument)
         self._multiplier = argument
 
-    @property
-    def written_duration(self) -> _duration.Duration:
+    def get_written_duration(self) -> _duration.Duration:
         """
         Gets leaf written duration.
         """
         return self._written_duration
 
-    @written_duration.setter
-    def written_duration(self, argument):
+    def set_written_duration(self, argument):
         duration = _duration.Duration(argument)
         if not duration.get_is_assignable():
             message = f"not assignable duration: {duration!r}."
@@ -1128,8 +1127,8 @@ class Container(Component):
             else:
                 string = "}"
         strings.append(string)
-        if self.tag is not None:
-            strings = _tag.double_tag(strings, self.tag)
+        if self.get_tag() is not None:
+            strings = _tag.double_tag(strings, self.get_tag())
         result.extend(strings)
         return result
 
@@ -1178,8 +1177,8 @@ class Container(Component):
             else:
                 string = "{"
         strings.append(string)
-        if self.tag is not None:
-            strings = _tag.double_tag(strings, self.tag)
+        if self.get_tag() is not None:
+            strings = _tag.double_tag(strings, self.get_tag())
         result.extend(strings)
         return result
 
@@ -1974,7 +1973,8 @@ class AfterGraceContainer(Container):
     ### PRIVATE METHODS ###
 
     def _attach(self, leaf):
-        if not hasattr(leaf, "written_duration"):
+        # if not hasattr(leaf, "written_duration"):
+        if not hasattr(leaf, "get_written_duration"):
             raise TypeError(f"must attach to leaf (not {leaf!r}).")
         leaf._after_grace_container = self
         self._main_leaf = leaf
@@ -2211,7 +2211,8 @@ class BeforeGraceContainer(Container):
     ### PRIVATE METHODS ###
 
     def _attach(self, leaf):
-        if not hasattr(leaf, "written_duration"):
+        # if not hasattr(leaf, "written_duration"):
+        if not hasattr(leaf, "get_written_duration"):
             raise TypeError(f"must attach to leaf {leaf!r}.")
         leaf._before_grace_container = self
         self._main_leaf = leaf
@@ -2561,17 +2562,17 @@ class Chord(Leaf):
         if len(arguments) == 1 and isinstance(arguments[0], Leaf):
             leaf = arguments[0]
             written_pitches = []
-            written_duration = leaf.written_duration
+            written_duration = leaf.get_written_duration()
             if multiplier is None:
-                multiplier = leaf.multiplier
+                multiplier = leaf.get_multiplier()
             # TODO: move to dedicated from_note() constructor:
             if isinstance(leaf, Note) and leaf.note_head is not None:
-                written_pitches.append(leaf.note_head.written_pitch)
+                written_pitches.append(leaf.note_head.get_written_pitch())
                 are_cautionary = [leaf.note_head.is_cautionary]
                 are_forced = [leaf.note_head.is_forced]
                 are_parenthesized = [leaf.note_head.is_parenthesized]
             elif isinstance(leaf, Chord):
-                written_pitches.extend(_.written_pitch for _ in leaf.note_heads)
+                written_pitches.extend(_.get_written_pitch() for _ in leaf.note_heads)
                 are_cautionary = [_.is_cautionary for _ in leaf.note_heads]
                 are_forced = [_.is_forced for _ in leaf.note_heads]
                 are_parenthesized = [_.is_parenthesized for _ in leaf.note_heads]
@@ -2581,7 +2582,7 @@ class Chord(Leaf):
             if isinstance(written_pitches, str):
                 written_pitches = [_ for _ in written_pitches.split() if _]
             elif isinstance(written_pitches, type(self)):
-                written_pitches = list(written_pitches.written_pitches)
+                written_pitches = list(written_pitches.get_written_pitches())
         elif len(arguments) == 0:
             written_pitches = [_pitch.NamedPitch(_) for _ in [0, 4, 7]]
             written_duration = _duration.Duration(1, 4)
@@ -2649,7 +2650,7 @@ class Chord(Leaf):
             ((NamedPitch("c'"), NamedPitch("d'")), Duration(1, 4))
 
         """
-        return self.written_pitches, self.written_duration
+        return self.get_written_pitches(), self.get_written_duration()
 
     ### PRIVATE METHODS ###
 
@@ -2761,8 +2762,7 @@ class Chord(Leaf):
             note_heads = note_heads.split()
         self.note_heads.extend(note_heads)
 
-    @property
-    def written_duration(self) -> _duration.Duration:
+    def get_written_duration(self) -> _duration.Duration:
         """
         Gets and sets written duration of chord.
 
@@ -2773,7 +2773,7 @@ class Chord(Leaf):
             >>> chord = abjad.Chord("<e' cs'' f''>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> chord.written_duration
+            >>> chord.get_written_duration()
             Duration(1, 4)
 
         ..  container:: example
@@ -2783,18 +2783,16 @@ class Chord(Leaf):
             >>> chord = abjad.Chord("<e' cs'' f''>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> chord.written_duration = abjad.Duration(1, 16)
+            >>> chord.set_written_duration(abjad.Duration(1, 16))
             >>> abjad.show(chord) # doctest: +SKIP
 
         """
-        return super().written_duration
+        return super().get_written_duration()
 
-    @written_duration.setter
-    def written_duration(self, argument):
-        Leaf.written_duration.fset(self, argument)
+    def set_written_duration(self, argument):
+        Leaf.set_written_duration(self, argument)
 
-    @property
-    def written_pitches(self) -> tuple[_pitch.NamedPitch, ...]:
+    def get_written_pitches(self) -> tuple[_pitch.NamedPitch, ...]:
         """
         Written pitches in chord.
 
@@ -2805,7 +2803,7 @@ class Chord(Leaf):
             >>> chord = abjad.Chord("<g' c'' e''>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> chord.written_pitches
+            >>> chord.get_written_pitches()
             (NamedPitch("g'"), NamedPitch("c''"), NamedPitch("e''"))
 
         ..  container:: example
@@ -2815,7 +2813,7 @@ class Chord(Leaf):
             >>> chord = abjad.Chord("<e' g' c''>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> chord.written_pitches = "f' b' d''"
+            >>> chord.set_written_pitches("f' b' d''")
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -2824,14 +2822,13 @@ class Chord(Leaf):
                 >>> print(string)
                 <f' b' d''>4
 
-            >>> chord.written_pitches
+            >>> chord.get_written_pitches()
             (NamedPitch("f'"), NamedPitch("b'"), NamedPitch("d''"))
 
         """
-        return tuple(_.written_pitch for _ in self.note_heads)
+        return tuple(_.get_written_pitch() for _ in self.note_heads)
 
-    @written_pitches.setter
-    def written_pitches(self, pitches):
+    def set_written_pitches(self, pitches):
         self.note_heads = pitches
 
 
@@ -3300,7 +3297,7 @@ class MultimeasureRest(Leaf):
         if len(arguments) == 0:
             arguments = ((1, 4),)
         rest = Rest(*arguments, language=language)
-        Leaf.__init__(self, rest.written_duration, multiplier=multiplier, tag=tag)
+        Leaf.__init__(self, rest.get_written_duration(), multiplier=multiplier, tag=tag)
 
     ### PRIVATE METHODS ###
 
@@ -3392,12 +3389,12 @@ class NoteHead:
         if isinstance(written_pitch, NoteHead):
             note_head = written_pitch
             tweaks_ = copy.deepcopy(note_head.tweaks)
-            written_pitch = note_head.written_pitch
+            written_pitch = note_head.get_written_pitch()
             is_cautionary = note_head.is_cautionary
             is_forced = note_head.is_forced
         elif written_pitch is None:
             written_pitch = 0
-        self.written_pitch = written_pitch
+        self.set_written_pitch(written_pitch)
         self.is_cautionary = is_cautionary
         self.is_forced = is_forced
         self.is_parenthesized = is_parenthesized
@@ -3420,7 +3417,7 @@ class NoteHead:
 
         """
         result = type(self)(
-            self.written_pitch,
+            self.get_written_pitch(),
             is_cautionary=self.is_cautionary,
             is_forced=self.is_forced,
             is_parenthesized=self.is_parenthesized,
@@ -3435,8 +3432,8 @@ class NoteHead:
         this note-head.
         """
         if isinstance(argument, type(self)):
-            return self.written_pitch == argument.written_pitch
-        return self.written_pitch == argument
+            return self.get_written_pitch() == argument.get_written_pitch()
+        return self.get_written_pitch() == argument
 
     def __hash__(self) -> int:
         """
@@ -3450,12 +3447,12 @@ class NoteHead:
         this note-head.
         """
         if isinstance(argument, type(self)):
-            return self.written_pitch < argument.written_pitch
+            return self.get_written_pitch() < argument.get_written_pitch()
         try:
             argument = type(self)(argument)
         except (ValueError, TypeError):
             return False
-        return self.written_pitch < argument.written_pitch
+        return self.get_written_pitch() < argument.get_written_pitch()
 
     def __repr__(self) -> str:
         """
@@ -3469,13 +3466,13 @@ class NoteHead:
 
         """
         strings = []
-        if isinstance(self.written_pitch, _pitch.NamedPitch):
-            string = self.written_pitch.get_name()
+        if isinstance(self.get_written_pitch(), _pitch.NamedPitch):
+            string = self.get_written_pitch().get_name()
             strings.append(repr(string))
         # drum note head:
-        elif isinstance(self.written_pitch, str):
-            string = self.written_pitch
-            strings.append(repr(string))
+        elif isinstance(self.get_written_pitch(), str):
+            string = repr(self.get_written_pitch())
+            strings.append(string)
         if self.is_cautionary:
             string = f"is_cautionary={self.is_cautionary!r}"
             strings.append(string)
@@ -3493,8 +3490,8 @@ class NoteHead:
 
     def _get_chord_string(self) -> str:
         result = ""
-        if self.written_pitch:
-            result = self.written_pitch.get_name()
+        if self.get_written_pitch():
+            result = self.get_written_pitch().get_name()
             if self.is_forced:
                 result += "!"
             if self.is_cautionary:
@@ -3502,14 +3499,14 @@ class NoteHead:
         return result
 
     def _get_note_head_strings(self):
-        assert self.written_pitch
+        assert self.get_written_pitch()
         result = []
         if self.is_parenthesized:
             result.append(r"\parenthesize")
         for tweak in sorted(self.tweaks):
             strings = tweak._list_contributions()
             result.extend(strings)
-        written_pitch = self.written_pitch
+        written_pitch = self.get_written_pitch()
         if isinstance(written_pitch, _pitch.NamedPitch):
             written_pitch = written_pitch.simplify()
             kernel = written_pitch.get_name()
@@ -3563,7 +3560,7 @@ class NoteHead:
 
             Survives pitch reassignment:
 
-            >>> note.written_pitch = "D5"
+            >>> note.set_written_pitch("D5")
             >>> abjad.show(note) # doctest: +SKIP
 
             >>> string = abjad.lilypond(note, tags=True)
@@ -3604,7 +3601,7 @@ class NoteHead:
 
             Suvives pitch reassignment:
 
-            >>> chord.note_heads[0].written_pitch = "B3"
+            >>> chord.note_heads[0].set_written_pitch("B3")
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> string = abjad.lilypond(chord, tags=True)
@@ -3759,33 +3756,31 @@ class NoteHead:
             NamedPitch("cs''")
 
         """
-        return self.written_pitch
+        return self.get_written_pitch()
 
-    @property
-    def written_pitch(self) -> _pitch.NamedPitch:
+    def get_written_pitch(self) -> _pitch.NamedPitch:
         """
         Gets and sets written pitch of note-head.
 
         ..  container:: example
 
             >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.written_pitch
+            >>> note_head.get_written_pitch()
             NamedPitch("cs''")
 
             >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.written_pitch = "d''"
-            >>> note_head.written_pitch
+            >>> note_head.set_written_pitch("d''")
+            >>> note_head.get_written_pitch()
             NamedPitch("d''")
 
         """
         return self._written_pitch
 
-    @written_pitch.setter
-    def written_pitch(self, argument):
+    def set_written_pitch(self, argument):
         written_pitch = _pitch.NamedPitch(argument)
         self._written_pitch = written_pitch
         if self.alternative is not None:
-            self.alternative[0].written_pitch = written_pitch
+            self.alternative[0].set_written_pitch(written_pitch)
 
 
 class DrumNoteHead(NoteHead):
@@ -3966,7 +3961,7 @@ class NoteHeadList(list):
         pitch = _pitch.NamedPitch(pitch)
         for note_head in self:
             assert isinstance(note_head, NoteHead), repr(note_head)
-            if note_head.written_pitch == pitch:
+            if note_head.get_written_pitch() == pitch:
                 result.append(note_head)
         count = len(result)
         if count == 0:
@@ -4082,17 +4077,17 @@ class Note(Leaf):
         if len(arguments) == 1 and isinstance(arguments[0], Leaf):
             leaf = arguments[0]
             written_pitch = None
-            written_duration = leaf.written_duration
+            written_duration = leaf.get_written_duration()
             if multiplier is None:
-                multiplier = leaf.multiplier
+                multiplier = leaf.get_multiplier()
             if isinstance(leaf, Note) and leaf.note_head is not None:
-                written_pitch = leaf.note_head.written_pitch
+                written_pitch = leaf.note_head.get_written_pitch()
                 is_cautionary = leaf.note_head.is_cautionary
                 is_forced = leaf.note_head.is_forced
                 is_parenthesized = leaf.note_head.is_parenthesized
             # TODO: move into separate from_chord() constructor:
             elif isinstance(leaf, Chord):
-                written_pitches = [_.written_pitch for _ in leaf.note_heads]
+                written_pitches = [_.get_written_pitch() for _ in leaf.note_heads]
                 if written_pitches:
                     written_pitch = written_pitches[0]
                     is_cautionary = leaf.note_heads[0].is_cautionary
@@ -4143,7 +4138,7 @@ class Note(Leaf):
         """
         Gets new arguments.
         """
-        return (self.written_pitch, self.written_duration)
+        return (self.get_written_pitch(), self.get_written_duration())
 
     ### PRIVATE METHODS ###
 
@@ -4205,15 +4200,14 @@ class Note(Leaf):
             note_head = NoteHead(written_pitch=argument)
             self._note_head = note_head
 
-    @property
-    def written_duration(self) -> _duration.Duration:
+    def get_written_duration(self) -> _duration.Duration:
         """
         Gets and sets written duration.
 
         ..  container:: example
 
             >>> note = abjad.Note("cs''8.")
-            >>> note.written_duration
+            >>> note.get_written_duration()
             Duration(3, 16)
 
             >>> abjad.show(note) # doctest: +SKIP
@@ -4224,8 +4218,8 @@ class Note(Leaf):
                 >>> print(string)
                 cs''8.
 
-            >>> note.written_duration = (1, 16)
-            >>> note.written_duration
+            >>> note.set_written_duration((1, 16))
+            >>> note.get_written_duration()
             Duration(1, 16)
 
             >>> abjad.show(note) # doctest: +SKIP
@@ -4237,22 +4231,20 @@ class Note(Leaf):
                 cs''16
 
         """
-        return super().written_duration
+        return super().get_written_duration()
 
-    @written_duration.setter
-    def written_duration(self, argument):
-        return Leaf.written_duration.fset(self, argument)
+    def set_written_duration(self, argument):
+        return Leaf.set_written_duration(self, argument)
 
     # TODO: change Note always to have a note head
-    @property
-    def written_pitch(self) -> _pitch.NamedPitch | None:
+    def get_written_pitch(self) -> _pitch.NamedPitch | None:
         """
         Gets and sets written pitch.
 
         ..  container:: example
 
             >>> note = abjad.Note("cs''8.")
-            >>> note.written_pitch
+            >>> note.get_written_pitch()
             NamedPitch("cs''")
 
             >>> abjad.show(note) # doctest: +SKIP
@@ -4263,8 +4255,8 @@ class Note(Leaf):
                 >>> print(string)
                 cs''8.
 
-            >>> note.written_pitch = 'D5'
-            >>> note.written_pitch
+            >>> note.set_written_pitch("D5")
+            >>> note.get_written_pitch()
             NamedPitch("d''")
 
             >>> abjad.show(note) # doctest: +SKIP
@@ -4277,21 +4269,20 @@ class Note(Leaf):
 
         """
         if self.note_head is not None:
-            return self.note_head.written_pitch
+            return self.note_head.get_written_pitch()
         else:
             return None
 
-    @written_pitch.setter
-    def written_pitch(self, argument):
+    def set_written_pitch(self, argument):
         if argument is None:
             if self.note_head is not None:
-                self.note_head.written_pitch = None
+                self.note_head.set_written_pitch(None)
         else:
             if self.note_head is None:
                 self.note_head = NoteHead(self, written_pitch=None)
             else:
                 pitch = _pitch.NamedPitch(argument)
-                self.note_head.written_pitch = pitch
+                self.note_head.set_written_pitch(pitch)
 
     ### PUBLIC METHODS ###
 
@@ -4352,14 +4343,14 @@ class Rest(Leaf):
     ) -> None:
         original_input = written_duration
         if isinstance(written_duration, Leaf):
-            multiplier = written_duration.multiplier
+            multiplier = written_duration.get_multiplier()
         if isinstance(written_duration, str):
             string = f"{{ {written_duration} }}"
             parsed = self._parse_lilypond_string(string, language=language)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             written_duration = parsed[0]
         if isinstance(written_duration, Leaf):
-            written_duration = written_duration.written_duration
+            written_duration = written_duration.get_written_duration()
         elif written_duration is None:
             written_duration = _duration.Duration(1, 4)
         else:
@@ -4493,11 +4484,11 @@ class Skip(Leaf):
             parsed = self._parse_lilypond_string(string, language=language)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             input_leaf = parsed[0]
-            written_duration = input_leaf.written_duration
+            written_duration = input_leaf.get_written_duration()
         elif len(arguments) == 1 and isinstance(arguments[0], Leaf):
             input_leaf = arguments[0]
-            written_duration = input_leaf.written_duration
-            multiplier = input_leaf.multiplier
+            written_duration = input_leaf.get_written_duration()
+            multiplier = input_leaf.get_multiplier()
         elif len(arguments) == 1 and not isinstance(arguments[0], str):
             written_duration = arguments[0]
         elif len(arguments) == 0:
@@ -4888,8 +4879,9 @@ class Tuplet(Container):
 
     def _format_close_brackets(self) -> list[str]:
         result = ["}"]
-        if self.tag is not None:
-            result = _tag.double_tag(result, self.tag)
+        self_tag = self.get_tag()
+        if self_tag is not None:
+            result = _tag.double_tag(result, self_tag)
         return result
 
     def _format_closing_site(self, contributions) -> list[str]:
@@ -4909,8 +4901,9 @@ class Tuplet(Container):
         tuplet_command_string = self._get_tuplet_command_string()
         contributions.append(tuplet_command_string)
         contributions.append("{")
-        if self.tag is not None:
-            contributions = _tag.double_tag(contributions, self.tag)
+        self_tag = self.get_tag()
+        if self_tag is not None:
+            contributions = _tag.double_tag(contributions, self_tag)
         return contributions
 
     def _format_opening_site(self, contributions) -> list[str]:
@@ -5267,7 +5260,7 @@ class Tuplet(Container):
 
             >>> tuplet = abjad.Tuplet("1:1", "c'8 d'8 e'8")
             >>> abjad.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")
-            >>> tuplet[0].multiplier = (2, 1)
+            >>> tuplet[0].set_multiplier((2, 1))
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -5291,8 +5284,9 @@ class Tuplet(Container):
         for component in self:
             if isinstance(component, Tuplet):
                 continue
-            elif hasattr(component, "written_duration"):
-                if component.multiplier is not None:
+            # elif hasattr(component, "written_duration"):
+            elif hasattr(component, "get_written_duration"):
+                if component.get_multiplier() is not None:
                     return False
         return True
 
@@ -5378,7 +5372,7 @@ class Tuplet(Container):
             if isinstance(component, Tuplet):
                 continue
             assert isinstance(component, Leaf), repr(component)
-            duration = self.multiplier() * component.written_duration
+            duration = self.multiplier() * component.get_written_duration()
             if not duration.get_is_assignable():
                 return False
         return True
@@ -5671,7 +5665,7 @@ class Tuplet(Container):
         for component in self:
             if isinstance(component, Tuplet):
                 return
-            dot_count = component.written_duration.get_dot_count()
+            dot_count = component.get_written_duration().get_dot_count()
             dot_counts.add(dot_count)
         if 1 < len(dot_counts):
             return
@@ -5685,7 +5679,9 @@ class Tuplet(Container):
         dot_multiplier_duration = _duration.Duration(dot_multiplier)
         dot_multiplier_reciprocal_duration = dot_multiplier_duration.get_reciprocal()
         for component in self:
-            component.written_duration *= dot_multiplier_reciprocal_duration
+            component_written_duration = component.get_written_duration()
+            component_written_duration *= dot_multiplier_reciprocal_duration
+            component.set_written_duration(component_written_duration)
 
     def toggle_prolation(self) -> None:
         r"""
@@ -5809,7 +5805,9 @@ class Tuplet(Container):
                 self.ratio = ratio
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
-                        component.written_duration /= 2
+                        component_written_duration = component.get_written_duration()
+                        component_written_duration /= 2
+                        component.set_written_duration(component_written_duration)
         elif self.ratio.is_augmented():
             while not self.ratio.is_diminished():
                 multiplier = self.multiplier() / 2
@@ -5817,7 +5815,9 @@ class Tuplet(Container):
                 self.ratio = ratio
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
-                        component.written_duration *= 2
+                        component_written_duration = component.get_written_duration()
+                        component_written_duration *= 2
+                        component.set_written_duration(component_written_duration)
 
     def trivialize(self) -> None:
         r"""
@@ -5875,7 +5875,9 @@ class Tuplet(Container):
                 ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
                 component.ratio = ratio
             elif isinstance(component, Leaf):
-                component.written_duration *= self.multiplier()
+                component_written_duration = component.get_written_duration()
+                component_written_duration *= self.multiplier()
+                component.set_written_duration(component_written_duration)
             else:
                 raise TypeError(component)
         self.ratio = _duration.Ratio(1, 1)

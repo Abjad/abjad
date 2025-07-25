@@ -194,7 +194,7 @@ class OnBeatGraceContainer(_score.Container):
             return
         if _is_obgc_nongrace_voice(next_leaf_parent):
             return
-        tag = self.tag
+        tag = self.get_tag()
         assert tag is not None, repr(tag)
         tag = tag.append(
             _tag.Tag("abjad.OnBeatGraceContainer._attach_lilypond_one_voice()")
@@ -245,8 +245,9 @@ class OnBeatGraceContainer(_score.Container):
         Matches first nongrace leaf.
         """
         string = "abjad.OnBeatGraceContainer.match_first_nongrace_leaf()"
-        assert self.tag is not None, repr(self.tag)
-        tag = self.tag.append(_tag.Tag(string))
+        self_tag = self.get_tag()
+        assert self_tag is not None, repr(self_tag)
+        tag = self_tag.append(_tag.Tag(string))
         first_obgc_leaf = _iterlib._get_leaf(self, 0)
         if not isinstance(first_obgc_leaf, _score.Note | _score.Chord):
             message = "must start with note or chord:\n"
@@ -280,7 +281,7 @@ class OnBeatGraceContainer(_score.Container):
             duration = _get.duration(leaf)
             if duration != self.grace_leaf_duration():
                 multiplier = self.grace_leaf_duration() / duration
-                leaf.multiplier = _duration.pair(multiplier)
+                leaf.set_multiplier(_duration.pair(multiplier))
 
 
 def on_beat_grace_container(

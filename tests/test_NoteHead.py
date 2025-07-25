@@ -94,7 +94,7 @@ def test_NoteHead___init___01():
     """
 
     notehead = abjad.NoteHead(6)
-    assert notehead.written_pitch == abjad.NamedPitch(6)
+    assert notehead.get_written_pitch() == abjad.NamedPitch(6)
 
 
 def test_NoteHead___init___02():
@@ -103,7 +103,7 @@ def test_NoteHead___init___02():
     """
 
     notehead = abjad.NoteHead("cs,,,")
-    assert notehead.written_pitch == abjad.NamedPitch("cs,,,")
+    assert notehead.get_written_pitch() == abjad.NamedPitch("cs,,,")
 
 
 def test_NoteHead___init___03():
@@ -115,8 +115,8 @@ def test_NoteHead___init___03():
     new = abjad.NoteHead(notehead)
 
     assert notehead is not new
-    assert notehead.written_pitch == "fs'"
-    assert new.written_pitch != 6
+    assert notehead.get_written_pitch() == "fs'"
+    assert new.get_written_pitch() != 6
 
 
 def test_NoteHead___init___04():
@@ -190,12 +190,12 @@ def test_NoteHead_written_pitch_01():
     """
 
     note = abjad.Note(13, (1, 4))
-    note.note_head.written_pitch = 14
+    note.note_head.set_written_pitch(14)
 
     "NoteHead(d'')"
 
     assert abjad.lilypond(note.note_head) == "d''"
-    assert note.note_head.written_pitch != 14
+    assert note.note_head.get_written_pitch() != 14
 
 
 def test_NoteHead_written_pitch_02():
@@ -204,12 +204,12 @@ def test_NoteHead_written_pitch_02():
     """
 
     note = abjad.Note(13, (1, 4))
-    note.note_head.written_pitch = abjad.NamedPitch(14)
+    note.note_head.set_written_pitch(abjad.NamedPitch(14))
 
     "NoteHead(d'')"
 
     assert abjad.lilypond(note.note_head) == "d''"
-    assert note.note_head.written_pitch != 14
+    assert note.note_head.get_written_pitch() != 14
 
 
 def test_NoteHead_written_pitch_03():
@@ -220,8 +220,8 @@ def test_NoteHead_written_pitch_03():
 
     n1 = abjad.Note(12, (1, 4))
     n2 = abjad.Note(14, (1, 4))
-    n1.written_pitch = n2.written_pitch
+    n1.set_written_pitch(n2.get_written_pitch())
 
-    assert n1.written_pitch == abjad.NamedPitch(14)
-    assert n2.written_pitch == abjad.NamedPitch(14)
-    assert n1.written_pitch is not n2.written_pitch
+    assert n1.get_written_pitch() == abjad.NamedPitch(14)
+    assert n2.get_written_pitch() == abjad.NamedPitch(14)
+    assert n1.get_written_pitch() is not n2.get_written_pitch()

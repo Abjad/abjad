@@ -24,7 +24,7 @@ First we define functions to illustrate the examples that follow:
     ...     ji_cents = fractions.Fraction(log_ratio * log_2)
     ...     semitones = ji_cents / 100
     ...     parts = math.modf(semitones)
-    ...     pitch = abjad.NumberedPitch(note_head.written_pitch) + parts[1]
+    ...     pitch = abjad.NumberedPitch(note_head.get_written_pitch()) + parts[1]
     ...     remainder = round(parts[0] * 100)
     ...     if 50 < abs(remainder):
     ...         if 0 < remainder:
@@ -41,7 +41,7 @@ First we define functions to illustrate the examples that follow:
     ...             else:
     ...                 pitch -= 0.5
     ...                 remainder = 50 + remainder
-    ...     note_head.written_pitch = pitch
+    ...     note_head.set_written_pitch(pitch)
     ...
     >>> def illustrate_partials(
     ...     fundamental,

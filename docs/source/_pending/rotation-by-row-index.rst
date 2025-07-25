@@ -17,8 +17,8 @@ Rotation, by row index
     ...     score = abjad.Score([source_staff], name="Score")
     ...     group = abjad.StaffGroup(name="Staff_Group")
     ...     hexachords = [
-    ...         [_.number for _ in permutation[:6]],
-    ...         [_.number for _ in permutation[6:]],
+    ...         [_.get_number() for _ in permutation[:6]],
+    ...         [_.get_number() for _ in permutation[6:]],
     ...     ]
     ...     markup = abjad.Markup(rf'\markup \box "{label}"')
     ...     instrument_names = [
@@ -51,7 +51,7 @@ Rotation, by row index
     ...             voice = abjad.Voice([abjad.Note(_, (1, 16)) for _ in set])
     ...             for leaf in abjad.select.leaves(voice):
     ...                 markup = abjad.Markup(
-    ...                     rf"\markup {abjad.NumberedPitchClass(leaf.written_pitch)}",
+    ...                     rf"\markup {abjad.NumberedPitchClass(leaf.get_written_pitch())}",
     ...                 )
     ...                 bundle = abjad.bundle(markup, r"- \tweak staff-padding 3")
     ...                 abjad.attach(bundle, leaf, direction=abjad.UP)

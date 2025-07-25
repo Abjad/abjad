@@ -332,13 +332,13 @@ def test_Note___init___12():
     """
 
     tuplet = abjad.Tuplet("3:2", "r8 r8 r8")
-    duration = tuplet[0].written_duration
+    duration = tuplet[0].get_written_duration()
     note = abjad.Note(tuplet[0])
 
     assert isinstance(tuplet[0], abjad.Rest)
     assert isinstance(note, abjad.Note)
     assert abjad.get.parentage(tuplet[0]).get_parent() is tuplet
-    assert tuplet[0].written_duration == duration
+    assert tuplet[0].get_written_duration() == duration
     assert abjad.get.parentage(note).get_parent() is None
 
 
@@ -365,14 +365,14 @@ def test_Note___init___14():
     """
 
     skip = abjad.Skip((1, 8))
-    duration = skip.written_duration
+    duration = skip.get_written_duration()
     note = abjad.Note(skip)
 
     assert isinstance(note, abjad.Note)
     assert dir(skip) == dir(abjad.Skip((1, 4)))
     assert dir(note) == dir(abjad.Note("c'4"))
     assert abjad.get.parentage(note).get_parent() is None
-    assert note.written_duration == duration
+    assert note.get_written_duration() == duration
 
 
 def test_Note___init___15():
@@ -381,13 +381,13 @@ def test_Note___init___15():
     """
 
     tuplet = abjad.Tuplet("3:2", "s8 s8 s8")
-    duration = tuplet[0].written_duration
+    duration = tuplet[0].get_written_duration()
     note = abjad.Note(tuplet[0])
 
     assert isinstance(tuplet[0], abjad.Skip)
     assert isinstance(note, abjad.Note)
     assert abjad.get.parentage(tuplet[0]).get_parent() is tuplet
-    assert tuplet[0].written_duration == duration
+    assert tuplet[0].get_written_duration() == duration
     assert abjad.get.parentage(note).get_parent() is None
 
 
