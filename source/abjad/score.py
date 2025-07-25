@@ -3470,7 +3470,7 @@ class NoteHead:
         """
         strings = []
         if isinstance(self.written_pitch, _pitch.NamedPitch):
-            string = self.written_pitch.name
+            string = self.written_pitch.get_name()
             strings.append(repr(string))
         # drum note head:
         elif isinstance(self.written_pitch, str):
@@ -3494,7 +3494,7 @@ class NoteHead:
     def _get_chord_string(self) -> str:
         result = ""
         if self.written_pitch:
-            result = self.written_pitch.name
+            result = self.written_pitch.get_name()
             if self.is_forced:
                 result += "!"
             if self.is_cautionary:
@@ -3512,7 +3512,7 @@ class NoteHead:
         written_pitch = self.written_pitch
         if isinstance(written_pitch, _pitch.NamedPitch):
             written_pitch = written_pitch.simplify()
-            kernel = written_pitch.name
+            kernel = written_pitch.get_name()
         # drum note head:
         else:
             assert isinstance(written_pitch, str)

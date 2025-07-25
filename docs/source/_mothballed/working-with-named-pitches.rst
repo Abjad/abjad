@@ -21,13 +21,13 @@ Abjad's named pitches model the everyday pitches of notes and chords:
 
 ::
 
-    >>> pitch.accidental
+    >>> pitch.get_accidental()
 
 Get the octave of a named pitch like this:
 
 ::
 
-    >>> pitch.octave
+    >>> pitch.get_octave()
 
 ----
 
@@ -84,7 +84,7 @@ You can also compare named pitches with greater-than and less-than:
 
 ::
 
-    >>> pitch.pitch_class
+    >>> pitch.get_pitch_class()
 
     >>> abjad.NamedPitchClass(pitch)
 

@@ -326,7 +326,7 @@ class Tuning:
         result = []
         for pitch in self.pitches or []:
             pitch_range: _pcollections.PitchRange = _pcollections.PitchRange(
-                f"[{pitch.name}, {(pitch + 24).name}]"
+                f"[{pitch.get_name()}, {(pitch + 24).get_name()}]"
             )
             result.append(pitch_range)
         return result

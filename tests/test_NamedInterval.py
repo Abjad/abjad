@@ -289,7 +289,7 @@ def test_init(input_, semitones, name):
         return
     instance = class_(input_)
     assert float(instance) == semitones
-    assert instance.name == name
+    assert instance.get_name() == name
     abjad.NamedInterval(instance)
     abjad.NumberedInterval(instance)
     abjad.NamedIntervalClass(instance)
@@ -1567,6 +1567,6 @@ def test_NamedInterval_01(pitch_a, pitch_b, name):
     pitch_a = abjad.NamedPitch(pitch_a)
     pitch_b = abjad.NamedPitch(pitch_b)
     interval = abjad.NamedInterval.from_pitch_carriers(pitch_a, pitch_b)
-    assert interval.name == name
+    assert interval.get_name() == name
     assert pitch_a.transpose(interval) == pitch_b
     assert pitch_b.transpose(-interval) == pitch_a

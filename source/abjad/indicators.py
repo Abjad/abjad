@@ -3122,7 +3122,7 @@ class KeySignature:
 
     def _get_lilypond_format(self):
         assert isinstance(self.mode, Mode), repr(self.mode)
-        return rf"\key {self.tonic.name} \{self.mode.name}"
+        return rf"\key {self.tonic.get_name()} \{self.mode.name}"
 
     def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
@@ -3147,9 +3147,9 @@ class KeySignature:
         """
         assert isinstance(self.mode, Mode)
         if self.mode.name == "major":
-            tonic = self.tonic.name.upper()
+            tonic = self.tonic.get_name().upper()
         else:
-            tonic = self.tonic.name
+            tonic = self.tonic.get_name()
         return f"{tonic!s} {self.mode.name}"
 
 
@@ -5984,7 +5984,7 @@ class StartTrillSpan:
                 pitch = self.pitch
             else:
                 pitch = wrapper.get_component().written_pitch + self.interval
-            string = string + f" {pitch.name}"
+            string = string + f" {pitch.get_name()}"
             if self.force_trill_pitch_head_accidental is True:
                 # LilyPond's TrillPitchHead does not obey LilyPond's \accidentalStyle;
                 # forcing the accidental here ensures the accidental always appears
