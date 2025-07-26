@@ -773,7 +773,7 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
                         wrapper._detach()
                         result.append(wrapper.get_indicator())
             return tuple(result)
-    items = []
+    items: list[typing.Any] = []
     if after_grace_container is not None:
         items.append(after_grace_container)
     if before_grace_container is not None:

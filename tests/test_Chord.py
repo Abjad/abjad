@@ -433,7 +433,7 @@ def test_Chord_written_pitches_01():
     """
 
     chord = abjad.Chord("<d' e' f'>4")
-    pitches = chord.written_pitches
+    pitches = chord.get_written_pitches()
 
     assert isinstance(pitches, tuple)
     assert len(pitches) == 3
@@ -451,7 +451,7 @@ def test_Chord_written_pitches_02():
     chord_1 = abjad.Chord("<d' e' f'>4")
     chord_2 = abjad.Chord("<d' e' f'>4")
 
-    assert chord_1.written_pitches == chord_2.written_pitches
+    assert chord_1.get_written_pitches() == chord_2.get_written_pitches()
 
 
 def test_Chord_written_pitches_03():
@@ -460,10 +460,10 @@ def test_Chord_written_pitches_03():
     """
 
     chord = abjad.Chord([], (1, 4))
-    chord.written_pitches = [4, 3, 2]
+    chord.set_written_pitches([4, 3, 2])
     assert abjad.lilypond(chord) == "<d' ef' e'>4"
 
-    chord.written_pitches = (4, 3, 2)
+    chord.set_written_pitches((4, 3, 2))
     assert abjad.lilypond(chord) == "<d' ef' e'>4"
 
 
@@ -473,11 +473,13 @@ def test_Chord_written_pitches_04():
     """
 
     chord = abjad.Chord([], (1, 4))
-    chord.written_pitches = [
-        abjad.NamedPitch(4),
-        abjad.NamedPitch(3),
-        abjad.NamedPitch(2),
-    ]
+    chord.set_written_pitches(
+        [
+            abjad.NamedPitch(4),
+            abjad.NamedPitch(3),
+            abjad.NamedPitch(2),
+        ]
+    )
 
     assert abjad.lilypond(chord) == "<d' ef' e'>4"
 
@@ -488,6 +490,6 @@ def test_Chord_written_pitches_05():
     """
 
     chord = abjad.Chord([], (1, 4))
-    chord.written_pitches = [4, abjad.NamedPitch(3), abjad.NamedPitch(2)]
+    chord.set_written_pitches([4, abjad.NamedPitch(3), abjad.NamedPitch(2)])
 
     assert abjad.lilypond(chord) == "<d' ef' e'>4"

@@ -33,8 +33,8 @@ descents per instruments as there are pitches in its overall scale.
     ...     }
     ...     voice_name_to_descents = {}
     ...     for voice_name, pitch_range in pitch_ranges.items():
-    ...         start = gamut.index(pitch_range.start_pitch)
-    ...         stop = gamut.index(pitch_range.stop_pitch)
+    ...         start = gamut.index(pitch_range.get_start_pitch())
+    ...         stop = gamut.index(pitch_range.get_stop_pitch())
     ...         pitches = gamut[start : stop + 1]
     ...         pitches.reverse()
     ...         pitch_descents = []
@@ -72,14 +72,14 @@ descents are treated one way; the final descent in each voice is treated another
     ...         for scalar_descent in scalar_descents[:-1]:
     ...             pitch_pair_descent = []
     ...             for pitch in scalar_descent:
-    ...                 pitch_class = pitch.pitch_class.name
+    ...                 pitch_class = pitch.get_pitch_class().get_name()
     ...                 shadow_pitch = pitch + pc_to_interval[pitch_class]
     ...                 pitch_pair = (shadow_pitch, pitch)
     ...                 pitch_pair_descent.append(pitch_pair)
     ...             pitch_pair_descents.append(tuple(pitch_pair_descent))
     ...         final_pitch_pair_descent = []
     ...         for pitch in scalar_descents[-1][:-1]:
-    ...             pitch_class = pitch.pitch_class.name
+    ...             pitch_class = pitch.get_pitch_class().get_name()
     ...             shadow_pitch = pitch + pc_to_interval[pitch_class]
     ...             pitch_pair = (shadow_pitch, pitch)
     ...             final_pitch_pair_descent.append(pitch_pair)
@@ -308,7 +308,7 @@ We define more functions:
     ...     voice = score["Violin_2_Voice"]
     ...     descents = voice_to_descents["Violin_2"]
     ...     container = abjad.Container(descents[-1])
-    ...     container[-1].written_duration = (1, 1)
+    ...     container[-1].set_written_duration((1, 1))
     ...     container.append("a2")
     ...     for leaf in container:
     ...         articulation = abjad.Articulation("accent")
@@ -333,10 +333,10 @@ We define more functions:
     ...     descents = voice_to_descents["Viola"]
     ...     container = abjad.Container(descents[-1])
     ...     for leaf in container:
-    ...         if leaf.written_duration == abjad.Duration(4, 4):
-    ...             leaf.written_duration = (8, 4)
+    ...         if leaf.get_written_duration() == abjad.Duration(4, 4):
+    ...             leaf.set_written_duration((8, 4))
     ...         else:
-    ...             leaf.written_duration = (4, 4)
+    ...             leaf.set_written_duration((4, 4))
     ...         articulation = abjad.Articulation("accent")
     ...         abjad.attach(articulation, leaf)
     ...         articulation = abjad.Articulation("tenuto")
@@ -365,7 +365,7 @@ We define more functions:
     ...     voice = score["Cello_Voice"]
     ...     logical_tie = abjad.select.logical_tie(voice[-1], 0)
     ...     for leaf in logical_tie:
-    ...         chord = abjad.Chord(["e,", "a,"], leaf.written_duration)
+    ...         chord = abjad.Chord(["e,", "a,"], leaf.get_written_duration())
     ...         abjad.mutate.replace(leaf, chord)
     ...     descents = voice_to_descents["Cello"]
     ...     descent = descents[-1]
@@ -373,8 +373,8 @@ We define more functions:
     ...     for chord in descent:
     ...         if isinstance(chord, abjad.Note):
     ...             continue
-    ...         pitch = chord.written_pitches[1]
-    ...         note = abjad.Note(pitch, chord.written_duration)
+    ...         pitch = chord.get_written_pitches()[1]
+    ...         note = abjad.Note(pitch, chord.get_written_duration())
     ...         articulation = abjad.Articulation("accent")
     ...         abjad.attach(articulation, note)
     ...         articulation = abjad.Articulation("tenuto")

@@ -430,12 +430,12 @@ def _immediately_precedes(component_1, component_2, ignore_before_after_grace=No
 
 def _set_leaf_duration(leaf, new_duration, *, tag=None):
     new_duration = _duration.Duration(new_duration)
-    if leaf.multiplier is not None:
-        multiplier = new_duration.__div__(leaf.written_duration)
-        leaf.multiplier = _duration.pair(multiplier)
+    if leaf.get_multiplier() is not None:
+        multiplier = new_duration.__div__(leaf.get_written_duration())
+        leaf.set_multiplier(_duration.pair(multiplier))
         return [leaf]
     try:
-        leaf.written_duration = new_duration
+        leaf.set_written_duration(new_duration)
         return [leaf]
     except _exceptions.AssignabilityError:
         pass
@@ -463,7 +463,7 @@ def _set_leaf_duration(leaf, new_duration, *, tag=None):
     all_leaves = [leaf] + following_leaves
     assert len(all_leaves) == len(new_leaves)
     for all_leaf, new_leaf in zip(all_leaves, new_leaves):
-        all_leaf.written_duration = new_leaf.written_duration
+        all_leaf.set_written_duration(new_leaf.get_written_duration())
     logical_tie = _get.logical_tie(leaf)
     logical_tie_leaves = list(logical_tie)
     for leaf_ in logical_tie:
@@ -2570,14 +2570,14 @@ def transpose(argument, interval):
     named_interval = _pitch.NamedInterval(interval)
     for item in _iterate.components(argument, (_score.Note, _score.Chord)):
         if isinstance(item, _score.Note):
-            old_written_pitch = item.note_head.written_pitch
+            old_written_pitch = item.note_head.get_written_pitch()
             new_written_pitch = old_written_pitch.transpose(named_interval)
-            item.note_head.written_pitch = new_written_pitch
+            item.note_head.set_written_pitch(new_written_pitch)
         else:
             for note_head in item.note_heads:
-                old_written_pitch = note_head.written_pitch
+                old_written_pitch = note_head.get_written_pitch()
                 new_written_pitch = old_written_pitch.transpose(named_interval)
-                note_head.written_pitch = new_written_pitch
+                note_head.set_written_pitch(new_written_pitch)
 
 
 def wrap(argument, container):

@@ -96,7 +96,7 @@ def _illustrate_pitch_range(range_):
         _bind.attach(_indicators.Clef("treble"), treble_voice[0])
         _bind.attach(_indicators.Clef("bass"), bass_voice[0])
     for leaf in _iterate.leaves(score):
-        leaf.multiplier = (1, 4)
+        leaf.set_multiplier((1, 4))
     _overrides.override(score).BarLine.stencil = False
     _overrides.override(score).SpanBar.stencil = False
     _overrides.override(score).Glissando.thickness = 2
@@ -113,7 +113,7 @@ def _illustrate_pitch_segment(segment):
     _overrides.override(score).BarLine.stencil = False
     _overrides.override(score).SpanBar.stencil = False
     for leaf in _iterate.leaves(score):
-        leaf.multiplier = (1, 8)
+        leaf.set_multiplier((1, 8))
     _overrides.override(score).Rest.transparent = True
     lilypond_file = _lilypondfile.LilyPondFile([score])
     return lilypond_file
@@ -512,9 +512,9 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
     score = _score.Score([staff_group], name="Score")
     for leaf in leaves:
         markup_wrappers = _get.wrappers(leaf, _indicators.Markup)
-        written_duration = leaf.written_duration
+        written_duration = leaf.get_written_duration()
         if isinstance(leaf, _score.Note):
-            if leaf.written_pitch < lowest_treble_pitch:
+            if leaf.get_written_pitch() < lowest_treble_pitch:
                 treble_leaf = _score.Rest(written_duration)
                 bass_leaf = copy.copy(leaf)
             else:
@@ -524,7 +524,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
             treble_note_heads, bass_note_heads = [], []
             for note_head in leaf.note_heads:
                 new_note_head = copy.copy(note_head)
-                if new_note_head.written_pitch < lowest_treble_pitch:
+                if new_note_head.get_written_pitch() < lowest_treble_pitch:
                     bass_note_heads.append(new_note_head)
                 else:
                     treble_note_heads.append(new_note_head)

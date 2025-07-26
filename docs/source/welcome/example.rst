@@ -44,7 +44,7 @@ Invert the pitches in voice 2:
 ::
 
     >>> for note in abjad.select.notes(voice_2):
-    ...     note.written_pitch = note.written_pitch.invert(axis="G4")
+    ...     note.set_written_pitch(note.get_written_pitch().invert(axis="G4"))
     ... 
     >>> abjad.show(score)
 

@@ -976,7 +976,7 @@ class Clef:
             >>> staff = abjad.Staff(string)
             >>> clef = abjad.Clef("alto")
             >>> for note in staff:
-            ...     staff_position = clef.to_staff_position(note.written_pitch)
+            ...     staff_position = clef.to_staff_position(note.get_written_pitch())
             ...     markup = abjad.Markup(rf"\markup {staff_position.number}")
             ...     abjad.attach(markup, note)
             ...
@@ -1035,7 +1035,7 @@ class Clef:
             >>> staff = abjad.Staff(string)
             >>> clef = abjad.Clef("bass")
             >>> for note in staff:
-            ...     staff_position = clef.to_staff_position(note.written_pitch)
+            ...     staff_position = clef.to_staff_position(note.get_written_pitch())
             ...     markup = abjad.Markup(rf"\markup {staff_position.number}")
             ...     abjad.attach(markup, note)
             ...
@@ -1864,7 +1864,8 @@ class Dynamic:
         return False
 
     def _attachment_test_all(self, component_expression):
-        if not hasattr(component_expression, "written_duration"):
+        # if not hasattr(component_expression, "written_duration"):
+        if not hasattr(component_expression, "get_written_duration"):
             strings = [f"Must be leaf (not {component_expression})."]
             return strings
         return True
@@ -4377,7 +4378,9 @@ class RepeatTie:
 
     def _attachment_test_all(self, argument):
         if not (
-            hasattr(argument, "written_pitch") or hasattr(argument, "written_pitches")
+            # hasattr(argument, "written_pitch") or hasattr(argument, "written_pitches")
+            hasattr(argument, "get_written_pitch")
+            or hasattr(argument, "get_written_pitches")
         ):
             string = f"Must be note or chord (not {argument})."
             return [string]
@@ -5983,7 +5986,7 @@ class StartTrillSpan:
             if self.pitch:
                 pitch = self.pitch
             else:
-                pitch = wrapper.get_component().written_pitch + self.interval
+                pitch = wrapper.get_component().get_written_pitch() + self.interval
             string = string + f" {pitch.get_name()}"
             if self.force_trill_pitch_head_accidental is True:
                 # LilyPond's TrillPitchHead does not obey LilyPond's \accidentalStyle;
@@ -7138,7 +7141,9 @@ class Tie:
 
     def _attachment_test_all(self, argument):
         if not (
-            hasattr(argument, "written_pitch") or hasattr(argument, "written_pitches")
+            # hasattr(argument, "written_pitch") or hasattr(argument, "written_pitches")
+            hasattr(argument, "get_written_pitch")
+            or hasattr(argument, "get_written_pitches")
         ):
             string = f"Must be note or chord (not {argument})."
             return [string]

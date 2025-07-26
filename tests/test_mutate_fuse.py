@@ -21,7 +21,7 @@ def test_mutate_fuse_01():
     fused = abjad.mutate.fuse(notes)
 
     assert len(fused) == 1
-    assert fused[0].written_duration == abjad.Duration(2)
+    assert fused[0].get_written_duration() == abjad.Duration(2)
 
 
 def test_mutate_fuse_02():
@@ -31,7 +31,7 @@ def test_mutate_fuse_02():
 
     fused = abjad.mutate.fuse(abjad.Note("c'4"))
     assert len(fused) == 1
-    assert fused[0].written_duration == abjad.Duration(1, 4)
+    assert fused[0].get_written_duration() == abjad.Duration(1, 4)
 
 
 def test_mutate_fuse_03():
@@ -42,7 +42,7 @@ def test_mutate_fuse_03():
     voice = abjad.Voice("c'4 c'4 c'4 c'4 c'4 c'4 c'4 c'4")
     fused = abjad.mutate.fuse(voice[:])
     assert len(fused) == 1
-    assert fused[0].written_duration == 2
+    assert fused[0].get_written_duration() == 2
     assert voice[0] is fused[0]
 
 
@@ -74,8 +74,8 @@ def test_mutate_fuse_05():
     """
 
     staff = abjad.Staff([abjad.Skip((1, 1)), abjad.Skip((1, 1))])
-    staff[0].multiplier = (1, 16)
-    staff[1].multiplier = (5, 16)
+    staff[0].set_multiplier((1, 16))
+    staff[1].set_multiplier((5, 16))
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""

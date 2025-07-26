@@ -473,9 +473,9 @@ def test_Staff___setitem___07():
     staff[0:4] = "d'8 d'8 d'8 d'8"
     assert len(staff) == 8
     for x in staff[0:4]:
-        assert x.written_pitch == "d'"
+        assert x.get_written_pitch() == "d'"
     for x in staff[4:8]:
-        assert x.written_pitch == "c'"
+        assert x.get_written_pitch() == "c'"
     assert abjad.wf.is_wellformed(staff)
 
 
@@ -490,9 +490,9 @@ def test_Staff___setitem___08():
     staff[0:4] = chords
     assert len(staff) == 8
     for x in staff[0:4]:
-        assert x.written_duration == abjad.Duration(1, 4)
+        assert x.get_written_duration() == abjad.Duration(1, 4)
     for x in staff[4:8]:
-        assert x.written_duration == abjad.Duration(1, 8)
+        assert x.get_written_duration() == abjad.Duration(1, 8)
     assert abjad.wf.is_wellformed(staff)
 
 
