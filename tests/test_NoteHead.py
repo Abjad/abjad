@@ -53,8 +53,8 @@ def test_NoteHead___cmp___04():
 
 def test_NoteHead___copy___01():
     note_head_1 = abjad.NoteHead("cs''")
-    note_head_1.is_cautionary = True
-    note_head_1.is_forced = True
+    note_head_1.set_is_cautionary(True)
+    note_head_1.set_is_forced(True)
     abjad.tweak(note_head_1, r"\tweak color #red")
     abjad.tweak(note_head_1, r"\tweak font-size -2")
 
@@ -64,8 +64,8 @@ def test_NoteHead___copy___01():
     assert isinstance(note_head_2, abjad.NoteHead)
     assert note_head_1 == note_head_2
     assert note_head_1 is not note_head_2
-    assert note_head_1.is_cautionary == note_head_2.is_cautionary
-    assert note_head_1.is_forced == note_head_2.is_forced
+    assert note_head_1.get_is_cautionary() == note_head_2.get_is_cautionary()
+    assert note_head_1.get_is_forced() == note_head_2.get_is_forced()
     assert note_head_1.tweaks == note_head_2.tweaks
     assert note_head_1.tweaks is not note_head_2.tweaks
 
@@ -73,8 +73,8 @@ def test_NoteHead___copy___01():
 def test_NoteHead___deepcopy___01():
     note_head_1 = abjad.NoteHead("cs''")
     abjad.tweak(note_head_1, r"\tweak color #red")
-    note_head_1.is_cautionary = True
-    note_head_1.is_forced = True
+    note_head_1.set_is_cautionary(True)
+    note_head_1.set_is_forced(True)
 
     note_head_2 = copy.deepcopy(note_head_1)
 
@@ -82,8 +82,8 @@ def test_NoteHead___deepcopy___01():
     assert isinstance(note_head_2, abjad.NoteHead)
     assert note_head_1 == note_head_2
     assert note_head_1 is not note_head_2
-    assert note_head_1.is_cautionary == note_head_2.is_cautionary
-    assert note_head_1.is_forced == note_head_2.is_forced
+    assert note_head_1.get_is_cautionary() == note_head_2.get_is_cautionary()
+    assert note_head_1.get_is_forced() == note_head_2.get_is_forced()
     assert note_head_1.tweaks == note_head_2.tweaks
     assert note_head_1.tweaks is not note_head_2.tweaks
 
@@ -131,25 +131,25 @@ def test_NoteHead___init___04():
 
 def test_NoteHead_is_forced_01():
     note_head = abjad.NoteHead(written_pitch="c'")
-    assert note_head.is_forced is None
-    note_head.is_forced = True
-    assert note_head.is_forced is True
-    note_head.is_forced = False
-    assert note_head.is_forced is False
+    assert note_head.get_is_forced() is None
+    note_head.set_is_forced(True)
+    assert note_head.get_is_forced() is True
+    note_head.set_is_forced(False)
+    assert note_head.get_is_forced() is False
 
 
 def test_NoteHead_is_parenthesized_01():
     note_head = abjad.NoteHead(written_pitch="c'")
-    assert note_head.is_parenthesized is None
-    note_head.is_parenthesized = True
-    assert note_head.is_parenthesized is True
-    note_head.is_parenthesized = False
-    assert note_head.is_parenthesized is False
+    assert note_head.get_is_parenthesized() is None
+    note_head.set_is_parenthesized(True)
+    assert note_head.get_is_parenthesized() is True
+    note_head.set_is_parenthesized(False)
+    assert note_head.get_is_parenthesized() is False
 
 
 def test_NoteHead_is_parenthesized_02():
     note_head = abjad.NoteHead(written_pitch="c'")
-    note_head.is_parenthesized = True
+    note_head.set_is_parenthesized(True)
     assert abjad.lilypond(note_head) == abjad.string.normalize(
         r"""
         \parenthesize
@@ -160,7 +160,7 @@ def test_NoteHead_is_parenthesized_02():
 
 def test_NoteHead_is_parenthesized_03():
     note = abjad.Note("c'4")
-    note.note_head.is_parenthesized = True
+    note.note_head.set_is_parenthesized(True)
     assert abjad.lilypond(note) == abjad.string.normalize(
         r"""
         \parenthesize
@@ -171,7 +171,7 @@ def test_NoteHead_is_parenthesized_03():
 
 def test_NoteHead_is_parenthesized_04():
     chord = abjad.Chord("<c' e' g'>4")
-    chord.note_heads[1].is_parenthesized = True
+    chord.note_heads[1].set_is_parenthesized(True)
     assert abjad.lilypond(chord) == abjad.string.normalize(
         r"""
         <

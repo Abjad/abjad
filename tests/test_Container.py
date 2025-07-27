@@ -18,7 +18,7 @@ def test_Container___copy___01():
     """
 
     container_1 = abjad.Container([abjad.Voice("c'8 d'8"), abjad.Voice("c''8 b'8")])
-    container_1.simultaneous = True
+    container_1.set_simultaneous(True)
     container_2 = copy.copy(container_1)
 
     assert abjad.lilypond(container_1) == abjad.string.normalize(
@@ -2150,13 +2150,13 @@ def test_Container_is_simultaneous_01():
     Is true when container encloses contents in LilyPond << >> brackets.
     """
 
-    assert not abjad.Container().simultaneous
-    assert not abjad.Tuplet().simultaneous
-    assert abjad.Score().simultaneous
-    assert not abjad.Container().simultaneous
-    assert not abjad.Staff().simultaneous
-    assert abjad.StaffGroup().simultaneous
-    assert not abjad.Voice().simultaneous
+    assert not abjad.Container().get_simultaneous()
+    assert not abjad.Tuplet().get_simultaneous()
+    assert abjad.Score().get_simultaneous()
+    assert not abjad.Container().get_simultaneous()
+    assert not abjad.Staff().get_simultaneous()
+    assert abjad.StaffGroup().get_simultaneous()
+    assert not abjad.Voice().get_simultaneous()
 
 
 def test_Container_is_simultaneous_02():
@@ -2165,8 +2165,8 @@ def test_Container_is_simultaneous_02():
     """
 
     container = abjad.Container([])
-    container.simultaneous = True
-    assert container.simultaneous
+    container.set_simultaneous(True)
+    assert container.get_simultaneous()
 
 
 def test_Container_is_simultaneous_03():
@@ -2175,10 +2175,10 @@ def test_Container_is_simultaneous_03():
     """
 
     container = abjad.Container([])
-    assert not container.simultaneous
+    assert not container.get_simultaneous()
 
-    container.simultaneous = True
-    assert container.simultaneous
+    container.set_simultaneous(True)
+    assert container.get_simultaneous()
 
 
 def test_Container_is_simultaneous_04():
@@ -2187,7 +2187,7 @@ def test_Container_is_simultaneous_04():
     """
 
     container = abjad.Container([abjad.Voice("c'8 cs'8"), abjad.Voice("d'8 ef'8")])
-    container.simultaneous = True
+    container.set_simultaneous(True)
 
     assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
@@ -2218,7 +2218,7 @@ def test_Container_is_simultaneous_05():
 
     container = abjad.Container("c'8 c'8 c'8 c'8")
     with pytest.raises(Exception):
-        container.simultaneous = True
+        container.set_simultaneous(True)
 
 
 def test_Container_pop_01():

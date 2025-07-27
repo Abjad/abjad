@@ -29,7 +29,7 @@ def _is_obgc_nongrace_voice(component):
 def _is_obgc_polyphony_container(container):
     if type(container) is not _score.Container:
         return False
-    if not container.simultaneous:
+    if not container.get_simultaneous():
         return False
     if len(container) != 2:
         return False
@@ -148,8 +148,8 @@ class OnBeatGraceContainer(_score.Container):
 
     def _format_open_brackets_site(self, contributions):
         result = []
-        if self.identifier:
-            open_bracket = f"{{   {self.identifier}"
+        if self.get_identifier():
+            open_bracket = f"{{   {self.get_identifier()}"
         else:
             open_bracket = "{"
         brackets_open = [open_bracket]

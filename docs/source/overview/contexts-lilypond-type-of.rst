@@ -37,5 +37,5 @@ You can change the LilyPond type of a context after initialization, too:
     >>> staff = abjad.Staff([voice], name="Woodblock_Staff")
     >>> abjad.show(staff)
 
-    >>> staff.lilypond_type = "RhythmicStaff"
+    >>> staff.set_lilypond_type("RhythmicStaff")
     >>> abjad.show(staff)

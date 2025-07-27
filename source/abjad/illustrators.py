@@ -301,9 +301,9 @@ def components_to_score_markup_string(components: typing.Sequence[_score.Compone
     assert all(isinstance(_, _score.Component) for _ in components), repr(components)
     components = copy.deepcopy(components)
     staff = _score.Staff(components, name="Rhythmic_Staff")
-    staff.lilypond_type = "RhythmicStaff"
-    staff.remove_commands.append("Time_signature_engraver")
-    staff.remove_commands.append("Staff_symbol_engraver")
+    staff.set_lilypond_type("RhythmicStaff")
+    staff.get_remove_commands().append("Time_signature_engraver")
+    staff.get_remove_commands().append("Staff_symbol_engraver")
     _overrides.override(staff).Stem.direction = _enums.UP
     _overrides.override(staff).Stem.length = 5
     _overrides.override(staff).TupletBracket.bracket_visibility = True

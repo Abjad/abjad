@@ -830,8 +830,8 @@ def test_mutate__immediately_precedes_11():
     lower_voice_2 = abjad.Voice("g'8 a'8 b'8 c''8")
     staff_1 = abjad.Staff([upper_voice_1, lower_voice_1])
     staff_2 = abjad.Staff([upper_voice_2, lower_voice_2])
-    staff_1.simultaneous = True
-    staff_2.simultaneous = True
+    staff_1.set_simultaneous(True)
+    staff_2.set_simultaneous(True)
     container = abjad.Container([staff_1, staff_2])
 
     assert abjad.lilypond(container) == abjad.string.normalize(

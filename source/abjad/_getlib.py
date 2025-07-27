@@ -70,7 +70,7 @@ def _get_duration(argument, *, in_seconds: bool = False, preprolated: bool = Fal
 
 def _get_duration_in_seconds(component):
     if isinstance(component, _score.Container):
-        if component.simultaneous:
+        if component.get_simultaneous():
             return max(
                 [_duration.Duration(0)]
                 + [_get_duration_in_seconds(_) for _ in component]

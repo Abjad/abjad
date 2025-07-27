@@ -21,7 +21,7 @@ class VerticalMoment:
 
         >>> score = abjad.Score()
         >>> staff_group = abjad.StaffGroup()
-        >>> staff_group.lilypond_type = 'PianoStaff'
+        >>> staff_group.set_lilypond_type('PianoStaff')
         >>> staff_group.append(abjad.Staff("c'4 e'4 d'4 f'4"))
         >>> staff_group.append(abjad.Staff(r"""\clef "bass" g2 f2"""))
         >>> score.append(staff_group)

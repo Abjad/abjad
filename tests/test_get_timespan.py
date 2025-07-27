@@ -90,7 +90,7 @@ def test_get_timespan_10():
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     staff = abjad.Staff([voice_1, voice_2])
-    staff.simultaneous = True
+    staff.set_simultaneous(True)
     for i, leaf in enumerate(voice_1):
         start_offset = abjad.get.timespan(leaf).start_offset
         assert start_offset == i * abjad.Offset(1, 8)
@@ -140,7 +140,7 @@ def test_get_timespan_13():
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     staff = abjad.Staff([voice_1, voice_2])
-    staff.simultaneous = True
+    staff.set_simultaneous(True)
     for i, leaf in enumerate(voice_1):
         start_offset = abjad.get.timespan(leaf).start_offset
         assert start_offset == i * abjad.Offset(1, 8)
@@ -158,7 +158,7 @@ def test_get_timespan_14():
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_3 = abjad.Voice("c'8 d'8 e'8 f'8")
     staff = abjad.Staff([abjad.Container([voice_1, voice_2]), voice_3])
-    staff[0].simultaneous = True
+    staff[0].set_simultaneous(True)
     for i, leaf in enumerate(voice_3):
         start_offset = abjad.get.timespan(leaf).start_offset
         assert start_offset == i * abjad.Offset(1, 8) + abjad.Offset(1, 2)
@@ -173,7 +173,7 @@ def test_get_timespan_15():
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_3 = abjad.Voice("c'8 d'8 e'8 f'8")
     staff = abjad.Staff([voice_3, abjad.Container([voice_1, voice_2])])
-    staff[1].simultaneous = True
+    staff[1].set_simultaneous(True)
     for i, leaf in enumerate(voice_1):
         start_offset = abjad.get.timespan(leaf).start_offset
         assert start_offset == i * abjad.Offset(1, 8) + abjad.Offset(1, 2)
@@ -287,7 +287,7 @@ def test_get_timespan_23():
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     staff = abjad.Staff([voice_1, voice_2])
-    staff.simultaneous = True
+    staff.set_simultaneous(True)
     assert abjad.get.timespan(staff[0]).start_offset == 0
     assert abjad.get.timespan(staff[1]).start_offset == 0
 

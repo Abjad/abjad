@@ -588,13 +588,13 @@ class Clef:
         >>> abjad.attach(abjad.Clef("treble"), voice_1[0], context="Voice")
         >>> command = abjad.VoiceNumber(1)
         >>> abjad.attach(command, voice_1[0])
-        >>> voice_1.consists_commands.append("Clef_engraver")
+        >>> voice_1.get_consists_commands().append("Clef_engraver")
         >>> abjad.attach(abjad.Clef("treble"), voice_2[0], context="Voice")
         >>> abjad.attach(abjad.Clef("bass"), voice_2[1], context="Voice")
         >>> command = abjad.VoiceNumber(2)
         >>> abjad.attach(command, voice_2[0])
-        >>> voice_2.consists_commands.append("Clef_engraver")
-        >>> staff.remove_commands.append("Clef_engraver")
+        >>> voice_2.get_consists_commands().append("Clef_engraver")
+        >>> staff.get_remove_commands().append("Clef_engraver")
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2546,7 +2546,7 @@ class InstrumentName:
         if isinstance(context, str):
             pass
         elif context is not None:
-            context = context.lilypond_type
+            context = context.get_lilypond_type()
         else:
             context = self._lilypond_type()
         if isinstance(self.markup, Markup):
@@ -4474,7 +4474,7 @@ class ShortInstrumentName:
         if isinstance(context, str):
             pass
         elif context is not None:
-            context = context.lilypond_type
+            context = context.get_lilypond_type()
         else:
             context = self._get_lilypond_type()
         if isinstance(self.markup, Markup):
@@ -4503,7 +4503,7 @@ class StaffChange:
     ..  container:: example
 
         >>> staff_group = abjad.StaffGroup()
-        >>> staff_group.lilypond_type = "PianoStaff"
+        >>> staff_group.set_lilypond_type("PianoStaff")
         >>> rh_staff = abjad.Staff("c'8 d'8 e'8 f'8", name="RH_Staff")
         >>> lh_staff = abjad.Staff("s2", name="LH_Staff")
         >>> staff_group.extend([rh_staff, lh_staff])

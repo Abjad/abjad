@@ -489,8 +489,8 @@ class MetricModulation:
             tuplet_exponent = left_rhythm[0][0].get_written_duration().get_exponent()
             tuplet_dots = left_rhythm[0][0].get_written_duration().get_dot_count()
             # tuplet_n, tuplet_d = left_rhythm[0].multiplier
-            tuplet_n = left_rhythm[0].ratio.denominator
-            tuplet_d = left_rhythm[0].ratio.numerator
+            tuplet_n = left_rhythm[0].get_ratio().denominator
+            tuplet_d = left_rhythm[0].get_ratio().numerator
             note_exponent = right_rhythm[0].get_written_duration().get_exponent()
             note_dots = right_rhythm[0].get_written_duration().get_dot_count()
             return (
@@ -507,8 +507,8 @@ class MetricModulation:
             tuplet_exponent = right_rhythm[0][0].get_written_duration().get_exponent()
             tuplet_dots = right_rhythm[0][0].get_written_duration().get_dot_count()
             # tuplet_n, tuplet_d = right_rhythm[0].multiplier
-            tuplet_n = right_rhythm[0].ratio.denominator
-            tuplet_d = right_rhythm[0].ratio.numerator
+            tuplet_n = right_rhythm[0].get_ratio().denominator
+            tuplet_d = right_rhythm[0].get_ratio().numerator
             return (
                 note_exponent,
                 note_dots,

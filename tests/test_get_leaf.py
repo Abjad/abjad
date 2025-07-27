@@ -418,10 +418,10 @@ def test_get_leaf_12():
 
     staff_1 = abjad.Staff([higher_voice_1, lower_voice_1])
     staff_1.name = "mystaff"
-    staff_1.simultaneous = True
+    staff_1.set_simultaneous(True)
     staff_2 = abjad.Staff([lower_voice_2, higher_voice_2])
     staff_2.name = "mystaff"
-    staff_2.simultaneous = True
+    staff_2.set_simultaneous(True)
 
     container = abjad.Container([staff_1, staff_2])
 
@@ -2230,7 +2230,7 @@ def test__inspect_are_logical_voice_31():
     voice_1 = abjad.Voice("c''8 c''8 c''8 c''8")
     voice_2 = abjad.Voice("c'8 c'8 c'8 c'8")
     container = abjad.Container([voice_1, voice_2])
-    container.simultaneous = True
+    container.set_simultaneous(True)
     container = abjad.Container(notes + [container])
 
     assert abjad.lilypond(container) == abjad.string.normalize(

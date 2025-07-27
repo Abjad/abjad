@@ -256,10 +256,14 @@ class Wrapper:
             candidate = parentage.get(context)
         else:
             for component in parentage:
+                assert component is not None
                 if getattr(component, "name", None) == context_name:
                     candidate = component
                     break
-                if getattr(component, "lilypond_type", None) == context_name:
+                # if getattr(component, "lilypond_type", None) == context_name:
+                if hasattr(component, "get_lilypond_type") and (
+                    component.get_lilypond_type() == context_name
+                ):
                     candidate = component
                     break
         if candidate.__class__.__name__ == "Voice":

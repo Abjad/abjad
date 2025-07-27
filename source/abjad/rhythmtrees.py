@@ -652,7 +652,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             target_duration = tuplet_duration
             multiplier = target_duration / contents_duration
             ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
-            tuplet.ratio = ratio
+            tuplet.set_ratio(ratio)
             return [tuplet]
 
         tuplet_duration_ = duration * _duration.Duration(self.pair())
@@ -1291,5 +1291,5 @@ def extract_trivial_tuplets(argument) -> None:
     Extracts trivial tuplets from ``argument``.
     """
     for tuplet in _select.tuplets(argument):
-        if tuplet.ratio.is_trivial():
+        if tuplet.get_ratio().is_trivial():
             _mutate.extract(tuplet)
