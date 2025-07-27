@@ -314,8 +314,8 @@ def test_get_staff_01():
     )
     staff_group.set_lilypond_type("PianoStaff")
     staff_group.set_simultaneous(True)
-    staff_group[0].name = "RH"
-    staff_group[1].name = "LH"
+    staff_group[0].set_name("RH")
+    staff_group[1].set_name("LH")
     staff_change = abjad.StaffChange("LH")
     abjad.attach(staff_change, staff_group[0][0])
 
@@ -363,8 +363,8 @@ def test_get_staff_02():
     )
     staff_group.set_lilypond_type("PianoStaff")
     staff_group.set_simultaneous(True)
-    staff_group[0].name = "RH"
-    staff_group[1].name = "LH"
+    staff_group[0].set_name("RH")
+    staff_group[1].set_name("LH")
     staff_change = abjad.StaffChange("LH")
     abjad.attach(staff_change, staff_group[0][0])
     staff_change = abjad.StaffChange("RH")
@@ -415,8 +415,8 @@ def test_get_staff_03():
     )
     staff_group.set_lilypond_type("PianoStaff")
     staff_group.set_simultaneous(True)
-    staff_group[0].name = "RH"
-    staff_group[1].name = "LH"
+    staff_group[0].set_name("RH")
+    staff_group[1].set_name("LH")
     staff_change = abjad.StaffChange("LH")
     abjad.attach(staff_change, staff_group[0][-1])
 
@@ -456,8 +456,8 @@ def test_get_staff_04():
     )
     staff_group.set_lilypond_type("PianoStaff")
     staff_group.set_simultaneous(True)
-    staff_group[0].name = "RH"
-    staff_group[1].name = "LH"
+    staff_group[0].set_name("RH")
+    staff_group[1].set_name("LH")
     staff_change = abjad.StaffChange("LH")
     abjad.attach(staff_change, staff_group[0][0])
     staff_change = abjad.StaffChange("LH")

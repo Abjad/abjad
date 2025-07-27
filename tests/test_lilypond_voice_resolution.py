@@ -57,10 +57,10 @@ def test_Voice_lilypond_voice_resolution_02():
     """
 
     voice = abjad.Voice("c'8 d'8 b'8 c''8")
-    voice.name = "foo"
+    voice.set_name("foo")
     voice.insert(2, abjad.Container([abjad.Voice("e'8 f'8"), abjad.Voice("g'8 a'8")]))
     voice[2].set_simultaneous(True)
-    voice[2][0].name = "foo"
+    voice[2][0].set_name("foo")
     abjad.override(voice).NoteHead.color = "#red"
 
     assert abjad.lilypond(voice) == abjad.string.normalize(

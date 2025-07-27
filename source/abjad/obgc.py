@@ -823,14 +823,14 @@ def on_beat_grace_container(
     first_nongrace_leaf = _iterlib._get_leaf(nongrace_leaves, 0)
     music_voice = _parentage.Parentage(first_nongrace_leaf).get(_score.Voice)
     assert isinstance(music_voice, _score.Voice), repr(music_voice)
-    if music_voice.name is None:
+    if music_voice.get_name() is None:
         message = "nongrace leaves must reside in named voice:\n"
         message += f"   {repr(music_voice)}"
         raise Exception(message)
     obgc = OnBeatGraceContainer(
         grace_leaves, grace_leaf_duration=grace_leaf_duration, tag=tag
     )
-    nongrace_voice = _score.Voice(name=music_voice.name, tag=tag)
+    nongrace_voice = _score.Voice(name=music_voice.get_name(), tag=tag)
     _mutate.wrap(nongrace_leaves, nongrace_voice)
     polyphony_container = _score.Container(simultaneous=True, tag=tag)
     _mutate.wrap(nongrace_voice, polyphony_container)

@@ -10,7 +10,7 @@ def test_Voice___copy___01():
     """
 
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
-    voice_1.name = "SopranoVoice"
+    voice_1.set_name("SopranoVoice")
     voice_1.get_remove_commands().append("Forbid_line_break_engraver")
     voice_1.get_consists_commands().append("Time_signature_engraver")
     abjad.override(voice_1).NoteHead.color = "#red"

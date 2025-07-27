@@ -18,7 +18,7 @@ def test_Parentage__id_string_02():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     parentage = abjad.get.parentage(staff)
-    staff.name = "foo"
+    staff.set_name("foo")
     assert parentage._id_string(staff) == "Staff-'foo'"
 
 
@@ -41,7 +41,7 @@ def test_Parentage_logical_voice_02():
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    staff.name = "foo"
+    staff.set_name("foo")
 
     containment = abjad.get.parentage(staff).logical_voice()
     for component in abjad.iterate.components(staff):
@@ -57,8 +57,8 @@ def test_Parentage_logical_voice_03():
     staff = abjad.Staff(
         [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("c'8 d'8 e'8 f'8")]
     )
-    staff[0].name = "foo"
-    staff[1].name = "foo"
+    staff[0].set_name("foo")
+    staff[1].set_name("foo")
 
     containment = abjad.get.parentage(staff[0][0]).logical_voice()
     for leaf in abjad.iterate.leaves(staff):
@@ -160,7 +160,7 @@ def test_Parentage_logical_voice_05():
     )
 
     abjad.override(voice).NoteHead.color = "#red"
-    voice.name = "foo"
+    voice.set_name("foo")
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -220,10 +220,10 @@ def test_Parentage_logical_voice_06():
     container = abjad.Container(
         [abjad.Staff([abjad.Voice("c'8 d'8")]), abjad.Staff([abjad.Voice("e'8 f'8")])]
     )
-    container[0].name = "staff1"
-    container[1].name = "staff2"
-    container[0][0].name = "voicefoo"
-    container[1][0].name = "voicefoo"
+    container[0].set_name("staff1")
+    container[1].set_name("staff2")
+    container[0][0].set_name("voicefoo")
+    container[1][0].set_name("voicefoo")
     leaves = abjad.select.leaves(container)
     abjad.beam(leaves[:2])
     abjad.beam(leaves[2:])
@@ -376,12 +376,12 @@ def test_Parentage_logical_voice_09():
     """
 
     staff_1 = abjad.Staff([abjad.Voice([abjad.Note(0, (1, 8))])])
-    staff_1.name = "staff"
-    staff_1[0].name = "voice"
+    staff_1.set_name("staff")
+    staff_1[0].set_name("voice")
 
     staff_2 = abjad.Staff([abjad.Voice([abjad.Note(0, (1, 8))])])
-    staff_2.name = "staff"
-    staff_2[0].name = "voice"
+    staff_2.set_name("staff")
+    staff_2[0].set_name("voice")
 
     staff_1_leaf_signature = abjad.get.parentage(staff_1[0][0]).logical_voice()
     staff_2_leaf_signature = abjad.get.parentage(staff_2[0][0]).logical_voice()
@@ -442,7 +442,8 @@ def test_Parentage_logical_voice_11():
     """
 
     container = abjad.Container([abjad.Staff("c'8 c'8"), abjad.Staff("c'8 c'8")])
-    container[0].name = container[1].name = "staff"
+    container[0].set_name("staff")
+    container[1].set_name("staff")
 
     assert abjad.lilypond(container) == abjad.string.normalize(
         r"""

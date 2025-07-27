@@ -102,11 +102,11 @@ def _get_effective_wrapper(component, prototype, *, attributes=None, command=Non
         if isinstance(component_, _score.Voice):
             if (
                 enclosing_voice_name is not None
-                and component_.name != enclosing_voice_name
+                and component_.get_name() != enclosing_voice_name
             ):
                 continue
             else:
-                enclosing_voice_name = component_.name or id(component_)
+                enclosing_voice_name = component_.get_name() or id(component_)
         local_wrappers = []
         for wrapper_ in component_._wrappers:
             if wrapper_.get_annotation():

@@ -25,10 +25,10 @@ def _aggregate_context_wrappers(argument):
     """
     context_name_to_wrappers = {}
     for context in _iterate.components(argument, _score.Context):
-        if context.name not in context_name_to_wrappers:
-            context_name_to_wrappers[context.name] = []
+        if context.get_name() not in context_name_to_wrappers:
+            context_name_to_wrappers[context.get_name()] = []
         wrappers = context._dependent_wrappers[:]
-        context_name_to_wrappers[context.name].extend(wrappers)
+        context_name_to_wrappers[context.get_name()].extend(wrappers)
     return context_name_to_wrappers
 
 

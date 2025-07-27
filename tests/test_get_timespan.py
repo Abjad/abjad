@@ -43,7 +43,8 @@ def test_get_timespan_06():
 
     voice_1 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
-    voice_1.name = voice_2.name = "voice"
+    voice_1.set_name("voice")
+    voice_2.set_name("voice")
     container = abjad.Container([voice_1, voice_2])
     leaves = abjad.select.leaves(container)
     for i, x in enumerate(leaves):
@@ -190,7 +191,8 @@ def test_get_timespan_16():
     staff = abjad.Staff(
         [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("c'8 d'8 e'8 f'8")]
     )
-    staff[0].name = staff[1].name = "voice"
+    staff[0].set_name("voice")
+    staff[1].set_name("voice")
     for i, voice in enumerate(staff):
         start_offset = abjad.get.timespan(voice).start_offset
         assert start_offset == i * abjad.Offset(4, 8)
@@ -204,7 +206,8 @@ def test_get_timespan_17():
     container = abjad.Container(
         [abjad.Staff("c'8 d'8 e'8 f'8"), abjad.Staff("c'8 d'8 e'8 f'8")]
     )
-    container[0].name = container[1].name = "staff"
+    container[0].set_name("staff")
+    container[1].set_name("staff")
     start_offset = abjad.get.timespan(container[0]).start_offset
     assert start_offset == abjad.Offset(0)
     start_offset = abjad.get.timespan(container[1]).start_offset
@@ -273,7 +276,8 @@ def test_get_timespan_22():
 
     inner_voice = abjad.Voice("c'8 d'8 e'8 f'8")
     outer_voice = abjad.Voice([abjad.Note(0, (1, 8)), inner_voice])
-    inner_voice.name = outer_voice.name = "voice"
+    inner_voice.set_name("voice")
+    outer_voice.set_name("voice")
     abjad.Staff([abjad.Note(1, (1, 8)), outer_voice])
     assert abjad.get.timespan(inner_voice).start_offset == abjad.Offset(2, 8)
     assert abjad.get.timespan(outer_voice).start_offset == abjad.Offset(1, 8)
@@ -301,7 +305,8 @@ def test_get_timespan_24():
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_1b = abjad.Voice("c'8 d'8 e'8 f'8")
     voice_2b = abjad.Voice("c'8 d'8 e'8 f'8")
-    voice_1.name = voice_1b.name = "voiceOne"
+    voice_1.set_name("voiceOne")
+    voice_1b.set_name("voiceOne")
     staff_1 = abjad.Staff([voice_1, voice_1b])
     staff_2 = abjad.Staff([voice_2, voice_2b])
     abjad.StaffGroup([staff_1, staff_2])
