@@ -2571,16 +2571,20 @@ class Chord(Leaf):
             if multiplier is None:
                 multiplier = leaf.get_multiplier()
             # TODO: move to dedicated from_note() constructor:
-            if isinstance(leaf, Note) and leaf.note_head is not None:
-                written_pitches.append(leaf.note_head.get_written_pitch())
-                are_cautionary = [leaf.note_head.get_is_cautionary()]
-                are_forced = [leaf.note_head.get_is_forced()]
-                are_parenthesized = [leaf.note_head.get_is_parenthesized()]
+            if isinstance(leaf, Note) and leaf.get_note_head() is not None:
+                written_pitches.append(leaf.get_note_head().get_written_pitch())
+                are_cautionary = [leaf.get_note_head().get_is_cautionary()]
+                are_forced = [leaf.get_note_head().get_is_forced()]
+                are_parenthesized = [leaf.get_note_head().get_is_parenthesized()]
             elif isinstance(leaf, Chord):
-                written_pitches.extend(_.get_written_pitch() for _ in leaf.note_heads)
-                are_cautionary = [_.get_is_cautionary() for _ in leaf.note_heads]
-                are_forced = [_.get_is_forced() for _ in leaf.note_heads]
-                are_parenthesized = [_.get_is_parenthesized() for _ in leaf.note_heads]
+                written_pitches.extend(
+                    _.get_written_pitch() for _ in leaf.get_note_heads()
+                )
+                are_cautionary = [_.get_is_cautionary() for _ in leaf.get_note_heads()]
+                are_forced = [_.get_is_forced() for _ in leaf.get_note_heads()]
+                are_parenthesized = [
+                    _.get_is_parenthesized() for _ in leaf.get_note_heads()
+                ]
         # TODO: move to dedicated constructor:
         elif len(arguments) == 2:
             written_pitches, written_duration = arguments
@@ -2637,10 +2641,10 @@ class Chord(Leaf):
         Copies chord.
         """
         new_chord = Leaf.__copy__(self, *arguments)
-        new_chord.note_heads[:] = []
-        for note_head in self.note_heads:
+        new_chord.get_note_heads()[:] = []
+        for note_head in self.get_note_heads():
             note_head = copy.copy(note_head)
-            new_chord.note_heads.append(note_head)
+            new_chord.get_note_heads().append(note_head)
         return new_chord
 
     def __getnewargs__(
@@ -2680,7 +2684,7 @@ class Chord(Leaf):
 
     def _format_leaf_nucleus(self):
         result = []
-        note_heads = self.note_heads
+        note_heads = self.get_note_heads()
         if any("\n" in _._get_lilypond_format() for _ in note_heads):
             for note_head in note_heads:
                 current_format = note_head._get_lilypond_format()
@@ -2705,12 +2709,11 @@ class Chord(Leaf):
         return f"<{summary}>{duration}"
 
     def _get_summary(self):
-        return " ".join([_._get_chord_string() for _ in self.note_heads])
+        return " ".join([_._get_chord_string() for _ in self.get_note_heads()])
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def note_heads(self) -> "NoteHeadList":
+    def get_note_heads(self) -> "NoteHeadList":
         r"""
         Gets note-heads in chord.
 
@@ -2720,7 +2723,7 @@ class Chord(Leaf):
 
             >>> chord = abjad.Chord("<g' c'' e''>4")
             >>> abjad.show(chord) # doctest: +SKIP
-            >>> for _ in chord.note_heads: _
+            >>> for _ in chord.get_note_heads(): _
             NoteHead("g'")
             NoteHead("c''")
             NoteHead("e''")
@@ -2732,7 +2735,7 @@ class Chord(Leaf):
             >>> chord = abjad.Chord("<g' c'' e''>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> chord.note_heads = "c' d' fs'"
+            >>> chord.set_note_heads("c' d' fs'")
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -2748,7 +2751,7 @@ class Chord(Leaf):
                 >>> chord = abjad.Chord("<g' c'' e''>4")
                 >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> chord.note_heads = [16, 17, 19]
+            >>> chord.set_note_heads([16, 17, 19])
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -2760,12 +2763,14 @@ class Chord(Leaf):
         """
         return self._note_heads
 
-    @note_heads.setter
-    def note_heads(self, note_heads):
+    def set_note_heads(self, note_heads):
+        """
+        Sets note-heads in chord.
+        """
         self._note_heads[:] = []
         if isinstance(note_heads, str):
             note_heads = note_heads.split()
-        self.note_heads.extend(note_heads)
+        self.get_note_heads().extend(note_heads)
 
     def get_written_duration(self) -> _duration.Duration:
         """
@@ -2831,10 +2836,10 @@ class Chord(Leaf):
             (NamedPitch("f'"), NamedPitch("b'"), NamedPitch("d''"))
 
         """
-        return tuple(_.get_written_pitch() for _ in self.note_heads)
+        return tuple(_.get_written_pitch() for _ in self.get_note_heads())
 
     def set_written_pitches(self, pitches):
-        self.note_heads = pitches
+        self.set_note_heads(pitches)
 
 
 class Cluster(Container):
@@ -3327,7 +3332,7 @@ class NoteHead:
         >>> note = abjad.Note("cs''")
         >>> abjad.show(note) # doctest: +SKIP
 
-        >>> note.note_head
+        >>> note.get_note_head()
         NoteHead("cs''")
 
     ..  container:: example
@@ -3346,11 +3351,11 @@ class NoteHead:
 
         >>> chord = abjad.Chord([0, 2, 10], (1, 4))
 
-        >>> abjad.tweak(chord.note_heads[0], r"\tweak color #red")
-        >>> abjad.tweak(chord.note_heads[0], r"\tweak thickness 2")
-        >>> abjad.tweak(chord.note_heads[1], r"\tweak color #red")
-        >>> abjad.tweak(chord.note_heads[1], r"\tweak thickness 2")
-        >>> abjad.tweak(chord.note_heads[2], r"\tweak color #blue")
+        >>> abjad.tweak(chord.get_note_heads()[0], r"\tweak color #red")
+        >>> abjad.tweak(chord.get_note_heads()[0], r"\tweak thickness 2")
+        >>> abjad.tweak(chord.get_note_heads()[1], r"\tweak color #red")
+        >>> abjad.tweak(chord.get_note_heads()[1], r"\tweak thickness 2")
+        >>> abjad.tweak(chord.get_note_heads()[2], r"\tweak color #blue")
         >>> abjad.show(chord) # doctest: +SKIP
 
         ..  docs::
@@ -3550,10 +3555,10 @@ class NoteHead:
         ..  container:: example
 
             >>> note = abjad.Note("c''4")
-            >>> alternative = copy.copy(note.note_head)
+            >>> alternative = copy.copy(note.get_note_head())
             >>> alternative.set_is_forced(True)
             >>> triple = (alternative, abjad.Tag("-PARTS"), abjad.Tag("+PARTS"))
-            >>> note.note_head.set_alternative(triple)
+            >>> note.get_note_head().set_alternative(triple)
             >>> abjad.show(note) # doctest: +SKIP
 
             >>> string = abjad.lilypond(note, tags=True)
@@ -3577,7 +3582,7 @@ class NoteHead:
 
             Clear with none:
 
-            >>> note.note_head.set_alternative(None)
+            >>> note.get_note_head().set_alternative(None)
             >>> abjad.show(note) # doctest: +SKIP
 
             >>> string = abjad.lilypond(note, tags=True)
@@ -3587,10 +3592,10 @@ class NoteHead:
         ..  container:: example
 
             >>> chord = abjad.Chord("<c' d' bf''>4")
-            >>> alternative = copy.copy(chord.note_heads[0])
+            >>> alternative = copy.copy(chord.get_note_heads()[0])
             >>> alternative.set_is_forced(True)
             >>> triple = (alternative, abjad.Tag("-PARTS"), abjad.Tag("+PARTS"))
-            >>> chord.note_heads[0].set_alternative(triple)
+            >>> chord.get_note_heads()[0].set_alternative(triple)
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> string = abjad.lilypond(chord, tags=True)
@@ -3606,7 +3611,7 @@ class NoteHead:
 
             Suvives pitch reassignment:
 
-            >>> chord.note_heads[0].set_written_pitch("B3")
+            >>> chord.get_note_heads()[0].set_written_pitch("B3")
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> string = abjad.lilypond(chord, tags=True)
@@ -3622,7 +3627,7 @@ class NoteHead:
 
             Clear with none:
 
-            >>> chord.note_heads[0].set_alternative(None)
+            >>> chord.get_note_heads()[0].set_alternative(None)
             >>> string = abjad.lilypond(chord, tags=True)
             >>> print(string)
             <b d' bf''>4
@@ -3650,7 +3655,7 @@ class NoteHead:
         ..  container:: example
 
             >>> note = abjad.Note("c''")
-            >>> note.note_head.set_is_cautionary(True)
+            >>> note.get_note_head().set_is_cautionary(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3660,7 +3665,7 @@ class NoteHead:
                 c''?4
 
             >>> note = abjad.Note("cs''")
-            >>> note.note_head.set_is_cautionary(True)
+            >>> note.get_note_head().set_is_cautionary(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3685,7 +3690,7 @@ class NoteHead:
         ..  container:: example
 
             >>> note = abjad.Note("c''")
-            >>> note.note_head.set_is_forced(True)
+            >>> note.get_note_head().set_is_forced(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3695,7 +3700,7 @@ class NoteHead:
                 c''!4
 
             >>> note = abjad.Note("cs''")
-            >>> note.note_head.set_is_forced(True)
+            >>> note.get_note_head().set_is_forced(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3722,7 +3727,7 @@ class NoteHead:
         ..  container:: example
 
             >>> note = abjad.Note("c''")
-            >>> note.note_head.set_is_parenthesized(True)
+            >>> note.get_note_head().set_is_parenthesized(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3733,7 +3738,7 @@ class NoteHead:
                 c''4
 
             >>> note = abjad.Note("cs''")
-            >>> note.note_head.set_is_parenthesized(True)
+            >>> note.get_note_head().set_is_parenthesized(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3881,7 +3886,7 @@ class NoteHeadList(list):
             >>> note_head = abjad.NoteHead("f''")
             >>> abjad.tweak(note_head, r"\tweak color #green")
             >>> note_heads.append(note_head)
-            >>> chord.note_heads.extend(note_heads)
+            >>> chord.get_note_heads().extend(note_heads)
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -3918,7 +3923,7 @@ class NoteHeadList(list):
             >>> chord = abjad.Chord("<e' cs'' f''>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> note_head = chord.note_heads.get("e'")
+            >>> note_head = chord.get_note_heads().get("e'")
             >>> abjad.tweak(note_head, r"\tweak color #red")
             >>> abjad.show(chord) # doctest: +SKIP
 
@@ -3940,7 +3945,7 @@ class NoteHeadList(list):
             >>> chord = abjad.Chord("<e' cs'' f''>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> note_head = chord.note_heads.get(4)
+            >>> note_head = chord.get_note_heads().get(4)
             >>> abjad.tweak(note_head, r"\tweak color #red")
             >>> abjad.show(chord) # doctest: +SKIP
 
@@ -3986,7 +3991,7 @@ class NoteHeadList(list):
                 >>> print(string)
                 <ef' c'' f''>4
 
-            >>> chord.note_heads.pop(1)
+            >>> chord.get_note_heads().pop(1)
             NoteHead("c''")
 
             >>> abjad.show(chord) # doctest: +SKIP
@@ -4015,8 +4020,8 @@ class NoteHeadList(list):
                 >>> print(string)
                 <ef' c'' f''>4
 
-            >>> note_head = chord.note_heads[1]
-            >>> chord.note_heads.remove(note_head)
+            >>> note_head = chord.get_note_heads()[1]
+            >>> chord.get_note_heads().remove(note_head)
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -4079,19 +4084,19 @@ class Note(Leaf):
             written_duration = leaf.get_written_duration()
             if multiplier is None:
                 multiplier = leaf.get_multiplier()
-            if isinstance(leaf, Note) and leaf.note_head is not None:
-                written_pitch = leaf.note_head.get_written_pitch()
-                is_cautionary = leaf.note_head.get_is_cautionary()
-                is_forced = leaf.note_head.get_is_forced()
-                is_parenthesized = leaf.note_head.get_is_parenthesized()
+            if isinstance(leaf, Note) and leaf.get_note_head() is not None:
+                written_pitch = leaf.get_note_head().get_written_pitch()
+                is_cautionary = leaf.get_note_head().get_is_cautionary()
+                is_forced = leaf.get_note_head().get_is_forced()
+                is_parenthesized = leaf.get_note_head().get_is_parenthesized()
             # TODO: move into separate from_chord() constructor:
             elif isinstance(leaf, Chord):
-                written_pitches = [_.get_written_pitch() for _ in leaf.note_heads]
+                written_pitches = [_.get_written_pitch() for _ in leaf.get_note_heads()]
                 if written_pitches:
                     written_pitch = written_pitches[0]
-                    is_cautionary = leaf.note_heads[0].get_is_cautionary()
-                    is_forced = leaf.note_heads[0].get_is_forced()
-                    is_parenthesized = leaf.note_heads[0].get_is_parenthesized()
+                    is_cautionary = leaf.get_note_heads()[0].get_is_cautionary()
+                    is_forced = leaf.get_note_heads()[0].get_is_forced()
+                    is_parenthesized = leaf.get_note_heads()[0].get_is_parenthesized()
         elif len(arguments) == 2:
             written_pitch, written_duration = arguments
         elif len(arguments) == 0:
@@ -4102,24 +4107,26 @@ class Note(Leaf):
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
         if written_pitch is not None:
             if written_pitch not in _lyconst.drums:
-                self.note_head = NoteHead(
+                note_head = NoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
                     is_forced=is_forced,
                     is_parenthesized=is_parenthesized,
                 )
+                self.set_note_head(note_head)
             else:
                 assert isinstance(written_pitch, str), repr(written_pitch)
-                self.note_head = DrumNoteHead(
+                note_head = DrumNoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
                     is_forced=is_forced,
                     is_parenthesized=is_parenthesized,
                 )
+                self.set_note_head(note_head)
             if isinstance(written_pitch, NoteHead):
-                self.note_head.tweaks = copy.deepcopy(written_pitch.tweaks)
+                self.get_note_head().tweaks = copy.deepcopy(written_pitch.tweaks)
         else:
-            self._note_head = None
+            raise Exception("must have note-head")
         if len(arguments) == 1 and isinstance(arguments[0], Leaf):
             self._copy_override_and_set_from_leaf(arguments[0])
 
@@ -4130,7 +4137,8 @@ class Note(Leaf):
         Copies note.
         """
         new_note = Leaf.__copy__(self, *arguments)
-        new_note.note_head = copy.copy(self.note_head)
+        note_head = copy.copy(self.get_note_head())
+        new_note.set_note_head(note_head)
         return new_note
 
     def __getnewargs__(self) -> tuple:
@@ -4143,8 +4151,8 @@ class Note(Leaf):
 
     def _get_body(self) -> list[str]:
         duration = self._get_formatted_duration()
-        if self.note_head is not None:
-            string = self.note_head._get_lilypond_format(duration=duration)
+        if self.get_note_head() is not None:
+            string = self.get_note_head()._get_lilypond_format(duration=duration)
         else:
             string = duration
         return [string]
@@ -4154,16 +4162,14 @@ class Note(Leaf):
 
     ### PUBLIC PROPERTIES ###
 
-    # TODO: change note to always have note head
-    @property
-    def note_head(self) -> NoteHead | None:
+    def get_note_head(self) -> NoteHead:
         """
-        Gets and sets note-head.
+        Gets note-head.
 
         .. container:: example
 
             >>> note = abjad.Note("cs''8.")
-            >>> note.note_head
+            >>> note.get_note_head()
             NoteHead("cs''")
 
             >>> abjad.show(note) # doctest: +SKIP
@@ -4174,8 +4180,8 @@ class Note(Leaf):
                 >>> print(string)
                 cs''8.
 
-            >>> note.note_head = 'D5'
-            >>> note.note_head
+            >>> note.set_note_head("D5")
+            >>> note.get_note_head()
             NoteHead("d''")
 
             >>> abjad.show(note) # doctest: +SKIP
@@ -4189,8 +4195,10 @@ class Note(Leaf):
         """
         return self._note_head
 
-    @note_head.setter
-    def note_head(self, argument):
+    def set_note_head(self, argument):
+        """
+        Sets note-head.
+        """
         if isinstance(argument, type(None)):
             self._note_head = None
         elif isinstance(argument, NoteHead):
@@ -4267,21 +4275,22 @@ class Note(Leaf):
                 d''8.
 
         """
-        if self.note_head is not None:
-            return self.note_head.get_written_pitch()
+        if self.get_note_head() is not None:
+            return self.get_note_head().get_written_pitch()
         else:
             return None
 
     def set_written_pitch(self, argument):
         if argument is None:
-            if self.note_head is not None:
-                self.note_head.set_written_pitch(None)
+            if self.get_note_head() is not None:
+                self.get_note_head().set_written_pitch(None)
         else:
-            if self.note_head is None:
-                self.note_head = NoteHead(self, written_pitch=None)
+            if self.get_note_head() is None:
+                note_head = NoteHead(self, written_pitch=None)
+                self.set_note_head(note_head)
             else:
                 pitch = _pitch.NamedPitch(argument)
-                self.note_head.set_written_pitch(pitch)
+                self.get_note_head().set_written_pitch(pitch)
 
     ### PUBLIC METHODS ###
 

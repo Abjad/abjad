@@ -606,8 +606,8 @@ def test_mutate_copy_09():
     Copies tweaks.
     """
     staff = abjad.Staff("c'4 cs' d' ds'")
-    abjad.tweak(staff[1].note_head, r"\tweak color #red")
-    abjad.tweak(staff[1].note_head, r"\tweak Accidental.color #red")
+    abjad.tweak(staff[1].get_note_head(), r"\tweak color #red")
+    abjad.tweak(staff[1].get_note_head(), r"\tweak Accidental.color #red")
     copied_staff = abjad.mutate.copy(staff)
     string = abjad.lilypond(copied_staff)
 

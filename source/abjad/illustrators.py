@@ -369,7 +369,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
         REGRESSION. Function preserves tweaks:
 
         >>> note = abjad.Note("c'4")
-        >>> abjad.tweak(note.note_head, r"\tweak color #red")
+        >>> abjad.tweak(note.get_note_head(), r"\tweak color #red")
         >>> score = abjad.illustrators.make_piano_score([note])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -402,10 +402,10 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
             >>
 
         >>> chord = abjad.Chord("<c d a' bf'>4")
-        >>> abjad.tweak(chord.note_heads[0], r"\tweak color #red")
-        >>> abjad.tweak(chord.note_heads[1], r"\tweak color #red")
-        >>> abjad.tweak(chord.note_heads[2], r"\tweak color #blue")
-        >>> abjad.tweak(chord.note_heads[3], r"\tweak color #blue")
+        >>> abjad.tweak(chord.get_note_heads()[0], r"\tweak color #red")
+        >>> abjad.tweak(chord.get_note_heads()[1], r"\tweak color #red")
+        >>> abjad.tweak(chord.get_note_heads()[2], r"\tweak color #blue")
+        >>> abjad.tweak(chord.get_note_heads()[3], r"\tweak color #blue")
         >>> score = abjad.illustrators.make_piano_score([chord])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -522,7 +522,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
                 bass_leaf = _score.Rest(written_duration)
         elif isinstance(leaf, _score.Chord):
             treble_note_heads, bass_note_heads = [], []
-            for note_head in leaf.note_heads:
+            for note_head in leaf.get_note_heads():
                 new_note_head = copy.copy(note_head)
                 if new_note_head.get_written_pitch() < lowest_treble_pitch:
                     bass_note_heads.append(new_note_head)
