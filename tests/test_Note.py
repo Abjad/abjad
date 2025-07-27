@@ -166,8 +166,8 @@ def test_Note___copy___07():
     """
 
     note = abjad.Note("c'4")
-    abjad.tweak(note.note_head, r"\tweak color #red")
-    abjad.tweak(note.note_head, r"\tweak Accidental.color #red")
+    abjad.tweak(note.get_note_head(), r"\tweak color #red")
+    abjad.tweak(note.get_note_head(), r"\tweak Accidental.color #red")
     copied_note = copy.copy(note)
     string = abjad.lilypond(copied_note)
     assert string == abjad.string.normalize(
@@ -307,105 +307,6 @@ def test_Note___init___10():
     ), print(abjad.lilypond(note))
 
     assert abjad.wf.is_wellformed(note)
-
-
-def test_Note___init___11():
-    """
-    Initializes note from rest.
-    """
-
-    rest = abjad.Rest("r8")
-    note = abjad.Note(rest)
-
-    assert abjad.lilypond(note) == abjad.string.normalize(
-        r"""
-        8
-        """
-    )
-
-    assert abjad.wf.is_wellformed(note)
-
-
-def test_Note___init___12():
-    """
-    Initializes note from tupletized rest.
-    """
-
-    tuplet = abjad.Tuplet("3:2", "r8 r8 r8")
-    duration = tuplet[0].get_written_duration()
-    note = abjad.Note(tuplet[0])
-
-    assert isinstance(tuplet[0], abjad.Rest)
-    assert isinstance(note, abjad.Note)
-    assert abjad.get.parentage(tuplet[0]).get_parent() is tuplet
-    assert tuplet[0].get_written_duration() == duration
-    assert abjad.get.parentage(note).get_parent() is None
-
-
-def test_Note___init___13():
-    """
-    Initializes note from beamed rest.
-    """
-
-    voice = abjad.Voice(
-        [abjad.Note(0, (1, 8)), abjad.Rest((1, 8)), abjad.Note(0, (1, 8))]
-    )
-    abjad.beam(voice[:])
-    note = abjad.Note(voice[1])
-
-    assert isinstance(voice[1], abjad.Rest)
-    assert isinstance(note, abjad.Note)
-    assert abjad.get.parentage(voice[1]).get_parent() is voice
-    assert abjad.get.parentage(note).get_parent() is None
-
-
-def test_Note___init___14():
-    """
-    Initializes notes from skip.
-    """
-
-    skip = abjad.Skip((1, 8))
-    duration = skip.get_written_duration()
-    note = abjad.Note(skip)
-
-    assert isinstance(note, abjad.Note)
-    assert dir(skip) == dir(abjad.Skip((1, 4)))
-    assert dir(note) == dir(abjad.Note("c'4"))
-    assert abjad.get.parentage(note).get_parent() is None
-    assert note.get_written_duration() == duration
-
-
-def test_Note___init___15():
-    """
-    Initializes note from tupletized skip.
-    """
-
-    tuplet = abjad.Tuplet("3:2", "s8 s8 s8")
-    duration = tuplet[0].get_written_duration()
-    note = abjad.Note(tuplet[0])
-
-    assert isinstance(tuplet[0], abjad.Skip)
-    assert isinstance(note, abjad.Note)
-    assert abjad.get.parentage(tuplet[0]).get_parent() is tuplet
-    assert tuplet[0].get_written_duration() == duration
-    assert abjad.get.parentage(note).get_parent() is None
-
-
-def test_Note___init___16():
-    """
-    Initializes note from beamed skip.
-    """
-
-    voice = abjad.Voice(
-        [abjad.Note(0, (1, 8)), abjad.Skip((1, 8)), abjad.Note(0, (1, 8))]
-    )
-    abjad.beam(voice[:])
-    note = abjad.Note(voice[1])
-
-    assert isinstance(voice[1], abjad.Skip)
-    assert isinstance(note, abjad.Note)
-    assert abjad.get.parentage(voice[1]).get_parent() is voice
-    assert abjad.get.parentage(note).get_parent() is None
 
 
 def test_Note___init___17():

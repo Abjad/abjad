@@ -38,8 +38,8 @@ def test_transpose_from_sounding_pitch_02():
     """
     staff = abjad.Staff("<d'' fs''>8 e'4")
     abjad.attach(abjad.Violin(), staff[0])
-    abjad.tweak(staff[0].note_heads[1], r"\tweak color #red")
-    abjad.tweak(staff[1].note_head, r"\tweak color #blue")
+    abjad.tweak(staff[0].get_note_heads()[1], r"\tweak color #red")
+    abjad.tweak(staff[1].get_note_head(), r"\tweak color #blue")
     string = abjad.lilypond(staff)
     assert string == abjad.string.normalize(
         r"""
@@ -110,8 +110,8 @@ def test_transpose_from_written_pitch_02():
     """
     staff = abjad.Staff("<d'' fs''>8 e'4")
     abjad.attach(abjad.Violin(), staff[0])
-    abjad.tweak(staff[0].note_heads[1], r"\tweak color #red")
-    abjad.tweak(staff[1].note_head, r"\tweak color #blue")
+    abjad.tweak(staff[0].get_note_heads()[1], r"\tweak color #red")
+    abjad.tweak(staff[1].get_note_head(), r"\tweak color #blue")
     string = abjad.lilypond(staff)
     assert string == abjad.string.normalize(
         r"""

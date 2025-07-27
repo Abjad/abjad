@@ -1058,9 +1058,9 @@ def glissando(
 
     def _parenthesize_leaf(leaf):
         if isinstance(leaf, _score.Note):
-            leaf.note_head.set_is_parenthesized(True)
+            leaf.get_note_head().set_is_parenthesized(True)
         elif isinstance(leaf, _score.Chord):
-            for note_head in leaf.note_heads:
+            for note_head in leaf.get_note_heads():
                 note_head.set_is_parenthesized(True)
 
     def _previous_leaf_changes_current_pitch(leaf):

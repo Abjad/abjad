@@ -265,9 +265,9 @@ class OnBeatGraceContainer(_score.Container):
         generator = _iterate.pitches(first_nongrace_leaf)
         nongrace_pitches = list(generator)
         highest_pitch = list(sorted(nongrace_pitches))[-1]
-        if highest_pitch not in first_obgc_leaf.note_heads:
-            first_obgc_leaf.note_heads.append(highest_pitch)
-        grace_mate_head = first_obgc_leaf.note_heads.get(highest_pitch)
+        if highest_pitch not in first_obgc_leaf.get_note_heads():
+            first_obgc_leaf.get_note_heads().append(highest_pitch)
+        grace_mate_head = first_obgc_leaf.get_note_heads().get(highest_pitch)
         _tweaks.tweak(grace_mate_head, r"\tweak font-size 0", tag=tag)
         _tweaks.tweak(grace_mate_head, r"\tweak transparent ##t", tag=tag)
 

@@ -2576,11 +2576,11 @@ def transpose(argument, interval):
     named_interval = _pitch.NamedInterval(interval)
     for item in _iterate.components(argument, (_score.Note, _score.Chord)):
         if isinstance(item, _score.Note):
-            old_written_pitch = item.note_head.get_written_pitch()
+            old_written_pitch = item.get_note_head().get_written_pitch()
             new_written_pitch = old_written_pitch.transpose(named_interval)
-            item.note_head.set_written_pitch(new_written_pitch)
+            item.get_note_head().set_written_pitch(new_written_pitch)
         else:
-            for note_head in item.note_heads:
+            for note_head in item.get_note_heads():
                 old_written_pitch = note_head.get_written_pitch()
                 new_written_pitch = old_written_pitch.transpose(named_interval)
                 note_head.set_written_pitch(new_written_pitch)

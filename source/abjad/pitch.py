@@ -1343,7 +1343,7 @@ class IntervalClass:
         # elif hasattr(pitch_carrier, "written_pitches"):
         elif hasattr(pitch_carrier, "get_written_pitches"):
             new_chord = copy.copy(pitch_carrier)
-            pairs = zip(new_chord.note_heads, pitch_carrier.note_heads)
+            pairs = zip(new_chord.get_note_heads(), pitch_carrier.get_note_heads())
             for new_nh, old_nh in pairs:
                 new_pitch = old_nh.get_written_pitch().transpose(self)
                 new_nh.set_written_pitch(new_pitch)
@@ -2346,7 +2346,7 @@ class Interval:
         # elif hasattr(pitch_carrier, "written_pitches"):
         elif hasattr(pitch_carrier, "get_written_pitches"):
             new_chord = copy.copy(pitch_carrier)
-            pairs = zip(new_chord.note_heads, pitch_carrier.note_heads)
+            pairs = zip(new_chord.get_note_heads(), pitch_carrier.get_note_heads())
             for new_nh, old_nh in pairs:
                 new_pitch = old_nh.get_written_pitch().transpose(self)
                 new_nh.set_written_pitch(new_pitch)
@@ -4226,8 +4226,9 @@ class Pitch:
         # elif hasattr(argument, "written_pitch"):
         elif hasattr(argument, "get_written_pitch"):
             self._from_pitch_or_pitch_class(argument.get_written_pitch())
-        elif hasattr(argument, "note_heads") and len(argument.note_heads):
-            self._from_pitch_or_pitch_class(argument.note_heads[0])
+        # elif hasattr(argument, "note_heads") and len(argument.get_note_heads()):
+        elif hasattr(argument, "get_note_heads") and len(argument.get_note_heads()):
+            self._from_pitch_or_pitch_class(argument.get_note_heads()[0])
         else:
             class_name = type(self).__name__
             raise ValueError(f"can not instantiate {class_name} from {argument!r}.")

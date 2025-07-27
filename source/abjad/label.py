@@ -254,7 +254,7 @@ def color_note_heads(argument, color_map=pc_number_to_color) -> None:
     color_map = color_map or pc_number_to_color
     for leaf in _iterate.leaves(argument):
         if isinstance(leaf, _score.Chord):
-            for note_head in leaf.note_heads:
+            for note_head in leaf.get_note_heads():
                 number = note_head.get_written_pitch().get_number()
                 pc = _pitch.NumberedPitchClass(number)
                 color = color_map.get(pc, None)
@@ -262,13 +262,13 @@ def color_note_heads(argument, color_map=pc_number_to_color) -> None:
                     _tweaks.tweak(note_head, rf"\tweak Accidental.color {color}")
                     _tweaks.tweak(note_head, rf"\tweak color {color}")
         elif isinstance(leaf, _score.Note):
-            note_head = leaf.note_head
+            note_head = leaf.get_note_head()
             number = note_head.get_written_pitch().get_number()
             pc = _pitch.NumberedPitchClass(number)
             color = color_map[pc.get_number()]
             if color is not None:
-                _tweaks.tweak(leaf.note_head, rf"\tweak Accidental.color {color}")
-                _tweaks.tweak(leaf.note_head, rf"\tweak color {color}")
+                _tweaks.tweak(leaf.get_note_head(), rf"\tweak Accidental.color {color}")
+                _tweaks.tweak(leaf.get_note_head(), rf"\tweak color {color}")
 
 
 def remove_markup(argument) -> None:

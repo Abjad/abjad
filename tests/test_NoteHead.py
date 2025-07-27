@@ -160,7 +160,7 @@ def test_NoteHead_is_parenthesized_02():
 
 def test_NoteHead_is_parenthesized_03():
     note = abjad.Note("c'4")
-    note.note_head.set_is_parenthesized(True)
+    note.get_note_head().set_is_parenthesized(True)
     assert abjad.lilypond(note) == abjad.string.normalize(
         r"""
         \parenthesize
@@ -171,7 +171,7 @@ def test_NoteHead_is_parenthesized_03():
 
 def test_NoteHead_is_parenthesized_04():
     chord = abjad.Chord("<c' e' g'>4")
-    chord.note_heads[1].set_is_parenthesized(True)
+    chord.get_note_heads()[1].set_is_parenthesized(True)
     assert abjad.lilypond(chord) == abjad.string.normalize(
         r"""
         <
@@ -190,12 +190,12 @@ def test_NoteHead_written_pitch_01():
     """
 
     note = abjad.Note(13, (1, 4))
-    note.note_head.set_written_pitch(14)
+    note.get_note_head().set_written_pitch(14)
 
     "NoteHead(d'')"
 
-    assert abjad.lilypond(note.note_head) == "d''"
-    assert note.note_head.get_written_pitch() != 14
+    assert abjad.lilypond(note.get_note_head()) == "d''"
+    assert note.get_note_head().get_written_pitch() != 14
 
 
 def test_NoteHead_written_pitch_02():
@@ -204,12 +204,12 @@ def test_NoteHead_written_pitch_02():
     """
 
     note = abjad.Note(13, (1, 4))
-    note.note_head.set_written_pitch(abjad.NamedPitch(14))
+    note.get_note_head().set_written_pitch(abjad.NamedPitch(14))
 
     "NoteHead(d'')"
 
-    assert abjad.lilypond(note.note_head) == "d''"
-    assert note.note_head.get_written_pitch() != 14
+    assert abjad.lilypond(note.get_note_head()) == "d''"
+    assert note.get_note_head().get_written_pitch() != 14
 
 
 def test_NoteHead_written_pitch_03():

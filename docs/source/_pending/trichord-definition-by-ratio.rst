@@ -110,11 +110,11 @@ Define helper functions:
     ...         for i, ratio in enumerate(triad):
     ...             staff = group[i]
     ...             note = abjad.Note(fundamental, (1, 1))
-    ...             tune_to_ratio(note.note_head, ratio)
+    ...             tune_to_ratio(note.get_note_head(), ratio)
     ...             bass = False
     ...             if i == 2:
     ...                 bass = True
-    ...             markup, direction = return_cent_markup(note.note_head, ratio, bass=bass)
+    ...             markup, direction = return_cent_markup(note.get_note_head(), ratio, bass=bass)
     ...             abjad.attach(markup, note, direction=direction)
     ...             staff.append(note)
     ...     for measure_number in (1, 11, 21, 31):
