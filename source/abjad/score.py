@@ -112,8 +112,9 @@ class Component:
         # if hasattr(self, "lilypond_type"):
         if hasattr(self, "get_lilypond_type"):
             component.set_lilypond_type(self.get_lilypond_type())
-        if hasattr(self, "name"):
-            component.name = self.name
+        # if hasattr(self, "name"):
+        if hasattr(self, "get_name"):
+            component.set_name(self.get_name())
         # if hasattr(self, "simultaneous"):
         if hasattr(self, "get_simultaneous"):
             component.set_simultaneous(self.get_simultaneous())
@@ -150,11 +151,13 @@ class Component:
         if hasattr(self, "_named_children"):
             for name, children in self._named_children.items():
                 name_dictionary[name] = copy.copy(children)
-        name = getattr(self, "name", None)
+        name = None
+        if hasattr(self, "get_name"):
+            name = self.get_name()
         if name is not None:
-            if self.name not in name_dictionary:
-                name_dictionary[self.name] = []
-            name_dictionary[self.name].append(self)
+            if self.get_name() not in name_dictionary:
+                name_dictionary[self.get_name()] = []
+            name_dictionary[self.get_name()].append(self)
         return name_dictionary
 
     def _check_for_cycles(self, components):
@@ -847,7 +850,7 @@ class Container(Component):
         self.set_identifier(identifier)
         self.set_simultaneous(bool(simultaneous))
         # sets name permanently after _initalize_components:
-        self.name = name
+        self.set_name(name)
 
     ### SPECIAL METHODS ###
 
@@ -1210,7 +1213,7 @@ class Container(Component):
             open_bracket_string, close_bracket_string = "<<", ">>"
         else:
             open_bracket_string, close_bracket_string = "{", "}"
-        name = self.name
+        name = self.get_name()
         if name is not None:
             name = f'-"{name}"'
         else:
@@ -1373,10 +1376,9 @@ class Container(Component):
         assert isinstance(argument, str | type(None)), repr(argument)
         self._identifier = argument
 
-    @property
-    def name(self) -> str | None:
+    def get_name(self) -> str | None:
         r"""
-        Gets and sets name of container.
+        Gets name of container.
 
         ..  container:: example
 
@@ -1396,20 +1398,23 @@ class Container(Component):
                     f'4
                 }
 
-            >>> container.name is None
+            >>> container.get_name() is None
             True
+
+
+        """
+        return self._name
+
+    def set_name(self, argument):
+        """
+        Sets name of container.
 
         ..  container:: example
 
-            Sets container name:
-
-            >>> container = abjad.Container(
-            ...     "c'4 d'4 e'4 f'4",
-            ...     name='Special',
-            ...     )
+            >>> container = abjad.Container("c'4 d'4 e'4 f'4", name='Special')
             >>> abjad.show(container) # doctest: +SKIP
 
-            >>> container.name
+            >>> container.get_name()
             'Special'
 
             Container name does not appear in LilyPond output:
@@ -1424,10 +1429,6 @@ class Container(Component):
             }
 
         """
-        return self._name
-
-    @name.setter
-    def name(self, argument):
         assert isinstance(argument, str | type(None))
         old_name = self._name
         parent = self._parent
@@ -2997,8 +2998,8 @@ class Context(Container):
             parameters.append(string)
         if self.get_lilypond_type() != type(self).__name__:
             parameters.append(f"lilypond_type={self.get_lilypond_type()!r}")
-        if self.name:
-            parameters.append(f"name={self.name!r}")
+        if self.get_name():
+            parameters.append(f"name={self.get_name()!r}")
         if self.get_simultaneous() is True:
             parameters.append(f"simultaneous={self.get_simultaneous()!r}")
         string = ", ".join(parameters)
@@ -3023,8 +3024,8 @@ class Context(Container):
         return result
 
     def _format_invocation(self):
-        if self.name is not None:
-            string = rf'\context {self.get_lilypond_type()} = "{self.name}"'
+        if self.get_name() is not None:
+            string = rf'\context {self.get_lilypond_type()} = "{self.get_name()}"'
         else:
             string = rf"\new {self.get_lilypond_type()}"
         return string

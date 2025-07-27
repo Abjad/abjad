@@ -340,7 +340,7 @@ def test_Staff___init___02():
     """
 
     staff = abjad.Staff(name="FirstBlueStaff")
-    assert staff.name == "FirstBlueStaff"
+    assert staff.get_name() == "FirstBlueStaff"
 
 
 def test_Staff___init___03():
@@ -350,7 +350,7 @@ def test_Staff___init___03():
 
     staff = abjad.Staff(lilypond_type="BlueStaff", name="FirstBlueStaff")
     assert staff.get_lilypond_type() == "BlueStaff"
-    assert staff.name == "FirstBlueStaff"
+    assert staff.get_name() == "FirstBlueStaff"
 
 
 def test_Staff___setitem___01():

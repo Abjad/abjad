@@ -2820,7 +2820,7 @@ class LilyPondParser(Parser):
         if lilypond_type in ("GrandStaff", "PianoStaff"):
             context.set_lilypond_type(lilypond_type)
         if optional_id is not None:
-            context.name = optional_id
+            context.set_name(optional_id)
         if optional_context_mod is not None:
             for x in optional_context_mod:
                 print(x)

@@ -116,7 +116,10 @@ class Parentage(collections.abc.Sequence):
     @staticmethod
     def _id_string(component):
         lhs = component.__class__.__name__
-        rhs = getattr(component, "name", None) or id(component)
+        if hasattr(component, "get_name") and component.get_name():
+            rhs = component.get_name()
+        else:
+            rhs = id(component)
         return f"{lhs}-{rhs!r}"
 
     ### PUBLIC PROPERTIES ###

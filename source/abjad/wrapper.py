@@ -224,14 +224,16 @@ class Wrapper:
         assert isinstance(wrapper_context, _score.Context)
         message = f"\n\nCan not attach ...\n\n{repr(self)}\n\n..."
         message += f" to {repr(component)}"
-        message += f" in {getattr(context, 'name', None)} because ..."
+        # message += f" in {getattr(context, 'name', None)} because ..."
+        assert context is not None
+        message += f" in {context.get_name()} because ..."
         message += f"\n\n{repr(wrapper)}\n\n"
         message += "... is already attached"
         if component is wrapper.get_component():
             message += " to the same leaf."
         else:
             message += f" to {repr(wrapper.get_component())}"
-            message += f" in {wrapper_context.name}."
+            message += f" in {wrapper_context.get_name()}."
         message += "\n"
         raise _exceptions.PersistentIndicatorError(message)
 
@@ -257,7 +259,11 @@ class Wrapper:
         else:
             for component in parentage:
                 assert component is not None
-                if getattr(component, "name", None) == context_name:
+                # if getattr(component, "name", None) == context_name:
+                if (
+                    hasattr(component, "get_name")
+                    and component.get_name() == context_name
+                ):
                     candidate = component
                     break
                 # if getattr(component, "lilypond_type", None) == context_name:
@@ -272,7 +278,7 @@ class Wrapper:
                     continue
                 assert isinstance(component, _score.Voice)
                 assert isinstance(candidate, _score.Voice)
-                if component.name == candidate.name:
+                if component.get_name() == candidate.get_name():
                     candidate = component
                     break
         assert isinstance(candidate, _score.Context | None), repr(candidate)

@@ -434,7 +434,7 @@ def test_Container___getitem___06():
         ]
     )
 
-    assert score["First_Violin_Voice"].name == "First_Violin_Voice"
+    assert score["First_Violin_Voice"].get_name() == "First_Violin_Voice"
 
     score["Cello_Staff"].append(abjad.Voice(name="First_Violin_Voice"))
 
@@ -443,7 +443,7 @@ def test_Container___getitem___06():
 
     extra_first_violin_voice = score["Cello_Staff"].pop()
 
-    assert score["First_Violin_Voice"].name == "First_Violin_Voice"
+    assert score["First_Violin_Voice"].get_name() == "First_Violin_Voice"
     assert score["First_Violin_Voice"] is not extra_first_violin_voice
 
 

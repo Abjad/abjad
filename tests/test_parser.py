@@ -229,7 +229,7 @@ def test_LilyPondParser__contexts__context_ids_01():
     duration = abjad.Duration(1, 8)
     notes = abjad.makers.make_notes(pitches, [duration])
     target = abjad.Staff(notes)
-    target.name = "foo"
+    target.set_name("foo")
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""

@@ -57,7 +57,7 @@ creation.**
 
         upper_voice = abjad.Voice("c'4 d' e' f'", name="Upper_Voice")
         lower_voice = abjad.mutate.copy(upper_voice)
-        lower_voice.name = "Lower_Voice"
+        lower_voice.set_name("Lower_Voice")
 
     Good: ::
 

@@ -714,8 +714,8 @@ def test_mutate__immediately_precedes_08():
     staff = abjad.Staff(
         [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")]
     )
-    staff[0].name = "foo"
-    staff[1].name = "foo"
+    staff[0].set_name("foo")
+    staff[1].set_name("foo")
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
@@ -748,8 +748,8 @@ def test_mutate__immediately_precedes_09():
     staff = abjad.Staff(
         [abjad.Voice("c'8 d'8 e'8 f'8"), abjad.Voice("g'8 a'8 b'8 c''8")]
     )
-    staff[0].name = "foo"
-    staff[1].name = "bar"
+    staff[0].set_name("foo")
+    staff[1].set_name("bar")
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""

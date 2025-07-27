@@ -269,9 +269,9 @@ def test_get_leaf_09():
     """
 
     voice_1 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4)])
-    voice_1.name = "My Voice"
+    voice_1.set_name("My Voice")
     voice_2 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4, 8)])
-    voice_2.name = "My Voice"
+    voice_2.set_name("My Voice")
     staff = abjad.Staff([voice_1, voice_2])
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
@@ -313,9 +313,9 @@ def test_get_leaf_10():
     """
 
     voice_1 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4)])
-    voice_1.name = "Your Voice"
+    voice_1.set_name("Your Voice")
     voice_2 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4, 8)])
-    voice_2.name = "My Voice"
+    voice_2.set_name("My Voice")
     staff = abjad.Staff([voice_1, voice_2])
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
@@ -345,7 +345,7 @@ def test_get_leaf_10():
     assert abjad.get.leaf(voice_1[2], 1) is voice_1[3]
     assert abjad.get.leaf(voice_1[3], 1) is None
 
-    voice_2.name = None
+    voice_2.set_name(None)
     assert abjad.get.leaf(voice_1[3], 1) is None
 
     assert abjad.get.leaf(voice_2[1], -1) is voice_2[0]
@@ -360,14 +360,14 @@ def test_get_leaf_11():
     """
 
     voice_1 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4)])
-    voice_1.name = "low"
+    voice_1.set_name("low")
     voice_2 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4, 8)])
-    voice_2.name = "low"
+    voice_2.set_name("low")
 
     staff_1 = abjad.Staff([voice_1])
-    staff_1.name = "mystaff"
+    staff_1.set_name("mystaff")
     staff_2 = abjad.Staff([voice_2])
-    staff_2.name = "mystaff"
+    staff_2.set_name("mystaff")
 
     container = abjad.Container([staff_1, staff_2])
 
@@ -408,19 +408,19 @@ def test_get_leaf_12():
     """
 
     lower_voice_1 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4)])
-    lower_voice_1.name = "low"
+    lower_voice_1.set_name("low")
     lower_voice_2 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4, 8)])
-    lower_voice_2.name = "low"
+    lower_voice_2.set_name("low")
     higher_voice_1 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(12, 16)])
-    higher_voice_1.name = "high"
+    higher_voice_1.set_name("high")
     higher_voice_2 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(16, 20)])
-    higher_voice_2.name = "high"
+    higher_voice_2.set_name("high")
 
     staff_1 = abjad.Staff([higher_voice_1, lower_voice_1])
-    staff_1.name = "mystaff"
+    staff_1.set_name("mystaff")
     staff_1.set_simultaneous(True)
     staff_2 = abjad.Staff([lower_voice_2, higher_voice_2])
-    staff_2.name = "mystaff"
+    staff_2.set_name("mystaff")
     staff_2.set_simultaneous(True)
 
     container = abjad.Container([staff_1, staff_2])
@@ -761,11 +761,11 @@ def test_get_leaf_20():
     """
 
     voice_1 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(3)])
-    voice_1.name = "My Voice"
+    voice_1.set_name("My Voice")
     voice_2 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4, 8)])
-    voice_2.name = "Your Voice"
+    voice_2.set_name("Your Voice")
     voice_3 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(4, 8)])
-    voice_3.name = "My Voice"
+    voice_3.set_name("My Voice")
     staff = abjad.Staff([voice_1, voice_2, voice_3])
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
@@ -799,7 +799,7 @@ def test_get_leaf_20():
     assert abjad.get.leaf(voice_1[-1], 1) is None
     assert abjad.get.leaf(voice_2[-1], 1) is None
 
-    voice_2.name = None
+    voice_2.set_name(None)
 
     assert abjad.get.leaf(voice_1[-1], 1) is None
     assert abjad.get.leaf(voice_2[-1], 1) is None
@@ -878,9 +878,9 @@ def test_get_leaf_23():
     """
 
     inner_voice = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(3)])
-    inner_voice.name = "My Voice"
+    inner_voice.set_name("My Voice")
     outer_voice = abjad.Voice([inner_voice, abjad.Note(3, (1, 8))])
-    outer_voice.name = "My Voice"
+    outer_voice.set_name("My Voice")
 
     assert abjad.lilypond(outer_voice) == abjad.string.normalize(
         r"""
@@ -912,9 +912,9 @@ def test_get_leaf_24():
     """
 
     inner_voice = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(1, 4)])
-    inner_voice.name = "My Voice"
+    inner_voice.set_name("My Voice")
     outer_voice = abjad.Voice([abjad.Note(0, (1, 8)), inner_voice])
-    outer_voice.name = "My Voice"
+    outer_voice.set_name("My Voice")
 
     assert abjad.lilypond(outer_voice) == abjad.string.normalize(
         r"""
@@ -946,9 +946,9 @@ def test_get_leaf_25():
     """
 
     inner_voice = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(3)])
-    inner_voice.name = "Your Voice"
+    inner_voice.set_name("Your Voice")
     outer_voice = abjad.Voice([inner_voice, abjad.Note(3, (1, 8))])
-    outer_voice.name = "My Voice"
+    outer_voice.set_name("My Voice")
 
     assert abjad.lilypond(outer_voice) == abjad.string.normalize(
         r"""
@@ -980,9 +980,9 @@ def test_get_leaf_26():
     """
 
     voice_2 = abjad.Voice([abjad.Note(i, (1, 8)) for i in range(1, 4)])
-    voice_2.name = "Voice 2"
+    voice_2.set_name("Voice 2")
     voice_1 = abjad.Voice([abjad.Note(0, (1, 8)), voice_2])
-    voice_1.name = "Voice 1"
+    voice_1.set_name("Voice 1")
 
     assert abjad.lilypond(voice_1) == abjad.string.normalize(
         r"""
@@ -2117,7 +2117,7 @@ def test__inspect_are_logical_voice_28():
     """
 
     voice = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
-    voice.name = "foo"
+    voice.set_name("foo")
     container = abjad.Container([voice])
     notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
     container = abjad.Container([container] + notes)
@@ -2151,9 +2151,9 @@ def test__inspect_are_logical_voice_29():
     """
 
     voice_1 = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
-    voice_1.name = "foo"
+    voice_1.set_name("foo")
     voice_2 = abjad.Voice([voice_1])
-    voice_2.name = "bar"
+    voice_2.set_name("bar")
     notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
     container = abjad.Container([voice_2] + notes)
 
@@ -2704,7 +2704,7 @@ def test__inspect_are_logical_voice_39():
         """
     )
 
-    voice.name = "foo"
+    voice.set_name("foo")
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
