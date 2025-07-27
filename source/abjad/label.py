@@ -1389,7 +1389,7 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
 
         >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
         >>> string = 'Horizontal_bracket_engraver'
-        >>> voice.consists_commands.append(string)
+        >>> voice.get_consists_commands().append(string)
         >>> lists = [voice[:2], voice[-2:]]
         >>> for list_ in lists:
         ...     abjad.horizontal_bracket(list_)
@@ -1432,7 +1432,7 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
         Labels logical ties with pitch numbers:
 
         >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
-        >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+        >>> voice.get_consists_commands().append('Horizontal_bracket_engraver')
         >>> lists = [voice[:2], voice[-2:]]
         >>> for list_ in lists:
         ...     abjad.horizontal_bracket(list_)
@@ -1476,7 +1476,7 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
         Labels logical ties with pitch-class numbers:
 
         >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
-        >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+        >>> voice.get_consists_commands().append('Horizontal_bracket_engraver')
         >>> lists = [voice[:2], voice[-2:]]
         >>> for list_ in lists:
         ...     abjad.horizontal_bracket(list_)
@@ -1571,7 +1571,7 @@ def with_set_classes(argument, direction=_enums.UP, prototype=None) -> None:
 
         >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
         >>> voice = abjad.Voice(string)
-        >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+        >>> voice.get_consists_commands().append('Horizontal_bracket_engraver')
         >>> lists = [voice[:4], voice[-4:]]
         >>> for list_ in lists:
         ...     abjad.horizontal_bracket(list_)
@@ -1616,7 +1616,7 @@ def with_set_classes(argument, direction=_enums.UP, prototype=None) -> None:
 
         >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
         >>> voice = abjad.Voice(string)
-        >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+        >>> voice.get_consists_commands().append('Horizontal_bracket_engraver')
         >>> lists = [voice[:4], voice[-4:]]
         >>> for list_ in lists:
         ...     abjad.horizontal_bracket(list_)
@@ -1662,7 +1662,7 @@ def with_set_classes(argument, direction=_enums.UP, prototype=None) -> None:
 
         >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
         >>> voice = abjad.Voice(string)
-        >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+        >>> voice.get_consists_commands().append('Horizontal_bracket_engraver')
         >>> lists = [voice[:4], voice[-4:]]
         >>> for list_ in lists:
         ...     abjad.horizontal_bracket(list_)

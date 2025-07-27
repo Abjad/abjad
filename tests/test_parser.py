@@ -69,7 +69,7 @@ def test_LilyPondParser__containers__nesting_01():
 
 def test_LilyPondParser__containers__simultaneous_01():
     target = abjad.Container()
-    target.simultaneous = True
+    target.set_simultaneous(True)
     parser = abjad.parser.LilyPondParser()
     result = parser(abjad.lilypond(target))
     assert abjad.lilypond(target) == abjad.lilypond(result) and target is not result
@@ -84,7 +84,7 @@ def test_LilyPondParser__contexts__PianoStaff_01():
             abjad.Staff(abjad.makers.make_notes(pitches, [duration])),
         ]
     )
-    target.lilypond_type = "PianoStaff"
+    target.set_lilypond_type("PianoStaff")
 
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
@@ -149,7 +149,7 @@ def test_LilyPondParser__contexts__Staff_01():
 
 def test_LilyPondParser__contexts__Staff_02():
     target = abjad.Staff([])
-    target.simultaneous = True
+    target.set_simultaneous(True)
     pitches = abjad.makers.make_pitches([0, 2, 4, 5, 7, 9, 11, 12])
     duration = abjad.Duration(1, 8)
     voice = abjad.Voice(abjad.makers.make_notes(pitches, [duration]))
@@ -2413,32 +2413,32 @@ def test_LilyPondParser__misc__version_string_01():
 def test_LilyPondParser_accidentals_cautionary_01():
     string = "{ c?4 }"
     parsed = abjad.parser.LilyPondParser()(string)
-    assert parsed[0].note_head.is_cautionary is True
+    assert parsed[0].note_head.get_is_cautionary() is True
     assert abjad.lilypond(parsed[0]) == "c?4"
 
 
 def test_LilyPondParser_accidentals_cautionary_02():
     string = "{ <c? e g??>4 }"
     parsed = abjad.parser.LilyPondParser()(string)
-    assert parsed[0].note_heads[0].is_cautionary is True
-    assert parsed[0].note_heads[1].is_cautionary is False
-    assert parsed[0].note_heads[2].is_cautionary is True
+    assert parsed[0].note_heads[0].get_is_cautionary() is True
+    assert parsed[0].note_heads[1].get_is_cautionary() is False
+    assert parsed[0].note_heads[2].get_is_cautionary() is True
     assert abjad.lilypond(parsed[0]) == "<c? e g?>4"
 
 
 def test_LilyPondParser_accidentals_forced_01():
     string = "{ c!4 }"
     parsed = abjad.parser.LilyPondParser()(string)
-    assert parsed[0].note_head.is_forced is True
+    assert parsed[0].note_head.get_is_forced() is True
     assert abjad.lilypond(parsed[0]) == "c!4"
 
 
 def test_LilyPondParser_accidentals_forced_02():
     string = "{ <c! e g!!>4 }"
     parsed = abjad.parser.LilyPondParser()(string)
-    assert parsed[0].note_heads[0].is_forced is True
-    assert parsed[0].note_heads[1].is_forced is False
-    assert parsed[0].note_heads[2].is_forced is True
+    assert parsed[0].note_heads[0].get_is_forced() is True
+    assert parsed[0].note_heads[1].get_is_forced() is False
+    assert parsed[0].note_heads[2].get_is_forced() is True
     assert abjad.lilypond(parsed[0]) == "<c! e g!>4"
 
 

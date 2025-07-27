@@ -15,7 +15,7 @@ example:
     >>> def make_transpositions(row):
     ...     transpositions = []
     ...     for pitch_class in row.invert():
-    ...         n = pitch_class.number - row[0].number
+    ...         n = pitch_class.get_number() - row[0].get_number()
     ...         transposition = row.transpose(n) 
     ...         transpositions.append(transposition)
     ...     return transpositions
@@ -30,14 +30,14 @@ example:
     ...         voice = abjad.Voice(notes, name=f"Voice_{i}")
     ...         staff = abjad.Staff([voice], name=f"Staff_{i}")
     ...         score.append(staff)
-    ...         number = notes[0].get_written_pitch().number
+    ...         number = notes[0].get_written_pitch().get_number()
     ...         string = r"\markup \larger \with-color #blue"
     ...         string = string + r" { T \hspace #-0.75 \sub" + str(number) + "}"
     ...         markup = abjad.Markup(string)
     ...         instrument_name = abjad.InstrumentName(markup)
     ...         abjad.attach(instrument_name, notes[0])
     ...     for note in score["Voice_0"]:
-    ...         number = note.get_written_pitch().number
+    ...         number = note.get_written_pitch().get_number()
     ...         string = r"\markup \larger { IT \hspace #-0.75 \sub "
     ...         string += str(number)
     ...         string += " }"

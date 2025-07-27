@@ -293,7 +293,11 @@ def _extract(component):
     components = [component]
     parent, start, stop = _get_parent_and_start_stop_indices(components)
     if parent is not None:
-        components = list(getattr(component, "components", ()))
+        # components = list(getattr(component, "components", ()))
+        if hasattr(component, "get_components"):
+            components = list(component.get_components())
+        else:
+            components = []
         parent.__setitem__(slice(start, stop + 1), components)
     return component
 
@@ -343,10 +347,10 @@ def _fuse_tuplets(tuplets, *, tag=None):
         return None
     first_tuplet = tuplets[0]
     for tuplet in tuplets[1:]:
-        if tuplet.ratio != first_tuplet.ratio:
+        if tuplet.get_ratio() != first_tuplet.get_ratio():
             raise ValueError("tuplets must carry same ratio.")
     assert isinstance(first_tuplet, _score.Tuplet)
-    new_tuplet = _score.Tuplet(first_tuplet.ratio, [], tag=tag)
+    new_tuplet = _score.Tuplet(first_tuplet.get_ratio(), [], tag=tag)
     wrapped = False
     if (
         _get.parentage(tuplets[0]).get_root()
@@ -375,7 +379,9 @@ def _give_components_to_empty_container(components, container):
     assert not container
     components_ = []
     for component in components:
-        components_.extend(getattr(component, "components", ()))
+        # components_.extend(getattr(component, "components", ()))
+        if hasattr(component, "get_components"):
+            components_.extend(component.get_components())
     container._components.extend(components_)
     _set_parents(container)
 
@@ -485,7 +491,7 @@ def _set_leaf_duration(leaf, new_duration, *, tag=None):
         assert isinstance(components[0], _score.Tuplet)
         assert len(components) == 1
         tuplet = components[0]
-        tuplet = _score.Tuplet(tuplet.ratio, [])
+        tuplet = _score.Tuplet(tuplet.get_ratio(), [])
         assert isinstance(all_leaves, list)
         wrap(all_leaves, tuplet)
         return [tuplet]
@@ -513,9 +519,9 @@ def _split_container_at_index(CONTAINER, i):
     right_components = CONTAINER[i:]
     # instantiate new left and right containers
     if isinstance(CONTAINER, _score.Tuplet):
-        left = type(CONTAINER)(CONTAINER.ratio, [])
+        left = type(CONTAINER)(CONTAINER.get_ratio(), [])
         wrap(left_components, left)
-        right = type(CONTAINER)(CONTAINER.ratio, [])
+        right = type(CONTAINER)(CONTAINER.get_ratio(), [])
         wrap(right_components, right)
     else:
         left = CONTAINER.__copy__()
@@ -540,7 +546,7 @@ def _split_container_at_index(CONTAINER, i):
 
 
 def _split_container_by_duration(CONTAINER, duration, *, tag=None):
-    if CONTAINER.simultaneous:
+    if CONTAINER.get_simultaneous():
         return _split_simultaneous_by_duration(CONTAINER, duration=duration, tag=tag)
     duration = _duration.Duration(duration)
     assert 0 <= duration, repr(duration)
@@ -638,7 +644,7 @@ def _split_container_by_duration(CONTAINER, duration, *, tag=None):
 
 
 def _split_simultaneous_by_duration(CONTAINER, duration, *, tag=None):
-    assert CONTAINER.simultaneous
+    assert CONTAINER.get_simultaneous()
     left_components, right_components = [], []
     for component in CONTAINER[:]:
         halves = _split_container_by_duration(component, duration=duration, tag=tag)

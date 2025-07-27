@@ -93,7 +93,7 @@ def _get_sibling_with_graces(component, n):
         return component
     if component._parent is None:
         return None
-    if component._parent.simultaneous:
+    if component._parent.get_simultaneous():
         return None
     if (
         n == 1

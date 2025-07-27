@@ -163,7 +163,7 @@ class ContextSpeccedMusic(Music):
         lilypond_type = lilypond_type or ""
         music = music or SequentialMusic()
         assert isinstance(music, Music)
-        self.lilypond_type = lilypond_type
+        self.set_lilypond_type(lilypond_type)
         self.optional_id = optional_id
         self.optional_context_mod = optional_context_mod
         self.music = music
@@ -176,10 +176,10 @@ class ContextSpeccedMusic(Music):
 
         Returns context.
         """
-        if self.lilypond_type in self.known_contexts():
-            context = self.known_contexts()[self.lilypond_type]([])
+        if self.get_lilypond_type() in self.known_contexts():
+            context = self.known_contexts()[self.get_lilypond_type()]([])
         else:
-            raise Exception(f"context type not supported: {self.lilypond_type}.")
+            raise Exception(f"context type not supported: {self.get_lilypond_type()}.")
 
         if self.optional_id is not None:
             context.name = self.optional_id
@@ -191,7 +191,7 @@ class ContextSpeccedMusic(Music):
             pass
 
         if isinstance(self.music, SimultaneousMusic):
-            context.simultaneous = True
+            context.set_simultaneous(True)
         # context.extend(music.construct())
         context.extend(self.music.construct())
 
@@ -2818,7 +2818,7 @@ class LilyPondParser(Parser):
         else:
             raise Exception(f"context type {context!r} not supported.")
         if lilypond_type in ("GrandStaff", "PianoStaff"):
-            context.lilypond_type = lilypond_type
+            context.set_lilypond_type(lilypond_type)
         if optional_id is not None:
             context.name = optional_id
         if optional_context_mod is not None:
@@ -2826,7 +2826,7 @@ class LilyPondParser(Parser):
                 print(x)
             # TODO: impelement context mods on contexts
             pass
-        context.simultaneous = music.simultaneous
+        context.set_simultaneous(music.get_simultaneous())
         # add children
         while len(music):
             component = music.pop(0)
@@ -2899,7 +2899,7 @@ class LilyPondParser(Parser):
             return False
 
         container = _score.Container(tag=self.tag)
-        container.simultaneous = True
+        container.set_simultaneous(True)
         # check for voice separators
         groups = []
         for value, group in itertools.groupby(music, is_separator):
@@ -6269,8 +6269,8 @@ class LilyPondSyntacticalDefinition:
         "simple_element : pitch exclamations questions octave_check optional_notemode_duration optional_rest"
         if not p[6]:
             leaf = _score.Note(p[1], p[5].duration, tag=self.tag)
-            leaf.note_head.is_forced = bool(p[2])
-            leaf.note_head.is_cautionary = bool(p[3])
+            leaf.note_head.set_is_forced(bool(p[2]))
+            leaf.note_head.set_is_cautionary(bool(p[3]))
         else:
             leaf = _score.Rest(p[5].duration, tag=self.tag)
         if p[5].multiplier is not None:

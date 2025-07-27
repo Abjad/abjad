@@ -436,7 +436,9 @@ def contents(argument) -> list[_score.Component]:
         raise Exception("can only get contents of component.")
     result = []
     result.append(argument)
-    result.extend(getattr(argument, "components", []))
+    # result.extend(getattr(argument, "components", []))
+    if hasattr(argument, "get_components"):
+        result.extend(argument.get_components())
     return result
 
 

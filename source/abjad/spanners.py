@@ -187,7 +187,13 @@ def beam(
         if stemlet_length is None:
             continue
         staff = _parentage.Parentage(start_leaf).get(_score.Staff)
-        lilypond_type = getattr(staff, "lilypond_type", "Staff")
+        if staff is None:
+            lilypond_type = "Staff"
+        else:
+            if hasattr(staff, "get_lilypond_type"):
+                lilypond_type = staff.get_lilypond_type() or "Staff"
+            else:
+                lilypond_type = "Staff"
         string = rf"\override {lilypond_type}.Stem.stemlet-length = {stemlet_length}"
         literal = _indicators.LilyPondLiteral(string, site="before")
         for indicator in start_leaf._get_indicators():
@@ -196,7 +202,13 @@ def beam(
         else:
             _bind.attach(literal, start_leaf, tag=tag)
         staff = _parentage.Parentage(stop_leaf).get(_score.Staff)
-        lilypond_type = getattr(staff, "lilypond_type", "Staff")
+        if staff is None:
+            lilypond_type = "Staff"
+        else:
+            if hasattr(staff, "get_lilypond_type"):
+                lilypond_type = staff.get_lilypond_type() or "Staff"
+            else:
+                lilypond_type = "Staff"
         string = rf"\revert {lilypond_type}.Stem.stemlet-length"
         literal = _indicators.LilyPondLiteral(string, site="after")
         for indicator in stop_leaf._get_indicators():
@@ -1046,10 +1058,10 @@ def glissando(
 
     def _parenthesize_leaf(leaf):
         if isinstance(leaf, _score.Note):
-            leaf.note_head.is_parenthesized = True
+            leaf.note_head.set_is_parenthesized(True)
         elif isinstance(leaf, _score.Chord):
             for note_head in leaf.note_heads:
-                note_head.is_parenthesized = True
+                note_head.set_is_parenthesized(True)
 
     def _previous_leaf_changes_current_pitch(leaf):
         previous_leaf = _iterlib._get_leaf(leaf, -1)
@@ -1374,7 +1386,7 @@ def horizontal_bracket(
     ..  container:: example
 
         >>> voice = abjad.Voice("c'4 d' e' f'")
-        >>> voice.consists_commands.append("Horizontal_bracket_engraver")
+        >>> voice.get_consists_commands().append("Horizontal_bracket_engraver")
         >>> abjad.horizontal_bracket(voice[:])
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1402,7 +1414,7 @@ def horizontal_bracket(
         priority of nested analysis brackets:
 
         >>> voice = abjad.Voice("c'4 d' e' f' c' d' e' f'")
-        >>> voice.consists_commands.append("Horizontal_bracket_engraver")
+        >>> voice.get_consists_commands().append("Horizontal_bracket_engraver")
         >>> bundle = abjad.bundle(
         ...     abjad.StartGroup(),
         ...     r"- \tweak color #red",

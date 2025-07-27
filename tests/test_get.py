@@ -312,8 +312,8 @@ def test_get_staff_01():
     staff_group = abjad.StaffGroup(
         [abjad.Staff("c'8 d'8 e'8 f'8"), abjad.Staff("c'8 d'8 e'8 f'8")]
     )
-    staff_group.lilypond_type = "PianoStaff"
-    staff_group.simultaneous = True
+    staff_group.set_lilypond_type("PianoStaff")
+    staff_group.set_simultaneous(True)
     staff_group[0].name = "RH"
     staff_group[1].name = "LH"
     staff_change = abjad.StaffChange("LH")
@@ -361,8 +361,8 @@ def test_get_staff_02():
     staff_group = abjad.StaffGroup(
         [abjad.Staff("c'8 d'8 e'8 f'8"), abjad.Staff("c'8 d'8 e'8 f'8")]
     )
-    staff_group.lilypond_type = "PianoStaff"
-    staff_group.simultaneous = True
+    staff_group.set_lilypond_type("PianoStaff")
+    staff_group.set_simultaneous(True)
     staff_group[0].name = "RH"
     staff_group[1].name = "LH"
     staff_change = abjad.StaffChange("LH")
@@ -413,8 +413,8 @@ def test_get_staff_03():
     staff_group = abjad.StaffGroup(
         [abjad.Staff("c'8 d'8 e'8 f'8"), abjad.Staff("c'8 d'8 e'8 f'8")]
     )
-    staff_group.lilypond_type = "PianoStaff"
-    staff_group.simultaneous = True
+    staff_group.set_lilypond_type("PianoStaff")
+    staff_group.set_simultaneous(True)
     staff_group[0].name = "RH"
     staff_group[1].name = "LH"
     staff_change = abjad.StaffChange("LH")
@@ -454,8 +454,8 @@ def test_get_staff_04():
     staff_group = abjad.StaffGroup(
         [abjad.Staff("c'8 d'8 e'8 f'8"), abjad.Staff("c'8 d'8 e'8 f'8")]
     )
-    staff_group.lilypond_type = "PianoStaff"
-    staff_group.simultaneous = True
+    staff_group.set_lilypond_type("PianoStaff")
+    staff_group.set_simultaneous(True)
     staff_group[0].name = "RH"
     staff_group[1].name = "LH"
     staff_change = abjad.StaffChange("LH")

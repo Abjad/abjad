@@ -108,13 +108,15 @@ class Component:
         """
         component = type(self)(*self.__getnewargs__(), tag=self.get_tag())
         if hasattr(self, "identifier"):
-            component.identifier = self.identifier
-        if hasattr(self, "lilypond_type"):
-            component.lilypond_type = self.lilypond_type
+            component.set_identifier(self.get_identifier())
+        # if hasattr(self, "lilypond_type"):
+        if hasattr(self, "get_lilypond_type"):
+            component.set_lilypond_type(self.get_lilypond_type())
         if hasattr(self, "name"):
             component.name = self.name
-        if hasattr(self, "simultaneous"):
-            component.simultaneous = self.simultaneous
+        # if hasattr(self, "simultaneous"):
+        if hasattr(self, "get_simultaneous"):
+            component.set_simultaneous(self.get_simultaneous())
         if getattr(self, "_overrides", None) is not None:
             component._overrides = copy.copy(_overrides.override(self))
         if getattr(self, "_lilypond_setting_name_manager", None) is not None:
@@ -256,7 +258,7 @@ class Component:
             return self
         if self._parent is None:
             return None
-        if self._parent.simultaneous:
+        if self._parent.get_simultaneous():
             return None
         index = self._parent.index(self) + n
         if 0 <= index < len(self._parent):
@@ -588,8 +590,8 @@ class Leaf(Component):
         if self._after_grace_container is not None:
             assert not self._is_followed_by_after_grace_container()
             string = r"\afterGrace"
-            if self._after_grace_container.fraction is not None:
-                n, d = self._after_grace_container.fraction
+            if self._after_grace_container.get_fraction() is not None:
+                n, d = self._after_grace_container.get_fraction()
                 string = f"{string} {n}/{d}"
             result.append(string)
         if self._is_followed_by_after_grace_container():
@@ -598,8 +600,8 @@ class Leaf(Component):
             )
             string = r"\afterGrace"
             container = self._get_following_after_grace_container()
-            if container.fraction is not None:
-                n, d = container.fraction
+            if container.get_fraction() is not None:
+                n, d = container.get_fraction()
                 string = f"{string} {n}/{d}"
             result.append(string)
         strings = contributions.alphabetize(contributions.before.pitched_trill)
@@ -842,8 +844,8 @@ class Container(Component):
         # sets name temporarily for _find_correct_effective_context:
         self._name = name
         self._initialize_components(components, language=language)
-        self.identifier = identifier
-        self.simultaneous = bool(simultaneous)
+        self.set_identifier(identifier)
+        self.set_simultaneous(bool(simultaneous))
         # sets name permanently after _initalize_components:
         self.name = name
 
@@ -856,7 +858,7 @@ class Container(Component):
         if isinstance(argument, str):
             return argument in self._named_children
         else:
-            for component in self.components:
+            for component in self.get_components():
                 if component is argument:
                     return True
             else:
@@ -978,9 +980,9 @@ class Container(Component):
         Gets top-level item or slice identified by ``argument``.
         """
         if isinstance(argument, int):
-            return self.components.__getitem__(argument)
+            return self.get_components().__getitem__(argument)
         elif isinstance(argument, slice):
-            result = self.components.__getitem__(argument)
+            result = self.get_components().__getitem__(argument)
             assert isinstance(result, tuple), repr(result)
             return list(result)
         elif isinstance(argument, str):
@@ -1021,13 +1023,13 @@ class Container(Component):
 
         Yields container elements.
         """
-        return iter(self.components)
+        return iter(self.get_components())
 
     def __len__(self) -> int:
         """
         Gets number of components in container.
         """
-        return len(self.components)
+        return len(self.get_components())
 
     def __repr__(self) -> str:
         """
@@ -1116,14 +1118,14 @@ class Container(Component):
     def _format_close_brackets(self):
         result = []
         strings = []
-        if self.simultaneous:
-            if self.identifier:
-                string = f">>  {self.identifier}"
+        if self.get_simultaneous():
+            if self.get_identifier():
+                string = f">>  {self.get_identifier()}"
             else:
                 string = ">>"
         else:
-            if self.identifier:
-                string = f"}}   {self.identifier}"
+            if self.get_identifier():
+                string = f"}}   {self.get_identifier()}"
             else:
                 string = "}"
         strings.append(string)
@@ -1147,7 +1149,7 @@ class Container(Component):
 
     def _format_content_pieces(self):
         strings = []
-        for component in self.components:
+        for component in self.get_components():
             string = component._get_lilypond_format()
             for string in string.split("\n"):
                 if string.isspace():
@@ -1166,14 +1168,14 @@ class Container(Component):
     def _format_open_brackets_site(self, contributions):
         result = []
         strings = []
-        if self.simultaneous:
-            if self.identifier:
-                string = f"<<  {self.identifier}"
+        if self.get_simultaneous():
+            if self.get_identifier():
+                string = f"<<  {self.get_identifier()}"
             else:
                 string = "<<"
         else:
-            if self.identifier:
-                string = f"{{   {self.identifier}"
+            if self.get_identifier():
+                string = f"{{   {self.get_identifier()}"
             else:
                 string = "{"
         strings.append(string)
@@ -1204,7 +1206,7 @@ class Container(Component):
             summary = str(len(self))
         else:
             summary = ""
-        if self.simultaneous:
+        if self.get_simultaneous():
             open_bracket_string, close_bracket_string = "<<", ">>"
         else:
             open_bracket_string, close_bracket_string = "{", "}"
@@ -1216,7 +1218,7 @@ class Container(Component):
         if hasattr(self, "_lilypond_type"):
             result = "<{}{}{}{}{}>"
             result = result.format(
-                self.lilypond_type,
+                self.get_lilypond_type(),
                 name,
                 open_bracket_string,
                 summary,
@@ -1235,7 +1237,7 @@ class Container(Component):
         return f"{{ {self._get_contents_summary()} }}"
 
     def _get_contents_duration(self):
-        if self.simultaneous:
+        if self.get_simultaneous():
             return max(
                 [_duration.Duration(0)] + [_._get_preprolated_duration() for _ in self]
             )
@@ -1248,7 +1250,7 @@ class Container(Component):
     def _get_contents_summary(self):
         if 0 < len(self):
             result = []
-            for component in self.components:
+            for component in self.get_components():
                 if hasattr(component, "_get_compact_representation"):
                     result.append(component._get_compact_representation())
                 else:
@@ -1260,7 +1262,7 @@ class Container(Component):
     def _get_descendants_starting_with(self):
         result = []
         result.append(self)
-        if self.simultaneous:
+        if self.get_simultaneous():
             for item in self:
                 result.extend(item._get_descendants_starting_with())
         elif self:
@@ -1270,7 +1272,7 @@ class Container(Component):
     def _get_descendants_stopping_with(self):
         result = []
         result.append(self)
-        if self.simultaneous:
+        if self.get_simultaneous():
             for item in self:
                 result.extend(item._get_descendants_stopping_with())
         elif self:
@@ -1303,7 +1305,7 @@ class Container(Component):
         if isinstance(components, str):
             parsed = self._parse_string(components, language=language)
             self._components = []
-            self.simultaneous = parsed.simultaneous
+            self.set_simultaneous(parsed.get_simultaneous())
             self[:] = parsed[:]
         else:
             for component in components:
@@ -1334,17 +1336,15 @@ class Container(Component):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def components(self) -> tuple:
+    def get_components(self) -> tuple:
         """
         Gets components in container.
         """
         return tuple(self._components)
 
-    @property
-    def identifier(self) -> str | None:
+    def get_identifier(self) -> str | None:
         r"""
-        Gets and sets bracket comment.
+        Gets bracket comment.
 
         ..  container:: example
 
@@ -1366,8 +1366,10 @@ class Container(Component):
         """
         return self._identifier
 
-    @identifier.setter
-    def identifier(self, argument):
+    def set_identifier(self, argument):
+        """
+        Sets bracket comment.
+        """
         assert isinstance(argument, str | type(None)), repr(argument)
         self._identifier = argument
 
@@ -1443,10 +1445,9 @@ class Container(Component):
             parent = parent._parent
         self._name = argument
 
-    @property
-    def simultaneous(self) -> bool | None:
+    def get_simultaneous(self) -> bool | None:
         r"""
-        Is true when container is simultaneous.
+        Gets container ``simultaneous`` flag.
 
         ..  container:: example
 
@@ -1474,7 +1475,7 @@ class Container(Component):
                     }
                 }
 
-            >>> container.simultaneous
+            >>> container.get_simultaneous()
             False
 
         ..  container:: example
@@ -1503,7 +1504,7 @@ class Container(Component):
                     }
                 }
 
-            >>> container.simultaneous = True
+            >>> container.set_simultaneous(True)
             >>> abjad.show(container) # doctest: +SKIP
 
             ..  docs::
@@ -1526,8 +1527,10 @@ class Container(Component):
         """
         return self._is_simultaneous
 
-    @simultaneous.setter
-    def simultaneous(self, argument):
+    def set_simultaneous(self, argument):
+        """
+        Sets container ``simultaneous`` flag.
+        """
         if argument is None:
             return
         assert isinstance(argument, bool), repr(argument)
@@ -1667,7 +1670,7 @@ class Container(Component):
             3
 
         """
-        for i, element in enumerate(self.components):
+        for i, element in enumerate(self.get_components()):
             if element is component:
                 return i
         else:
@@ -1954,7 +1957,7 @@ class AfterGraceContainer(Container):
         # NOTE: _main_leaf must be initialized before container initialization
         self._main_leaf = None
         Container.__init__(self, components, language=language, tag=tag)
-        self.fraction = fraction
+        self.set_fraction(fraction)
 
     ### SPECIAL METHODS ###
 
@@ -1968,7 +1971,7 @@ class AfterGraceContainer(Container):
             ((15, 16),)
 
         """
-        return (self.fraction,)
+        return (self.get_fraction(),)
 
     ### PRIVATE METHODS ###
 
@@ -1991,15 +1994,16 @@ class AfterGraceContainer(Container):
         result.extend(["{"])
         return result
 
-    @property
-    def fraction(self) -> tuple[int, int] | None:
+    def get_fraction(self) -> tuple[int, int] | None:
         r"""
         Gets LilyPond `\afterGraceFraction`.
         """
         return self._fraction
 
-    @fraction.setter
-    def fraction(self, fraction: tuple[int, int] | None):
+    def set_fraction(self, fraction: tuple[int, int] | None):
+        r"""
+        Sets LilyPond `\afterGraceFraction`.
+        """
         if fraction is not None:
             assert isinstance(fraction, tuple), repr(fraction)
             assert len(fraction) == 2, repr(fraction)
@@ -2226,22 +2230,21 @@ class BeforeGraceContainer(Container):
 
     def _format_open_brackets_site(self, contributions):
         result = []
-        string = f"{self.command} {{"
+        string = f"{self.get_command()} {{"
         result.extend([string])
         return result
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def command(self) -> str:
+    def get_command(self) -> str:
         r"""
-        Gets command. Chooses between LilyPond's four types of left-positioned grace
-        music.
+        Gets command. Chooses between LilyPond's four types of left-positioned
+        grace music.
 
         .. container:: example
 
-            **(Vanilla) grace notes.** LilyPond formats single grace notes with neither a
-            slash nor a slur:
+            **(Vanilla) grace notes.** LilyPond formats single grace notes with
+            neither a slash nor a slur:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> container = abjad.BeforeGraceContainer("cs'16")
@@ -2263,8 +2266,8 @@ class BeforeGraceContainer(Container):
                     f'4
                 }
 
-            LilyPond likewise formats runs of grace notes with neither a slash nor a
-            slur:
+            LilyPond likewise formats runs of grace notes with neither a slash
+            nor a slur:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> container = abjad.BeforeGraceContainer("cs'16 ds'")
@@ -2289,8 +2292,8 @@ class BeforeGraceContainer(Container):
 
         .. container:: example
 
-            **Acciaccaturas.** LilyPond formats single acciaccaturas with both a slash
-            and a slur:
+            **Acciaccaturas.** LilyPond formats single acciaccaturas with both
+            a slash and a slur:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> container = abjad.BeforeGraceContainer(
@@ -2316,8 +2319,8 @@ class BeforeGraceContainer(Container):
 
             ..  container:: example exception
 
-                But LilyPond fails to slash runs of acciaccaturas. This behavior is a
-                longstanding LilyPond bug:
+                But LilyPond fails to slash runs of acciaccaturas. This
+                behavior is a longstanding LilyPond bug:
 
                 >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
                 >>> container = abjad.BeforeGraceContainer(
@@ -2346,8 +2349,8 @@ class BeforeGraceContainer(Container):
 
         .. container:: example
 
-            **Appoggiaturas.** LilyPond formats single appoggiaturas with only a slur; no
-            slash is included:
+            **Appoggiaturas.** LilyPond formats single appoggiaturas with only
+            a slur; no slash is included:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> container = abjad.BeforeGraceContainer(
@@ -2398,8 +2401,8 @@ class BeforeGraceContainer(Container):
 
         .. container:: example
 
-            **Slashed grace notes.** LilyPond formats single slashed grace notes with
-            only a slash; no slur is included:
+            **Slashed grace notes.** LilyPond formats single slashed grace
+            notes with only a slash; no slur is included:
 
             >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
             >>> container = abjad.BeforeGraceContainer(
@@ -2425,8 +2428,8 @@ class BeforeGraceContainer(Container):
 
             ..  container:: example exception
 
-                But LilyPond fails to slash runs of "slashed" grace notes. This is a
-                longstanding LilyPond bug:
+                But LilyPond fails to slash runs of "slashed" grace notes. This
+                is a longstanding LilyPond bug:
 
                 >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
                 >>> container = abjad.BeforeGraceContainer(
@@ -2487,7 +2490,8 @@ class BeforeGraceContainer(Container):
 
             .. container:: example
 
-                **Slashed grace notes with slur may be used instead of acciaccatura:**
+                **Slashed grace notes with slur may be used instead of
+                acciaccatura:**
 
                 >>> voice = abjad.Voice("c'4 d'4 e'4 f'4")
                 >>> container = abjad.BeforeGraceContainer(
@@ -2568,14 +2572,14 @@ class Chord(Leaf):
             # TODO: move to dedicated from_note() constructor:
             if isinstance(leaf, Note) and leaf.note_head is not None:
                 written_pitches.append(leaf.note_head.get_written_pitch())
-                are_cautionary = [leaf.note_head.is_cautionary]
-                are_forced = [leaf.note_head.is_forced]
-                are_parenthesized = [leaf.note_head.is_parenthesized]
+                are_cautionary = [leaf.note_head.get_is_cautionary()]
+                are_forced = [leaf.note_head.get_is_forced()]
+                are_parenthesized = [leaf.note_head.get_is_parenthesized()]
             elif isinstance(leaf, Chord):
                 written_pitches.extend(_.get_written_pitch() for _ in leaf.note_heads)
-                are_cautionary = [_.is_cautionary for _ in leaf.note_heads]
-                are_forced = [_.is_forced for _ in leaf.note_heads]
-                are_parenthesized = [_.is_parenthesized for _ in leaf.note_heads]
+                are_cautionary = [_.get_is_cautionary() for _ in leaf.note_heads]
+                are_forced = [_.get_is_forced() for _ in leaf.note_heads]
+                are_parenthesized = [_.get_is_parenthesized() for _ in leaf.note_heads]
         # TODO: move to dedicated constructor:
         elif len(arguments) == 2:
             written_pitches, written_duration = arguments
@@ -2860,7 +2864,7 @@ class Cluster(Container):
 
     def _format_open_brackets_site(self, contributions):
         result = []
-        if self.simultaneous:
+        if self.get_simultaneous():
             brackets_open = ["<<"]
         else:
             brackets_open = ["{"]
@@ -2938,7 +2942,7 @@ class Context(Container):
         self._consists_commands: list[str] = []
         self._dependent_wrappers: list = []
         self._remove_commands: list[str] = []
-        self.lilypond_type = lilypond_type
+        self.set_lilypond_type(lilypond_type)
         Container.__init__(
             self,
             simultaneous=simultaneous,
@@ -2961,8 +2965,8 @@ class Context(Container):
         Returns new component.
         """
         new_context = Container.__copy__(self)
-        new_context._consists_commands = copy.copy(self.consists_commands)
-        new_context._remove_commands = copy.copy(self.remove_commands)
+        new_context._consists_commands = copy.copy(self.get_consists_commands())
+        new_context._remove_commands = copy.copy(self.get_remove_commands())
         return new_context
 
     def __getnewargs__(self):
@@ -2988,15 +2992,15 @@ class Context(Container):
 
         """
         parameters = []
-        if self.components:
+        if self.get_components():
             string = repr(self._get_contents_summary())
             parameters.append(string)
-        if self.lilypond_type != type(self).__name__:
-            parameters.append(f"lilypond_type={self.lilypond_type!r}")
+        if self.get_lilypond_type() != type(self).__name__:
+            parameters.append(f"lilypond_type={self.get_lilypond_type()!r}")
         if self.name:
             parameters.append(f"name={self.name!r}")
-        if self.simultaneous is True:
-            parameters.append(f"simultaneous={self.simultaneous!r}")
+        if self.get_simultaneous() is True:
+            parameters.append(f"simultaneous={self.get_simultaneous()!r}")
         string = ", ".join(parameters)
         return f"{type(self).__name__}({string})"
 
@@ -3013,28 +3017,28 @@ class Context(Container):
 
     def _format_consists_commands(self):
         result = []
-        for engraver in self.consists_commands:
+        for engraver in self.get_consists_commands():
             string = rf"\consists {engraver}"
             result.append(string)
         return result
 
     def _format_invocation(self):
         if self.name is not None:
-            string = rf'\context {self.lilypond_type} = "{self.name}"'
+            string = rf'\context {self.get_lilypond_type()} = "{self.name}"'
         else:
-            string = rf"\new {self.lilypond_type}"
+            string = rf"\new {self.get_lilypond_type()}"
         return string
 
     def _format_open_brackets_site(self, contributions):
         result = []
-        if self.simultaneous:
-            if self.identifier:
-                open_bracket = f"<<  {self.identifier}"
+        if self.get_simultaneous():
+            if self.get_identifier():
+                open_bracket = f"<<  {self.get_identifier()}"
             else:
                 open_bracket = "<<"
         else:
-            if self.identifier:
-                open_bracket = f"{{   {self.identifier}"
+            if self.get_identifier():
+                open_bracket = f"{{   {self.get_identifier()}"
             else:
                 open_bracket = "{"
         brackets_open = [open_bracket]
@@ -3082,15 +3086,14 @@ class Context(Container):
 
     def _format_remove_commands(self):
         result = []
-        for engraver in self.remove_commands:
+        for engraver in self.get_remove_commands():
             string = rf"\remove {engraver}"
             result.append(string)
         return result
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def consists_commands(self):
+    def get_consists_commands(self):
         r"""
         Unordered set of LilyPond engravers to include in context definition.
 
@@ -3099,7 +3102,7 @@ class Context(Container):
             Manage with add, update, other standard set commands:
 
             >>> staff = abjad.Staff([])
-            >>> staff.consists_commands.append("Horizontal_bracket_engraver")
+            >>> staff.get_consists_commands().append("Horizontal_bracket_engraver")
             >>> string = abjad.lilypond(staff)
             >>> print(string)
             \new Staff
@@ -3113,25 +3116,23 @@ class Context(Container):
         """
         return self._consists_commands
 
-    @property
-    def lilypond_context(self):
+    def get_lilypond_context(self):
         """
         Gets ``LilyPondContext`` associated with context.
 
         Returns LilyPond context instance.
         """
         try:
-            lilypond_context = _lyproxy.LilyPondContext(name=self.lilypond_type)
+            lilypond_context = _lyproxy.LilyPondContext(name=self.get_lilypond_type())
         except AssertionError:
             lilypond_context = _lyproxy.LilyPondContext(
                 name=self._default_lilypond_type
             )
         return lilypond_context
 
-    @property
-    def lilypond_type(self) -> str:
+    def get_lilypond_type(self) -> str:
         """
-        Gets and sets lilypond type of context.
+        Gets LilyPond type of context.
 
         ..  container:: example
 
@@ -3139,22 +3140,23 @@ class Context(Container):
             ...     lilypond_type="ViolinStaff",
             ...     name="MyViolinStaff",
             ... )
-            >>> context.lilypond_type
+            >>> context.get_lilypond_type()
             'ViolinStaff'
 
         """
         return self._lilypond_type
 
-    @lilypond_type.setter
-    def lilypond_type(self, argument):
+    def set_lilypond_type(self, argument):
+        """
+        Sets LilyPond type of context.
+        """
         if argument is None:
             argument = type(self).__name__
         else:
             argument = str(argument)
         self._lilypond_type = argument
 
-    @property
-    def remove_commands(self):
+    def get_remove_commands(self):
         r"""
         Unordered set of LilyPond engravers to remove from context.
 
@@ -3163,7 +3165,7 @@ class Context(Container):
             Manage with add, update, other standard set commands:
 
             >>> staff = abjad.Staff([])
-            >>> staff.remove_commands.append("Time_signature_engraver")
+            >>> staff.get_remove_commands().append("Time_signature_engraver")
             >>> string = abjad.lilypond(staff)
             >>> print(string)
             \new Staff
@@ -3228,7 +3230,7 @@ class IndependentAfterGraceContainer(Container):
         tag: _tag.Tag | None = None,
     ) -> None:
         Container.__init__(self, components, language=language, tag=tag)
-        self.fraction = fraction
+        self.set_fraction(fraction)
 
     def __getnewargs__(self):
         """
@@ -3246,15 +3248,16 @@ class IndependentAfterGraceContainer(Container):
     def _get_preprolated_duration(self):
         return _duration.Duration(0)
 
-    @property
-    def fraction(self) -> tuple[int, int] | None:
+    def get_fraction(self) -> tuple[int, int] | None:
         r"""
         Gets LilyPond `\afterGraceFraction`.
         """
         return self._fraction
 
-    @fraction.setter
-    def fraction(self, fraction: tuple[int, int] | None):
+    def set_fraction(self, fraction: tuple[int, int] | None):
+        r"""
+        Sets LilyPond `\afterGraceFraction`.
+        """
         if fraction is not None:
             assert isinstance(fraction, tuple), repr(fraction)
             assert len(fraction) == 2, repr(fraction)
@@ -3390,14 +3393,14 @@ class NoteHead:
             note_head = written_pitch
             tweaks_ = copy.deepcopy(note_head.tweaks)
             written_pitch = note_head.get_written_pitch()
-            is_cautionary = note_head.is_cautionary
-            is_forced = note_head.is_forced
+            is_cautionary = note_head.get_is_cautionary()
+            is_forced = note_head.get_is_forced()
         elif written_pitch is None:
             written_pitch = 0
         self.set_written_pitch(written_pitch)
-        self.is_cautionary = is_cautionary
-        self.is_forced = is_forced
-        self.is_parenthesized = is_parenthesized
+        self.set_is_cautionary(is_cautionary)
+        self.set_is_forced(is_forced)
+        self.set_is_parenthesized(is_parenthesized)
         self.tweaks = None
         if tweaks is not None:
             assert all(isinstance(_, _tweaks.Tweak) for _ in tweaks)
@@ -3418,9 +3421,9 @@ class NoteHead:
         """
         result = type(self)(
             self.get_written_pitch(),
-            is_cautionary=self.is_cautionary,
-            is_forced=self.is_forced,
-            is_parenthesized=self.is_parenthesized,
+            is_cautionary=self.get_is_cautionary(),
+            is_forced=self.get_is_forced(),
+            is_parenthesized=self.get_is_parenthesized(),
         )
         tweaks = copy.deepcopy(self.tweaks)
         result.tweaks = tweaks
@@ -3473,14 +3476,14 @@ class NoteHead:
         elif isinstance(self.get_written_pitch(), str):
             string = repr(self.get_written_pitch())
             strings.append(string)
-        if self.is_cautionary:
-            string = f"is_cautionary={self.is_cautionary!r}"
+        if self.get_is_cautionary():
+            string = f"is_cautionary={self.get_is_cautionary()!r}"
             strings.append(string)
-        if self.is_forced:
-            string = f"is_forced={self.is_forced!r}"
+        if self.get_is_forced():
+            string = f"is_forced={self.get_is_forced()!r}"
             strings.append(string)
-        if self.is_parenthesized:
-            string = f"is_parenthesized={self.is_parenthesized!r}"
+        if self.get_is_parenthesized():
+            string = f"is_parenthesized={self.get_is_parenthesized()!r}"
             strings.append(string)
         if self.tweaks:
             string = f"tweaks={self.tweaks!r}"
@@ -3492,16 +3495,16 @@ class NoteHead:
         result = ""
         if self.get_written_pitch():
             result = self.get_written_pitch().get_name()
-            if self.is_forced:
+            if self.get_is_forced():
                 result += "!"
-            if self.is_cautionary:
+            if self.get_is_cautionary():
                 result += "?"
         return result
 
     def _get_note_head_strings(self):
         assert self.get_written_pitch()
         result = []
-        if self.is_parenthesized:
+        if self.get_is_parenthesized():
             result.append(r"\parenthesize")
         for tweak in sorted(self.tweaks):
             strings = tweak._list_contributions()
@@ -3514,9 +3517,9 @@ class NoteHead:
         else:
             assert isinstance(written_pitch, str)
             kernel = written_pitch
-        if self.is_forced:
+        if self.get_is_forced():
             kernel += "!"
-        if self.is_cautionary:
+        if self.get_is_cautionary():
             kernel += "?"
         result.append(kernel)
         return result
@@ -3525,20 +3528,21 @@ class NoteHead:
         pieces = self._get_note_head_strings()
         if duration is not None:
             pieces[-1] = pieces[-1] + duration
-        if self.alternative:
-            pieces = _tag.double_tag(pieces, self.alternative[2])
-            pieces_ = self.alternative[0]._get_note_head_strings()
+        if self.get_alternative():
+            pieces = _tag.double_tag(pieces, self.get_alternative()[2])
+            pieces_ = self.get_alternative()[0]._get_note_head_strings()
             if duration is not None:
                 pieces_[-1] = pieces_[-1] + duration
-            pieces_ = _tag.double_tag(pieces_, self.alternative[1], deactivate=True)
+            pieces_ = _tag.double_tag(
+                pieces_, self.get_alternative()[1], deactivate=True
+            )
             pieces.extend(pieces_)
         result = "\n".join(pieces)
         return result
 
-    @property
-    def alternative(self) -> tuple["NoteHead", _tag.Tag, _tag.Tag]:
+    def get_alternative(self) -> tuple["NoteHead", _tag.Tag, _tag.Tag]:
         """
-        Gets and sets note-head alternative.
+        Gets note-head alternative.
 
         >>> import copy
 
@@ -3546,9 +3550,9 @@ class NoteHead:
 
             >>> note = abjad.Note("c''4")
             >>> alternative = copy.copy(note.note_head)
-            >>> alternative.is_forced = True
+            >>> alternative.set_is_forced(True)
             >>> triple = (alternative, abjad.Tag("-PARTS"), abjad.Tag("+PARTS"))
-            >>> note.note_head.alternative = triple
+            >>> note.note_head.set_alternative(triple)
             >>> abjad.show(note) # doctest: +SKIP
 
             >>> string = abjad.lilypond(note, tags=True)
@@ -3572,7 +3576,7 @@ class NoteHead:
 
             Clear with none:
 
-            >>> note.note_head.alternative = None
+            >>> note.note_head.set_alternative(None)
             >>> abjad.show(note) # doctest: +SKIP
 
             >>> string = abjad.lilypond(note, tags=True)
@@ -3583,9 +3587,9 @@ class NoteHead:
 
             >>> chord = abjad.Chord("<c' d' bf''>4")
             >>> alternative = copy.copy(chord.note_heads[0])
-            >>> alternative.is_forced = True
+            >>> alternative.set_is_forced(True)
             >>> triple = (alternative, abjad.Tag("-PARTS"), abjad.Tag("+PARTS"))
-            >>> chord.note_heads[0].alternative = triple
+            >>> chord.note_heads[0].set_alternative(triple)
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> string = abjad.lilypond(chord, tags=True)
@@ -3617,7 +3621,7 @@ class NoteHead:
 
             Clear with none:
 
-            >>> chord.note_heads[0].alternative = None
+            >>> chord.note_heads[0].set_alternative(None)
             >>> string = abjad.lilypond(chord, tags=True)
             >>> print(string)
             <b d' bf''>4
@@ -3625,26 +3629,27 @@ class NoteHead:
         """
         return self._alternative
 
-    @alternative.setter
-    def alternative(self, argument):
+    def set_alternative(self, argument):
+        """
+        Sets note-head alternative.
+        """
         if argument is not None:
             assert isinstance(argument, tuple), repr(argument)
             assert len(argument) == 3, repr(argument)
             assert isinstance(argument[0], NoteHead), repr(argument)
-            assert argument[0].alternative is None, repr(argument)
+            assert argument[0].get_alternative() is None, repr(argument)
             assert isinstance(argument[1], _tag.Tag), repr(argument)
             assert isinstance(argument[2], _tag.Tag), repr(argument)
         self._alternative = argument
 
-    @property
-    def is_cautionary(self) -> bool:
+    def get_is_cautionary(self) -> bool:
         """
-        Gets and sets cautionary accidental flag.
+        Gets cautionary accidental flag.
 
         ..  container:: example
 
             >>> note = abjad.Note("c''")
-            >>> note.note_head.is_cautionary = True
+            >>> note.note_head.set_is_cautionary(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3654,7 +3659,7 @@ class NoteHead:
                 c''?4
 
             >>> note = abjad.Note("cs''")
-            >>> note.note_head.is_cautionary = True
+            >>> note.note_head.set_is_cautionary(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3666,19 +3671,20 @@ class NoteHead:
         """
         return self._is_cautionary
 
-    @is_cautionary.setter
-    def is_cautionary(self, argument):
+    def set_is_cautionary(self, argument):
+        """
+        Sets cautionary accidental flag.
+        """
         self._is_cautionary = bool(argument)
 
-    @property
-    def is_forced(self) -> bool:
+    def get_is_forced(self) -> bool:
         """
-        Gets and sets forced accidental flag.
+        Gets forced accidental flag.
 
         ..  container:: example
 
             >>> note = abjad.Note("c''")
-            >>> note.note_head.is_forced = True
+            >>> note.note_head.set_is_forced(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3688,7 +3694,7 @@ class NoteHead:
                 c''!4
 
             >>> note = abjad.Note("cs''")
-            >>> note.note_head.is_forced = True
+            >>> note.note_head.set_is_forced(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3700,21 +3706,22 @@ class NoteHead:
         """
         return self._is_forced
 
-    @is_forced.setter
-    def is_forced(self, argument):
+    def set_is_forced(self, argument):
+        """
+        Sets forced accidental flag.
+        """
         if argument is not None:
             argument = bool(argument)
         self._is_forced = argument
 
-    @property
-    def is_parenthesized(self) -> bool:
+    def get_is_parenthesized(self) -> bool:
         r"""
-        Gets and sets forced accidental flag.
+        Gets parenthesized accidental flag.
 
         ..  container:: example
 
             >>> note = abjad.Note("c''")
-            >>> note.note_head.is_parenthesized = True
+            >>> note.note_head.set_is_parenthesized(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3725,7 +3732,7 @@ class NoteHead:
                 c''4
 
             >>> note = abjad.Note("cs''")
-            >>> note.note_head.is_parenthesized = True
+            >>> note.note_head.set_is_parenthesized(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3738,25 +3745,13 @@ class NoteHead:
         """
         return self._is_parenthesized
 
-    @is_parenthesized.setter
-    def is_parenthesized(self, argument):
+    def set_is_parenthesized(self, argument):
+        """
+        Sets parenthesized accidental flag.
+        """
         if argument is not None:
             argument = bool(argument)
         self._is_parenthesized = argument
-
-    @property
-    def named_pitch(self) -> _pitch.NamedPitch:
-        """
-        Gets named pitch.
-
-        ..  container:: example
-
-            >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.named_pitch
-            NamedPitch("cs''")
-
-        """
-        return self.get_written_pitch()
 
     def get_written_pitch(self) -> _pitch.NamedPitch:
         """
@@ -3777,10 +3772,13 @@ class NoteHead:
         return self._written_pitch
 
     def set_written_pitch(self, argument):
+        """
+        Sets written pitch.
+        """
         written_pitch = _pitch.NamedPitch(argument)
         self._written_pitch = written_pitch
-        if self.alternative is not None:
-            self.alternative[0].set_written_pitch(written_pitch)
+        if self.get_alternative() is not None:
+            self.get_alternative()[0].set_written_pitch(written_pitch)
 
 
 class DrumNoteHead(NoteHead):
@@ -4082,17 +4080,17 @@ class Note(Leaf):
                 multiplier = leaf.get_multiplier()
             if isinstance(leaf, Note) and leaf.note_head is not None:
                 written_pitch = leaf.note_head.get_written_pitch()
-                is_cautionary = leaf.note_head.is_cautionary
-                is_forced = leaf.note_head.is_forced
-                is_parenthesized = leaf.note_head.is_parenthesized
+                is_cautionary = leaf.note_head.get_is_cautionary()
+                is_forced = leaf.note_head.get_is_forced()
+                is_parenthesized = leaf.note_head.get_is_parenthesized()
             # TODO: move into separate from_chord() constructor:
             elif isinstance(leaf, Chord):
                 written_pitches = [_.get_written_pitch() for _ in leaf.note_heads]
                 if written_pitches:
                     written_pitch = written_pitches[0]
-                    is_cautionary = leaf.note_heads[0].is_cautionary
-                    is_forced = leaf.note_heads[0].is_forced
-                    is_parenthesized = leaf.note_heads[0].is_parenthesized
+                    is_cautionary = leaf.note_heads[0].get_is_cautionary()
+                    is_forced = leaf.note_heads[0].get_is_forced()
+                    is_parenthesized = leaf.note_heads[0].get_is_parenthesized()
         elif len(arguments) == 2:
             written_pitch, written_duration = arguments
         elif len(arguments) == 0:
@@ -4687,11 +4685,11 @@ class TremoloContainer(Container):
         """
         Gets new arguments of tremolo container.
         """
-        return (self.count,)
+        return (self.get_count(),)
 
     def _format_open_brackets_site(self, contributions) -> list[str]:
         result = []
-        result.append(rf"\repeat tremolo {self.count}")
+        result.append(rf"\repeat tremolo {self.get_count()}")
         result.append("{")
         return result
 
@@ -4699,17 +4697,16 @@ class TremoloContainer(Container):
         return self._get_prolation() * self._get_contents_duration()
 
     def _get_prolation(self) -> fractions.Fraction:
-        return fractions.Fraction(self.count)
+        return fractions.Fraction(self.get_count())
 
-    @property
-    def count(self) -> int:
+    def get_count(self) -> int:
         """
         Gets count.
 
         ..  container:: example
 
             >>> tremolo_container = abjad.TremoloContainer(2, "<c' d'>16 e'16")
-            >>> tremolo_container.count
+            >>> tremolo_container.get_count()
             2
 
         """
@@ -4829,7 +4826,7 @@ class Tuplet(Container):
         else:
             message = f"tuplet ratio must be ratio or string (not {ratio!r})."
             raise ValueError(message)
-        self.ratio = ratio_
+        self.set_ratio(ratio_)
 
     ### SPECIAL METHODS ###
 
@@ -4837,7 +4834,7 @@ class Tuplet(Container):
         """
         Gets new arguments of tuplet.
         """
-        string = str(self.ratio)
+        string = str(self.get_ratio())
         return (string,)
 
     def __repr__(self) -> str:
@@ -4845,7 +4842,7 @@ class Tuplet(Container):
         Gets interpreter representation of tuplet.
         """
         string = self._get_contents_summary()
-        return f"{type(self).__name__}({str(self.ratio)!r}, {string!r})"
+        return f"{type(self).__name__}({str(self.get_ratio())!r}, {string!r})"
 
     ### PRIVATE METHODS ###
 
@@ -4917,8 +4914,8 @@ class Tuplet(Container):
 
     def _get_compact_representation(self) -> str:
         if not self:
-            return f"{{ {str(self.ratio)} }}"
-        return f"{{ {str(self.ratio)} {self._get_contents_summary()} }}"
+            return f"{{ {str(self.get_ratio())} }}"
+        return f"{{ {str(self.get_ratio())} {self._get_contents_summary()} }}"
 
     def _get_preprolated_duration(self) -> _duration.Duration:
         return self.multiplier() * self._get_contents_duration()
@@ -4928,13 +4925,13 @@ class Tuplet(Container):
 
     def _get_summary(self) -> str:
         if 0 < len(self):
-            string = ", ".join([str(_) for _ in self.components])
+            string = ", ".join([str(_) for _ in self.get_components()])
         else:
             string = ""
         return string
 
     def _get_tuplet_command_string(self) -> str:
-        string = rf"\tuplet {self.ratio.numerator}/{self.ratio.denominator}"
+        string = rf"\tuplet {self.get_ratio().numerator}/{self.get_ratio().denominator}"
         return string
 
     def _scale(self, multiplier) -> None:
@@ -4946,8 +4943,7 @@ class Tuplet(Container):
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def ratio(self) -> _duration.Ratio:
+    def get_ratio(self) -> _duration.Ratio:
         r"""
         Gets and sets tuplet ratio.
 
@@ -4969,10 +4965,10 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> tuplet.ratio
+            >>> tuplet.get_ratio()
             Ratio(numerator=3, denominator=2)
 
-            >>> tuplet.ratio = abjad.Ratio(6, 4)
+            >>> tuplet.set_ratio(abjad.Ratio(6, 4))
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -4990,8 +4986,10 @@ class Tuplet(Container):
         """
         return self._ratio
 
-    @ratio.setter
-    def ratio(self, ratio):
+    def set_ratio(self, ratio):
+        """
+        Sets tuplet ratio.
+        """
         assert isinstance(ratio, _duration.Ratio), repr(ratio)
         assert ratio.denominator != 0, repr(ratio)
         self._ratio = ratio
@@ -5102,7 +5100,8 @@ class Tuplet(Container):
         if preserve_duration is True:
             new_duration = self._get_contents_duration()
             multiplier = old_duration / new_duration
-            self.ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+            ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+            self.set_ratio(ratio)
             assert self._get_duration() == old_duration
 
     def extend(
@@ -5200,7 +5199,8 @@ class Tuplet(Container):
         if preserve_duration is True:
             new_duration = self._get_contents_duration()
             multiplier = old_duration / new_duration
-            self.ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+            ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+            self.set_ratio(ratio)
             assert self._get_duration() == old_duration
 
     def is_rest_filled(self) -> bool:
@@ -5279,7 +5279,7 @@ class Tuplet(Container):
             False
 
         """
-        if not self.ratio.is_trivial():
+        if not self.get_ratio().is_trivial():
             return False
         for component in self:
             if isinstance(component, Tuplet):
@@ -5387,7 +5387,7 @@ class Tuplet(Container):
             Fraction(2, 3)
 
         """
-        return self.ratio.reciprocal().as_fraction()
+        return self.get_ratio().reciprocal().as_fraction()
 
     def normalize_ratio(self) -> None:
         r"""
@@ -5409,7 +5409,7 @@ class Tuplet(Container):
                     e'4
                 }
 
-            >>> tuplet.ratio.is_normalized()
+            >>> tuplet.get_ratio().is_normalized()
             False
 
             >>> tuplet.normalize_ratio()
@@ -5426,7 +5426,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> tuplet.ratio.is_normalized()
+            >>> tuplet.get_ratio().is_normalized()
             True
 
         ..  container:: example
@@ -5447,7 +5447,7 @@ class Tuplet(Container):
                     e'32
                 }
 
-            >>> tuplet.ratio.is_normalized()
+            >>> tuplet.get_ratio().is_normalized()
             False
 
             >>> tuplet.normalize_ratio()
@@ -5465,7 +5465,7 @@ class Tuplet(Container):
                     e'16
                 }
 
-            >>> tuplet.ratio.is_normalized()
+            >>> tuplet.get_ratio().is_normalized()
             True
 
         ..  container:: example
@@ -5486,7 +5486,7 @@ class Tuplet(Container):
                     e'4
                 }
 
-            >>> tuplet.ratio.is_normalized()
+            >>> tuplet.get_ratio().is_normalized()
             False
 
             >>> tuplet.normalize_ratio()
@@ -5504,7 +5504,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> tuplet.ratio.is_normalized()
+            >>> tuplet.get_ratio().is_normalized()
             True
 
         """
@@ -5515,8 +5515,8 @@ class Tuplet(Container):
                 component._scale(multiplier)
         multiplier = self.multiplier() / multiplier
         ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
-        self.ratio = ratio
-        assert self.ratio.is_normalized()
+        self.set_ratio(ratio)
+        assert self.get_ratio().is_normalized()
 
     def rewrite_dots(self) -> None:
         r"""
@@ -5675,7 +5675,8 @@ class Tuplet(Container):
             return
         dot_multiplier = _duration.fraction_from_dot_count(global_dot_count)
         multiplier = dot_multiplier * self.multiplier()
-        self.ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+        ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+        self.set_ratio(ratio)
         dot_multiplier_duration = _duration.Duration(dot_multiplier)
         dot_multiplier_reciprocal_duration = dot_multiplier_duration.get_reciprocal()
         for component in self:
@@ -5798,21 +5799,21 @@ class Tuplet(Container):
                 }
 
         """
-        if self.ratio.is_diminished():
-            while self.ratio.is_diminished():
+        if self.get_ratio().is_diminished():
+            while self.get_ratio().is_diminished():
                 multiplier = 2 * self.multiplier()
                 ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
-                self.ratio = ratio
+                self.set_ratio(ratio)
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
                         component_written_duration = component.get_written_duration()
                         component_written_duration /= 2
                         component.set_written_duration(component_written_duration)
-        elif self.ratio.is_augmented():
-            while not self.ratio.is_diminished():
+        elif self.get_ratio().is_augmented():
+            while not self.get_ratio().is_diminished():
                 multiplier = self.multiplier() / 2
                 ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
-                self.ratio = ratio
+                self.set_ratio(ratio)
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
                         component_written_duration = component.get_written_duration()
@@ -5873,14 +5874,14 @@ class Tuplet(Container):
             if isinstance(component, Tuplet):
                 multiplier = self.multiplier() * component.multiplier()
                 ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
-                component.ratio = ratio
+                component.set_ratio(ratio)
             elif isinstance(component, Leaf):
                 component_written_duration = component.get_written_duration()
                 component_written_duration *= self.multiplier()
                 component.set_written_duration(component_written_duration)
             else:
                 raise TypeError(component)
-        self.ratio = _duration.Ratio(1, 1)
+        self.set_ratio(_duration.Ratio(1, 1))
 
 
 class Voice(Context):

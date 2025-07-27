@@ -43,7 +43,7 @@ def test_Tuplet___init___01():
     tuplet = abjad.Tuplet()
 
     assert abjad.lilypond(tuplet) == "\\tuplet 3/2\n{\n}"
-    assert tuplet.ratio == abjad.Ratio(3, 2)
+    assert tuplet.get_ratio() == abjad.Ratio(3, 2)
     assert not len(tuplet)
 
 
