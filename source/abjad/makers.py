@@ -62,7 +62,7 @@ def _make_leaf_on_pitch(
             )
         elif use_multimeasure_rests is True:
             multimeasure_rest = _score.MultimeasureRest((1), tag=tag)
-            multimeasure_rest.set_multiplier(duration.get_pair())
+            multimeasure_rest.set_multiplier(duration.pair())
             leaves = [multimeasure_rest]
         else:
             leaves = _make_tied_leaf(
@@ -109,9 +109,9 @@ def _make_tied_leaf(
     assert isinstance(duration, _duration.Duration), repr(duration)
     if multiplier is not None:
         assert isinstance(multiplier, tuple), repr(multiplier)
-    duration_pair = duration.get_pair()
+    duration_pair = duration.pair()
     if forbidden_duration is not None:
-        assert forbidden_duration.get_is_assignable()
+        assert forbidden_duration.is_assignable()
         assert forbidden_duration.numerator == 1
     if forbidden_duration is not None and forbidden_duration <= duration:
         denominators = [2 * forbidden_duration.denominator, duration.denominator]
@@ -819,7 +819,7 @@ def make_notes(
             denominator = duration_list[0].denominator
             numerator = _math.greatest_power_of_two_less_equal(denominator)
             duration = _duration.Duration(numerator, denominator)
-            duration_list = [duration.get_reciprocal() * _ for _ in duration_list]
+            duration_list = [duration.reciprocal() * _ for _ in duration_list]
             notes = _make_unprolated_notes(
                 pitches_,
                 duration_list,
@@ -1195,7 +1195,7 @@ def make_tuplet(
         leaves = make_leaves([pitch_list], [duration], tag=tag)
         tuplet = _score.Tuplet("1:1", leaves, tag=tag)
     else:
-        numerator, denominator = duration.get_pair()
+        numerator, denominator = duration.pair()
         exponent = int(math.log(_math.weight(proportion), 2) - math.log(numerator, 2))
         denominator = int(denominator * 2**exponent)
         components: list[_score.Leaf | _score.Tuplet] = []

@@ -3691,7 +3691,7 @@ class MetronomeMark:
         return self_get_quarters_per_minute < argument_get_quarters_per_minute
 
     def _dotted(self):
-        return self.reference_duration.get_lilypond_duration_string()
+        return self.reference_duration.lilypond_duration_string()
 
     def _equation(self):
         if self.reference_duration is None:
@@ -3742,7 +3742,7 @@ class MetronomeMark:
         stem_height = 1
         string = r"\abjad-metronome-mark-markup"
         string += f" #{duration_log}"
-        string += f" #{self.reference_duration.get_dot_count()}"
+        string += f" #{self.reference_duration.dot_count()}"
         string += f" #{stem_height}"
         string += f' #"{self.units_per_minute}"'
         markup = Markup(rf"\markup {string}")
@@ -3751,7 +3751,7 @@ class MetronomeMark:
     def _get_markup_arguments(self):
         assert self.custom_markup is None
         duration_log = int(math.log(self.reference_duration.denominator, 2))
-        dot_count = self.reference_duration.get_dot_count()
+        dot_count = self.reference_duration.dot_count()
         stem_height = 1
         if not self.decimal:
             return {
@@ -3924,8 +3924,8 @@ class MetronomeMark:
 
         """
         reference_duration_ = _duration.Duration(reference_duration)
-        log = reference_duration_.get_exponent()
-        dots = reference_duration_.get_dot_count()
+        log = reference_duration_.exponent()
+        dots = reference_duration_.dot_count()
         stem = 1
         if isinstance(
             units_per_minute, fractions.Fraction
@@ -7335,7 +7335,7 @@ class TimeSignature:
         if self.partial is None:
             result.append(rf"\time {self.numerator}/{self.denominator}")
         else:
-            duration_string = self.partial.get_lilypond_duration_string()
+            duration_string = self.partial.lilypond_duration_string()
             partial_directive = rf"\partial {duration_string}"
             result.append(partial_directive)
             string = rf"\time {self.numerator}/{self.denominator}"

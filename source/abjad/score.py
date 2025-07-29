@@ -629,7 +629,7 @@ class Leaf(Component):
                 return False
 
     def _get_formatted_duration(self):
-        strings = [self.get_written_duration().get_lilypond_duration_string()]
+        strings = [self.get_written_duration().lilypond_duration_string()]
         if self.get_multiplier() is not None:
             string = f"{self.get_multiplier()[0]}/{self.get_multiplier()[1]}"
             strings.append(string)
@@ -707,7 +707,7 @@ class Leaf(Component):
 
     def set_written_duration(self, argument):
         duration = _duration.Duration(argument)
-        if not duration.get_is_assignable():
+        if not duration.is_assignable():
             message = f"not assignable duration: {duration!r}."
             raise _exceptions.AssignabilityError(message)
         self._written_duration = duration
@@ -5383,7 +5383,7 @@ class Tuplet(Container):
                 continue
             assert isinstance(component, Leaf), repr(component)
             duration = self.multiplier() * component.get_written_duration()
-            if not duration.get_is_assignable():
+            if not duration.is_assignable():
                 return False
         return True
 
@@ -5675,7 +5675,7 @@ class Tuplet(Container):
         for component in self:
             if isinstance(component, Tuplet):
                 return
-            dot_count = component.get_written_duration().get_dot_count()
+            dot_count = component.get_written_duration().dot_count()
             dot_counts.add(dot_count)
         if 1 < len(dot_counts):
             return
@@ -5688,7 +5688,7 @@ class Tuplet(Container):
         ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
         self.set_ratio(ratio)
         dot_multiplier_duration = _duration.Duration(dot_multiplier)
-        dot_multiplier_reciprocal_duration = dot_multiplier_duration.get_reciprocal()
+        dot_multiplier_reciprocal_duration = dot_multiplier_duration.reciprocal()
         for component in self:
             component_written_duration = component.get_written_duration()
             component_written_duration *= dot_multiplier_reciprocal_duration

@@ -1389,7 +1389,7 @@ def logical_tie_to_tuplet(
     target_duration = sum(_._get_preprolated_duration() for _ in argument)
     assert isinstance(target_duration, _duration.Duration)
     prolated_duration = target_duration / sum(proportions)
-    basic_written_duration = prolated_duration.get_equal_or_greater_power_of_two()
+    basic_written_duration = prolated_duration.equal_or_greater_power_of_two()
     written_durations = [_ * basic_written_duration for _ in proportions]
     notes: list[_score.Note | _score.Tuplet]
     try:
