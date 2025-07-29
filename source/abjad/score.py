@@ -125,7 +125,7 @@ class Component:
                 _overrides.setting(self)
             )
         for wrapper in self._wrappers:
-            if not wrapper.get_annotation():
+            if not wrapper.annotation():
                 continue
             wrapper_ = copy.copy(wrapper)
             wrapper_._component = component
@@ -231,14 +231,12 @@ class Component:
     def _get_markup(self, direction=None):
         wrappers = self._get_wrappers(_indicators.Markup)
         if direction is _enums.UP:
-            return tuple(
-                _.get_indicator() for _ in wrappers if _.get_direction() is _enums.UP
-            )
+            return tuple(_.indicator() for _ in wrappers if _.direction() is _enums.UP)
         elif direction is _enums.DOWN:
             return tuple(
-                _.get_indicator() for _ in wrappers if _.get_direction() is _enums.DOWN
+                _.indicator() for _ in wrappers if _.direction() is _enums.DOWN
             )
-        indicators = [_.get_indicator() for _ in wrappers]
+        indicators = [_.indicator() for _ in wrappers]
         return indicators
 
     def _get_parentage(self):
@@ -295,7 +293,7 @@ class Component:
         prototype_classes = tuple(prototype_classes)
         wrappers = []
         for wrapper in self._wrappers:
-            if wrapper.get_annotation():
+            if wrapper.annotation():
                 continue
             if isinstance(wrapper, prototype_classes):
                 wrappers.append(wrapper)
@@ -303,7 +301,7 @@ class Component:
                 wrappers.append(wrapper)
             elif isinstance(wrapper.unbundle_indicator(), prototype_classes):
                 wrappers.append(wrapper)
-            elif any(wrapper.get_indicator() == _ for _ in prototype_objects):
+            elif any(wrapper.indicator() == _ for _ in prototype_objects):
                 wrappers.append(wrapper)
             elif any(wrapper.unbundle_indicator() == _ for _ in prototype_objects):
                 wrappers.append(wrapper)
@@ -328,7 +326,7 @@ class Component:
             if not hasattr(component, "_lilypond_type"):
                 continue
             for wrapper in component._dependent_wrappers[:]:
-                if wrapper.get_component() is self:
+                if wrapper.component() is self:
                     component._dependent_wrappers.remove(wrapper)
         if self._parent is not None:
             self._parent._components.remove(self)

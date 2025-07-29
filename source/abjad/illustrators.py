@@ -546,12 +546,10 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
         for wrapper in markup_wrappers:
             markup = wrapper.unbundle_indicator()
             markup_copy = copy.copy(markup)
-            if wrapper.get_direction() in (_enums.UP, None):
-                _bind.attach(
-                    markup_copy, treble_leaf, direction=wrapper.get_direction()
-                )
+            if wrapper.direction() in (_enums.UP, None):
+                _bind.attach(markup_copy, treble_leaf, direction=wrapper.direction())
             else:
-                _bind.attach(markup_copy, bass_leaf, direction=wrapper.get_direction())
+                _bind.attach(markup_copy, bass_leaf, direction=wrapper.direction())
         treble_voice.append(treble_leaf)
         bass_voice.append(bass_leaf)
     if 0 < len(treble_voice):

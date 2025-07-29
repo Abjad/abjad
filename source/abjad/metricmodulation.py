@@ -451,7 +451,7 @@ class MetricModulation:
     def _get_contributions(self, *, wrapper=None):
         assert wrapper is not None, repr(wrapper)
         contributions = _contributions.ContributionsBySite()
-        if wrapper.get_hide() is False:
+        if wrapper.hide() is False:
             markup = self._get_markup()
             contributions = markup._get_contributions(wrapper=wrapper)
         return contributions
