@@ -99,36 +99,36 @@ class Wrapper:
         component after copy.
         """
         new = type(self)(
-            annotation=self.get_annotation(),
+            annotation=self.annotation(),
             component=None,
-            context_name=self.get_context_name(),
-            deactivate=self.get_deactivate(),
-            direction=self.get_direction(),
-            hide=self.get_hide(),
-            indicator=copy.copy(self.get_indicator()),
-            synthetic_offset=self.get_synthetic_offset(),
-            tag=self.get_tag(),
+            context_name=self.context_name(),
+            deactivate=self.deactivate(),
+            direction=self.direction(),
+            hide=self.hide(),
+            indicator=copy.copy(self.indicator()),
+            synthetic_offset=self.synthetic_offset(),
+            tag=self.tag(),
         )
         return new
 
     def __eq__(self, argument) -> bool:
         if not isinstance(argument, Wrapper):
             return False
-        if self.get_annotation() != argument.get_annotation():
+        if self.annotation() != argument.annotation():
             return False
-        if self.get_component() != argument.get_component():
+        if self.component() != argument.component():
             return False
-        if self.get_context_name() != argument.get_context_name():
+        if self.context_name() != argument.context_name():
             return False
-        if self.get_deactivate() != argument.get_deactivate():
+        if self.deactivate() != argument.deactivate():
             return False
-        if self.get_hide() != argument.get_hide():
+        if self.hide() != argument.hide():
             return False
-        if self.get_indicator() != argument.get_indicator():
+        if self.indicator() != argument.indicator():
             return False
-        if self.get_synthetic_offset() != argument.get_synthetic_offset():
+        if self.synthetic_offset() != argument.synthetic_offset():
             return False
-        if self.get_tag() != argument.get_tag():
+        if self.tag() != argument.tag():
             return False
         return True
 
@@ -137,14 +137,14 @@ class Wrapper:
 
     def __repr__(self) -> str:
         parameters = f"""
-            annotation={self.get_annotation()!r},
-            context_name={self.get_context_name()!r},
-            deactivate={self.get_deactivate()!r},
-            direction={self.get_direction()!r},
-            hide={self.get_hide()!r},
-            indicator={self.get_indicator()!r},
-            synthetic_offset={self.get_synthetic_offset()!r},
-            tag={self.get_tag()!r}
+            annotation={self.annotation()!r},
+            context_name={self.context_name()!r},
+            deactivate={self.deactivate()!r},
+            direction={self.direction()!r},
+            hide={self.hide()!r},
+            indicator={self.indicator()!r},
+            synthetic_offset={self.synthetic_offset()!r},
+            tag={self.tag()!r}
         """
         parameters = " ".join(parameters.split())
         return f"{type(self).__name__}({parameters})"
@@ -184,7 +184,7 @@ class Wrapper:
                 correct_effective_context._update_later(offsets_in_seconds=True)
 
     def _check_duplicate_indicator(self, component: _score.Component) -> None:
-        if self.get_deactivate() is True:
+        if self.deactivate() is True:
             return
         indicator = self.unbundle_indicator()
         prototype = type(indicator)
@@ -200,8 +200,8 @@ class Wrapper:
         my_site = getattr(indicator, "site", None)
         if (
             wrapper is None
-            or wrapper.get_context_name() is None
-            or wrapper.get_deactivate() is True
+            or wrapper.context_name() is None
+            or wrapper.deactivate() is True
             or wrapper.start_offset() != self.start_offset()
             or wrapper_site != my_site
         ):
@@ -215,7 +215,7 @@ class Wrapper:
                 context = parent
                 break
         wrapper_context = None
-        for parent in wrapper.get_component()._get_parentage():
+        for parent in wrapper.component()._get_parentage():
             if hasattr(parent, "_lilypond_type"):
                 wrapper_context = parent
                 break
@@ -229,10 +229,10 @@ class Wrapper:
         message += f" in {context.get_name()} because ..."
         message += f"\n\n{repr(wrapper)}\n\n"
         message += "... is already attached"
-        if component is wrapper.get_component():
+        if component is wrapper.component():
             message += " to the same leaf."
         else:
-            message += f" to {repr(wrapper.get_component())}"
+            message += f" to {repr(wrapper.component())}"
             message += f" in {wrapper_context.get_name()}."
         message += "\n"
         raise _exceptions.PersistentIndicatorError(message)
@@ -285,12 +285,12 @@ class Wrapper:
         return candidate
 
     def _get_effective_context(self) -> _score.Context | None:
-        if self.get_component() is not None:
-            _updatelib._update_now(self.get_component(), indicators=True)
+        if self.component() is not None:
+            _updatelib._update_now(self.component(), indicators=True)
         return self._effective_context
 
     def _unbind_component(self) -> None:
-        component = self.get_component()
+        component = self.component()
         if component is not None and id(self) in [id(_) for _ in component._wrappers]:
             component._wrappers.remove(self)
         self._component = None
@@ -304,10 +304,10 @@ class Wrapper:
         self._effective_context = None
 
     def _update_effective_context(self) -> None:
-        context_name = self.get_context_name()
+        context_name = self.context_name()
         if context_name is not None:
             correct_effective_context = self._find_correct_effective_context(
-                self.get_component(),
+                self.component(),
                 context_name,
             )
         else:
@@ -318,25 +318,25 @@ class Wrapper:
             if self not in correct_effective_context._dependent_wrappers:
                 correct_effective_context._dependent_wrappers.append(self)
 
-    def get_annotation(self) -> str | None:
+    def annotation(self) -> str | None:
         """
         Gets annotation with which indicator is attached to component.
         """
         return self._annotation
 
-    def get_component(self) -> _score.Component | None:
+    def component(self) -> _score.Component | None:
         """
         Gets component to which indicator is attached.
         """
         return self._component
 
-    def get_context_name(self) -> str | None:
+    def context_name(self) -> str | None:
         """
         Gets name of context at which indicator is attached to component.
         """
         return self._context_name
 
-    def get_deactivate(self) -> bool:
+    def deactivate(self) -> bool:
         """
         Is true when indicator is deactivated in LilyPond output.
         """
@@ -350,19 +350,19 @@ class Wrapper:
         self._deactivate = argument
 
     # TODO: typehint
-    def get_direction(self):
+    def direction(self):
         """
         Gets direction of indicator.
         """
         return self._direction
 
-    def get_hide(self) -> bool:
+    def hide(self) -> bool:
         """
         Is true when indcator does not appear in LilyPond output.
         """
         return self._hide
 
-    def get_indicator(self) -> typing.Any:
+    def indicator(self) -> typing.Any:
         """
         Gets indicator.
         """
@@ -372,7 +372,7 @@ class Wrapper:
         """
         Is true when indicator is bundled.
         """
-        return isinstance(self.get_indicator(), _tweaks.Bundle)
+        return isinstance(self.indicator(), _tweaks.Bundle)
 
     def leaked_start_offset(self) -> _duration.Offset:
         r"""
@@ -418,11 +418,11 @@ class Wrapper:
             (Offset((0, 1)), Offset((1, 2)))
 
         """
-        synthetic_offset = self.get_synthetic_offset()
+        synthetic_offset = self.synthetic_offset()
         if synthetic_offset is not None:
             return synthetic_offset
         indicator = self.unbundle_indicator()
-        component = self.get_component()
+        component = self.component()
         assert isinstance(component, _score.Component)
         if not getattr(indicator, "leak", False):
             return component._get_timespan().start_offset
@@ -446,16 +446,16 @@ class Wrapper:
             >>> abjad.attach(abjad.Ottava(-1, site="before"), staff[0])
             >>> abjad.attach(abjad.Ottava(0, site="after"), staff[0])
             >>> for wrapper in abjad.get.wrappers(staff[0], abjad.Ottava):
-            ...     wrapper.get_indicator(), wrapper.site_adjusted_start_offset()
+            ...     wrapper.indicator(), wrapper.site_adjusted_start_offset()
             (Ottava(n=-1, site='before'), Offset((0, 1)))
             (Ottava(n=0, site='after'), Offset((1, 4)))
 
         """
-        synthetic_offset = self.get_synthetic_offset()
+        synthetic_offset = self.synthetic_offset()
         if synthetic_offset is not None:
             return synthetic_offset
         site = getattr(self.unbundle_indicator(), "site", "before")
-        component = self.get_component()
+        component = self.component()
         assert component is not None
         if site in ("absolute_after", "after", "closing"):
             return component._get_timespan().stop_offset
@@ -467,20 +467,20 @@ class Wrapper:
         Gets start offset. This is either the wrapper's synthetic offset or the
         start offset of the wrapper's component.
         """
-        synthetic_offset = self.get_synthetic_offset()
+        synthetic_offset = self.synthetic_offset()
         if synthetic_offset is not None:
             return synthetic_offset
-        component = self.get_component()
+        component = self.component()
         assert isinstance(component, _score.Component)
         return component._get_timespan().start_offset
 
-    def get_synthetic_offset(self) -> _duration.Offset | None:
+    def synthetic_offset(self) -> _duration.Offset | None:
         """
         Gets synthetic offset.
         """
         return self._synthetic_offset
 
-    def get_tag(self) -> _tag.Tag:
+    def tag(self) -> _tag.Tag:
         """
         Gets wrapper tag.
         """
@@ -498,7 +498,7 @@ class Wrapper:
         Unbundles indicator.
         """
         if self.is_bundled():
-            indicator = self.get_indicator().indicator
+            indicator = self.indicator().indicator
         else:
-            indicator = self.get_indicator()
+            indicator = self.indicator()
         return indicator
