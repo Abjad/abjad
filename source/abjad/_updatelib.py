@@ -132,7 +132,7 @@ def _get_measure_start_offsets(component):
                 measure_start_offset += partial
                 measure_start_offsets.append(measure_start_offset)
                 at_first_measure = False
-            measure_start_offset += current_time_signature.get_duration()
+            measure_start_offset += current_time_signature.duration()
     return measure_start_offsets
 
 
@@ -200,7 +200,7 @@ def _make_metronome_mark_map(root):
         indicators = component._get_indicators(_indicators.MetronomeMark)
         if len(indicators) == 1:
             metronome_mark = indicators[0]
-            if not metronome_mark.get_is_imprecise():
+            if not metronome_mark.is_imprecise():
                 pair = (component._start_offset, metronome_mark)
                 pairs.append(pair)
         if component._stop_offset is not None:

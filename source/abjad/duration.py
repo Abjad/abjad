@@ -106,8 +106,8 @@ class Duration(fractions.Fraction):
                 return fractions.Fraction.__new__(class_, argument)
             except (AttributeError, TypeError):
                 pass
-            if hasattr(argument, "get_duration"):
-                return argument.get_duration()
+            if callable(hasattr(argument, "duration")):
+                return argument.duration()
             if (
                 isinstance(argument, tuple)
                 and len(argument) == 2

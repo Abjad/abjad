@@ -2103,7 +2103,7 @@ class Meter:
         first_start_offset = nongrace_components[0]._get_timespan().start_offset
         last_start_offset = nongrace_components[-1]._get_timespan().start_offset
         difference = last_start_offset - first_start_offset + initial_offset
-        assert difference < self.implied_time_signature().get_duration()
+        assert difference < self.implied_time_signature().duration()
         # build offset inventory, adjusted for initial offset and prolation
         first_offset = components[0]._get_timespan().start_offset
         first_offset -= initial_offset
