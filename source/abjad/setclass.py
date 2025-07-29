@@ -1322,9 +1322,7 @@ class SetClass:
 
         """
         pitch_class_set = _pcollections.PitchClassSet(pitches)
-        prime_form = pitch_class_set.get_prime_form(
-            transposition_only=transposition_only
-        )
+        prime_form = pitch_class_set.prime_form(transposition_only=transposition_only)
         prime_form = tuple([_.get_number() for _ in sorted(prime_form)])
         if transposition_only:
             pair = SetClass._prime_form_to_transposition_only_identifier[prime_form]
@@ -1525,7 +1523,7 @@ def _classify_set_classes(transposition_only=False):
         if _pitch.NumberedPitchClass(0) not in pc_set:
             if 0 < len(pc_set):
                 continue
-        prime_form = pc_set.get_prime_form(transposition_only=transposition_only)
+        prime_form = pc_set.prime_form(transposition_only=transposition_only)
         all_prime_forms[prime_form.cardinality].add(prime_form)
     total = 0
     for cardinality in range(12 + 1):

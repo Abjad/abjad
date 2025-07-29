@@ -131,7 +131,7 @@ class Pattern:
         >>> sieve_7 = sieve_7a & sieve_7b
         >>> sieve = sieve_1 | sieve_2 | sieve_3 | sieve_4 | sieve_5 | sieve_6 | sieve_7
 
-        >>> sieve.get_boolean_vector(total_length=40)
+        >>> sieve.boolean_vector(total_length=40)
         [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1,
         1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
 
@@ -214,7 +214,7 @@ class Pattern:
         >>> pattern.inverted is None
         True
 
-        >>> pattern.get_boolean_vector(total_length=16)
+        >>> pattern.boolean_vector(total_length=16)
         [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
 
         Matches every index that is NOT (one of the first three indices) OR (one of the
@@ -225,7 +225,7 @@ class Pattern:
         >>> pattern.inverted
         True
 
-        >>> pattern.get_boolean_vector(total_length=16)
+        >>> pattern.boolean_vector(total_length=16)
         [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
 
     ..  container:: example
@@ -409,7 +409,7 @@ class Pattern:
             >>> pattern
             Pattern(indices=None, inverted=None, operator='and', patterns=(Pattern(indices=(0, 1, 2), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=(-3, -2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=(0,), inverted=None, operator=None, patterns=None, payload=None, period=2)), payload=None, period=None)
 
-            >>> pattern.get_boolean_vector(total_length=16)
+            >>> pattern.boolean_vector(total_length=16)
             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
         ..  container:: example
@@ -423,7 +423,7 @@ class Pattern:
             >>> pattern
             Pattern(indices=None, inverted=None, operator='or', patterns=(Pattern(indices=None, inverted=None, operator='and', patterns=(Pattern(indices=(0, 1, 2), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=(-3, -2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None)), payload=None, period=None), Pattern(indices=(0,), inverted=None, operator=None, patterns=None, payload=None, period=2)), payload=None, period=None)
 
-            >>> pattern.get_boolean_vector(total_length=16)
+            >>> pattern.boolean_vector(total_length=16)
             [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
 
         ..  container:: example
@@ -479,7 +479,7 @@ class Pattern:
             >>> pattern
             Pattern(indices=None, inverted=None, operator='or', patterns=(Pattern(indices=(0, 1, 2), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=(-3, -2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None)), payload=None, period=None)
 
-            >>> pattern.get_boolean_vector(total_length=16)
+            >>> pattern.boolean_vector(total_length=16)
             [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
 
         ..  container:: example
@@ -491,7 +491,7 @@ class Pattern:
             >>> pattern
             Pattern(indices=None, inverted=True, operator='or', patterns=(Pattern(indices=(0, 1, 2), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=(-3, -2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None)), payload=None, period=None)
 
-            >>> pattern.get_boolean_vector(total_length=16)
+            >>> pattern.boolean_vector(total_length=16)
             [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
 
         Returns new pattern.
@@ -586,7 +586,7 @@ class Pattern:
             >>> pattern
             Pattern(indices=None, inverted=None, operator='or', patterns=(Pattern(indices=(0, 1, 2), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=(-3, -2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=(0,), inverted=None, operator=None, patterns=None, payload=None, period=2)), payload=None, period=None)
 
-            >>> pattern.get_boolean_vector(total_length=16)
+            >>> pattern.boolean_vector(total_length=16)
             [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1]
 
         ..  container:: example
@@ -600,7 +600,7 @@ class Pattern:
             >>> pattern
             Pattern(indices=None, inverted=None, operator='or', patterns=(Pattern(indices=(0, 1, 2), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=None, inverted=None, operator='and', patterns=(Pattern(indices=(-3, -2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=(0,), inverted=None, operator=None, patterns=None, payload=None, period=2)), payload=None, period=None)), payload=None, period=None)
 
-            >>> pattern.get_boolean_vector(total_length=16)
+            >>> pattern.boolean_vector(total_length=16)
             [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
 
         ..  container:: example
@@ -648,7 +648,7 @@ class Pattern:
             >>> pattern
             Pattern(indices=None, inverted=None, operator='xor', patterns=(Pattern(indices=(0, 1, 2), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=(-3, -2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=(0,), inverted=None, operator=None, patterns=None, payload=None, period=2)), payload=None, period=None)
 
-            >>> pattern.get_boolean_vector(total_length=16)
+            >>> pattern.boolean_vector(total_length=16)
             [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1]
 
         ..  container:: example
@@ -662,7 +662,7 @@ class Pattern:
             >>> pattern
             Pattern(indices=None, inverted=None, operator='xor', patterns=(Pattern(indices=(0, 1, 2), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=None, inverted=None, operator='and', patterns=(Pattern(indices=(-3, -2, -1), inverted=None, operator=None, patterns=None, payload=None, period=None), Pattern(indices=(0,), inverted=None, operator=None, patterns=None, payload=None, period=2)), payload=None, period=None)), payload=None, period=None)
 
-            >>> pattern.get_boolean_vector(total_length=16)
+            >>> pattern.boolean_vector(total_length=16)
             [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
 
         ..  container:: example
@@ -818,7 +818,7 @@ class Pattern:
         indices = [i for i, x in enumerate(vector) if x]
         return class_(period=period, indices=indices)
 
-    def get_boolean_vector(self, total_length=None) -> list[int]:
+    def boolean_vector(self, total_length=None) -> list[int]:
         """
         Gets boolean vector of pattern applied to input sequence with
         ``total_length``.
@@ -831,19 +831,19 @@ class Pattern:
 
             >>> pattern = abjad.Pattern(indices=[4, 5, 6, 7])
 
-            >>> pattern.get_boolean_vector(4)
+            >>> pattern.boolean_vector(4)
             [0, 0, 0, 0]
 
-            >>> pattern.get_boolean_vector(8)
+            >>> pattern.boolean_vector(8)
             [0, 0, 0, 0, 1, 1, 1, 1]
 
-            >>> pattern.get_boolean_vector(16)
+            >>> pattern.boolean_vector(16)
             [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 
             Sets total length to length of pattern when ``total_length`` is
             none:
 
-            >>> pattern.get_boolean_vector()
+            >>> pattern.boolean_vector()
             [0, 0, 0, 0, 1, 1, 1, 1]
 
         ..  container:: example
@@ -855,19 +855,19 @@ class Pattern:
             ...     period=20,
             ... )
 
-            >>> pattern.get_boolean_vector(4)
+            >>> pattern.boolean_vector(4)
             [0, 0, 0, 0]
 
-            >>> pattern.get_boolean_vector(8)
+            >>> pattern.boolean_vector(8)
             [0, 0, 0, 0, 1, 1, 1, 1]
 
-            >>> pattern.get_boolean_vector(16)
+            >>> pattern.boolean_vector(16)
             [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 
             Sets total length to length of pattern when ``total_length`` is
             none:
 
-            >>> pattern.get_boolean_vector()
+            >>> pattern.boolean_vector()
             [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
         ..  container:: example
@@ -879,19 +879,19 @@ class Pattern:
             ...     period=20,
             ... )
 
-            >>> pattern.get_boolean_vector(4)
+            >>> pattern.boolean_vector(4)
             [0, 0, 0, 0]
 
-            >>> pattern.get_boolean_vector(8)
+            >>> pattern.boolean_vector(8)
             [0, 0, 0, 0, 1, 1, 1, 1]
 
-            >>> pattern.get_boolean_vector(16)
+            >>> pattern.boolean_vector(16)
             [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
 
             Sets total length to length of pattern when ``total_length`` is
             none:
 
-            >>> pattern.get_boolean_vector()
+            >>> pattern.boolean_vector()
             [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
         ..  container:: example
@@ -911,13 +911,13 @@ class Pattern:
             ...         ],
             ... )
 
-            >>> pattern.get_boolean_vector(4)
+            >>> pattern.boolean_vector(4)
             [1, 1, 1, 1]
 
-            >>> pattern.get_boolean_vector(8)
+            >>> pattern.boolean_vector(8)
             [1, 1, 1, 0, 0, 1, 1, 1]
 
-            >>> pattern.get_boolean_vector(16)
+            >>> pattern.boolean_vector(16)
             [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
 
         ..  container:: example
@@ -940,13 +940,13 @@ class Pattern:
             ...         ],
             ... )
 
-            >>> pattern.get_boolean_vector(4)
+            >>> pattern.boolean_vector(4)
             [1, 0, 0, 0]
 
-            >>> pattern.get_boolean_vector(8)
+            >>> pattern.boolean_vector(8)
             [1, 0, 1, 0, 1, 0, 0, 0]
 
-            >>> pattern.get_boolean_vector(16)
+            >>> pattern.boolean_vector(16)
             [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0]
 
         ..  container:: example
@@ -959,13 +959,13 @@ class Pattern:
             >>> pattern
             Pattern(indices=None, inverted=None, operator='or', patterns=(Pattern(indices=(0,), inverted=None, operator=None, patterns=None, payload=None, period=4), Pattern(indices=(0,), inverted=None, operator=None, patterns=None, payload=None, period=5)), payload=None, period=20)
 
-            >>> pattern.get_boolean_vector(4)
+            >>> pattern.boolean_vector(4)
             [1, 0, 0, 0]
 
-            >>> pattern.get_boolean_vector(8)
+            >>> pattern.boolean_vector(8)
             [1, 0, 0, 0, 1, 1, 0, 0]
 
-            >>> pattern.get_boolean_vector(16)
+            >>> pattern.boolean_vector(16)
             [1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1]
 
             Sets total length to period of pattern when ``total_length`` is
@@ -974,10 +974,10 @@ class Pattern:
             >>> pattern.period
             20
 
-            >>> pattern.get_boolean_vector()
+            >>> pattern.boolean_vector()
             [1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0]
 
-            >>> pattern.period == len(pattern.get_boolean_vector())
+            >>> pattern.period == len(pattern.boolean_vector())
             True
 
         """
@@ -988,7 +988,7 @@ class Pattern:
             boolean_vector.append(int(result))
         return boolean_vector
 
-    def get_matching_items(self, sequence):
+    def matching_items(self, sequence):
         """
         Gets maching items from sequence.
 
@@ -1000,7 +1000,7 @@ class Pattern:
             ...     indices=[4, 5, 6, 7],
             ... )
 
-            >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
+            >>> pattern.matching_items('abcdefghijklmnopqrstuvwxyz')
             ['e', 'f', 'g', 'h']
 
         ..  container:: example
@@ -1010,14 +1010,14 @@ class Pattern:
             ...     period=10,
             ... )
 
-            >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
+            >>> pattern.matching_items('abcdefghijklmnopqrstuvwxyz')
             ['i', 'j', 's', 't']
 
         ..  container:: example
 
             >>> pattern = abjad.index_first(1) | abjad.index_last(2)
 
-            >>> pattern.get_matching_items('abcdefghijklmnopqrstuvwxyz')
+            >>> pattern.matching_items('abcdefghijklmnopqrstuvwxyz')
             ['a', 'y', 'z']
 
         """
@@ -2270,9 +2270,7 @@ class PatternTuple:
     def __post_init__(self):
         self.items = tuple(self.items or [])
 
-    def get_matching_pattern(
-        self, index, total_length, rotation=None
-    ) -> Pattern | None:
+    def matching_pattern(self, index, total_length, rotation=None) -> Pattern | None:
         """
         Gets pattern matching ``index``.
 
@@ -2294,7 +2292,7 @@ class PatternTuple:
             match the second pattern:
 
             >>> for i in range(10):
-            ...     match = patterns.get_matching_pattern(i, 10)
+            ...     match = patterns.matching_pattern(i, 10)
             ...     print(i, match)
             ...
             0 None
@@ -2312,7 +2310,7 @@ class PatternTuple:
             longer match the second pattern:
 
             >>> for i in range(10, 20):
-            ...     match = patterns.get_matching_pattern(i, 10)
+            ...     match = patterns.matching_pattern(i, 10)
             ...     print(i, match)
             ...
             10 None
@@ -2332,7 +2330,7 @@ class PatternTuple:
             to ``1``; matching indices of first pattern offset by ``1``:
 
             >>> for i in range(10):
-            ...     match = patterns.get_matching_pattern(i, 10, rotation=1)
+            ...     match = patterns.matching_pattern(i, 10, rotation=1)
             ...     print(i, match)
             ...
             0 Pattern(indices=(1,), inverted=None, operator=None, patterns=None, payload=None, period=2)
@@ -2350,7 +2348,7 @@ class PatternTuple:
             ``1``; matching indices of first pattern offset by ``1``:
 
             >>> for i in range(10, 20):
-            ...     match = patterns.get_matching_pattern(i, 10, rotation=1)
+            ...     match = patterns.matching_pattern(i, 10, rotation=1)
             ...     print(i, match)
             ...
             10 Pattern(indices=(1,), inverted=None, operator=None, patterns=None, payload=None, period=2)
@@ -2376,7 +2374,7 @@ class PatternTuple:
             ...     ])
 
             >>> for i in range(10):
-            ...     match = patterns.get_matching_pattern(i, 10)
+            ...     match = patterns.matching_pattern(i, 10)
             ...     print(i, match)
             ...
             0 Pattern(indices=(-3,), inverted=True, operator=None, patterns=None, payload=None, period=None)
@@ -2401,7 +2399,7 @@ class PatternTuple:
                 return pattern
         return None
 
-    def get_matching_payload(self, index, total_length, rotation=None):
+    def matching_payload(self, index, total_length, rotation=None):
         """
         Gets payload attached to pattern matching ``index``.
 
@@ -2425,7 +2423,7 @@ class PatternTuple:
             Over ten indices:
 
             >>> for i in range(10):
-            ...     match = patterns.get_matching_payload(i, 10)
+            ...     match = patterns.matching_payload(i, 10)
             ...     print(i, match)
             ...
             0 staccato
@@ -2442,7 +2440,7 @@ class PatternTuple:
             Over fifteen indices:
 
             >>> for i in range(15):
-            ...     match = patterns.get_matching_payload(i, 15)
+            ...     match = patterns.matching_payload(i, 15)
             ...     print(i, match)
             ...
             0 staccato
@@ -2462,7 +2460,7 @@ class PatternTuple:
             14 tenuto
 
         """
-        pattern = self.get_matching_pattern(index, total_length, rotation=rotation)
+        pattern = self.matching_pattern(index, total_length, rotation=rotation)
         payload = None
         if pattern:
             payload = pattern.payload

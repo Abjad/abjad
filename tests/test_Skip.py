@@ -82,7 +82,7 @@ def test_Skip___init___02():
 
     assert isinstance(skip, abjad.Skip)
     assert dir(skip) == dir(abjad.Skip((1, 4)))
-    assert abjad.get.parentage(skip).get_parent() is None
+    assert abjad.get.parentage(skip).parent() is None
     assert skip.get_written_duration() == chord.get_written_duration()
 
 
@@ -96,8 +96,8 @@ def test_Skip___init___03():
 
     assert isinstance(tuplet[0], abjad.Chord)
     assert isinstance(skip, abjad.Skip)
-    assert abjad.get.parentage(tuplet[0]).get_parent() is tuplet
-    assert abjad.get.parentage(skip).get_parent() is None
+    assert abjad.get.parentage(tuplet[0]).parent() is tuplet
+    assert abjad.get.parentage(skip).parent() is None
     assert tuplet[0].get_written_duration() == skip.get_written_duration()
 
 
@@ -113,8 +113,8 @@ def test_Skip___init___05():
     assert isinstance(skip, abjad.Skip)
     assert dir(note) == dir(abjad.Note("c'4"))
     assert dir(skip) == dir(abjad.Skip((1, 4)))
-    assert abjad.get.parentage(note).get_parent() is None
-    assert abjad.get.parentage(skip).get_parent() is None
+    assert abjad.get.parentage(note).parent() is None
+    assert abjad.get.parentage(skip).parent() is None
     assert note.get_written_duration() == skip.get_written_duration()
 
 
@@ -128,8 +128,8 @@ def test_Skip___init___06():
 
     assert isinstance(tuplet[0], abjad.Note)
     assert isinstance(skip, abjad.Skip)
-    assert abjad.get.parentage(tuplet[0]).get_parent() is tuplet
-    assert abjad.get.parentage(skip).get_parent() is None
+    assert abjad.get.parentage(tuplet[0]).parent() is tuplet
+    assert abjad.get.parentage(skip).parent() is None
     assert tuplet[0].get_written_duration() == skip.get_written_duration()
 
 
@@ -144,7 +144,7 @@ def test_Skip___init___07():
     assert isinstance(skip, abjad.Skip)
     assert dir(rest) == dir(abjad.Rest((1, 4)))
     assert dir(skip) == dir(abjad.Skip((1, 4)))
-    assert abjad.get.parentage(skip).get_parent() is None
+    assert abjad.get.parentage(skip).parent() is None
     assert skip.get_written_duration() == rest.get_written_duration()
 
 
@@ -158,8 +158,8 @@ def test_Skip___init___08():
 
     assert isinstance(tuplet[0], abjad.Rest)
     assert isinstance(skip, abjad.Skip)
-    assert abjad.get.parentage(tuplet[0]).get_parent() is tuplet
-    assert abjad.get.parentage(skip).get_parent() is None
+    assert abjad.get.parentage(tuplet[0]).parent() is tuplet
+    assert abjad.get.parentage(skip).parent() is None
     assert tuplet[0].get_written_duration() == skip.get_written_duration()
 
 

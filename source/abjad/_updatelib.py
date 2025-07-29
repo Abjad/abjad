@@ -97,7 +97,7 @@ def _get_independent_after_grace_leaf_offsets(leaf):
 def _get_measure_start_offsets(component):
     wrappers = []
     prototype = _indicators.TimeSignature
-    root = _parentage.Parentage(component).get_root()
+    root = _parentage.Parentage(component).root()
     for component_ in _iterate_entire_score(root):
         wrappers_ = component_._get_wrappers(prototype)
         wrappers.extend(wrappers_)
@@ -139,7 +139,7 @@ def _get_measure_start_offsets(component):
 def _get_obgc_leaf_offsets(leaf):
     obgc = leaf._parent
     assert type(obgc).__name__ == "OnBeatGraceContainer", repr(obgc)
-    first_nongrace_leaf = obgc.get_first_nongrace_leaf()
+    first_nongrace_leaf = obgc.first_nongrace_leaf()
     first_nongrace_leaf_start_offset = first_nongrace_leaf._start_offset
     assert first_nongrace_leaf_start_offset is not None
     first_nongrace_leaf_start_offset = _duration.Offset(
@@ -401,7 +401,7 @@ def _update_component_offsets(component):
 
 def _update_measure_numbers(component):
     measure_start_offsets = _get_measure_start_offsets(component)
-    root = _parentage.Parentage(component).get_root()
+    root = _parentage.Parentage(component).root()
     for component in _iterate_entire_score(root):
         measure_number = _to_measure_number(component, measure_start_offsets)
         component._measure_number = measure_number

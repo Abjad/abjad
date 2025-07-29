@@ -656,7 +656,7 @@ def vertical_moments(
         if prototype is int:
             string = str(index)
         elif prototype is _pitch.NumberedPitch:
-            leaves = vertical_moment.get_leaves()
+            leaves = vertical_moment.leaves()
             generator = _iterate.pitches(leaves)
             pitches = _pcollections.PitchSegment(generator)
             if not pitches:
@@ -664,7 +664,7 @@ def vertical_moments(
             pitch_numbers = [str(pitch.get_number()) for pitch in pitches]
             string = rf'\column {{ {" ".join(pitch_numbers)} }}'
         elif prototype is _pitch.NumberedPitchClass:
-            leaves = vertical_moment.get_leaves()
+            leaves = vertical_moment.leaves()
             generator = _iterate.pitches(leaves)
             pitches = _pcollections.PitchSegment(generator)
             if not pitches:
@@ -676,7 +676,7 @@ def vertical_moments(
             numbers = [str(_) for _ in pitch_classes]
             string = rf'\column {{ {" ".join(numbers)} }}'
         elif prototype is _pitch.NumberedInterval:
-            leaves = vertical_moment.get_leaves()
+            leaves = vertical_moment.leaves()
             notes = [_ for _ in leaves if isinstance(_, _score.Note)]
             if not notes:
                 continue
@@ -693,7 +693,7 @@ def vertical_moments(
             numbers = [str(x.get_number()) for x in named_intervals]
             string = rf'\column {{ {" ".join(numbers)} }}'
         elif prototype is _pitch.NumberedIntervalClass:
-            leaves = vertical_moment.get_leaves()
+            leaves = vertical_moment.leaves()
             notes = [_ for _ in leaves if isinstance(_, _score.Note)]
             if not notes:
                 continue
@@ -717,7 +717,7 @@ def vertical_moments(
             if prototype is _setclass.SetClass:
                 prototype = prototype()
             assert isinstance(prototype, _setclass.SetClass)
-            leaves = vertical_moment.get_leaves()
+            leaves = vertical_moment.leaves()
             generator = _iterate.pitches(leaves)
             pitch_class_set = _pcollections.PitchClassSet(generator)
             if not pitch_class_set:
@@ -730,7 +730,7 @@ def vertical_moments(
             string = str(set_class)
             string = rf'\line {{ "{string}" }}'
         elif callable(prototype):
-            leaves = vertical_moment.get_leaves()
+            leaves = vertical_moment.leaves()
             generator = _iterate.pitches(leaves)
             string = prototype(generator)
         else:
@@ -738,9 +738,9 @@ def vertical_moments(
         assert string is not None
         label = _indicators.Markup(rf"\markup \tiny {string}")
         if direction is _enums.UP:
-            leaf = vertical_moment.get_start_leaves()[0]
+            leaf = vertical_moment.start_leaves()[0]
         else:
-            leaf = vertical_moment.get_start_leaves()[-1]
+            leaf = vertical_moment.start_leaves()[-1]
         _attach(label, leaf, deactivate=deactivate, direction=direction, tag=tag)
 
 
@@ -1981,7 +1981,7 @@ class ColorMap:
         except (KeyError, TypeError, ValueError):
             return alternative
 
-    def get_is_twelve_tone_complete(self) -> bool:
+    def is_twelve_tone_complete(self) -> bool:
         """
         Is true when color map contains all 12-ET pitch-classes.
 
@@ -1996,14 +1996,14 @@ class ColorMap:
             ...     ],
             ... )
 
-            >>> color_map.get_is_twelve_tone_complete()
+            >>> color_map.is_twelve_tone_complete()
             True
 
         """
         pcs = range(12)
         return set(pcs).issubset(set(self._color_dictionary.keys()))
 
-    def get_is_twenty_four_tone_complete(self) -> bool:
+    def is_twenty_four_tone_complete(self) -> bool:
         """
         Is true when color map contains all 24-ET pitch-classes.
 
@@ -2018,7 +2018,7 @@ class ColorMap:
             ...     ],
             ... )
 
-            >>> color_map.get_is_twenty_four_tone_complete()
+            >>> color_map.is_twenty_four_tone_complete()
             False
 
         """

@@ -62,12 +62,12 @@ def _illustrate_pitch_class_set(set_):
 
 
 def _illustrate_pitch_range(range_):
-    start_pitch = _pitch.NamedPitch(range_.get_start_pitch())
-    stop_pitch = _pitch.NamedPitch(range_.get_stop_pitch())
+    start_pitch = _pitch.NamedPitch(range_.start_pitch())
+    stop_pitch = _pitch.NamedPitch(range_.stop_pitch())
     start_pitch_clef = _indicators.Clef.from_pitches([start_pitch])
     stop_pitch_clef = _indicators.Clef.from_pitches([stop_pitch])
-    start_note = _score.Note(range_.get_start_pitch(), 1)
-    stop_note = _score.Note(range_.get_stop_pitch(), 1)
+    start_note = _score.Note(range_.start_pitch(), 1)
+    stop_note = _score.Note(range_.stop_pitch(), 1)
     if start_pitch_clef == stop_pitch_clef:
         if start_pitch_clef == _indicators.Clef("bass"):
             bass_voice = _score.Voice(name="Bass_Voice")

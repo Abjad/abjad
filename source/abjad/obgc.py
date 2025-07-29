@@ -22,7 +22,7 @@ from . import tweaks as _tweaks
 def _is_obgc_nongrace_voice(component):
     if not isinstance(component, _score.Voice):
         return False
-    component = _get.parentage(component).get_parent()
+    component = _get.parentage(component).parent()
     return _is_obgc_polyphony_container(component)
 
 
@@ -182,14 +182,14 @@ class OnBeatGraceContainer(_score.Container):
         r"""
         Attaches LilyPond ``\oneVoice`` command.
         """
-        nongrace_voice = self.get_nongrace_voice()
+        nongrace_voice = self.nongrace_voice()
         final_nongrace_leaf = _select.leaf(nongrace_voice, -1, grace=False)
         next_leaf = _iterlib._get_leaf(final_nongrace_leaf, 1)
         if next_leaf is None:
             return
         if _get.has_indicator(next_leaf, _indicators.VoiceNumber):
             return
-        next_leaf_parent = _get.parentage(next_leaf).get_parent()
+        next_leaf_parent = _get.parentage(next_leaf).parent()
         if isinstance(next_leaf_parent, OnBeatGraceContainer):
             return
         if _is_obgc_nongrace_voice(next_leaf_parent):
@@ -203,33 +203,33 @@ class OnBeatGraceContainer(_score.Container):
         command = _indicators.VoiceNumber()
         _bind.attach(command, next_leaf, tag=tag)
 
-    def get_first_nongrace_leaf(self) -> _score.Leaf:
+    def first_nongrace_leaf(self) -> _score.Leaf:
         """
         Gets first nongrace leaf.
         """
-        polyphony_container = _get.parentage(self).get_parent()
+        polyphony_container = _get.parentage(self).parent()
         assert type(polyphony_container) is _score.Container
         assert len(polyphony_container) == 2, repr(polyphony_container)
         nongrace_voice = polyphony_container[1]
         first_nongrace_leaf = _select.leaf(nongrace_voice, 0, grace=False)
         return first_nongrace_leaf
 
-    def get_nongrace_voice(self) -> _score.Voice:
+    def nongrace_voice(self) -> _score.Voice:
         """
         Gets nongrace voice.
         """
-        polyphony_container = _get.parentage(self).get_parent()
+        polyphony_container = _get.parentage(self).parent()
         assert type(polyphony_container) is _score.Container
         assert len(polyphony_container) == 2, repr(polyphony_container)
         nongrace_voice = polyphony_container[1]
         assert isinstance(nongrace_voice, _score.Voice)
         return nongrace_voice
 
-    def get_polyphony_container(self) -> _score.Container:
+    def polyphony_container(self) -> _score.Container:
         """
         Gets polyphony container.
         """
-        polyphony_container = _get.parentage(self).get_parent()
+        polyphony_container = _get.parentage(self).parent()
         assert type(polyphony_container) is _score.Container
         assert len(polyphony_container) == 2, repr(polyphony_container)
         return polyphony_container
@@ -253,7 +253,7 @@ class OnBeatGraceContainer(_score.Container):
             message = "must start with note or chord:\n"
             message += f"    {repr(self)}"
             raise Exception(message)
-        first_nongrace_leaf = self.get_first_nongrace_leaf()
+        first_nongrace_leaf = self.first_nongrace_leaf()
         if not isinstance(first_nongrace_leaf, _score.Note | _score.Chord):
             return
         if not isinstance(first_obgc_leaf, _score.Note | _score.Chord):

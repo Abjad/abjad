@@ -111,7 +111,7 @@ class Bundle:
             contributions = self.indicator._get_contributions(wrapper=wrapper)
         except TypeError:
             contributions = self.indicator._get_contributions()
-        lists = contributions.get_contribution_lists()
+        lists = contributions.contribution_lists()
         if len(lists) == 2 and ["<>"] in lists:
             lists.remove(["<>"])
         if len(lists) == 2 and [r"\pitchedTrill"] in lists:
@@ -129,9 +129,9 @@ class Bundle:
             list_[-1:-1] = strings
         return contributions
 
-    def get_attribute(self, attribute: str) -> Tweak | None:
+    def find_tweak(self, attribute: str) -> Tweak | None:
         r"""
-        Gets tweak with ``attribute``.
+        Finds tweak with ``attribute``.
 
         ..  container:: example
 
@@ -141,10 +141,10 @@ class Bundle:
             ...     r"- \tweak color #red",
             ...     r"- \tweak font-size 3",
             ... )
-            >>> bundle.get_attribute("color")
+            >>> bundle.find_tweak("color")
             Tweak(string='- \\tweak color #red', i=None, tag=None)
 
-            >>> bundle.get_attribute("style") is None
+            >>> bundle.find_tweak("style") is None
             True
 
         """
@@ -163,7 +163,7 @@ class Bundle:
 
             >>> markup = abjad.Markup(r"\markup Allegro")
             >>> bundle_1 = abjad.bundle(markup, r"- \tweak color #red")
-            >>> tweak = bundle_1.get_attribute("color")
+            >>> tweak = bundle_1.find_tweak("color")
 
             >>> bundle_2 = bundle_1.remove(tweak)
             >>> bundle_2

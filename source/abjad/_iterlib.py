@@ -108,7 +108,7 @@ def _get_sibling_with_graces(component, n):
         and component is component._parent[-1]
         and component._parent.__class__.__name__ == "OnBeatGraceContainer"
     ):
-        return component._parent.get_first_nongrace_leaf()
+        return component._parent.first_nongrace_leaf()
     if (
         n == 1
         and getattr(component._parent, "_main_leaf", None)

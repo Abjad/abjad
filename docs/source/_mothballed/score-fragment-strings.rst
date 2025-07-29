@@ -33,8 +33,8 @@ descents per instruments as there are pitches in its overall scale.
     ...     }
     ...     voice_name_to_descents = {}
     ...     for voice_name, pitch_range in pitch_ranges.items():
-    ...         start = gamut.index(pitch_range.get_start_pitch())
-    ...         stop = gamut.index(pitch_range.get_stop_pitch())
+    ...         start = gamut.index(pitch_range.start_pitch())
+    ...         stop = gamut.index(pitch_range.stop_pitch())
     ...         pitches = gamut[start : stop + 1]
     ...         pitches.reverse()
     ...         pitch_descents = []
