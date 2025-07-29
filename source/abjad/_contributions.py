@@ -194,6 +194,14 @@ class ContributionsBySite:
             strings.extend(list_)
         return strings
 
+    def contribution_lists(self):
+        lists = []
+        for site in self:
+            for list_ in site:
+                if list_:
+                    lists.append(list_)
+        return lists
+
     # TODO: rename or remove?
     def freeze_overrides(self):
         """
@@ -202,14 +210,6 @@ class ContributionsBySite:
         self.context_settings = list(sorted(set(self.context_settings)))
         self.grob_overrides = list(sorted(set(self.grob_overrides)))
         self.grob_reverts = list(sorted(set(self.grob_reverts)))
-
-    def get_contribution_lists(self):
-        lists = []
-        for site in self:
-            for list_ in site:
-                if list_:
-                    lists.append(list_)
-        return lists
 
     def tag_contributions(self, tag, deactivate=None):
         """

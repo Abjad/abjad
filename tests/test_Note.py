@@ -151,12 +151,12 @@ def test_Note___copy___06():
     new_note = copy.deepcopy(note)
 
     assert new_note is not note
-    assert abjad.get.parentage(note).get_parent() is staff
-    assert abjad.get.parentage(new_note).get_parent() is not staff
-    assert isinstance(abjad.get.parentage(new_note).get_parent(), abjad.Staff)
+    assert abjad.get.parentage(note).parent() is staff
+    assert abjad.get.parentage(new_note).parent() is not staff
+    assert isinstance(abjad.get.parentage(new_note).parent(), abjad.Staff)
     assert abjad.lilypond(new_note) == abjad.lilypond(note)
-    assert abjad.lilypond(abjad.get.parentage(note).get_parent()) == abjad.lilypond(
-        abjad.get.parentage(new_note).get_parent()
+    assert abjad.lilypond(abjad.get.parentage(note).parent()) == abjad.lilypond(
+        abjad.get.parentage(new_note).parent()
     )
 
 

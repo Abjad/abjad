@@ -53,7 +53,7 @@ def _is_immediate_child_of_outermost_voice(component):
     parentage = _parentage.Parentage(component)
     context = parentage.get(_score.Voice, -1) or parentage.get(_score.Context)
     if context is not None:
-        return parentage.get_component()._parent is context
+        return parentage.component()._parent is context
     return None
 
 

@@ -41,7 +41,7 @@ class AbjadGrapher(uqbar.graphs.Grapher):
     def __init__(self, graphable, format_="pdf", layout="dot"):
         uqbar.graphs.Grapher.__init__(self, graphable, format_=format_, layout=layout)
 
-    def get_output_directory(self) -> pathlib.Path:
+    def abjad_output_directory(self) -> pathlib.Path:
         """
         Gets output directory.
         """
@@ -85,29 +85,29 @@ class LilyPondIO:
 
     def __call__(self):
         with _contextmanagers.Timer() as format_timer:
-            string = self.string or self.get_string()
+            string = self.string or self.string()
         format_time = format_timer.elapsed_time
-        render_prefix = self.render_prefix or self.get_render_prefix(string)
-        render_directory = self.get_render_directory()
+        render_prefix = self.render_prefix or self.render_prefix(string)
+        render_directory = self.render_directory()
         input_path = (render_directory / render_prefix).with_suffix(".ly")
         self.persist_string(string, input_path)
-        lilypond_path = self.get_lilypond_path()
+        lilypond_path = self.lilypond_path()
         if self.should_copy_stylesheets:
             self.copy_stylesheets(render_directory)
-        render_command = self.get_render_command(input_path, lilypond_path)
+        render_command = self.render_command(input_path, lilypond_path)
         with _contextmanagers.Timer() as render_timer:
             log, success = self.run_command(render_command)
         render_time = render_timer.elapsed_time
         if self.should_persist_log:
             self.persist_log(log, input_path.with_suffix(".log"))
         output_directory = pathlib.Path(
-            self.output_directory or self.get_output_directory()
+            self.output_directory or self.abjad_output_directory()
         )
         output_paths = self.migrate_assets(
             render_prefix, render_directory, output_directory
         )
         openable_paths = []
-        for output_path in self.get_openable_paths(output_paths):
+        for output_path in self.openable_paths(output_paths):
             openable_paths.append(output_path)
             if self.should_open:
                 self.open_output_path(output_path)
@@ -117,11 +117,11 @@ class LilyPondIO:
         """
         Copies stylesheets.
         """
-        for directory in self.get_stylesheets_directories():
+        for directory in self.stylesheets_directories():
             for path in directory.glob("*.*ly"):
                 shutil.copy(path, render_directory)
 
-    def get_lilypond_path(self):
+    def lilypond_path(self):
         """
         Gets LilyPond path.
         """
@@ -134,7 +134,7 @@ class LilyPondIO:
                 lilypond_path = "lilypond"
         return lilypond_path
 
-    def get_openable_paths(
+    def openable_paths(
         self, output_paths: typing.Iterable[pathlib.Path]
     ) -> typing.Iterator[pathlib.Path]:
         """
@@ -144,13 +144,13 @@ class LilyPondIO:
             if path.suffix in (".pdf", ".mid", ".midi", ".svg", ".png"):
                 yield path
 
-    def get_output_directory(self) -> pathlib.Path:
+    def abjad_output_directory(self) -> pathlib.Path:
         """
         Gets output directory.
         """
         return pathlib.Path(configuration["abjad_output_directory"])
 
-    def get_render_command(self, input_path, lilypond_path) -> str:
+    def render_command(self, input_path, lilypond_path) -> str:
         """
         Gets render command.
         """
@@ -164,13 +164,13 @@ class LilyPondIO:
         ]
         return " ".join(parts)
 
-    def get_render_directory(self):
+    def render_directory(self):
         """
         Gets render directory.
         """
         return pathlib.Path(tempfile.mkdtemp())
 
-    def get_render_prefix(self, string) -> str:
+    def render_prefix(self, string) -> str:
         """
         Gets render prefix.
         """
@@ -178,7 +178,7 @@ class LilyPondIO:
         checksum = hashlib.sha1(string.encode()).hexdigest()[:7]
         return f"{timestamp}-{checksum}"
 
-    def get_string(self) -> str:
+    def string(self) -> str:
         """
         Gets string.
         """
@@ -188,7 +188,7 @@ class LilyPondIO:
             lilypond_file = _illustrators.illustrate(self.illustrable, **self.keywords)
         return lilypond_file._get_lilypond_format()
 
-    def get_stylesheets_directories(self) -> list[pathlib.Path]:
+    def stylesheets_directories(self) -> list[pathlib.Path]:
         """
         Gets stylesheets directories.
         """
@@ -261,7 +261,7 @@ class Illustrator(LilyPondIO):
     Illustrator.
     """
 
-    def get_openable_paths(self, output_paths) -> typing.Iterator[pathlib.Path]:
+    def openable_paths(self, output_paths) -> typing.Iterator[pathlib.Path]:
         """
         Gets openable paths.
         """
@@ -276,7 +276,7 @@ class Player(LilyPondIO):
     Player.
     """
 
-    def get_openable_paths(self, output_paths) -> typing.Iterator[pathlib.Path]:
+    def openable_paths(self, output_paths) -> typing.Iterator[pathlib.Path]:
         """
         Gets openable paths.
         """
@@ -284,7 +284,7 @@ class Player(LilyPondIO):
             if path.suffix in (".mid", ".midi"):
                 yield path
 
-    def get_string(self) -> str:
+    def string(self) -> str:
         """
         Gets string.
         """

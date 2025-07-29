@@ -215,7 +215,7 @@ def check_missing_parents(argument) -> tuple[list, int]:
             # BeforeGraceContainer._parent is always none;
             # so must use Parentage.parent,
             # which calls BeforeGraceContainer._get_parentage()
-            if _parentage.Parentage(component).get_parent() is None:
+            if _parentage.Parentage(component).parent() is None:
                 violators.append(component)
     return violators, len(total)
 

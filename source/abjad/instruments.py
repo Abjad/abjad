@@ -11,7 +11,7 @@ Instruments.
     ...     if issubclass(class_, abjad.Instrument):
     ...         instrument = class_()
     ...         instrument_name = instrument.__class__.__name__
-    ...         range_string = instrument.pitch_range.get_range_string()
+    ...         range_string = instrument.pitch_range.range_string()
     ...         print(f"{instrument_name}: {range_string}")
     Accordion: [E1, C8]
     AltoFlute: [G3, G6]
@@ -204,7 +204,7 @@ class StringNumber:
         assert isinstance(self.numbers, tuple), repr(self.numbers)
         assert all(0 < _ < 7 for _ in self.numbers)
 
-    def get_roman_numerals(self) -> tuple[str, ...]:
+    def roman_numerals(self) -> tuple[str, ...]:
         """
         Gets roman numerals of string number indicator.
 
@@ -213,13 +213,13 @@ class StringNumber:
             String I:
 
             >>> indicator = abjad.StringNumber((1,))
-            >>> indicator.get_roman_numerals()
+            >>> indicator.roman_numerals()
             ('i',)
 
             Strings II and III:
 
             >>> indicator = abjad.StringNumber((2, 3))
-            >>> indicator.get_roman_numerals()
+            >>> indicator.roman_numerals()
             ('ii', 'iii')
 
         """
@@ -252,7 +252,7 @@ class Tuning:
         assert isinstance(self.pitches, tuple), repr(self.pitches)
         assert all(isinstance(_, _pitch.NamedPitch) for _ in self.pitches)
 
-    def get_pitch_ranges_by_string_number(
+    def pitch_ranges_by_string_number(
         self, string_number: StringNumber
     ) -> tuple[_pcollections.PitchRange, ...]:
         """
@@ -265,14 +265,14 @@ class Tuning:
             >>> pitches = [abjad.NamedPitch(_) for _ in "G3 D4 A4 E5".split()]
             >>> tuning = abjad.Tuning(tuple(pitches))
             >>> string_number = abjad.StringNumber((2, 3))
-            >>> tuning.get_pitch_ranges_by_string_number(string_number)
+            >>> tuning.pitch_ranges_by_string_number(string_number)
             (PitchRange(range_string='[A4, A6]'), PitchRange(range_string='[D4, D6]'))
 
         """
         if not isinstance(string_number, StringNumber):
             string_number = StringNumber(string_number)
         assert isinstance(string_number, StringNumber)
-        pitch_ranges = self.get_pitch_ranges()
+        pitch_ranges = self.pitch_ranges()
         result = []
         for number in string_number.numbers:
             index = -number
@@ -280,7 +280,7 @@ class Tuning:
             result.append(pitch_range)
         return tuple(result)
 
-    def get_pitches_by_string_number(
+    def pitches_by_string_number(
         self, string_number: StringNumber
     ) -> tuple[_pitch.NamedPitch, ...]:
         """
@@ -293,7 +293,7 @@ class Tuning:
             >>> pitches = [abjad.NamedPitch(_) for _ in "G3 D4 A4 E5".split()]
             >>> tuning = abjad.Tuning(tuple(pitches))
             >>> string_number = abjad.StringNumber((2, 3))
-            >>> tuning.get_pitches_by_string_number(string_number)
+            >>> tuning.pitches_by_string_number(string_number)
             (NamedPitch("a'"), NamedPitch("d'"))
 
         """
@@ -308,7 +308,7 @@ class Tuning:
             result.append(pitch)
         return tuple(result)
 
-    def get_pitch_ranges(self) -> list[_pcollections.PitchRange]:
+    def pitch_ranges(self) -> list[_pcollections.PitchRange]:
         """
         Gets two-octave pitch-ranges for each pitch in this tuning.
 
@@ -316,7 +316,7 @@ class Tuning:
 
             >>> pitches = [abjad.NamedPitch(_) for _ in "G3 D4 A4 E5".split()]
             >>> tuning = abjad.Tuning(tuple(pitches))
-            >>> for range_ in tuning.get_pitch_ranges():
+            >>> for range_ in tuning.pitch_ranges():
             ...     range_
             PitchRange(range_string='[G3, G5]')
             PitchRange(range_string='[D4, D6]')
@@ -423,7 +423,7 @@ class Tuning:
         pcs_and_nones = pitch_classes + nones
         permutations = _enumerate.yield_permutations(pcs_and_nones)
         unique_tuples = set([tuple(_) for _ in permutations])
-        pitch_ranges = self.get_pitch_ranges()
+        pitch_ranges = self.pitch_ranges()
         result: list[tuple[_pitch.NamedPitch | None, ...]] = []
         for permutation in unique_tuples:
             sequences: list = []
@@ -435,9 +435,7 @@ class Tuning:
                 pitches = list(pitch_range.voice_pitch_class(pitch_class))
                 if forbid_open_strings is True:
                     pitches = [
-                        pitch
-                        for pitch in pitches
-                        if pitch != pitch_range.get_start_pitch()
+                        pitch for pitch in pitches if pitch != pitch_range.start_pitch()
                     ]
                 if not pitches:
                     pitches = [None]

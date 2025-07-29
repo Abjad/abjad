@@ -103,7 +103,7 @@ def _get_indicator_contributions(component, contributions):
             )
             if getattr(item, "check_effective_context", False) is True:
                 if wrapper._get_effective_context() is None:
-                    for list_ in contributions_.get_contribution_lists():
+                    for list_ in contributions_.contribution_lists():
                         list_[:] = [rf"%%% {_} %%%" for _ in list_]
             contributions.update(contributions_)
 
