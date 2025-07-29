@@ -1155,12 +1155,12 @@ class ColorFingering:
         assert isinstance(self.number, int), repr(self.number)
 
     def _get_lilypond_format(self):
-        return self.get_markup()._get_lilypond_format()
+        return self.markup()._get_lilypond_format()
 
     def _get_contributions(self, *, wrapper=None):
-        return self.get_markup()._get_contributions(wrapper=wrapper)
+        return self.markup()._get_contributions(wrapper=wrapper)
 
-    def get_markup(self) -> typing.Optional["Markup"]:
+    def markup(self) -> typing.Optional["Markup"]:
         """
         Gets markup of color fingering.
         """
@@ -3132,17 +3132,17 @@ class KeySignature:
         site.commands.append(string)
         return contributions
 
-    def get_name(self) -> str:
+    def name(self) -> str:
         """
         Gets name of key signature.
 
         ..  container:: example
 
             >>> pc = abjad.NamedPitchClass("e")
-            >>> abjad.KeySignature(pc, abjad.Mode("major")).get_name()
+            >>> abjad.KeySignature(pc, abjad.Mode("major")).name()
             'E major'
 
-            >>> abjad.KeySignature(pc, abjad.Mode("minor")).get_name()
+            >>> abjad.KeySignature(pc, abjad.Mode("minor")).name()
             'e minor'
 
         """
@@ -3680,8 +3680,8 @@ class MetronomeMark:
         than that of this metronome mark.
         """
         assert isinstance(argument, type(self)), repr(argument)
-        self_get_quarters_per_minute = self.get_quarters_per_minute() or 0
-        argument_get_quarters_per_minute = argument.get_quarters_per_minute() or 0
+        self_get_quarters_per_minute = self.quarters_per_minute() or 0
+        argument_get_quarters_per_minute = argument.quarters_per_minute() or 0
         assert isinstance(
             self_get_quarters_per_minute, int | float | fractions.Fraction
         )
@@ -3776,7 +3776,7 @@ class MetronomeMark:
             "d": d,
         }
 
-    def get_is_imprecise(self) -> bool:
+    def is_imprecise(self) -> bool:
         """
         Is true if metronome mark is entirely textual or if metronome mark's
         ``units_per_minute`` is a range.
@@ -3787,21 +3787,21 @@ class MetronomeMark:
 
             >>> duration = abjad.Duration(1, 4)
 
-            >>> abjad.MetronomeMark(textual_indication="Langsam").get_is_imprecise()
+            >>> abjad.MetronomeMark(textual_indication="Langsam").is_imprecise()
             True
 
-            >>> abjad.MetronomeMark(duration, (35, 50), "Langsam").get_is_imprecise()
+            >>> abjad.MetronomeMark(duration, (35, 50), "Langsam").is_imprecise()
             True
 
-            >>> abjad.MetronomeMark(duration, (35, 50)).get_is_imprecise()
+            >>> abjad.MetronomeMark(duration, (35, 50)).is_imprecise()
             True
 
             Precise metronome marks:
 
-            >>> abjad.MetronomeMark(duration, 60).get_is_imprecise()
+            >>> abjad.MetronomeMark(duration, 60).is_imprecise()
             False
 
-            >>> abjad.MetronomeMark(duration, 60, "Langsam").get_is_imprecise()
+            >>> abjad.MetronomeMark(duration, 60, "Langsam").is_imprecise()
             False
 
         """
@@ -3811,7 +3811,7 @@ class MetronomeMark:
                     return False
         return True
 
-    def get_quarters_per_minute(self) -> tuple | None | fractions.Fraction:
+    def quarters_per_minute(self) -> tuple | None | fractions.Fraction:
         """
         Gets metronome mark quarters per minute.
 
@@ -3824,11 +3824,11 @@ class MetronomeMark:
         ..  container:: example
 
             >>> mark = abjad.MetronomeMark(abjad.Duration(1, 8), 52)
-            >>> mark.get_quarters_per_minute()
+            >>> mark.quarters_per_minute()
             Fraction(104, 1)
 
         """
-        if self.get_is_imprecise():
+        if self.is_imprecise():
             return None
         if isinstance(self.units_per_minute, tuple):
             low = (
@@ -7355,13 +7355,13 @@ class TimeSignature:
         """
         return self.pair[1]
 
-    def get_duration(self) -> _duration.Duration:
+    def duration(self) -> _duration.Duration:
         """
         Gets duration of time signature.
 
         ..  container:: example
 
-            >>> abjad.TimeSignature((3, 8)).get_duration()
+            >>> abjad.TimeSignature((3, 8)).duration()
             Duration(3, 8)
 
         """

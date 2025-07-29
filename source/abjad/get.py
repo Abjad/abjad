@@ -436,7 +436,6 @@ def contents(argument) -> list[_score.Component]:
         raise Exception("can only get contents of component.")
     result = []
     result.append(argument)
-    # result.extend(getattr(argument, "components", []))
     if hasattr(argument, "get_components"):
         result.extend(argument.get_components())
     return result
@@ -2489,7 +2488,7 @@ def is_bar_line_crossing(argument) -> bool:
     if time_signature is None:
         time_signature_duration = _duration.Duration(4, 4)
     else:
-        time_signature_duration = time_signature.get_duration()
+        time_signature_duration = time_signature.duration()
     partial = getattr(time_signature, "partial", 0)
     partial = partial or 0
     start_offset = timespan(argument).start_offset
@@ -4689,7 +4688,7 @@ class Lineage(collections.abc.Sequence):
         """
         if isinstance(argument, type(self)):
             if len(self) == len(argument):
-                for c, d in zip(self.get_components(), argument.get_components()):
+                for c, d in zip(self.components(), argument.components(), strict=True):
                     if c is not d:
                         return False
                 else:
@@ -4702,7 +4701,7 @@ class Lineage(collections.abc.Sequence):
 
         Returns component or tuple.
         """
-        return self.get_components().__getitem__(argument)
+        return self.components().__getitem__(argument)
 
     def __len__(self) -> int:
         """
@@ -4710,13 +4709,13 @@ class Lineage(collections.abc.Sequence):
         """
         return len(self._components)
 
-    def get_component(self) -> _score.Component:
+    def component(self) -> _score.Component:
         """
         Gets component from which lineage was derived.
         """
         return self._component
 
-    def get_components(self) -> tuple[_score.Component]:
+    def components(self) -> tuple[_score.Component]:
         """
         Gets components.
         """
