@@ -72,14 +72,14 @@ descents are treated one way; the final descent in each voice is treated another
     ...         for scalar_descent in scalar_descents[:-1]:
     ...             pitch_pair_descent = []
     ...             for pitch in scalar_descent:
-    ...                 pitch_class = pitch.get_pitch_class().get_name()
+    ...                 pitch_class = pitch.pitch_class().name()
     ...                 shadow_pitch = pitch + pc_to_interval[pitch_class]
     ...                 pitch_pair = (shadow_pitch, pitch)
     ...                 pitch_pair_descent.append(pitch_pair)
     ...             pitch_pair_descents.append(tuple(pitch_pair_descent))
     ...         final_pitch_pair_descent = []
     ...         for pitch in scalar_descents[-1][:-1]:
-    ...             pitch_class = pitch.get_pitch_class().get_name()
+    ...             pitch_class = pitch.pitch_class().name()
     ...             shadow_pitch = pitch + pc_to_interval[pitch_class]
     ...             pitch_pair = (shadow_pitch, pitch)
     ...             final_pitch_pair_descent.append(pitch_pair)

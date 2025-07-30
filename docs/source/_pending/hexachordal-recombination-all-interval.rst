@@ -43,7 +43,7 @@ We can define a function to recombine any hexachord  like the one above:
 ::
 
     >>> def recombine(hexachord):
-    ...     complement = hexachord.invert().transpose(hexachord[-1].get_number() + 6)
+    ...     complement = hexachord.invert().transpose(hexachord[-1].number() + 6)
     ...     aggregate = hexachord + complement
     ...     return aggregate
 
@@ -101,7 +101,7 @@ function to do the same:
     >>> def make_score(segment):
     ...     treble_pitches, bass_pitches = [], []
     ...     for pitch in segment:
-    ...         if pitch.get_number() < 0:
+    ...         if pitch.number() < 0:
     ...             bass_pitches.append(pitch)
     ...         else:
     ...             treble_pitches.append(pitch)
@@ -167,7 +167,7 @@ Now we recombine our source hexachord, followed by three transforms.
 ::
 
     >>> transform = hexachord.retrograde()
-    >>> transform = transform.transpose((0 - hexachord[-1].get_number()))
+    >>> transform = transform.transpose((0 - hexachord[-1].number()))
     >>> abjad.show(transform)
 
 ::
@@ -186,7 +186,7 @@ its complement:
 ::
 
     >>> transform = hexachord.retrograde()
-    >>> transform = transform.transpose((0 - hexachord[-1].get_number()))
+    >>> transform = transform.transpose((0 - hexachord[-1].number()))
     >>> transform = transform.invert()
     >>> abjad.show(transform)
 

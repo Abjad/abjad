@@ -438,10 +438,10 @@ class GuileProxy:
             key_signatures = music._get_indicators(_indicators.KeySignature)
             if key_signatures:
                 for key_signature in key_signatures:
-                    new_tonic = _pitch.NamedPitch((key_signature.tonic.get_name(), 4))
+                    new_tonic = _pitch.NamedPitch((key_signature.tonic.name(), 4))
                     new_tonic = LilyPondParser._transpose_enharmonically(
                         from_pitch, to_pitch, new_tonic
-                    ).get_pitch_class()
+                    ).pitch_class()
                     new_key_signature = _indicators.KeySignature(
                         new_tonic, key_signature.mode
                     )
@@ -544,8 +544,8 @@ class GuileProxy:
 
     @staticmethod
     def _get_default_absolute_pitch(pitch, reference):
-        pitch_name = pitch.get_pitch_class().get_name()
-        reference_octave = reference.get_octave().number
+        pitch_name = pitch.pitch_class().name()
+        reference_octave = reference.octave().number
         absolute_pitch = _pitch.NamedPitch((pitch_name, reference_octave))
         reference_pc_number = reference._get_diatonic_pc_number()
         pitch_pc_number = pitch._get_diatonic_pc_number()
@@ -559,7 +559,7 @@ class GuileProxy:
         expect_higher_than_reference = (
             diatonic_interval_up < diatonic_interval_down
             or diatonic_interval_up == diatonic_interval_down
-            and pitch.get_accidental() > reference.get_accidental()
+            and pitch.accidental() > reference.accidental()
         )
         if expect_higher_than_reference and absolute_pitch < reference:
             octave_transposition = 1
@@ -567,14 +567,14 @@ class GuileProxy:
             octave_transposition = -1
         else:
             octave_transposition = 0
-        absolute_pitch.get_octave().number += octave_transposition
+        absolute_pitch.octave().number += octave_transposition
         return absolute_pitch
 
     @staticmethod
     def _apply_octave_transposition(pitch, absolute_pitch):
         base_octave = 3
-        octave_transposition = pitch.get_octave().number - base_octave
-        absolute_pitch.get_octave().number += octave_transposition
+        octave_transposition = pitch.octave().number - base_octave
+        absolute_pitch.octave().number += octave_transposition
         return absolute_pitch
 
     @classmethod
@@ -3156,24 +3156,24 @@ class LilyPondParser(Parser):
             pitch_c = _pitch.NamedPitch(pitch_c)
         scale = [0.0, 2.0, 4.0, 5.0, 7.0, 9.0, 11.0]
         a_oct, a_step = (
-            pitch_a.get_octave().number,
+            pitch_a.octave().number,
             pitch_a._get_diatonic_pc_number(),
         )
         b_oct, b_step = (
-            pitch_b.get_octave().number,
+            pitch_b.octave().number,
             pitch_b._get_diatonic_pc_number(),
         )
         c_oct, c_step, c_alt = (
-            pitch_c.get_octave().number,
+            pitch_c.octave().number,
             pitch_c._get_diatonic_pc_number(),
-            pitch_c.get_accidental().semitones,
+            pitch_c.accidental().semitones,
         )
         d_oct, d_step, d_tones = (
             b_oct - a_oct,
             b_step - a_step,
-            float(pitch_b.get_number()) - float(pitch_a.get_number()),
+            float(pitch_b.number()) - float(pitch_a.number()),
         )
-        tmp_alt = float(pitch_c.get_number()) + d_tones
+        tmp_alt = float(pitch_c.number()) + d_tones
         # print 'TMP_ALT: %f' % tmp_alt
         new_oct = c_oct + d_oct
         new_step = c_step + d_step
@@ -3182,17 +3182,17 @@ class LilyPondParser(Parser):
         new_step, new_alt = normalize_alteration(new_step, new_alt)
         new_oct, new_step = normalize_octave(new_oct, new_step)
         # print 'NEW(norm):', new_oct, new_step, new_alt
-        octave_ticks = _pitch.Octave(new_oct).get_ticks()
+        octave_ticks = _pitch.Octave(new_oct).ticks()
         pitch_class_name = _pitch._diatonic_pc_number_to_diatonic_pc_name[new_step % 7]
         accidental = str(_pitch.Accidental(new_alt))
         tmp_pitch = _pitch.NamedPitch(pitch_class_name + accidental + octave_ticks)
         # print 'TMP(pitch): %r' % tmp_pitch
-        new_alt += tmp_alt - float(tmp_pitch.get_number())
+        new_alt += tmp_alt - float(tmp_pitch.number())
         # print 'NEW(alt): %f' % new_alt
         new_step, new_alt = normalize_alteration(new_step, new_alt)
         new_oct, new_step = normalize_octave(new_oct, new_step)
         # print 'NEW(norm):', new_oct, new_step, new_alt
-        octave_ticks = _pitch.Octave(new_oct).get_ticks()
+        octave_ticks = _pitch.Octave(new_oct).ticks()
         pitch_class_name = _pitch._diatonic_pc_number_to_diatonic_pc_name[new_step % 7]
         accidental = str(_pitch.Accidental(new_alt))
         return _pitch.NamedPitch(pitch_class_name + accidental + octave_ticks)
@@ -6399,17 +6399,17 @@ class LilyPondSyntacticalDefinition:
     def p_steno_pitch__NOTENAME_PITCH(self, p):
         "steno_pitch : NOTENAME_PITCH"
         if isinstance(p[1], _pitch.NamedPitchClass):
-            p[0] = _pitch.NamedPitch(p[1].get_name())
+            p[0] = _pitch.NamedPitch(p[1].name())
         elif p[1] in _lyconst.drums:
             p[0] = p[1]
 
     def p_steno_pitch__NOTENAME_PITCH__sub_quotes(self, p):
         "steno_pitch : NOTENAME_PITCH sub_quotes"
-        p[0] = _pitch.NamedPitch(p[1].get_name() + "," * p[2])
+        p[0] = _pitch.NamedPitch(p[1].name() + "," * p[2])
 
     def p_steno_pitch__NOTENAME_PITCH__sup_quotes(self, p):
         "steno_pitch : NOTENAME_PITCH sup_quotes"
-        p[0] = _pitch.NamedPitch(p[1].get_name() + "'" * p[2])
+        p[0] = _pitch.NamedPitch(p[1].name() + "'" * p[2])
 
     ### steno_tonic_pitch ###
 
