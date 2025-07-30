@@ -2673,12 +2673,12 @@ def is_sustained(argument) -> bool:
     leaves = _select.leaves(argument)
     for leaf in leaves:
         lt = logical_tie(leaf)
-        if lt.get_head() is leaf:
+        if lt.head() is leaf:
             lt_head_count += 1
     if lt_head_count == 0:
         return True
     lt = logical_tie(leaves[0])
-    if lt.get_head() is leaves[0] and lt_head_count == 1:
+    if lt.head() is leaves[0] and lt_head_count == 1:
         return True
     return False
 

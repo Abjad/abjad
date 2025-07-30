@@ -159,7 +159,7 @@ class LogicalTie(collections.abc.Sequence):
         """
         Is true when ``argument`` is in logical tie.
         """
-        return argument in self.get_items()
+        return argument in self.items()
 
     def __eq__(self, argument) -> bool:
         """
@@ -167,9 +167,9 @@ class LogicalTie(collections.abc.Sequence):
         equal those in logical tie.
         """
         if isinstance(argument, type(self)):
-            return self.get_items() == argument.get_items()
+            return self.items() == argument.items()
         elif isinstance(argument, collections.abc.Sequence):
-            return self.get_items() == tuple(argument)
+            return self.items() == tuple(argument)
         return False
 
     def __hash__(self) -> int:
@@ -182,13 +182,13 @@ class LogicalTie(collections.abc.Sequence):
         """
         Gets number of items in logical tie.
         """
-        return len(self.get_items())
+        return len(self.items())
 
     def __repr__(self) -> str:
         """
         Gets interpreter representation of logical tie.
         """
-        return f"{type(self).__name__}(items={list(self.get_items())!r})"
+        return f"{type(self).__name__}(items={list(self.items())!r})"
 
     def __getitem__(self, argument):
         """
@@ -196,7 +196,7 @@ class LogicalTie(collections.abc.Sequence):
 
         Returns component or list (not logical tie).
         """
-        result = self.get_items().__getitem__(argument)
+        result = self.items().__getitem__(argument)
         if isinstance(result, tuple):
             result = list(result)
         return result
@@ -205,43 +205,43 @@ class LogicalTie(collections.abc.Sequence):
         for leaf in list(self):
             leaf._scale(multiplier)
 
-    def get_head(self) -> _score.Leaf:
+    def head(self) -> _score.Leaf:
         """
         Reference to element ``0`` in logical tie.
         """
-        assert self.get_items()
-        return self.get_items()[0]
+        assert self.items()
+        return self.items()[0]
 
-    def get_items(self) -> tuple:
+    def items(self) -> tuple:
         """
         Gets items in logical tie.
         """
         return self._items
 
-    def get_is_pitched(self) -> bool:
+    def is_pitched(self) -> bool:
         """
         Is true when logical tie head is a note or chord.
         """
-        head = self.get_head()
+        head = self.head()
         # return hasattr(head, "written_pitch") or hasattr(head, "written_pitches")
         return hasattr(head, "get_written_pitch") or hasattr(
             head, "get_written_pitches"
         )
 
-    def get_is_trivial(self) -> bool:
+    def is_trivial(self) -> bool:
         """
         Is true when length of logical tie is less than or equal to ``1``.
         """
         return len(self) <= 1
 
-    def get_tail(self) -> _score.Leaf:
+    def tail(self) -> _score.Leaf:
         """
         Gets last leaf in logical tie.
         """
-        assert self.get_items()
-        return self.get_items()[-1]
+        assert self.items()
+        return self.items()[-1]
 
-    def get_written_duration(self) -> _duration.Duration:
+    def written_duration(self) -> _duration.Duration:
         """
         Sum of written duration of all components in logical tie.
         """
@@ -4231,8 +4231,8 @@ def logical_ties(
     for logical_tie in generator:
         if (
             grace is None
-            or (grace is True and _get.is_grace_music(logical_tie.get_head()))
-            or (grace is False and not _get.is_grace_music(logical_tie.get_head()))
+            or (grace is True and _get.is_grace_music(logical_tie.head()))
+            or (grace is False and not _get.is_grace_music(logical_tie.head()))
         ):
             result.append(logical_tie)
     return result
