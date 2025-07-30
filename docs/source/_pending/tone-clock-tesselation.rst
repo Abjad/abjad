@@ -37,7 +37,7 @@ Tone-clock tesselation in Jenny McLeod's `Tone Clock Piece I`.
     ...         transposition = ipf
     ...         if bool:
     ...             transposition = transposition.invert().retrograde()
-    ...             val = transposition[0].get_number()
+    ...             val = transposition[0].number()
     ...             transposition = transposition.transpose((0 - val))
     ...             transposition = transposition.transpose(i)
     ...         else:

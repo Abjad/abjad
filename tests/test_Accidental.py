@@ -87,6 +87,6 @@ values = [
 
 @pytest.mark.parametrize("input_, semitones, string", values)
 def test_init_from_named_pitch(input_, semitones, string):
-    accidental = abjad.NamedPitch(input_).get_accidental()
+    accidental = abjad.NamedPitch(input_).accidental()
     assert accidental.semitones == semitones
     assert str(accidental) == string

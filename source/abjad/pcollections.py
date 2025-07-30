@@ -106,7 +106,7 @@ class PitchClassSegment:
         """
         Gets repr.
         """
-        items = [_.get_number() for _ in self.items]
+        items = [_.number() for _ in self.items]
         return f"{type(self).__name__}({items!r})"
 
     def __rmul__(self, n) -> "PitchClassSegment":
@@ -134,7 +134,7 @@ class PitchClassSegment:
             'PC<10, 10.5, 6, 7, 10.5, 7>'
 
         """
-        string = ", ".join([str(_.get_number()) for _ in self])
+        string = ", ".join([str(_.number()) for _ in self])
         return f"PC<{string}>"
 
     def invert(self, axis=None) -> "PitchClassSegment":
@@ -316,12 +316,12 @@ class PitchClassSet(frozenset):
             closure(name)
 
     def __repr__(self):
-        numbers = [_.get_number() for _ in self]
+        numbers = [_.number() for _ in self]
         numbers.sort()
         return f"{type(self).__name__}({numbers!r})"
 
     def __str__(self) -> str:
-        numbers = [_.get_number() for _ in self]
+        numbers = [_.number() for _ in self]
         numbers.sort()
         string = ", ".join(str(_) for _ in numbers)
         return f"PC{{{string}}}"
@@ -494,9 +494,9 @@ class PitchClassSet(frozenset):
         """
 
         def _transpose_to_zero(segment):
-            numbers = [_.get_number() for _ in segment]
-            first_number = segment[0].get_number()
-            numbers = [pc.get_number() - first_number for pc in segment]
+            numbers = [_.number() for _ in segment]
+            first_number = segment[0].number()
+            numbers = [pc.number() - first_number for pc in segment]
             pcs = [_ % 12 for _ in numbers]
             return type(segment)(pcs)
 
@@ -519,7 +519,7 @@ class PitchClassSet(frozenset):
                 if right_pc < left_pc:
                     normal_order = normal_orders[-1]
                     break
-        pcs = [_.get_number() for _ in normal_order]
+        pcs = [_.number() for _ in normal_order]
         first_pc = pcs[0]
         pcs = [pc - first_pc for pc in pcs]
         prime_form = type(self)(pcs)
@@ -1107,8 +1107,8 @@ class PitchRange:
         """
         named_pitch_class = _pitch.NamedPitchClass(pitch_class)
         pair = (
-            named_pitch_class.get_name(),
-            self.start_pitch().get_octave().number,
+            named_pitch_class.name(),
+            self.start_pitch().octave().number,
         )
         named_pitch = _pitch.NamedPitch(pair)
         result = []
@@ -1233,7 +1233,7 @@ class PitchSegment:
         """
         Gets repr.
         """
-        numbers = [_.get_number() for _ in self.items]
+        numbers = [_.number() for _ in self.items]
         return f"{type(self).__name__}({numbers})"
 
     def __str__(self) -> str:
@@ -1248,7 +1248,7 @@ class PitchSegment:
             '<-2, -1.5, 6, 7, -1.5, 7>'
 
         """
-        string = ", ".join([str(_.get_number()) for _ in self])
+        string = ", ".join([str(_.number()) for _ in self])
         return f"<{string}>"
 
     def invert(self, axis=None) -> "PitchSegment":
@@ -1926,7 +1926,7 @@ class PitchSet(frozenset):
         Gets repr.
         """
         if self:
-            numbers = [_.get_number() for _ in sorted(self)]
+            numbers = [_.number() for _ in sorted(self)]
             string = f"{type(self).__name__}({numbers!r})"
         else:
             string = f"{type(self).__name__}()"
@@ -1936,7 +1936,7 @@ class PitchSet(frozenset):
         """
         Gets string.
         """
-        string = ", ".join([str(_.get_number()) for _ in sorted(self)])
+        string = ", ".join([str(_.number()) for _ in sorted(self)])
         return f"{{{string}}}"
 
 
@@ -2249,7 +2249,7 @@ class TwelveToneRow(PitchClassSegment):
         new_pitch_classes = []
         for pitch_class in pitch_classes:
             pitch_class = _pitch.NumberedPitchClass(pitch_class)
-            i = pitch_class.get_number()
+            i = pitch_class.number()
             new_pitch_class = self[i]
             new_pitch_classes.append(new_pitch_class)
         result = type(pitch_classes)(new_pitch_classes)
@@ -2578,7 +2578,7 @@ class TwelveToneRow(PitchClassSegment):
 
     @staticmethod
     def _validate_pitch_classes(pitch_classes):
-        numbers = [pc.get_number() for pc in pitch_classes]
+        numbers = [pc.number() for pc in pitch_classes]
         numbers.sort()
         if not numbers == list(range(12)):
             message = f"must contain all twelve pitch-classes: {pitch_classes!r}."
@@ -3258,17 +3258,17 @@ def voice_horizontally(
     pitches = []
     if pcs:
         pc = pcs[0]
-        pitch = _pitch.NamedPitch((pc.get_name(), initial_octave))
+        pitch = _pitch.NamedPitch((pc.name(), initial_octave))
         pitches.append(pitch)
         for pc in pcs[1:]:
-            number = _pitch.NamedPitch((pc.get_name(), initial_octave)).get_number()
-            semitones = abs((number - pitches[-1].get_number()))
+            number = _pitch.NamedPitch((pc.name(), initial_octave)).number()
+            semitones = abs((number - pitches[-1].number()))
             while 6 < semitones:
-                if number < pitches[-1].get_number():
+                if number < pitches[-1].number():
                     number += 12
                 else:
                     number -= 12
-                semitones = abs((number - pitches[-1].get_number()))
+                semitones = abs((number - pitches[-1].number()))
             pitch = _pitch.NamedPitch(number)
             pitches.append(pitch)
     return tuple(pitches)
@@ -3309,11 +3309,11 @@ def voice_vertically(
     pitches = []
     if pcs:
         pc = _pitch.NamedPitchClass(pcs[0])
-        pitch = _pitch.NamedPitch((pc.get_name(), initial_octave))
+        pitch = _pitch.NamedPitch((pc.name(), initial_octave))
         pitches.append(pitch)
         for pc in pcs[1:]:
             pc = _pitch.NamedPitchClass(pc)
-            pitch = _pitch.NamedPitch((pc.get_name(), initial_octave))
+            pitch = _pitch.NamedPitch((pc.name(), initial_octave))
             while pitch < pitches[-1]:
                 pitch += 12
             pitches.append(pitch)

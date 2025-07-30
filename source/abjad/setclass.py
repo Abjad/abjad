@@ -1323,7 +1323,7 @@ class SetClass:
         """
         pitch_class_set = _pcollections.PitchClassSet(pitches)
         prime_form = pitch_class_set.prime_form(transposition_only=transposition_only)
-        prime_form = tuple([_.get_number() for _ in sorted(prime_form)])
+        prime_form = tuple([_.number() for _ in sorted(prime_form)])
         if transposition_only:
             pair = SetClass._prime_form_to_transposition_only_identifier[prime_form]
         elif lex_rank:
