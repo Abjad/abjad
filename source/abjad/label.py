@@ -814,7 +814,7 @@ def with_durations(
             pair = _duration.with_denominator(duration, denominator)
         n, d = pair
         label = _indicators.Markup(rf"\markup \fraction {n} {d}")
-        _attach(label, logical_tie.get_head(), direction=direction)
+        _attach(label, logical_tie.head(), direction=direction)
 
 
 def with_indices(argument, direction=_enums.UP, prototype=None) -> None:
@@ -1519,7 +1519,7 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
     prototype = prototype or _pitch.NamedPitch
     logical_ties = _iterate.logical_ties(argument)
     for logical_tie in logical_ties:
-        leaf = logical_tie.get_head()
+        leaf = logical_tie.head()
         label = None
         if prototype is _pitch.NamedPitch:
             if isinstance(leaf, _score.Note):
@@ -1863,13 +1863,13 @@ def with_start_offsets(
         assert isinstance(global_offset, _duration.Duration)
     for logical_tie in _iterate.logical_ties(argument):
         if clock_time:
-            timespan = logical_tie.get_head()._get_timespan(in_seconds=True)
+            timespan = logical_tie.head()._get_timespan(in_seconds=True)
             start_offset = timespan.start_offset
             if global_offset is not None:
                 start_offset += global_offset
             string = start_offset.to_clock_string()
         else:
-            timespan = logical_tie.get_head()._get_timespan()
+            timespan = logical_tie.head()._get_timespan()
             start_offset = timespan.start_offset
             if global_offset is not None:
                 start_offset += global_offset
@@ -1880,7 +1880,7 @@ def with_start_offsets(
             label = _indicators.Markup(rf"{markup_command} {{ {string} }}")
         else:
             label = _indicators.Markup(rf"\markup {{ {string} }}")
-        _attach(label, logical_tie.get_head(), direction=direction)
+        _attach(label, logical_tie.head(), direction=direction)
     total_duration = _duration.Duration(timespan.stop_offset)
     if global_offset is not None:
         total_duration += global_offset
