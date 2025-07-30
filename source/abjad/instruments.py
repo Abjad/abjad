@@ -152,8 +152,7 @@ class Instrument:
         )
 
     def _attachment_test_all(self, leaf):
-        # assert hasattr(leaf, "written_duration")
-        assert hasattr(leaf, "get_written_duration")
+        assert hasattr(leaf, "written_duration")
         if leaf._has_indicator(Instrument):
             string = f"Already has instrument: {leaf}."
             return string

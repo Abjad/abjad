@@ -29,7 +29,7 @@ def _is_obgc_nongrace_voice(component):
 def _is_obgc_polyphony_container(container):
     if type(container) is not _score.Container:
         return False
-    if not container.get_simultaneous():
+    if not container.simultaneous():
         return False
     if len(container) != 2:
         return False
@@ -148,8 +148,8 @@ class OnBeatGraceContainer(_score.Container):
 
     def _format_open_brackets_site(self, contributions):
         result = []
-        if self.get_identifier():
-            open_bracket = f"{{   {self.get_identifier()}"
+        if self.identifier():
+            open_bracket = f"{{   {self.identifier()}"
         else:
             open_bracket = "{"
         brackets_open = [open_bracket]
@@ -194,7 +194,7 @@ class OnBeatGraceContainer(_score.Container):
             return
         if _is_obgc_nongrace_voice(next_leaf_parent):
             return
-        tag = self.get_tag()
+        tag = self.tag()
         assert tag is not None, repr(tag)
         tag = tag.append(
             _tag.Tag("abjad.OnBeatGraceContainer._attach_lilypond_one_voice()")
@@ -245,7 +245,7 @@ class OnBeatGraceContainer(_score.Container):
         Matches first nongrace leaf.
         """
         string = "abjad.OnBeatGraceContainer.match_first_nongrace_leaf()"
-        self_tag = self.get_tag()
+        self_tag = self.tag()
         assert self_tag is not None, repr(self_tag)
         tag = self_tag.append(_tag.Tag(string))
         first_obgc_leaf = _iterlib._get_leaf(self, 0)
@@ -265,9 +265,9 @@ class OnBeatGraceContainer(_score.Container):
         generator = _iterate.pitches(first_nongrace_leaf)
         nongrace_pitches = list(generator)
         highest_pitch = list(sorted(nongrace_pitches))[-1]
-        if highest_pitch not in first_obgc_leaf.get_note_heads():
-            first_obgc_leaf.get_note_heads().append(highest_pitch)
-        grace_mate_head = first_obgc_leaf.get_note_heads().get(highest_pitch)
+        if highest_pitch not in first_obgc_leaf.note_heads():
+            first_obgc_leaf.note_heads().append(highest_pitch)
+        grace_mate_head = first_obgc_leaf.note_heads().get(highest_pitch)
         _tweaks.tweak(grace_mate_head, r"\tweak font-size 0", tag=tag)
         _tweaks.tweak(grace_mate_head, r"\tweak transparent ##t", tag=tag)
 
@@ -823,14 +823,14 @@ def on_beat_grace_container(
     first_nongrace_leaf = _iterlib._get_leaf(nongrace_leaves, 0)
     music_voice = _parentage.Parentage(first_nongrace_leaf).get(_score.Voice)
     assert isinstance(music_voice, _score.Voice), repr(music_voice)
-    if music_voice.get_name() is None:
+    if music_voice.name() is None:
         message = "nongrace leaves must reside in named voice:\n"
         message += f"   {repr(music_voice)}"
         raise Exception(message)
     obgc = OnBeatGraceContainer(
         grace_leaves, grace_leaf_duration=grace_leaf_duration, tag=tag
     )
-    nongrace_voice = _score.Voice(name=music_voice.get_name(), tag=tag)
+    nongrace_voice = _score.Voice(name=music_voice.name(), tag=tag)
     _mutate.wrap(nongrace_leaves, nongrace_voice)
     polyphony_container = _score.Container(simultaneous=True, tag=tag)
     _mutate.wrap(nongrace_voice, polyphony_container)

@@ -75,7 +75,7 @@ def test_Rest___init___01():
 
     rest = abjad.Rest("r8.")
 
-    assert rest.get_written_duration() == abjad.Duration(3, 16)
+    assert rest.written_duration() == abjad.Duration(3, 16)
 
 
 def test_Rest___init___02():
@@ -104,7 +104,7 @@ def test_Rest___init___03():
     assert isinstance(rest, abjad.Rest)
     assert dir(chord) == dir(abjad.Chord([2, 3, 4], (1, 4)))
     assert dir(rest) == dir(abjad.Rest((1, 4)))
-    assert rest.get_written_duration() == chord.get_written_duration()
+    assert rest.written_duration() == chord.written_duration()
 
 
 def test_Rest___init___04():

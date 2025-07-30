@@ -12,7 +12,7 @@ Abjad's named pitches model the everyday pitches of notes and chords:
     >>> note = abjad.Note("cs''8")
     >>> abjad.show(note)
 
-    >>> pitch = note.get_written_pitch()
+    >>> pitch = note.written_pitch()
     >>> pitch
 
 ----

@@ -1396,9 +1396,9 @@ class Meter:
             ...     'Time_signature_engraver',
             ...     'Default_bar_line_engraver',
             ...     ]
-            >>> score.get_remove_commands().extend(engravers)
-            >>> score[0].get_consists_commands().extend(engravers)
-            >>> score[1].get_consists_commands().extend(engravers)
+            >>> score.remove_commands().extend(engravers)
+            >>> score[0].consists_commands().extend(engravers)
+            >>> score[1].consists_commands().extend(engravers)
             >>> abjad.show(score) # doctest: +SKIP
 
             ..  docs::

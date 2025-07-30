@@ -93,7 +93,7 @@ def _get_sibling_with_graces(component, n):
         return component
     if component._parent is None:
         return None
-    if component._parent.get_simultaneous():
+    if component._parent.simultaneous():
         return None
     if (
         n == 1
@@ -168,11 +168,9 @@ def _get_sibling_with_graces(component, n):
 
 
 def _is_unpitched(leaf):
-    # if hasattr(leaf, "written_pitch"):
-    if hasattr(leaf, "get_written_pitch"):
+    if hasattr(leaf, "written_pitch"):
         return False
-    # if hasattr(leaf, "written_pitches"):
-    if hasattr(leaf, "get_written_pitches"):
+    if hasattr(leaf, "written_pitches"):
         return False
     return True
 

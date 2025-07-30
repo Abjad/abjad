@@ -64,8 +64,8 @@ def test_NoteHead___copy___01():
     assert isinstance(note_head_2, abjad.NoteHead)
     assert note_head_1 == note_head_2
     assert note_head_1 is not note_head_2
-    assert note_head_1.get_is_cautionary() == note_head_2.get_is_cautionary()
-    assert note_head_1.get_is_forced() == note_head_2.get_is_forced()
+    assert note_head_1.is_cautionary() == note_head_2.is_cautionary()
+    assert note_head_1.is_forced() == note_head_2.is_forced()
     assert note_head_1.tweaks == note_head_2.tweaks
     assert note_head_1.tweaks is not note_head_2.tweaks
 
@@ -82,8 +82,8 @@ def test_NoteHead___deepcopy___01():
     assert isinstance(note_head_2, abjad.NoteHead)
     assert note_head_1 == note_head_2
     assert note_head_1 is not note_head_2
-    assert note_head_1.get_is_cautionary() == note_head_2.get_is_cautionary()
-    assert note_head_1.get_is_forced() == note_head_2.get_is_forced()
+    assert note_head_1.is_cautionary() == note_head_2.is_cautionary()
+    assert note_head_1.is_forced() == note_head_2.is_forced()
     assert note_head_1.tweaks == note_head_2.tweaks
     assert note_head_1.tweaks is not note_head_2.tweaks
 
@@ -94,7 +94,7 @@ def test_NoteHead___init___01():
     """
 
     notehead = abjad.NoteHead(6)
-    assert notehead.get_written_pitch() == abjad.NamedPitch(6)
+    assert notehead.written_pitch() == abjad.NamedPitch(6)
 
 
 def test_NoteHead___init___02():
@@ -103,7 +103,7 @@ def test_NoteHead___init___02():
     """
 
     notehead = abjad.NoteHead("cs,,,")
-    assert notehead.get_written_pitch() == abjad.NamedPitch("cs,,,")
+    assert notehead.written_pitch() == abjad.NamedPitch("cs,,,")
 
 
 def test_NoteHead___init___03():
@@ -115,8 +115,8 @@ def test_NoteHead___init___03():
     new = abjad.NoteHead(notehead)
 
     assert notehead is not new
-    assert notehead.get_written_pitch() == "fs'"
-    assert new.get_written_pitch() != 6
+    assert notehead.written_pitch() == "fs'"
+    assert new.written_pitch() != 6
 
 
 def test_NoteHead___init___04():
@@ -131,20 +131,20 @@ def test_NoteHead___init___04():
 
 def test_NoteHead_is_forced_01():
     note_head = abjad.NoteHead(written_pitch="c'")
-    assert note_head.get_is_forced() is None
+    assert note_head.is_forced() is None
     note_head.set_is_forced(True)
-    assert note_head.get_is_forced() is True
+    assert note_head.is_forced() is True
     note_head.set_is_forced(False)
-    assert note_head.get_is_forced() is False
+    assert note_head.is_forced() is False
 
 
 def test_NoteHead_is_parenthesized_01():
     note_head = abjad.NoteHead(written_pitch="c'")
-    assert note_head.get_is_parenthesized() is None
+    assert note_head.is_parenthesized() is None
     note_head.set_is_parenthesized(True)
-    assert note_head.get_is_parenthesized() is True
+    assert note_head.is_parenthesized() is True
     note_head.set_is_parenthesized(False)
-    assert note_head.get_is_parenthesized() is False
+    assert note_head.is_parenthesized() is False
 
 
 def test_NoteHead_is_parenthesized_02():
@@ -160,7 +160,7 @@ def test_NoteHead_is_parenthesized_02():
 
 def test_NoteHead_is_parenthesized_03():
     note = abjad.Note("c'4")
-    note.get_note_head().set_is_parenthesized(True)
+    note.note_head().set_is_parenthesized(True)
     assert abjad.lilypond(note) == abjad.string.normalize(
         r"""
         \parenthesize
@@ -171,7 +171,7 @@ def test_NoteHead_is_parenthesized_03():
 
 def test_NoteHead_is_parenthesized_04():
     chord = abjad.Chord("<c' e' g'>4")
-    chord.get_note_heads()[1].set_is_parenthesized(True)
+    chord.note_heads()[1].set_is_parenthesized(True)
     assert abjad.lilypond(chord) == abjad.string.normalize(
         r"""
         <
@@ -190,12 +190,12 @@ def test_NoteHead_written_pitch_01():
     """
 
     note = abjad.Note(13, (1, 4))
-    note.get_note_head().set_written_pitch(14)
+    note.note_head().set_written_pitch(14)
 
     "NoteHead(d'')"
 
-    assert abjad.lilypond(note.get_note_head()) == "d''"
-    assert note.get_note_head().get_written_pitch() != 14
+    assert abjad.lilypond(note.note_head()) == "d''"
+    assert note.note_head().written_pitch() != 14
 
 
 def test_NoteHead_written_pitch_02():
@@ -204,12 +204,12 @@ def test_NoteHead_written_pitch_02():
     """
 
     note = abjad.Note(13, (1, 4))
-    note.get_note_head().set_written_pitch(abjad.NamedPitch(14))
+    note.note_head().set_written_pitch(abjad.NamedPitch(14))
 
     "NoteHead(d'')"
 
-    assert abjad.lilypond(note.get_note_head()) == "d''"
-    assert note.get_note_head().get_written_pitch() != 14
+    assert abjad.lilypond(note.note_head()) == "d''"
+    assert note.note_head().written_pitch() != 14
 
 
 def test_NoteHead_written_pitch_03():
@@ -220,8 +220,8 @@ def test_NoteHead_written_pitch_03():
 
     n1 = abjad.Note(12, (1, 4))
     n2 = abjad.Note(14, (1, 4))
-    n1.set_written_pitch(n2.get_written_pitch())
+    n1.set_written_pitch(n2.written_pitch())
 
-    assert n1.get_written_pitch() == abjad.NamedPitch(14)
-    assert n2.get_written_pitch() == abjad.NamedPitch(14)
-    assert n1.get_written_pitch() is not n2.get_written_pitch()
+    assert n1.written_pitch() == abjad.NamedPitch(14)
+    assert n2.written_pitch() == abjad.NamedPitch(14)
+    assert n1.written_pitch() is not n2.written_pitch()

@@ -105,17 +105,17 @@ A tuplet with a ratio greather than ``1:1`` constitutes a type of rhythmic dimin
 
 ::
 
-    >>> tuplet.get_ratio()
+    >>> tuplet.ratio()
 
 ::
 
-    >>> tuplet.get_ratio().is_diminished()
+    >>> tuplet.ratio().is_diminished()
 
 A tuplet with a ratio less than ``1:1`` is a type of rhythmic augmentation:
 
 ::
 
-    >>> tuplet.get_ratio().is_augmented()
+    >>> tuplet.ratio().is_augmented()
 
 Getting and setting the ratio of a tuplet
 -----------------------------------------
@@ -124,7 +124,7 @@ Get the ratio of a tuplet like this:
 
 ::
 
-    >>> tuplet.get_ratio()
+    >>> tuplet.ratio()
 
 Set the ratio of a tuplet like this:
 

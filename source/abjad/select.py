@@ -223,10 +223,7 @@ class LogicalTie(collections.abc.Sequence):
         Is true when logical tie head is a note or chord.
         """
         head = self.head()
-        # return hasattr(head, "written_pitch") or hasattr(head, "written_pitches")
-        return hasattr(head, "get_written_pitch") or hasattr(
-            head, "get_written_pitches"
-        )
+        return hasattr(head, "written_pitch") or hasattr(head, "written_pitches")
 
     def is_trivial(self) -> bool:
         """
@@ -245,7 +242,7 @@ class LogicalTie(collections.abc.Sequence):
         """
         Sum of written duration of all components in logical tie.
         """
-        return _duration.Duration(sum([_.get_written_duration() for _ in self]))
+        return _duration.Duration(sum([_.written_duration() for _ in self]))
 
 
 def chord(

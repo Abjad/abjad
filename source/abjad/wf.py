@@ -25,10 +25,10 @@ def _aggregate_context_wrappers(argument):
     """
     context_name_to_wrappers = {}
     for context in _iterate.components(argument, _score.Context):
-        if context.get_name() not in context_name_to_wrappers:
-            context_name_to_wrappers[context.get_name()] = []
+        if context.name() not in context_name_to_wrappers:
+            context_name_to_wrappers[context.name()] = []
         wrappers = context._dependent_wrappers[:]
-        context_name_to_wrappers[context.get_name()].extend(wrappers)
+        context_name_to_wrappers[context.name()].extend(wrappers)
     return context_name_to_wrappers
 
 
@@ -136,7 +136,7 @@ def check_beamed_long_notes(argument) -> tuple[list, int]:
     violators, total = [], 0
     for leaf in _iterate.leaves(argument):
         total += 1
-        if leaf.get_written_duration() < _duration.Duration((1, 4)):
+        if leaf.written_duration() < _duration.Duration((1, 4)):
             continue
         start_wrapper = _get.effective_wrapper(leaf, _indicators.StartBeam)
         if start_wrapper is None:

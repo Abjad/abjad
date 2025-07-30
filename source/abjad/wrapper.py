@@ -226,14 +226,14 @@ class Wrapper:
         message += f" to {repr(component)}"
         # message += f" in {getattr(context, 'name', None)} because ..."
         assert context is not None
-        message += f" in {context.get_name()} because ..."
+        message += f" in {context.name()} because ..."
         message += f"\n\n{repr(wrapper)}\n\n"
         message += "... is already attached"
         if component is wrapper.component():
             message += " to the same leaf."
         else:
             message += f" to {repr(wrapper.component())}"
-            message += f" in {wrapper_context.get_name()}."
+            message += f" in {wrapper_context.name()}."
         message += "\n"
         raise _exceptions.PersistentIndicatorError(message)
 
@@ -259,16 +259,11 @@ class Wrapper:
         else:
             for component in parentage:
                 assert component is not None
-                # if getattr(component, "name", None) == context_name:
-                if (
-                    hasattr(component, "get_name")
-                    and component.get_name() == context_name
-                ):
+                if hasattr(component, "name") and component.name() == context_name:
                     candidate = component
                     break
-                # if getattr(component, "lilypond_type", None) == context_name:
-                if hasattr(component, "get_lilypond_type") and (
-                    component.get_lilypond_type() == context_name
+                if hasattr(component, "lilypond_type") and (
+                    component.lilypond_type() == context_name
                 ):
                     candidate = component
                     break
@@ -278,7 +273,7 @@ class Wrapper:
                     continue
                 assert isinstance(component, _score.Voice)
                 assert isinstance(candidate, _score.Voice)
-                if component.get_name() == candidate.get_name():
+                if component.name() == candidate.name():
                     candidate = component
                     break
         assert isinstance(candidate, _score.Context | None), repr(candidate)

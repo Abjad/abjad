@@ -434,7 +434,7 @@ def test_Container___getitem___06():
         ]
     )
 
-    assert score["First_Violin_Voice"].get_name() == "First_Violin_Voice"
+    assert score["First_Violin_Voice"].name() == "First_Violin_Voice"
 
     score["Cello_Staff"].append(abjad.Voice(name="First_Violin_Voice"))
 
@@ -443,7 +443,7 @@ def test_Container___getitem___06():
 
     extra_first_violin_voice = score["Cello_Staff"].pop()
 
-    assert score["First_Violin_Voice"].get_name() == "First_Violin_Voice"
+    assert score["First_Violin_Voice"].name() == "First_Violin_Voice"
     assert score["First_Violin_Voice"] is not extra_first_violin_voice
 
 
@@ -2150,13 +2150,13 @@ def test_Container_is_simultaneous_01():
     Is true when container encloses contents in LilyPond << >> brackets.
     """
 
-    assert not abjad.Container().get_simultaneous()
-    assert not abjad.Tuplet().get_simultaneous()
-    assert abjad.Score().get_simultaneous()
-    assert not abjad.Container().get_simultaneous()
-    assert not abjad.Staff().get_simultaneous()
-    assert abjad.StaffGroup().get_simultaneous()
-    assert not abjad.Voice().get_simultaneous()
+    assert not abjad.Container().simultaneous()
+    assert not abjad.Tuplet().simultaneous()
+    assert abjad.Score().simultaneous()
+    assert not abjad.Container().simultaneous()
+    assert not abjad.Staff().simultaneous()
+    assert abjad.StaffGroup().simultaneous()
+    assert not abjad.Voice().simultaneous()
 
 
 def test_Container_is_simultaneous_02():
@@ -2166,7 +2166,7 @@ def test_Container_is_simultaneous_02():
 
     container = abjad.Container([])
     container.set_simultaneous(True)
-    assert container.get_simultaneous()
+    assert container.simultaneous()
 
 
 def test_Container_is_simultaneous_03():
@@ -2175,10 +2175,10 @@ def test_Container_is_simultaneous_03():
     """
 
     container = abjad.Container([])
-    assert not container.get_simultaneous()
+    assert not container.simultaneous()
 
     container.set_simultaneous(True)
-    assert container.get_simultaneous()
+    assert container.simultaneous()
 
 
 def test_Container_is_simultaneous_04():

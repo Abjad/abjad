@@ -392,7 +392,7 @@ def test_RhythmTreeNode___call___01():
     tuplet = components[0]
     assert len(tuplet) == 4
     assert all(isinstance(_, abjad.Note) for _ in tuplet)
-    assert all(_.get_written_duration() == abjad.Duration(1, 16) for _ in tuplet)
+    assert all(_.written_duration() == abjad.Duration(1, 16) for _ in tuplet)
 
 
 def test_RhythmTreeNode___call___02():

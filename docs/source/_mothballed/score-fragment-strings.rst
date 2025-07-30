@@ -333,7 +333,7 @@ We define more functions:
     ...     descents = voice_to_descents["Viola"]
     ...     container = abjad.Container(descents[-1])
     ...     for leaf in container:
-    ...         if leaf.get_written_duration() == abjad.Duration(4, 4):
+    ...         if leaf.written_duration() == abjad.Duration(4, 4):
     ...             leaf.set_written_duration((8, 4))
     ...         else:
     ...             leaf.set_written_duration((4, 4))
@@ -365,7 +365,7 @@ We define more functions:
     ...     voice = score["Cello_Voice"]
     ...     logical_tie = abjad.select.logical_tie(voice[-1], 0)
     ...     for leaf in logical_tie:
-    ...         chord = abjad.Chord(["e,", "a,"], leaf.get_written_duration())
+    ...         chord = abjad.Chord(["e,", "a,"], leaf.written_duration())
     ...         abjad.mutate.replace(leaf, chord)
     ...     descents = voice_to_descents["Cello"]
     ...     descent = descents[-1]
@@ -373,8 +373,8 @@ We define more functions:
     ...     for chord in descent:
     ...         if isinstance(chord, abjad.Note):
     ...             continue
-    ...         pitch = chord.get_written_pitches()[1]
-    ...         note = abjad.Note(pitch, chord.get_written_duration())
+    ...         pitch = chord.written_pitches()[1]
+    ...         note = abjad.Note(pitch, chord.written_duration())
     ...         articulation = abjad.Articulation("accent")
     ...         abjad.attach(articulation, note)
     ...         articulation = abjad.Articulation("tenuto")

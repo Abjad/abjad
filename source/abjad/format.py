@@ -30,7 +30,7 @@ def _get_grob_override_contributions(component, contributions):
         if "NoteHead" in string and "pitch" in string:
             contributions_.remove(string)
     try:
-        written_pitch = component.get_written_pitch()
+        written_pitch = component.written_pitch()
         arrow = written_pitch.arrow
     except AttributeError:
         arrow = None

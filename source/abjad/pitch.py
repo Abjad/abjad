@@ -1331,18 +1331,16 @@ class IntervalClass:
         """
         if hasattr(pitch_carrier, "transpose"):
             return pitch_carrier.transpose(self)
-        # elif hasattr(pitch_carrier, "written_pitch"):
-        elif hasattr(pitch_carrier, "get_written_pitch"):
+        elif hasattr(pitch_carrier, "written_pitch"):
             new_note = copy.copy(pitch_carrier)
-            new_pitch = pitch_carrier.get_written_pitch().transpose(self)
+            new_pitch = pitch_carrier.written_pitch().transpose(self)
             new_note.set_written_pitch(new_pitch)
             return new_note
-        # elif hasattr(pitch_carrier, "written_pitches"):
-        elif hasattr(pitch_carrier, "get_written_pitches"):
+        elif hasattr(pitch_carrier, "written_pitches"):
             new_chord = copy.copy(pitch_carrier)
-            pairs = zip(new_chord.get_note_heads(), pitch_carrier.get_note_heads())
+            pairs = zip(new_chord.note_heads(), pitch_carrier.note_heads())
             for new_nh, old_nh in pairs:
-                new_pitch = old_nh.get_written_pitch().transpose(self)
+                new_pitch = old_nh.written_pitch().transpose(self)
                 new_nh.set_written_pitch(new_pitch)
             return new_chord
         return pitch_carrier
@@ -2334,18 +2332,16 @@ class Interval:
         """
         if hasattr(pitch_carrier, "transpose"):
             return pitch_carrier.transpose(self)
-        # elif hasattr(pitch_carrier, "written_pitch"):
-        elif hasattr(pitch_carrier, "get_written_pitch"):
+        elif hasattr(pitch_carrier, "written_pitch"):
             new_note = copy.copy(pitch_carrier)
-            new_pitch = pitch_carrier.get_written_pitch().transpose(self)
+            new_pitch = pitch_carrier.written_pitch().transpose(self)
             new_note.set_written_pitch(new_pitch)
             return new_note
-        # elif hasattr(pitch_carrier, "written_pitches"):
-        elif hasattr(pitch_carrier, "get_written_pitches"):
+        elif hasattr(pitch_carrier, "written_pitches"):
             new_chord = copy.copy(pitch_carrier)
-            pairs = zip(new_chord.get_note_heads(), pitch_carrier.get_note_heads())
+            pairs = zip(new_chord.note_heads(), pitch_carrier.note_heads())
             for new_nh, old_nh in pairs:
-                new_pitch = old_nh.get_written_pitch().transpose(self)
+                new_pitch = old_nh.written_pitch().transpose(self)
                 new_nh.set_written_pitch(new_pitch)
             return new_chord
         return pitch_carrier
@@ -4218,12 +4214,10 @@ class Pitch:
                 _pitch_class._get_alteration(),
                 _octave.number,
             )
-        # elif hasattr(argument, "written_pitch"):
-        elif hasattr(argument, "get_written_pitch"):
-            self._from_pitch_or_pitch_class(argument.get_written_pitch())
-        # elif hasattr(argument, "note_heads") and len(argument.get_note_heads()):
-        elif hasattr(argument, "get_note_heads") and len(argument.get_note_heads()):
-            self._from_pitch_or_pitch_class(argument.get_note_heads()[0])
+        elif hasattr(argument, "written_pitch"):
+            self._from_pitch_or_pitch_class(argument.written_pitch())
+        elif hasattr(argument, "note_heads") and len(argument.note_heads()):
+            self._from_pitch_or_pitch_class(argument.note_heads()[0])
         else:
             class_name = type(self).__name__
             raise ValueError(f"can not instantiate {class_name} from {argument!r}.")

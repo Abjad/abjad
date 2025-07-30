@@ -51,7 +51,7 @@ Rotation, by row index
     ...             voice = abjad.Voice([abjad.Note(_, (1, 16)) for _ in set])
     ...             for leaf in abjad.select.leaves(voice):
     ...                 markup = abjad.Markup(
-    ...                     rf"\markup {abjad.NumberedPitchClass(leaf.get_written_pitch())}",
+    ...                     rf"\markup {abjad.NumberedPitchClass(leaf.written_pitch())}",
     ...                 )
     ...                 bundle = abjad.bundle(markup, r"- \tweak staff-padding 3")
     ...                 abjad.attach(bundle, leaf, direction=abjad.UP)

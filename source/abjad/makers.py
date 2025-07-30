@@ -1212,10 +1212,10 @@ def make_tuplet(
         ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
         tuplet = _score.Tuplet(ratio, components, tag=tag)
     tuplet.normalize_ratio()
-    if tuplet.get_ratio().is_augmented():
+    if tuplet.ratio().is_augmented():
         tuplet.toggle_prolation()
-    assert tuplet.get_ratio().is_canonical() or str(tuplet.get_ratio()) == "1:1", repr(
-        tuplet.get_ratio()
+    assert tuplet.ratio().is_canonical() or str(tuplet.ratio()) == "1:1", repr(
+        tuplet.ratio()
     )
     return tuplet
 

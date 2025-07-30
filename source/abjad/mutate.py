@@ -293,9 +293,8 @@ def _extract(component):
     components = [component]
     parent, start, stop = _get_parent_and_start_stop_indices(components)
     if parent is not None:
-        # components = list(getattr(component, "components", ()))
-        if hasattr(component, "get_components"):
-            components = list(component.get_components())
+        if hasattr(component, "components"):
+            components = list(component.components())
         else:
             components = []
         parent.__setitem__(slice(start, stop + 1), components)
@@ -347,10 +346,10 @@ def _fuse_tuplets(tuplets, *, tag=None):
         return None
     first_tuplet = tuplets[0]
     for tuplet in tuplets[1:]:
-        if tuplet.get_ratio() != first_tuplet.get_ratio():
+        if tuplet.ratio() != first_tuplet.ratio():
             raise ValueError("tuplets must carry same ratio.")
     assert isinstance(first_tuplet, _score.Tuplet)
-    new_tuplet = _score.Tuplet(first_tuplet.get_ratio(), [], tag=tag)
+    new_tuplet = _score.Tuplet(first_tuplet.ratio(), [], tag=tag)
     wrapped = False
     if _get.parentage(tuplets[0]).root() is not _get.parentage(tuplets[-1]).root():
         dummy_container = _score.Container(tuplets)
@@ -376,9 +375,8 @@ def _give_components_to_empty_container(components, container):
     assert not container
     components_ = []
     for component in components:
-        # components_.extend(getattr(component, "components", ()))
-        if hasattr(component, "get_components"):
-            components_.extend(component.get_components())
+        if hasattr(component, "components"):
+            components_.extend(component.components())
     container._components.extend(components_)
     _set_parents(container)
 
@@ -433,8 +431,8 @@ def _immediately_precedes(component_1, component_2, ignore_before_after_grace=No
 
 def _set_leaf_duration(leaf, new_duration, *, tag=None):
     new_duration = _duration.Duration(new_duration)
-    if leaf.get_multiplier() is not None:
-        multiplier = new_duration.__div__(leaf.get_written_duration())
+    if leaf.multiplier() is not None:
+        multiplier = new_duration.__div__(leaf.written_duration())
         leaf.set_multiplier(_duration.pair(multiplier))
         return [leaf]
     try:
@@ -466,7 +464,7 @@ def _set_leaf_duration(leaf, new_duration, *, tag=None):
     all_leaves = [leaf] + following_leaves
     assert len(all_leaves) == len(new_leaves)
     for all_leaf, new_leaf in zip(all_leaves, new_leaves):
-        all_leaf.set_written_duration(new_leaf.get_written_duration())
+        all_leaf.set_written_duration(new_leaf.written_duration())
     logical_tie = _get.logical_tie(leaf)
     logical_tie_leaves = list(logical_tie)
     for leaf_ in logical_tie:
@@ -488,7 +486,7 @@ def _set_leaf_duration(leaf, new_duration, *, tag=None):
         assert isinstance(components[0], _score.Tuplet)
         assert len(components) == 1
         tuplet = components[0]
-        tuplet = _score.Tuplet(tuplet.get_ratio(), [])
+        tuplet = _score.Tuplet(tuplet.ratio(), [])
         assert isinstance(all_leaves, list)
         wrap(all_leaves, tuplet)
         return [tuplet]
@@ -516,9 +514,9 @@ def _split_container_at_index(CONTAINER, i):
     right_components = CONTAINER[i:]
     # instantiate new left and right containers
     if isinstance(CONTAINER, _score.Tuplet):
-        left = type(CONTAINER)(CONTAINER.get_ratio(), [])
+        left = type(CONTAINER)(CONTAINER.ratio(), [])
         wrap(left_components, left)
-        right = type(CONTAINER)(CONTAINER.get_ratio(), [])
+        right = type(CONTAINER)(CONTAINER.ratio(), [])
         wrap(right_components, right)
     else:
         left = CONTAINER.__copy__()
@@ -543,7 +541,7 @@ def _split_container_at_index(CONTAINER, i):
 
 
 def _split_container_by_duration(CONTAINER, duration, *, tag=None):
-    if CONTAINER.get_simultaneous():
+    if CONTAINER.simultaneous():
         return _split_simultaneous_by_duration(CONTAINER, duration=duration, tag=tag)
     duration = _duration.Duration(duration)
     assert 0 <= duration, repr(duration)
@@ -641,7 +639,7 @@ def _split_container_by_duration(CONTAINER, duration, *, tag=None):
 
 
 def _split_simultaneous_by_duration(CONTAINER, duration, *, tag=None):
-    assert CONTAINER.get_simultaneous()
+    assert CONTAINER.simultaneous()
     left_components, right_components = [], []
     for component in CONTAINER[:]:
         halves = _split_container_by_duration(component, duration=duration, tag=tag)
@@ -2573,12 +2571,12 @@ def transpose(argument, interval):
     named_interval = _pitch.NamedInterval(interval)
     for item in _iterate.components(argument, (_score.Note, _score.Chord)):
         if isinstance(item, _score.Note):
-            old_written_pitch = item.get_note_head().get_written_pitch()
+            old_written_pitch = item.note_head().written_pitch()
             new_written_pitch = old_written_pitch.transpose(named_interval)
-            item.get_note_head().set_written_pitch(new_written_pitch)
+            item.note_head().set_written_pitch(new_written_pitch)
         else:
-            for note_head in item.get_note_heads():
-                old_written_pitch = note_head.get_written_pitch()
+            for note_head in item.note_heads():
+                old_written_pitch = note_head.written_pitch()
                 new_written_pitch = old_written_pitch.transpose(named_interval)
                 note_head.set_written_pitch(new_written_pitch)
 

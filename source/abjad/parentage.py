@@ -116,8 +116,8 @@ class Parentage(collections.abc.Sequence):
     @staticmethod
     def _id_string(component):
         lhs = component.__class__.__name__
-        if hasattr(component, "get_name") and component.get_name():
-            rhs = component.get_name()
+        if hasattr(component, "name") and component.name():
+            rhs = component.name()
         else:
             rhs = id(component)
         return f"{lhs}-{rhs!r}"

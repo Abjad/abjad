@@ -331,7 +331,7 @@ def test_Staff___init___01():
     """
 
     staff = abjad.Staff(lilypond_type="BlueStaff")
-    assert staff.get_lilypond_type() == "BlueStaff"
+    assert staff.lilypond_type() == "BlueStaff"
 
 
 def test_Staff___init___02():
@@ -340,7 +340,7 @@ def test_Staff___init___02():
     """
 
     staff = abjad.Staff(name="FirstBlueStaff")
-    assert staff.get_name() == "FirstBlueStaff"
+    assert staff.name() == "FirstBlueStaff"
 
 
 def test_Staff___init___03():
@@ -349,8 +349,8 @@ def test_Staff___init___03():
     """
 
     staff = abjad.Staff(lilypond_type="BlueStaff", name="FirstBlueStaff")
-    assert staff.get_lilypond_type() == "BlueStaff"
-    assert staff.get_name() == "FirstBlueStaff"
+    assert staff.lilypond_type() == "BlueStaff"
+    assert staff.name() == "FirstBlueStaff"
 
 
 def test_Staff___setitem___01():
@@ -473,9 +473,9 @@ def test_Staff___setitem___07():
     staff[0:4] = "d'8 d'8 d'8 d'8"
     assert len(staff) == 8
     for x in staff[0:4]:
-        assert x.get_written_pitch() == "d'"
+        assert x.written_pitch() == "d'"
     for x in staff[4:8]:
-        assert x.get_written_pitch() == "c'"
+        assert x.written_pitch() == "c'"
     assert abjad.wf.is_wellformed(staff)
 
 
@@ -490,9 +490,9 @@ def test_Staff___setitem___08():
     staff[0:4] = chords
     assert len(staff) == 8
     for x in staff[0:4]:
-        assert x.get_written_duration() == abjad.Duration(1, 4)
+        assert x.written_duration() == abjad.Duration(1, 4)
     for x in staff[4:8]:
-        assert x.get_written_duration() == abjad.Duration(1, 8)
+        assert x.written_duration() == abjad.Duration(1, 8)
     assert abjad.wf.is_wellformed(staff)
 
 
@@ -552,8 +552,8 @@ def test_Staff_append_03():
 
 def test_Staff_engraver_consists_01():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    staff.get_consists_commands().append("Horizontal_bracket_engraver")
-    staff.get_consists_commands().append("Instrument_name_engraver")
+    staff.consists_commands().append("Horizontal_bracket_engraver")
+    staff.consists_commands().append("Instrument_name_engraver")
 
     assert abjad.wf.is_wellformed(staff)
     assert abjad.lilypond(staff) == abjad.string.normalize(
@@ -576,8 +576,8 @@ def test_Staff_engraver_consists_01():
 
 def test_Staff_engraver_removals_01():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    staff.get_remove_commands().append("Time_signature_engraver")
-    staff.get_remove_commands().append("Bar_number_engraver")
+    staff.remove_commands().append("Time_signature_engraver")
+    staff.remove_commands().append("Bar_number_engraver")
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""

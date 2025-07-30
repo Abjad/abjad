@@ -589,7 +589,7 @@ def test_mutate__split_leaf_by_durations_03():
 
     assert len(staff) == 1
     assert isinstance(staff[0], abjad.Note)
-    assert staff[0].get_written_duration() == abjad.Duration(1, 4)
+    assert staff[0].written_duration() == abjad.Duration(1, 4)
 
 
 def test_mutate__split_leaf_by_durations_04():

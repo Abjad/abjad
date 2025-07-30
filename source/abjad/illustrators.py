@@ -302,8 +302,8 @@ def components_to_score_markup_string(components: typing.Sequence[_score.Compone
     components = copy.deepcopy(components)
     staff = _score.Staff(components, name="Rhythmic_Staff")
     staff.set_lilypond_type("RhythmicStaff")
-    staff.get_remove_commands().append("Time_signature_engraver")
-    staff.get_remove_commands().append("Staff_symbol_engraver")
+    staff.remove_commands().append("Time_signature_engraver")
+    staff.remove_commands().append("Staff_symbol_engraver")
     _overrides.override(staff).Stem.direction = _enums.UP
     _overrides.override(staff).Stem.length = 5
     _overrides.override(staff).TupletBracket.bracket_visibility = True
@@ -369,7 +369,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
         REGRESSION. Function preserves tweaks:
 
         >>> note = abjad.Note("c'4")
-        >>> abjad.tweak(note.get_note_head(), r"\tweak color #red")
+        >>> abjad.tweak(note.note_head(), r"\tweak color #red")
         >>> score = abjad.illustrators.make_piano_score([note])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -402,10 +402,10 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
             >>
 
         >>> chord = abjad.Chord("<c d a' bf'>4")
-        >>> abjad.tweak(chord.get_note_heads()[0], r"\tweak color #red")
-        >>> abjad.tweak(chord.get_note_heads()[1], r"\tweak color #red")
-        >>> abjad.tweak(chord.get_note_heads()[2], r"\tweak color #blue")
-        >>> abjad.tweak(chord.get_note_heads()[3], r"\tweak color #blue")
+        >>> abjad.tweak(chord.note_heads()[0], r"\tweak color #red")
+        >>> abjad.tweak(chord.note_heads()[1], r"\tweak color #red")
+        >>> abjad.tweak(chord.note_heads()[2], r"\tweak color #blue")
+        >>> abjad.tweak(chord.note_heads()[3], r"\tweak color #blue")
         >>> score = abjad.illustrators.make_piano_score([chord])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -512,9 +512,9 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
     score = _score.Score([staff_group], name="Score")
     for leaf in leaves:
         markup_wrappers = _get.wrappers(leaf, _indicators.Markup)
-        written_duration = leaf.get_written_duration()
+        written_duration = leaf.written_duration()
         if isinstance(leaf, _score.Note):
-            if leaf.get_written_pitch() < lowest_treble_pitch:
+            if leaf.written_pitch() < lowest_treble_pitch:
                 treble_leaf = _score.Rest(written_duration)
                 bass_leaf = copy.copy(leaf)
             else:
@@ -522,9 +522,9 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
                 bass_leaf = _score.Rest(written_duration)
         elif isinstance(leaf, _score.Chord):
             treble_note_heads, bass_note_heads = [], []
-            for note_head in leaf.get_note_heads():
+            for note_head in leaf.note_heads():
                 new_note_head = copy.copy(note_head)
-                if new_note_head.get_written_pitch() < lowest_treble_pitch:
+                if new_note_head.written_pitch() < lowest_treble_pitch:
                     bass_note_heads.append(new_note_head)
                 else:
                     treble_note_heads.append(new_note_head)
