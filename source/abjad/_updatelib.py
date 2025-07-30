@@ -308,7 +308,7 @@ def _update_clocktime_offsets(component, timespans):
             pair = timespan.annotation
             clocktime_start_offset, clocktime_duration = pair
             local_offset = component._start_offset - timespan.start_offset
-            multiplier = local_offset / timespan.get_duration()
+            multiplier = local_offset / timespan.duration()
             duration = multiplier * clocktime_duration
             offset = clocktime_start_offset + duration
             component._start_offset_in_seconds = _duration.Offset(offset)
@@ -316,7 +316,7 @@ def _update_clocktime_offsets(component, timespans):
             pair = timespan.annotation
             clocktime_start_offset, clocktime_duration = pair
             local_offset = component._stop_offset - timespan.start_offset
-            multiplier = local_offset / timespan.get_duration()
+            multiplier = local_offset / timespan.duration()
             duration = multiplier * clocktime_duration
             offset = clocktime_start_offset + duration
             component._stop_offset_in_seconds = _duration.Offset(offset)
