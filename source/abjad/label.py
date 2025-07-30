@@ -254,21 +254,21 @@ def color_note_heads(argument, color_map=pc_number_to_color) -> None:
     color_map = color_map or pc_number_to_color
     for leaf in _iterate.leaves(argument):
         if isinstance(leaf, _score.Chord):
-            for note_head in leaf.get_note_heads():
-                number = note_head.get_written_pitch().number()
+            for note_head in leaf.note_heads():
+                number = note_head.written_pitch().number()
                 pc = _pitch.NumberedPitchClass(number)
                 color = color_map.get(pc, None)
                 if color is not None:
                     _tweaks.tweak(note_head, rf"\tweak Accidental.color {color}")
                     _tweaks.tweak(note_head, rf"\tweak color {color}")
         elif isinstance(leaf, _score.Note):
-            note_head = leaf.get_note_head()
-            number = note_head.get_written_pitch().number()
+            note_head = leaf.note_head()
+            number = note_head.written_pitch().number()
             pc = _pitch.NumberedPitchClass(number)
             color = color_map[pc.number()]
             if color is not None:
-                _tweaks.tweak(leaf.get_note_head(), rf"\tweak Accidental.color {color}")
-                _tweaks.tweak(leaf.get_note_head(), rf"\tweak color {color}")
+                _tweaks.tweak(leaf.note_head(), rf"\tweak Accidental.color {color}")
+                _tweaks.tweak(leaf.note_head(), rf"\tweak color {color}")
 
 
 def remove_markup(argument) -> None:
@@ -680,14 +680,14 @@ def vertical_moments(
             notes = [_ for _ in leaves if isinstance(_, _score.Note)]
             if not notes:
                 continue
-            notes.sort(key=lambda x: x.get_written_pitch().number())
+            notes.sort(key=lambda x: x.written_pitch().number())
             notes.reverse()
             bass_note = notes[-1]
             upper_notes = notes[:-1]
             named_intervals = []
             for upper_note in upper_notes:
                 named_interval = _pitch.NamedInterval.from_pitch_carriers(
-                    bass_note.get_written_pitch(), upper_note.get_written_pitch()
+                    bass_note.written_pitch(), upper_note.written_pitch()
                 )
                 named_intervals.append(named_interval)
             numbers = [str(x.number()) for x in named_intervals]
@@ -697,14 +697,14 @@ def vertical_moments(
             notes = [_ for _ in leaves if isinstance(_, _score.Note)]
             if not notes:
                 continue
-            notes.sort(key=lambda _: _.get_written_pitch().number())
+            notes.sort(key=lambda _: _.written_pitch().number())
             notes.reverse()
             bass_note = notes[-1]
             upper_notes = notes[:-1]
             numbers = []
             for upper_note in upper_notes:
                 interval = _pitch.NamedInterval.from_pitch_carriers(
-                    bass_note.get_written_pitch(), upper_note.get_written_pitch()
+                    bass_note.written_pitch(), upper_note.written_pitch()
                 )
                 interval_class = _pitch.NumberedIntervalClass(interval)
                 number = interval_class.number()
@@ -1389,7 +1389,7 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
 
         >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
         >>> string = 'Horizontal_bracket_engraver'
-        >>> voice.get_consists_commands().append(string)
+        >>> voice.consists_commands().append(string)
         >>> lists = [voice[:2], voice[-2:]]
         >>> for list_ in lists:
         ...     abjad.horizontal_bracket(list_)
@@ -1432,7 +1432,7 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
         Labels logical ties with pitch numbers:
 
         >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
-        >>> voice.get_consists_commands().append('Horizontal_bracket_engraver')
+        >>> voice.consists_commands().append('Horizontal_bracket_engraver')
         >>> lists = [voice[:2], voice[-2:]]
         >>> for list_ in lists:
         ...     abjad.horizontal_bracket(list_)
@@ -1476,7 +1476,7 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
         Labels logical ties with pitch-class numbers:
 
         >>> voice = abjad.Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
-        >>> voice.get_consists_commands().append('Horizontal_bracket_engraver')
+        >>> voice.consists_commands().append('Horizontal_bracket_engraver')
         >>> lists = [voice[:2], voice[-2:]]
         >>> for list_ in lists:
         ...     abjad.horizontal_bracket(list_)
@@ -1523,12 +1523,12 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
         label = None
         if prototype is _pitch.NamedPitch:
             if isinstance(leaf, _score.Note):
-                string = leaf.get_written_pitch().get_name_in_locale(locale=locale)
+                string = leaf.written_pitch().get_name_in_locale(locale=locale)
                 if "#" in string:
                     string = '"' + string + '"'
                 label = _indicators.Markup(rf"\markup {{ {string} }}")
             elif isinstance(leaf, _score.Chord):
-                pitches = leaf.get_written_pitches()
+                pitches = leaf.written_pitches()
                 pitches = reversed(pitches)
                 names = []
                 for pitch in pitches:
@@ -1539,20 +1539,20 @@ def with_pitches(argument, direction=_enums.UP, locale=None, prototype=None):
                 label = _indicators.Markup(rf"\markup \column {{ {string} }}")
         elif prototype is _pitch.NumberedPitch:
             if isinstance(leaf, _score.Note):
-                pitch = leaf.get_written_pitch().number()
+                pitch = leaf.written_pitch().number()
                 label = _indicators.Markup(rf"\markup {pitch}")
             elif isinstance(leaf, _score.Chord):
-                pitches = leaf.get_written_pitches()
+                pitches = leaf.written_pitches()
                 pitches = reversed(pitches)
                 pitches = [str(_.number()) for _ in pitches]
                 string = " ".join(pitches)
                 label = _indicators.Markup(rf"\markup \column {{ {string} }}")
         elif prototype is _pitch.NumberedPitchClass:
             if isinstance(leaf, _score.Note):
-                pitch = leaf.get_written_pitch().pitch_class().number()
+                pitch = leaf.written_pitch().pitch_class().number()
                 label = _indicators.Markup(rf"\markup {pitch}")
             elif isinstance(leaf, _score.Chord):
-                pitches = leaf.get_written_pitches()
+                pitches = leaf.written_pitches()
                 pitches = reversed(pitches)
                 pitches = [str(_.pitch_class().number()) for _ in pitches]
                 string = " ".join(pitches)
@@ -1571,7 +1571,7 @@ def with_set_classes(argument, direction=_enums.UP, prototype=None) -> None:
 
         >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
         >>> voice = abjad.Voice(string)
-        >>> voice.get_consists_commands().append('Horizontal_bracket_engraver')
+        >>> voice.consists_commands().append('Horizontal_bracket_engraver')
         >>> lists = [voice[:4], voice[-4:]]
         >>> for list_ in lists:
         ...     abjad.horizontal_bracket(list_)
@@ -1616,7 +1616,7 @@ def with_set_classes(argument, direction=_enums.UP, prototype=None) -> None:
 
         >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
         >>> voice = abjad.Voice(string)
-        >>> voice.get_consists_commands().append('Horizontal_bracket_engraver')
+        >>> voice.consists_commands().append('Horizontal_bracket_engraver')
         >>> lists = [voice[:4], voice[-4:]]
         >>> for list_ in lists:
         ...     abjad.horizontal_bracket(list_)
@@ -1662,7 +1662,7 @@ def with_set_classes(argument, direction=_enums.UP, prototype=None) -> None:
 
         >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
         >>> voice = abjad.Voice(string)
-        >>> voice.get_consists_commands().append('Horizontal_bracket_engraver')
+        >>> voice.consists_commands().append('Horizontal_bracket_engraver')
         >>> lists = [voice[:4], voice[-4:]]
         >>> for list_ in lists:
         ...     abjad.horizontal_bracket(list_)

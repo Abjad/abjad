@@ -169,7 +169,7 @@ This function enumerates scales in any mode:
     ...         descending = list(reversed(descending))[1:]
     ...         pitches.extend(descending)
     ...         notes = [abjad.Note(_, (1, 4)) for _ in pitches]
-    ...         name = notes[0].get_written_pitch().get_name_in_locale(locale="us")
+    ...         name = notes[0].written_pitch().get_name_in_locale(locale="us")
     ...         name = name[:-1]
     ...         string = fr'\markup {{ "{name} {mode_name}" }}'
     ...         markup = abjad.Markup(string)

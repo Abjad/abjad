@@ -166,8 +166,8 @@ def test_Note___copy___07():
     """
 
     note = abjad.Note("c'4")
-    abjad.tweak(note.get_note_head(), r"\tweak color #red")
-    abjad.tweak(note.get_note_head(), r"\tweak Accidental.color #red")
+    abjad.tweak(note.note_head(), r"\tweak color #red")
+    abjad.tweak(note.note_head(), r"\tweak Accidental.color #red")
     copied_note = copy.copy(note)
     string = abjad.lilypond(copied_note)
     assert string == abjad.string.normalize(

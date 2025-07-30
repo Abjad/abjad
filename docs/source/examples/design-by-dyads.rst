@@ -29,13 +29,13 @@ to Luigi Nono:
     ...     for i, pair in enumerate(pairs):
     ...         chord = abjad.Chord(pair, (1, 4))
     ...         if i in flip:
-    ...             pitches = chord.get_written_pitches()
+    ...             pitches = chord.written_pitches()
     ...             lower, higher = pitches
     ...             while lower < higher:
     ...                 lower = lower + "+P8" 
     ...             chord.set_written_pitches([lower, higher])
     ...         interval = transpositions.get(i, "P1")
-    ...         pitches = tuple(_.transpose(interval) for _ in chord.get_written_pitches())
+    ...         pitches = tuple(_.transpose(interval) for _ in chord.written_pitches())
     ...         chord.set_written_pitches(pitches)
     ...         chords.append(chord)
     ...     return chords

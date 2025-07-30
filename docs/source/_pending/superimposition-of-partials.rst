@@ -24,7 +24,7 @@ First we define functions to illustrate the examples that follow:
     ...     ji_cents = fractions.Fraction(log_ratio * log_2)
     ...     semitones = ji_cents / 100
     ...     parts = math.modf(semitones)
-    ...     pitch = abjad.NumberedPitch(note_head.get_written_pitch()) + parts[1]
+    ...     pitch = abjad.NumberedPitch(note_head.written_pitch()) + parts[1]
     ...     remainder = round(parts[0] * 100)
     ...     if 50 < abs(remainder):
     ...         if 0 < remainder:
@@ -51,7 +51,7 @@ First we define functions to illustrate the examples that follow:
     ...     notes = []
     ...     for ratio in sequence:
     ...         note = abjad.Note(fundamental, (1, 16))
-    ...         tune_to_ratio(note.get_note_head(), ratio, quarter_tones=with_quarter_tones)
+    ...         tune_to_ratio(note.note_head(), ratio, quarter_tones=with_quarter_tones)
     ...         notes.append(note)
     ...     score = abjad.illustrators.make_piano_score(notes)
     ...     treble_staff = score["Treble_Staff"]

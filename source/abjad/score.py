@@ -106,18 +106,15 @@ class Component:
 
         Returns new component.
         """
-        component = type(self)(*self.__getnewargs__(), tag=self.get_tag())
+        component = type(self)(*self.__getnewargs__(), tag=self.tag())
         if hasattr(self, "identifier"):
-            component.set_identifier(self.get_identifier())
-        # if hasattr(self, "lilypond_type"):
-        if hasattr(self, "get_lilypond_type"):
-            component.set_lilypond_type(self.get_lilypond_type())
-        # if hasattr(self, "name"):
-        if hasattr(self, "get_name"):
-            component.set_name(self.get_name())
-        # if hasattr(self, "simultaneous"):
-        if hasattr(self, "get_simultaneous"):
-            component.set_simultaneous(self.get_simultaneous())
+            component.set_identifier(self.identifier())
+        if hasattr(self, "lilypond_type"):
+            component.set_lilypond_type(self.lilypond_type())
+        if hasattr(self, "name"):
+            component.set_name(self.name())
+        if hasattr(self, "simultaneous"):
+            component.set_simultaneous(self.simultaneous())
         if getattr(self, "_overrides", None) is not None:
             component._overrides = copy.copy(_overrides.override(self))
         if getattr(self, "_lilypond_setting_name_manager", None) is not None:
@@ -152,12 +149,12 @@ class Component:
             for name, children in self._named_children.items():
                 name_dictionary[name] = copy.copy(children)
         name = None
-        if hasattr(self, "get_name"):
-            name = self.get_name()
+        if hasattr(self, "name"):
+            name = self.name()
         if name is not None:
-            if self.get_name() not in name_dictionary:
-                name_dictionary[self.get_name()] = []
-            name_dictionary[self.get_name()].append(self)
+            if self.name() not in name_dictionary:
+                name_dictionary[self.name()] = []
+            name_dictionary[self.name()].append(self)
         return name_dictionary
 
     def _check_for_cycles(self, components):
@@ -259,7 +256,7 @@ class Component:
             return self
         if self._parent is None:
             return None
-        if self._parent.get_simultaneous():
+        if self._parent.simultaneous():
             return None
         index = self._parent.index(self) + n
         if 0 <= index < len(self._parent):
@@ -373,8 +370,8 @@ class Component:
                 return sibling
 
     def _tag_strings(self, strings):
-        if self.get_tag() is not None:
-            strings = _tag.double_tag(strings, self.get_tag())
+        if self.tag() is not None:
+            strings = _tag.double_tag(strings, self.tag())
         return strings
 
     def _update_later(self, offsets=False, offsets_in_seconds=False):
@@ -385,7 +382,7 @@ class Component:
             elif offsets_in_seconds:
                 component._offsets_in_seconds_are_current = False
 
-    def get_tag(self) -> _tag.Tag | None:
+    def tag(self) -> _tag.Tag | None:
         """
         Gets component tag.
         """
@@ -445,7 +442,7 @@ class Leaf(Component):
         Shallow copies leaf.
         """
         leaf = Component.__copy__(self, *arguments)
-        leaf.set_multiplier(self.get_multiplier())
+        leaf.set_multiplier(self.multiplier())
         before_grace_container = self._before_grace_container
         if before_grace_container is not None:
             grace_container = before_grace_container._copy_with_children()
@@ -462,7 +459,7 @@ class Leaf(Component):
 
         Returns tuple.
         """
-        return (self.get_written_duration(),)
+        return (self.written_duration(),)
 
     def __repr__(self) -> str:
         """
@@ -578,8 +575,8 @@ class Leaf(Component):
 
     def _format_leaf_nucleus(self):
         strings = self._get_body()
-        if self.get_tag() is not None and self.get_tag().string:
-            strings = _tag.double_tag(strings, self.get_tag())
+        if self.tag() is not None and self.tag().string:
+            strings = _tag.double_tag(strings, self.tag())
         return strings
 
     def _format_opening_site(self, contributions):
@@ -591,8 +588,8 @@ class Leaf(Component):
         if self._after_grace_container is not None:
             assert not self._is_followed_by_after_grace_container()
             string = r"\afterGrace"
-            if self._after_grace_container.get_fraction() is not None:
-                n, d = self._after_grace_container.get_fraction()
+            if self._after_grace_container.fraction() is not None:
+                n, d = self._after_grace_container.fraction()
                 string = f"{string} {n}/{d}"
             result.append(string)
         if self._is_followed_by_after_grace_container():
@@ -601,8 +598,8 @@ class Leaf(Component):
             )
             string = r"\afterGrace"
             container = self._get_following_after_grace_container()
-            if container.get_fraction() is not None:
-                n, d = container.get_fraction()
+            if container.fraction() is not None:
+                n, d = container.fraction()
                 string = f"{string} {n}/{d}"
             result.append(string)
         strings = contributions.alphabetize(contributions.before.pitched_trill)
@@ -627,17 +624,17 @@ class Leaf(Component):
                 return False
 
     def _get_formatted_duration(self):
-        strings = [self.get_written_duration().lilypond_duration_string()]
-        if self.get_multiplier() is not None:
-            string = f"{self.get_multiplier()[0]}/{self.get_multiplier()[1]}"
+        strings = [self.written_duration().lilypond_duration_string()]
+        if self.multiplier() is not None:
+            string = f"{self.multiplier()[0]}/{self.multiplier()[1]}"
             strings.append(string)
         result = " * ".join(strings)
         return result
 
     def _get_preprolated_duration(self):
-        duration = self.get_written_duration()
-        if self.get_multiplier() is not None:
-            duration *= fractions.Fraction(*self.get_multiplier())
+        duration = self.written_duration()
+        if self.multiplier() is not None:
+            duration *= fractions.Fraction(*self.multiplier())
         return duration
 
     def _get_subtree(self):
@@ -677,12 +674,12 @@ class Leaf(Component):
 
     def _scale(self, multiplier):
         assert isinstance(multiplier, fractions.Fraction), repr(multiplier)
-        self_written_duration = self.get_written_duration() * multiplier
+        self_written_duration = self.written_duration() * multiplier
         self.set_written_duration(self_written_duration)
 
     ### PUBLIC PROPERTIES ###
 
-    def get_multiplier(self) -> tuple[int, int] | None:
+    def multiplier(self) -> tuple[int, int] | None:
         """
         Gets leaf duration multiplier.
         """
@@ -697,7 +694,7 @@ class Leaf(Component):
             assert len(argument) == 2, repr(argument)
         self._multiplier = argument
 
-    def get_written_duration(self) -> _duration.Duration:
+    def written_duration(self) -> _duration.Duration:
         """
         Gets leaf written duration.
         """
@@ -859,7 +856,7 @@ class Container(Component):
         if isinstance(argument, str):
             return argument in self._named_children
         else:
-            for component in self.get_components():
+            for component in self.components():
                 if component is argument:
                     return True
             else:
@@ -981,9 +978,9 @@ class Container(Component):
         Gets top-level item or slice identified by ``argument``.
         """
         if isinstance(argument, int):
-            return self.get_components().__getitem__(argument)
+            return self.components().__getitem__(argument)
         elif isinstance(argument, slice):
-            result = self.get_components().__getitem__(argument)
+            result = self.components().__getitem__(argument)
             assert isinstance(result, tuple), repr(result)
             return list(result)
         elif isinstance(argument, str):
@@ -1024,13 +1021,13 @@ class Container(Component):
 
         Yields container elements.
         """
-        return iter(self.get_components())
+        return iter(self.components())
 
     def __len__(self) -> int:
         """
         Gets number of components in container.
         """
-        return len(self.get_components())
+        return len(self.components())
 
     def __repr__(self) -> str:
         """
@@ -1119,19 +1116,19 @@ class Container(Component):
     def _format_close_brackets(self):
         result = []
         strings = []
-        if self.get_simultaneous():
-            if self.get_identifier():
-                string = f">>  {self.get_identifier()}"
+        if self.simultaneous():
+            if self.identifier():
+                string = f">>  {self.identifier()}"
             else:
                 string = ">>"
         else:
-            if self.get_identifier():
-                string = f"}}   {self.get_identifier()}"
+            if self.identifier():
+                string = f"}}   {self.identifier()}"
             else:
                 string = "}"
         strings.append(string)
-        if self.get_tag() is not None:
-            strings = _tag.double_tag(strings, self.get_tag())
+        if self.tag() is not None:
+            strings = _tag.double_tag(strings, self.tag())
         result.extend(strings)
         return result
 
@@ -1150,7 +1147,7 @@ class Container(Component):
 
     def _format_content_pieces(self):
         strings = []
-        for component in self.get_components():
+        for component in self.components():
             string = component._get_lilypond_format()
             for string in string.split("\n"):
                 if string.isspace():
@@ -1169,19 +1166,19 @@ class Container(Component):
     def _format_open_brackets_site(self, contributions):
         result = []
         strings = []
-        if self.get_simultaneous():
-            if self.get_identifier():
-                string = f"<<  {self.get_identifier()}"
+        if self.simultaneous():
+            if self.identifier():
+                string = f"<<  {self.identifier()}"
             else:
                 string = "<<"
         else:
-            if self.get_identifier():
-                string = f"{{   {self.get_identifier()}"
+            if self.identifier():
+                string = f"{{   {self.identifier()}"
             else:
                 string = "{"
         strings.append(string)
-        if self.get_tag() is not None:
-            strings = _tag.double_tag(strings, self.get_tag())
+        if self.tag() is not None:
+            strings = _tag.double_tag(strings, self.tag())
         result.extend(strings)
         return result
 
@@ -1207,11 +1204,11 @@ class Container(Component):
             summary = str(len(self))
         else:
             summary = ""
-        if self.get_simultaneous():
+        if self.simultaneous():
             open_bracket_string, close_bracket_string = "<<", ">>"
         else:
             open_bracket_string, close_bracket_string = "{", "}"
-        name = self.get_name()
+        name = self.name()
         if name is not None:
             name = f'-"{name}"'
         else:
@@ -1219,7 +1216,7 @@ class Container(Component):
         if hasattr(self, "_lilypond_type"):
             result = "<{}{}{}{}{}>"
             result = result.format(
-                self.get_lilypond_type(),
+                self.lilypond_type(),
                 name,
                 open_bracket_string,
                 summary,
@@ -1238,7 +1235,7 @@ class Container(Component):
         return f"{{ {self._get_contents_summary()} }}"
 
     def _get_contents_duration(self):
-        if self.get_simultaneous():
+        if self.simultaneous():
             return max(
                 [_duration.Duration(0)] + [_._get_preprolated_duration() for _ in self]
             )
@@ -1251,7 +1248,7 @@ class Container(Component):
     def _get_contents_summary(self):
         if 0 < len(self):
             result = []
-            for component in self.get_components():
+            for component in self.components():
                 if hasattr(component, "_get_compact_representation"):
                     result.append(component._get_compact_representation())
                 else:
@@ -1263,7 +1260,7 @@ class Container(Component):
     def _get_descendants_starting_with(self):
         result = []
         result.append(self)
-        if self.get_simultaneous():
+        if self.simultaneous():
             for item in self:
                 result.extend(item._get_descendants_starting_with())
         elif self:
@@ -1273,7 +1270,7 @@ class Container(Component):
     def _get_descendants_stopping_with(self):
         result = []
         result.append(self)
-        if self.get_simultaneous():
+        if self.simultaneous():
             for item in self:
                 result.extend(item._get_descendants_stopping_with())
         elif self:
@@ -1306,7 +1303,7 @@ class Container(Component):
         if isinstance(components, str):
             parsed = self._parse_string(components, language=language)
             self._components = []
-            self.set_simultaneous(parsed.get_simultaneous())
+            self.set_simultaneous(parsed.simultaneous())
             self[:] = parsed[:]
         else:
             for component in components:
@@ -1337,13 +1334,13 @@ class Container(Component):
 
     ### PUBLIC PROPERTIES ###
 
-    def get_components(self) -> tuple:
+    def components(self) -> tuple:
         """
         Gets components in container.
         """
         return tuple(self._components)
 
-    def get_identifier(self) -> str | None:
+    def identifier(self) -> str | None:
         r"""
         Gets bracket comment.
 
@@ -1374,7 +1371,7 @@ class Container(Component):
         assert isinstance(argument, str | type(None)), repr(argument)
         self._identifier = argument
 
-    def get_name(self) -> str | None:
+    def name(self) -> str | None:
         r"""
         Gets name of container.
 
@@ -1396,7 +1393,7 @@ class Container(Component):
                     f'4
                 }
 
-            >>> container.get_name() is None
+            >>> container.name() is None
             True
 
 
@@ -1412,7 +1409,7 @@ class Container(Component):
             >>> container = abjad.Container("c'4 d'4 e'4 f'4", name='Special')
             >>> abjad.show(container) # doctest: +SKIP
 
-            >>> container.get_name()
+            >>> container.name()
             'Special'
 
             Container name does not appear in LilyPond output:
@@ -1444,7 +1441,7 @@ class Container(Component):
             parent = parent._parent
         self._name = argument
 
-    def get_simultaneous(self) -> bool | None:
+    def simultaneous(self) -> bool | None:
         r"""
         Gets container ``simultaneous`` flag.
 
@@ -1474,7 +1471,7 @@ class Container(Component):
                     }
                 }
 
-            >>> container.get_simultaneous()
+            >>> container.simultaneous()
             False
 
         ..  container:: example
@@ -1669,7 +1666,7 @@ class Container(Component):
             3
 
         """
-        for i, element in enumerate(self.get_components()):
+        for i, element in enumerate(self.components()):
             if element is component:
                 return i
         else:
@@ -1970,13 +1967,12 @@ class AfterGraceContainer(Container):
             ((15, 16),)
 
         """
-        return (self.get_fraction(),)
+        return (self.fraction(),)
 
     ### PRIVATE METHODS ###
 
     def _attach(self, leaf):
-        # if not hasattr(leaf, "written_duration"):
-        if not hasattr(leaf, "get_written_duration"):
+        if not hasattr(leaf, "written_duration"):
             raise TypeError(f"must attach to leaf (not {leaf!r}).")
         leaf._after_grace_container = self
         self._main_leaf = leaf
@@ -1993,7 +1989,7 @@ class AfterGraceContainer(Container):
         result.extend(["{"])
         return result
 
-    def get_fraction(self) -> tuple[int, int] | None:
+    def fraction(self) -> tuple[int, int] | None:
         r"""
         Gets LilyPond `\afterGraceFraction`.
         """
@@ -2214,8 +2210,7 @@ class BeforeGraceContainer(Container):
     ### PRIVATE METHODS ###
 
     def _attach(self, leaf):
-        # if not hasattr(leaf, "written_duration"):
-        if not hasattr(leaf, "get_written_duration"):
+        if not hasattr(leaf, "written_duration"):
             raise TypeError(f"must attach to leaf {leaf!r}.")
         leaf._before_grace_container = self
         self._main_leaf = leaf
@@ -2229,13 +2224,13 @@ class BeforeGraceContainer(Container):
 
     def _format_open_brackets_site(self, contributions):
         result = []
-        string = f"{self.get_command()} {{"
+        string = f"{self.command()} {{"
         result.extend([string])
         return result
 
     ### PUBLIC PROPERTIES ###
 
-    def get_command(self) -> str:
+    def command(self) -> str:
         r"""
         Gets command. Chooses between LilyPond's four types of left-positioned
         grace music.
@@ -2565,31 +2560,27 @@ class Chord(Leaf):
         if len(arguments) == 1 and isinstance(arguments[0], Leaf):
             leaf = arguments[0]
             written_pitches = []
-            written_duration = leaf.get_written_duration()
+            written_duration = leaf.written_duration()
             if multiplier is None:
-                multiplier = leaf.get_multiplier()
+                multiplier = leaf.multiplier()
             # TODO: move to dedicated from_note() constructor:
-            if isinstance(leaf, Note) and leaf.get_note_head() is not None:
-                written_pitches.append(leaf.get_note_head().get_written_pitch())
-                are_cautionary = [leaf.get_note_head().get_is_cautionary()]
-                are_forced = [leaf.get_note_head().get_is_forced()]
-                are_parenthesized = [leaf.get_note_head().get_is_parenthesized()]
+            if isinstance(leaf, Note) and leaf.note_head() is not None:
+                written_pitches.append(leaf.note_head().written_pitch())
+                are_cautionary = [leaf.note_head().is_cautionary()]
+                are_forced = [leaf.note_head().is_forced()]
+                are_parenthesized = [leaf.note_head().is_parenthesized()]
             elif isinstance(leaf, Chord):
-                written_pitches.extend(
-                    _.get_written_pitch() for _ in leaf.get_note_heads()
-                )
-                are_cautionary = [_.get_is_cautionary() for _ in leaf.get_note_heads()]
-                are_forced = [_.get_is_forced() for _ in leaf.get_note_heads()]
-                are_parenthesized = [
-                    _.get_is_parenthesized() for _ in leaf.get_note_heads()
-                ]
+                written_pitches.extend(_.written_pitch() for _ in leaf.note_heads())
+                are_cautionary = [_.is_cautionary() for _ in leaf.note_heads()]
+                are_forced = [_.is_forced() for _ in leaf.note_heads()]
+                are_parenthesized = [_.is_parenthesized() for _ in leaf.note_heads()]
         # TODO: move to dedicated constructor:
         elif len(arguments) == 2:
             written_pitches, written_duration = arguments
             if isinstance(written_pitches, str):
                 written_pitches = [_ for _ in written_pitches.split() if _]
             elif isinstance(written_pitches, type(self)):
-                written_pitches = list(written_pitches.get_written_pitches())
+                written_pitches = list(written_pitches.written_pitches())
         elif len(arguments) == 0:
             written_pitches = [_pitch.NamedPitch(_) for _ in [0, 4, 7]]
             written_duration = _duration.Duration(1, 4)
@@ -2639,10 +2630,10 @@ class Chord(Leaf):
         Copies chord.
         """
         new_chord = Leaf.__copy__(self, *arguments)
-        new_chord.get_note_heads()[:] = []
-        for note_head in self.get_note_heads():
+        new_chord.note_heads()[:] = []
+        for note_head in self.note_heads():
             note_head = copy.copy(note_head)
-            new_chord.get_note_heads().append(note_head)
+            new_chord.note_heads().append(note_head)
         return new_chord
 
     def __getnewargs__(
@@ -2657,7 +2648,7 @@ class Chord(Leaf):
             ((NamedPitch("c'"), NamedPitch("d'")), Duration(1, 4))
 
         """
-        return self.get_written_pitches(), self.get_written_duration()
+        return self.written_pitches(), self.written_duration()
 
     ### PRIVATE METHODS ###
 
@@ -2682,7 +2673,7 @@ class Chord(Leaf):
 
     def _format_leaf_nucleus(self):
         result = []
-        note_heads = self.get_note_heads()
+        note_heads = self.note_heads()
         if any("\n" in _._get_lilypond_format() for _ in note_heads):
             for note_head in note_heads:
                 current_format = note_head._get_lilypond_format()
@@ -2707,11 +2698,11 @@ class Chord(Leaf):
         return f"<{summary}>{duration}"
 
     def _get_summary(self):
-        return " ".join([_._get_chord_string() for _ in self.get_note_heads()])
+        return " ".join([_._get_chord_string() for _ in self.note_heads()])
 
     ### PUBLIC PROPERTIES ###
 
-    def get_note_heads(self) -> "NoteHeadList":
+    def note_heads(self) -> "NoteHeadList":
         r"""
         Gets note-heads in chord.
 
@@ -2721,7 +2712,7 @@ class Chord(Leaf):
 
             >>> chord = abjad.Chord("<g' c'' e''>4")
             >>> abjad.show(chord) # doctest: +SKIP
-            >>> for _ in chord.get_note_heads(): _
+            >>> for _ in chord.note_heads(): _
             NoteHead("g'")
             NoteHead("c''")
             NoteHead("e''")
@@ -2768,9 +2759,9 @@ class Chord(Leaf):
         self._note_heads[:] = []
         if isinstance(note_heads, str):
             note_heads = note_heads.split()
-        self.get_note_heads().extend(note_heads)
+        self.note_heads().extend(note_heads)
 
-    def get_written_duration(self) -> _duration.Duration:
+    def written_duration(self) -> _duration.Duration:
         """
         Gets and sets written duration of chord.
 
@@ -2781,7 +2772,7 @@ class Chord(Leaf):
             >>> chord = abjad.Chord("<e' cs'' f''>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> chord.get_written_duration()
+            >>> chord.written_duration()
             Duration(1, 4)
 
         ..  container:: example
@@ -2795,12 +2786,12 @@ class Chord(Leaf):
             >>> abjad.show(chord) # doctest: +SKIP
 
         """
-        return super().get_written_duration()
+        return super().written_duration()
 
     def set_written_duration(self, argument):
         Leaf.set_written_duration(self, argument)
 
-    def get_written_pitches(self) -> tuple[_pitch.NamedPitch, ...]:
+    def written_pitches(self) -> tuple[_pitch.NamedPitch, ...]:
         """
         Written pitches in chord.
 
@@ -2811,7 +2802,7 @@ class Chord(Leaf):
             >>> chord = abjad.Chord("<g' c'' e''>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> chord.get_written_pitches()
+            >>> chord.written_pitches()
             (NamedPitch("g'"), NamedPitch("c''"), NamedPitch("e''"))
 
         ..  container:: example
@@ -2830,11 +2821,11 @@ class Chord(Leaf):
                 >>> print(string)
                 <f' b' d''>4
 
-            >>> chord.get_written_pitches()
+            >>> chord.written_pitches()
             (NamedPitch("f'"), NamedPitch("b'"), NamedPitch("d''"))
 
         """
-        return tuple(_.get_written_pitch() for _ in self.get_note_heads())
+        return tuple(_.written_pitch() for _ in self.note_heads())
 
     def set_written_pitches(self, pitches):
         self.set_note_heads(pitches)
@@ -2868,7 +2859,7 @@ class Cluster(Container):
 
     def _format_open_brackets_site(self, contributions):
         result = []
-        if self.get_simultaneous():
+        if self.simultaneous():
             brackets_open = ["<<"]
         else:
             brackets_open = ["{"]
@@ -2969,8 +2960,8 @@ class Context(Container):
         Returns new component.
         """
         new_context = Container.__copy__(self)
-        new_context._consists_commands = copy.copy(self.get_consists_commands())
-        new_context._remove_commands = copy.copy(self.get_remove_commands())
+        new_context._consists_commands = copy.copy(self.consists_commands())
+        new_context._remove_commands = copy.copy(self.remove_commands())
         return new_context
 
     def __getnewargs__(self):
@@ -2996,15 +2987,15 @@ class Context(Container):
 
         """
         parameters = []
-        if self.get_components():
+        if self.components():
             string = repr(self._get_contents_summary())
             parameters.append(string)
-        if self.get_lilypond_type() != type(self).__name__:
-            parameters.append(f"lilypond_type={self.get_lilypond_type()!r}")
-        if self.get_name():
-            parameters.append(f"name={self.get_name()!r}")
-        if self.get_simultaneous() is True:
-            parameters.append(f"simultaneous={self.get_simultaneous()!r}")
+        if self.lilypond_type() != type(self).__name__:
+            parameters.append(f"lilypond_type={self.lilypond_type()!r}")
+        if self.name():
+            parameters.append(f"name={self.name()!r}")
+        if self.simultaneous() is True:
+            parameters.append(f"simultaneous={self.simultaneous()!r}")
         string = ", ".join(parameters)
         return f"{type(self).__name__}({string})"
 
@@ -3021,28 +3012,28 @@ class Context(Container):
 
     def _format_consists_commands(self):
         result = []
-        for engraver in self.get_consists_commands():
+        for engraver in self.consists_commands():
             string = rf"\consists {engraver}"
             result.append(string)
         return result
 
     def _format_invocation(self):
-        if self.get_name() is not None:
-            string = rf'\context {self.get_lilypond_type()} = "{self.get_name()}"'
+        if self.name() is not None:
+            string = rf'\context {self.lilypond_type()} = "{self.name()}"'
         else:
-            string = rf"\new {self.get_lilypond_type()}"
+            string = rf"\new {self.lilypond_type()}"
         return string
 
     def _format_open_brackets_site(self, contributions):
         result = []
-        if self.get_simultaneous():
-            if self.get_identifier():
-                open_bracket = f"<<  {self.get_identifier()}"
+        if self.simultaneous():
+            if self.identifier():
+                open_bracket = f"<<  {self.identifier()}"
             else:
                 open_bracket = "<<"
         else:
-            if self.get_identifier():
-                open_bracket = f"{{   {self.get_identifier()}"
+            if self.identifier():
+                open_bracket = f"{{   {self.identifier()}"
             else:
                 open_bracket = "{"
         brackets_open = [open_bracket]
@@ -3090,14 +3081,14 @@ class Context(Container):
 
     def _format_remove_commands(self):
         result = []
-        for engraver in self.get_remove_commands():
+        for engraver in self.remove_commands():
             string = rf"\remove {engraver}"
             result.append(string)
         return result
 
     ### PUBLIC PROPERTIES ###
 
-    def get_consists_commands(self):
+    def consists_commands(self):
         r"""
         Unordered set of LilyPond engravers to include in context definition.
 
@@ -3106,7 +3097,7 @@ class Context(Container):
             Manage with add, update, other standard set commands:
 
             >>> staff = abjad.Staff([])
-            >>> staff.get_consists_commands().append("Horizontal_bracket_engraver")
+            >>> staff.consists_commands().append("Horizontal_bracket_engraver")
             >>> string = abjad.lilypond(staff)
             >>> print(string)
             \new Staff
@@ -3120,21 +3111,21 @@ class Context(Container):
         """
         return self._consists_commands
 
-    def get_lilypond_context(self):
+    def lilypond_context(self):
         """
         Gets ``LilyPondContext`` associated with context.
 
         Returns LilyPond context instance.
         """
         try:
-            lilypond_context = _lyproxy.LilyPondContext(name=self.get_lilypond_type())
+            lilypond_context = _lyproxy.LilyPondContext(name=self.lilypond_type())
         except AssertionError:
             lilypond_context = _lyproxy.LilyPondContext(
                 name=self._default_lilypond_type
             )
         return lilypond_context
 
-    def get_lilypond_type(self) -> str:
+    def lilypond_type(self) -> str:
         """
         Gets LilyPond type of context.
 
@@ -3144,7 +3135,7 @@ class Context(Container):
             ...     lilypond_type="ViolinStaff",
             ...     name="MyViolinStaff",
             ... )
-            >>> context.get_lilypond_type()
+            >>> context.lilypond_type()
             'ViolinStaff'
 
         """
@@ -3160,7 +3151,7 @@ class Context(Container):
             argument = str(argument)
         self._lilypond_type = argument
 
-    def get_remove_commands(self):
+    def remove_commands(self):
         r"""
         Unordered set of LilyPond engravers to remove from context.
 
@@ -3169,7 +3160,7 @@ class Context(Container):
             Manage with add, update, other standard set commands:
 
             >>> staff = abjad.Staff([])
-            >>> staff.get_remove_commands().append("Time_signature_engraver")
+            >>> staff.remove_commands().append("Time_signature_engraver")
             >>> string = abjad.lilypond(staff)
             >>> print(string)
             \new Staff
@@ -3252,7 +3243,7 @@ class IndependentAfterGraceContainer(Container):
     def _get_preprolated_duration(self):
         return _duration.Duration(0)
 
-    def get_fraction(self) -> tuple[int, int] | None:
+    def fraction(self) -> tuple[int, int] | None:
         r"""
         Gets LilyPond `\afterGraceFraction`.
         """
@@ -3304,7 +3295,7 @@ class MultimeasureRest(Leaf):
         if len(arguments) == 0:
             arguments = ((1, 4),)
         rest = Rest(*arguments, language=language)
-        Leaf.__init__(self, rest.get_written_duration(), multiplier=multiplier, tag=tag)
+        Leaf.__init__(self, rest.written_duration(), multiplier=multiplier, tag=tag)
 
     ### PRIVATE METHODS ###
 
@@ -3330,7 +3321,7 @@ class NoteHead:
         >>> note = abjad.Note("cs''")
         >>> abjad.show(note) # doctest: +SKIP
 
-        >>> note.get_note_head()
+        >>> note.note_head()
         NoteHead("cs''")
 
     ..  container:: example
@@ -3349,11 +3340,11 @@ class NoteHead:
 
         >>> chord = abjad.Chord([0, 2, 10], (1, 4))
 
-        >>> abjad.tweak(chord.get_note_heads()[0], r"\tweak color #red")
-        >>> abjad.tweak(chord.get_note_heads()[0], r"\tweak thickness 2")
-        >>> abjad.tweak(chord.get_note_heads()[1], r"\tweak color #red")
-        >>> abjad.tweak(chord.get_note_heads()[1], r"\tweak thickness 2")
-        >>> abjad.tweak(chord.get_note_heads()[2], r"\tweak color #blue")
+        >>> abjad.tweak(chord.note_heads()[0], r"\tweak color #red")
+        >>> abjad.tweak(chord.note_heads()[0], r"\tweak thickness 2")
+        >>> abjad.tweak(chord.note_heads()[1], r"\tweak color #red")
+        >>> abjad.tweak(chord.note_heads()[1], r"\tweak thickness 2")
+        >>> abjad.tweak(chord.note_heads()[2], r"\tweak color #blue")
         >>> abjad.show(chord) # doctest: +SKIP
 
         ..  docs::
@@ -3396,9 +3387,9 @@ class NoteHead:
         if isinstance(written_pitch, NoteHead):
             note_head = written_pitch
             tweaks_ = copy.deepcopy(note_head.tweaks)
-            written_pitch = note_head.get_written_pitch()
-            is_cautionary = note_head.get_is_cautionary()
-            is_forced = note_head.get_is_forced()
+            written_pitch = note_head.written_pitch()
+            is_cautionary = note_head.is_cautionary()
+            is_forced = note_head.is_forced()
         elif written_pitch is None:
             written_pitch = 0
         self.set_written_pitch(written_pitch)
@@ -3424,10 +3415,10 @@ class NoteHead:
 
         """
         result = type(self)(
-            self.get_written_pitch(),
-            is_cautionary=self.get_is_cautionary(),
-            is_forced=self.get_is_forced(),
-            is_parenthesized=self.get_is_parenthesized(),
+            self.written_pitch(),
+            is_cautionary=self.is_cautionary(),
+            is_forced=self.is_forced(),
+            is_parenthesized=self.is_parenthesized(),
         )
         tweaks = copy.deepcopy(self.tweaks)
         result.tweaks = tweaks
@@ -3439,8 +3430,8 @@ class NoteHead:
         this note-head.
         """
         if isinstance(argument, type(self)):
-            return self.get_written_pitch() == argument.get_written_pitch()
-        return self.get_written_pitch() == argument
+            return self.written_pitch() == argument.written_pitch()
+        return self.written_pitch() == argument
 
     def __hash__(self) -> int:
         """
@@ -3454,12 +3445,12 @@ class NoteHead:
         this note-head.
         """
         if isinstance(argument, type(self)):
-            return self.get_written_pitch() < argument.get_written_pitch()
+            return self.written_pitch() < argument.written_pitch()
         try:
             argument = type(self)(argument)
         except (ValueError, TypeError):
             return False
-        return self.get_written_pitch() < argument.get_written_pitch()
+        return self.written_pitch() < argument.written_pitch()
 
     def __repr__(self) -> str:
         """
@@ -3473,21 +3464,21 @@ class NoteHead:
 
         """
         strings = []
-        if isinstance(self.get_written_pitch(), _pitch.NamedPitch):
-            string = self.get_written_pitch().name()
+        if isinstance(self.written_pitch(), _pitch.NamedPitch):
+            string = self.written_pitch().name()
             strings.append(repr(string))
         # drum note head:
-        elif isinstance(self.get_written_pitch(), str):
-            string = repr(self.get_written_pitch())
+        elif isinstance(self.written_pitch(), str):
+            string = repr(self.written_pitch())
             strings.append(string)
-        if self.get_is_cautionary():
-            string = f"is_cautionary={self.get_is_cautionary()!r}"
+        if self.is_cautionary():
+            string = f"is_cautionary={self.is_cautionary()!r}"
             strings.append(string)
-        if self.get_is_forced():
-            string = f"is_forced={self.get_is_forced()!r}"
+        if self.is_forced():
+            string = f"is_forced={self.is_forced()!r}"
             strings.append(string)
-        if self.get_is_parenthesized():
-            string = f"is_parenthesized={self.get_is_parenthesized()!r}"
+        if self.is_parenthesized():
+            string = f"is_parenthesized={self.is_parenthesized()!r}"
             strings.append(string)
         if self.tweaks:
             string = f"tweaks={self.tweaks!r}"
@@ -3497,23 +3488,23 @@ class NoteHead:
 
     def _get_chord_string(self) -> str:
         result = ""
-        if self.get_written_pitch():
-            result = self.get_written_pitch().name()
-            if self.get_is_forced():
+        if self.written_pitch():
+            result = self.written_pitch().name()
+            if self.is_forced():
                 result += "!"
-            if self.get_is_cautionary():
+            if self.is_cautionary():
                 result += "?"
         return result
 
     def _get_note_head_strings(self):
-        assert self.get_written_pitch()
+        assert self.written_pitch()
         result = []
-        if self.get_is_parenthesized():
+        if self.is_parenthesized():
             result.append(r"\parenthesize")
         for tweak in sorted(self.tweaks):
             strings = tweak._list_contributions()
             result.extend(strings)
-        written_pitch = self.get_written_pitch()
+        written_pitch = self.written_pitch()
         if isinstance(written_pitch, _pitch.NamedPitch):
             written_pitch = written_pitch.simplify()
             kernel = written_pitch.name()
@@ -3521,9 +3512,9 @@ class NoteHead:
         else:
             assert isinstance(written_pitch, str)
             kernel = written_pitch
-        if self.get_is_forced():
+        if self.is_forced():
             kernel += "!"
-        if self.get_is_cautionary():
+        if self.is_cautionary():
             kernel += "?"
         result.append(kernel)
         return result
@@ -3532,19 +3523,17 @@ class NoteHead:
         pieces = self._get_note_head_strings()
         if duration is not None:
             pieces[-1] = pieces[-1] + duration
-        if self.get_alternative():
-            pieces = _tag.double_tag(pieces, self.get_alternative()[2])
-            pieces_ = self.get_alternative()[0]._get_note_head_strings()
+        if self.alternative():
+            pieces = _tag.double_tag(pieces, self.alternative()[2])
+            pieces_ = self.alternative()[0]._get_note_head_strings()
             if duration is not None:
                 pieces_[-1] = pieces_[-1] + duration
-            pieces_ = _tag.double_tag(
-                pieces_, self.get_alternative()[1], deactivate=True
-            )
+            pieces_ = _tag.double_tag(pieces_, self.alternative()[1], deactivate=True)
             pieces.extend(pieces_)
         result = "\n".join(pieces)
         return result
 
-    def get_alternative(self) -> tuple["NoteHead", _tag.Tag, _tag.Tag]:
+    def alternative(self) -> tuple["NoteHead", _tag.Tag, _tag.Tag]:
         """
         Gets note-head alternative.
 
@@ -3553,10 +3542,10 @@ class NoteHead:
         ..  container:: example
 
             >>> note = abjad.Note("c''4")
-            >>> alternative = copy.copy(note.get_note_head())
+            >>> alternative = copy.copy(note.note_head())
             >>> alternative.set_is_forced(True)
             >>> triple = (alternative, abjad.Tag("-PARTS"), abjad.Tag("+PARTS"))
-            >>> note.get_note_head().set_alternative(triple)
+            >>> note.note_head().set_alternative(triple)
             >>> abjad.show(note) # doctest: +SKIP
 
             >>> string = abjad.lilypond(note, tags=True)
@@ -3580,7 +3569,7 @@ class NoteHead:
 
             Clear with none:
 
-            >>> note.get_note_head().set_alternative(None)
+            >>> note.note_head().set_alternative(None)
             >>> abjad.show(note) # doctest: +SKIP
 
             >>> string = abjad.lilypond(note, tags=True)
@@ -3590,10 +3579,10 @@ class NoteHead:
         ..  container:: example
 
             >>> chord = abjad.Chord("<c' d' bf''>4")
-            >>> alternative = copy.copy(chord.get_note_heads()[0])
+            >>> alternative = copy.copy(chord.note_heads()[0])
             >>> alternative.set_is_forced(True)
             >>> triple = (alternative, abjad.Tag("-PARTS"), abjad.Tag("+PARTS"))
-            >>> chord.get_note_heads()[0].set_alternative(triple)
+            >>> chord.note_heads()[0].set_alternative(triple)
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> string = abjad.lilypond(chord, tags=True)
@@ -3609,7 +3598,7 @@ class NoteHead:
 
             Suvives pitch reassignment:
 
-            >>> chord.get_note_heads()[0].set_written_pitch("B3")
+            >>> chord.note_heads()[0].set_written_pitch("B3")
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> string = abjad.lilypond(chord, tags=True)
@@ -3625,7 +3614,7 @@ class NoteHead:
 
             Clear with none:
 
-            >>> chord.get_note_heads()[0].set_alternative(None)
+            >>> chord.note_heads()[0].set_alternative(None)
             >>> string = abjad.lilypond(chord, tags=True)
             >>> print(string)
             <b d' bf''>4
@@ -3641,19 +3630,19 @@ class NoteHead:
             assert isinstance(argument, tuple), repr(argument)
             assert len(argument) == 3, repr(argument)
             assert isinstance(argument[0], NoteHead), repr(argument)
-            assert argument[0].get_alternative() is None, repr(argument)
+            assert argument[0].alternative() is None, repr(argument)
             assert isinstance(argument[1], _tag.Tag), repr(argument)
             assert isinstance(argument[2], _tag.Tag), repr(argument)
         self._alternative = argument
 
-    def get_is_cautionary(self) -> bool:
+    def is_cautionary(self) -> bool:
         """
         Gets cautionary accidental flag.
 
         ..  container:: example
 
             >>> note = abjad.Note("c''")
-            >>> note.get_note_head().set_is_cautionary(True)
+            >>> note.note_head().set_is_cautionary(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3663,7 +3652,7 @@ class NoteHead:
                 c''?4
 
             >>> note = abjad.Note("cs''")
-            >>> note.get_note_head().set_is_cautionary(True)
+            >>> note.note_head().set_is_cautionary(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3681,14 +3670,14 @@ class NoteHead:
         """
         self._is_cautionary = bool(argument)
 
-    def get_is_forced(self) -> bool:
+    def is_forced(self) -> bool:
         """
         Gets forced accidental flag.
 
         ..  container:: example
 
             >>> note = abjad.Note("c''")
-            >>> note.get_note_head().set_is_forced(True)
+            >>> note.note_head().set_is_forced(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3698,7 +3687,7 @@ class NoteHead:
                 c''!4
 
             >>> note = abjad.Note("cs''")
-            >>> note.get_note_head().set_is_forced(True)
+            >>> note.note_head().set_is_forced(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3718,14 +3707,14 @@ class NoteHead:
             argument = bool(argument)
         self._is_forced = argument
 
-    def get_is_parenthesized(self) -> bool:
+    def is_parenthesized(self) -> bool:
         r"""
         Gets parenthesized accidental flag.
 
         ..  container:: example
 
             >>> note = abjad.Note("c''")
-            >>> note.get_note_head().set_is_parenthesized(True)
+            >>> note.note_head().set_is_parenthesized(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3736,7 +3725,7 @@ class NoteHead:
                 c''4
 
             >>> note = abjad.Note("cs''")
-            >>> note.get_note_head().set_is_parenthesized(True)
+            >>> note.note_head().set_is_parenthesized(True)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
@@ -3757,19 +3746,19 @@ class NoteHead:
             argument = bool(argument)
         self._is_parenthesized = argument
 
-    def get_written_pitch(self) -> _pitch.NamedPitch:
+    def written_pitch(self) -> _pitch.NamedPitch:
         """
         Gets and sets written pitch of note-head.
 
         ..  container:: example
 
             >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.get_written_pitch()
+            >>> note_head.written_pitch()
             NamedPitch("cs''")
 
             >>> note_head = abjad.NoteHead("cs''")
             >>> note_head.set_written_pitch("d''")
-            >>> note_head.get_written_pitch()
+            >>> note_head.written_pitch()
             NamedPitch("d''")
 
         """
@@ -3781,8 +3770,8 @@ class NoteHead:
         """
         written_pitch = _pitch.NamedPitch(argument)
         self._written_pitch = written_pitch
-        if self.get_alternative() is not None:
-            self.get_alternative()[0].set_written_pitch(written_pitch)
+        if self.alternative() is not None:
+            self.alternative()[0].set_written_pitch(written_pitch)
 
 
 class DrumNoteHead(NoteHead):
@@ -3884,7 +3873,7 @@ class NoteHeadList(list):
             >>> note_head = abjad.NoteHead("f''")
             >>> abjad.tweak(note_head, r"\tweak color #green")
             >>> note_heads.append(note_head)
-            >>> chord.get_note_heads().extend(note_heads)
+            >>> chord.note_heads().extend(note_heads)
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -3921,7 +3910,7 @@ class NoteHeadList(list):
             >>> chord = abjad.Chord("<e' cs'' f''>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> note_head = chord.get_note_heads().get("e'")
+            >>> note_head = chord.note_heads().get("e'")
             >>> abjad.tweak(note_head, r"\tweak color #red")
             >>> abjad.show(chord) # doctest: +SKIP
 
@@ -3943,7 +3932,7 @@ class NoteHeadList(list):
             >>> chord = abjad.Chord("<e' cs'' f''>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> note_head = chord.get_note_heads().get(4)
+            >>> note_head = chord.note_heads().get(4)
             >>> abjad.tweak(note_head, r"\tweak color #red")
             >>> abjad.show(chord) # doctest: +SKIP
 
@@ -3963,7 +3952,7 @@ class NoteHeadList(list):
         pitch = _pitch.NamedPitch(pitch)
         for note_head in self:
             assert isinstance(note_head, NoteHead), repr(note_head)
-            if note_head.get_written_pitch() == pitch:
+            if note_head.written_pitch() == pitch:
                 result.append(note_head)
         count = len(result)
         if count == 0:
@@ -3989,7 +3978,7 @@ class NoteHeadList(list):
                 >>> print(string)
                 <ef' c'' f''>4
 
-            >>> chord.get_note_heads().pop(1)
+            >>> chord.note_heads().pop(1)
             NoteHead("c''")
 
             >>> abjad.show(chord) # doctest: +SKIP
@@ -4018,8 +4007,8 @@ class NoteHeadList(list):
                 >>> print(string)
                 <ef' c'' f''>4
 
-            >>> note_head = chord.get_note_heads()[1]
-            >>> chord.get_note_heads().remove(note_head)
+            >>> note_head = chord.note_heads()[1]
+            >>> chord.note_heads().remove(note_head)
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -4079,22 +4068,22 @@ class Note(Leaf):
         if len(arguments) == 1 and isinstance(arguments[0], Leaf):
             leaf = arguments[0]
             written_pitch = None
-            written_duration = leaf.get_written_duration()
+            written_duration = leaf.written_duration()
             if multiplier is None:
-                multiplier = leaf.get_multiplier()
-            if isinstance(leaf, Note) and leaf.get_note_head() is not None:
-                written_pitch = leaf.get_note_head().get_written_pitch()
-                is_cautionary = leaf.get_note_head().get_is_cautionary()
-                is_forced = leaf.get_note_head().get_is_forced()
-                is_parenthesized = leaf.get_note_head().get_is_parenthesized()
+                multiplier = leaf.multiplier()
+            if isinstance(leaf, Note) and leaf.note_head() is not None:
+                written_pitch = leaf.note_head().written_pitch()
+                is_cautionary = leaf.note_head().is_cautionary()
+                is_forced = leaf.note_head().is_forced()
+                is_parenthesized = leaf.note_head().is_parenthesized()
             # TODO: move into separate from_chord() constructor:
             elif isinstance(leaf, Chord):
-                written_pitches = [_.get_written_pitch() for _ in leaf.get_note_heads()]
+                written_pitches = [_.written_pitch() for _ in leaf.note_heads()]
                 if written_pitches:
                     written_pitch = written_pitches[0]
-                    is_cautionary = leaf.get_note_heads()[0].get_is_cautionary()
-                    is_forced = leaf.get_note_heads()[0].get_is_forced()
-                    is_parenthesized = leaf.get_note_heads()[0].get_is_parenthesized()
+                    is_cautionary = leaf.note_heads()[0].is_cautionary()
+                    is_forced = leaf.note_heads()[0].is_forced()
+                    is_parenthesized = leaf.note_heads()[0].is_parenthesized()
         elif len(arguments) == 2:
             written_pitch, written_duration = arguments
         elif len(arguments) == 0:
@@ -4122,7 +4111,7 @@ class Note(Leaf):
                 )
                 self.set_note_head(note_head)
             if isinstance(written_pitch, NoteHead):
-                self.get_note_head().tweaks = copy.deepcopy(written_pitch.tweaks)
+                self.note_head().tweaks = copy.deepcopy(written_pitch.tweaks)
         else:
             raise Exception("must have note-head")
         if len(arguments) == 1 and isinstance(arguments[0], Leaf):
@@ -4135,7 +4124,7 @@ class Note(Leaf):
         Copies note.
         """
         new_note = Leaf.__copy__(self, *arguments)
-        note_head = copy.copy(self.get_note_head())
+        note_head = copy.copy(self.note_head())
         new_note.set_note_head(note_head)
         return new_note
 
@@ -4143,14 +4132,14 @@ class Note(Leaf):
         """
         Gets new arguments.
         """
-        return (self.get_written_pitch(), self.get_written_duration())
+        return (self.written_pitch(), self.written_duration())
 
     ### PRIVATE METHODS ###
 
     def _get_body(self) -> list[str]:
         duration = self._get_formatted_duration()
-        if self.get_note_head() is not None:
-            string = self.get_note_head()._get_lilypond_format(duration=duration)
+        if self.note_head() is not None:
+            string = self.note_head()._get_lilypond_format(duration=duration)
         else:
             string = duration
         return [string]
@@ -4160,14 +4149,14 @@ class Note(Leaf):
 
     ### PUBLIC PROPERTIES ###
 
-    def get_note_head(self) -> NoteHead:
+    def note_head(self) -> NoteHead:
         """
         Gets note-head.
 
         .. container:: example
 
             >>> note = abjad.Note("cs''8.")
-            >>> note.get_note_head()
+            >>> note.note_head()
             NoteHead("cs''")
 
             >>> abjad.show(note) # doctest: +SKIP
@@ -4179,7 +4168,7 @@ class Note(Leaf):
                 cs''8.
 
             >>> note.set_note_head("D5")
-            >>> note.get_note_head()
+            >>> note.note_head()
             NoteHead("d''")
 
             >>> abjad.show(note) # doctest: +SKIP
@@ -4205,14 +4194,14 @@ class Note(Leaf):
             note_head = NoteHead(written_pitch=argument)
             self._note_head = note_head
 
-    def get_written_duration(self) -> _duration.Duration:
+    def written_duration(self) -> _duration.Duration:
         """
         Gets and sets written duration.
 
         ..  container:: example
 
             >>> note = abjad.Note("cs''8.")
-            >>> note.get_written_duration()
+            >>> note.written_duration()
             Duration(3, 16)
 
             >>> abjad.show(note) # doctest: +SKIP
@@ -4224,7 +4213,7 @@ class Note(Leaf):
                 cs''8.
 
             >>> note.set_written_duration((1, 16))
-            >>> note.get_written_duration()
+            >>> note.written_duration()
             Duration(1, 16)
 
             >>> abjad.show(note) # doctest: +SKIP
@@ -4236,20 +4225,20 @@ class Note(Leaf):
                 cs''16
 
         """
-        return super().get_written_duration()
+        return super().written_duration()
 
     def set_written_duration(self, argument):
         return Leaf.set_written_duration(self, argument)
 
     # TODO: change Note always to have a note head
-    def get_written_pitch(self) -> _pitch.NamedPitch | None:
+    def written_pitch(self) -> _pitch.NamedPitch | None:
         """
         Gets and sets written pitch.
 
         ..  container:: example
 
             >>> note = abjad.Note("cs''8.")
-            >>> note.get_written_pitch()
+            >>> note.written_pitch()
             NamedPitch("cs''")
 
             >>> abjad.show(note) # doctest: +SKIP
@@ -4261,7 +4250,7 @@ class Note(Leaf):
                 cs''8.
 
             >>> note.set_written_pitch("D5")
-            >>> note.get_written_pitch()
+            >>> note.written_pitch()
             NamedPitch("d''")
 
             >>> abjad.show(note) # doctest: +SKIP
@@ -4273,22 +4262,22 @@ class Note(Leaf):
                 d''8.
 
         """
-        if self.get_note_head() is not None:
-            return self.get_note_head().get_written_pitch()
+        if self.note_head() is not None:
+            return self.note_head().written_pitch()
         else:
             return None
 
     def set_written_pitch(self, argument):
         if argument is None:
-            if self.get_note_head() is not None:
-                self.get_note_head().set_written_pitch(None)
+            if self.note_head() is not None:
+                self.note_head().set_written_pitch(None)
         else:
-            if self.get_note_head() is None:
+            if self.note_head() is None:
                 note_head = NoteHead(self, written_pitch=None)
                 self.set_note_head(note_head)
             else:
                 pitch = _pitch.NamedPitch(argument)
-                self.get_note_head().set_written_pitch(pitch)
+                self.note_head().set_written_pitch(pitch)
 
     ### PUBLIC METHODS ###
 
@@ -4349,14 +4338,14 @@ class Rest(Leaf):
     ) -> None:
         original_input = written_duration
         if isinstance(written_duration, Leaf):
-            multiplier = written_duration.get_multiplier()
+            multiplier = written_duration.multiplier()
         if isinstance(written_duration, str):
             string = f"{{ {written_duration} }}"
             parsed = self._parse_lilypond_string(string, language=language)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             written_duration = parsed[0]
         if isinstance(written_duration, Leaf):
-            written_duration = written_duration.get_written_duration()
+            written_duration = written_duration.written_duration()
         elif written_duration is None:
             written_duration = _duration.Duration(1, 4)
         else:
@@ -4490,11 +4479,11 @@ class Skip(Leaf):
             parsed = self._parse_lilypond_string(string, language=language)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             input_leaf = parsed[0]
-            written_duration = input_leaf.get_written_duration()
+            written_duration = input_leaf.written_duration()
         elif len(arguments) == 1 and isinstance(arguments[0], Leaf):
             input_leaf = arguments[0]
-            written_duration = input_leaf.get_written_duration()
-            multiplier = input_leaf.get_multiplier()
+            written_duration = input_leaf.written_duration()
+            multiplier = input_leaf.multiplier()
         elif len(arguments) == 1 and not isinstance(arguments[0], str):
             written_duration = arguments[0]
         elif len(arguments) == 0:
@@ -4693,11 +4682,11 @@ class TremoloContainer(Container):
         """
         Gets new arguments of tremolo container.
         """
-        return (self.get_count(),)
+        return (self.count(),)
 
     def _format_open_brackets_site(self, contributions) -> list[str]:
         result = []
-        result.append(rf"\repeat tremolo {self.get_count()}")
+        result.append(rf"\repeat tremolo {self.count()}")
         result.append("{")
         return result
 
@@ -4705,16 +4694,16 @@ class TremoloContainer(Container):
         return self._get_prolation() * self._get_contents_duration()
 
     def _get_prolation(self) -> fractions.Fraction:
-        return fractions.Fraction(self.get_count())
+        return fractions.Fraction(self.count())
 
-    def get_count(self) -> int:
+    def count(self) -> int:
         """
         Gets count.
 
         ..  container:: example
 
             >>> tremolo_container = abjad.TremoloContainer(2, "<c' d'>16 e'16")
-            >>> tremolo_container.get_count()
+            >>> tremolo_container.count()
             2
 
         """
@@ -4842,7 +4831,7 @@ class Tuplet(Container):
         """
         Gets new arguments of tuplet.
         """
-        string = str(self.get_ratio())
+        string = str(self.ratio())
         return (string,)
 
     def __repr__(self) -> str:
@@ -4850,7 +4839,7 @@ class Tuplet(Container):
         Gets interpreter representation of tuplet.
         """
         string = self._get_contents_summary()
-        return f"{type(self).__name__}({str(self.get_ratio())!r}, {string!r})"
+        return f"{type(self).__name__}({str(self.ratio())!r}, {string!r})"
 
     ### PRIVATE METHODS ###
 
@@ -4884,7 +4873,7 @@ class Tuplet(Container):
 
     def _format_close_brackets(self) -> list[str]:
         result = ["}"]
-        self_tag = self.get_tag()
+        self_tag = self.tag()
         if self_tag is not None:
             result = _tag.double_tag(result, self_tag)
         return result
@@ -4906,7 +4895,7 @@ class Tuplet(Container):
         tuplet_command_string = self._get_tuplet_command_string()
         contributions.append(tuplet_command_string)
         contributions.append("{")
-        self_tag = self.get_tag()
+        self_tag = self.tag()
         if self_tag is not None:
             contributions = _tag.double_tag(contributions, self_tag)
         return contributions
@@ -4922,8 +4911,8 @@ class Tuplet(Container):
 
     def _get_compact_representation(self) -> str:
         if not self:
-            return f"{{ {str(self.get_ratio())} }}"
-        return f"{{ {str(self.get_ratio())} {self._get_contents_summary()} }}"
+            return f"{{ {str(self.ratio())} }}"
+        return f"{{ {str(self.ratio())} {self._get_contents_summary()} }}"
 
     def _get_preprolated_duration(self) -> _duration.Duration:
         return self.multiplier() * self._get_contents_duration()
@@ -4933,13 +4922,13 @@ class Tuplet(Container):
 
     def _get_summary(self) -> str:
         if 0 < len(self):
-            string = ", ".join([str(_) for _ in self.get_components()])
+            string = ", ".join([str(_) for _ in self.components()])
         else:
             string = ""
         return string
 
     def _get_tuplet_command_string(self) -> str:
-        string = rf"\tuplet {self.get_ratio().numerator}/{self.get_ratio().denominator}"
+        string = rf"\tuplet {self.ratio().numerator}/{self.ratio().denominator}"
         return string
 
     def _scale(self, multiplier) -> None:
@@ -4951,7 +4940,7 @@ class Tuplet(Container):
 
     ### PUBLIC PROPERTIES ###
 
-    def get_ratio(self) -> _duration.Ratio:
+    def ratio(self) -> _duration.Ratio:
         r"""
         Gets and sets tuplet ratio.
 
@@ -4973,7 +4962,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> tuplet.get_ratio()
+            >>> tuplet.ratio()
             Ratio(numerator=3, denominator=2)
 
             >>> tuplet.set_ratio(abjad.Ratio(6, 4))
@@ -5287,14 +5276,13 @@ class Tuplet(Container):
             False
 
         """
-        if not self.get_ratio().is_trivial():
+        if not self.ratio().is_trivial():
             return False
         for component in self:
             if isinstance(component, Tuplet):
                 continue
-            # elif hasattr(component, "written_duration"):
-            elif hasattr(component, "get_written_duration"):
-                if component.get_multiplier() is not None:
+            elif hasattr(component, "written_duration"):
+                if component.multiplier() is not None:
                     return False
         return True
 
@@ -5380,7 +5368,7 @@ class Tuplet(Container):
             if isinstance(component, Tuplet):
                 continue
             assert isinstance(component, Leaf), repr(component)
-            duration = self.multiplier() * component.get_written_duration()
+            duration = self.multiplier() * component.written_duration()
             if not duration.is_assignable():
                 return False
         return True
@@ -5395,7 +5383,7 @@ class Tuplet(Container):
             Fraction(2, 3)
 
         """
-        return self.get_ratio().reciprocal().as_fraction()
+        return self.ratio().reciprocal().as_fraction()
 
     def normalize_ratio(self) -> None:
         r"""
@@ -5417,7 +5405,7 @@ class Tuplet(Container):
                     e'4
                 }
 
-            >>> tuplet.get_ratio().is_normalized()
+            >>> tuplet.ratio().is_normalized()
             False
 
             >>> tuplet.normalize_ratio()
@@ -5434,7 +5422,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> tuplet.get_ratio().is_normalized()
+            >>> tuplet.ratio().is_normalized()
             True
 
         ..  container:: example
@@ -5455,7 +5443,7 @@ class Tuplet(Container):
                     e'32
                 }
 
-            >>> tuplet.get_ratio().is_normalized()
+            >>> tuplet.ratio().is_normalized()
             False
 
             >>> tuplet.normalize_ratio()
@@ -5473,7 +5461,7 @@ class Tuplet(Container):
                     e'16
                 }
 
-            >>> tuplet.get_ratio().is_normalized()
+            >>> tuplet.ratio().is_normalized()
             True
 
         ..  container:: example
@@ -5494,7 +5482,7 @@ class Tuplet(Container):
                     e'4
                 }
 
-            >>> tuplet.get_ratio().is_normalized()
+            >>> tuplet.ratio().is_normalized()
             False
 
             >>> tuplet.normalize_ratio()
@@ -5512,7 +5500,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> tuplet.get_ratio().is_normalized()
+            >>> tuplet.ratio().is_normalized()
             True
 
         """
@@ -5524,7 +5512,7 @@ class Tuplet(Container):
         multiplier = self.multiplier() / multiplier
         ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
         self.set_ratio(ratio)
-        assert self.get_ratio().is_normalized()
+        assert self.ratio().is_normalized()
 
     def rewrite_dots(self) -> None:
         r"""
@@ -5673,7 +5661,7 @@ class Tuplet(Container):
         for component in self:
             if isinstance(component, Tuplet):
                 return
-            dot_count = component.get_written_duration().dot_count()
+            dot_count = component.written_duration().dot_count()
             dot_counts.add(dot_count)
         if 1 < len(dot_counts):
             return
@@ -5688,7 +5676,7 @@ class Tuplet(Container):
         dot_multiplier_duration = _duration.Duration(dot_multiplier)
         dot_multiplier_reciprocal_duration = dot_multiplier_duration.reciprocal()
         for component in self:
-            component_written_duration = component.get_written_duration()
+            component_written_duration = component.written_duration()
             component_written_duration *= dot_multiplier_reciprocal_duration
             component.set_written_duration(component_written_duration)
 
@@ -5807,24 +5795,24 @@ class Tuplet(Container):
                 }
 
         """
-        if self.get_ratio().is_diminished():
-            while self.get_ratio().is_diminished():
+        if self.ratio().is_diminished():
+            while self.ratio().is_diminished():
                 multiplier = 2 * self.multiplier()
                 ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
                 self.set_ratio(ratio)
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
-                        component_written_duration = component.get_written_duration()
+                        component_written_duration = component.written_duration()
                         component_written_duration /= 2
                         component.set_written_duration(component_written_duration)
-        elif self.get_ratio().is_augmented():
-            while not self.get_ratio().is_diminished():
+        elif self.ratio().is_augmented():
+            while not self.ratio().is_diminished():
                 multiplier = self.multiplier() / 2
                 ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
                 self.set_ratio(ratio)
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
-                        component_written_duration = component.get_written_duration()
+                        component_written_duration = component.written_duration()
                         component_written_duration *= 2
                         component.set_written_duration(component_written_duration)
 
@@ -5884,7 +5872,7 @@ class Tuplet(Container):
                 ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
                 component.set_ratio(ratio)
             elif isinstance(component, Leaf):
-                component_written_duration = component.get_written_duration()
+                component_written_duration = component.written_duration()
                 component_written_duration *= self.multiplier()
                 component.set_written_duration(component_written_duration)
             else:

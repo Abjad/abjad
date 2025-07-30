@@ -588,13 +588,13 @@ class Clef:
         >>> abjad.attach(abjad.Clef("treble"), voice_1[0], context="Voice")
         >>> command = abjad.VoiceNumber(1)
         >>> abjad.attach(command, voice_1[0])
-        >>> voice_1.get_consists_commands().append("Clef_engraver")
+        >>> voice_1.consists_commands().append("Clef_engraver")
         >>> abjad.attach(abjad.Clef("treble"), voice_2[0], context="Voice")
         >>> abjad.attach(abjad.Clef("bass"), voice_2[1], context="Voice")
         >>> command = abjad.VoiceNumber(2)
         >>> abjad.attach(command, voice_2[0])
-        >>> voice_2.get_consists_commands().append("Clef_engraver")
-        >>> staff.get_remove_commands().append("Clef_engraver")
+        >>> voice_2.consists_commands().append("Clef_engraver")
+        >>> staff.remove_commands().append("Clef_engraver")
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -976,7 +976,7 @@ class Clef:
             >>> staff = abjad.Staff(string)
             >>> clef = abjad.Clef("alto")
             >>> for note in staff:
-            ...     staff_position = clef.to_staff_position(note.get_written_pitch())
+            ...     staff_position = clef.to_staff_position(note.written_pitch())
             ...     markup = abjad.Markup(rf"\markup {staff_position.number}")
             ...     abjad.attach(markup, note)
             ...
@@ -1035,7 +1035,7 @@ class Clef:
             >>> staff = abjad.Staff(string)
             >>> clef = abjad.Clef("bass")
             >>> for note in staff:
-            ...     staff_position = clef.to_staff_position(note.get_written_pitch())
+            ...     staff_position = clef.to_staff_position(note.written_pitch())
             ...     markup = abjad.Markup(rf"\markup {staff_position.number}")
             ...     abjad.attach(markup, note)
             ...
@@ -1864,8 +1864,7 @@ class Dynamic:
         return False
 
     def _attachment_test_all(self, component_expression):
-        # if not hasattr(component_expression, "written_duration"):
-        if not hasattr(component_expression, "get_written_duration"):
+        if not hasattr(component_expression, "written_duration"):
             strings = [f"Must be leaf (not {component_expression})."]
             return strings
         return True
@@ -2546,7 +2545,7 @@ class InstrumentName:
         if isinstance(context, str):
             pass
         elif context is not None:
-            context = context.get_lilypond_type()
+            context = context.lilypond_type()
         else:
             context = self._lilypond_type()
         if isinstance(self.markup, Markup):
@@ -4378,9 +4377,7 @@ class RepeatTie:
 
     def _attachment_test_all(self, argument):
         if not (
-            # hasattr(argument, "written_pitch") or hasattr(argument, "written_pitches")
-            hasattr(argument, "get_written_pitch")
-            or hasattr(argument, "get_written_pitches")
+            hasattr(argument, "written_pitch") or hasattr(argument, "written_pitches")
         ):
             string = f"Must be note or chord (not {argument})."
             return [string]
@@ -4474,7 +4471,7 @@ class ShortInstrumentName:
         if isinstance(context, str):
             pass
         elif context is not None:
-            context = context.get_lilypond_type()
+            context = context.lilypond_type()
         else:
             context = self._get_lilypond_type()
         if isinstance(self.markup, Markup):
@@ -5986,7 +5983,7 @@ class StartTrillSpan:
             if self.pitch:
                 pitch = self.pitch
             else:
-                pitch = wrapper.component().get_written_pitch() + self.interval
+                pitch = wrapper.component().written_pitch() + self.interval
             string = string + f" {pitch.name()}"
             if self.force_trill_pitch_head_accidental is True:
                 # LilyPond's TrillPitchHead does not obey LilyPond's \accidentalStyle;
@@ -7141,9 +7138,7 @@ class Tie:
 
     def _attachment_test_all(self, argument):
         if not (
-            # hasattr(argument, "written_pitch") or hasattr(argument, "written_pitches")
-            hasattr(argument, "get_written_pitch")
-            or hasattr(argument, "get_written_pitches")
+            hasattr(argument, "written_pitch") or hasattr(argument, "written_pitches")
         ):
             string = f"Must be note or chord (not {argument})."
             return [string]

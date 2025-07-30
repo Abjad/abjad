@@ -70,7 +70,7 @@ def _get_duration(argument, *, in_seconds: bool = False, preprolated: bool = Fal
 
 def _get_duration_in_seconds(component):
     if isinstance(component, _score.Container):
-        if component.get_simultaneous():
+        if component.simultaneous():
             return max(
                 [_duration.Duration(0)]
                 + [_get_duration_in_seconds(_) for _ in component]
@@ -102,11 +102,11 @@ def _get_effective_wrapper(component, prototype, *, attributes=None, command=Non
         if isinstance(component_, _score.Voice):
             if (
                 enclosing_voice_name is not None
-                and component_.get_name() != enclosing_voice_name
+                and component_.name() != enclosing_voice_name
             ):
                 continue
             else:
-                enclosing_voice_name = component_.get_name() or id(component_)
+                enclosing_voice_name = component_.name() or id(component_)
         local_wrappers = []
         for wrapper_ in component_._wrappers:
             if wrapper_.annotation():
@@ -268,7 +268,7 @@ def _get_persistent_wrappers(*, dependent_wrappers=None, omit_with_indicator=Non
 
 def _get_sounding_pitch(note):
     if "sounding pitch" in note._get_indicators(str):
-        return note.get_written_pitch()
+        return note.written_pitch()
     else:
         instrument = _get_effective_indicator(note, _instruments.Instrument)
         if instrument:
@@ -276,13 +276,13 @@ def _get_sounding_pitch(note):
         else:
             sounding_pitch = _pitch.NamedPitch("C4")
         interval = _pitch.NamedPitch("C4") - sounding_pitch
-        sounding_pitch = interval.transpose(note.get_written_pitch())
+        sounding_pitch = interval.transpose(note.written_pitch())
         return sounding_pitch
 
 
 def _get_sounding_pitches(chord):
     if "sounding pitch" in chord._get_indicators(str):
-        return chord.get_written_pitches()
+        return chord.written_pitches()
     else:
         instrument = _get_effective_indicator(chord, _instruments.Instrument)
         if instrument:
@@ -291,7 +291,7 @@ def _get_sounding_pitches(chord):
             sounding_pitch = _pitch.NamedPitch("C4")
         interval = _pitch.NamedPitch("C4") - sounding_pitch
         sounding_pitches = [
-            interval.transpose(pitch) for pitch in chord.get_written_pitches()
+            interval.transpose(pitch) for pitch in chord.written_pitches()
         ]
         return tuple(sounding_pitches)
 

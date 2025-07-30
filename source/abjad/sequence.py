@@ -1259,7 +1259,7 @@ def filter(sequence, predicate: typing.Callable | None = None):
         >>> sequence = list(staff)
 
         >>> abjad.sequence.filter(
-        ...     sequence, lambda _: _.get_written_duration() == abjad.Duration(1, 8)
+        ...     sequence, lambda _: _.written_duration() == abjad.Duration(1, 8)
         ... )
         [Note("d'8"), Note("f'8")]
 

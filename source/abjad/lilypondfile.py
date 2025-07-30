@@ -457,29 +457,24 @@ class LilyPondFile:
         for item in self.items:
             if getattr(item, "name", None) == argument:
                 return item
-            elif hasattr(item, "get_name") and item.get_name() == argument:
+            elif callable(getattr(item, "name", None)) and item.name() == argument:
                 return item
             elif hasattr(item, "items"):
                 for item_ in item.items:
                     if getattr(item_, "name", None) == argument:
                         return item_
-                    if hasattr(item_, "get_name") and item_.get_name() == argument:
+                    if hasattr(item_, "name") and item_.name() == argument:
                         return item_
                     if isinstance(item_, _score.Component):
                         for component in _iterate.components(item_):
-                            # if getattr(component, "name", None) == argument:
                             if (
-                                hasattr(component, "get_name")
-                                and component.get_name() == argument
+                                hasattr(component, "name")
+                                and component.name() == argument
                             ):
                                 return component
             elif isinstance(item, _score.Component):
                 for component in _iterate.components(item):
-                    # if getattr(component, "name", None) == argument:
-                    if (
-                        hasattr(component, "get_name")
-                        and component.get_name() == argument
-                    ):
+                    if hasattr(component, "name") and component.name() == argument:
                         return component
         raise KeyError(f"no block or component with name {argument!r}.")
 

@@ -10,7 +10,7 @@ def test_Leaf_duration_assign_01():
 
     note = abjad.Note(1, (1, 4))
     note.set_written_duration(abjad.Duration(1, 8))
-    assert note.get_written_duration() == abjad.Duration(1, 8)
+    assert note.written_duration() == abjad.Duration(1, 8)
 
 
 def test_Leaf_duration_assign_02():
@@ -20,7 +20,7 @@ def test_Leaf_duration_assign_02():
 
     note = abjad.Note(1, (1, 4))
     note.set_written_duration(2)
-    assert note.get_written_duration() == abjad.Duration(2, 1)
+    assert note.written_duration() == abjad.Duration(2, 1)
 
 
 def test_Leaf_duration_assign_03():
@@ -30,7 +30,7 @@ def test_Leaf_duration_assign_03():
 
     note = abjad.Note(1, (1, 4))
     note.set_written_duration((1, 2))
-    assert note.get_written_duration() == abjad.Duration(1, 2)
+    assert note.written_duration() == abjad.Duration(1, 2)
 
 
 def test_Leaf_duration_compare_01():
@@ -39,7 +39,7 @@ def test_Leaf_duration_compare_01():
     """
 
     note = abjad.Note("c'4")
-    assert note.get_written_duration() == abjad.Duration(1, 4)
+    assert note.written_duration() == abjad.Duration(1, 4)
 
 
 def test_Leaf_duration_compare_02():
@@ -48,7 +48,7 @@ def test_Leaf_duration_compare_02():
     """
 
     note = abjad.Note(0, 1)
-    assert note.get_written_duration() == 1
+    assert note.written_duration() == 1
 
 
 def test_Leaf_duration_compare_03():
@@ -57,9 +57,9 @@ def test_Leaf_duration_compare_03():
     """
 
     note = abjad.Note("c'4")
-    assert note.get_written_duration() == abjad.Duration(1, 4)
-    assert note.get_written_duration() != (1, 4)
-    assert note.get_written_duration() != "foo"
+    assert note.written_duration() == abjad.Duration(1, 4)
+    assert note.written_duration() != (1, 4)
+    assert note.written_duration() != "foo"
 
 
 def test_Leaf_written_duration_01():

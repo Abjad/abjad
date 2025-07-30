@@ -145,7 +145,7 @@ def beam(
 
     def _is_beamable(argument, beam_rests=False):
         if isinstance(argument, _score.Chord | _score.Note):
-            if 0 < argument.get_written_duration().flag_count():
+            if 0 < argument.written_duration().flag_count():
                 return True
         if beam_rests and isinstance(argument, silent_prototype):
             return True
@@ -190,8 +190,8 @@ def beam(
         if staff is None:
             lilypond_type = "Staff"
         else:
-            if hasattr(staff, "get_lilypond_type"):
-                lilypond_type = staff.get_lilypond_type() or "Staff"
+            if hasattr(staff, "lilypond_type"):
+                lilypond_type = staff.lilypond_type() or "Staff"
             else:
                 lilypond_type = "Staff"
         string = rf"\override {lilypond_type}.Stem.stemlet-length = {stemlet_length}"
@@ -205,8 +205,8 @@ def beam(
         if staff is None:
             lilypond_type = "Staff"
         else:
-            if hasattr(staff, "get_lilypond_type"):
-                lilypond_type = staff.get_lilypond_type() or "Staff"
+            if hasattr(staff, "lilypond_type"):
+                lilypond_type = staff.lilypond_type() or "Staff"
             else:
                 lilypond_type = "Staff"
         string = rf"\revert {lilypond_type}.Stem.stemlet-length"
@@ -228,11 +228,11 @@ def beam(
         previous_leaf = original_leaves[this_index - 1]
         previous = 0
         if _is_beamable(previous_leaf, beam_rests=beam_rests):
-            previous = previous_leaf.get_written_duration().flag_count()
+            previous = previous_leaf.written_duration().flag_count()
         next_leaf = original_leaves[this_index + 1]
         next_ = 0
         if _is_beamable(next_leaf, beam_rests=beam_rests):
-            next_ = next_leaf.get_written_duration().flag_count()
+            next_ = next_leaf.written_duration().flag_count()
         return previous, next_
 
     span_beam_count = span_beam_count or 1
@@ -250,7 +250,7 @@ def beam(
         if i == total_parts - 1:
             is_last_part = True
         first_leaf = part[0]
-        flag_count = first_leaf.get_written_duration().flag_count()
+        flag_count = first_leaf.written_duration().flag_count()
         if len(part) == 1:
             if not _is_beamable(first_leaf, beam_rests=False):
                 continue
@@ -268,7 +268,7 @@ def beam(
             _bind.attach(beam_count, first_leaf, tag=tag)
         last_leaf = part[-1]
         if _is_beamable(last_leaf, beam_rests=False):
-            flag_count = last_leaf.get_written_duration().flag_count()
+            flag_count = last_leaf.written_duration().flag_count()
             if is_last_part:
                 left = flag_count
                 right = 0
@@ -299,7 +299,7 @@ def beam(
                 continue
             if isinstance(middle_leaf, silent_prototype):
                 continue
-            flag_count = middle_leaf.get_written_duration().flag_count()
+            flag_count = middle_leaf.written_duration().flag_count()
             previous, next_ = _leaf_neighbors(middle_leaf, original_leaves)
             if previous == next_ == 0:
                 left = right = flag_count
@@ -1045,22 +1045,22 @@ def glissando(
         if (
             isinstance(leaf, _score.Note)
             and isinstance(next_leaf, _score.Note)
-            and leaf.get_written_pitch() == next_leaf.get_written_pitch()
+            and leaf.written_pitch() == next_leaf.written_pitch()
         ):
             return False
         elif (
             isinstance(leaf, _score.Chord)
             and isinstance(next_leaf, _score.Chord)
-            and leaf.get_written_pitches() == next_leaf.get_written_pitches()
+            and leaf.written_pitches() == next_leaf.written_pitches()
         ):
             return False
         return True
 
     def _parenthesize_leaf(leaf):
         if isinstance(leaf, _score.Note):
-            leaf.get_note_head().set_is_parenthesized(True)
+            leaf.note_head().set_is_parenthesized(True)
         elif isinstance(leaf, _score.Chord):
-            for note_head in leaf.get_note_heads():
+            for note_head in leaf.note_heads():
                 note_head.set_is_parenthesized(True)
 
     def _previous_leaf_changes_current_pitch(leaf):
@@ -1068,13 +1068,13 @@ def glissando(
         if (
             isinstance(leaf, _score.Note)
             and isinstance(previous_leaf, _score.Note)
-            and leaf.get_written_pitch() == previous_leaf.get_written_pitch()
+            and leaf.written_pitch() == previous_leaf.written_pitch()
         ):
             return False
         elif (
             isinstance(leaf, _score.Chord)
             and isinstance(previous_leaf, _score.Chord)
-            and leaf.get_written_pitches() == previous_leaf.get_written_pitches()
+            and leaf.written_pitches() == previous_leaf.written_pitches()
         ):
             return False
         return True
@@ -1386,7 +1386,7 @@ def horizontal_bracket(
     ..  container:: example
 
         >>> voice = abjad.Voice("c'4 d' e' f'")
-        >>> voice.get_consists_commands().append("Horizontal_bracket_engraver")
+        >>> voice.consists_commands().append("Horizontal_bracket_engraver")
         >>> abjad.horizontal_bracket(voice[:])
         >>> abjad.show(voice) # doctest: +SKIP
 
@@ -1414,7 +1414,7 @@ def horizontal_bracket(
         priority of nested analysis brackets:
 
         >>> voice = abjad.Voice("c'4 d' e' f' c' d' e' f'")
-        >>> voice.get_consists_commands().append("Horizontal_bracket_engraver")
+        >>> voice.consists_commands().append("Horizontal_bracket_engraver")
         >>> bundle = abjad.bundle(
         ...     abjad.StartGroup(),
         ...     r"- \tweak color #red",

@@ -52,7 +52,7 @@ def test_Chord___copy___04():
     """
 
     chord_1 = abjad.Chord("<c' e' g'>4")
-    abjad.tweak(chord_1.get_note_heads()[0], r"\tweak color #red")
+    abjad.tweak(chord_1.note_heads()[0], r"\tweak color #red")
     chord_2 = copy.copy(chord_1)
 
     assert abjad.lilypond(chord_1) == abjad.string.normalize(
@@ -80,13 +80,13 @@ def test_Chord___copy___04():
     assert abjad.lilypond(chord_1) == abjad.lilypond(chord_2)
     assert chord_1 is not chord_2
 
-    assert chord_1.get_note_heads()[0] == chord_2.get_note_heads()[0]
-    assert chord_1.get_note_heads()[1] == chord_2.get_note_heads()[1]
-    assert chord_1.get_note_heads()[2] == chord_2.get_note_heads()[2]
+    assert chord_1.note_heads()[0] == chord_2.note_heads()[0]
+    assert chord_1.note_heads()[1] == chord_2.note_heads()[1]
+    assert chord_1.note_heads()[2] == chord_2.note_heads()[2]
 
-    assert chord_1.get_note_heads()[0] is not chord_2.get_note_heads()[0]
-    assert chord_1.get_note_heads()[1] is not chord_2.get_note_heads()[1]
-    assert chord_1.get_note_heads()[2] is not chord_2.get_note_heads()[2]
+    assert chord_1.note_heads()[0] is not chord_2.note_heads()[0]
+    assert chord_1.note_heads()[1] is not chord_2.note_heads()[1]
+    assert chord_1.note_heads()[2] is not chord_2.note_heads()[2]
 
 
 def test_Chord___copy___05():
@@ -120,7 +120,7 @@ def test_Chord___deepcopy___01():
     """
 
     chord_1 = abjad.Chord("<c' e' g'>4")
-    abjad.tweak(chord_1.get_note_heads()[0], r"\tweak color #red")
+    abjad.tweak(chord_1.note_heads()[0], r"\tweak color #red")
     chord_2 = copy.deepcopy(chord_1)
 
     assert abjad.lilypond(chord_1) == abjad.string.normalize(
@@ -148,13 +148,13 @@ def test_Chord___deepcopy___01():
     assert abjad.lilypond(chord_1) == abjad.lilypond(chord_2)
     assert chord_1 is not chord_2
 
-    assert chord_1.get_note_heads()[0] == chord_2.get_note_heads()[0]
-    assert chord_1.get_note_heads()[1] == chord_2.get_note_heads()[1]
-    assert chord_1.get_note_heads()[2] == chord_2.get_note_heads()[2]
+    assert chord_1.note_heads()[0] == chord_2.note_heads()[0]
+    assert chord_1.note_heads()[1] == chord_2.note_heads()[1]
+    assert chord_1.note_heads()[2] == chord_2.note_heads()[2]
 
-    assert chord_1.get_note_heads()[0] is not chord_2.get_note_heads()[0]
-    assert chord_1.get_note_heads()[1] is not chord_2.get_note_heads()[1]
-    assert chord_1.get_note_heads()[2] is not chord_2.get_note_heads()[2]
+    assert chord_1.note_heads()[0] is not chord_2.note_heads()[0]
+    assert chord_1.note_heads()[1] is not chord_2.note_heads()[1]
+    assert chord_1.note_heads()[2] is not chord_2.note_heads()[2]
 
 
 def test_Chord___eq____01():
@@ -374,7 +374,7 @@ def test_Chord___init___17():
     chord = abjad.Chord("<>8.")
 
     assert abjad.lilypond(chord) == "<>8."
-    assert not len(chord.get_note_heads())
+    assert not len(chord.note_heads())
 
 
 def test_Chord___init___18():
@@ -433,7 +433,7 @@ def test_Chord_written_pitches_01():
     """
 
     chord = abjad.Chord("<d' e' f'>4")
-    pitches = chord.get_written_pitches()
+    pitches = chord.written_pitches()
 
     assert isinstance(pitches, tuple)
     assert len(pitches) == 3
@@ -451,7 +451,7 @@ def test_Chord_written_pitches_02():
     chord_1 = abjad.Chord("<d' e' f'>4")
     chord_2 = abjad.Chord("<d' e' f'>4")
 
-    assert chord_1.get_written_pitches() == chord_2.get_written_pitches()
+    assert chord_1.written_pitches() == chord_2.written_pitches()
 
 
 def test_Chord_written_pitches_03():

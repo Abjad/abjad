@@ -15,19 +15,19 @@ interpretation:
 
 ::
 
-    >>> abjad.Container(name="Example_Container").get_simultaneous() is None
+    >>> abjad.Container(name="Example_Container").simultaneous() is None
 
-    >>> abjad.Voice(name="Example_Voice").get_simultaneous() is None
+    >>> abjad.Voice(name="Example_Voice").simultaneous() is None
 
-    >>> abjad.Staff(name="Example_Staff").get_simultaneous() is None
+    >>> abjad.Staff(name="Example_Staff").simultaneous() is None
 
 Abjad's staff groups and scores default to simultaneous time interpretation:
 
 ::
 
-    >>> abjad.StaffGroup(name="Example_Staff_Group").get_simultaneous()
+    >>> abjad.StaffGroup(name="Example_Staff_Group").simultaneous()
 
-    >>> abjad.Score(name="Example_Score").get_simultaneous()
+    >>> abjad.Score(name="Example_Score").simultaneous()
 
 ----
 

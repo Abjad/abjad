@@ -1291,5 +1291,5 @@ def extract_trivial_tuplets(argument) -> None:
     Extracts trivial tuplets from ``argument``.
     """
     for tuplet in _select.tuplets(argument):
-        if tuplet.get_ratio().is_trivial():
+        if tuplet.ratio().is_trivial():
             _mutate.extract(tuplet)

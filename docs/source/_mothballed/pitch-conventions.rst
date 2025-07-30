@@ -17,13 +17,13 @@ Abjad numbers pitches like this:
     >>> for pitch in pitches:
     ...     note = abjad.Note(pitch, duration)
     ...     rest = abjad.Rest(duration)
-    ...     if 0 <= note.get_written_pitch().number():
+    ...     if 0 <= note.written_pitch().number():
     ...         treble_staff.append(note)
     ...         bass_staff.append(rest)
     ...     else:
     ...         treble_staff.append(rest)
     ...         bass_staff.append(note)
-    ...     number = note.get_written_pitch().number()
+    ...     number = note.written_pitch().number()
     ...     string = rf"\markup {number}"
     ...     markup = abjad.Markup(string)
     ...     abjad.attach(markup, bass_staff[-1], direction=abjad.DOWN)
@@ -72,13 +72,13 @@ Abjad numbers diatonic pitches like this:
     >>> for pitch in pitches:
     ...     note = abjad.Note(pitch, duration)
     ...     rest = abjad.Rest(duration)
-    ...     if 0 <= note.get_written_pitch().number():
+    ...     if 0 <= note.written_pitch().number():
     ...         treble_staff.append(note)
     ...         bass_staff.append(rest)
     ...     else:
     ...         treble_staff.append(rest)
     ...         bass_staff.append(note)
-    ...     number = note.get_written_pitch()._get_diatonic_pitch_number()
+    ...     number = note.written_pitch()._get_diatonic_pitch_number()
     ...     string = rf"\markup {number}"
     ...     markup = abjad.Markup(string)
     ...     abjad.attach(markup, bass_staff[-1], direction=abjad.DOWN)

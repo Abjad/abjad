@@ -24,7 +24,7 @@ Define helper functions:
     ...     ji_cents = fractions.Fraction(log_ratio * log_2)
     ...     semitones = ji_cents / 100
     ...     parts = math.modf(semitones)
-    ...     pitch = abjad.NumberedPitch(note_head.get_written_pitch()) + parts[1]
+    ...     pitch = abjad.NumberedPitch(note_head.written_pitch()) + parts[1]
     ...     remainder = round(parts[0] * 100)
     ...     if 50 < abs(remainder):
     ...         if 0 < remainder:
@@ -58,7 +58,7 @@ Define helper functions:
     ...     ji_cents = fractions.Fraction(log_ratio * log_2)
     ...     semitones = ji_cents / 100
     ...     parts = math.modf(semitones)
-    ...     pitch = abjad.NumberedPitch(note_head.get_written_pitch()) + parts[1]
+    ...     pitch = abjad.NumberedPitch(note_head.written_pitch()) + parts[1]
     ...     if bass is False or pitch <= -8:
     ...         direction = abjad.DOWN
     ...     else:
@@ -110,11 +110,11 @@ Define helper functions:
     ...         for i, ratio in enumerate(triad):
     ...             staff = group[i]
     ...             note = abjad.Note(fundamental, (1, 1))
-    ...             tune_to_ratio(note.get_note_head(), ratio)
+    ...             tune_to_ratio(note.note_head(), ratio)
     ...             bass = False
     ...             if i == 2:
     ...                 bass = True
-    ...             markup, direction = return_cent_markup(note.get_note_head(), ratio, bass=bass)
+    ...             markup, direction = return_cent_markup(note.note_head(), ratio, bass=bass)
     ...             abjad.attach(markup, note, direction=direction)
     ...             staff.append(note)
     ...     for measure_number in (1, 11, 21, 31):

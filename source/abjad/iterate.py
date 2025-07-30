@@ -914,7 +914,7 @@ def pitches(argument) -> typing.Iterator[_pitch.NamedPitch]:
     except AttributeError:
         pass
     if isinstance(argument, _score.Chord):
-        result.extend(argument.get_written_pitches())
+        result.extend(argument.written_pitches())
     elif isinstance(argument, _pcollections.PitchSet):
         result.extend(sorted(list(argument)))
     elif isinstance(argument, list | tuple | set):
@@ -924,11 +924,11 @@ def pitches(argument) -> typing.Iterator[_pitch.NamedPitch]:
     else:
         for leaf in leaves(argument):
             try:
-                result.append(leaf.get_written_pitch())
+                result.append(leaf.written_pitch())
             except AttributeError:
                 pass
             try:
-                result.extend(leaf.get_written_pitches())
+                result.extend(leaf.written_pitches())
             except AttributeError:
                 pass
     for pitch in result:
