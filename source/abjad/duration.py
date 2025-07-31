@@ -18,67 +18,8 @@ class Duration(fractions.Fraction):
 
     ..  container:: example
 
-        Initializes from integer numerator:
-
-        >>> abjad.Duration(3)
-        Duration(3, 1)
-
-        Initializes from integer numerator and denominator:
-
         >>> abjad.Duration(3, 16)
         Duration(3, 16)
-
-        Initializes from integer-equivalent numeric numerator:
-
-        >>> abjad.Duration(3.0)
-        Duration(3, 1)
-
-        Initializes from integer-equivalent numeric numerator and denominator:
-
-        >>> abjad.Duration(3.0, 16)
-        Duration(3, 16)
-
-        Initializes from integer-equivalent singleton:
-
-        >>> abjad.Duration((3,))
-        Duration(3, 1)
-
-        Initializes from integer-equivalent pair:
-
-        >>> abjad.Duration((3, 16))
-        Duration(3, 16)
-
-        Initializes from other duration:
-
-        >>> abjad.Duration(abjad.Duration(3, 16))
-        Duration(3, 16)
-
-        Intializes from fraction:
-
-        >>> import fractions
-        >>> abjad.Duration(fractions.Fraction(3, 16))
-        Duration(3, 16)
-
-        Initializes from solidus string:
-
-        >>> abjad.Duration("3/16")
-        Duration(3, 16)
-
-    ..  container:: example
-
-        Durations inherit from built-in fraction:
-
-        >>> isinstance(abjad.Duration(3, 16), fractions.Fraction)
-        True
-
-    ..  container:: example
-
-        Durations are numbers:
-
-        >>> import numbers
-
-        >>> isinstance(abjad.Duration(3, 16), numbers.Number)
-        True
 
     """
 
@@ -451,6 +392,22 @@ class Duration(fractions.Fraction):
         assert 0 <= n, repr(n)
         result = 2 ** (int(math.ceil(math.log(n, 2))) + i)
         return result
+
+    def clock_string(self) -> str:
+        r"""
+        Gets clock string.
+
+        ..  container:: example
+
+            >>> abjad.Duration(117).clock_string()
+            "1'57''"
+
+        Rounds down to nearest second.
+        """
+        minutes = int(self / 60)
+        seconds = str(int(self - minutes * 60)).zfill(2)
+        clock_string = f"{minutes}'{seconds}''"
+        return clock_string
 
     def dot_count(self) -> int:
         r"""
@@ -868,8 +825,6 @@ class Duration(fractions.Fraction):
 
         ..  container:: example
 
-            Raises assignability error when duration is not assignable.
-
             >>> abjad.Duration(3, 16).lilypond_duration_string()
             '8.'
 
@@ -915,38 +870,6 @@ class Duration(fractions.Fraction):
 
         """
         return type(self)(self.denominator, self.numerator)
-
-    def to_clock_string(self) -> str:
-        r"""
-        Changes duration to clock string.
-
-        ..  container:: example
-
-            Rounds down to nearest second.
-
-            >>> note = abjad.Note("c'4")
-            >>> duration = abjad.Duration(117)
-            >>> clock_string = duration.to_clock_string()
-            >>> clock_string
-            "1'57''"
-
-            >>> string = rf"\markup {{ {clock_string} }}"
-            >>> markup = abjad.Markup(string)
-            >>> abjad.attach(markup, note, direction=abjad.UP)
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(note)
-                >>> print(string)
-                c'4
-                ^ \markup { 1'57'' }
-
-        """
-        minutes = int(self / 60)
-        seconds = str(int(self - minutes * 60)).zfill(2)
-        clock_string = f"{minutes}'{seconds}''"
-        return clock_string
 
 
 class Offset(Duration):
@@ -1529,6 +1452,11 @@ class Offset(Duration):
 class Ratio:
     """
     Ratio.
+
+    ..  container:: example
+
+        >>> abjad.Ratio(6, 4)
+        Ratio(numerator=6, denominator=4)
 
     Abjad ratios are two-term, unreduced integer ratios of the form ``n:d``.
 
