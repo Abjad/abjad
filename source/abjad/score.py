@@ -433,7 +433,13 @@ class Leaf(Component):
         self._after_grace_container = None
         self._before_grace_container = None
         self.set_multiplier(multiplier)
-        self.set_written_duration(written_duration)
+        if isinstance(written_duration, _duration.Duration):
+            written_duration_ = written_duration
+        elif isinstance(written_duration, tuple):
+            written_duration_ = _duration.Duration(*written_duration)
+        else:
+            written_duration_ = _duration.Duration(written_duration)
+        self.set_written_duration(written_duration_)
 
     ### SPECIAL METHODS ###
 
@@ -700,8 +706,8 @@ class Leaf(Component):
         """
         return self._written_duration
 
-    def set_written_duration(self, argument):
-        duration = _duration.Duration(argument)
+    def set_written_duration(self, duration: _duration.Duration) -> None:
+        assert isinstance(duration, _duration.Duration), repr(duration)
         if not duration.is_assignable():
             message = f"not assignable duration: {duration!r}."
             raise _exceptions.AssignabilityError(message)
@@ -2763,33 +2769,33 @@ class Chord(Leaf):
 
     def written_duration(self) -> _duration.Duration:
         """
-        Gets and sets written duration of chord.
+        Gets written duration of chord.
 
         ..  container:: example
 
-            Get written duration:
-
-            >>> chord = abjad.Chord("<e' cs'' f''>4")
-            >>> abjad.show(chord) # doctest: +SKIP
-
-            >>> chord.written_duration()
+            >>> abjad.Chord("<e' cs'' f''>4").written_duration()
             Duration(1, 4)
 
-        ..  container:: example
-
-            Set written duration:
-
-            >>> chord = abjad.Chord("<e' cs'' f''>4")
-            >>> abjad.show(chord) # doctest: +SKIP
-
-            >>> chord.set_written_duration(abjad.Duration(1, 16))
-            >>> abjad.show(chord) # doctest: +SKIP
 
         """
         return super().written_duration()
 
-    def set_written_duration(self, argument):
-        Leaf.set_written_duration(self, argument)
+    def set_written_duration(self, duration: _duration.Duration) -> None:
+        """
+        Sets written duration of chord.
+
+        ..  container:: example
+
+            >>> chord = abjad.Chord("<e' cs'' f''>4")
+            >>> chord.written_duration()
+            Duration(1, 4)
+
+            >>> chord.set_written_duration(abjad.Duration(1, 16))
+            >>> chord.written_duration()
+            Duration(1, 16)
+
+        """
+        Leaf.set_written_duration(self, duration)
 
     def written_pitches(self) -> tuple[_pitch.NamedPitch, ...]:
         """
@@ -4196,38 +4202,31 @@ class Note(Leaf):
 
     def written_duration(self) -> _duration.Duration:
         """
-        Gets and sets written duration.
+        Gets written duration of note.
 
         ..  container:: example
 
-            >>> note = abjad.Note("cs''8.")
-            >>> note.written_duration()
+            >>> abjad.Note("cs''8.").written_duration()
             Duration(3, 16)
-
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(note)
-                >>> print(string)
-                cs''8.
-
-            >>> note.set_written_duration((1, 16))
-            >>> note.written_duration()
-            Duration(1, 16)
-
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(note)
-                >>> print(string)
-                cs''16
 
         """
         return super().written_duration()
 
     def set_written_duration(self, argument):
+        """
+        Sets written duration of note.
+
+        ..  container::
+
+            >>> note = abjad.Note("cs''8.")
+            >>> note.written_duration()
+            Duration(3, 16)
+
+            >>> note.set_written_duration(abjad.Duration(1, 16))
+            >>> note.written_duration()
+            Duration(1, 16)
+
+        """
         return Leaf.set_written_duration(self, argument)
 
     # TODO: change Note always to have a note head
@@ -4348,6 +4347,8 @@ class Rest(Leaf):
             written_duration = written_duration.written_duration()
         elif written_duration is None:
             written_duration = _duration.Duration(1, 4)
+        elif isinstance(written_duration, tuple):
+            written_duration = _duration.Duration(*written_duration)
         else:
             written_duration = _duration.Duration(written_duration)
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)

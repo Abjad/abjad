@@ -136,7 +136,7 @@ def check_beamed_long_notes(argument) -> tuple[list, int]:
     violators, total = [], 0
     for leaf in _iterate.leaves(argument):
         total += 1
-        if leaf.written_duration() < _duration.Duration((1, 4)):
+        if leaf.written_duration() < _duration.Duration(1, 4):
             continue
         start_wrapper = _get.effective_wrapper(leaf, _indicators.StartBeam)
         if start_wrapper is None:

@@ -1391,7 +1391,7 @@ def logical_tie_to_tuplet(
         notes = [_score.Note(0, _) for _ in written_durations]
     except _exceptions.AssignabilityError:
         pitches = _makers.make_pitches([0])
-        denominator = target_duration._denominator
+        denominator = target_duration.denominator
         note_durations = [_duration.Duration(_, denominator) for _ in proportions]
         notes = _makers.make_notes(pitches, note_durations, tag=tag)
     multiplier = target_duration / _get.duration(notes)
@@ -1841,7 +1841,11 @@ def scale(argument, multiplier) -> None:
 # TODO: add examples that show indicator handling.
 # TODO: add example showing grace and after grace handling.
 def split(
-    argument, durations, *, cyclic: bool = False, tag: _tag.Tag | None = None
+    argument,
+    durations: list[_duration.Duration],
+    *,
+    cyclic: bool = False,
+    tag: _tag.Tag | None = None,
 ) -> list[list[_score.Component]]:
     r"""
     Splits ``argument`` by ``durations``.
@@ -1872,7 +1876,7 @@ def split(
                 \f
             }
 
-        >>> durations = [(3, 4)]
+        >>> durations = [abjad.Duration(3, 4)]
         >>> result = abjad.mutate.split(
         ...     voice[:],
         ...     durations,
@@ -1937,12 +1941,12 @@ def split(
                 }
             }
 
-        >>> durations = [(1, 8)]
+        >>> durations = [abjad.Duration(1, 8)]
         >>> result = abjad.mutate.split(
         ...     staff[:],
         ...     durations,
         ...     cyclic=True,
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2068,12 +2072,12 @@ def split(
                 >>
             }
 
-        >>> durations = [(3, 8)]
+        >>> durations = [abjad.Duration(3, 8)]
         >>> result = abjad.mutate.split(
         ...     container,
         ...     durations,
         ...     cyclic=False,
-        ...     )
+        ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
         >>> string = abjad.lilypond(staff)
@@ -2160,7 +2164,7 @@ def split(
                 \laissezVibrer
             }
 
-        >>> durations = [(1, 8)]
+        >>> durations = [abjad.Duration(1, 8)]
         >>> result = abjad.mutate.split(
         ...     staff[:],
         ...     durations,
@@ -2210,7 +2214,7 @@ def split(
                 d'2
             }
 
-        >>> result = abjad.mutate.split(staff[0], [(1, 32)])
+        >>> result = abjad.mutate.split(staff[0], [abjad.Duration(1, 32)])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2257,7 +2261,8 @@ def split(
                 }
             }
 
-        >>> result = abjad.mutate.split(music_voice[:], [(1, 8)], cyclic=True)
+        >>> durations = [abjad.Duration(1, 8)]
+        >>> result = abjad.mutate.split(music_voice[:], durations, cyclic=True)
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2293,7 +2298,7 @@ def split(
     if isinstance(components, _score.Component):
         components = [components]
     assert all(isinstance(_, _score.Component) for _ in components)
-    durations = [_duration.Duration(_) for _ in durations]
+    assert all(isinstance(_, _duration.Duration) for _ in durations), repr(durations)
     assert len(durations), repr(durations)
     total_component_duration = _get.duration(components)
     total_split_duration = sum(durations)

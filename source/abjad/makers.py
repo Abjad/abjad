@@ -181,6 +181,7 @@ def _partition_less_than_double(n, m):
     return tuple(result)
 
 
+# TODO: REMOVE (redundant with abjad.duration.durations())
 def make_durations(items: list) -> list[_duration.Duration]:
     """
     Changes list of arbitrary ``items`` to list of durations.
@@ -191,8 +192,7 @@ def make_durations(items: list) -> list[_duration.Duration]:
         [Duration(1, 8), Duration(1, 2), Duration(1, 16)]
 
     """
-    durations = [_duration.Duration(_) for _ in items]
-    return durations
+    return _duration.durations(items)
 
 
 def make_leaves(

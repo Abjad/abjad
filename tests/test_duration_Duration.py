@@ -18,15 +18,6 @@ def test_duration_Duration_01():
     # Initializes from integer-equivalent numeric numerator
     assert abjad.Duration(3.0) == abjad.Duration(3, 1)
 
-    # Initializes from integer-equivalent numeric numerator and denominator
-    assert abjad.Duration(3.0, 16) == abjad.Duration(3, 16)
-
-    # Initializes from integer-equivalent singleton
-    assert abjad.Duration((3,)) == abjad.Duration(3, 1)
-
-    # Initializes from integer-equivalent pair
-    assert abjad.Duration((3, 16)) == abjad.Duration(3, 16)
-
     # Initializes from other duration
     assert abjad.Duration(abjad.Duration(3, 16)) == abjad.Duration(3, 16)
 

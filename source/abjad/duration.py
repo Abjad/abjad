@@ -2,6 +2,8 @@
 Duration, offset, ratio.
 """
 
+from __future__ import annotations
+
 import dataclasses
 import fractions
 import math
@@ -10,6 +12,164 @@ import typing
 
 from . import exceptions as _exceptions
 from . import math as _math
+
+
+def durations(items: list) -> list["Duration"]:
+    """
+    Changes ``items`` to durations.
+
+    ..  container:: example
+
+        >>> abjad.durations([(15, 8), (3, 8)])
+        [Duration(15, 8), Duration(3, 8)]
+
+    """
+    durations = []
+    for item in items:
+        if isinstance(item, tuple):
+            duration = Duration(*item)
+        else:
+            duration = Duration(item)
+        durations.append(duration)
+    return durations
+
+
+def fraction_from_dot_count(dot_count: int) -> fractions.Fraction:
+    """
+    Makes fraction from ``dot_count``.
+
+    ..  container:: example
+
+        >>> abjad.duration.fraction_from_dot_count(0)
+        Fraction(1, 1)
+
+        >>> abjad.duration.fraction_from_dot_count(1)
+        Fraction(3, 2)
+
+        >>> abjad.duration.fraction_from_dot_count(2)
+        Fraction(7, 4)
+
+        >>> abjad.duration.fraction_from_dot_count(3)
+        Fraction(15, 8)
+
+        >>> abjad.duration.fraction_from_dot_count(4)
+        Fraction(31, 16)
+
+    """
+    assert isinstance(dot_count, int), repr(dot_count)
+    assert 0 <= dot_count, repr(dot_count)
+    denominator = 2**dot_count
+    numerator = 2 ** (dot_count + 1) - 1
+    return fractions.Fraction(numerator, denominator)
+
+
+def pair(argument: typing.Any) -> tuple[int, int]:
+    """
+    Changes ``argument`` to pair.
+
+    ..  container:: example
+
+        >>> abjad.duration.pair((3, 6))
+        (3, 6)
+
+        >>> abjad.duration.pair(abjad.Fraction(3, 6))
+        (1, 2)
+
+        >>> abjad.duration.pair(abjad.Duration(3, 6))
+        (1, 2)
+
+        >>> abjad.duration.pair(abjad.Offset((3, 6)))
+        (1, 2)
+
+        >>> abjad.duration.pair(abjad.TimeSignature((3, 6)))
+        (3, 6)
+
+    """
+    if hasattr(argument, "numerator"):
+        return argument.numerator, argument.denominator
+    if isinstance(argument, tuple) and len(argument) == 2:
+        return argument[0], argument[1]
+    raise ValueError(argument)
+
+
+def with_denominator(duration, denominator) -> tuple[int, int]:
+    """
+    Spells ``duration`` as pair with ``denominator``.
+
+    ..  container:: example
+
+        >>> abjad.duration.with_denominator(abjad.Duration(3, 6), 12)
+        (6, 12)
+
+    ..  container:: example
+
+        >>> for numerator in range(12):
+        ...     fraction = abjad.Fraction(numerator, 6)
+        ...     print(fraction, abjad.duration.with_denominator(fraction, 12))
+        ...
+        0 (0, 12)
+        1/6 (2, 12)
+        1/3 (4, 12)
+        1/2 (6, 12)
+        2/3 (8, 12)
+        5/6 (10, 12)
+        1 (12, 12)
+        7/6 (14, 12)
+        4/3 (16, 12)
+        3/2 (18, 12)
+        5/3 (20, 12)
+        11/6 (22, 12)
+
+        >>> for numerator in range(12):
+        ...     pair = (numerator, 6)
+        ...     print(pair, abjad.duration.with_denominator(pair, 8))
+        ...
+        (0, 6) (0, 8)
+        (1, 6) (1, 6)
+        (2, 6) (2, 6)
+        (3, 6) (4, 8)
+        (4, 6) (4, 6)
+        (5, 6) (5, 6)
+        (6, 6) (8, 8)
+        (7, 6) (7, 6)
+        (8, 6) (8, 6)
+        (9, 6) (12, 8)
+        (10, 6) (10, 6)
+        (11, 6) (11, 6)
+
+        >>> for numerator in range(12):
+        ...     pair = (numerator, 6)
+        ...     print(pair, abjad.duration.with_denominator(pair, 12))
+        ...
+        (0, 6) (0, 12)
+        (1, 6) (2, 12)
+        (2, 6) (4, 12)
+        (3, 6) (6, 12)
+        (4, 6) (8, 12)
+        (5, 6) (10, 12)
+        (6, 6) (12, 12)
+        (7, 6) (14, 12)
+        (8, 6) (16, 12)
+        (9, 6) (18, 12)
+        (10, 6) (20, 12)
+        (11, 6) (22, 12)
+
+    """
+    if isinstance(duration, tuple):
+        current_numerator, current_denominator = duration
+    else:
+        current_numerator, current_denominator = (
+            duration.numerator,
+            duration.denominator,
+        )
+    multiplier = fractions.Fraction(denominator, current_denominator)
+    new_numerator = multiplier * current_numerator
+    new_denominator = multiplier * current_denominator
+    if new_numerator.denominator == 1 and new_denominator.denominator == 1:
+        pair = (new_numerator.numerator, new_denominator.numerator)
+    else:
+        pair = (current_numerator, current_denominator)
+    return pair
 
 
 class Duration(fractions.Fraction):
@@ -24,64 +184,6 @@ class Duration(fractions.Fraction):
     """
 
     __slots__ = ()
-
-    # dummy initializer so that mypy knows about _denominator, _numerator
-    def __init__(self, *arguments):
-        self._denominator = self._denominator
-        self._numerator = self._numerator
-        return None
-
-    def __new__(class_, *arguments):
-        """
-        Makes new duration.
-        """
-        if len(arguments) == 1:
-            argument = arguments[0]
-            if type(argument) is class_:
-                return argument
-            try:
-                return fractions.Fraction.__new__(class_, *argument)
-            except (AttributeError, TypeError):
-                pass
-            try:
-                return fractions.Fraction.__new__(class_, argument)
-            except (AttributeError, TypeError):
-                pass
-            if callable(hasattr(argument, "duration")):
-                return argument.duration()
-            if (
-                isinstance(argument, tuple)
-                and len(argument) == 2
-                and _math.is_integer_equivalent(argument[0])
-                and _math.is_integer_equivalent(argument[1])
-                and not argument[1] == 0
-            ):
-                return fractions.Fraction.__new__(
-                    class_, int(argument[0]), int(argument[1])
-                )
-            if hasattr(argument, "duration"):
-                try:
-                    return fractions.Fraction.__new__(class_, argument.duration)
-                except TypeError:
-                    pass
-                return fractions.Fraction.__new__(class_, argument.duration())
-            if isinstance(argument, str) and "/" not in argument:
-                result = Duration._initialize_from_lilypond_duration_string(argument)
-                return fractions.Fraction.__new__(class_, result)
-            if (
-                isinstance(argument, tuple)
-                and len(argument) == 1
-                and _math.is_integer_equivalent(argument[0])
-            ):
-                return fractions.Fraction.__new__(class_, int(argument[0]))
-        else:
-            try:
-                return fractions.Fraction.__new__(class_, *arguments)
-            except TypeError:
-                pass
-            if _math.all_are_integer_equivalent_numbers(arguments):
-                return fractions.Fraction.__new__(class_, *[int(x) for x in arguments])
-        raise ValueError(f"can not construct duration: {arguments!r}.")
 
     def __abs__(self, *arguments):
         """
@@ -456,13 +558,16 @@ class Duration(fractions.Fraction):
         return dot_count
 
     @staticmethod
-    def durations_to_nonreduced_fractions(durations: list) -> list[tuple[int, int]]:
+    def durations_to_nonreduced_fractions(
+        durations: list[Duration],
+    ) -> list[tuple[int, int]]:
         """
         Changes ``durations`` to pairs sharing least common denominator.
 
         ..  container:: example
 
-            >>> durations = [abjad.Duration(2, 4), 3, (5, 16)]
+            >>> items = [abjad.Duration(2, 4), 3, (5, 16)]
+            >>> durations = abjad.makers.make_durations(items)
             >>> result = abjad.Duration.durations_to_nonreduced_fractions(durations)
             >>> for x in result:
             ...     x
@@ -472,10 +577,10 @@ class Duration(fractions.Fraction):
             (5, 16)
 
         """
-        durations_ = [Duration(_) for _ in durations]
-        denominators = [_.denominator for _ in durations_]
+        assert all(isinstance(_, Duration) for _ in durations), repr(durations)
+        denominators = [_.denominator for _ in durations]
         lcd = _math.least_common_multiple(*denominators)
-        pairs = [with_denominator(_, lcd) for _ in durations_]
+        pairs = [with_denominator(_, lcd) for _ in durations]
         return pairs
 
     def equal_or_greater_assignable(self) -> "Duration":
@@ -893,21 +998,6 @@ class Offset(Duration):
         >>> abjad.Offset(3.0)
         Offset((3, 1))
 
-        Initializes from integer-equivalent numeric numerator and denominator:
-
-        >>> abjad.Offset(3.0, 16)
-        Offset((3, 16))
-
-        Initializes from integer-equivalent singleton:
-
-        >>> abjad.Offset((3,))
-        Offset((3, 1))
-
-        Initializes from integer-equivalent pair:
-
-        >>> abjad.Offset((3, 16))
-        Offset((3, 16))
-
         Initializes from duration:
 
         >>> abjad.Offset(abjad.Duration(3, 16))
@@ -955,13 +1045,6 @@ class Offset(Duration):
 
     __slots__ = ("_displacement",)
 
-    # dummy initializer so that mypy knows about _denominator, _displacement, _numerator
-    def __init__(self, *arguments, **keywords):
-        self._denominator = self._denominator
-        self._displacement = self._displacement
-        self._numerator = self._numerator
-        return None
-
     def __new__(class_, *arguments, **keywords):
         displacement = None
         for argument in arguments:
@@ -972,10 +1055,16 @@ class Offset(Duration):
                 pass
         displacement = displacement or keywords.get("displacement")
         if displacement is not None:
-            displacement = Duration(displacement)
+            if isinstance(displacement, tuple):
+                displacement = Duration(*displacement)
+            else:
+                displacement = Duration(displacement)
+        # TODO: remove following line
         displacement = displacement or None
         if len(arguments) == 1 and isinstance(arguments[0], Duration):
             arguments = arguments[0].pair()
+        elif len(arguments) == 1 and isinstance(arguments[0], tuple):
+            arguments = arguments[0]
         self = Duration.__new__(class_, *arguments)
         self._displacement = displacement
         return self
@@ -1006,7 +1095,7 @@ class Offset(Duration):
             False
 
         """
-        return type(self)(self.pair(), displacement=self.displacement())
+        return type(self)(*self.pair(), displacement=self.displacement())
 
     def __deepcopy__(self, *arguments) -> "Offset":
         """
@@ -1755,167 +1844,3 @@ class Ratio:
 
         """
         return Ratio(self.denominator, self.numerator)
-
-
-def divide_pair(pair: tuple[int, int], n: int | Duration) -> tuple[int, int]:
-    """
-    Divides ``pair`` by integer or duration ``n``.
-    """
-    assert isinstance(pair, tuple), repr(pair)
-    assert isinstance(n, int | Duration), repr(n)
-    fraction = fractions.Fraction(*pair) / n
-    denominator = _math.least_common_multiple(pair[1], fraction.denominator)
-    pair = with_denominator(fraction, denominator)
-    return pair
-
-
-def durations(items: list) -> list[Duration]:
-    """
-    Changes ``items`` to durations.
-
-    ..  container:: example
-
-        >>> abjad.durations([(15, 8), (3, 8)])
-        [Duration(15, 8), Duration(3, 8)]
-
-    """
-    durations = [Duration(_) for _ in items]
-    return durations
-
-
-def fraction_from_dot_count(dot_count: int) -> fractions.Fraction:
-    """
-    Makes fraction from ``dot_count``.
-
-    ..  container:: example
-
-        >>> abjad.duration.fraction_from_dot_count(0)
-        Fraction(1, 1)
-
-        >>> abjad.duration.fraction_from_dot_count(1)
-        Fraction(3, 2)
-
-        >>> abjad.duration.fraction_from_dot_count(2)
-        Fraction(7, 4)
-
-        >>> abjad.duration.fraction_from_dot_count(3)
-        Fraction(15, 8)
-
-        >>> abjad.duration.fraction_from_dot_count(4)
-        Fraction(31, 16)
-
-    """
-    assert isinstance(dot_count, int), repr(dot_count)
-    assert 0 <= dot_count, repr(dot_count)
-    denominator = 2**dot_count
-    numerator = 2 ** (dot_count + 1) - 1
-    return fractions.Fraction(numerator, denominator)
-
-
-def pair(argument: typing.Any) -> tuple[int, int]:
-    """
-    Changes ``argument`` to pair.
-
-    ..  container:: example
-
-        >>> abjad.duration.pair((3, 6))
-        (3, 6)
-
-        >>> abjad.duration.pair(abjad.Fraction(3, 6))
-        (1, 2)
-
-        >>> abjad.duration.pair(abjad.Duration(3, 6))
-        (1, 2)
-
-        >>> abjad.duration.pair(abjad.Offset((3, 6)))
-        (1, 2)
-
-        >>> abjad.duration.pair(abjad.TimeSignature((3, 6)))
-        (3, 6)
-
-    """
-    if hasattr(argument, "numerator"):
-        return argument.numerator, argument.denominator
-    if isinstance(argument, tuple) and len(argument) == 2:
-        return argument[0], argument[1]
-    raise ValueError(argument)
-
-
-def with_denominator(duration, denominator) -> tuple[int, int]:
-    """
-    Spells ``duration`` as pair with ``denominator``.
-
-    ..  container:: example
-
-        >>> abjad.duration.with_denominator(abjad.Duration(3, 6), 12)
-        (6, 12)
-
-    ..  container:: example
-
-        >>> for numerator in range(12):
-        ...     fraction = abjad.Fraction(numerator, 6)
-        ...     print(fraction, abjad.duration.with_denominator(fraction, 12))
-        ...
-        0 (0, 12)
-        1/6 (2, 12)
-        1/3 (4, 12)
-        1/2 (6, 12)
-        2/3 (8, 12)
-        5/6 (10, 12)
-        1 (12, 12)
-        7/6 (14, 12)
-        4/3 (16, 12)
-        3/2 (18, 12)
-        5/3 (20, 12)
-        11/6 (22, 12)
-
-        >>> for numerator in range(12):
-        ...     pair = (numerator, 6)
-        ...     print(pair, abjad.duration.with_denominator(pair, 8))
-        ...
-        (0, 6) (0, 8)
-        (1, 6) (1, 6)
-        (2, 6) (2, 6)
-        (3, 6) (4, 8)
-        (4, 6) (4, 6)
-        (5, 6) (5, 6)
-        (6, 6) (8, 8)
-        (7, 6) (7, 6)
-        (8, 6) (8, 6)
-        (9, 6) (12, 8)
-        (10, 6) (10, 6)
-        (11, 6) (11, 6)
-
-        >>> for numerator in range(12):
-        ...     pair = (numerator, 6)
-        ...     print(pair, abjad.duration.with_denominator(pair, 12))
-        ...
-        (0, 6) (0, 12)
-        (1, 6) (2, 12)
-        (2, 6) (4, 12)
-        (3, 6) (6, 12)
-        (4, 6) (8, 12)
-        (5, 6) (10, 12)
-        (6, 6) (12, 12)
-        (7, 6) (14, 12)
-        (8, 6) (16, 12)
-        (9, 6) (18, 12)
-        (10, 6) (20, 12)
-        (11, 6) (22, 12)
-
-    """
-    if isinstance(duration, tuple):
-        current_numerator, current_denominator = duration
-    else:
-        current_numerator, current_denominator = (
-            duration.numerator,
-            duration.denominator,
-        )
-    multiplier = fractions.Fraction(denominator, current_denominator)
-    new_numerator = multiplier * current_numerator
-    new_denominator = multiplier * current_denominator
-    if new_numerator.denominator == 1 and new_denominator.denominator == 1:
-        pair = (new_numerator.numerator, new_denominator.numerator)
-    else:
-        pair = (current_numerator, current_denominator)
-    return pair

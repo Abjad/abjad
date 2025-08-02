@@ -10,14 +10,14 @@ def test_makers__group_by_prolation_01():
 
 def test_makers__group_by_prolation_02():
     pairs = [(1, 4)]
-    durations = [abjad.Duration(_) for _ in pairs]
+    durations = [abjad.Duration(*_) for _ in pairs]
     duration_lists = abjad.makers._group_by_prolation(durations)
     assert duration_lists == [[abjad.Duration(1, 4)]]
 
 
 def test_makers__group_by_prolation_03():
     pairs = [(1, 4), (1, 4), (1, 8)]
-    durations = [abjad.Duration(_) for _ in pairs]
+    durations = [abjad.Duration(*_) for _ in pairs]
     duration_lists = abjad.makers._group_by_prolation(durations)
     assert duration_lists == [
         [
@@ -30,7 +30,7 @@ def test_makers__group_by_prolation_03():
 
 def test_makers__group_by_prolation_04():
     pairs = [(1, 4), (1, 3), (1, 8)]
-    durations = [abjad.Duration(_) for _ in pairs]
+    durations = [abjad.Duration(*_) for _ in pairs]
     duration_lists = abjad.makers._group_by_prolation(durations)
     assert duration_lists == [
         [abjad.Duration(1, 4)],
@@ -41,7 +41,7 @@ def test_makers__group_by_prolation_04():
 
 def test_makers__group_by_prolation_05():
     pairs = [(1, 4), (1, 2), (1, 3)]
-    durations = [abjad.Duration(_) for _ in pairs]
+    durations = [abjad.Duration(*_) for _ in pairs]
     duration_lists = abjad.makers._group_by_prolation(durations)
     assert duration_lists == [
         [abjad.Duration(1, 4), abjad.Duration(1, 2)],
@@ -51,7 +51,7 @@ def test_makers__group_by_prolation_05():
 
 def test_makers__group_by_prolation_06():
     pairs = [(1, 4), (1, 2), (1, 3), (1, 6), (1, 5)]
-    durations = [abjad.Duration(_) for _ in pairs]
+    durations = [abjad.Duration(*_) for _ in pairs]
     duration_lists = abjad.makers._group_by_prolation(durations)
     assert duration_lists == [
         [abjad.Duration(1, 4), abjad.Duration(1, 2)],
@@ -62,7 +62,7 @@ def test_makers__group_by_prolation_06():
 
 def test_makers__group_by_prolation_07():
     pairs = [(1, 24), (2, 24), (3, 24), (4, 24), (5, 24), (6, 24)]
-    durations = [abjad.Duration(_) for _ in pairs]
+    durations = [abjad.Duration(*_) for _ in pairs]
     duration_lists = abjad.makers._group_by_prolation(durations)
     assert duration_lists == [
         [abjad.Duration(1, 24), abjad.Duration(2, 24)],

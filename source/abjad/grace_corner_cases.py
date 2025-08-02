@@ -10,7 +10,7 @@ r"""
     >>> container = abjad.BeforeGraceContainer("gs'16")
     >>> abjad.attach(container, music_voice[1])
     >>> obgc = abjad.on_beat_grace_container(
-    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=(1, 24)
+    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=abjad.Duration(1, 24)
     ... )
     >>> abjad.attach(abjad.Articulation(">"), obgc[0])
     >>> staff = abjad.Staff([music_voice])
@@ -67,7 +67,7 @@ r"""
 
     >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
     >>> obgc = abjad.on_beat_grace_container(
-    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=(1, 24)
+    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=abjad.Duration(1, 24)
     ... )
     >>> abjad.attach(abjad.Articulation(">"), obgc[0])
     >>> container = abjad.BeforeGraceContainer("gs'16")
@@ -129,7 +129,7 @@ r"""
     >>> container = abjad.AfterGraceContainer("cs'16")
     >>> abjad.attach(container, music_voice[1])
     >>> obgc = abjad.on_beat_grace_container(
-    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=(1, 24)
+    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=abjad.Duration(1, 24)
     ... )
     >>> abjad.attach(abjad.Articulation(">"), obgc[0])
     >>> staff = abjad.Staff([music_voice])
@@ -238,7 +238,7 @@ r"""
     >>> container = abjad.AfterGraceContainer("c'16")
     >>> abjad.attach(container, music_voice[0])
     >>> obgc = abjad.on_beat_grace_container(
-    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=(1, 24)
+    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=abjad.Duration(1, 24)
     ... )
     >>> abjad.attach(abjad.Articulation(">"), obgc[0])
     >>> staff = abjad.Staff([music_voice])

@@ -870,10 +870,14 @@ class Timespan:
             return True
         return False
 
-    def _initialize_offset(self, offset):
-        if offset in (negative_infinity, infinity):
-            return offset
-        return _duration.Offset(offset)
+    def _initialize_offset(self, argument):
+        if argument in (negative_infinity, infinity):
+            return argument
+        if isinstance(argument, tuple):
+            offset = _duration.Offset(*argument)
+        else:
+            offset = _duration.Offset(argument)
+        return offset
 
     ### PUBLIC PROPERTIES ###
 
@@ -1112,19 +1116,18 @@ class Timespan:
         )
         return result
 
-    def set_duration(self, duration) -> "Timespan":
+    def set_duration(self, duration: _duration.Duration) -> "Timespan":
         """
         Sets timespan duration to ``duration``.
 
         ..  container:: example
 
             >>> timespan = abjad.Timespan((1, 2), (3, 2))
-
-            >>> timespan.set_duration((3, 5))
+            >>> timespan.set_duration(abjad.Duration(3, 5))
             Timespan(Offset((1, 2)), Offset((11, 10)))
 
         """
-        duration = _duration.Duration(duration)
+        assert isinstance(duration, _duration.Duration), repr(duration)
         new_stop_offset = self.start_offset + duration
         return dataclasses.replace(self, stop_offset=new_stop_offset)
 
@@ -1301,22 +1304,27 @@ class Timespan:
         )
         return result
 
-    def translate(self, translation=None) -> "Timespan":
+    def translate(
+        self, duration: _duration.Duration = _duration.Duration(0)
+    ) -> "Timespan":
         """
-        Translates timespan by ``translation``.
+        Translates timespan by ``duration``.
 
         ..  container:: example
 
             >>> timespan = abjad.Timespan(5, 10)
-
-            >>> timespan.translate(2)
+            >>> duration = abjad.Duration(2)
+            >>> timespan.translate(duration)
             Timespan(Offset((7, 1)), Offset((12, 1)))
 
         """
-        return self.translate_offsets(translation, translation)
+        assert isinstance(duration, _duration.Duration), repr(duration)
+        return self.translate_offsets(duration, duration)
 
     def translate_offsets(
-        self, start_offset_translation=None, stop_offset_translation=None
+        self,
+        start_offset_translation: _duration.Duration = _duration.Duration(0),
+        stop_offset_translation: _duration.Duration = _duration.Duration(0),
     ) -> "Timespan":
         """
         Translates timespan start offset by ``start_offset_translation`` and
@@ -1326,18 +1334,23 @@ class Timespan:
 
             >>> timespan = abjad.Timespan((1, 2), (3, 2))
 
-            >>> timespan.translate_offsets(start_offset_translation=(-1, 8))
+            >>> duration = abjad.Duration(-1, 8)
+            >>> timespan.translate_offsets(start_offset_translation=duration)
             Timespan(Offset((3, 8)), Offset((3, 2)))
 
         """
-        start_offset_translation = start_offset_translation or 0
-        stop_offset_translation = stop_offset_translation or 0
-        start_offset_translation = _duration.Duration(start_offset_translation)
-        stop_offset_translation = _duration.Duration(stop_offset_translation)
+        assert isinstance(start_offset_translation, _duration.Duration), repr(
+            start_offset_translation
+        )
+        assert isinstance(stop_offset_translation, _duration.Duration), repr(
+            stop_offset_translation
+        )
         new_start_offset = self.start_offset + start_offset_translation
         new_stop_offset = self.stop_offset + stop_offset_translation
         return dataclasses.replace(
-            self, start_offset=new_start_offset, stop_offset=new_stop_offset
+            self,
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
         )
 
 
@@ -3844,7 +3857,8 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
-            >>> timespans = timespans.translate(50)
+            >>> duration = abjad.Duration(50)
+            >>> timespans = timespans.translate(duration)
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
@@ -3856,7 +3870,9 @@ class TimespanList(list):
         return self.translate_offsets(translation, translation)
 
     def translate_offsets(
-        self, start_offset_translation=None, stop_offset_translation=None
+        self,
+        start_offset_translation: _duration.Duration = _duration.Duration(0),
+        stop_offset_translation: _duration.Duration = _duration.Duration(0),
     ) -> "TimespanList":
         """
         Translates timespans by ``start_offset_translation`` and
@@ -3875,7 +3891,8 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
-            >>> timespans = timespans.translate_offsets(50, 50)
+            >>> duration = abjad.Duration(50)
+            >>> timespans = timespans.translate_offsets(duration, duration)
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
@@ -3894,7 +3911,8 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 
-            >>> timespans = timespans.translate_offsets(stop_offset_translation=20)
+            >>> duration = abjad.Duration(20)
+            >>> timespans = timespans.translate_offsets(stop_offset_translation=duration)
             >>> abjad.show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _

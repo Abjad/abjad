@@ -53,7 +53,7 @@ class OnBeatGraceContainer(_score.Container):
         >>> music_voice = abjad.Voice("c'4 d'4 e'4 f'4", name="MusicVoice")
         >>> string = "<d' g'>8 a' b' c'' d'' c'' b' a' b' c'' d''"
         >>> obgc = abjad.on_beat_grace_container(
-        ...     string, music_voice[1:3], grace_leaf_duration=(1, 24)
+        ...     string, music_voice[1:3], grace_leaf_duration=abjad.Duration(1, 24)
         ... )
         >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> staff = abjad.Staff([music_voice])
@@ -128,7 +128,9 @@ class OnBeatGraceContainer(_score.Container):
     ) -> None:
         super().__init__(components, identifier=identifier, name=name, tag=tag)
         if grace_leaf_duration is not None:
-            grace_leaf_duration = _duration.Duration(grace_leaf_duration)
+            assert isinstance(grace_leaf_duration, _duration.Duration), repr(
+                grace_leaf_duration
+            )
         self._grace_leaf_duration = grace_leaf_duration
 
     ### SPECIAL METHODS ###

@@ -2052,6 +2052,7 @@ class Meter:
                         break
                 if split_offset is not None:
                     split_offset -= logical_tie_start_offset
+                    assert isinstance(split_offset, _duration.Duration)
                     shards = _mutate.split(logical_tie[:], [split_offset])
                     logical_ties = [_select.LogicalTie(_) for _ in shards]
                     for logical_tie in logical_ties:
@@ -2084,6 +2085,7 @@ class Meter:
                         break
                 assert split_offset is not None
                 split_offset -= logical_tie_start_offset
+                assert isinstance(split_offset, _duration.Duration)
                 shards = _mutate.split(logical_tie[:], [split_offset])
                 logical_ties = [_select.LogicalTie(shard) for shard in shards]
                 for logical_tie in logical_ties:
@@ -3253,7 +3255,12 @@ def make_best_guess_rtc(
         assert isinstance(increase_monotonic, bool)
         if factors:
             factor, factors = factors[0], factors[1:]
-            pair = _duration.divide_pair(rtc.pair(), factor)
+            fraction = fractions.Fraction(*rtc.pair()) / factor
+            pair_denominator = _math.least_common_multiple(
+                rtc.pair()[1],
+                fraction.denominator,
+            )
+            pair = _duration.with_denominator(fraction, pair_denominator)
             if factor in (2, 3, 4):
                 if factors:
                     for _ in range(factor):
