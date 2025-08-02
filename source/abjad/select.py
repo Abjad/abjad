@@ -1004,7 +1004,7 @@ def filter(argument, predicate=None) -> list:
 
         >>> result = abjad.select.runs(staff)
         >>> result = abjad.select.filter(
-        ...     result, lambda _ : abjad.get.duration(_) == abjad.Duration((2, 8))
+        ...     result, lambda _ : abjad.get.duration(_) == abjad.Duration(2, 8)
         ... )
         >>> for item in result:
         ...     item

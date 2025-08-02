@@ -3846,7 +3846,9 @@ class MetronomeMark:
         )
         return fractions.Fraction(result)
 
-    def duration_to_milliseconds(self, duration) -> _duration.Duration:
+    def duration_to_milliseconds(
+        self, duration: _duration.Duration
+    ) -> _duration.Duration:
         """
         Gets millisecond value of ``duration`` under a given metronome mark.
 
@@ -3855,11 +3857,13 @@ class MetronomeMark:
         ..  container:: example
 
             >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
-            >>> mark.duration_to_milliseconds((3, 8))
+            >>> duration = abjad.Duration(3, 8)
+            >>> mark.duration_to_milliseconds(duration)
             Duration(1500, 1)
 
         """
         assert isinstance(self.reference_duration, _duration.Duration)
+        assert isinstance(duration, _duration.Duration), repr(duration)
         denominator = self.reference_duration.denominator
         numerator = self.reference_duration.numerator
         whole_note_duration = fractions.Fraction(1000)
@@ -3870,7 +3874,10 @@ class MetronomeMark:
 
     @staticmethod
     def make_tempo_equation_markup(
-        reference_duration, units_per_minute, *, decimal=False
+        reference_duration: _duration.Duration,
+        units_per_minute: float,
+        *,
+        decimal: bool = False,
     ) -> Markup:
         r"""
         Makes tempo equation markup.
@@ -3879,7 +3886,8 @@ class MetronomeMark:
 
         ..  container:: example
 
-            >>> markup = abjad.MetronomeMark.make_tempo_equation_markup((1, 4),  90)
+            >>> duration = abjad.Duration(1, 4)
+            >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(duration,  90)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', markup])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -3893,7 +3901,8 @@ class MetronomeMark:
 
             Float-valued metronome mark:
 
-            >>> markup = abjad.MetronomeMark.make_tempo_equation_markup((1, 4), 90.1)
+            >>> duration = abjad.Duration(1, 4)
+            >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(duration, 90.1)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', markup])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
 
@@ -3922,7 +3931,11 @@ class MetronomeMark:
                 \markup \abjad-metronome-mark-mixed-number-markup #2 #0 #1 #"90" #"2" #"3"
 
         """
-        reference_duration_ = _duration.Duration(reference_duration)
+        # reference_duration_ = _duration.Duration(reference_duration)
+        assert isinstance(reference_duration, _duration.Duration), repr(
+            reference_duration
+        )
+        reference_duration_ = reference_duration
         log = reference_duration_.exponent()
         dots = reference_duration_.dot_count()
         stem = 1

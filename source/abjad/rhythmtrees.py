@@ -66,7 +66,7 @@ class RhythmTreeNode:
         node = self
         assert hasattr(node, "parent"), repr(node)
         while node.parent is not None:
-            pair = _duration.Duration(node.pair())
+            pair = _duration.Duration(*node.pair())
             parent_contents_duration = node.parent._get_contents_duration()
             fraction = pair / parent_contents_duration
             assert isinstance(fraction, fractions.Fraction), repr(fraction)
@@ -74,7 +74,7 @@ class RhythmTreeNode:
             assert isinstance(duration, _duration.Duration), repr(duration)
             result.append(duration.pair())
             node = node.parent
-        duration = _duration.Duration(node.pair())
+        duration = _duration.Duration(*node.pair())
         result.append(duration.pair())
         return tuple(reversed(result))
 
@@ -161,7 +161,7 @@ class RhythmTreeNode:
         """
         numerator = self.prolation().numerator * self.pair()[0]
         denominator = self.prolation().denominator * self.pair()[1]
-        return _duration.Duration((numerator, denominator))
+        return _duration.Duration(numerator, denominator)
 
     def pair(self) -> tuple[int, int]:
         """
@@ -233,7 +233,7 @@ class RhythmTreeNode:
         for child, parent in pairs:
             parent_contents_duration = parent._get_contents_duration()
             assert isinstance(parent_contents_duration, _duration.Duration)
-            parent_preprolated_duration = _duration.Duration(parent.pair())
+            parent_preprolated_duration = _duration.Duration(*parent.pair())
             duration = parent_preprolated_duration / parent_contents_duration
             prolation = fractions.Fraction(duration)
             prolations.append(prolation)
@@ -360,7 +360,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
             assert self.is_unpitched() is True
             pitches = [None]
         pitch_lists = _makers.make_pitch_lists(pitches)
-        duration *= _duration.Duration(self.pair())
+        duration *= _duration.Duration(*self.pair())
         components = _makers.make_leaves(pitch_lists, [duration])
         return components
 
@@ -369,7 +369,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         Gets Graphviz graph of rhythm-tree leaf.
         """
         graph = uqbar.graphs.Graph(name="G")
-        label = str(_duration.Duration(self.pair()))
+        label = str(_duration.Duration(*self.pair()))
         node = uqbar.graphs.Node(attributes={"label": label, "shape": "box"})
         graph.append(node)
         return graph
@@ -638,7 +638,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             tuplet = _score.Tuplet("1:1", [])
             for node in rtc.children:
                 if isinstance(node, type(self)):
-                    tuplet_duration_ = _duration.Duration(node.pair())
+                    tuplet_duration_ = _duration.Duration(*node.pair())
                     tuplet_duration_ *= basic_written_duration
                     components = recurse(node, tuplet_duration_)
                     tuplet.extend(components)
@@ -655,7 +655,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             tuplet.set_ratio(ratio)
             return [tuplet]
 
-        tuplet_duration_ = duration * _duration.Duration(self.pair())
+        tuplet_duration_ = duration * _duration.Duration(*self.pair())
         assert isinstance(tuplet_duration_, _duration.Duration)
         components = recurse(self, tuplet_duration_)
         assert all(isinstance(_, _score.Leaf | _score.Tuplet) for _ in components)
@@ -711,7 +711,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
         nodes.extend(self.depth_first())
         for node in nodes:
             graphviz_node = uqbar.graphs.Node()
-            label = str(_duration.Duration(node.pair()))
+            label = str(_duration.Duration(*node.pair()))
             graphviz_node.attributes["label"] = label
             if isinstance(node, type(self)):
                 graphviz_node.attributes["shape"] = "triangle"
@@ -741,7 +741,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
     ### PRIVATE METHODS ###
 
     def _get_contents_duration(self):
-        durations = [_duration.Duration(_.pair()) for _ in self]
+        durations = [_duration.Duration(*_.pair()) for _ in self]
         duration = sum(durations)
         return duration
 

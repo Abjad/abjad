@@ -6266,7 +6266,12 @@ class LilyPondSyntacticalDefinition:
     ):
         "simple_element : pitch exclamations questions octave_check optional_notemode_duration optional_rest"
         if not p[6]:
-            leaf = _score.Note(p[1], p[5].duration, tag=self.tag)
+            # leaf = _score.Note(p[1], p[5].duration, tag=self.tag)
+            if isinstance(p[5].duration, _duration.Duration):
+                duration = p[5].duration
+            else:
+                duration = _duration.Duration(*p[5].duration)
+            leaf = _score.Note(p[1], duration, tag=self.tag)
             leaf.note_head().set_is_forced(bool(p[2]))
             leaf.note_head().set_is_cautionary(bool(p[3]))
         else:

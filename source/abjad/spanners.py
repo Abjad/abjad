@@ -1804,7 +1804,7 @@ def tie(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
     direction: _enums.Vertical | None = None,
-    repeat: bool | tuple[int, int] | typing.Callable = False,
+    repeat: bool | _duration.Duration | typing.Callable = False,
     tag: _tag.Tag | None = None,
 ) -> None:
     r"""
@@ -1927,7 +1927,7 @@ def tie(
         Repeat tie threshold works like this:
 
         >>> voice = abjad.Voice("d'4. d'2 d'4. d'2", name="Voice")
-        >>> abjad.tie(voice[:], repeat=(4, 8))
+        >>> abjad.tie(voice[:], repeat=abjad.Duration(4, 8))
         >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -1969,7 +1969,7 @@ def tie(
                 d'8
             }
 
-        >>> abjad.tie(voice[:], repeat=(4, 8))
+        >>> abjad.tie(voice[:], repeat=abjad.Duration(4, 8))
         >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -2003,10 +2003,10 @@ def tie(
             return item >= 0
 
     else:
-        assert isinstance(repeat, tuple) and len(repeat) == 2, repr(repeat)
+        assert isinstance(repeat, _duration.Duration), repr(repeat)
 
         def inequality(item):
-            return item >= _duration.Duration(repeat)
+            return item >= repeat
 
     leaves: list[_score.Leaf] = _select.leaves(argument)
     if len(leaves) < 2:

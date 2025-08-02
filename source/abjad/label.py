@@ -1867,7 +1867,7 @@ def with_start_offsets(
             start_offset = timespan.start_offset
             if global_offset is not None:
                 start_offset += global_offset
-            string = start_offset.to_clock_string()
+            string = start_offset.clock_string()
         else:
             timespan = logical_tie.head()._get_timespan()
             start_offset = timespan.start_offset

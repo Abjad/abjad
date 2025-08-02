@@ -186,7 +186,7 @@ class ReducedLyParser(Parser):
     ### INITIALIZER ###
 
     def __init__(self, debug=False):
-        self._default_duration = _duration.Duration((1, 4))
+        self._default_duration = _duration.Duration(1, 4)
         self._toplevel_component_count = None
         Parser.__init__(self, debug=debug)
 
@@ -654,7 +654,7 @@ class ReducedLyParser(Parser):
 
     def _setup(self):
         self._toplevel_component_count = 0
-        self._default_duration = _duration.Duration((1, 4))
+        self._default_duration = _duration.Duration(1, 4)
 
     ### PUBLIC PROPERTIES ###
 
