@@ -181,20 +181,6 @@ def _partition_less_than_double(n, m):
     return tuple(result)
 
 
-# TODO: REMOVE (redundant with abjad.duration.durations())
-def make_durations(items: list) -> list[_duration.Duration]:
-    """
-    Changes list of arbitrary ``items`` to list of durations.
-
-    ..  container:: example
-
-        >>> abjad.makers.make_durations([(1, 8), (1, 2), (1, 16)])
-        [Duration(1, 8), Duration(1, 2), Duration(1, 16)]
-
-    """
-    return _duration.durations(items)
-
-
 def make_leaves(
     pitch_lists: list[list[_pitch.NamedPitch]],
     durations: list[_duration.Duration],
@@ -402,7 +388,7 @@ def make_leaves(
 
         >>> pitch_lists = abjad.makers.make_pitch_lists([[12, 14], []])
         >>> pairs = [(1, 16), (1, 16), (1, 8), (1, 8), (1, 8)]
-        >>> durations = abjad.makers.make_durations(pairs)
+        >>> durations = abjad.duration.durations(pairs)
         >>> leaves = abjad.makers.make_leaves(pitch_lists, durations)
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -670,7 +656,7 @@ def make_notes(
 
         >>> pitches = abjad.makers.make_pitches("c' d'")
         >>> pairs = [(1, 16), (1, 16), (1, 8), (1, 8), (1, 8)]
-        >>> durations = abjad.makers.make_durations(pairs)
+        >>> durations = abjad.duration.durations(pairs)
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> score = abjad.Score([staff], name="Score")
@@ -693,7 +679,7 @@ def make_notes(
         than the length of ``pitches``:
 
         >>> pitches = abjad.makers.make_pitches("c' d' e' f' g'")
-        >>> durations = abjad.makers.make_durations([(1, 16), (1, 8)])
+        >>> durations = abjad.duration.durations([(1, 16), (1, 8)])
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -716,7 +702,7 @@ def make_notes(
         Interprets nondyadic durations as (possibly incomplete) tuplets:
 
         >>> pitches = abjad.makers.make_pitches([0])
-        >>> durations = abjad.makers.make_durations([(1, 16), (1, 12), (1, 8)])
+        >>> durations = abjad.duration.durations([(1, 16), (1, 12), (1, 8)])
         >>> components = abjad.makers.make_notes(pitches, durations)
         >>> abjad.makers.tweak_tuplet_bracket_edge_height(components)
         >>> staff = abjad.Staff(components)
