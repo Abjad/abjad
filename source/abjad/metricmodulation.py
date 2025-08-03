@@ -195,7 +195,7 @@ class MetricModulation:
 
         With ties and tuplets:
 
-        >>> durations = abjad.makers.make_durations([(5, 16)])
+        >>> durations = abjad.duration.durations([(5, 16)])
         >>> pitches = abjad.makers.make_pitches([0])
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> tuplet = abjad.Tuplet("3:2", notes)
@@ -371,7 +371,7 @@ class MetricModulation:
             ...     left_rhythm=abjad.Tuplet("3:2", [abjad.Note("c'4")]),
             ...     right_rhythm=abjad.Note("c'4"),
             ... )
-            >>> durations = abjad.makers.make_durations([(5, 16)])
+            >>> durations = abjad.duration.durations([(5, 16)])
             >>> pitches = abjad.makers.make_pitches([0])
             >>> notes = abjad.makers.make_notes(pitches, durations)
             >>> metric_modulation_3 = abjad.MetricModulation(

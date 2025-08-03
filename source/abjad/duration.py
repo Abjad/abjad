@@ -14,20 +14,22 @@ from . import exceptions as _exceptions
 from . import math as _math
 
 
-def durations(items: list) -> list["Duration"]:
+def durations(items: list) -> list[Duration]:
     """
     Changes ``items`` to durations.
 
     ..  container:: example
 
-        >>> abjad.durations([(15, 8), (3, 8)])
-        [Duration(15, 8), Duration(3, 8)]
+        >>> abjad.duration.durations([(15, 8), (3, 8), abjad.TimeSignature((3, 4))])
+        [Duration(15, 8), Duration(3, 8), Duration(3, 4)]
 
     """
     durations = []
     for item in items:
         if isinstance(item, tuple):
             duration = Duration(*item)
+        elif callable(getattr(item, "duration", None)):
+            duration = item.duration()
         else:
             duration = Duration(item)
         durations.append(duration)
@@ -567,7 +569,7 @@ class Duration(fractions.Fraction):
         ..  container:: example
 
             >>> items = [abjad.Duration(2, 4), 3, (5, 16)]
-            >>> durations = abjad.makers.make_durations(items)
+            >>> durations = abjad.duration.durations(items)
             >>> result = abjad.Duration.durations_to_nonreduced_fractions(durations)
             >>> for x in result:
             ...     x
@@ -583,7 +585,7 @@ class Duration(fractions.Fraction):
         pairs = [with_denominator(_, lcd) for _ in durations]
         return pairs
 
-    def equal_or_greater_assignable(self) -> "Duration":
+    def equal_or_greater_assignable(self) -> Duration:
         r"""
         Gets assignable duration equal to or just greater than this duration.
 
@@ -621,7 +623,7 @@ class Duration(fractions.Fraction):
             candidate = type(self)(current_numerator, good_denominator)
         return candidate
 
-    def equal_or_greater_power_of_two(self) -> "Duration":
+    def equal_or_greater_power_of_two(self) -> Duration:
         r"""
         Gets duration equal or just greater power of two.
 
@@ -654,7 +656,7 @@ class Duration(fractions.Fraction):
         denominator_exponent = -int(math.ceil(math.log(self, 2)))
         return type(self)(1, 2) ** denominator_exponent
 
-    def equal_or_lesser_assignable(self) -> "Duration":
+    def equal_or_lesser_assignable(self) -> Duration:
         r"""
         Gets assignable duration equal or just less than this duration.
 
@@ -692,7 +694,7 @@ class Duration(fractions.Fraction):
             candidate = type(self)(current_numerator, good_denominator)
         return candidate
 
-    def equal_or_lesser_power_of_two(self) -> "Duration":
+    def equal_or_lesser_power_of_two(self) -> Duration:
         r"""
         Gets duration of the form ``d**2`` equal to or just less than this
         duration.
@@ -794,7 +796,7 @@ class Duration(fractions.Fraction):
         return max(count, 0)
 
     @staticmethod
-    def from_clock_string(clock_string) -> "Duration":
+    def from_clock_string(clock_string) -> Duration:
         """
         Initializes duration (in seconds) from clock string.
 
@@ -826,7 +828,7 @@ class Duration(fractions.Fraction):
     @staticmethod
     def from_lilypond_duration_string(
         lilypond_duration_string,
-    ) -> "Duration":
+    ) -> Duration:
         """
         Initializes duration from LilyPond duration string.
 
@@ -964,7 +966,7 @@ class Duration(fractions.Fraction):
         """
         return self.numerator, self.denominator
 
-    def reciprocal(self) -> "Duration":
+    def reciprocal(self) -> Duration:
         """
         Gets reciprocal.
 

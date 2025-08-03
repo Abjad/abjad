@@ -78,7 +78,7 @@ def test_makers_make_notes_01():
     """
 
     pitches = abjad.makers.make_pitches([0])
-    durations = abjad.makers.make_durations([(1, 16), (1, 8), (1, 8)])
+    durations = abjad.duration.durations([(1, 16), (1, 8), (1, 8)])
     tag = abjad.Tag("note_maker")
     notes = abjad.makers.make_notes(pitches, durations, tag=tag)
     staff = abjad.Staff(notes)
