@@ -80,7 +80,7 @@ def pair(argument: typing.Any) -> tuple[int, int]:
         >>> abjad.duration.pair(abjad.Duration(3, 6))
         (1, 2)
 
-        >>> abjad.duration.pair(abjad.Offset((3, 6)))
+        >>> abjad.duration.pair(abjad.Offset(3, 6))
         (1, 2)
 
         >>> abjad.duration.pair(abjad.TimeSignature((3, 6)))
@@ -988,44 +988,44 @@ class Offset(Duration):
         Initializes from integer numerator:
 
         >>> abjad.Offset(3)
-        Offset((3, 1))
+        Offset(3, 1)
 
         Initializes from integer numerator and denominator:
 
         >>> abjad.Offset(3, 16)
-        Offset((3, 16))
+        Offset(3, 16)
 
         Initializes from integer-equivalent numeric numerator:
 
         >>> abjad.Offset(3.0)
-        Offset((3, 1))
+        Offset(3, 1)
 
         Initializes from duration:
 
         >>> abjad.Offset(abjad.Duration(3, 16))
-        Offset((3, 16))
+        Offset(3, 16)
 
         Initializes from other offset:
 
         >>> abjad.Offset(abjad.Offset(3, 16))
-        Offset((3, 16))
+        Offset(3, 16)
 
         Initializes from other offset with displacement:
 
-        >>> offset = abjad.Offset((3, 16), displacement=(-1, 16))
+        >>> offset = abjad.Offset(3, 16, displacement=(-1, 16))
         >>> abjad.Offset(offset)
-        Offset((3, 16), displacement=Duration(-1, 16))
+        Offset(3, 16, displacement=Duration(-1, 16))
 
         Intializes from fraction:
 
         >>> import fractions
         >>> abjad.Offset(fractions.Fraction(3, 16))
-        Offset((3, 16))
+        Offset(3, 16)
 
         Initializes from solidus string:
 
         >>> abjad.Offset("3/16")
-        Offset((3, 16))
+        Offset(3, 16)
 
     ..  container:: example
 
@@ -1061,8 +1061,6 @@ class Offset(Duration):
                 displacement = Duration(*displacement)
             else:
                 displacement = Duration(displacement)
-        # TODO: remove following line
-        displacement = displacement or None
         if len(arguments) == 1 and isinstance(arguments[0], Duration):
             arguments = arguments[0].pair()
         elif len(arguments) == 1 and isinstance(arguments[0], tuple):
@@ -1081,14 +1079,14 @@ class Offset(Duration):
 
             Copies offset with displacement:
 
-            >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 16))
             >>> offset_2 = copy.copy(offset_1)
 
             >>> offset_1
-            Offset((1, 4), displacement=Duration(-1, 16))
+            Offset(1, 4, displacement=Duration(-1, 16))
 
             >>> offset_2
-            Offset((1, 4), displacement=Duration(-1, 16))
+            Offset(1, 4, displacement=Duration(-1, 16))
 
             >>> offset_1 == offset_2
             True
@@ -1109,14 +1107,14 @@ class Offset(Duration):
 
             Copies offset with displacement:
 
-            >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 16))
             >>> offset_2 = copy.deepcopy(offset_1)
 
             >>> offset_1
-            Offset((1, 4), displacement=Duration(-1, 16))
+            Offset(1, 4, displacement=Duration(-1, 16))
 
             >>> offset_2
-            Offset((1, 4), displacement=Duration(-1, 16))
+            Offset(1, 4, displacement=Duration(-1, 16))
 
             >>> offset_1 == offset_2
             True
@@ -1135,8 +1133,8 @@ class Offset(Duration):
 
             With equal numerators, denominators and displacement:
 
-            >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
-            >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
 
             >>> offset_1 == offset_1
             True
@@ -1152,8 +1150,8 @@ class Offset(Duration):
             With equal numerators and denominators but differing grace
             displacements:
 
-            >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 8))
-            >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 8))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
 
             >>> offset_1 == offset_1
             True
@@ -1169,8 +1167,8 @@ class Offset(Duration):
             With differing numerators and denominators. Ignores grace
             displacements:
 
-            >>> offset_1 = abjad.Offset((1, 4))
-            >>> offset_2 = abjad.Offset((1, 2), displacement=(-99))
+            >>> offset_1 = abjad.Offset(1, 4)
+            >>> offset_2 = abjad.Offset(1, 2, displacement=(-99))
 
             >>> offset_1 == offset_1
             True
@@ -1194,8 +1192,8 @@ class Offset(Duration):
 
             With equal numerators, denominators and displacement:
 
-            >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
-            >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
 
             >>> offset_1 >= offset_1
             True
@@ -1211,8 +1209,8 @@ class Offset(Duration):
             With equal numerators and denominators but differing grace
             displacements:
 
-            >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 8))
-            >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 8))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
 
             >>> offset_1 >= offset_1
             True
@@ -1228,8 +1226,8 @@ class Offset(Duration):
             With differing numerators and denominators. Ignores grace
             displacements:
 
-            >>> offset_1 = abjad.Offset((1, 4))
-            >>> offset_2 = abjad.Offset((1, 2), displacement=(-99))
+            >>> offset_1 = abjad.Offset(1, 4)
+            >>> offset_2 = abjad.Offset(1, 2, displacement=(-99))
 
             >>> offset_1 >= offset_1
             True
@@ -1253,8 +1251,8 @@ class Offset(Duration):
 
             With equal numerators, denominators and displacement:
 
-            >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
-            >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
 
             >>> offset_1 > offset_1
             False
@@ -1270,8 +1268,8 @@ class Offset(Duration):
             With equal numerators and denominators but differing grace
             displacements:
 
-            >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 8))
-            >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 8))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
 
             >>> offset_1 > offset_1
             False
@@ -1287,8 +1285,8 @@ class Offset(Duration):
             With differing numerators and denominators. Ignores grace
             displacements:
 
-            >>> offset_1 = abjad.Offset((1, 4))
-            >>> offset_2 = abjad.Offset((1, 2), displacement=(-99))
+            >>> offset_1 = abjad.Offset(1, 4)
+            >>> offset_2 = abjad.Offset(1, 2, displacement=(-99))
 
             >>> offset_1 > offset_1
             False
@@ -1319,8 +1317,8 @@ class Offset(Duration):
 
             With equal numerators, denominators and displacement:
 
-            >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
-            >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
 
             >>> offset_1 <= offset_1
             True
@@ -1336,8 +1334,8 @@ class Offset(Duration):
             With equal numerators and denominators but differing grace
             displacements:
 
-            >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 8))
-            >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 8))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
 
             >>> offset_1 <= offset_1
             True
@@ -1353,8 +1351,8 @@ class Offset(Duration):
             With differing numerators and denominators. Ignores grace
             displacements:
 
-            >>> offset_1 = abjad.Offset((1, 4))
-            >>> offset_2 = abjad.Offset((1, 2), displacement=(-99))
+            >>> offset_1 = abjad.Offset(1, 4)
+            >>> offset_2 = abjad.Offset(1, 2, displacement=(-99))
 
             >>> offset_1 <= offset_1
             True
@@ -1378,8 +1376,8 @@ class Offset(Duration):
 
         ..  container:: example
 
-            >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 16))
-            >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
 
             >>> offset_1 < offset_1
             False
@@ -1395,8 +1393,8 @@ class Offset(Duration):
             With equal numerators and denominators but differing nonzero grace
             displacements:
 
-            >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 8))
-            >>> offset_2 = abjad.Offset((1, 4), displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 8))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
 
             >>> offset_1 < offset_1
             False
@@ -1412,8 +1410,8 @@ class Offset(Duration):
             With equal numerators and denominators but differing zero-valued
             displacement:
 
-            >>> offset_1 = abjad.Offset((1, 4), displacement=(-1, 8))
-            >>> offset_2 = abjad.Offset((1, 4))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 8))
+            >>> offset_2 = abjad.Offset(1, 4)
 
             >>> offset_1 < offset_1
             False
@@ -1429,8 +1427,8 @@ class Offset(Duration):
             With differing numerators and denominators. Ignores grace
             displacements:
 
-            >>> offset_1 = abjad.Offset((1, 4))
-            >>> offset_2 = abjad.Offset((1, 2), displacement=(-99))
+            >>> offset_1 = abjad.Offset(1, 4)
+            >>> offset_2 = abjad.Offset(1, 2, displacement=(-99))
 
             >>> offset_1 < offset_1
             False
@@ -1453,16 +1451,17 @@ class Offset(Duration):
         ..  container:: example
 
             >>> abjad.Offset(1, 4)
-            Offset((1, 4))
+            Offset(1, 4)
 
             >>> abjad.Offset(1, 4, displacement=(-1, 16))
-            Offset((1, 4), displacement=Duration(-1, 16))
+            Offset(1, 4, displacement=Duration(-1, 16))
 
         """
+        n, d = self.numerator, self.denominator
         if self.displacement() is None:
-            return f"{type(self).__name__}({self.pair()})"
+            return f"{type(self).__name__}({n}, {d})"
         else:
-            string = f"{self.pair()}, displacement={self.displacement()!r}"
+            string = f"{n}, {d}, displacement={self.displacement()!r}"
             return f"{type(self).__name__}({string})"
 
     def __sub__(self, argument):
@@ -1479,7 +1478,7 @@ class Offset(Duration):
             Duration taken from offset returns another offset:
 
             >>> abjad.Offset(2) - abjad.Duration(1, 2)
-            Offset((3, 2))
+            Offset(3, 2)
 
         ..  container::
 
@@ -1510,30 +1509,11 @@ class Offset(Duration):
 
         ..  container:: example
 
-            Gets displacement equal to none:
-
-            >>> offset = abjad.Offset(1, 4)
-            >>> offset.displacement() is None
+            >>> abjad.Offset(1, 4).displacement() is None
             True
 
-        ..  container:: example
-
-            Gets displacement equal to a negative sixteenth:
-
-            >>> offset = abjad.Offset(1, 4, displacement=(-1, 16))
-            >>> offset.displacement()
+            >>> abjad.Offset(1, 4, displacement=(-1, 16)).displacement()
             Duration(-1, 16)
-
-        ..  container:: example
-
-            Stores zero-valued displacement as none:
-
-            >>> offset = abjad.Offset(1, 4, displacement=0)
-            >>> offset.displacement() is None
-            True
-
-            >>> offset
-            Offset((1, 4))
 
         """
         return self._displacement

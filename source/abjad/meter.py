@@ -505,22 +505,22 @@ class Meter:
             ...     for offset in offsets:
             ...         print(f"    {offset!r}")
             0:
-                Offset((0, 1))
-                Offset((7, 4))
+                Offset(0, 1)
+                Offset(7, 4)
             1:
-                Offset((0, 1))
-                Offset((3, 4))
-                Offset((5, 4))
-                Offset((7, 4))
+                Offset(0, 1)
+                Offset(3, 4)
+                Offset(5, 4)
+                Offset(7, 4)
             2:
-                Offset((0, 1))
-                Offset((1, 4))
-                Offset((1, 2))
-                Offset((3, 4))
-                Offset((1, 1))
-                Offset((5, 4))
-                Offset((3, 2))
-                Offset((7, 4))
+                Offset(0, 1)
+                Offset(1, 4)
+                Offset(1, 2)
+                Offset(3, 4)
+                Offset(1, 1)
+                Offset(5, 4)
+                Offset(3, 2)
+                Offset(7, 4)
 
         """
         inventory = []
@@ -852,15 +852,15 @@ class Meter:
             >>> for offset, weight in sorted(kernel.kernel().items()):
             ...     print(f"{offset!r}\t{weight!r}")
             ...
-            Offset((0, 1))	Fraction(3, 16)
-            Offset((1, 8))	Fraction(1, 16)
-            Offset((1, 4))	Fraction(1, 8)
-            Offset((3, 8))	Fraction(1, 16)
-            Offset((1, 2))	Fraction(1, 8)
-            Offset((5, 8))	Fraction(1, 16)
-            Offset((3, 4))	Fraction(1, 8)
-            Offset((7, 8))	Fraction(1, 16)
-            Offset((1, 1))	Fraction(3, 16)
+            Offset(0, 1)	Fraction(3, 16)
+            Offset(1, 8)	Fraction(1, 16)
+            Offset(1, 4)	Fraction(1, 8)
+            Offset(3, 8)	Fraction(1, 16)
+            Offset(1, 2)	Fraction(1, 8)
+            Offset(5, 8)	Fraction(1, 16)
+            Offset(3, 4)	Fraction(1, 8)
+            Offset(7, 8)	Fraction(1, 16)
+            Offset(1, 1)	Fraction(3, 16)
 
         """
         assert _math.is_positive_integer_power_of_two(denominator // self.denominator())
@@ -2635,14 +2635,14 @@ class MetricAccentKernel:
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
         >>> for offset, weight in kernel.kernel().items():
         ...     print(f"{offset!r}: {weight!r}")
-        Offset((0, 1)): Fraction(3, 14)
-        Offset((7, 8)): Fraction(3, 14)
-        Offset((3, 8)): Fraction(1, 7)
-        Offset((5, 8)): Fraction(1, 7)
-        Offset((1, 8)): Fraction(1, 14)
-        Offset((1, 4)): Fraction(1, 14)
-        Offset((1, 2)): Fraction(1, 14)
-        Offset((3, 4)): Fraction(1, 14)
+        Offset(0, 1): Fraction(3, 14)
+        Offset(7, 8): Fraction(3, 14)
+        Offset(3, 8): Fraction(1, 7)
+        Offset(5, 8): Fraction(1, 7)
+        Offset(1, 8): Fraction(1, 14)
+        Offset(1, 4): Fraction(1, 14)
+        Offset(1, 2): Fraction(1, 14)
+        Offset(3, 4): Fraction(1, 14)
 
     ..  container:: example
 

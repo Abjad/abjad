@@ -34,13 +34,13 @@ class OffsetCounter:
         >>> timespans = timespans - timespan_operand
         >>> offset_counter = abjad.OffsetCounter(timespans)
         >>> for item in offset_counter.items.items(): item
-        (Offset((-2, 1)), 1)
-        (Offset((0, 1)), 1)
-        (Offset((5, 1)), 1)
-        (Offset((6, 1)), 3)
-        (Offset((10, 1)), 2)
-        (Offset((12, 1)), 1)
-        (Offset((16, 1)), 1)
+        (Offset(-2, 1), 1)
+        (Offset(0, 1), 1)
+        (Offset(5, 1), 1)
+        (Offset(6, 1), 3)
+        (Offset(10, 1), 2)
+        (Offset(12, 1), 1)
+        (Offset(16, 1), 1)
 
         >>> abjad.show(offset_counter, scale=0.5) # doctest: +SKIP
 
@@ -231,7 +231,7 @@ class Timespan:
         >>> left, right = annotated_timespan.split_at_offset((1, 2))
         >>> left.annotation.append("foo")
         >>> right
-        Timespan(Offset((1, 2)), Offset((7, 8)), annotation=['a', 'b', 'c', 'foo', 'foo'])
+        Timespan(Offset(1, 2), Offset(7, 8), annotation=['a', 'b', 'c', 'foo', 'foo'])
 
     Timespans are closed-open intervals.
     """
@@ -269,10 +269,10 @@ class Timespan:
             >>> timespan_4 = abjad.Timespan(10, 20)
 
             >>> timespan_1 & timespan_2
-            TimespanList([Timespan(Offset((5, 1)), Offset((10, 1)))])
+            TimespanList([Timespan(Offset(5, 1), Offset(10, 1))])
 
             >>> timespan_1 & timespan_3
-            TimespanList([Timespan(Offset((0, 1)), Offset((2, 1)))])
+            TimespanList([Timespan(Offset(0, 1), Offset(2, 1))])
 
             >>> timespan_1 & timespan_4
             TimespanList([])
@@ -281,7 +281,7 @@ class Timespan:
             TimespanList([])
 
             >>> timespan_2 & timespan_4
-            TimespanList([Timespan(Offset((10, 1)), Offset((12, 1)))])
+            TimespanList([Timespan(Offset(10, 1), Offset(12, 1))])
 
             >>> timespan_3 & timespan_4
             TimespanList([])
@@ -529,29 +529,29 @@ class Timespan:
 
             >>> timespans = timespan_1 | timespan_2
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((12, 1)))
+            Timespan(Offset(0, 1), Offset(12, 1))
 
             >>> timespans = timespan_1 | timespan_3
             >>> for _ in timespans: _
-            Timespan(Offset((-2, 1)), Offset((10, 1)))
+            Timespan(Offset(-2, 1), Offset(10, 1))
 
             >>> timespans = timespan_1 | timespan_4
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((20, 1)))
+            Timespan(Offset(0, 1), Offset(20, 1))
 
             >>> timespans = timespan_2 | timespan_3
             >>> for _ in timespans: _
-            Timespan(Offset((-2, 1)), Offset((2, 1)))
-            Timespan(Offset((5, 1)), Offset((12, 1)))
+            Timespan(Offset(-2, 1), Offset(2, 1))
+            Timespan(Offset(5, 1), Offset(12, 1))
 
             >>> timespans = timespan_2 | timespan_4
             >>> for _ in timespans: _
-            Timespan(Offset((5, 1)), Offset((20, 1)))
+            Timespan(Offset(5, 1), Offset(20, 1))
 
             >>> timespans = timespan_3 | timespan_4
             >>> for _ in timespans: _
-            Timespan(Offset((-2, 1)), Offset((2, 1)))
-            Timespan(Offset((10, 1)), Offset((20, 1)))
+            Timespan(Offset(-2, 1), Offset(2, 1))
+            Timespan(Offset(10, 1), Offset(20, 1))
 
         """
         argument = self._get_timespan(argument)
@@ -594,49 +594,49 @@ class Timespan:
             TimespanList([])
 
             >>> timespan_1 - timespan_2
-            TimespanList([Timespan(Offset((0, 1)), Offset((5, 1)))])
+            TimespanList([Timespan(Offset(0, 1), Offset(5, 1))])
 
             >>> timespan_1 - timespan_3
-            TimespanList([Timespan(Offset((2, 1)), Offset((10, 1)))])
+            TimespanList([Timespan(Offset(2, 1), Offset(10, 1))])
 
             >>> timespan_1 - timespan_4
-            TimespanList([Timespan(Offset((0, 1)), Offset((10, 1)))])
+            TimespanList([Timespan(Offset(0, 1), Offset(10, 1))])
 
             >>> timespan_2 - timespan_1
-            TimespanList([Timespan(Offset((10, 1)), Offset((12, 1)))])
+            TimespanList([Timespan(Offset(10, 1), Offset(12, 1))])
 
             >>> timespan_2 - timespan_2
             TimespanList([])
 
             >>> timespan_2 - timespan_3
-            TimespanList([Timespan(Offset((5, 1)), Offset((12, 1)))])
+            TimespanList([Timespan(Offset(5, 1), Offset(12, 1))])
 
             >>> timespan_2 - timespan_4
-            TimespanList([Timespan(Offset((5, 1)), Offset((10, 1)))])
+            TimespanList([Timespan(Offset(5, 1), Offset(10, 1))])
 
             >>> timespan_3 - timespan_3
             TimespanList([])
 
             >>> timespan_3 - timespan_1
-            TimespanList([Timespan(Offset((-2, 1)), Offset((0, 1)))])
+            TimespanList([Timespan(Offset(-2, 1), Offset(0, 1))])
 
             >>> timespan_3 - timespan_2
-            TimespanList([Timespan(Offset((-2, 1)), Offset((2, 1)))])
+            TimespanList([Timespan(Offset(-2, 1), Offset(2, 1))])
 
             >>> timespan_3 - timespan_4
-            TimespanList([Timespan(Offset((-2, 1)), Offset((2, 1)))])
+            TimespanList([Timespan(Offset(-2, 1), Offset(2, 1))])
 
             >>> timespan_4 - timespan_4
             TimespanList([])
 
             >>> timespan_4 - timespan_1
-            TimespanList([Timespan(Offset((10, 1)), Offset((20, 1)))])
+            TimespanList([Timespan(Offset(10, 1), Offset(20, 1))])
 
             >>> timespan_4 - timespan_2
-            TimespanList([Timespan(Offset((12, 1)), Offset((20, 1)))])
+            TimespanList([Timespan(Offset(12, 1), Offset(20, 1))])
 
             >>> timespan_4 - timespan_3
-            TimespanList([Timespan(Offset((10, 1)), Offset((20, 1)))])
+            TimespanList([Timespan(Offset(10, 1), Offset(20, 1))])
 
         Returns timespan list.
         """
@@ -733,33 +733,33 @@ class Timespan:
 
             >>> timespans = timespan_1 ^ timespan_2
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((5, 1)))
-            Timespan(Offset((10, 1)), Offset((12, 1)))
+            Timespan(Offset(0, 1), Offset(5, 1))
+            Timespan(Offset(10, 1), Offset(12, 1))
 
             >>> timespans = timespan_1 ^ timespan_3
             >>> for _ in timespans: _
-            Timespan(Offset((-2, 1)), Offset((0, 1)))
-            Timespan(Offset((2, 1)), Offset((10, 1)))
+            Timespan(Offset(-2, 1), Offset(0, 1))
+            Timespan(Offset(2, 1), Offset(10, 1))
 
             >>> timespans = timespan_1 ^ timespan_4
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((10, 1)))
-            Timespan(Offset((10, 1)), Offset((20, 1)))
+            Timespan(Offset(0, 1), Offset(10, 1))
+            Timespan(Offset(10, 1), Offset(20, 1))
 
             >>> timespans = timespan_2 ^ timespan_3
             >>> for _ in timespans: _
-            Timespan(Offset((-2, 1)), Offset((2, 1)))
-            Timespan(Offset((5, 1)), Offset((12, 1)))
+            Timespan(Offset(-2, 1), Offset(2, 1))
+            Timespan(Offset(5, 1), Offset(12, 1))
 
             >>> timespans = timespan_2 ^ timespan_4
             >>> for _ in timespans: _
-            Timespan(Offset((5, 1)), Offset((10, 1)))
-            Timespan(Offset((12, 1)), Offset((20, 1)))
+            Timespan(Offset(5, 1), Offset(10, 1))
+            Timespan(Offset(12, 1), Offset(20, 1))
 
             >>> timespans = timespan_3 ^ timespan_4
             >>> for _ in timespans: _
-            Timespan(Offset((-2, 1)), Offset((2, 1)))
-            Timespan(Offset((10, 1)), Offset((20, 1)))
+            Timespan(Offset(-2, 1), Offset(2, 1))
+            Timespan(Offset(10, 1), Offset(20, 1))
 
         """
         argument = self._get_timespan(argument)
@@ -888,7 +888,7 @@ class Timespan:
         ..  container:: example
 
             >>> abjad.Timespan(0, 10).axis()
-            Offset((5, 1))
+            Offset(5, 1)
 
         """
         return (self.start_offset + self.stop_offset) / 2
@@ -912,7 +912,7 @@ class Timespan:
         ..  container:: example
 
             >>> abjad.Timespan(0, 10).offsets()
-            (Offset((0, 1)), Offset((10, 1)))
+            (Offset(0, 1), Offset(10, 1))
 
         """
         return self.start_offset, self.stop_offset
@@ -932,9 +932,9 @@ class Timespan:
             >>> for x in timespan.divide_by_proportion((1, 2, 1)):
             ...     x
             ...
-            Timespan(Offset((1, 2)), Offset((3, 4)))
-            Timespan(Offset((3, 4)), Offset((5, 4)))
-            Timespan(Offset((5, 4)), Offset((3, 2)))
+            Timespan(Offset(1, 2), Offset(3, 4))
+            Timespan(Offset(3, 4), Offset(5, 4))
+            Timespan(Offset(5, 4), Offset(3, 2))
 
         """
         assert isinstance(proportion, tuple), repr(proportion)
@@ -1016,14 +1016,14 @@ class Timespan:
             Reverse timespan about timespan axis:
 
             >>> abjad.Timespan(3, 6).reflect()
-            Timespan(Offset((3, 1)), Offset((6, 1)))
+            Timespan(Offset(3, 1), Offset(6, 1))
 
         ..  container:: example
 
             Reverse timespan about arbitrary axis:
 
             >>> abjad.Timespan(3, 6).reflect(axis=abjad.Offset(10))
-            Timespan(Offset((14, 1)), Offset((17, 1)))
+            Timespan(Offset(14, 1), Offset(17, 1))
 
         """
         if axis is None:
@@ -1045,18 +1045,18 @@ class Timespan:
             >>> timespan = abjad.Timespan((1, 5), (4, 5))
 
             >>> timespan.round_offsets(1)
-            Timespan(Offset((0, 1)), Offset((1, 1)))
+            Timespan(Offset(0, 1), Offset(1, 1))
 
             >>> timespan.round_offsets(2)
-            Timespan(Offset((0, 1)), Offset((2, 1)))
+            Timespan(Offset(0, 1), Offset(2, 1))
 
             >>> timespan.round_offsets(2, anchor=abjad.RIGHT)
-            Timespan(Offset((-2, 1)), Offset((0, 1)))
+            Timespan(Offset(-2, 1), Offset(0, 1))
 
             >>> timespan.round_offsets(
             ...     2, anchor=abjad.RIGHT, must_be_wellformed=False
             ... )
-            Timespan(Offset((0, 1)), Offset((0, 1)))
+            Timespan(Offset(0, 1), Offset(0, 1))
 
         """
         multiplier = abs(fractions.Fraction(multiplier))
@@ -1090,14 +1090,14 @@ class Timespan:
             Scale timespan relative to timespan start offset:
 
             >>> timespan.scale(abjad.Fraction(2))
-            Timespan(Offset((3, 1)), Offset((9, 1)))
+            Timespan(Offset(3, 1), Offset(9, 1))
 
         ..  container:: example
 
             Scale timespan relative to timespan stop offset:
 
             >>> timespan.scale(abjad.Fraction(2), anchor=abjad.RIGHT)
-            Timespan(Offset((0, 1)), Offset((6, 1)))
+            Timespan(Offset(0, 1), Offset(6, 1))
 
         """
         multiplier = fractions.Fraction(multiplier)
@@ -1124,7 +1124,7 @@ class Timespan:
 
             >>> timespan = abjad.Timespan((1, 2), (3, 2))
             >>> timespan.set_duration(abjad.Duration(3, 5))
-            Timespan(Offset((1, 2)), Offset((11, 10)))
+            Timespan(Offset(1, 2), Offset(11, 10))
 
         """
         assert isinstance(duration, _duration.Duration), repr(duration)
@@ -1141,21 +1141,21 @@ class Timespan:
             >>> timespan = abjad.Timespan((1, 2), (3, 2))
 
             >>> timespan.set_offsets(stop_offset=(7, 8))
-            Timespan(Offset((1, 2)), Offset((7, 8)))
+            Timespan(Offset(1, 2), Offset(7, 8))
 
         ..  container:: example
 
             Subtracts negative ``start_offset`` from existing stop offset:
 
             >>> timespan.set_offsets(start_offset=(-1, 2))
-            Timespan(Offset((1, 1)), Offset((3, 2)))
+            Timespan(Offset(1, 1), Offset(3, 2))
 
         ..  container:: example
 
             Subtracts negative ``stop_offset`` from existing stop offset:
 
             >>> timespan.set_offsets(stop_offset=(-1, 2))
-            Timespan(Offset((1, 2)), Offset((1, 1)))
+            Timespan(Offset(1, 2), Offset(1, 1))
 
         """
         if start_offset is not None:
@@ -1190,15 +1190,15 @@ class Timespan:
             >>> left, right = timespan.split_at_offset((2, 1))
 
             >>> left
-            Timespan(Offset((0, 1)), Offset((2, 1)))
+            Timespan(Offset(0, 1), Offset(2, 1))
 
             >>> right
-            Timespan(Offset((2, 1)), Offset((5, 1)))
+            Timespan(Offset(2, 1), Offset(5, 1))
 
             Otherwise return a copy of timespan:
 
             >>> timespan.split_at_offset((12, 1))[0]
-            Timespan(Offset((0, 1)), Offset((5, 1)))
+            Timespan(Offset(0, 1), Offset(5, 1))
 
         """
         offset = _duration.Offset(offset)
@@ -1226,16 +1226,16 @@ class Timespan:
 
             >>> timespans = timespan.split_at_offsets((1, 3, 7))
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((1, 1)))
-            Timespan(Offset((1, 1)), Offset((3, 1)))
-            Timespan(Offset((3, 1)), Offset((7, 1)))
-            Timespan(Offset((7, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(1, 1))
+            Timespan(Offset(1, 1), Offset(3, 1))
+            Timespan(Offset(3, 1), Offset(7, 1))
+            Timespan(Offset(7, 1), Offset(10, 1))
 
             Otherwise return a timespan list containing a copy of timespan:
 
             >>> timespans = timespan.split_at_offsets((-100,))
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(10, 1))
 
         """
         offsets = [_duration.Offset(offset) for offset in offsets]
@@ -1262,35 +1262,35 @@ class Timespan:
             Stretch relative to timespan start offset:
 
             >>> abjad.Timespan(3, 10).stretch(abjad.Fraction(2))
-            Timespan(Offset((3, 1)), Offset((17, 1)))
+            Timespan(Offset(3, 1), Offset(17, 1))
 
         .. container:: example
 
             Stretch relative to timespan stop offset:
 
             >>> abjad.Timespan(3, 10).stretch(abjad.Fraction(2), abjad.Offset(10))
-            Timespan(Offset((-4, 1)), Offset((10, 1)))
+            Timespan(Offset(-4, 1), Offset(10, 1))
 
         .. container:: example
 
             Stretch relative to offset prior to timespan:
 
             >>> abjad.Timespan(3, 10).stretch(abjad.Fraction(2), abjad.Offset(0, 1))
-            Timespan(Offset((6, 1)), Offset((20, 1)))
+            Timespan(Offset(6, 1), Offset(20, 1))
 
         .. container:: example
 
             Stretch relative to offset after timespan:
 
             >>> abjad.Timespan(3, 10).stretch(abjad.Fraction(3), abjad.Offset(12))
-            Timespan(Offset((-15, 1)), Offset((6, 1)))
+            Timespan(Offset(-15, 1), Offset(6, 1))
 
         .. container:: example
 
             Stretch relative to offset that happens during timespan:
 
             >>> abjad.Timespan(3, 10).stretch(abjad.Fraction(2), abjad.Offset(4))
-            Timespan(Offset((2, 1)), Offset((16, 1)))
+            Timespan(Offset(2, 1), Offset(16, 1))
 
         """
         multiplier = fractions.Fraction(multiplier)
@@ -1315,7 +1315,7 @@ class Timespan:
             >>> timespan = abjad.Timespan(5, 10)
             >>> duration = abjad.Duration(2)
             >>> timespan.translate(duration)
-            Timespan(Offset((7, 1)), Offset((12, 1)))
+            Timespan(Offset(7, 1), Offset(12, 1))
 
         """
         assert isinstance(duration, _duration.Duration), repr(duration)
@@ -1336,7 +1336,7 @@ class Timespan:
 
             >>> duration = abjad.Duration(-1, 8)
             >>> timespan.translate_offsets(start_offset_translation=duration)
-            Timespan(Offset((3, 8)), Offset((3, 2)))
+            Timespan(Offset(3, 8), Offset(3, 2))
 
         """
         assert isinstance(start_offset_translation, _duration.Duration), repr(
@@ -1371,9 +1371,9 @@ class TimespanList(list):
         >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
         >>> for _ in timespans: _
-        Timespan(Offset((0, 1)), Offset((3, 1)))
-        Timespan(Offset((3, 1)), Offset((6, 1)))
-        Timespan(Offset((6, 1)), Offset((10, 1)))
+        Timespan(Offset(0, 1), Offset(3, 1))
+        Timespan(Offset(3, 1), Offset(6, 1))
+        Timespan(Offset(6, 1), Offset(10, 1))
 
     ..  container:: example
 
@@ -1389,11 +1389,11 @@ class TimespanList(list):
         >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
         >>> for _ in timespans: _
-        Timespan(Offset((0, 1)), Offset((16, 1)))
-        Timespan(Offset((5, 1)), Offset((12, 1)))
-        Timespan(Offset((-2, 1)), Offset((8, 1)))
-        Timespan(Offset((15, 1)), Offset((20, 1)))
-        Timespan(Offset((24, 1)), Offset((30, 1)))
+        Timespan(Offset(0, 1), Offset(16, 1))
+        Timespan(Offset(5, 1), Offset(12, 1))
+        Timespan(Offset(-2, 1), Offset(8, 1))
+        Timespan(Offset(15, 1), Offset(20, 1))
+        Timespan(Offset(24, 1), Offset(30, 1))
 
     ..  container:: example
 
@@ -1413,9 +1413,9 @@ class TimespanList(list):
         ... ])
 
         >>> for _ in timespans: _
-        Timespan(Offset((0, 1)), Offset((1, 2)))
-        Timespan(Offset((1, 2)), Offset((3, 4)))
-        Timespan(Offset((3, 4)), Offset((1, 1)))
+        Timespan(Offset(0, 1), Offset(1, 2))
+        Timespan(Offset(1, 2), Offset(3, 4))
+        Timespan(Offset(3, 4), Offset(1, 1))
 
 
     Operations on timespan currently work in place.
@@ -1477,9 +1477,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((5, 1)), Offset((8, 1)))
-            Timespan(Offset((5, 1)), Offset((10, 1)))
-            Timespan(Offset((5, 1)), Offset((10, 1)))
+            Timespan(Offset(5, 1), Offset(8, 1))
+            Timespan(Offset(5, 1), Offset(10, 1))
+            Timespan(Offset(5, 1), Offset(10, 1))
 
         """
         new_timespans: list[Timespan] = []
@@ -1838,8 +1838,8 @@ class TimespanList(list):
             >>> abjad.show(~timespans, range_=(-2, 30), scale=0.5) # doctest: +SKIP
 
             >>> for _ in ~timespans: _
-            Timespan(Offset((8, 1)), Offset((15, 1)))
-            Timespan(Offset((20, 1)), Offset((24, 1)))
+            Timespan(Offset(8, 1), Offset(15, 1))
+            Timespan(Offset(20, 1), Offset(24, 1))
 
         ..  container:: example
 
@@ -1881,10 +1881,10 @@ class TimespanList(list):
             >>> timespans = timespans - timespan
 
             >>> for _ in timespans: _
-            Timespan(Offset((-2, 1)), Offset((5, 1)))
-            Timespan(Offset((0, 1)), Offset((5, 1)))
-            Timespan(Offset((10, 1)), Offset((12, 1)))
-            Timespan(Offset((10, 1)), Offset((16, 1)))
+            Timespan(Offset(-2, 1), Offset(5, 1))
+            Timespan(Offset(0, 1), Offset(5, 1))
+            Timespan(Offset(10, 1), Offset(12, 1))
+            Timespan(Offset(10, 1), Offset(16, 1))
 
 
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
@@ -2092,7 +2092,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.axis()
-            Offset((5, 1))
+            Offset(5, 1)
 
         ..  container:: example
 
@@ -2108,7 +2108,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.axis()
-            Offset((14, 1))
+            Offset(14, 1)
 
         ..  container:: example
 
@@ -2235,7 +2235,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.start_offset()
-            Offset((0, 1))
+            Offset(0, 1)
 
         ..  container:: example
 
@@ -2251,7 +2251,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.start_offset()
-            Offset((-2, 1))
+            Offset(-2, 1)
 
         ..  container:: example
 
@@ -2284,7 +2284,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.stop_offset()
-            Offset((10, 1))
+            Offset(10, 1)
 
         ..  container:: example
 
@@ -2300,7 +2300,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.stop_offset()
-            Offset((30, 1))
+            Offset(30, 1)
 
         ..  container:: example
 
@@ -2334,7 +2334,7 @@ class TimespanList(list):
             >>> abjad.show(timespans.timespan(), range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> timespans.timespan()
-            Timespan(Offset((0, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(10, 1))
 
         ..  container:: example
 
@@ -2352,7 +2352,7 @@ class TimespanList(list):
             >>> abjad.show(timespans.timespan(), range_=(0, 30), scale=0.5) # doctest: +SKIP
 
             >>> timespans.timespan()
-            Timespan(Offset((-2, 1)), Offset((30, 1)))
+            Timespan(Offset(-2, 1), Offset(30, 1))
 
         ..  container:: example
 
@@ -2387,8 +2387,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((5, 1)))
-            Timespan(Offset((0, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(5, 1))
+            Timespan(Offset(0, 1), Offset(10, 1))
 
         ..  container:: example
 
@@ -2404,8 +2404,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((1, 1)))
-            Timespan(Offset((0, 1)), Offset((5, 1)))
+            Timespan(Offset(0, 1), Offset(1, 1))
+            Timespan(Offset(0, 1), Offset(5, 1))
 
         ..  container:: example
 
@@ -2424,8 +2424,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((3, 1)))
-            Timespan(Offset((0, 1)), Offset((7, 1)))
+            Timespan(Offset(0, 1), Offset(3, 1))
+            Timespan(Offset(0, 1), Offset(7, 1))
 
         ..  container:: example
 
@@ -2445,8 +2445,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(-2, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((-2, 1)), Offset((1, 1)))
-            Timespan(Offset((3, 1)), Offset((10, 1)))
+            Timespan(Offset(-2, 1), Offset(1, 1))
+            Timespan(Offset(3, 1), Offset(10, 1))
 
 
         """
@@ -2505,7 +2505,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(10, 1))
 
         ..  container:: example
 
@@ -2521,7 +2521,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((5, 1)), Offset((10, 1)))
+            Timespan(Offset(5, 1), Offset(10, 1))
 
         ..  container:: example
 
@@ -2538,7 +2538,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((5, 1)), Offset((8, 1)))
+            Timespan(Offset(5, 1), Offset(8, 1))
 
         """
         if 1 < len(self):
@@ -2578,7 +2578,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(10, 1))
 
         ..  container:: example
 
@@ -2592,7 +2592,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((12, 1)))
+            Timespan(Offset(0, 1), Offset(12, 1))
 
         ..  container:: example
 
@@ -2607,7 +2607,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((-2, 1)), Offset((12, 1)))
+            Timespan(Offset(-2, 1), Offset(12, 1))
 
         ..  container:: example
 
@@ -2621,8 +2621,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(-2, 20), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((-2, 1)), Offset((2, 1)))
-            Timespan(Offset((10, 1)), Offset((20, 1)))
+            Timespan(Offset(-2, 1), Offset(2, 1))
+            Timespan(Offset(10, 1), Offset(20, 1))
 
         """
         timespans: list[Timespan] = []
@@ -2662,7 +2662,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(10, 1))
 
         ..  container:: example
 
@@ -2676,8 +2676,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((5, 1)))
-            Timespan(Offset((10, 1)), Offset((12, 1)))
+            Timespan(Offset(0, 1), Offset(5, 1))
+            Timespan(Offset(10, 1), Offset(12, 1))
 
         ..  container:: example
 
@@ -2692,9 +2692,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((-2, 1)), Offset((0, 1)))
-            Timespan(Offset((2, 1)), Offset((5, 1)))
-            Timespan(Offset((10, 1)), Offset((12, 1)))
+            Timespan(Offset(-2, 1), Offset(0, 1))
+            Timespan(Offset(2, 1), Offset(5, 1))
+            Timespan(Offset(10, 1), Offset(12, 1))
 
         ..  container:: example
 
@@ -2708,8 +2708,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(-2, 20), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((-2, 1)), Offset((2, 1)))
-            Timespan(Offset((10, 1)), Offset((20, 1)))
+            Timespan(Offset(-2, 1), Offset(2, 1))
+            Timespan(Offset(10, 1), Offset(20, 1))
 
         ..  container:: example
 
@@ -2724,8 +2724,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((2, 1)))
-            Timespan(Offset((8, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(2, 1))
+            Timespan(Offset(8, 1), Offset(10, 1))
 
         ..  container:: example
 
@@ -2870,12 +2870,12 @@ class TimespanList(list):
             >>> for timespan, overlap_factor in mapping.items():
             ...     timespan.start_offset, timespan.stop_offset, overlap_factor
             ...
-            (Offset((0, 1)), Offset((5, 1)), Fraction(1, 1))
-            (Offset((5, 1)), Offset((10, 1)), Fraction(2, 1))
-            (Offset((10, 1)), Offset((15, 1)), Fraction(1, 1))
-            (Offset((15, 1)), Offset((20, 1)), Fraction(0, 1))
-            (Offset((20, 1)), Offset((25, 1)), Fraction(2, 1))
-            (Offset((25, 1)), Offset((30, 1)), Fraction(1, 1))
+            (Offset(0, 1), Offset(5, 1), Fraction(1, 1))
+            (Offset(5, 1), Offset(10, 1), Fraction(2, 1))
+            (Offset(10, 1), Offset(15, 1), Fraction(1, 1))
+            (Offset(15, 1), Offset(20, 1), Fraction(0, 1))
+            (Offset(20, 1), Offset(25, 1), Fraction(2, 1))
+            (Offset(25, 1), Offset(30, 1), Fraction(1, 1))
 
         """
         mapping: dict = dict()
@@ -2902,9 +2902,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((3, 1)))
-            Timespan(Offset((3, 1)), Offset((6, 1)))
-            Timespan(Offset((6, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(3, 1))
+            Timespan(Offset(3, 1), Offset(6, 1))
+            Timespan(Offset(6, 1), Offset(10, 1))
 
             >>> offset_counter = timespans.count_offsets()
             >>> abjad.show(offset_counter, range_=(0, 10), scale=0.5) # doctest: +SKIP
@@ -2913,10 +2913,10 @@ class TimespanList(list):
             ...     timespans.count_offsets().items.items()):
             ...     offset, count
             ...
-            (Offset((0, 1)), 1)
-            (Offset((3, 1)), 2)
-            (Offset((6, 1)), 2)
-            (Offset((10, 1)), 1)
+            (Offset(0, 1), 1)
+            (Offset(3, 1), 2)
+            (Offset(6, 1), 2)
+            (Offset(10, 1), 1)
 
         ..  container:: example
 
@@ -2932,11 +2932,11 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((16, 1)))
-            Timespan(Offset((5, 1)), Offset((12, 1)))
-            Timespan(Offset((-2, 1)), Offset((8, 1)))
-            Timespan(Offset((15, 1)), Offset((20, 1)))
-            Timespan(Offset((24, 1)), Offset((30, 1)))
+            Timespan(Offset(0, 1), Offset(16, 1))
+            Timespan(Offset(5, 1), Offset(12, 1))
+            Timespan(Offset(-2, 1), Offset(8, 1))
+            Timespan(Offset(15, 1), Offset(20, 1))
+            Timespan(Offset(24, 1), Offset(30, 1))
 
             >>> offset_counter = timespans.count_offsets()
             >>> abjad.show(offset_counter, range_=(0, 30), scale=0.5) # doctest: +SKIP
@@ -2945,16 +2945,16 @@ class TimespanList(list):
             ...     timespans.count_offsets().items.items()):
             ...     offset, count
             ...
-            (Offset((-2, 1)), 1)
-            (Offset((0, 1)), 1)
-            (Offset((5, 1)), 1)
-            (Offset((8, 1)), 1)
-            (Offset((12, 1)), 1)
-            (Offset((15, 1)), 1)
-            (Offset((16, 1)), 1)
-            (Offset((20, 1)), 1)
-            (Offset((24, 1)), 1)
-            (Offset((30, 1)), 1)
+            (Offset(-2, 1), 1)
+            (Offset(0, 1), 1)
+            (Offset(5, 1), 1)
+            (Offset(8, 1), 1)
+            (Offset(12, 1), 1)
+            (Offset(15, 1), 1)
+            (Offset(16, 1), 1)
+            (Offset(20, 1), 1)
+            (Offset(24, 1), 1)
+            (Offset(30, 1), 1)
 
         ..  container:: example
 
@@ -2974,10 +2974,10 @@ class TimespanList(list):
             ...     timespans.count_offsets().items.items()):
             ...     offset, count
             ...
-            (Offset((0, 1)), 3)
-            (Offset((3, 1)), 1)
-            (Offset((6, 1)), 1)
-            (Offset((9, 1)), 1)
+            (Offset(0, 1), 3)
+            (Offset(3, 1), 1)
+            (Offset(6, 1), 1)
+            (Offset(9, 1), 1)
 
         """
         return OffsetCounter(self)
@@ -3014,20 +3014,20 @@ class TimespanList(list):
             >>> for exploded_timespan_list in timespans.explode():
             ...     for _ in exploded_timespan_list: _
             ...     "---"
-            Timespan(Offset((0, 1)), Offset((3, 1)))
-            Timespan(Offset((5, 1)), Offset((13, 1)))
-            Timespan(Offset((17, 1)), Offset((19, 1)))
-            Timespan(Offset((19, 1)), Offset((20, 1)))
-            Timespan(Offset((34, 1)), Offset((37, 1)))
+            Timespan(Offset(0, 1), Offset(3, 1))
+            Timespan(Offset(5, 1), Offset(13, 1))
+            Timespan(Offset(17, 1), Offset(19, 1))
+            Timespan(Offset(19, 1), Offset(20, 1))
+            Timespan(Offset(34, 1), Offset(37, 1))
             '---'
-            Timespan(Offset((6, 1)), Offset((10, 1)))
-            Timespan(Offset((16, 1)), Offset((21, 1)))
-            Timespan(Offset((25, 1)), Offset((30, 1)))
+            Timespan(Offset(6, 1), Offset(10, 1))
+            Timespan(Offset(16, 1), Offset(21, 1))
+            Timespan(Offset(25, 1), Offset(30, 1))
             '---'
-            Timespan(Offset((8, 1)), Offset((9, 1)))
-            Timespan(Offset((15, 1)), Offset((23, 1)))
-            Timespan(Offset((26, 1)), Offset((29, 1)))
-            Timespan(Offset((32, 1)), Offset((34, 1)))
+            Timespan(Offset(8, 1), Offset(9, 1))
+            Timespan(Offset(15, 1), Offset(23, 1))
+            Timespan(Offset(26, 1), Offset(29, 1))
+            Timespan(Offset(32, 1), Offset(34, 1))
             '---'
 
 
@@ -3040,23 +3040,23 @@ class TimespanList(list):
             ...     for _ in exploded_timespan_list: _
             ...     "---"
             ...
-            Timespan(Offset((16, 1)), Offset((21, 1)))
-            Timespan(Offset((34, 1)), Offset((37, 1)))
+            Timespan(Offset(16, 1), Offset(21, 1))
+            Timespan(Offset(34, 1), Offset(37, 1))
             '---'
-            Timespan(Offset((15, 1)), Offset((23, 1)))
+            Timespan(Offset(15, 1), Offset(23, 1))
             '---'
-            Timespan(Offset((8, 1)), Offset((9, 1)))
-            Timespan(Offset((17, 1)), Offset((19, 1)))
-            Timespan(Offset((19, 1)), Offset((20, 1)))
-            Timespan(Offset((26, 1)), Offset((29, 1)))
+            Timespan(Offset(8, 1), Offset(9, 1))
+            Timespan(Offset(17, 1), Offset(19, 1))
+            Timespan(Offset(19, 1), Offset(20, 1))
+            Timespan(Offset(26, 1), Offset(29, 1))
             '---'
-            Timespan(Offset((6, 1)), Offset((10, 1)))
-            Timespan(Offset((32, 1)), Offset((34, 1)))
+            Timespan(Offset(6, 1), Offset(10, 1))
+            Timespan(Offset(32, 1), Offset(34, 1))
             '---'
-            Timespan(Offset((5, 1)), Offset((13, 1)))
+            Timespan(Offset(5, 1), Offset(13, 1))
             '---'
-            Timespan(Offset((0, 1)), Offset((3, 1)))
-            Timespan(Offset((25, 1)), Offset((30, 1)))
+            Timespan(Offset(0, 1), Offset(3, 1))
+            Timespan(Offset(25, 1), Offset(30, 1))
             '---'
 
         """
@@ -3141,7 +3141,7 @@ class TimespanList(list):
             >>> abjad.show(timespan, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> timespan
-            Timespan(Offset((3, 1)), Offset((6, 1)))
+            Timespan(Offset(3, 1), Offset(6, 1))
 
         """
         timespans = self.timespans_that_satisfy_time_relation(time_relation)
@@ -3172,8 +3172,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((3, 1)), Offset((6, 1)))
-            Timespan(Offset((6, 1)), Offset((10, 1)))
+            Timespan(Offset(3, 1), Offset(6, 1))
+            Timespan(Offset(6, 1), Offset(10, 1))
 
         """
         result = []
@@ -3223,19 +3223,19 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((3, 1)))
-            Timespan(Offset((3, 1)), Offset((6, 1)))
-            Timespan(Offset((6, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(3, 1))
+            Timespan(Offset(3, 1), Offset(6, 1))
+            Timespan(Offset(6, 1), Offset(10, 1))
 
             >>> for timespan_list in timespans.partition():
             ...     for _ in timespan_list: _
             ...     "---"
             ...
-            Timespan(Offset((0, 1)), Offset((3, 1)))
+            Timespan(Offset(0, 1), Offset(3, 1))
             '---'
-            Timespan(Offset((3, 1)), Offset((6, 1)))
+            Timespan(Offset(3, 1), Offset(6, 1))
             '---'
-            Timespan(Offset((6, 1)), Offset((10, 1)))
+            Timespan(Offset(6, 1), Offset(10, 1))
             '---'
 
         ..  container:: example
@@ -3252,22 +3252,22 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((16, 1)))
-            Timespan(Offset((5, 1)), Offset((12, 1)))
-            Timespan(Offset((-2, 1)), Offset((8, 1)))
-            Timespan(Offset((15, 1)), Offset((20, 1)))
-            Timespan(Offset((24, 1)), Offset((30, 1)))
+            Timespan(Offset(0, 1), Offset(16, 1))
+            Timespan(Offset(5, 1), Offset(12, 1))
+            Timespan(Offset(-2, 1), Offset(8, 1))
+            Timespan(Offset(15, 1), Offset(20, 1))
+            Timespan(Offset(24, 1), Offset(30, 1))
 
             >>> for timespan_list in timespans.partition():
             ...     for _ in timespan_list: _
             ...     "---"
             ...
-            Timespan(Offset((-2, 1)), Offset((8, 1)))
-            Timespan(Offset((0, 1)), Offset((16, 1)))
-            Timespan(Offset((5, 1)), Offset((12, 1)))
-            Timespan(Offset((15, 1)), Offset((20, 1)))
+            Timespan(Offset(-2, 1), Offset(8, 1))
+            Timespan(Offset(0, 1), Offset(16, 1))
+            Timespan(Offset(5, 1), Offset(12, 1))
+            Timespan(Offset(15, 1), Offset(20, 1))
             '---'
-            Timespan(Offset((24, 1)), Offset((30, 1)))
+            Timespan(Offset(24, 1), Offset(30, 1))
             '---'
 
         ..  container:: example
@@ -3288,9 +3288,9 @@ class TimespanList(list):
             ...     for _ in timespan_list: _
             ...     "---"
             ...
-            Timespan(Offset((0, 1)), Offset((3, 1)))
-            Timespan(Offset((3, 1)), Offset((6, 1)))
-            Timespan(Offset((6, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(3, 1))
+            Timespan(Offset(3, 1), Offset(6, 1))
+            Timespan(Offset(6, 1), Offset(10, 1))
             '---'
 
         """
@@ -3338,9 +3338,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((4, 1)))
-            Timespan(Offset((4, 1)), Offset((7, 1)))
-            Timespan(Offset((7, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(4, 1))
+            Timespan(Offset(4, 1), Offset(7, 1))
+            Timespan(Offset(7, 1), Offset(10, 1))
 
         ..  container:: example
 
@@ -3357,9 +3357,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((20, 1)), Offset((24, 1)))
-            Timespan(Offset((24, 1)), Offset((27, 1)))
-            Timespan(Offset((27, 1)), Offset((30, 1)))
+            Timespan(Offset(20, 1), Offset(24, 1))
+            Timespan(Offset(24, 1), Offset(27, 1))
+            Timespan(Offset(27, 1), Offset(30, 1))
 
         """
         if axis is None:
@@ -3391,8 +3391,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((5, 1)), Offset((10, 1)))
-            Timespan(Offset((5, 1)), Offset((25, 1)))
+            Timespan(Offset(5, 1), Offset(10, 1))
+            Timespan(Offset(5, 1), Offset(25, 1))
 
         """
         timespans = [x for x in self if x.is_wellformed()]
@@ -3418,11 +3418,11 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 15), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((3, 1)))
-            Timespan(Offset((3, 1)), Offset((6, 1)))
-            Timespan(Offset((6, 1)), Offset((10, 1)))
-            Timespan(Offset((10, 1)), Offset((13, 1)))
-            Timespan(Offset((13, 1)), Offset((15, 1)))
+            Timespan(Offset(0, 1), Offset(3, 1))
+            Timespan(Offset(3, 1), Offset(6, 1))
+            Timespan(Offset(6, 1), Offset(10, 1))
+            Timespan(Offset(10, 1), Offset(13, 1))
+            Timespan(Offset(13, 1), Offset(15, 1))
 
         """
         assert self.is_sorted()
@@ -3461,9 +3461,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((1, 1)))
-            Timespan(Offset((1, 1)), Offset((7, 1)))
-            Timespan(Offset((7, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(1, 1))
+            Timespan(Offset(1, 1), Offset(7, 1))
+            Timespan(Offset(7, 1), Offset(10, 1))
 
         ..  container:: example
 
@@ -3480,9 +3480,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((6, 1)))
-            Timespan(Offset((6, 1)), Offset((9, 1)))
-            Timespan(Offset((9, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(6, 1))
+            Timespan(Offset(6, 1), Offset(9, 1))
+            Timespan(Offset(9, 1), Offset(10, 1))
 
         """
         assert isinstance(count, int)
@@ -3533,9 +3533,9 @@ class TimespanList(list):
             >>> abjad.show(rounded_timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in rounded_timespans: _
-            Timespan(Offset((0, 1)), Offset((3, 1)))
-            Timespan(Offset((3, 1)), Offset((6, 1)))
-            Timespan(Offset((6, 1)), Offset((9, 1)))
+            Timespan(Offset(0, 1), Offset(3, 1))
+            Timespan(Offset(3, 1), Offset(6, 1))
+            Timespan(Offset(6, 1), Offset(9, 1))
 
         ..  container:: example
 
@@ -3550,9 +3550,9 @@ class TimespanList(list):
             >>> abjad.show(rounded_timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in rounded_timespans: _
-            Timespan(Offset((0, 1)), Offset((5, 1)))
-            Timespan(Offset((5, 1)), Offset((10, 1)))
-            Timespan(Offset((5, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(5, 1))
+            Timespan(Offset(5, 1), Offset(10, 1))
+            Timespan(Offset(5, 1), Offset(10, 1))
 
         ..  container:: example
 
@@ -3570,9 +3570,9 @@ class TimespanList(list):
             >>> abjad.show(rounded_timespans, range_=(-5, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in rounded_timespans: _
-            Timespan(Offset((-5, 1)), Offset((0, 1)))
-            Timespan(Offset((0, 1)), Offset((5, 1)))
-            Timespan(Offset((5, 1)), Offset((10, 1)))
+            Timespan(Offset(-5, 1), Offset(0, 1))
+            Timespan(Offset(0, 1), Offset(5, 1))
+            Timespan(Offset(5, 1), Offset(10, 1))
 
         ..  container:: example
 
@@ -3590,9 +3590,9 @@ class TimespanList(list):
             ... )
 
             >>> for _ in rounded_timespans: _
-            Timespan(Offset((0, 1)), Offset((0, 1)))
-            Timespan(Offset((5, 1)), Offset((5, 1)))
-            Timespan(Offset((5, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(0, 1))
+            Timespan(Offset(5, 1), Offset(5, 1))
+            Timespan(Offset(5, 1), Offset(10, 1))
 
         """
         timespans = []
@@ -3627,9 +3627,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 14), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((6, 1)))
-            Timespan(Offset((3, 1)), Offset((9, 1)))
-            Timespan(Offset((6, 1)), Offset((14, 1)))
+            Timespan(Offset(0, 1), Offset(6, 1))
+            Timespan(Offset(3, 1), Offset(9, 1))
+            Timespan(Offset(6, 1), Offset(14, 1))
 
         ..  container:: example
 
@@ -3646,9 +3646,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(-3, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((-3, 1)), Offset((3, 1)))
-            Timespan(Offset((0, 1)), Offset((6, 1)))
-            Timespan(Offset((2, 1)), Offset((10, 1)))
+            Timespan(Offset(-3, 1), Offset(3, 1))
+            Timespan(Offset(0, 1), Offset(6, 1))
+            Timespan(Offset(2, 1), Offset(10, 1))
 
         """
         timespans = []
@@ -3675,13 +3675,13 @@ class TimespanList(list):
 
             >>> abjad.show(left, range_=(0, 10), scale=0.5) # doctest: +SKIP
             >>> for _ in left: _
-            Timespan(Offset((0, 1)), Offset((3, 1)))
-            Timespan(Offset((3, 1)), Offset((4, 1)))
+            Timespan(Offset(0, 1), Offset(3, 1))
+            Timespan(Offset(3, 1), Offset(4, 1))
 
             >>> abjad.show(right, range_=(0, 10), scale=0.5) # doctest: +SKIP
             >>> for _ in right: _
-            Timespan(Offset((4, 1)), Offset((6, 1)))
-            Timespan(Offset((6, 1)), Offset((10, 1)))
+            Timespan(Offset(4, 1), Offset(6, 1))
+            Timespan(Offset(6, 1), Offset(10, 1))
 
         ..  container:: example
 
@@ -3698,12 +3698,12 @@ class TimespanList(list):
 
             >>> abjad.show(left, range_=(0, 10), scale=0.5) # doctest: +SKIP
             >>> for _ in left: _
-            Timespan(Offset((0, 1)), Offset((3, 1)))
-            Timespan(Offset((3, 1)), Offset((6, 1)))
+            Timespan(Offset(0, 1), Offset(3, 1))
+            Timespan(Offset(3, 1), Offset(6, 1))
 
             >>> abjad.show(right, range_=(0, 10), scale=0.5) # doctest: +SKIP
             >>> for _ in right: _
-            Timespan(Offset((6, 1)), Offset((10, 1)))
+            Timespan(Offset(6, 1), Offset(10, 1))
 
         ..  container:: example
 
@@ -3723,9 +3723,9 @@ class TimespanList(list):
 
             >>> abjad.show(right, range_=(0, 10), scale=0.5) # doctest: +SKIP
             >>> for _ in right: _
-            Timespan(Offset((0, 1)), Offset((3, 1)))
-            Timespan(Offset((3, 1)), Offset((6, 1)))
-            Timespan(Offset((6, 1)), Offset((10, 1)))
+            Timespan(Offset(0, 1), Offset(3, 1))
+            Timespan(Offset(3, 1), Offset(6, 1))
+            Timespan(Offset(6, 1), Offset(10, 1))
 
         """
         offset = _duration.Offset(offset)
@@ -3807,9 +3807,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((6, 1)))
-            Timespan(Offset((6, 1)), Offset((12, 1)))
-            Timespan(Offset((12, 1)), Offset((20, 1)))
+            Timespan(Offset(0, 1), Offset(6, 1))
+            Timespan(Offset(6, 1), Offset(12, 1))
+            Timespan(Offset(12, 1), Offset(20, 1))
 
         ..  container:: example
 
@@ -3826,9 +3826,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((-8, 1)), Offset((-2, 1)))
-            Timespan(Offset((-2, 1)), Offset((4, 1)))
-            Timespan(Offset((4, 1)), Offset((12, 1)))
+            Timespan(Offset(-8, 1), Offset(-2, 1))
+            Timespan(Offset(-2, 1), Offset(4, 1))
+            Timespan(Offset(4, 1), Offset(12, 1))
 
         """
         timespans = []
@@ -3862,9 +3862,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((50, 1)), Offset((53, 1)))
-            Timespan(Offset((53, 1)), Offset((56, 1)))
-            Timespan(Offset((56, 1)), Offset((60, 1)))
+            Timespan(Offset(50, 1), Offset(53, 1))
+            Timespan(Offset(53, 1), Offset(56, 1))
+            Timespan(Offset(56, 1), Offset(60, 1))
 
         """
         return self.translate_offsets(translation, translation)
@@ -3896,9 +3896,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((50, 1)), Offset((53, 1)))
-            Timespan(Offset((53, 1)), Offset((56, 1)))
-            Timespan(Offset((56, 1)), Offset((60, 1)))
+            Timespan(Offset(50, 1), Offset(53, 1))
+            Timespan(Offset(53, 1), Offset(56, 1))
+            Timespan(Offset(56, 1), Offset(60, 1))
 
         Translates timespan stop-offsets only:
 
@@ -3916,9 +3916,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset((0, 1)), Offset((23, 1)))
-            Timespan(Offset((3, 1)), Offset((26, 1)))
-            Timespan(Offset((6, 1)), Offset((30, 1)))
+            Timespan(Offset(0, 1), Offset(23, 1))
+            Timespan(Offset(3, 1), Offset(26, 1))
+            Timespan(Offset(6, 1), Offset(30, 1))
 
         """
         timespans = []
