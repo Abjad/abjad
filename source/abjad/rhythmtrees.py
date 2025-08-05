@@ -249,13 +249,13 @@ class RhythmTreeNode:
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
 
             >>> rtc.start_offset()
-            Offset((0, 1))
+            Offset(0, 1)
 
             >>> rtc[1].start_offset()
-            Offset((1, 2))
+            Offset(1, 2)
 
             >>> rtc[1][1].start_offset()
-            Offset((3, 4))
+            Offset(3, 4)
 
         """
         self._update_offsets_of_entire_tree_if_necessary()
@@ -271,13 +271,13 @@ class RhythmTreeNode:
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
 
             >>> rtc.stop_offset()
-            Offset((1, 1))
+            Offset(1, 1)
 
             >>> rtc[0].stop_offset()
-            Offset((1, 2))
+            Offset(1, 2)
 
             >>> rtc[0][0].stop_offset()
-            Offset((1, 4))
+            Offset(1, 4)
 
         """
         return self.start_offset() + _duration.Duration(self.duration())

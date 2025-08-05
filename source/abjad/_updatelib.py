@@ -43,9 +43,17 @@ def _get_after_grace_leaf_offsets(leaf):
             before_grace_container = sibling._before_grace_container
             duration = before_grace_container._get_duration()
             displacement -= duration
-    start_offset = _duration.Offset(main_leaf_stop_offset, displacement=displacement)
+    if displacement == 0:
+        start_offset = _duration.Offset(main_leaf_stop_offset)
+    else:
+        start_offset = _duration.Offset(
+            main_leaf_stop_offset, displacement=displacement
+        )
     displacement += leaf._get_duration()
-    stop_offset = _duration.Offset(main_leaf_stop_offset, displacement=displacement)
+    if displacement == 0:
+        stop_offset = _duration.Offset(main_leaf_stop_offset)
+    else:
+        stop_offset = _duration.Offset(main_leaf_stop_offset, displacement=displacement)
     return start_offset, stop_offset
 
 
@@ -59,9 +67,19 @@ def _get_before_grace_leaf_offsets(leaf):
     while sibling is not None and sibling._parent is container:
         displacement -= sibling._get_duration()
         sibling = sibling._sibling(1)
-    start_offset = _duration.Offset(main_leaf_start_offset, displacement=displacement)
+    if displacement == 0:
+        start_offset = _duration.Offset(main_leaf_start_offset)
+    else:
+        start_offset = _duration.Offset(
+            main_leaf_start_offset, displacement=displacement
+        )
     displacement += leaf._get_duration()
-    stop_offset = _duration.Offset(main_leaf_start_offset, displacement=displacement)
+    if displacement == 0:
+        stop_offset = _duration.Offset(main_leaf_start_offset)
+    else:
+        stop_offset = _duration.Offset(
+            main_leaf_start_offset, displacement=displacement
+        )
     return start_offset, stop_offset
 
 
@@ -88,9 +106,17 @@ def _get_independent_after_grace_leaf_offsets(leaf):
             duration = before_grace_container._get_duration()
             displacement -= duration
     """
-    start_offset = _duration.Offset(main_leaf_stop_offset, displacement=displacement)
+    if displacement == 0:
+        start_offset = _duration.Offset(main_leaf_stop_offset)
+    else:
+        start_offset = _duration.Offset(
+            main_leaf_stop_offset, displacement=displacement
+        )
     displacement += leaf._get_duration()
-    stop_offset = _duration.Offset(main_leaf_stop_offset, displacement=displacement)
+    if displacement == 0:
+        stop_offset = _duration.Offset(main_leaf_stop_offset)
+    else:
+        stop_offset = _duration.Offset(main_leaf_stop_offset, displacement=displacement)
     return start_offset, stop_offset
 
 
