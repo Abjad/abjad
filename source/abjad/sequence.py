@@ -1192,7 +1192,7 @@ def split(
         ...     cyclic=True,
         ...     overhang=True,
         ... ):
-        ...     [abjad.duration.with_denominator(_, 2) for _ in part]
+        ...     [abjad.duration.pair_with_denominator(_, 2) for _ in part]
         ...
         [(6, 2)]
         [(14, 2), (-16, 2)]
@@ -1978,7 +1978,7 @@ def repeat_to_weight(
         >>> sum(sequence)
         Duration(5, 4)
 
-        >>> [abjad.duration.with_denominator(_, 16) for _ in sequence]
+        >>> [abjad.duration.pair_with_denominator(_, 16) for _ in sequence]
         [(3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (2, 16)]
 
     """

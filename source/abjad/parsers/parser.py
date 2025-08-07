@@ -4628,8 +4628,9 @@ class LilyPondSyntacticalDefinition:
         "event_chord : MULTI_MEASURE_REST optional_notemode_duration post_events"
         rest = _score.MultimeasureRest(p[2].duration, tag=self.tag)
         if p[2].multiplier is not None:
-            multiplier = fractions.Fraction(p[2].multiplier)
-            rest.set_multiplier(_duration.pair(multiplier))
+            fraction = fractions.Fraction(p[2].multiplier)
+            pair = (fraction.numerator, fraction.denominator)
+            rest.set_multiplier(pair)
         self.client._process_post_events(rest, p[3])
         p[0] = rest
 
@@ -5755,8 +5756,9 @@ class LilyPondSyntacticalDefinition:
         post_events.extend(p[3])
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
-            multiplier = fractions.Fraction(p[2].multiplier)
-            chord.set_multiplier(_duration.pair(multiplier))
+            fraction = fractions.Fraction(p[2].multiplier)
+            pair = (fraction.numerator, fraction.denominator)
+            chord.set_multiplier(pair)
         self.client._process_post_events(chord, post_events)
         p[0] = chord
 
@@ -6257,8 +6259,9 @@ class LilyPondSyntacticalDefinition:
         else:
             rest = _score.Skip(p[2].duration, tag=self.tag)
         if p[2].multiplier is not None:
-            multiplier = fractions.Fraction(p[2].multiplier)
-            rest.set_multiplier(_duration.pair(multiplier))
+            fraction = fractions.Fraction(p[2].multiplier)
+            pair = (fraction.numerator, fraction.denominator)
+            rest.set_multiplier(pair)
         p[0] = rest
 
     def p_simple_element__pitch__exclamations__questions__octave_check__optional_notemode_duration__optional_rest(
@@ -6277,8 +6280,9 @@ class LilyPondSyntacticalDefinition:
         else:
             leaf = _score.Rest(p[5].duration, tag=self.tag)
         if p[5].multiplier is not None:
-            multiplier = fractions.Fraction(p[5].multiplier)
-            leaf.set_multiplier(_duration.pair(multiplier))
+            fraction = fractions.Fraction(p[5].multiplier)
+            pair = (fraction.numerator, fraction.denominator)
+            leaf.set_multiplier(pair)
         # TODO: handle exclamations, questions, octave_check
         p[0] = leaf
 

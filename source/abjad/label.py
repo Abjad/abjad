@@ -811,7 +811,7 @@ def with_durations(
         duration = _getlib._get_duration(logical_tie, in_seconds=in_seconds)
         pair = duration.pair()
         if denominator is not None:
-            pair = _duration.with_denominator(duration, denominator)
+            pair = _duration.pair_with_denominator(duration, denominator)
         n, d = pair
         label = _indicators.Markup(rf"\markup \fraction {n} {d}")
         _attach(label, logical_tie.head(), direction=direction)

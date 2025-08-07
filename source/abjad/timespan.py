@@ -220,15 +220,15 @@ class Timespan:
 
         >>> annotated_timespan = abjad.Timespan(
         ...     annotation=["a", "b", "c", "foo"],
-        ...     start_offset=(1, 4),
-        ...     stop_offset=(7, 8),
+        ...     start_offset=abjad.Offset(1, 4),
+        ...     stop_offset=abjad.Offset(7, 8),
         ... )
         >>> annotated_timespan.annotation
         ['a', 'b', 'c', 'foo']
 
         Annotated timespans maintain their annotations duration mutation:
 
-        >>> left, right = annotated_timespan.split_at_offset((1, 2))
+        >>> left, right = annotated_timespan.split_at_offset(abjad.Offset(1, 2))
         >>> left.annotation.append("foo")
         >>> right
         Timespan(Offset(1, 2), Offset(7, 8), annotation=['a', 'b', 'c', 'foo', 'foo'])
@@ -1140,21 +1140,21 @@ class Timespan:
 
             >>> timespan = abjad.Timespan((1, 2), (3, 2))
 
-            >>> timespan.set_offsets(stop_offset=(7, 8))
+            >>> timespan.set_offsets(stop_offset=abjad.Offset(7, 8))
             Timespan(Offset(1, 2), Offset(7, 8))
 
         ..  container:: example
 
             Subtracts negative ``start_offset`` from existing stop offset:
 
-            >>> timespan.set_offsets(start_offset=(-1, 2))
+            >>> timespan.set_offsets(start_offset=abjad.Offset(-1, 2))
             Timespan(Offset(1, 1), Offset(3, 2))
 
         ..  container:: example
 
             Subtracts negative ``stop_offset`` from existing stop offset:
 
-            >>> timespan.set_offsets(stop_offset=(-1, 2))
+            >>> timespan.set_offsets(stop_offset=abjad.Offset(-1, 2))
             Timespan(Offset(1, 2), Offset(1, 1))
 
         """
@@ -1179,7 +1179,7 @@ class Timespan:
         )
         return result
 
-    def split_at_offset(self, offset) -> "TimespanList":
+    def split_at_offset(self, offset: _duration.Offset) -> "TimespanList":
         """
         Split into two parts when ``offset`` happens during timespan.
 
@@ -1187,7 +1187,7 @@ class Timespan:
 
             >>> timespan = abjad.Timespan(0, 5)
 
-            >>> left, right = timespan.split_at_offset((2, 1))
+            >>> left, right = timespan.split_at_offset(abjad.Offset(2, 1))
 
             >>> left
             Timespan(Offset(0, 1), Offset(2, 1))
@@ -1197,11 +1197,11 @@ class Timespan:
 
             Otherwise return a copy of timespan:
 
-            >>> timespan.split_at_offset((12, 1))[0]
+            >>> timespan.split_at_offset(abjad.Offset(12, 1))[0]
             Timespan(Offset(0, 1), Offset(5, 1))
 
         """
-        offset = _duration.Offset(offset)
+        assert isinstance(offset, _duration.Offset), repr(offset)
         result = TimespanList()
         if self.start_offset < offset < self.stop_offset:
             left = dataclasses.replace(

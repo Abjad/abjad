@@ -432,8 +432,9 @@ def _immediately_precedes(component_1, component_2, ignore_before_after_grace=No
 def _set_leaf_duration(leaf, new_duration, *, tag=None):
     new_duration = _duration.Duration(new_duration)
     if leaf.multiplier() is not None:
-        multiplier = new_duration.__div__(leaf.written_duration())
-        leaf.set_multiplier(_duration.pair(multiplier))
+        fraction = new_duration.__div__(leaf.written_duration())
+        pair = (fraction.numerator, fraction.denominator)
+        leaf.set_multiplier(pair)
         return [leaf]
     try:
         leaf.set_written_duration(new_duration)

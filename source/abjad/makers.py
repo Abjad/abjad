@@ -116,11 +116,13 @@ def _make_tied_leaf(
     if forbidden_duration is not None and forbidden_duration <= duration:
         denominators = [2 * forbidden_duration.denominator, duration.denominator]
         denominator = _math.least_common_multiple(*denominators)
-        forbidden_pair = _duration.with_denominator(forbidden_duration, denominator)
+        forbidden_pair = _duration.pair_with_denominator(
+            forbidden_duration, denominator
+        )
         forbidden_numerator = forbidden_pair[0]
         assert forbidden_numerator % 2 == 0
         preferred_numerator = forbidden_numerator / 2
-        duration_pair = _duration.with_denominator(duration_pair, denominator)
+        duration_pair = _duration.pair_with_denominator(duration, denominator)
     parts = _math.partition_integer_into_canonic_parts(duration_pair[0])
     if forbidden_duration is not None and forbidden_duration <= duration:
         numerators = []
