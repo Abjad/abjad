@@ -282,8 +282,9 @@ class OnBeatGraceContainer(_score.Container):
         for leaf in _select.leaves(self):
             duration = _get.duration(leaf)
             if duration != self.grace_leaf_duration():
-                multiplier = self.grace_leaf_duration() / duration
-                leaf.set_multiplier(_duration.pair(multiplier))
+                fraction = self.grace_leaf_duration() / duration
+                pair = (fraction.numerator, fraction.denominator)
+                leaf.set_multiplier(pair)
 
 
 def on_beat_grace_container(

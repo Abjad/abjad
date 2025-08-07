@@ -1831,9 +1831,9 @@ def group_by_contiguity(argument) -> list[list]:
         that_timespan = _getlib._get_timespan(item)
         # remove displacement
         this_stop_offset = this_timespan.stop_offset
-        this_stop_offset = _duration.Offset(this_stop_offset.pair())
+        this_stop_offset = _duration.Offset(*this_stop_offset.pair())
         that_start_offset = that_timespan.start_offset
-        that_start_offset = _duration.Offset(that_start_offset.pair())
+        that_start_offset = _duration.Offset(*that_start_offset.pair())
         # if this_timespan.stop_offset == that_timespan.start_offset:
         if this_stop_offset == that_start_offset:
             components.append(item)

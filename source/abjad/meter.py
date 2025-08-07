@@ -465,9 +465,13 @@ class Meter:
         nodes = recurse(self.root_node())
         assert isinstance(nodes, list)
         for node in nodes:
-            pair = _duration.with_denominator(node.start_offset(), self.denominator())
+            pair = _duration.pair_with_denominator(
+                node.start_offset(), self.denominator()
+            )
             start_offset = pair
-            pair = _duration.with_denominator(node.stop_offset(), self.denominator())
+            pair = _duration.pair_with_denominator(
+                node.stop_offset(), self.denominator()
+            )
             stop_offset = pair
             yield start_offset, stop_offset
 
@@ -791,7 +795,7 @@ class Meter:
             Matches a series of hypothetical ``4/4`` measures:
 
             >>> pairs = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
-            >>> offsets = [abjad.Offset(_) for _ in pairs]
+            >>> offsets = [abjad.Offset(*_) for _ in pairs]
             >>> offset_counter = abjad.OffsetCounter(offsets)
             >>> for meter in abjad.Meter.fit_meters(offset_counter, meters):
             ...     print(meter.implied_time_signature())
@@ -806,7 +810,7 @@ class Meter:
             Matches a series of hypothetical ``5/4`` measures:
 
             >>> pairs = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
-            >>> offsets = [abjad.Offset(_) for _ in pairs]
+            >>> offsets = [abjad.Offset(*_) for _ in pairs]
             >>> offset_counter = abjad.OffsetCounter(offsets)
             >>> for meter in abjad.Meter.fit_meters(offset_counter, meters):
             ...     print(meter.implied_time_signature())
@@ -2140,7 +2144,7 @@ class Meter:
                 duration = sum([_._get_preprolated_duration() for _ in item])
                 if duration.numerator == 1:
                     denominator = 4 * duration.denominator
-                    pair = _duration.with_denominator(duration, denominator)
+                    pair = _duration.pair_with_denominator(duration, denominator)
                 else:
                     pair = duration.pair()
                 rtc_ = make_best_guess_rtc(pair)
@@ -2650,7 +2654,7 @@ class MetricAccentKernel:
         to receive an impulse-response:
 
         >>> pairs = [(0, 8), (1, 8), (1, 8), (3, 8)]
-        >>> offsets = [abjad.Offset(_) for _ in pairs]
+        >>> offsets = [abjad.Offset(*_) for _ in pairs]
         >>> offset_counter = abjad.OffsetCounter(offsets)
         >>> kernel(offset_counter)
         Fraction(1, 2)
@@ -3260,7 +3264,7 @@ def make_best_guess_rtc(
                 rtc.pair()[1],
                 fraction.denominator,
             )
-            pair = _duration.with_denominator(fraction, pair_denominator)
+            pair = _duration.pair_with_denominator(fraction, pair_denominator)
             if factor in (2, 3, 4):
                 if factors:
                     for _ in range(factor):

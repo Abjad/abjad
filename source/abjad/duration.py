@@ -36,134 +36,72 @@ def durations(items: list) -> list[Duration]:
     return durations
 
 
-def fraction_from_dot_count(dot_count: int) -> fractions.Fraction:
+def pair_with_denominator(
+    fraction: fractions.Fraction, denominator: int
+) -> tuple[int, int]:
     """
-    Makes fraction from ``dot_count``.
-
-    ..  container:: example
-
-        >>> abjad.duration.fraction_from_dot_count(0)
-        Fraction(1, 1)
-
-        >>> abjad.duration.fraction_from_dot_count(1)
-        Fraction(3, 2)
-
-        >>> abjad.duration.fraction_from_dot_count(2)
-        Fraction(7, 4)
-
-        >>> abjad.duration.fraction_from_dot_count(3)
-        Fraction(15, 8)
-
-        >>> abjad.duration.fraction_from_dot_count(4)
-        Fraction(31, 16)
-
-    """
-    assert isinstance(dot_count, int), repr(dot_count)
-    assert 0 <= dot_count, repr(dot_count)
-    denominator = 2**dot_count
-    numerator = 2 ** (dot_count + 1) - 1
-    return fractions.Fraction(numerator, denominator)
-
-
-def pair(argument: typing.Any) -> tuple[int, int]:
-    """
-    Changes ``argument`` to pair.
-
-    ..  container:: example
-
-        >>> abjad.duration.pair((3, 6))
-        (3, 6)
-
-        >>> abjad.duration.pair(abjad.Fraction(3, 6))
-        (1, 2)
-
-        >>> abjad.duration.pair(abjad.Duration(3, 6))
-        (1, 2)
-
-        >>> abjad.duration.pair(abjad.Offset(3, 6))
-        (1, 2)
-
-        >>> abjad.duration.pair(abjad.TimeSignature((3, 6)))
-        (3, 6)
-
-    """
-    if hasattr(argument, "numerator"):
-        return argument.numerator, argument.denominator
-    if isinstance(argument, tuple) and len(argument) == 2:
-        return argument[0], argument[1]
-    raise ValueError(argument)
-
-
-def with_denominator(duration, denominator) -> tuple[int, int]:
-    """
-    Spells ``duration`` as pair with ``denominator``.
-
-    ..  container:: example
-
-        >>> abjad.duration.with_denominator(abjad.Duration(3, 6), 12)
-        (6, 12)
+    Spells ``fraction`` as pair with ``denominator``.
 
     ..  container:: example
 
         >>> for numerator in range(12):
         ...     fraction = abjad.Fraction(numerator, 6)
-        ...     print(fraction, abjad.duration.with_denominator(fraction, 12))
+        ...     pair = abjad.duration.pair_with_denominator(fraction, 6)
+        ...     print(fraction, pair)
         ...
-        0 (0, 12)
-        1/6 (2, 12)
-        1/3 (4, 12)
-        1/2 (6, 12)
-        2/3 (8, 12)
-        5/6 (10, 12)
-        1 (12, 12)
-        7/6 (14, 12)
-        4/3 (16, 12)
-        3/2 (18, 12)
-        5/3 (20, 12)
-        11/6 (22, 12)
+        0       (0, 6)
+        1/6     (1, 6)
+        1/3     (2, 6)
+        1/2     (3, 6)
+        2/3     (4, 6)
+        5/6     (5, 6)
+        1       (6, 6)
+        7/6     (7, 6)
+        4/3     (8, 6)
+        3/2     (9, 6)
+        5/3     (10, 6)
+        11/6    (11, 6)
 
         >>> for numerator in range(12):
-        ...     pair = (numerator, 6)
-        ...     print(pair, abjad.duration.with_denominator(pair, 8))
+        ...     fraction = abjad.Fraction(numerator, 6)
+        ...     pair = abjad.duration.pair_with_denominator(fraction, 8)
+        ...     print(fraction, pair)
         ...
-        (0, 6) (0, 8)
-        (1, 6) (1, 6)
-        (2, 6) (2, 6)
-        (3, 6) (4, 8)
-        (4, 6) (4, 6)
-        (5, 6) (5, 6)
-        (6, 6) (8, 8)
-        (7, 6) (7, 6)
-        (8, 6) (8, 6)
-        (9, 6) (12, 8)
-        (10, 6) (10, 6)
-        (11, 6) (11, 6)
+        0       (0, 8)
+        1/6     (1, 6)
+        1/3     (1, 3)
+        1/2     (4, 8)
+        2/3     (2, 3)
+        5/6     (5, 6)
+        1       (8, 8)
+        7/6     (7, 6)
+        4/3     (4, 3)
+        3/2     (12, 8)
+        5/3     (5, 3)
+        11/6    (11, 6)
 
         >>> for numerator in range(12):
-        ...     pair = (numerator, 6)
-        ...     print(pair, abjad.duration.with_denominator(pair, 12))
+        ...     fraction = abjad.Fraction(numerator, 6)
+        ...     pair = abjad.duration.pair_with_denominator(fraction, 12)
+        ...     print(fraction, pair)
         ...
-        (0, 6) (0, 12)
-        (1, 6) (2, 12)
-        (2, 6) (4, 12)
-        (3, 6) (6, 12)
-        (4, 6) (8, 12)
-        (5, 6) (10, 12)
-        (6, 6) (12, 12)
-        (7, 6) (14, 12)
-        (8, 6) (16, 12)
-        (9, 6) (18, 12)
-        (10, 6) (20, 12)
-        (11, 6) (22, 12)
+        0       (0, 12)
+        1/6     (2, 12)
+        1/3     (4, 12)
+        1/2     (6, 12)
+        2/3     (8, 12)
+        5/6     (10, 12)
+        1       (12, 12)
+        7/6     (14, 12)
+        4/3     (16, 12)
+        3/2     (18, 12)
+        5/3     (20, 12)
+        11/6    (22, 12)
 
     """
-    if isinstance(duration, tuple):
-        current_numerator, current_denominator = duration
-    else:
-        current_numerator, current_denominator = (
-            duration.numerator,
-            duration.denominator,
-        )
+    assert isinstance(fraction, fractions.Fraction), repr(fraction)
+    current_numerator = fraction.numerator
+    current_denominator = fraction.denominator
     multiplier = fractions.Fraction(denominator, current_denominator)
     new_numerator = multiplier * current_numerator
     new_denominator = multiplier * current_denominator
@@ -200,8 +138,6 @@ class Duration(fractions.Fraction):
         Adds duration to ``arguments``.
 
         ..  container:: example
-
-            Returns duration when ``arguments`` is a duration:
 
             >>> duration_1 = abjad.Duration(1, 2)
             >>> duration_2 = abjad.Duration(3, 2)
@@ -292,8 +228,6 @@ class Duration(fractions.Fraction):
 
         ..  container:: example
 
-            Returns a new duration when ``argument`` is a duration:
-
             >>> duration_1 = abjad.Duration(1, 2)
             >>> duration_2 = abjad.Duration(3, 2)
             >>> duration_1 * duration_2
@@ -320,7 +254,7 @@ class Duration(fractions.Fraction):
             REGRESSION:
 
             >>> offset_1 = abjad.Offset(1)
-            >>> offset_2 = abjad.Offset(1, displacement=(-1, 16))
+            >>> offset_2 = abjad.Offset(1, displacement=abjad.Duration(-1, 16))
 
             >>> offset_1 == offset_2
             False
@@ -452,51 +386,6 @@ class Duration(fractions.Fraction):
         """
         return self.__div__(*arguments)
 
-    @staticmethod
-    def _initialize_from_lilypond_duration_string(duration_string):
-        numeric_body_strings = [str(2**n) for n in range(8)]
-        other_body_strings = [r"\\breve", r"\\longa", r"\\maxima"]
-        body_strings = numeric_body_strings + other_body_strings
-        body_strings = "|".join(body_strings)
-        pattern = r"^(%s)(\.*)$" % body_strings
-        match = re.match(pattern, duration_string)
-        if match is None:
-            raise TypeError(f"incorrect duration string format: {duration_string!r}.")
-        body_string, dots_string = match.groups()
-        try:
-            body_denominator = int(body_string)
-            body_duration = fractions.Fraction(1, body_denominator)
-        except ValueError:
-            if body_string == r"\breve":
-                body_duration = fractions.Fraction(2)
-            elif body_string == r"\longa":
-                body_duration = fractions.Fraction(4)
-            elif body_string == r"\maxima":
-                body_duration = fractions.Fraction(8)
-            else:
-                raise ValueError(f"unknown body string: {body_string!r}.")
-        rational = body_duration
-        for n in range(len(dots_string)):
-            exponent = n + 1
-            denominator = 2**exponent
-            multiplier = fractions.Fraction(1, denominator)
-            addend = multiplier * body_duration
-            rational += addend
-        return rational
-
-    @staticmethod
-    def _least_power_of_two_greater_equal(n, i=0) -> int:
-        """
-        When ``i = 2``, returns the second integer power of 2 greater than
-        the least integer power of 2 greater than or equal to ``n``, and, in
-        general, return the ``i`` th integer power of 2 greater than the least
-        integer power of 2 greater than or equal to ``n``.
-        """
-        assert isinstance(n, int | float | fractions.Fraction), repr(n)
-        assert 0 <= n, repr(n)
-        result = 2 ** (int(math.ceil(math.log(n, 2))) + i)
-        return result
-
     def clock_string(self) -> str:
         r"""
         Gets clock string.
@@ -526,12 +415,12 @@ class Duration(fractions.Fraction):
             >>> for n in range(1, 16 + 1):
             ...     try:
             ...         duration = abjad.Duration(n, 16)
-            ...         sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...         sixteenths = abjad.duration.pair_with_denominator(duration, 16)
             ...         dot_count = duration.dot_count()
             ...         string = f"{sixteenths[0]}/{sixteenths[1]}\t{dot_count}"
             ...         print(string)
             ...     except abjad.AssignabilityError:
-            ...         sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...         sixteenths = abjad.duration.pair_with_denominator(duration, 16)
             ...         print(f"{sixteenths[0]}/{sixteenths[1]}\t--")
             ...
             1/16    0
@@ -559,6 +448,7 @@ class Duration(fractions.Fraction):
         dot_count = digit_sum - 1
         return dot_count
 
+    # TODO: port logic to rmakers and then remove
     @staticmethod
     def durations_to_nonreduced_fractions(
         durations: list[Duration],
@@ -582,9 +472,10 @@ class Duration(fractions.Fraction):
         assert all(isinstance(_, Duration) for _ in durations), repr(durations)
         denominators = [_.denominator for _ in durations]
         lcd = _math.least_common_multiple(*denominators)
-        pairs = [with_denominator(_, lcd) for _ in durations]
+        pairs = [pair_with_denominator(_, lcd) for _ in durations]
         return pairs
 
+    # TODO: move to math.py or remove
     def equal_or_greater_assignable(self) -> Duration:
         r"""
         Gets assignable duration equal to or just greater than this duration.
@@ -594,7 +485,7 @@ class Duration(fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_greater_assignable()
-            ...     sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...     sixteenths = abjad.duration.pair_with_denominator(duration, 16)
             ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
             ...
             1/16    1/16
@@ -623,6 +514,7 @@ class Duration(fractions.Fraction):
             candidate = type(self)(current_numerator, good_denominator)
         return candidate
 
+    # TODO: move to math.py or remove
     def equal_or_greater_power_of_two(self) -> Duration:
         r"""
         Gets duration equal or just greater power of two.
@@ -632,7 +524,7 @@ class Duration(fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_greater_power_of_two()
-            ...     sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...     sixteenths = abjad.duration.pair_with_denominator(duration, 16)
             ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
             ...
             1/16    1/16
@@ -656,6 +548,7 @@ class Duration(fractions.Fraction):
         denominator_exponent = -int(math.ceil(math.log(self, 2)))
         return type(self)(1, 2) ** denominator_exponent
 
+    # TODO: move to math.py or remove
     def equal_or_lesser_assignable(self) -> Duration:
         r"""
         Gets assignable duration equal or just less than this duration.
@@ -665,7 +558,7 @@ class Duration(fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_lesser_assignable()
-            ...     sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...     sixteenths = abjad.duration.pair_with_denominator(duration, 16)
             ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
             ...
             1/16    1/16
@@ -686,7 +579,7 @@ class Duration(fractions.Fraction):
             16/16   1
 
         """
-        good_denominator = self._least_power_of_two_greater_equal(self.denominator)
+        good_denominator = 2 ** (int(math.ceil(math.log(self.denominator, 2))) + 0)
         current_numerator = self.numerator
         candidate = type(self)(current_numerator, good_denominator)
         while not candidate.is_assignable():
@@ -694,6 +587,7 @@ class Duration(fractions.Fraction):
             candidate = type(self)(current_numerator, good_denominator)
         return candidate
 
+    # TODO: move to math.py or remove
     def equal_or_lesser_power_of_two(self) -> Duration:
         r"""
         Gets duration of the form ``d**2`` equal to or just less than this
@@ -704,7 +598,7 @@ class Duration(fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
             ...     result = duration.equal_or_lesser_power_of_two()
-            ...     sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...     sixteenths = abjad.duration.pair_with_denominator(duration, 16)
             ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
             ...
             1/16    1/16
@@ -736,7 +630,7 @@ class Duration(fractions.Fraction):
             >>> for numerator in range(1, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
             ...     exponent = duration.exponent()
-            ...     sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...     sixteenths = abjad.duration.pair_with_denominator(duration, 16)
             ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{duration.exponent()!s}")
             ...
             1/16	4
@@ -770,7 +664,7 @@ class Duration(fractions.Fraction):
 
             >>> for n in range(1, 16 + 1):
             ...     duration = abjad.Duration(n, 64)
-            ...     sixty_fourths = abjad.duration.with_denominator(duration, 64)
+            ...     sixty_fourths = abjad.duration.pair_with_denominator(duration, 64)
             ...     print(f"{sixty_fourths[0]}/{sixty_fourths[1]}\t{duration.flag_count()}")
             ...
             1/64    4
@@ -798,7 +692,7 @@ class Duration(fractions.Fraction):
     @staticmethod
     def from_clock_string(clock_string) -> Duration:
         """
-        Initializes duration (in seconds) from clock string.
+        Initializes duration (in seconds) from ``clock_string``.
 
         ..  container:: example
 
@@ -826,22 +720,65 @@ class Duration(fractions.Fraction):
         return Duration(seconds)
 
     @staticmethod
-    def from_lilypond_duration_string(
-        lilypond_duration_string,
-    ) -> Duration:
+    def from_dot_count(dot_count: int) -> Duration:
+        """
+        Initializes duration from ``dot_count``.
+
+        ..  container::
+
+            >>> abjad.Duration.from_dot_count(2)
+            Duration(7, 4)
+
+        """
+        assert isinstance(dot_count, int), repr(dot_count)
+        assert 0 <= dot_count, repr(dot_count)
+        denominator = 2**dot_count
+        numerator = 2 ** (dot_count + 1) - 1
+        duration = Duration(numerator, denominator)
+        return duration
+
+    @staticmethod
+    def from_lilypond_duration_string(lilypond_duration_string: str) -> Duration:
         """
         Initializes duration from LilyPond duration string.
 
         ..  container:: example
 
-            >>> abjad.Duration.from_lilypond_duration_string('8.')
+            >>> abjad.Duration.from_lilypond_duration_string("8.")
             Duration(3, 16)
 
         """
-        fraction = Duration._initialize_from_lilypond_duration_string(
-            lilypond_duration_string
-        )
-        return Duration(fraction)
+        assert isinstance(lilypond_duration_string, str), repr(lilypond_duration_string)
+        numeric_body_strings = [str(2**n) for n in range(8)]
+        other_body_strings = [r"\\breve", r"\\longa", r"\\maxima"]
+        body_strings = numeric_body_strings + other_body_strings
+        body_string = "|".join(body_strings)
+        pattern = r"^(%s)(\.*)$" % body_string
+        match = re.match(pattern, lilypond_duration_string)
+        if match is None:
+            message = f"incorrect duration string format: {lilypond_duration_string!r}."
+            raise TypeError(message)
+        body_string, dots_string = match.groups()
+        try:
+            body_denominator = int(body_string)
+            body_duration = fractions.Fraction(1, body_denominator)
+        except ValueError:
+            if body_string == r"\breve":
+                body_duration = fractions.Fraction(2)
+            elif body_string == r"\longa":
+                body_duration = fractions.Fraction(4)
+            elif body_string == r"\maxima":
+                body_duration = fractions.Fraction(8)
+            else:
+                raise ValueError(f"unknown body string: {body_string!r}.")
+        rational = body_duration
+        for n in range(len(dots_string)):
+            exponent = n + 1
+            denominator = 2**exponent
+            multiplier = fractions.Fraction(1, denominator)
+            addend = multiplier * body_duration
+            rational += addend
+        return Duration(rational)
 
     def is_assignable(self) -> bool:
         r"""
@@ -851,7 +788,7 @@ class Duration(fractions.Fraction):
 
             >>> for numerator in range(0, 16 + 1):
             ...     duration = abjad.Duration(numerator, 16)
-            ...     sixteenths = abjad.duration.with_denominator(duration, 16)
+            ...     sixteenths = abjad.duration.pair_with_denominator(duration, 16)
             ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{duration.is_assignable()}")
             ...
             0/16    False
@@ -909,6 +846,7 @@ class Duration(fractions.Fraction):
         """
         return _math.is_nonnegative_integer_power_of_two(self.denominator)
 
+    # TODO: move logic to parser.py and then remove
     @staticmethod
     def is_token(argument) -> bool:
         """
@@ -985,90 +923,34 @@ class Offset(Duration):
 
     ..  container:: example
 
-        Initializes from integer numerator:
-
-        >>> abjad.Offset(3)
-        Offset(3, 1)
-
-        Initializes from integer numerator and denominator:
-
         >>> abjad.Offset(3, 16)
         Offset(3, 16)
 
-        Initializes from integer-equivalent numeric numerator:
-
-        >>> abjad.Offset(3.0)
-        Offset(3, 1)
-
-        Initializes from duration:
-
-        >>> abjad.Offset(abjad.Duration(3, 16))
-        Offset(3, 16)
-
-        Initializes from other offset:
-
-        >>> abjad.Offset(abjad.Offset(3, 16))
-        Offset(3, 16)
-
-        Initializes from other offset with displacement:
-
-        >>> offset = abjad.Offset(3, 16, displacement=(-1, 16))
-        >>> abjad.Offset(offset)
+        >>> abjad.Offset(3, 16, displacement=abjad.Duration(-1, 16))
         Offset(3, 16, displacement=Duration(-1, 16))
-
-        Intializes from fraction:
-
-        >>> import fractions
-        >>> abjad.Offset(fractions.Fraction(3, 16))
-        Offset(3, 16)
-
-        Initializes from solidus string:
-
-        >>> abjad.Offset("3/16")
-        Offset(3, 16)
-
-    ..  container:: example
-
-        Offsets inherit from built-in fraction:
-
-        >>> isinstance(abjad.Offset(3, 16), fractions.Fraction)
-        True
-
-    ..  container:: example
-
-        Offsets are numbers:
-
-        >>> import numbers
-
-        >>> isinstance(abjad.Offset(3, 16), numbers.Number)
-        True
 
     """
 
     __slots__ = ("_displacement",)
 
-    def __new__(class_, *arguments, **keywords):
-        displacement = None
-        for argument in arguments:
-            try:
-                displacement = argument.displacement()
-                break
-            except AttributeError:
-                pass
-        displacement = displacement or keywords.get("displacement")
+    _displacement: Duration | None
+
+    def __new__(
+        class_,
+        numerator=0,
+        denominator=None,
+        *,
+        displacement: Duration | None = None,
+    ) -> Offset:
+        self = super().__new__(class_, numerator, denominator)
+        if displacement is None and isinstance(numerator, Offset):
+            displacement = numerator.displacement()
         if displacement is not None:
-            if isinstance(displacement, tuple):
-                displacement = Duration(*displacement)
-            else:
-                displacement = Duration(displacement)
-        if len(arguments) == 1 and isinstance(arguments[0], Duration):
-            arguments = arguments[0].pair()
-        elif len(arguments) == 1 and isinstance(arguments[0], tuple):
-            arguments = arguments[0]
-        self = Duration.__new__(class_, *arguments)
+            assert isinstance(displacement, Duration), repr(displacement)
         self._displacement = displacement
         return self
 
+    # TODO: move examples to pytest
     def __copy__(self, *arguments) -> "Offset":
         """
         Copies offset.
@@ -1079,7 +961,7 @@ class Offset(Duration):
 
             Copies offset with displacement:
 
-            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
             >>> offset_2 = copy.copy(offset_1)
 
             >>> offset_1
@@ -1097,6 +979,7 @@ class Offset(Duration):
         """
         return type(self)(*self.pair(), displacement=self.displacement())
 
+    # TODO: move examples to pytest
     def __deepcopy__(self, *arguments) -> "Offset":
         """
         Deep copies offset.
@@ -1107,7 +990,7 @@ class Offset(Duration):
 
             Copies offset with displacement:
 
-            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
             >>> offset_2 = copy.deepcopy(offset_1)
 
             >>> offset_1
@@ -1125,6 +1008,7 @@ class Offset(Duration):
         """
         return self.__copy__(*arguments)
 
+    # TODO: move examples to pytest
     def __eq__(self, argument) -> bool:
         """
         Is true when offset equals ``argument``.
@@ -1133,8 +1017,8 @@ class Offset(Duration):
 
             With equal numerators, denominators and displacement:
 
-            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 16))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
 
             >>> offset_1 == offset_1
             True
@@ -1150,8 +1034,8 @@ class Offset(Duration):
             With equal numerators and denominators but differing grace
             displacements:
 
-            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 8))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 8))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
 
             >>> offset_1 == offset_1
             True
@@ -1168,7 +1052,7 @@ class Offset(Duration):
             displacements:
 
             >>> offset_1 = abjad.Offset(1, 4)
-            >>> offset_2 = abjad.Offset(1, 2, displacement=(-99))
+            >>> offset_2 = abjad.Offset(1, 2, displacement=abjad.Duration(-99))
 
             >>> offset_1 == offset_1
             True
@@ -1181,9 +1065,12 @@ class Offset(Duration):
 
         """
         if isinstance(argument, type(self)) and self.pair() == argument.pair():
-            return self._get_displacement() == argument._get_displacement()
+            return (
+                self._get_nonnone_displacement() == argument._get_nonnone_displacement()
+            )
         return super().__eq__(argument)
 
+    # TODO: move examples to pytest
     def __ge__(self, argument) -> bool:
         """
         Is true when offset is greater than or equal to ``argument``.
@@ -1192,8 +1079,8 @@ class Offset(Duration):
 
             With equal numerators, denominators and displacement:
 
-            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 16))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
 
             >>> offset_1 >= offset_1
             True
@@ -1209,8 +1096,8 @@ class Offset(Duration):
             With equal numerators and denominators but differing grace
             displacements:
 
-            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 8))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 8))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
 
             >>> offset_1 >= offset_1
             True
@@ -1227,7 +1114,7 @@ class Offset(Duration):
             displacements:
 
             >>> offset_1 = abjad.Offset(1, 4)
-            >>> offset_2 = abjad.Offset(1, 2, displacement=(-99))
+            >>> offset_2 = abjad.Offset(1, 2, displacement=abjad.Duration(-99))
 
             >>> offset_1 >= offset_1
             True
@@ -1240,9 +1127,12 @@ class Offset(Duration):
 
         """
         if isinstance(argument, type(self)) and self.pair() == argument.pair():
-            return self._get_displacement() >= argument._get_displacement()
+            return (
+                self._get_nonnone_displacement() >= argument._get_nonnone_displacement()
+            )
         return super().__ge__(argument)
 
+    # TODO: move examples to pytest
     def __gt__(self, argument) -> bool:
         """
         Is true when offset is greater than ``argument``.
@@ -1251,8 +1141,8 @@ class Offset(Duration):
 
             With equal numerators, denominators and displacement:
 
-            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 16))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
 
             >>> offset_1 > offset_1
             False
@@ -1268,8 +1158,8 @@ class Offset(Duration):
             With equal numerators and denominators but differing grace
             displacements:
 
-            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 8))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 8))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
 
             >>> offset_1 > offset_1
             False
@@ -1286,7 +1176,7 @@ class Offset(Duration):
             displacements:
 
             >>> offset_1 = abjad.Offset(1, 4)
-            >>> offset_2 = abjad.Offset(1, 2, displacement=(-99))
+            >>> offset_2 = abjad.Offset(1, 2, displacement=abjad.Duration(-99))
 
             >>> offset_1 > offset_1
             False
@@ -1299,7 +1189,9 @@ class Offset(Duration):
 
         """
         if isinstance(argument, type(self)) and self.pair() == argument.pair():
-            return self._get_displacement() > argument._get_displacement()
+            return (
+                self._get_nonnone_displacement() > argument._get_nonnone_displacement()
+            )
         return Duration.__gt__(self, argument)
 
     @typing.no_type_check
@@ -1307,8 +1199,9 @@ class Offset(Duration):
         """
         Hashes offset.
         """
-        return hash((self.pair(), self._get_displacement()))
+        return hash((self.pair(), self._get_nonnone_displacement()))
 
+    # TODO: move examples to pytest
     def __le__(self, argument) -> bool:
         """
         Is true when offset is less than or equal to ``argument``.
@@ -1317,8 +1210,8 @@ class Offset(Duration):
 
             With equal numerators, denominators and displacement:
 
-            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 16))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
 
             >>> offset_1 <= offset_1
             True
@@ -1334,8 +1227,8 @@ class Offset(Duration):
             With equal numerators and denominators but differing grace
             displacements:
 
-            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 8))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 8))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
 
             >>> offset_1 <= offset_1
             True
@@ -1352,7 +1245,7 @@ class Offset(Duration):
             displacements:
 
             >>> offset_1 = abjad.Offset(1, 4)
-            >>> offset_2 = abjad.Offset(1, 2, displacement=(-99))
+            >>> offset_2 = abjad.Offset(1, 2, displacement=abjad.Duration(-99))
 
             >>> offset_1 <= offset_1
             True
@@ -1365,9 +1258,12 @@ class Offset(Duration):
 
         """
         if isinstance(argument, type(self)) and self.pair() == argument.pair():
-            return self._get_displacement() <= argument._get_displacement()
+            return (
+                self._get_nonnone_displacement() <= argument._get_nonnone_displacement()
+            )
         return super().__le__(argument)
 
+    # TODO: move examples to pytest
     def __lt__(self, argument) -> bool:
         """
         Is true when offset is less than ``argument``.
@@ -1376,8 +1272,8 @@ class Offset(Duration):
 
         ..  container:: example
 
-            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 16))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
 
             >>> offset_1 < offset_1
             False
@@ -1393,8 +1289,8 @@ class Offset(Duration):
             With equal numerators and denominators but differing nonzero grace
             displacements:
 
-            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 8))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 8))
+            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
 
             >>> offset_1 < offset_1
             False
@@ -1410,7 +1306,7 @@ class Offset(Duration):
             With equal numerators and denominators but differing zero-valued
             displacement:
 
-            >>> offset_1 = abjad.Offset(1, 4, displacement=(-1, 8))
+            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 8))
             >>> offset_2 = abjad.Offset(1, 4)
 
             >>> offset_1 < offset_1
@@ -1428,7 +1324,7 @@ class Offset(Duration):
             displacements:
 
             >>> offset_1 = abjad.Offset(1, 4)
-            >>> offset_2 = abjad.Offset(1, 2, displacement=(-99))
+            >>> offset_2 = abjad.Offset(1, 2, displacement=abjad.Duration(-99))
 
             >>> offset_1 < offset_1
             False
@@ -1441,7 +1337,9 @@ class Offset(Duration):
 
         """
         if isinstance(argument, type(self)) and self.pair() == argument.pair():
-            return self._get_displacement() < argument._get_displacement()
+            return (
+                self._get_nonnone_displacement() < argument._get_nonnone_displacement()
+            )
         return super().__lt__(argument)
 
     def __repr__(self) -> str:
@@ -1453,7 +1351,7 @@ class Offset(Duration):
             >>> abjad.Offset(1, 4)
             Offset(1, 4)
 
-            >>> abjad.Offset(1, 4, displacement=(-1, 16))
+            >>> abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
             Offset(1, 4, displacement=Duration(-1, 16))
 
         """
@@ -1464,6 +1362,7 @@ class Offset(Duration):
             string = f"{n}, {d}, displacement={self.displacement()!r}"
             return f"{type(self).__name__}({string})"
 
+    # TODO: move examples to pytest
     def __sub__(self, argument):
         """
         Subtracts ``argument`` from offset.
@@ -1498,7 +1397,7 @@ class Offset(Duration):
             argument = type(self)(argument)
             return self - argument
 
-    def _get_displacement(self):
+    def _get_nonnone_displacement(self):
         if self.displacement() is None:
             return Duration(0)
         return self.displacement()
@@ -1512,7 +1411,7 @@ class Offset(Duration):
             >>> abjad.Offset(1, 4).displacement() is None
             True
 
-            >>> abjad.Offset(1, 4, displacement=(-1, 16)).displacement()
+            >>> abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16)).displacement()
             Duration(-1, 16)
 
         """
@@ -1594,6 +1493,7 @@ class Ratio:
         """
         return f"{self.numerator}:{self.denominator}"
 
+    # TODO: rename to fraction()
     def as_fraction(self):
         """
         Changes (unreduced) ratio to (reduced) fraction.

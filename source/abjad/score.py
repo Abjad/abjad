@@ -5670,16 +5670,15 @@ class Tuplet(Container):
         global_dot_count = dot_counts.pop()
         if global_dot_count == 0:
             return
-        dot_multiplier = _duration.fraction_from_dot_count(global_dot_count)
-        multiplier = dot_multiplier * self.multiplier()
-        ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
+        dot_duration = _duration.Duration.from_dot_count(global_dot_count)
+        multiplier = self.multiplier() * dot_duration
+        ratio = _duration.Ratio(*multiplier.reciprocal().pair())
         self.set_ratio(ratio)
-        dot_multiplier_duration = _duration.Duration(dot_multiplier)
-        dot_multiplier_reciprocal_duration = dot_multiplier_duration.reciprocal()
+        reciprocal_dot_duration = dot_duration.reciprocal()
         for component in self:
-            component_written_duration = component.written_duration()
-            component_written_duration *= dot_multiplier_reciprocal_duration
-            component.set_written_duration(component_written_duration)
+            duration = component.written_duration()
+            duration *= reciprocal_dot_duration
+            component.set_written_duration(duration)
 
     def toggle_prolation(self) -> None:
         r"""

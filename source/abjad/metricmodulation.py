@@ -6,7 +6,6 @@ import dataclasses
 import typing
 
 from . import _contributions, _getlib
-from . import duration as _duration
 from . import illustrators as _illustrators
 from . import indicators as _indicators
 from . import score as _score
@@ -579,6 +578,6 @@ class MetricModulation:
         """
         left_duration = _getlib._get_duration(self.left_rhythm)
         right_duration = _getlib._get_duration(self.right_rhythm)
-        duration = left_duration / right_duration
-        pair = _duration.pair(duration)
+        fraction = left_duration / right_duration
+        pair = (fraction.numerator, fraction.denominator)
         return pair
