@@ -147,32 +147,34 @@ class Duration(fractions.Fraction):
             return type(self)(result)
         return result
 
+    """
     def __mul__(self, argument):
         if isinstance(argument, Duration):
             message = f"Multiplying two durations is undefined: {self}, {argument}"
             raise TypeError(message)
         result = type(self)(fractions.Fraction.__mul__(self, argument))
         return result
-
     """
-    @typing.overload
-    def __mul__(self, other: int | fractions.Fraction) -> fractions.Fraction: ...
 
     @typing.overload
-    def __mul__(self, other: float) -> float: ...
+    def __mul__(self, other: int | fractions.Fraction) -> fractions.Fraction:
+        pass
 
     @typing.overload
-    def __mul__(self, other: complex) -> complex: ...
+    def __mul__(self, other: float) -> float:
+        pass
+
+    @typing.overload
+    def __mul__(self, other: complex) -> complex:
+        pass
 
     def __mul__(self, other):
         if isinstance(other, Duration):
             raise TypeError("Multiplying two durations is undefined")
-        res = super().__mul__(other)
-        # Optional ergonomic narrowing at runtime for ints:
-        if isinstance(res, fractions.Fraction) and isinstance(other, int):
-            return type(self)(res)
-        return res
-    """
+        result = super().__mul__(other)
+        if isinstance(result, fractions.Fraction):
+            return type(self)(result)
+        return result
 
     def __neg__(self, *arguments):
         return type(self)(fractions.Fraction.__neg__(self, *arguments))
@@ -216,30 +218,26 @@ class Duration(fractions.Fraction):
         """
         return type(self)(fractions.Fraction.__rmod__(self, *arguments))
 
+    @typing.overload
+    def __rmul__(self, other: int | fractions.Fraction) -> fractions.Fraction:
+        pass
+
+    @typing.overload
+    def __rmul__(self, other: float) -> float:
+        pass
+
+    @typing.overload
+    def __rmul__(self, other: complex) -> complex:
+        pass
+
     def __rmul__(self, argument):
         if isinstance(argument, Duration):
             message = f"Can not multiply two durations: {self}, {argument}"
             raise TypeError(message)
-        return type(self)(fractions.Fraction.__rmul__(self, argument))
-
-    """
-    @typing.overload
-    def __rmul__(self, other: int | fractions.Fraction) -> fractions.Fraction: ...
-
-    @typing.overload
-    def __rmul__(self, other: float) -> float: ...
-
-    @typing.overload
-    def __rmul__(self, other: complex) -> complex: ...
-
-    def __rmul__(self, other):
-        if isinstance(other, Duration):
-            raise TypeError("Multiplying two durations is undefined")
-        res = super().__rmul__(other)
-        if isinstance(res, fractions.Fraction) and isinstance(other, int):
-            return type(self)(res)
-        return res
-    """
+        result = fractions.Fraction.__rmul__(self, argument)
+        if isinstance(result, fractions.Fraction):
+            return type(self)(result)
+        return result
 
     def __rpow__(self, *arguments):
         """

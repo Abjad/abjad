@@ -360,7 +360,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
             assert self.is_unpitched() is True
             pitches = [None]
         pitch_lists = _makers.make_pitch_lists(pitches)
-        duration = fractions.Fraction(*self.pair()) * duration
+        duration = _duration.Duration(fractions.Fraction(*self.pair()) * duration)
         components = _makers.make_leaves(pitch_lists, [duration])
         return components
 
