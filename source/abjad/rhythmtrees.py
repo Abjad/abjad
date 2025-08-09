@@ -634,7 +634,9 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             basic_written_duration = (
                 basic_written_duration.equal_or_greater_power_of_two()
             )
-            assert isinstance(basic_written_duration, _duration.Duration)
+            assert isinstance(basic_written_duration, _duration.Duration), repr(
+                basic_written_duration
+            )
             tuplet = _score.Tuplet("1:1", [])
             for node in rtc.children:
                 if isinstance(node, type(self)):
