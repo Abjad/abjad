@@ -126,9 +126,6 @@ class Duration(fractions.Fraction):
     __slots__ = ()
 
     def __abs__(self) -> typing.Self:
-        """
-        Gets absolute value of duration.
-        """
         result = fractions.Fraction.__abs__(self)
         return type(self)(result)
 
@@ -145,151 +142,28 @@ class Duration(fractions.Fraction):
         pass
 
     def __add__(self, argument):
-        """
-        Adds duration to ``argument``.
-        """
         result = fractions.Fraction.__add__(self, argument)
         if isinstance(result, fractions.Fraction):
             return type(self)(result)
         return result
 
-    def __divmod__(self, *arguments):
-        """
-        Equals the pair (duration // ``arguments``, duration % ``arguments``).
-
-        Returns pair.
-        """
-        truncated, residue = fractions.Fraction.__divmod__(self, *arguments)
-        truncated = type(self)(truncated)
-        residue = type(self)(residue)
-        return truncated, residue
-
-    def __eq__(self, argument) -> bool:
-        """
-        Is true when duration equals ``argument``.
-        """
-        return fractions.Fraction.__eq__(self, argument)
-
-    def __ge__(self, argument) -> bool:
-        """
-        Is true when duration is greater than or equal to ``argument``.
-        """
-        return fractions.Fraction.__ge__(self, argument)
-
-    def __gt__(self, argument) -> bool:
-        """
-        Is true when duration is greater than ``argument``.
-        """
-        return fractions.Fraction.__gt__(self, argument)
-
-    @typing.no_type_check
-    def __hash__(self) -> int:
-        """
-        Hashes duration.
-        """
-        return super().__hash__()
-
-    def __le__(self, argument) -> bool:
-        """
-        Is true when duration is less than or equal to ``argument``.
-        """
-        return fractions.Fraction.__le__(self, argument)
-
-    def __lt__(self, argument) -> bool:
-        """
-        Is true when duration is less than ``argument``.
-        """
-        return fractions.Fraction.__lt__(self, argument)
-
-    def __mod__(self, *arguments):
-        """
-        Modulus operator applied to duration.
-
-        Returns duration.
-        """
-        return type(self)(fractions.Fraction.__mod__(self, *arguments))
-
     def __mul__(self, argument):
-        """
-        Duration multiplied by ``argument``.
-
-        ..  container:: example
-
-            >>> duration_1 = abjad.Duration(1, 2)
-            >>> duration_2 = abjad.Duration(3, 2)
-            >>> duration_1 * duration_2
-            Duration(3, 4)
-
-        Returns duration.
-        """
         result = type(self)(fractions.Fraction.__mul__(self, argument))
         return result
 
-    def __ne__(self, argument) -> bool:
-        """
-        Redefined explicitly because ``abjad.Duration`` inherits from built-in
-        ``fractions.Fraction``:
-
-        "The __ne__ method follows automatically from __eq__ only if __ne__
-        isn't already defined in a superclass.  So, if you're inheriting from a
-        builtin, it's best to override both."
-
-        See https://bugs.python.org/issue4395#msg89533.
-
-        ..  container:: example
-
-            REGRESSION:
-
-            >>> offset_1 = abjad.Offset(1)
-            >>> offset_2 = abjad.Offset(1, displacement=abjad.Duration(-1, 16))
-
-            >>> offset_1 == offset_2
-            False
-
-            >>> offset_1 != offset_2
-            True
-
-        """
-        return not self == argument
-
     def __neg__(self, *arguments):
-        """
-        Negates duration.
-
-        Returns new duration.
-        """
         return type(self)(fractions.Fraction.__neg__(self, *arguments))
 
     def __pos__(self, *arguments):
-        """
-        Get positive duration.
-
-        Returns new duration.
-        """
         return type(self)(fractions.Fraction.__pos__(self, *arguments))
 
     def __pow__(self, *arguments):
-        """
-        Raises duration to ``arguments`` power.
-
-        Returns new duration.
-        """
         return type(self)(fractions.Fraction.__pow__(self, *arguments))
 
     def __radd__(self, *arguments):
-        """
-        Adds ``arguments`` to duration.
-
-        Returns new duration.
-        """
         return type(self)(fractions.Fraction.__radd__(self, *arguments))
 
     def __rdiv__(self, *arguments):
-        """
-        Divides ``arguments`` by duration.
-
-        Returns new duration.
-        """
         return type(self)(fractions.Fraction.__rdiv__(self, *arguments))
 
     def __rdivmod__(self, *arguments):
@@ -311,9 +185,6 @@ class Duration(fractions.Fraction):
         return type(self), (self.numerator, self.denominator)
 
     def __repr__(self) -> str:
-        """
-        Gets repr.
-        """
         return f"{type(self).__name__}({self.numerator}, {self.denominator})"
 
     def __rmod__(self, *arguments):
@@ -349,22 +220,10 @@ class Duration(fractions.Fraction):
     def __rtruediv__(self, *arguments):
         """
         Documentation required.
-
-        Returns new duration.
         """
         return type(self)(fractions.Fraction.__rtruediv__(self, *arguments))
 
     def __sub__(self, *arguments):
-        """
-        Subtracts ``arguments`` from duration.
-
-        ..  container:: example
-
-            >>> abjad.Duration(1, 2) - abjad.Duration(2, 8)
-            Duration(1, 4)
-
-        Returns new duration.
-        """
         return type(self)(fractions.Fraction.__sub__(self, *arguments))
 
     @typing.overload
