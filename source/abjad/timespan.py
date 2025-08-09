@@ -2123,7 +2123,8 @@ class TimespanList(list):
             stop_offset = self.stop_offset()
             assert isinstance(start_offset, _duration.Offset)
             assert isinstance(stop_offset, _duration.Offset)
-            return (start_offset + stop_offset) / 2
+            fraction = (start_offset + stop_offset) / 2
+            return _duration.Offset(fraction)
         return None
 
     def duration(self) -> _duration.Duration:

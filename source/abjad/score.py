@@ -5370,7 +5370,7 @@ class Tuplet(Container):
                 continue
             assert isinstance(component, Leaf), repr(component)
             duration = self.multiplier() * component.written_duration()
-            if not duration.is_assignable():
+            if not _duration.Duration(duration).is_assignable():
                 return False
         return True
 
@@ -5671,13 +5671,13 @@ class Tuplet(Container):
         if global_dot_count == 0:
             return
         dot_duration = _duration.Duration.from_dot_count(global_dot_count)
-        multiplier = self.multiplier() * dot_duration
+        multiplier = _duration.Duration(self.multiplier() * dot_duration)
         ratio = _duration.Ratio(*multiplier.reciprocal().pair())
         self.set_ratio(ratio)
-        reciprocal_dot_duration = dot_duration.reciprocal()
+        reciprocal_dot_fraction = dot_duration.reciprocal().fraction()
         for component in self:
             duration = component.written_duration()
-            duration *= reciprocal_dot_duration
+            duration *= reciprocal_dot_fraction
             component.set_written_duration(duration)
 
     def toggle_prolation(self) -> None:
@@ -5803,8 +5803,8 @@ class Tuplet(Container):
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
                         component_written_duration = component.written_duration()
-                        component_written_duration /= 2
-                        component.set_written_duration(component_written_duration)
+                        duration = _duration.Duration(component_written_duration / 2)
+                        component.set_written_duration(duration)
         elif self.ratio().is_augmented():
             while not self.ratio().is_diminished():
                 multiplier = self.multiplier() / 2
@@ -5813,7 +5813,9 @@ class Tuplet(Container):
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
                         component_written_duration = component.written_duration()
-                        component_written_duration *= 2
+                        component_written_duration = _duration.Duration(
+                            2 * component_written_duration
+                        )
                         component.set_written_duration(component_written_duration)
 
     def trivialize(self) -> None:
@@ -5872,9 +5874,9 @@ class Tuplet(Container):
                 ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
                 component.set_ratio(ratio)
             elif isinstance(component, Leaf):
-                component_written_duration = component.written_duration()
-                component_written_duration *= self.multiplier()
-                component.set_written_duration(component_written_duration)
+                duration = component.written_duration()
+                duration = _duration.Duration(self.multiplier() * duration)
+                component.set_written_duration(duration)
             else:
                 raise TypeError(component)
         self.set_ratio(_duration.Ratio(1, 1))
