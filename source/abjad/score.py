@@ -5803,8 +5803,8 @@ class Tuplet(Container):
                 for component in self._get_subtree():
                     if isinstance(component, Leaf):
                         component_written_duration = component.written_duration()
-                        component_written_duration /= 2
-                        component.set_written_duration(component_written_duration)
+                        duration = _duration.Duration(component_written_duration / 2)
+                        component.set_written_duration(duration)
         elif self.ratio().is_augmented():
             while not self.ratio().is_diminished():
                 multiplier = self.multiplier() / 2

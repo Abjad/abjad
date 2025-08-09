@@ -44,6 +44,13 @@ def test_durtion_Duration_03():
     assert isinstance(abjad.Duration(3, 16), numbers.Number)
 
 
+def test_duration_Duration___add__():
+
+    duration_1 = abjad.Duration(1, 2)
+    duration_2 = abjad.Duration(3, 2)
+    assert duration_1 + duration_2 == abjad.Duration(2, 1)
+
+
 def test_duration_Offset_constructor():
     """
     Constructor patterns.

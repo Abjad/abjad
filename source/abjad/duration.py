@@ -125,45 +125,32 @@ class Duration(fractions.Fraction):
 
     __slots__ = ()
 
-    def __abs__(self, *arguments):
+    def __abs__(self) -> typing.Self:
         """
         Gets absolute value of duration.
-
-        Returns nonnegative duration.
         """
-        return type(self)(fractions.Fraction.__abs__(self, *arguments))
+        result = fractions.Fraction.__abs__(self)
+        return type(self)(result)
 
-    def __add__(self, *arguments):
+    @typing.overload
+    def __add__(self, argument: int | fractions.Fraction) -> typing.Self:
+        pass
+
+    @typing.overload
+    def __add__(self, argument: float) -> float:
+        pass
+
+    @typing.overload
+    def __add__(self, argument: complex) -> complex:
+        pass
+
+    def __add__(self, argument):
         """
-        Adds duration to ``arguments``.
-
-        ..  container:: example
-
-            >>> duration_1 = abjad.Duration(1, 2)
-            >>> duration_2 = abjad.Duration(3, 2)
-            >>> duration_1 + duration_2
-            Duration(2, 1)
-
-        Returns duration.
+        Adds duration to ``argument``.
         """
-        result = type(self)(fractions.Fraction.__add__(self, *arguments))
-        return result
-
-    def __div__(self, *arguments) -> fractions.Fraction:
-        """
-        Divides duration by ``arguments``.
-
-        ..  container:: example
-
-            >>> abjad.Duration(1) / abjad.Duration(3, 3)
-            Fraction(1, 1)
-
-        """
-        if len(arguments) == 1 and isinstance(arguments[0], type(self)):
-            fraction = fractions.Fraction.__truediv__(self, *arguments)
-            result = fractions.Fraction(fraction)
-        else:
-            result = type(self)(fractions.Fraction.__truediv__(self, *arguments))
+        result = fractions.Fraction.__add__(self, argument)
+        if isinstance(result, fractions.Fraction):
+            return type(self)(result)
         return result
 
     def __divmod__(self, *arguments):
@@ -380,11 +367,25 @@ class Duration(fractions.Fraction):
         """
         return type(self)(fractions.Fraction.__sub__(self, *arguments))
 
-    def __truediv__(self, *arguments):
-        """
-        Documentation required.
-        """
-        return self.__div__(*arguments)
+    @typing.overload
+    def __truediv__(self, other: int | fractions.Fraction) -> fractions.Fraction:
+        pass
+
+    @typing.overload
+    def __truediv__(self, other: float) -> float:
+        pass
+
+    @typing.overload
+    def __truediv__(self, other: complex) -> complex:
+        pass
+
+    def __truediv__(self, other):
+        res = super().__truediv__(other)
+        if isinstance(other, Duration):
+            return fractions.Fraction(self) / fractions.Fraction(other)
+        if isinstance(res, fractions.Fraction) and isinstance(other, int):
+            return type(self)(res)
+        return res
 
     def clock_string(self) -> str:
         r"""
