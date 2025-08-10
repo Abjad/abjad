@@ -360,7 +360,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
             assert self.is_unpitched() is True
             pitches = [None]
         pitch_lists = _makers.make_pitch_lists(pitches)
-        duration *= _duration.Duration(*self.pair())
+        duration = _duration.Duration(fractions.Fraction(*self.pair()) * duration)
         components = _makers.make_leaves(pitch_lists, [duration])
         return components
 
@@ -634,12 +634,15 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             basic_written_duration = (
                 basic_written_duration.equal_or_greater_power_of_two()
             )
-            assert isinstance(basic_written_duration, _duration.Duration)
+            assert isinstance(basic_written_duration, _duration.Duration), repr(
+                basic_written_duration
+            )
             tuplet = _score.Tuplet("1:1", [])
             for node in rtc.children:
                 if isinstance(node, type(self)):
-                    tuplet_duration_ = _duration.Duration(*node.pair())
-                    tuplet_duration_ *= basic_written_duration
+                    tuplet_duration_ = basic_written_duration
+                    scalar = fractions.Fraction(*node.pair())
+                    tuplet_duration_ = scalar * tuplet_duration_
                     components = recurse(node, tuplet_duration_)
                     tuplet.extend(components)
                 else:
@@ -655,7 +658,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             tuplet.set_ratio(ratio)
             return [tuplet]
 
-        tuplet_duration_ = duration * _duration.Duration(*self.pair())
+        tuplet_duration_ = duration.fraction() * _duration.Duration(*self.pair())
         assert isinstance(tuplet_duration_, _duration.Duration)
         components = recurse(self, tuplet_duration_)
         assert all(isinstance(_, _score.Leaf | _score.Tuplet) for _ in components)

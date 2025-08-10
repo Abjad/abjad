@@ -3841,9 +3841,11 @@ class MetronomeMark:
                 * self.units_per_minute[1]
             )
             return (low, high)
-        result = (
-            _duration.Duration(1, 4) / self.reference_duration * self.units_per_minute
-        )
+        reference_duration = self.reference_duration
+        units_per_minute = self.units_per_minute
+        assert reference_duration is not None
+        assert units_per_minute is not None
+        result = _duration.Duration(1, 4) / reference_duration * units_per_minute
         return fractions.Fraction(result)
 
     def duration_to_milliseconds(

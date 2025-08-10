@@ -2,6 +2,7 @@
 Makers.
 """
 
+import fractions
 import math
 
 from . import duration as _duration
@@ -622,7 +623,7 @@ def make_leaves(
             numerator = _math.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
             # TODO: do not reduce
-            ratio = 1 / _duration.Duration(*multiplier)
+            ratio = 1 / fractions.Fraction(*multiplier)
             duration_list = [ratio * _ for _ in duration_list]
             tuplet_leaves: list[_score.Leaf] = []
             for pitch_list, duration in zip(current_pitch_lists, duration_list):
@@ -807,7 +808,9 @@ def make_notes(
             denominator = duration_list[0].denominator
             numerator = _math.greatest_power_of_two_less_equal(denominator)
             duration = _duration.Duration(numerator, denominator)
-            duration_list = [duration.reciprocal() * _ for _ in duration_list]
+            duration_list = [
+                duration.reciprocal().fraction() * _ for _ in duration_list
+            ]
             notes = _make_unprolated_notes(
                 pitches_,
                 duration_list,
