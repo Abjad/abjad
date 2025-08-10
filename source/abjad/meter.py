@@ -2,6 +2,8 @@
 Meter.
 """
 
+from __future__ import annotations
+
 import bisect
 import collections
 import fractions
@@ -211,7 +213,7 @@ class Meter:
         self._numerator = numerator
         self._root_node = root_node
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Compares ``root_node.rtm_format()`` of self to that of ``argument``.
         """
@@ -348,7 +350,7 @@ class Meter:
         """
 
         def make_offset_node(offset, leaf_one=None, leaf_two=None, is_last=False):
-            assert isinstance(offset, _duration.Offset), repr(offset)
+            assert isinstance(offset, _duration.ValueOffset), repr(offset)
             if not is_last:
                 offset_node = uqbar.graphs.Node(
                     attributes={
@@ -364,7 +366,7 @@ class Meter:
                 offset_node = uqbar.graphs.Node(attributes={"shape": "Mrecord"})
             offset_field = uqbar.graphs.RecordField(label=str(offset))
             weight_field = uqbar.graphs.RecordField(
-                label="+" * offset_counter.items[offset]
+                label="+" * offset_counter.sorted_offset_to_count[offset]
             )
             group = uqbar.graphs.RecordGroup()
             group.extend([offset_field, weight_field])
@@ -379,7 +381,7 @@ class Meter:
                 edge.attach(leaf_two_node, offset_node)
 
         offsets = _sequence.flatten(self.depthwise_offset_inventory(), depth=-1)
-        offset_counter = _timespan.OffsetCounter(offsets)
+        offset_counter = _timespan.OffsetCounter(list(offsets))
         graph = uqbar.graphs.Graph(
             name="G",
             attributes={
@@ -408,16 +410,16 @@ class Meter:
                 uqbar.graphs.Edge().attach(
                     node_mapping[node.parent], node_mapping[node]
                 )
-        offset = leaves[0].start_offset()
+        offset = leaves[0].value_start_offset()
         offset_subgraph = uqbar.graphs.Graph(
             name="cluster_offsets", attributes={"style": "rounded"}
         )
         graph.append(offset_subgraph)
         make_offset_node(offset, leaves[0])
         for one, two in _sequence.nwise(leaves):
-            offset = one.stop_offset()
+            offset = one.value_stop_offset()
             make_offset_node(offset, one, two)
-        offset = leaves[-1].stop_offset()
+        offset = leaves[-1].value_stop_offset()
         make_offset_node(offset, leaves[-1], is_last=True)
         return graph
 
@@ -466,11 +468,11 @@ class Meter:
         assert isinstance(nodes, list)
         for node in nodes:
             pair = _duration.pair_with_denominator(
-                node.start_offset(), self.denominator()
+                node.value_start_offset().fraction, self.denominator()
             )
             start_offset = pair
             pair = _duration.pair_with_denominator(
-                node.stop_offset(), self.denominator()
+                node.value_stop_offset().fraction, self.denominator()
             )
             stop_offset = pair
             yield start_offset, stop_offset
@@ -509,30 +511,31 @@ class Meter:
             ...     for offset in offsets:
             ...         print(f"    {offset!r}")
             0:
-                Offset(0, 1)
-                Offset(7, 4)
+                ValueOffset(fraction=Fraction(0, 1), displacement=None)
+                ValueOffset(fraction=Fraction(7, 4), displacement=None)
             1:
-                Offset(0, 1)
-                Offset(3, 4)
-                Offset(5, 4)
-                Offset(7, 4)
+                ValueOffset(fraction=Fraction(0, 1), displacement=None)
+                ValueOffset(fraction=Fraction(3, 4), displacement=None)
+                ValueOffset(fraction=Fraction(5, 4), displacement=None)
+                ValueOffset(fraction=Fraction(7, 4), displacement=None)
             2:
-                Offset(0, 1)
-                Offset(1, 4)
-                Offset(1, 2)
-                Offset(3, 4)
-                Offset(1, 1)
-                Offset(5, 4)
-                Offset(3, 2)
-                Offset(7, 4)
+                ValueOffset(fraction=Fraction(0, 1), displacement=None)
+                ValueOffset(fraction=Fraction(1, 4), displacement=None)
+                ValueOffset(fraction=Fraction(1, 2), displacement=None)
+                ValueOffset(fraction=Fraction(3, 4), displacement=None)
+                ValueOffset(fraction=Fraction(1, 1), displacement=None)
+                ValueOffset(fraction=Fraction(5, 4), displacement=None)
+                ValueOffset(fraction=Fraction(3, 2), displacement=None)
+                ValueOffset(fraction=Fraction(7, 4), displacement=None)
 
         """
         inventory = []
         all_offsets = set()
-        all_offsets.add(_duration.Offset(self.numerator(), self.denominator()))
+        fraction = fractions.Fraction(self.numerator(), self.denominator())
+        all_offsets.add(_duration.ValueOffset(fraction))
         for depth, nodes in sorted(self.root_node()._depthwise_inventory().items()):
             for node in nodes:
-                all_offsets.add(_duration.Offset(node.start_offset()))
+                all_offsets.add(node.value_start_offset())
             inventory.append(tuple(sorted(all_offsets)))
         return tuple(inventory)
 
@@ -836,7 +839,7 @@ class Meter:
 
     def generate_offset_kernel_to_denominator(
         self, denominator: int
-    ) -> "MetricAccentKernel":
+    ) -> MetricAccentKernel:
         r"""
         Generates MAK (dictionary) of all offsets in ``self`` up to
         ``denominator``.
@@ -856,22 +859,22 @@ class Meter:
             >>> for offset, weight in sorted(kernel.kernel().items()):
             ...     print(f"{offset!r}\t{weight!r}")
             ...
-            Offset(0, 1)	Fraction(3, 16)
-            Offset(1, 8)	Fraction(1, 16)
-            Offset(1, 4)	Fraction(1, 8)
-            Offset(3, 8)	Fraction(1, 16)
-            Offset(1, 2)	Fraction(1, 8)
-            Offset(5, 8)	Fraction(1, 16)
-            Offset(3, 4)	Fraction(1, 8)
-            Offset(7, 8)	Fraction(1, 16)
-            Offset(1, 1)	Fraction(3, 16)
+            ValueOffset(fraction=Fraction(0, 1), displacement=None)	Fraction(3, 16)
+            ValueOffset(fraction=Fraction(1, 8), displacement=None)	Fraction(1, 16)
+            ValueOffset(fraction=Fraction(1, 4), displacement=None)	Fraction(1, 8)
+            ValueOffset(fraction=Fraction(3, 8), displacement=None)	Fraction(1, 16)
+            ValueOffset(fraction=Fraction(1, 2), displacement=None)	Fraction(1, 8)
+            ValueOffset(fraction=Fraction(5, 8), displacement=None)	Fraction(1, 16)
+            ValueOffset(fraction=Fraction(3, 4), displacement=None)	Fraction(1, 8)
+            ValueOffset(fraction=Fraction(7, 8), displacement=None)	Fraction(1, 16)
+            ValueOffset(fraction=Fraction(1, 1), displacement=None)	Fraction(3, 16)
 
         """
         assert _math.is_positive_integer_power_of_two(denominator // self.denominator())
         inventory = list(self.depthwise_offset_inventory())
         for offset_tuple in inventory:
             assert isinstance(offset_tuple, tuple)
-            assert all(isinstance(_, _duration.Offset) for _ in offset_tuple)
+            assert all(isinstance(_, _duration.ValueOffset) for _ in offset_tuple)
         old_flag_count = _duration.Duration(1, self.denominator()).flag_count()
         new_flag_count = _duration.Duration(1, denominator).flag_count()
         extra_depth = new_flag_count - old_flag_count
@@ -881,7 +884,9 @@ class Meter:
             new_offsets = []
             for first_offset, second_offset in _sequence.nwise(old_offsets):
                 new_offsets.append(first_offset)
-                new_offsets.append((first_offset + second_offset) / 2)
+                # new_offsets.append((first_offset + second_offset) / 2)
+                fraction = (first_offset.fraction + second_offset.fraction) / 2
+                new_offsets.append(_duration.ValueOffset(fraction))
             new_offsets.append(old_offsets[-1])
             inventory.append(tuple(new_offsets))
         total = 0
@@ -902,7 +907,9 @@ class Meter:
         *,
         boundary_depth: int | None = None,
         do_not_rewrite_tuplets: bool = False,
-        initial_offset: _duration.Offset = _duration.Offset(0),
+        initial_offset: _duration.ValueOffset = _duration.ValueOffset(
+            fractions.Fraction(0)
+        ),
         maximum_dot_count: int | None = None,
     ) -> None:
         r"""
@@ -2017,7 +2024,7 @@ class Meter:
         assert all(isinstance(_, _score.Component) for _ in components)
         if boundary_depth is not None:
             assert isinstance(boundary_depth, int)
-        assert isinstance(initial_offset, _duration.Offset), repr(initial_offset)
+        assert isinstance(initial_offset, _duration.ValueOffset), repr(initial_offset)
         if maximum_dot_count is not None:
             assert isinstance(maximum_dot_count, int)
             assert 0 <= maximum_dot_count
@@ -2031,12 +2038,17 @@ class Meter:
         ) -> None:
             assert isinstance(logical_tie, _select.LogicalTie), repr(logical_tie)
             assert isinstance(boundary_offsets, tuple), repr(boundary_offsets)
+            assert all(isinstance(_, _duration.ValueOffset) for _ in boundary_offsets)
             offsets = _get_offsets_at_depth(depth, offset_inventory)
             durations = [_._get_preprolated_duration() for _ in logical_tie]
             logical_tie_duration = sum(durations)
             logical_tie_timespan = _getlib._get_timespan(logical_tie)
-            logical_tie_start_offset = logical_tie_timespan.start_offset
-            logical_tie_stop_offset = logical_tie_timespan.stop_offset
+            logical_tie_start_offset = _duration.ValueOffset.from_offset(
+                logical_tie_timespan.start_offset
+            )
+            logical_tie_stop_offset = _duration.ValueOffset.from_offset(
+                logical_tie_timespan.stop_offset
+            )
             logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
             logical_tie_stops_in_offsets = logical_tie_stop_offset in offsets
             if not _is_acceptable_logical_tie(
@@ -2055,9 +2067,13 @@ class Meter:
                         split_offset = offset
                         break
                 if split_offset is not None:
-                    split_offset -= logical_tie_start_offset
-                    assert isinstance(split_offset, _duration.Duration)
-                    shards = _mutate.split(logical_tie[:], [split_offset])
+                    # split_offset -= logical_tie_start_offset
+                    split_offset_fraction = (
+                        split_offset.fraction - logical_tie_start_offset.fraction
+                    )
+                    split_offset_duration = _duration.Duration(split_offset_fraction)
+                    assert isinstance(split_offset_duration, _duration.Duration)
+                    shards = _mutate.split(logical_tie[:], [split_offset_duration])
                     logical_ties = [_select.LogicalTie(_) for _ in shards]
                     for logical_tie in logical_ties:
                         recurse(
@@ -2088,9 +2104,12 @@ class Meter:
                         split_offset = offset
                         break
                 assert split_offset is not None
-                split_offset -= logical_tie_start_offset
-                assert isinstance(split_offset, _duration.Duration)
-                shards = _mutate.split(logical_tie[:], [split_offset])
+                assert isinstance(split_offset, _duration.ValueOffset)
+                # split_offset -= logical_tie_start_offset
+                fraction = split_offset.fraction - logical_tie_start_offset.fraction
+                # assert isinstance(split_offset, _duration.Duration)
+                split_offset_duration = _duration.Duration(fraction)
+                shards = _mutate.split(logical_tie[:], [split_offset_duration])
                 logical_ties = [_select.LogicalTie(shard) for shard in shards]
                 for logical_tie in logical_ties:
                     recurse(
@@ -2108,11 +2127,16 @@ class Meter:
                 nongrace_components.append(component)
         first_start_offset = nongrace_components[0]._get_timespan().start_offset
         last_start_offset = nongrace_components[-1]._get_timespan().start_offset
-        difference = last_start_offset - first_start_offset + initial_offset
+        difference = last_start_offset - first_start_offset + initial_offset.fraction
         assert difference < self.implied_time_signature().duration()
         # build offset inventory, adjusted for initial offset and prolation
-        first_offset = components[0]._get_timespan().start_offset
-        first_offset -= initial_offset
+        first_offset = _duration.ValueOffset.from_offset(
+            components[0]._get_timespan().start_offset
+        )
+        # first_offset -= initial_offset.fraction
+        first_offset = _duration.ValueOffset(
+            first_offset.fraction - initial_offset.fraction
+        )
         if components[0]._parent is None:
             prolation = fractions.Fraction(1)
         else:
@@ -2120,8 +2144,11 @@ class Meter:
             prolation = parentage.prolation()
         offset_inventory = []
         for offsets in self.depthwise_offset_inventory():
-            offsets = [(_ * prolation) + first_offset for _ in offsets]
-            offset_inventory.append(tuple(offsets))
+            fractions_ = [
+                (_.fraction * prolation) + first_offset.fraction for _ in offsets
+            ]
+            value_offsets = [_duration.ValueOffset(_) for _ in fractions_]
+            offset_inventory.append(tuple(value_offsets))
         # build boundary offset inventory, if applicable
         if boundary_depth is not None:
             boundary_offsets = offset_inventory[boundary_depth]
@@ -2160,23 +2187,31 @@ class Meter:
 
 
 def _get_offsets_at_depth(
-    depth, offset_inventory: list[tuple[_duration.Offset, ...]]
-) -> tuple[_duration.Offset, ...]:
-    assert all(isinstance(_, tuple) for _ in offset_inventory)
+    depth, offset_inventory: list[tuple[_duration.ValueOffset, ...]]
+) -> tuple[_duration.ValueOffset, ...]:
+    for item in offset_inventory:
+        assert isinstance(item, tuple)
+        assert all(isinstance(_, _duration.ValueOffset) for _ in item), repr(item)
     if depth < len(offset_inventory):
         return offset_inventory[depth]
     while len(offset_inventory) <= depth:
         new_offsets = []
         old_offsets = offset_inventory[-1]
         for first, second in _sequence.nwise(old_offsets):
+            assert isinstance(first, _duration.ValueOffset), repr(first)
             new_offsets.append(first)
-            difference = second - first
-            half = (first + second) / 2
+            difference = second.fraction - first.fraction
+            # half = (first + second) / 2
+            half = _duration.ValueOffset((first.fraction + second.fraction) / 2)
             if _duration.Duration(1, 8) < difference:
                 new_offsets.append(half)
             else:
-                one_quarter = (first + half) / 2
-                three_quarters = (half + second) / 2
+                one_quarter = _duration.ValueOffset(
+                    (first.fraction + half.fraction) / 2
+                )
+                three_quarters = _duration.ValueOffset(
+                    (half.fraction + second.fraction) / 2
+                )
                 new_offsets.append(one_quarter)
                 new_offsets.append(half)
                 new_offsets.append(three_quarters)
@@ -2184,7 +2219,7 @@ def _get_offsets_at_depth(
         offset_inventory.append(tuple(new_offsets))
     result = offset_inventory[depth]
     assert isinstance(result, tuple)
-    assert all(isinstance(_, _duration.Offset) for _ in result), repr(result)
+    assert all(isinstance(_, _duration.ValueOffset) for _ in result), repr(result)
     return result
 
 
@@ -2210,13 +2245,14 @@ def _is_acceptable_logical_tie(
 
 
 def _is_boundary_crossing_logical_tie(
-    logical_tie_start_offset: _duration.Offset,
-    logical_tie_stop_offset: _duration.Offset,
+    logical_tie_start_offset: _duration.ValueOffset,
+    logical_tie_stop_offset: _duration.ValueOffset,
     boundary_depth: int | None = None,
-    boundary_offsets: tuple[_duration.Offset, ...] = (),
+    boundary_offsets: tuple[_duration.ValueOffset, ...] = (),
 ) -> bool:
-    assert isinstance(logical_tie_start_offset, _duration.Offset)
-    assert isinstance(logical_tie_stop_offset, _duration.Offset)
+    assert isinstance(logical_tie_start_offset, _duration.ValueOffset)
+    assert isinstance(logical_tie_stop_offset, _duration.ValueOffset)
+    assert all(isinstance(_, _duration.ValueOffset) for _ in boundary_offsets)
     if boundary_depth is None:
         return False
     if not any(
@@ -2557,7 +2593,10 @@ def illustrate_meter_list(
     offsets = _math.cumulative_sums(durations, start=0)
     timespans = _timespan.TimespanList()
     for one, two in _sequence.nwise(offsets):
-        timespan = _timespan.Timespan(start_offset=one, stop_offset=two)
+        timespan = _timespan.Timespan(
+            start_offset=_duration.Offset(one),
+            stop_offset=_duration.Offset(two),
+        )
         timespans.append(timespan)
     if range_ is not None:
         minimum, maximum = range_
@@ -2577,15 +2616,16 @@ def illustrate_meter_list(
         postscript_scale,
         draw_offsets=False,
     )
-    postscript_strings = []
-    rational_x_offset = _duration.Offset(0)
+    postscript_strings: list[str] = []
+    rational_x_offset = _duration.ValueOffset(fractions.Fraction(0))
     for meter in meter_list:
         kernel_denominator = denominator or meter.denominator()
         kernel = MetricAccentKernel.from_meter(meter, kernel_denominator)
         for offset, weight in sorted(kernel.kernel().items()):
+            assert isinstance(offset, _duration.ValueOffset)
             assert isinstance(weight, fractions.Fraction)
             weight_as_float = float(weight) * -40
-            ps_x_offset = float(rational_x_offset + offset)
+            ps_x_offset = float(rational_x_offset.fraction + offset.fraction)
             ps_x_offset *= postscript_scale
             ps_x_offset += 1
             postscript_strings.append(f"{_timespan._fpa(ps_x_offset)} -2 moveto")
@@ -2639,14 +2679,14 @@ class MetricAccentKernel:
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
         >>> for offset, weight in kernel.kernel().items():
         ...     print(f"{offset!r}: {weight!r}")
-        Offset(0, 1): Fraction(3, 14)
-        Offset(7, 8): Fraction(3, 14)
-        Offset(3, 8): Fraction(1, 7)
-        Offset(5, 8): Fraction(1, 7)
-        Offset(1, 8): Fraction(1, 14)
-        Offset(1, 4): Fraction(1, 14)
-        Offset(1, 2): Fraction(1, 14)
-        Offset(3, 4): Fraction(1, 14)
+        ValueOffset(fraction=Fraction(0, 1), displacement=None): Fraction(3, 14)
+        ValueOffset(fraction=Fraction(7, 8), displacement=None): Fraction(3, 14)
+        ValueOffset(fraction=Fraction(3, 8), displacement=None): Fraction(1, 7)
+        ValueOffset(fraction=Fraction(5, 8), displacement=None): Fraction(1, 7)
+        ValueOffset(fraction=Fraction(1, 8), displacement=None): Fraction(1, 14)
+        ValueOffset(fraction=Fraction(1, 4), displacement=None): Fraction(1, 14)
+        ValueOffset(fraction=Fraction(1, 2), displacement=None): Fraction(1, 14)
+        ValueOffset(fraction=Fraction(3, 4), displacement=None): Fraction(1, 14)
 
     ..  container:: example
 
@@ -2671,7 +2711,7 @@ class MetricAccentKernel:
         kernel = kernel or {}
         assert isinstance(kernel, dict)
         for key, value in kernel.items():
-            assert isinstance(key, _duration.Offset)
+            assert isinstance(key, _duration.ValueOffset)
             assert isinstance(value, fractions.Fraction)
         self._kernel = kernel.copy()
         offsets = tuple(sorted(self._kernel))
@@ -2715,14 +2755,15 @@ class MetricAccentKernel:
             >>> rtc = abjad.meter.make_best_guess_rtc((4, 4))
             >>> meter = abjad.Meter(rtc)
             >>> kernel = abjad.MetricAccentKernel.from_meter(meter)
-            >>> offset_counter = abjad.OffsetCounter(score)
+            >>> timespans = [abjad.get.timespan(_) for _ in score]
+            >>> offset_counter = abjad.OffsetCounter(timespans)
             >>> kernel(offset_counter)
             Fraction(10, 33)
 
         """
         assert isinstance(offset_counter, _timespan.OffsetCounter), repr(offset_counter)
         response = fractions.Fraction(0, 1)
-        for offset, count in offset_counter.items.items():
+        for offset, count in offset_counter.sorted_offset_to_count.items():
             if offset in self._kernel:
                 weight = self._kernel[offset]
                 weighted_count = weight * count
@@ -2730,7 +2771,7 @@ class MetricAccentKernel:
         assert isinstance(response, fractions.Fraction), repr(response)
         return response
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Is true when ``argument`` is a metric accent kernal with a kernal equal
         to that of ``self``.
@@ -2753,14 +2794,12 @@ class MetricAccentKernel:
         """
         return f"{type(self).__name__}(kernel={self.kernel()})"
 
-    ### PUBLIC PROPERTIES ###
-
     def duration(self) -> _duration.Duration:
         """
         Gets duration.
         """
         if self._offsets:
-            return _duration.Duration(self._offsets[-1])
+            return _duration.Duration(self._offsets[-1].fraction)
         else:
             return _duration.Duration(0)
 
@@ -2789,8 +2828,6 @@ class _MeterFittingSession:
     Used internally by ``Meter.fit_meters()``.
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = (
         "_cached_offset_counters",
         "_kernel_denominator",
@@ -2803,8 +2840,6 @@ class _MeterFittingSession:
     )
 
     KernelScore = collections.namedtuple("KernelScore", ("kernel", "score"))
-
-    ### INITIALIZER ###
 
     def __init__(
         self,
@@ -2819,12 +2854,12 @@ class _MeterFittingSession:
             assert 0 < maximum_run_length
         assert all(isinstance(_, Meter) for _ in meters), repr(meters)
         assert isinstance(offset_counter, _timespan.OffsetCounter), repr(offset_counter)
-        assert isinstance(offset_counter, _timespan.OffsetCounter), repr(offset_counter)
         self._cached_offset_counters: dict = {}
         self._maximum_run_length = maximum_run_length
         self._meters = tuple(meters)
         self._offset_counter = offset_counter
-        self._ordered_offsets = tuple(sorted(self.offset_counter().items))
+        sorted_offset_to_count = self.offset_counter().sorted_offset_to_count
+        self._ordered_offsets = tuple(sorted(sorted_offset_to_count))
         self._kernel_denominator = kernel_denominator
         self._kernels = {}
         for meter in self._meters:
@@ -2836,14 +2871,12 @@ class _MeterFittingSession:
         assert isinstance(mak, MetricAccentKernel), repr(mak)
         self._longest_kernel = mak
 
-    ### SPECIAL METHODS ###
-
     def __call__(self) -> list[Meter]:
         """
         Fits meters.
         """
         selected_kernels: list[MetricAccentKernel] = []
-        current_offset = _duration.Offset(0)
+        current_offset = _duration.ValueOffset(fractions.Fraction(0))
         while current_offset < self.ordered_offsets()[-1]:
             kernel_scores: list[_MeterFittingSession.KernelScore] = []
             kernels = self._get_kernels(selected_kernels)
@@ -2880,12 +2913,12 @@ class _MeterFittingSession:
                 winning_kernel = kernel_scores[-1].kernel
                 assert isinstance(winning_kernel, MetricAccentKernel)
             selected_kernels.append(winning_kernel)
-            current_offset += winning_kernel.duration()
+            # current_offset += winning_kernel.duration()
+            fraction = current_offset.fraction + winning_kernel.duration().fraction()
+            current_offset = _duration.ValueOffset(fraction)
         selected_meters = [self.kernels()[_] for _ in selected_kernels]
         assert all(isinstance(_, Meter) for _ in selected_meters), repr(selected_meters)
         return selected_meters
-
-    ### PRIVATE METHODS ###
 
     def _get_kernels(self, selected_kernels):
         return tuple(self.kernels())
@@ -2893,34 +2926,46 @@ class _MeterFittingSession:
     def _get_lookahead_score(self, current_offset, kernel, kernels):
         lookahead_scores = []
         lookahead_offset = current_offset + kernel.duration()
+        assert isinstance(lookahead_offset, _duration.ValueOffset), repr(
+            lookahead_offset
+        )
         lookahead_offset_counter = self._get_offset_counter_at(lookahead_offset)
         for lookahead_kernel in kernels:
             lookahead_scores.append(lookahead_kernel(lookahead_offset_counter))
         lookahead_score = sum(lookahead_scores)
         return lookahead_score
 
-    def _get_offset_counter_at(self, start_offset) -> _timespan.OffsetCounter:
+    def _get_offset_counter_at(
+        self, start_offset: _duration.ValueOffset
+    ) -> _timespan.OffsetCounter:
+        assert isinstance(start_offset, _duration.ValueOffset), repr(start_offset)
         if start_offset in self.cached_offset_counters():
-            return _timespan.OffsetCounter(self.cached_offset_counters()[start_offset])
-        offset_to_weight: dict[_duration.Offset, fractions.Fraction] = {}
+            dictionary = self.cached_offset_counters()[start_offset]
+            offsets = [_duration.Offset(_.fraction) for _ in dictionary.keys()]
+            return _timespan.OffsetCounter(offsets)
+        offset_to_weight: dict[_duration.ValueOffset, int] = {}
         assert self.longest_kernel() is not None
         stop_offset = start_offset + self.longest_kernel().duration()
         index = bisect.bisect_left(self.ordered_offsets(), start_offset)
         if index == len(self.ordered_offsets()):
-            return _timespan.OffsetCounter(offset_to_weight)
+            offsets = [_duration.Offset(_) for _ in offset_to_weight.keys()]
+            return _timespan.OffsetCounter(offsets)
         offset = self.ordered_offsets()[index]
         while offset <= stop_offset:
-            count = self.offset_counter().items[offset]
-            offset_to_weight[offset - start_offset] = count
+            assert isinstance(offset, _duration.ValueOffset)
+            count = self.offset_counter().sorted_offset_to_count[offset]
+            assert isinstance(count, int)
+            duration = offset - start_offset
+            value_offset = _duration.ValueOffset(duration.fraction())
+            offset_to_weight[value_offset] = count
             index += 1
             if index == len(self.ordered_offsets()):
                 break
             offset = self.ordered_offsets()[index]
         self.cached_offset_counters()[start_offset] = offset_to_weight
-        offset_counter = _timespan.OffsetCounter(offset_to_weight)
+        offsets = [_duration.Offset(_.fraction) for _ in offset_to_weight.keys()]
+        offset_counter = _timespan.OffsetCounter(offsets)
         return offset_counter
-
-    ### PUBLIC PROPERTIES ###
 
     def cached_offset_counters(self) -> dict:
         """
@@ -2964,7 +3009,7 @@ class _MeterFittingSession:
         """
         return self._offset_counter
 
-    def ordered_offsets(self) -> tuple[_duration.Offset, ...]:
+    def ordered_offsets(self) -> tuple[_duration.ValueOffset, ...]:
         """
         Gets ordered offsets.
         """

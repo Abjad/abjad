@@ -374,10 +374,16 @@ def test_Tuplet_timespan_01():
         """
     )
 
-    assert abjad.get.timespan(staff) == abjad.Timespan(0, 1)
-    assert abjad.get.timespan(staff[0]) == abjad.Timespan(0, (1, 4))
-    assert abjad.get.timespan(staff[1]) == abjad.Timespan((1, 4), (1, 2))
-    assert abjad.get.timespan(staff[-1]) == abjad.Timespan((1, 2), 1)
+    assert abjad.get.timespan(staff) == abjad.Timespan(abjad.Offset(0), abjad.Offset(1))
+    assert abjad.get.timespan(staff[0]) == abjad.Timespan(
+        abjad.Offset(0), abjad.Offset(1, 4)
+    )
+    assert abjad.get.timespan(staff[1]) == abjad.Timespan(
+        abjad.Offset(1, 4), abjad.Offset(1, 2)
+    )
+    assert abjad.get.timespan(staff[-1]) == abjad.Timespan(
+        abjad.Offset(1, 2), abjad.Offset(1)
+    )
 
 
 def test_Tuplet_timespan_02():
@@ -407,7 +413,15 @@ def test_Tuplet_timespan_02():
         """
     )
 
-    assert abjad.get.timespan(staff, in_seconds=True) == abjad.Timespan(0, 4)
-    assert abjad.get.timespan(staff[0], in_seconds=True) == abjad.Timespan(0, 1)
-    assert abjad.get.timespan(staff[1], in_seconds=True) == abjad.Timespan(1, 2)
-    assert abjad.get.timespan(staff[-1], in_seconds=True) == abjad.Timespan(2, 4)
+    assert abjad.get.timespan(staff, in_seconds=True) == abjad.Timespan(
+        abjad.Offset(0), abjad.Offset(4)
+    )
+    assert abjad.get.timespan(staff[0], in_seconds=True) == abjad.Timespan(
+        abjad.Offset(0), abjad.Offset(1)
+    )
+    assert abjad.get.timespan(staff[1], in_seconds=True) == abjad.Timespan(
+        abjad.Offset(1), abjad.Offset(2)
+    )
+    assert abjad.get.timespan(staff[-1], in_seconds=True) == abjad.Timespan(
+        abjad.Offset(2), abjad.Offset(4)
+    )

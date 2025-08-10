@@ -355,7 +355,7 @@ class MetricModulation:
             )
         assert isinstance(self.scale, tuple), repr(self.scale)
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Is true when ``argument`` is another metric modulation with the same
         ratio as this metric modulation.

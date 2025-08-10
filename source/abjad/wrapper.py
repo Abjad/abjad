@@ -59,7 +59,7 @@ class Wrapper:
         direction: _enums.Vertical | str | None = None,
         hide: bool = False,
         indicator: typing.Any = None,
-        synthetic_offset: _duration.Offset | None = None,
+        synthetic_offset: _duration.ValueOffset | None = None,
         tag: _tag.Tag = _tag.Tag(),
     ) -> None:
         if annotation is not None:
@@ -74,7 +74,7 @@ class Wrapper:
         assert isinstance(hide, bool), repr(hide)
         assert not isinstance(indicator, type(self)), repr(indicator)
         if synthetic_offset is not None:
-            prototype = _duration.Offset
+            prototype = _duration.ValueOffset
             assert isinstance(synthetic_offset, prototype), repr(synthetic_offset)
         assert isinstance(tag, _tag.Tag), repr(tag)
         self._annotation = annotation
@@ -111,7 +111,7 @@ class Wrapper:
         )
         return new
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         if not isinstance(argument, Wrapper):
             return False
         if self.annotation() != argument.annotation():
@@ -369,7 +369,7 @@ class Wrapper:
         """
         return isinstance(self.indicator(), _tweaks.Bundle)
 
-    def leaked_start_offset(self) -> _duration.Offset:
+    def leaked_start_offset(self) -> _duration.ValueOffset:
         r"""
         Gets start offset and checks to see whether indicator leaks to the
         right. This is either the wrapper's synthetic offset (if set); or the
@@ -404,13 +404,13 @@ class Wrapper:
 
             >>> wrapper = abjad.get.wrapper(voice[0], abjad.StartTextSpan)
             >>> wrapper.start_offset(), wrapper.leaked_start_offset()
-            (Offset(0, 1), Offset(0, 1))
+            (ValueOffset(fraction=Fraction(0, 1), displacement=None), ValueOffset(fraction=Fraction(0, 1), displacement=None))
 
             Start offset and leaked start offset differ for stop-text-span:
 
             >>> wrapper = abjad.get.wrapper(voice[0], abjad.StopTextSpan)
             >>> wrapper.start_offset(), wrapper.leaked_start_offset()
-            (Offset(0, 1), Offset(1, 2))
+            (ValueOffset(fraction=Fraction(0, 1), displacement=None), ValueOffset(fraction=Fraction(1, 2), displacement=None))
 
         """
         synthetic_offset = self.synthetic_offset()
@@ -420,11 +420,11 @@ class Wrapper:
         component = self.component()
         assert isinstance(component, _score.Component)
         if not getattr(indicator, "leak", False):
-            return component._get_timespan().start_offset
+            return component._get_timespan().value_start_offset()
         else:
-            return component._get_timespan().stop_offset
+            return component._get_timespan().value_stop_offset()
 
-    def site_adjusted_start_offset(self) -> _duration.Offset:
+    def site_adjusted_start_offset(self) -> _duration.ValueOffset:
         r"""
         Gets site-adjusted start offset. Indicators with site equal to
         ``absolute_after``, ``after`` or ``closing`` give a site-adjusted start
@@ -442,8 +442,8 @@ class Wrapper:
             >>> abjad.attach(abjad.Ottava(0, site="after"), staff[0])
             >>> for wrapper in abjad.get.wrappers(staff[0], abjad.Ottava):
             ...     wrapper.indicator(), wrapper.site_adjusted_start_offset()
-            (Ottava(n=-1, site='before'), Offset(0, 1))
-            (Ottava(n=0, site='after'), Offset(1, 4))
+            (Ottava(n=-1, site='before'), ValueOffset(fraction=Fraction(0, 1), displacement=None))
+            (Ottava(n=0, site='after'), ValueOffset(fraction=Fraction(1, 4), displacement=None))
 
         """
         synthetic_offset = self.synthetic_offset()
@@ -453,11 +453,11 @@ class Wrapper:
         component = self.component()
         assert component is not None
         if site in ("absolute_after", "after", "closing"):
-            return component._get_timespan().stop_offset
+            return component._get_timespan().value_stop_offset()
         else:
-            return component._get_timespan().start_offset
+            return component._get_timespan().value_start_offset()
 
-    def start_offset(self) -> _duration.Offset:
+    def start_offset(self) -> _duration.ValueOffset:
         """
         Gets start offset. This is either the wrapper's synthetic offset or the
         start offset of the wrapper's component.
@@ -467,9 +467,9 @@ class Wrapper:
             return synthetic_offset
         component = self.component()
         assert isinstance(component, _score.Component)
-        return component._get_timespan().start_offset
+        return component._get_timespan().value_start_offset()
 
-    def synthetic_offset(self) -> _duration.Offset | None:
+    def synthetic_offset(self) -> _duration.ValueOffset | None:
         """
         Gets synthetic offset.
         """

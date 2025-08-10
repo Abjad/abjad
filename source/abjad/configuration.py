@@ -71,7 +71,7 @@ class Configuration:
         self._settings = configuration
         self._make_missing_directories()
 
-    def __eq__(self, argument):
+    def __eq__(self, argument: object) -> bool:
         if isinstance(argument, type(self)):
             return self._settings == argument._settings
         return False

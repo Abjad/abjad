@@ -99,8 +99,6 @@ class Parser:
         for token in self.lexer():
             print(token)
 
-    ### PUBLIC PROPERTIES ###
-
     def debug(self):
         """
         Is true when parser runs in debugging mode.

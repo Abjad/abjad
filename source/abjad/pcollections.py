@@ -873,7 +873,7 @@ class PitchRange:
             else:
                 return start_pitch < pitch < stop_pitch
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Is true when ``argument`` is a pitch range with ``range_string`` equal
         to this pitch range.

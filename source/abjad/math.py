@@ -1304,7 +1304,7 @@ class Infinity:
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Compares type.
         """

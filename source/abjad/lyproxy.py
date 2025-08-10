@@ -98,8 +98,6 @@ class LilyPondContext:
         """
         return f"{type(self).__name__}(name={self.name()!r})"
 
-    ### PUBLIC PROPERTIES ###
-
     def accepted_by(self) -> tuple["LilyPondContext", ...]:
         r"""
         Gets contexts accepting LilyPond context.
@@ -1303,8 +1301,6 @@ class LilyPondEngraver:
         """
         return tuple(LilyPondEngraver(name=name) for name in sorted(_lyenv.engravers))
 
-    ### PUBLIC PROPERTIES ###
-
     def grobs(self) -> tuple["LilyPondGrob", ...]:
         """
         Gets LilyPond engraver's created grobs.
@@ -1399,8 +1395,6 @@ class LilyPondGrob:
         Gets repr.
         """
         return f"{type(self).__name__}(name={self.name()!r})"
-
-    ### PUBLIC PROPERTIES ###
 
     def interfaces(self) -> tuple["LilyPondGrobInterface", ...]:
         """
@@ -1871,8 +1865,6 @@ class LilyPondGrobInterface:
         return tuple(
             LilyPondGrobInterface(_) for _ in sorted(_lyenv.interface_properties)
         )
-
-    ### PUBLIC PROPERTIES ###
 
     def name(self) -> str:
         """

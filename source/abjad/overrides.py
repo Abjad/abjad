@@ -336,7 +336,7 @@ class Interface:
     Base class from which grob, setting and tweak interfaces inherit.
     """
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Is true when ``argument`` is an interface with attribute pairs equal to those of
         this interface.

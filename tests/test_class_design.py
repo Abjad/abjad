@@ -65,6 +65,8 @@ class_to_default_values = {
     abjad.TextMark: (r'\textMark \markup \italic "V.S."',),
     abjad.TimeSignature: ((4, 4),),
     abjad.Tweak: (r"\tweak color #red",),
+    abjad.ValueOffset: (abjad.Fraction(3, 16),),
+    abjad.VerticalMoment: ([abjad.Staff("c'4 d'4 e'4 f'4")],),
 }
 
 
@@ -95,7 +97,7 @@ def test_abjad___deepcopy___(class_):
         return
     if getattr(class_, "_is_abstract", None) is True:
         return
-    if getattr(class_, "_do_not_test_deepcopy", False) is True:
+    if getattr(class_, "_do_not_deepcopy", False) is True:
         return
     if issubclass(class_, Exception):
         return
@@ -213,7 +215,7 @@ def test_abjad_pickle(class_):
         return
     if getattr(class_, "_is_abstract", None) is True:
         return
-    if getattr(class_, "_do_not_test_deepcopy", False) is True:
+    if getattr(class_, "_do_not_deepcopy", False) is True:
         return
     if issubclass(class_, Exception):
         return

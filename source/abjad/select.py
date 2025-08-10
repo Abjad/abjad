@@ -161,7 +161,7 @@ class LogicalTie(collections.abc.Sequence):
         """
         return argument in self.items()
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Is true when ``argument`` is logical tie and when items in ``argument``
         equal those in logical tie.

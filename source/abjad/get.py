@@ -1142,7 +1142,7 @@ def effective_indicator(
         ...     abjad.Clef("treble"),
         ...     staff[0],
         ...     hide=True,
-        ...     synthetic_offset=abjad.Offset(-1),
+        ...     synthetic_offset=abjad.ValueOffset(abjad.Fraction(-1)),
         ... )
         >>> abjad.attach(abjad.Clef("alto"), staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1188,7 +1188,7 @@ def effective_indicator(
         ...     abjad.Clef("alto"),
         ...     staff[-1],
         ...     hide=True,
-        ...     synthetic_offset=abjad.Offset(1),
+        ...     synthetic_offset=abjad.ValueOffset(abjad.Fraction(1)),
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -4682,7 +4682,7 @@ class Lineage(collections.abc.Sequence):
             components.extend(descendants(component)[1:])
         self._components = components
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Is true when ``argument`` lineage with components of same id.
         """

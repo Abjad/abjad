@@ -67,7 +67,7 @@ class MarkupCommand:
         self.name = name
         self.arguments = tuple(arguments)
 
-    def __eq__(self, argument):
+    def __eq__(self, argument: object) -> bool:
         """
         Is true when ``argument`` is a markup command with name and arguments equal to
         those of this markup command.
@@ -196,8 +196,6 @@ class ContextSpeccedMusic(Music):
         context.extend(self.music.construct())
 
         return context
-
-    ### PUBLIC PROPERTIES ###
 
     def known_contexts(self):
         """
@@ -3688,8 +3686,6 @@ class LilyPondParser(Parser):
                 continue
             music_functions.append(name)
         return sorted(music_functions)
-
-    ### PUBLIC PROPERTIES ###
 
     def available_languages(self) -> tuple[str, ...]:
         r"""

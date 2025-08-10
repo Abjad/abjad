@@ -19,7 +19,7 @@ def _before_attach(
     context: str | None,
     deactivate: bool,
     hide: bool,
-    synthetic_offset: _duration.Offset | None,
+    synthetic_offset: _duration.ValueOffset | None,
     component: _score.Component,
 ) -> None:
     if getattr(indicator, "temporarily_do_not_check", False) is True:
@@ -89,7 +89,7 @@ def _unsafe_attach(
     direction: _enums.Vertical | None = None,
     do_not_test: bool = False,
     hide: bool = False,
-    synthetic_offset: _duration.Offset | None = None,
+    synthetic_offset: _duration.ValueOffset | None = None,
     tag: _tag.Tag | None = None,
 ) -> None:
     if isinstance(indicator, _tweaks.Bundle):
@@ -215,7 +215,7 @@ def attach(
     direction: _enums.Vertical | None = None,
     do_not_test: bool = False,
     hide: bool = False,
-    synthetic_offset: _duration.Offset | None = None,
+    synthetic_offset: _duration.ValueOffset | None = None,
     tag: _tag.Tag | None = None,
 ) -> None:
     r"""

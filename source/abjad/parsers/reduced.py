@@ -656,8 +656,6 @@ class ReducedLyParser(Parser):
         self._toplevel_component_count = 0
         self._default_duration = _duration.Duration(1, 4)
 
-    ### PUBLIC PROPERTIES ###
-
     def debug(self):
         """
         Gets debug boolean of reduced ly parser.
