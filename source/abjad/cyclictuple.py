@@ -44,7 +44,7 @@ class CyclicTuple:
         """
         return self.items.__contains__(item)
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Compares ``items``.
         """

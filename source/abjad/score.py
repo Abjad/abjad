@@ -683,8 +683,6 @@ class Leaf(Component):
         self_written_duration = self.written_duration() * multiplier
         self.set_written_duration(self_written_duration)
 
-    ### PUBLIC PROPERTIES ###
-
     def multiplier(self) -> tuple[int, int] | None:
         """
         Gets leaf duration multiplier.
@@ -1337,8 +1335,6 @@ class Container(Component):
         assert isinstance(multiplier, fractions.Fraction), repr(multiplier)
         for item in list(self):
             item._scale(multiplier)
-
-    ### PUBLIC PROPERTIES ###
 
     def components(self) -> tuple:
         """
@@ -2234,8 +2230,6 @@ class BeforeGraceContainer(Container):
         result.extend([string])
         return result
 
-    ### PUBLIC PROPERTIES ###
-
     def command(self) -> str:
         r"""
         Gets command. Chooses between LilyPond's four types of left-positioned
@@ -2706,8 +2700,6 @@ class Chord(Leaf):
     def _get_summary(self):
         return " ".join([_._get_chord_string() for _ in self.note_heads()])
 
-    ### PUBLIC PROPERTIES ###
-
     def note_heads(self) -> "NoteHeadList":
         r"""
         Gets note-heads in chord.
@@ -3092,8 +3084,6 @@ class Context(Container):
             result.append(string)
         return result
 
-    ### PUBLIC PROPERTIES ###
-
     def consists_commands(self):
         r"""
         Unordered set of LilyPond engravers to include in context definition.
@@ -3430,7 +3420,7 @@ class NoteHead:
         result.tweaks = tweaks
         return result
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Is true when ```argument`` is a note-head with written pitch equal to that of
         this note-head.
@@ -4152,8 +4142,6 @@ class Note(Leaf):
 
     def _get_compact_representation(self) -> str:
         return self._get_body()[0]
-
-    ### PUBLIC PROPERTIES ###
 
     def note_head(self) -> NoteHead:
         """
@@ -4938,8 +4926,6 @@ class Tuplet(Container):
             if isinstance(component, Leaf):
                 component._scale(multiplier)
         self.normalize_ratio()
-
-    ### PUBLIC PROPERTIES ###
 
     def ratio(self) -> _duration.Ratio:
         r"""

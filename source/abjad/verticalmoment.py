@@ -4,6 +4,7 @@ Classes to model events that happen at the same time.
 
 import typing
 
+from . import duration as _duration
 from . import enumerate as _enumerate
 from . import iterate as _iterate
 from . import parentage as _parentage
@@ -61,19 +62,26 @@ class VerticalMoment:
 
     '''
 
-    ### CLASS VARIABLES ###
+    __slots__ = ("_components", "_offset")
 
-    __slots__ = ("_components", "_governors", "_offset")
+    _do_not_deepcopy = True
 
-    ### INITIALIZER ###
-
-    def __init__(self, components=None, offset=None):
-        self._components = components or ()
+    def __init__(
+        self,
+        components: typing.Sequence[_score.Component],
+        *,
+        offset: _duration.ValueOffset | None = None,
+    ) -> None:
+        assert isinstance(components, list), repr(components)
+        assert all(isinstance(_, _score.Component) for _ in components), repr(
+            components
+        )
+        self._components = tuple(components)
+        if offset is not None:
+            assert isinstance(offset, _duration.ValueOffset), repr(offset)
         self._offset = offset
 
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         if isinstance(argument, type(self)):
             if len(self) == len(argument):
                 for c, d in zip(self.components(), argument.components()):
@@ -83,7 +91,7 @@ class VerticalMoment:
                     return True
         return False
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         """
         Hases vertical moment.
 
@@ -164,8 +172,6 @@ class VerticalMoment:
             VerticalMoment(3/8, <<3>>) 9
 
         Defined equal to the number of components in vertical moment.
-
-        Returns nonnegative integer.
         """
         return len(self.components())
 
@@ -178,8 +184,6 @@ class VerticalMoment:
         length = len(self.leaves())
         result = f"{type(self).__name__}({str(self.offset())}, <<{length}>>)"
         return result
-
-    ### PUBLIC PROPERTIES ###
 
     def attack_count(self) -> int:
         r"""
@@ -246,7 +250,7 @@ class VerticalMoment:
                 leaves.append(leaf)
         return len(leaves)
 
-    def components(self):
+    def components(self) -> tuple[_score.Component, ...]:
         """
         Tuple of zero or more components happening at vertical moment.
 
@@ -255,13 +259,7 @@ class VerticalMoment:
         """
         return self._components
 
-    def governors(self):
-        """
-        Tuple of one or more containers in which vertical moment is evaluated.
-        """
-        return self._governors
-
-    def leaves(self) -> list[_score.Leaf]:
+    def leaves(self) -> tuple[_score.Leaf, ...]:
         r"""
         Tuple of zero or more leaves at vertical moment.
 
@@ -312,21 +310,21 @@ class VerticalMoment:
             >>> for moment in abjad.iterate_vertical_moments(score):
             ...     print(moment.offset(), moment.leaves())
             ...
-            0 [Note("d''4"), Note("a'4"), Note("f'8")]
-            1/8 [Note("d''4"), Note("a'4"), Note("e'8")]
-            1/6 [Note("c''4"), Note("a'4"), Note("e'8")]
-            1/4 [Note("c''4"), Note("g'4"), Note("d'8")]
-            1/3 [Note("b'4"), Note("g'4"), Note("d'8")]
-            3/8 [Note("b'4"), Note("g'4"), Note("c'8")]
+            0 (Note("d''4"), Note("a'4"), Note("f'8"))
+            1/8 (Note("d''4"), Note("a'4"), Note("e'8"))
+            1/6 (Note("c''4"), Note("a'4"), Note("e'8"))
+            1/4 (Note("c''4"), Note("g'4"), Note("d'8"))
+            1/3 (Note("b'4"), Note("g'4"), Note("d'8"))
+            3/8 (Note("b'4"), Note("g'4"), Note("c'8"))
 
         """
         result = []
         for component in self.components():
             if isinstance(component, _score.Leaf):
                 result.append(component)
-        return result
+        return tuple(result)
 
-    def notes(self):
+    def notes(self) -> tuple[_score.Note, ...]:
         """
         Tuple of zero or more notes at vertical moment.
         """
@@ -334,10 +332,9 @@ class VerticalMoment:
         for component in self.components():
             if isinstance(component, _score.Note):
                 result.append(component)
-        result = tuple(result)
-        return result
+        return tuple(result)
 
-    def notes_and_chords(self):
+    def notes_and_chords(self) -> tuple[_score.Chord | _score.Note, ...]:
         """
         Tuple of zero or more notes and chords at vertical moment.
         """
@@ -346,78 +343,40 @@ class VerticalMoment:
         for component in self.components():
             if isinstance(component, prototype):
                 result.append(component)
-        result = tuple(result)
-        return result
+        return tuple(result)
 
-    def offset(self):
+    def offset(self) -> _duration.ValueOffset | None:
         """
         Rational-valued score offset at which vertical moment is evaluated.
         """
         return self._offset
 
-    def overlap_components(self):
-        """
-        Tuple of components in vertical moment starting before vertical
-        moment, ordered by score index.
-        """
-        result = []
-        for component in self.components():
-            if component.start < self.offset():
-                result.append(component)
-        result = tuple(result)
-        return result
-
-    def overlap_leaves(self):
-        """
-        Tuple of leaves in vertical moment starting before vertical moment,
-        ordered by score index.
-        """
-        result = [x for x in self.overlap_components if isinstance(x, _score.Leaf)]
-        result = tuple(result)
-        return result
-
-    def overlap_notes(self):
-        """
-        Tuple of notes in vertical moment starting before vertical moment,
-        ordered by score index.
-        """
-        result = self.overlap_components
-        result = [_ for _ in result if isinstance(_, _score.Note)]
-        result = tuple(result)
-        return result
-
-    def start_components(self):
+    def start_components(self) -> tuple[_score.Component, ...]:
         """
         Tuple of components in vertical moment starting with at vertical
         moment, ordered by score index.
         """
         result = []
         for component in self.components():
-            if component._get_timespan().start_offset == self.offset():
+            if component._get_timespan().value_start_offset() == self.offset():
                 result.append(component)
-        result = tuple(result)
-        return result
+        return tuple(result)
 
-    def start_leaves(self):
+    def start_leaves(self) -> tuple[_score.Leaf, ...]:
         """
         Tuple of leaves in vertical moment starting with vertical moment,
         ordered by score index.
         """
         result = [x for x in self.start_components() if isinstance(x, _score.Leaf)]
-        result = tuple(result)
-        return result
+        return tuple(result)
 
-    def start_notes(self):
+    def start_notes(self) -> tuple[_score.Note, ...]:
         """
         Tuple of notes in vertical moment starting with vertical moment,
         ordered by score index.
         """
         result = [x for x in self.start_components() if isinstance(x, _score.Note)]
-        result = tuple(result)
-        return result
-
-
-### FUNCTIONS ###
+        return tuple(result)
 
 
 def iterate_vertical_moments(components, *, reverse=False):
@@ -475,21 +434,21 @@ def iterate_vertical_moments(components, *, reverse=False):
         >>> for vertical_moment in abjad.iterate_vertical_moments(score):
         ...     vertical_moment.leaves()
         ...
-        [Note("d''4"), Note("a'4"), Note("f'8")]
-        [Note("d''4"), Note("a'4"), Note("e'8")]
-        [Note("c''4"), Note("a'4"), Note("e'8")]
-        [Note("c''4"), Note("g'4"), Note("d'8")]
-        [Note("b'4"), Note("g'4"), Note("d'8")]
-        [Note("b'4"), Note("g'4"), Note("c'8")]
+        (Note("d''4"), Note("a'4"), Note("f'8"))
+        (Note("d''4"), Note("a'4"), Note("e'8"))
+        (Note("c''4"), Note("a'4"), Note("e'8"))
+        (Note("c''4"), Note("g'4"), Note("d'8"))
+        (Note("b'4"), Note("g'4"), Note("d'8"))
+        (Note("b'4"), Note("g'4"), Note("c'8"))
 
         >>> staff_group = score[1]
         >>> for vertical_moment in abjad.iterate_vertical_moments(staff_group):
         ...     vertical_moment.leaves()
         ...
-        [Note("a'4"), Note("f'8")]
-        [Note("a'4"), Note("e'8")]
-        [Note("g'4"), Note("d'8")]
-        [Note("g'4"), Note("c'8")]
+        (Note("a'4"), Note("f'8"))
+        (Note("a'4"), Note("e'8"))
+        (Note("g'4"), Note("d'8"))
+        (Note("g'4"), Note("c'8"))
 
     ..  container:: example
 
@@ -498,20 +457,20 @@ def iterate_vertical_moments(components, *, reverse=False):
         >>> for vmoment in abjad.iterate_vertical_moments(score, reverse=True):
         ...     vmoment.leaves()
         ...
-        [Note("b'4"), Note("g'4"), Note("c'8")]
-        [Note("b'4"), Note("g'4"), Note("d'8")]
-        [Note("c''4"), Note("g'4"), Note("d'8")]
-        [Note("c''4"), Note("a'4"), Note("e'8")]
-        [Note("d''4"), Note("a'4"), Note("e'8")]
-        [Note("d''4"), Note("a'4"), Note("f'8")]
+        (Note("b'4"), Note("g'4"), Note("c'8"))
+        (Note("b'4"), Note("g'4"), Note("d'8"))
+        (Note("c''4"), Note("g'4"), Note("d'8"))
+        (Note("c''4"), Note("a'4"), Note("e'8"))
+        (Note("d''4"), Note("a'4"), Note("e'8"))
+        (Note("d''4"), Note("a'4"), Note("f'8"))
 
         >>> for vmoment in abjad.iterate_vertical_moments(staff_group, reverse=True):
         ...     vmoment.leaves()
         ...
-        [Note("g'4"), Note("c'8")]
-        [Note("g'4"), Note("d'8")]
-        [Note("a'4"), Note("e'8")]
-        [Note("a'4"), Note("f'8")]
+        (Note("g'4"), Note("c'8"))
+        (Note("g'4"), Note("d'8"))
+        (Note("a'4"), Note("e'8"))
+        (Note("a'4"), Note("f'8"))
 
     """
     moments = []
@@ -519,7 +478,7 @@ def iterate_vertical_moments(components, *, reverse=False):
     components.sort(key=lambda _: _._get_timespan().start_offset)
     offset_to_components = dict()
     for component in components:
-        start_offset = component._get_timespan().start_offset
+        start_offset = component._get_timespan().value_start_offset()
         if start_offset not in offset_to_components:
             offset_to_components[start_offset] = []
     # TODO: optimize with bisect
@@ -528,7 +487,7 @@ def iterate_vertical_moments(components, *, reverse=False):
         timespan = component._get_timespan()
         for offset, list_ in offset_to_components.items():
             if (
-                timespan.start_offset <= offset < timespan.stop_offset
+                timespan.value_start_offset() <= offset < timespan.value_stop_offset()
                 and component not in list_
             ):
                 list_.append(component)
@@ -545,7 +504,9 @@ def iterate_vertical_moments(components, *, reverse=False):
     return tuple(moments)
 
 
-def iterate_leaf_pairs(components) -> typing.Iterator:
+def iterate_leaf_pairs(
+    components: typing.Sequence[_score.Component],
+) -> typing.Iterator:
     r"""
     Iterates leaf pairs.
 
@@ -614,7 +575,7 @@ def iterate_leaf_pairs(components) -> typing.Iterator:
 
 
 def iterate_pitch_pairs(
-    components,
+    components: typing.Sequence[_score.Component],
 ) -> typing.Iterator[tuple[_pitch.NamedPitch, _pitch.NamedPitch]]:
     r"""
     Iterates pitch pairs.

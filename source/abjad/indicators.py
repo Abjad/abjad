@@ -1825,7 +1825,7 @@ class Dynamic:
 
     site: typing.ClassVar[str] = "after"
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Is true when ``argument`` equals dynamic.
 

@@ -148,7 +148,7 @@ def check_beamed_long_notes(argument) -> tuple[list, int]:
         if stop_wrapper.leaked_start_offset() < start_wrapper.leaked_start_offset():
             violators.append(leaf)
             continue
-        leaf_start_offset = leaf._get_timespan().start_offset
+        leaf_start_offset = leaf._get_timespan().value_start_offset()
         if stop_wrapper.leaked_start_offset() == leaf_start_offset:
             violators.append(leaf)
     return violators, total

@@ -33,7 +33,7 @@ class RhythmTreeNode:
 
     def __init__(self, pair: tuple[int, int]) -> None:
         assert isinstance(pair, tuple), repr(pair)
-        self._offset = _duration.Offset(0)
+        self._offset = _duration.ValueOffset(fractions.Fraction(0))
         self._offsets_are_current = False
         self._pair = (0, 1)
         self.set_pair(pair)
@@ -104,8 +104,6 @@ class RhythmTreeNode:
     def _update_offsets_of_entire_tree_if_necessary(self):
         if not self._get_node_state_flags()["_offsets_are_current"]:
             self._update_offsets_of_entire_tree()
-
-    ### PUBLIC PROPERTIES ###
 
     def duration(self) -> _duration.Duration:
         r"""
@@ -239,7 +237,7 @@ class RhythmTreeNode:
             prolations.append(prolation)
         return tuple(prolations)
 
-    def start_offset(self) -> _duration.Offset:
+    def value_start_offset(self) -> _duration.ValueOffset:
         """
         Gets start offset of rhythm-tree node.
 
@@ -248,20 +246,25 @@ class RhythmTreeNode:
             >>> string = "(1 ((1 (1 1)) (1 (1 1))))"
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
 
-            >>> rtc.start_offset()
-            Offset(0, 1)
+            >>> rtc.value_start_offset()
+            ValueOffset(fraction=Fraction(0, 1), displacement=None)
 
-            >>> rtc[1].start_offset()
-            Offset(1, 2)
+            >>> rtc[1].value_start_offset()
+            ValueOffset(fraction=Fraction(1, 2), displacement=None)
 
-            >>> rtc[1][1].start_offset()
-            Offset(3, 4)
+            >>> rtc[1][1].value_start_offset()
+            ValueOffset(fraction=Fraction(3, 4), displacement=None)
 
         """
         self._update_offsets_of_entire_tree_if_necessary()
-        return self._offset
+        offset = self._offset
+        if isinstance(offset, _duration.ValueOffset):
+            value_offset = offset
+        else:
+            value_offset = _duration.ValueOffset.from_offset(offset)
+        return value_offset
 
-    def stop_offset(self) -> _duration.Offset:
+    def value_stop_offset(self) -> _duration.ValueOffset:
         """
         Gets stop offset of rhythm-tree node.
 
@@ -270,17 +273,18 @@ class RhythmTreeNode:
             >>> string = "(1 ((1 (1 1)) (1 (1 1))))"
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
 
-            >>> rtc.stop_offset()
-            Offset(1, 1)
+            >>> rtc.value_stop_offset()
+            ValueOffset(fraction=Fraction(1, 1), displacement=None)
 
-            >>> rtc[0].stop_offset()
-            Offset(1, 2)
+            >>> rtc[0].value_stop_offset()
+            ValueOffset(fraction=Fraction(1, 2), displacement=None)
 
-            >>> rtc[0][0].stop_offset()
-            Offset(1, 4)
+            >>> rtc[0][0].value_stop_offset()
+            ValueOffset(fraction=Fraction(1, 4), displacement=None)
 
         """
-        return self.start_offset() + _duration.Duration(self.duration())
+        # return self.start_offset() + _duration.Duration(self.duration())
+        return self.value_start_offset() + _duration.Duration(self.duration())
 
 
 class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
@@ -769,8 +773,6 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             result.extend(["    " + x for x in child._pretty_rtm_format_pieces()])
         result[-1] = result[-1] + "))"
         return result
-
-    ### PUBLIC PROPERTIES ###
 
     def rtm_format(self) -> str:
         """

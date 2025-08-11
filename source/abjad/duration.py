@@ -853,244 +853,27 @@ class Offset(Duration):
         self._displacement = displacement
         return self
 
-    # TODO: move examples to pytest
-    def __copy__(self, *arguments) -> "Offset":
-        """
-        Copies offset.
-
-        >>> import copy
-
-        ..  container:: example
-
-            Copies offset with displacement:
-
-            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-            >>> offset_2 = copy.copy(offset_1)
-
-            >>> offset_1
-            Offset(1, 4, displacement=Duration(-1, 16))
-
-            >>> offset_2
-            Offset(1, 4, displacement=Duration(-1, 16))
-
-            >>> offset_1 == offset_2
-            True
-
-            >>> offset_1 is offset_2
-            False
-
-        """
+    def __copy__(self) -> Offset:
         return type(self)(*self.pair(), displacement=self.displacement())
 
-    # TODO: move examples to pytest
-    def __deepcopy__(self, *arguments) -> "Offset":
-        """
-        Deep copies offset.
+    def __deepcopy__(self, memo) -> Offset:
+        return self.__copy__()
 
-        >>> import copy
-
-        ..  container:: example
-
-            Copies offset with displacement:
-
-            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-            >>> offset_2 = copy.deepcopy(offset_1)
-
-            >>> offset_1
-            Offset(1, 4, displacement=Duration(-1, 16))
-
-            >>> offset_2
-            Offset(1, 4, displacement=Duration(-1, 16))
-
-            >>> offset_1 == offset_2
-            True
-
-            >>> offset_1 is offset_2
-            False
-
-        """
-        return self.__copy__(*arguments)
-
-    # TODO: move examples to pytest
-    def __eq__(self, argument) -> bool:
-        """
-        Is true when offset equals ``argument``.
-
-        ..  container:: example
-
-            With equal numerators, denominators and displacement:
-
-            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-
-            >>> offset_1 == offset_1
-            True
-            >>> offset_1 == offset_2
-            True
-            >>> offset_2 == offset_1
-            True
-            >>> offset_2 == offset_2
-            True
-
-        ..  container:: example
-
-            With equal numerators and denominators but differing grace
-            displacements:
-
-            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 8))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-
-            >>> offset_1 == offset_1
-            True
-            >>> offset_1 == offset_2
-            False
-            >>> offset_2 == offset_1
-            False
-            >>> offset_2 == offset_2
-            True
-
-        ..  container:: example
-
-            With differing numerators and denominators. Ignores grace
-            displacements:
-
-            >>> offset_1 = abjad.Offset(1, 4)
-            >>> offset_2 = abjad.Offset(1, 2, displacement=abjad.Duration(-99))
-
-            >>> offset_1 == offset_1
-            True
-            >>> offset_1 == offset_2
-            False
-            >>> offset_2 == offset_1
-            False
-            >>> offset_2 == offset_2
-            True
-
-        """
+    def __eq__(self, argument: object) -> bool:
         if isinstance(argument, type(self)) and self.pair() == argument.pair():
             return (
                 self._get_nonnone_displacement() == argument._get_nonnone_displacement()
             )
         return super().__eq__(argument)
 
-    # TODO: move examples to pytest
     def __ge__(self, argument) -> bool:
-        """
-        Is true when offset is greater than or equal to ``argument``.
-
-        ..  container:: example
-
-            With equal numerators, denominators and displacement:
-
-            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-
-            >>> offset_1 >= offset_1
-            True
-            >>> offset_1 >= offset_2
-            True
-            >>> offset_2 >= offset_1
-            True
-            >>> offset_2 >= offset_2
-            True
-
-        ..  container:: example
-
-            With equal numerators and denominators but differing grace
-            displacements:
-
-            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 8))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-
-            >>> offset_1 >= offset_1
-            True
-            >>> offset_1 >= offset_2
-            False
-            >>> offset_2 >= offset_1
-            True
-            >>> offset_2 >= offset_2
-            True
-
-        ..  container:: example
-
-            With differing numerators and denominators. Ignores grace
-            displacements:
-
-            >>> offset_1 = abjad.Offset(1, 4)
-            >>> offset_2 = abjad.Offset(1, 2, displacement=abjad.Duration(-99))
-
-            >>> offset_1 >= offset_1
-            True
-            >>> offset_1 >= offset_2
-            False
-            >>> offset_2 >= offset_1
-            True
-            >>> offset_2 >= offset_2
-            True
-
-        """
         if isinstance(argument, type(self)) and self.pair() == argument.pair():
             return (
                 self._get_nonnone_displacement() >= argument._get_nonnone_displacement()
             )
         return super().__ge__(argument)
 
-    # TODO: move examples to pytest
     def __gt__(self, argument) -> bool:
-        """
-        Is true when offset is greater than ``argument``.
-
-        ..  container:: example
-
-            With equal numerators, denominators and displacement:
-
-            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-
-            >>> offset_1 > offset_1
-            False
-            >>> offset_1 > offset_2
-            False
-            >>> offset_2 > offset_1
-            False
-            >>> offset_2 > offset_2
-            False
-
-        ..  container:: example
-
-            With equal numerators and denominators but differing grace
-            displacements:
-
-            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 8))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-
-            >>> offset_1 > offset_1
-            False
-            >>> offset_1 > offset_2
-            False
-            >>> offset_2 > offset_1
-            True
-            >>> offset_2 > offset_2
-            False
-
-        ..  container:: example
-
-            With differing numerators and denominators. Ignores grace
-            displacements:
-
-            >>> offset_1 = abjad.Offset(1, 4)
-            >>> offset_2 = abjad.Offset(1, 2, displacement=abjad.Duration(-99))
-
-            >>> offset_1 > offset_1
-            False
-            >>> offset_1 > offset_2
-            False
-            >>> offset_2 > offset_1
-            True
-            >>> offset_2 > offset_2
-            False
-
-        """
         if isinstance(argument, type(self)) and self.pair() == argument.pair():
             return (
                 self._get_nonnone_displacement() > argument._get_nonnone_displacement()
@@ -1099,146 +882,16 @@ class Offset(Duration):
 
     @typing.no_type_check
     def __hash__(self) -> int:
-        """
-        Hashes offset.
-        """
         return hash((self.pair(), self._get_nonnone_displacement()))
 
-    # TODO: move examples to pytest
     def __le__(self, argument) -> bool:
-        """
-        Is true when offset is less than or equal to ``argument``.
-
-        ..  container:: example
-
-            With equal numerators, denominators and displacement:
-
-            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-
-            >>> offset_1 <= offset_1
-            True
-            >>> offset_1 <= offset_2
-            True
-            >>> offset_2 <= offset_1
-            True
-            >>> offset_2 <= offset_2
-            True
-
-        ..  container:: example
-
-            With equal numerators and denominators but differing grace
-            displacements:
-
-            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 8))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-
-            >>> offset_1 <= offset_1
-            True
-            >>> offset_1 <= offset_2
-            True
-            >>> offset_2 <= offset_1
-            False
-            >>> offset_2 <= offset_2
-            True
-
-        ..  container:: example
-
-            With differing numerators and denominators. Ignores grace
-            displacements:
-
-            >>> offset_1 = abjad.Offset(1, 4)
-            >>> offset_2 = abjad.Offset(1, 2, displacement=abjad.Duration(-99))
-
-            >>> offset_1 <= offset_1
-            True
-            >>> offset_1 <= offset_2
-            True
-            >>> offset_2 <= offset_1
-            False
-            >>> offset_2 <= offset_2
-            True
-
-        """
         if isinstance(argument, type(self)) and self.pair() == argument.pair():
             return (
                 self._get_nonnone_displacement() <= argument._get_nonnone_displacement()
             )
         return super().__le__(argument)
 
-    # TODO: move examples to pytest
     def __lt__(self, argument) -> bool:
-        """
-        Is true when offset is less than ``argument``.
-
-        With equal numerators, denominators and displacement:
-
-        ..  container:: example
-
-            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-
-            >>> offset_1 < offset_1
-            False
-            >>> offset_1 < offset_2
-            False
-            >>> offset_2 < offset_1
-            False
-            >>> offset_2 < offset_2
-            False
-
-        ..  container:: example
-
-            With equal numerators and denominators but differing nonzero grace
-            displacements:
-
-            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 8))
-            >>> offset_2 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-
-            >>> offset_1 < offset_1
-            False
-            >>> offset_1 < offset_2
-            True
-            >>> offset_2 < offset_1
-            False
-            >>> offset_2 < offset_2
-            False
-
-        ..  container:: example
-
-            With equal numerators and denominators but differing zero-valued
-            displacement:
-
-            >>> offset_1 = abjad.Offset(1, 4, displacement=abjad.Duration(-1, 8))
-            >>> offset_2 = abjad.Offset(1, 4)
-
-            >>> offset_1 < offset_1
-            False
-            >>> offset_1 < offset_2
-            True
-            >>> offset_2 < offset_1
-            False
-            >>> offset_2 < offset_2
-            False
-
-        ..  container:: example
-
-            With differing numerators and denominators. Ignores grace
-            displacements:
-
-            >>> offset_1 = abjad.Offset(1, 4)
-            >>> offset_2 = abjad.Offset(1, 2, displacement=abjad.Duration(-99))
-
-            >>> offset_1 < offset_1
-            False
-            >>> offset_1 < offset_2
-            True
-            >>> offset_2 < offset_1
-            False
-            >>> offset_2 < offset_2
-            False
-
-        """
         if isinstance(argument, type(self)) and self.pair() == argument.pair():
             return (
                 self._get_nonnone_displacement() < argument._get_nonnone_displacement()
@@ -1265,33 +918,7 @@ class Offset(Duration):
             string = f"{n}, {d}, displacement={self.displacement()!r}"
             return f"{type(self).__name__}({string})"
 
-    # TODO: move examples to pytest
     def __sub__(self, argument):
-        """
-        Subtracts ``argument`` from offset.
-
-        ..  container:: example
-
-            Offset taken from offset returns duration:
-
-            >>> abjad.Offset(2) - abjad.Offset(1, 2)
-            Duration(3, 2)
-
-            Duration taken from offset returns another offset:
-
-            >>> abjad.Offset(2) - abjad.Duration(1, 2)
-            Offset(3, 2)
-
-        ..  container::
-
-            Coerces ``argument`` to offset when ``argument`` is neither offset
-            nor duration:
-
-            >>> import fractions
-            >>> abjad.Offset(2) - fractions.Fraction(1, 2)
-            Duration(3, 2)
-
-        """
         if isinstance(argument, type(self)):
             return Duration(super().__sub__(argument))
         elif isinstance(argument, Duration):
@@ -1320,6 +947,19 @@ class Offset(Duration):
         """
         return self._displacement
 
+    def value_offset(self) -> ValueOffset:
+        """
+        Gets offset as value offset.
+
+        ..  container:: example
+
+            >>> offset = abjad.Offset(3, 16)
+            >>> offset.value_offset()
+            ValueOffset(fraction=Fraction(3, 16), displacement=None)
+
+        """
+        return ValueOffset.from_offset(self)
+
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Ratio:
@@ -1343,7 +983,7 @@ class Ratio:
         assert isinstance(self.numerator, int), repr(self.numerator)
         assert isinstance(self.denominator, int), repr(self.denominator)
 
-    def __mul__(self, n: int) -> "Ratio":
+    def __mul__(self, n: int) -> Ratio:
         """
         Multiplies numerator and denominator of ratio by ``n``.
 
@@ -1356,7 +996,7 @@ class Ratio:
         assert isinstance(n, int), repr(n)
         return Ratio(n * self.numerator, n * self.denominator)
 
-    def __truediv__(self, n: int) -> "Ratio":
+    def __truediv__(self, n: int) -> Ratio:
         """
         Divides numerator and denominator of ratio by ``n``.
 
@@ -1371,7 +1011,7 @@ class Ratio:
         assert self.denominator % n == 0, repr((self.denominator, n))
         return Ratio(self.numerator // n, self.denominator // n)
 
-    def __rmul__(self, n: int) -> "Ratio":
+    def __rmul__(self, n: int) -> Ratio:
         """
         Multiplies numerator and denominator of ratio by ``n``.
 
@@ -1618,7 +1258,7 @@ class Ratio:
         """
         return self.numerator == self.denominator
 
-    def reciprocal(self) -> "Ratio":
+    def reciprocal(self) -> Ratio:
         """
         Get reciprocal of ratio.
 
@@ -1629,3 +1269,130 @@ class Ratio:
 
         """
         return Ratio(self.denominator, self.numerator)
+
+
+@dataclasses.dataclass(frozen=True, slots=True, unsafe_hash=True)
+class ValueOffset:
+    """
+    Value offset.
+
+    ..  container:: example
+
+        >>> fraction = abjad.Fraction(3, 16)
+        >>> abjad.ValueOffset(fraction)
+        ValueOffset(fraction=Fraction(3, 16), displacement=None)
+
+        >>> displacement = abjad.Duration(-1, 16)
+        >>> abjad.ValueOffset(fraction, displacement=displacement)
+        ValueOffset(fraction=Fraction(3, 16), displacement=Duration(-1, 16))
+
+    """
+
+    fraction: fractions.Fraction
+    displacement: Duration | None = None
+
+    def __post_init__(self):
+        assert isinstance(self.fraction, fractions.Fraction), repr(self.fraction)
+        if self.displacement is not None:
+            assert isinstance(self.displacement, Duration), repr(self.displacement)
+
+    def __add__(self, argument: int | fractions.Fraction | Duration) -> ValueOffset:
+        assert isinstance(argument, int | fractions.Fraction | Duration), repr(argument)
+        if isinstance(argument, Duration):
+            fraction = argument.fraction()
+        else:
+            fraction = fractions.Fraction(argument)
+        offset = ValueOffset(self.fraction + fraction, displacement=self.displacement)
+        return offset
+
+    def __radd__(self, argument: int | fractions.Fraction | Duration) -> ValueOffset:
+        assert isinstance(argument, int | fractions.Fraction | Duration), repr(argument)
+        if isinstance(argument, Duration):
+            fraction = argument.fraction()
+        else:
+            fraction = fractions.Fraction(argument)
+        offset = ValueOffset(fraction + self.fraction, displacement=self.displacement)
+        return offset
+
+    def __eq__(self, argument: object) -> bool:
+        if isinstance(argument, type(self)):
+            if self.fraction == argument.fraction:
+                if self._nonnone_displacement() == argument._nonnone_displacement():
+                    return True
+        return False
+
+    def __ge__(self, argument) -> bool:
+        if not isinstance(argument, type(self)):
+            raise TypeError
+        if self.fraction == argument.fraction:
+            return self._nonnone_displacement() >= argument._nonnone_displacement()
+        return self.fraction >= argument.fraction
+
+    def __gt__(self, argument) -> bool:
+        if not isinstance(argument, type(self)):
+            raise TypeError
+        if self.fraction == argument.fraction:
+            return self._nonnone_displacement() > argument._nonnone_displacement()
+        return self.fraction > argument.fraction
+
+    def __le__(self, argument) -> bool:
+        if not isinstance(argument, type(self)):
+            raise TypeError
+        if self.fraction == argument.fraction:
+            return self._nonnone_displacement() <= argument._nonnone_displacement()
+        return self.fraction <= argument.fraction
+
+    def __lt__(self, argument) -> bool:
+        if not isinstance(argument, type(self)):
+            raise TypeError
+        if self.fraction == argument.fraction:
+            return self._nonnone_displacement() < argument._nonnone_displacement()
+        return self.fraction < argument.fraction
+
+    def __mul__(self, argument):
+        raise NotImplementedError
+
+    __rmul__ = __mul__
+
+    def __str__(self) -> str:
+        return str(self.fraction)
+
+    @typing.overload
+    def __sub__(self, argument: typing.Self) -> Duration:
+        pass
+
+    @typing.overload
+    def __sub__(self, argument: int | fractions.Fraction | Duration) -> typing.Self:
+        pass
+
+    def __sub__(self, argument):
+        if isinstance(argument, type(self)):
+            fraction = self.fraction - argument.fraction
+            return Duration(fraction.numerator, fraction.denominator)
+        else:
+            assert isinstance(argument, int | fractions.Fraction | Duration), repr(
+                argument
+            )
+            fraction = self.fraction - argument
+            return ValueOffset(
+                fraction,
+                # TODO: uncomment
+                # displacement=self.displacement,
+            )
+
+    def __truediv__(self, argument):
+        raise NotImplementedError
+
+    def _nonnone_displacement(self):
+        if self.displacement is None:
+            return Duration(0)
+        return self.displacement
+
+    @staticmethod
+    def from_offset(offset: Offset) -> ValueOffset:
+        """
+        Makes value offset from ``offset``.
+        """
+        fraction = fractions.Fraction(*offset.pair())
+        value_offset = ValueOffset(fraction, displacement=offset.displacement())
+        return value_offset

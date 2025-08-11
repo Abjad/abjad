@@ -68,7 +68,7 @@ class Parentage(collections.abc.Sequence):
 
     __slots__ = ("_component", "_components")
 
-    _do_not_test_deepcopy = True
+    _do_not_deepcopy = True
 
     ### INITIALIZER ###
 
@@ -81,7 +81,7 @@ class Parentage(collections.abc.Sequence):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, argument):
+    def __eq__(self, argument: object) -> bool:
         if isinstance(argument, type(self)):
             if len(self) == len(argument):
                 for c, d in zip(self, argument):
@@ -121,8 +121,6 @@ class Parentage(collections.abc.Sequence):
         else:
             rhs = id(component)
         return f"{lhs}-{rhs!r}"
-
-    ### PUBLIC PROPERTIES ###
 
     def component(self) -> _score.Component:
         r"""

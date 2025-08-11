@@ -660,8 +660,6 @@ class SchemeParser(Parser):
             if self.debug():
                 print("SchemeParser-{}: Syntax error at EOF".format(id(self)))
 
-    ### PUBLIC PROPERTIES ###
-
     def lexer_rules_object(self):
         """
         Lexer rules object of Scheme parser.

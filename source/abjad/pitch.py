@@ -1208,7 +1208,7 @@ class IntervalClass:
         """
         return type(self)(abs(self._number))
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Compares ``number``.
         """
@@ -1387,7 +1387,7 @@ class NamedIntervalClass(IntervalClass):
         interval = NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
         return type(self)(interval)
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Is true when ``argument`` is a named interval-class with direction
         number, quality string and number equal to those of this named
@@ -1687,7 +1687,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
             self._quality, self._number
         )
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Compares ``name``.
 
@@ -1839,7 +1839,7 @@ class NumberedIntervalClass(IntervalClass):
             return NotImplemented
         return type(self)(float(self) + float(argument))
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Compares ``number``.
 
@@ -2175,7 +2175,7 @@ class Interval:
         else:
             self._from_interval_or_interval_class(argument)
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Compares repr formats.
         """
@@ -2432,7 +2432,7 @@ class NamedInterval(Interval):
         """
         return type(self)((self.quality(), self.number()))
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Compares ``name``.
 
@@ -2967,7 +2967,7 @@ class NumberedInterval(Interval):
         """
         return type(self)(self.number())
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Compares ``number``.
 
@@ -3301,7 +3301,7 @@ class PitchClass:
                 message = f"can not instantiate {class_name} from {argument!r}."
                 raise ValueError(message)
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Compares reprs.
         """
@@ -3514,7 +3514,7 @@ class NamedPitchClass(PitchClass):
         pitch = named_interval.transpose(dummy_pitch)
         return type(self)(pitch)
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Compares string formats.
 
@@ -3861,7 +3861,7 @@ class NumberedPitchClass(PitchClass):
         """
         return type(self)(self)
 
-    def __eq__(self, argument):
+    def __eq__(self, argument: object) -> bool:
         """
         Compares ``number``.
 
@@ -3895,6 +3895,7 @@ class NumberedPitchClass(PitchClass):
         """
         if isinstance(argument, type(self)):
             return self.number() == argument.number()
+        return False
 
     def __hash__(self) -> int:
         """
@@ -4493,7 +4494,7 @@ class NamedPitch(Pitch):
         """
         return type(self)(self, arrow=self.arrow())
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Is true when ``argument`` is a named pitch equal to this named pitch.
 
@@ -5134,7 +5135,7 @@ class NumberedPitch(Pitch):
         semitones = float(self) + float(argument)
         return type(self)(semitones)
 
-    def __eq__(self, argument) -> bool:
+    def __eq__(self, argument: object) -> bool:
         """
         Is true when ``argument`` is a numbered pitch with ``number`` the same as this
         numbered pitch.

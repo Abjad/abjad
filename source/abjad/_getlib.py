@@ -156,7 +156,7 @@ def _get_effective_wrapper(component, prototype, *, attributes=None, command=Non
     if not candidate_wrappers:
         return
     all_offsets = sorted(candidate_wrappers)
-    start_offset = component._get_timespan().start_offset
+    start_offset = component._get_timespan().value_start_offset()
     index = bisect.bisect(all_offsets, start_offset) - 1 + int(n)
     if index < 0:
         return
