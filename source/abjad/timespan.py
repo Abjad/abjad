@@ -217,8 +217,7 @@ class OffsetCounter:
         return markup
 
 
-# TODO: make frozen
-@dataclasses.dataclass(slots=True, unsafe_hash=True)
+@dataclasses.dataclass(frozen=True, slots=True, unsafe_hash=True)
 class Timespan:
     """
     Timespan.
@@ -258,28 +257,14 @@ class Timespan:
     annotation: typing.Any = None
 
     def __post_init__(self):
-        if isinstance(self.start_offset, type(self)):
-            raise Exception("can not initialize from timespan.")
-        if isinstance(self.stop_offset, type(self)):
-            raise Exception("can not initialize from timespan.")
-        if self.start_offset is None:
-            self.start_offset = negative_infinity
-        elif self.start_offset == negative_infinity:
-            pass
-        else:
+        if self.start_offset != negative_infinity:
             assert isinstance(self.start_offset, _duration.Offset), repr(
                 self.start_offset
             )
-        if self.stop_offset is None:
-            self.stop_offset = infinity
-        elif self.stop_offset == infinity:
-            pass
-        else:
+        if self.stop_offset != infinity:
             assert isinstance(self.stop_offset, _duration.Offset), repr(
                 self.stop_offset
             )
-        self.start_offset = self._initialize_offset(self.start_offset)
-        self.stop_offset = self._initialize_offset(self.stop_offset)
         assert self.start_offset <= self.stop_offset, repr(
             (self.start_offset, self.stop_offset)
         )
@@ -899,15 +884,6 @@ class Timespan:
         if getattr(timespan, "timespan", "foo") != "foo":
             return True
         return False
-
-    def _initialize_offset(self, argument):
-        if argument in (negative_infinity, infinity):
-            return argument
-        if isinstance(argument, tuple):
-            offset = _duration.Offset(*argument)
-        else:
-            offset = _duration.Offset(argument)
-        return offset
 
     def axis(self) -> _duration.Offset:
         """

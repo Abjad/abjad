@@ -440,8 +440,10 @@ def _update_component_offsets(component):
         stop_offset = start_offset + component._get_duration()
     component._start_offset = start_offset
     component._stop_offset = stop_offset
-    component._timespan.start_offset = start_offset
-    component._timespan.stop_offset = stop_offset
+    # component._timespan.start_offset = start_offset
+    # component._timespan.stop_offset = stop_offset
+    timespan = _timespan.Timespan(start_offset, stop_offset)
+    component._timespan = timespan
 
 
 def _update_measure_numbers(main_component):
