@@ -28,11 +28,11 @@ class OffsetCounter:
     ..  container:: example
 
         >>> timespans = abjad.TimespanList([
-        ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-        ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-        ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
+        ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+        ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+        ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
         ... ])
-        >>> timespan_operand = abjad.Timespan(abjad.Offset(6), abjad.Offset(10))
+        >>> timespan_operand = abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10))
         >>> timespans = timespans - timespan_operand
         >>> offset_counter = abjad.OffsetCounter(timespans)
         >>> for item in offset_counter.items.items(): item
@@ -95,11 +95,11 @@ class OffsetCounter:
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
             ... ])
-            >>> timespan_operand = abjad.Timespan(abjad.Offset(6), abjad.Offset(10))
+            >>> timespan_operand = abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10))
             >>> timespans = timespans - timespan_operand
             >>> offset_counter = abjad.OffsetCounter(timespans)
             >>> abjad.show(offset_counter, scale=0.5) # doctest: +SKIP
@@ -224,19 +224,19 @@ class Timespan:
 
     ..  container:: example
 
-        >>> timespan_1 = abjad.Timespan(abjad.Offset(0), abjad.Offset(10))
-        >>> timespan_2 = abjad.Timespan(abjad.Offset(5), abjad.Offset(12))
-        >>> timespan_3 = abjad.Timespan(abjad.Offset(-2), abjad.Offset(2))
-        >>> timespan_4 = abjad.Timespan(abjad.Offset(10), abjad.Offset(20))
+        >>> timespan_1 = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10))
+        >>> timespan_2 = abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12))
+        >>> timespan_3 = abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(2))
+        >>> timespan_4 = abjad.Timespan.fvo(abjad.mvo(10), abjad.mvo(20))
 
     ..  container:: example
 
         Annotations work like this:
 
-        >>> annotated_timespan = abjad.Timespan(
+        >>> annotated_timespan = abjad.Timespan.fvo(
         ...     annotation=["a", "b", "c", "foo"],
-        ...     start_offset=abjad.Offset(1, 4),
-        ...     stop_offset=abjad.Offset(7, 8),
+        ...     start_offset=abjad.mvo(1, 4),
+        ...     stop_offset=abjad.mvo(7, 8),
         ... )
         >>> annotated_timespan.annotation
         ['a', 'b', 'c', 'foo']
@@ -275,10 +275,10 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan_1 = abjad.Timespan(abjad.Offset(0), abjad.Offset(10))
-            >>> timespan_2 = abjad.Timespan(abjad.Offset(5), abjad.Offset(12))
-            >>> timespan_3 = abjad.Timespan(abjad.Offset(-2), abjad.Offset(2))
-            >>> timespan_4 = abjad.Timespan(abjad.Offset(10), abjad.Offset(20))
+            >>> timespan_1 = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10))
+            >>> timespan_2 = abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12))
+            >>> timespan_3 = abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(2))
+            >>> timespan_4 = abjad.Timespan.fvo(abjad.mvo(10), abjad.mvo(20))
 
             >>> timespan_1 & timespan_2
             TimespanList([Timespan(Offset(5, 1), Offset(10, 1))])
@@ -323,7 +323,7 @@ class Timespan:
 
             Works with offsets:
 
-            >>> timespan = abjad.Timespan(abjad.Offset(0), abjad.Offset(1, 4))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(1, 4))
 
             >>> abjad.Offset(-1) in timespan
             False
@@ -344,15 +344,15 @@ class Timespan:
 
             Works with timespans:
 
-            >>> timespan = abjad.Timespan(abjad.Offset(0), abjad.Offset(1, 4))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(1, 4))
 
-            >>> abjad.Timespan(abjad.Offset(0), abjad.Offset(1, 4)) in timespan
+            >>> abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(1, 4)) in timespan
             True
 
-            >>> abjad.Timespan(abjad.Offset(1, 16), abjad.Offset(2, 16)) in timespan
+            >>> abjad.Timespan.fvo(abjad.mvo(1, 16), abjad.mvo(2, 16)) in timespan
             True
 
-            >>> abjad.Timespan(abjad.Offset(0), abjad.Offset(1, 2)) in timespan
+            >>> abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(1, 2)) in timespan
             False
 
         """
@@ -374,8 +374,8 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan_1 = abjad.Timespan(abjad.Offset(1), abjad.Offset(3))
-            >>> timespan_2 = abjad.Timespan(abjad.Offset(2), abjad.Offset(3))
+            >>> timespan_1 = abjad.Timespan.fvo(abjad.mvo(1), abjad.mvo(3))
+            >>> timespan_2 = abjad.Timespan.fvo(abjad.mvo(2), abjad.mvo(3))
 
             >>> timespan_1 == timespan_1
             True
@@ -396,9 +396,9 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan_1 = abjad.Timespan(abjad.Offset(0), abjad.Offset(10))
-            >>> timespan_2 = abjad.Timespan(abjad.Offset(5), abjad.Offset(12))
-            >>> timespan_3 = abjad.Timespan(abjad.Offset(-2), abjad.Offset(2))
+            >>> timespan_1 = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10))
+            >>> timespan_2 = abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12))
+            >>> timespan_3 = abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(2))
 
             >>> timespan_2 >= timespan_3
             True
@@ -429,9 +429,9 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan_1 = abjad.Timespan(abjad.Offset(0), abjad.Offset(10))
-            >>> timespan_2 = abjad.Timespan(abjad.Offset(5), abjad.Offset(12))
-            >>> timespan_3 = abjad.Timespan(abjad.Offset(-2), abjad.Offset(2))
+            >>> timespan_1 = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10))
+            >>> timespan_2 = abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12))
+            >>> timespan_3 = abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(2))
 
             >>> timespan_2 > timespan_3
             True
@@ -462,9 +462,9 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan_1 = abjad.Timespan(abjad.Offset(0), abjad.Offset(10))
-            >>> timespan_2 = abjad.Timespan(abjad.Offset(5), abjad.Offset(12))
-            >>> timespan_3 = abjad.Timespan(abjad.Offset(-2), abjad.Offset(2))
+            >>> timespan_1 = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10))
+            >>> timespan_2 = abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12))
+            >>> timespan_3 = abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(2))
 
             >>> timespan_2 <= timespan_3
             False
@@ -494,7 +494,7 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan = abjad.Timespan(abjad.Offset(0), abjad.Offset(10))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10))
             >>> len(timespan)
             1
 
@@ -507,9 +507,9 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan_1 = abjad.Timespan(abjad.Offset(0), abjad.Offset(10))
-            >>> timespan_2 = abjad.Timespan(abjad.Offset(5), abjad.Offset(12))
-            >>> timespan_3 = abjad.Timespan(abjad.Offset(-2), abjad.Offset(2))
+            >>> timespan_1 = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10))
+            >>> timespan_2 = abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12))
+            >>> timespan_3 = abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(2))
 
             >>> timespan_1 < timespan_2
             True
@@ -539,10 +539,10 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan_1 = abjad.Timespan(abjad.Offset(0), abjad.Offset(10))
-            >>> timespan_2 = abjad.Timespan(abjad.Offset(5), abjad.Offset(12))
-            >>> timespan_3 = abjad.Timespan(abjad.Offset(-2), abjad.Offset(2))
-            >>> timespan_4 = abjad.Timespan(abjad.Offset(10), abjad.Offset(20))
+            >>> timespan_1 = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10))
+            >>> timespan_2 = abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12))
+            >>> timespan_3 = abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(2))
+            >>> timespan_4 = abjad.Timespan.fvo(abjad.mvo(10), abjad.mvo(20))
 
             >>> timespans = timespan_1 | timespan_2
             >>> for _ in timespans: _
@@ -602,10 +602,10 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan_1 = abjad.Timespan(abjad.Offset(0), abjad.Offset(10))
-            >>> timespan_2 = abjad.Timespan(abjad.Offset(5), abjad.Offset(12))
-            >>> timespan_3 = abjad.Timespan(abjad.Offset(-2), abjad.Offset(2))
-            >>> timespan_4 = abjad.Timespan(abjad.Offset(10), abjad.Offset(20))
+            >>> timespan_1 = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10))
+            >>> timespan_2 = abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12))
+            >>> timespan_3 = abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(2))
+            >>> timespan_4 = abjad.Timespan.fvo(abjad.mvo(10), abjad.mvo(20))
 
             >>> timespan_1 - timespan_1
             TimespanList([])
@@ -743,10 +743,10 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan_1 = abjad.Timespan(abjad.Offset(0), abjad.Offset(10))
-            >>> timespan_2 = abjad.Timespan(abjad.Offset(5), abjad.Offset(12))
-            >>> timespan_3 = abjad.Timespan(abjad.Offset(-2), abjad.Offset(2))
-            >>> timespan_4 = abjad.Timespan(abjad.Offset(10), abjad.Offset(20))
+            >>> timespan_1 = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10))
+            >>> timespan_2 = abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12))
+            >>> timespan_3 = abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(2))
+            >>> timespan_4 = abjad.Timespan.fvo(abjad.mvo(10), abjad.mvo(20))
 
             >>> timespans = timespan_1 ^ timespan_2
             >>> for _ in timespans: _
@@ -891,7 +891,7 @@ class Timespan:
 
         ..  container:: example
 
-            >>> abjad.Timespan(abjad.Offset(0), abjad.Offset(10)).axis()
+            >>> abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)).axis()
             Offset(5, 1)
 
         """
@@ -907,7 +907,7 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan = abjad.Timespan(abjad.Offset(1, 2), abjad.Offset(3, 2))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(1, 2), abjad.mvo(3, 2))
             >>> for x in timespan.divide_by_proportion((1, 2, 1)):
             ...     x
             ...
@@ -933,11 +933,37 @@ class Timespan:
 
         ..  container:: example
 
-            >>> abjad.Timespan(abjad.Offset(0), abjad.Offset(10)).duration()
+            >>> abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)).duration()
             Duration(10, 1)
 
         """
         return self.stop_offset - self.start_offset
+
+    @staticmethod
+    def fvo(
+        start_offset: _duration.ValueOffset,
+        stop_offset: _duration.ValueOffset,
+        *,
+        annotation: typing.Any = None,
+    ) -> Timespan:
+        """
+        Makes timespan from ``start_offset`` and ``stop_offset``.
+
+        ..  container:: example
+
+            >>> start_offset = abjad.ValueOffset(abjad.Fraction(0))
+            >>> stop_offset = abjad.ValueOffset(abjad.Fraction(1, 4))
+            >>> abjad.Timespan.fvo(start_offset, stop_offset)
+            Timespan(Offset(0, 1), Offset(1, 4))
+
+        """
+        assert isinstance(start_offset, _duration.ValueOffset)
+        assert isinstance(stop_offset, _duration.ValueOffset)
+        return Timespan(
+            start_offset.offset(),
+            stop_offset.offset(),
+            annotation=annotation,
+        )
 
     def offsets(self) -> tuple[_duration.Offset, _duration.Offset]:
         """
@@ -945,7 +971,7 @@ class Timespan:
 
         ..  container:: example
 
-            >>> abjad.Timespan(abjad.Offset(0), abjad.Offset(10)).offsets()
+            >>> abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)).offsets()
             (Offset(0, 1), Offset(10, 1))
 
         """
@@ -960,10 +986,10 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan_1 = abjad.Timespan(abjad.Offset(0), abjad.Offset(15))
-            >>> timespan_2 = abjad.Timespan(abjad.Offset(5), abjad.Offset(10))
-            >>> timespan_3 = abjad.Timespan(abjad.Offset(6), abjad.Offset(6))
-            >>> timespan_4 = abjad.Timespan(abjad.Offset(12), abjad.Offset(22))
+            >>> timespan_1 = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(15))
+            >>> timespan_2 = abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(10))
+            >>> timespan_3 = abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(6))
+            >>> timespan_4 = abjad.Timespan.fvo(abjad.mvo(12), abjad.mvo(22))
 
             >>> timespan_1.overlap_with_timespan(timespan_1)
             Duration(15, 1)
@@ -1007,7 +1033,7 @@ class Timespan:
 
         ..  container:: example
 
-            >>> abjad.Timespan(abjad.Offset(0), abjad.Offset(10)).is_wellformed()
+            >>> abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)).is_wellformed()
             True
 
         """
@@ -1021,14 +1047,14 @@ class Timespan:
 
             Reverse timespan about timespan axis:
 
-            >>> abjad.Timespan(abjad.Offset(3), abjad.Offset(6)).reflect()
+            >>> abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)).reflect()
             Timespan(Offset(3, 1), Offset(6, 1))
 
         ..  container:: example
 
             Reverse timespan about arbitrary axis:
 
-            >>> timespan = abjad.Timespan(abjad.Offset(3), abjad.Offset(6))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6))
             >>> timespan.reflect(axis=abjad.Offset(10))
             Timespan(Offset(14, 1), Offset(17, 1))
 
@@ -1049,7 +1075,7 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan = abjad.Timespan(abjad.Offset(1, 5), abjad.Offset(4, 5))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(1, 5), abjad.mvo(4, 5))
 
             >>> timespan.round_offsets(1)
             Timespan(Offset(0, 1), Offset(1, 1))
@@ -1091,7 +1117,7 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan = abjad.Timespan(abjad.Offset(3), abjad.Offset(6))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6))
 
         ..  container:: example
 
@@ -1130,7 +1156,7 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan = abjad.Timespan(abjad.Offset(1, 2), abjad.Offset(3, 2))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(1, 2), abjad.mvo(3, 2))
             >>> timespan.set_duration(abjad.Duration(3, 5))
             Timespan(Offset(1, 2), Offset(11, 10))
 
@@ -1148,7 +1174,7 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan = abjad.Timespan(abjad.Offset(1, 2), abjad.Offset(3, 2))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(1, 2), abjad.mvo(3, 2))
 
             >>> timespan.set_offsets(stop_offset=abjad.Offset(7, 8))
             Timespan(Offset(1, 2), Offset(7, 8))
@@ -1199,7 +1225,7 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan = abjad.Timespan(abjad.Offset(0), abjad.Offset(5))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(5))
 
             >>> offset = abjad.ValueOffset(abjad.Fraction(2, 1))
             >>> left, right = timespan.split_at_offset(offset)
@@ -1242,7 +1268,7 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan = abjad.Timespan(abjad.Offset(0), abjad.Offset(10))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10))
 
             >>> fractions_ = [abjad.Fraction(_) for _ in [1, 3, 7]]
             >>> offsets = [abjad.ValueOffset(_) for _ in fractions_]
@@ -1284,7 +1310,7 @@ class Timespan:
 
             Stretch relative to timespan start offset:
 
-            >>> timespan = abjad.Timespan(abjad.Offset(3), abjad.Offset(10))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(10))
             >>> timespan.stretch(abjad.Fraction(2))
             Timespan(Offset(3, 1), Offset(17, 1))
 
@@ -1338,7 +1364,7 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan = abjad.Timespan(abjad.Offset(5), abjad.Offset(10))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(10))
             >>> duration = abjad.Duration(2)
             >>> timespan.translate(duration)
             Timespan(Offset(7, 1), Offset(12, 1))
@@ -1358,7 +1384,7 @@ class Timespan:
 
         ..  container:: example
 
-            >>> timespan = abjad.Timespan(abjad.Offset(1, 2), abjad.Offset(3, 2))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(1, 2), abjad.mvo(3, 2))
             >>> duration = abjad.Duration(-1, 8)
             >>> timespan.translate_offsets(start_offset_translation=duration)
             Timespan(Offset(3, 8), Offset(3, 2))
@@ -1405,9 +1431,9 @@ class TimespanList(list):
         Contiguous timespan list:
 
         >>> timespans = abjad.TimespanList([
-        ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-        ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-        ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+        ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+        ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+        ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
         ... ])
         >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1421,11 +1447,11 @@ class TimespanList(list):
         Overlapping timespan list:
 
         >>> timespans = abjad.TimespanList([
-        ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-        ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-        ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
-        ...     abjad.Timespan(abjad.Offset(15), abjad.Offset(20)),
-        ...     abjad.Timespan(abjad.Offset(24), abjad.Offset(30)),
+        ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+        ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+        ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
+        ...     abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(20)),
+        ...     abjad.Timespan.fvo(abjad.mvo(24), abjad.mvo(30)),
         ... ])
         >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1491,13 +1517,13 @@ class TimespanList(list):
             Keeps material that intersects timespan:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
             ... ])
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
-            >>> timespan = abjad.Timespan(abjad.Offset(5), abjad.Offset(10))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(10))
             >>> timespans = timespans & timespan
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
@@ -1536,13 +1562,13 @@ class TimespanList(list):
             Illustrates timespans:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespan_operand = abjad.Timespan(abjad.Offset(6), abjad.Offset(10))
+            >>> timespan_operand = abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10))
             >>> timespans = timespans - timespan_operand
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1868,9 +1894,9 @@ class TimespanList(list):
             Inverts timespans:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
-            ...     abjad.Timespan(abjad.Offset(15), abjad.Offset(20)),
-            ...     abjad.Timespan(abjad.Offset(24), abjad.Offset(30)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(24), abjad.mvo(30)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1885,9 +1911,9 @@ class TimespanList(list):
             Inverts contiguous timespans:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1910,13 +1936,13 @@ class TimespanList(list):
             Deletes material that intersects timespan:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespan = abjad.Timespan(abjad.Offset(5), abjad.Offset(10))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(10))
             >>> timespans = timespans - timespan
 
             >>> for _ in timespans: _
@@ -1973,9 +1999,9 @@ class TimespanList(list):
             Is true when all timespans are contiguous:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -1987,11 +2013,11 @@ class TimespanList(list):
             Is false when timespans not contiguous:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
-            ...     abjad.Timespan(abjad.Offset(15), abjad.Offset(20)),
-            ...     abjad.Timespan(abjad.Offset(24), abjad.Offset(30)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(24), abjad.mvo(30)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2025,9 +2051,9 @@ class TimespanList(list):
             Is true when all timespans are nonoverlapping:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2039,11 +2065,11 @@ class TimespanList(list):
             Is false when timespans are overlapping:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
-            ...     abjad.Timespan(abjad.Offset(15), abjad.Offset(20)),
-            ...     abjad.Timespan(abjad.Offset(24), abjad.Offset(30)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(24), abjad.mvo(30)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2080,9 +2106,9 @@ class TimespanList(list):
             Is true when all timespans are wellformed:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2094,11 +2120,11 @@ class TimespanList(list):
             Is true when all timespans are wellformed:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
-            ...     abjad.Timespan(abjad.Offset(15), abjad.Offset(20)),
-            ...     abjad.Timespan(abjad.Offset(24), abjad.Offset(30)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(24), abjad.mvo(30)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2124,9 +2150,9 @@ class TimespanList(list):
             Gets axis:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2138,11 +2164,11 @@ class TimespanList(list):
             Gets axis:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
-            ...     abjad.Timespan(abjad.Offset(15), abjad.Offset(20)),
-            ...     abjad.Timespan(abjad.Offset(24), abjad.Offset(30)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(24), abjad.mvo(30)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2175,9 +2201,9 @@ class TimespanList(list):
             Gets duration:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2189,11 +2215,11 @@ class TimespanList(list):
             Gets duration:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
-            ...     abjad.Timespan(abjad.Offset(15), abjad.Offset(20)),
-            ...     abjad.Timespan(abjad.Offset(24), abjad.Offset(30)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(24), abjad.mvo(30)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2222,9 +2248,9 @@ class TimespanList(list):
             Is true when timespans are sorted:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2236,9 +2262,9 @@ class TimespanList(list):
             Is false when timespans are not sorted:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2268,9 +2294,9 @@ class TimespanList(list):
             Gets start offset:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2282,11 +2308,11 @@ class TimespanList(list):
             Gets start offset:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
-            ...     abjad.Timespan(abjad.Offset(15), abjad.Offset(20)),
-            ...     abjad.Timespan(abjad.Offset(24), abjad.Offset(30)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(24), abjad.mvo(30)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2317,9 +2343,9 @@ class TimespanList(list):
             Gets stop offset:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2331,11 +2357,11 @@ class TimespanList(list):
             Gets stop offset:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
-            ...     abjad.Timespan(abjad.Offset(15), abjad.Offset(20)),
-            ...     abjad.Timespan(abjad.Offset(24), abjad.Offset(30)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(24), abjad.mvo(30)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2365,9 +2391,9 @@ class TimespanList(list):
             Gets timespan:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2381,11 +2407,11 @@ class TimespanList(list):
             Gets timespan:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
-            ...     abjad.Timespan(abjad.Offset(15), abjad.Offset(20)),
-            ...     abjad.Timespan(abjad.Offset(24), abjad.Offset(30)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(24), abjad.mvo(30)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2418,8 +2444,8 @@ class TimespanList(list):
             Clips timespan durations:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(1)),
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(1)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2435,8 +2461,8 @@ class TimespanList(list):
             Clips timespan durations:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(1)),
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(1)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2452,8 +2478,8 @@ class TimespanList(list):
             Clips timespan durations:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(1)),
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(1)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2472,8 +2498,8 @@ class TimespanList(list):
             Clips timespan durations:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(1)),
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(1)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, range_=(-2, 10), scale=0.5) # doctest: +SKIP
 
@@ -2537,7 +2563,7 @@ class TimespanList(list):
             Computes logical AND:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2552,8 +2578,8 @@ class TimespanList(list):
             Computes logical AND:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2568,9 +2594,9 @@ class TimespanList(list):
             Computes logical AND:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
             ... ])
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
@@ -2610,7 +2636,7 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2623,8 +2649,8 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2637,9 +2663,9 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(2)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(2)),
             ... ])
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
@@ -2652,8 +2678,8 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(2)),
-            ...     abjad.Timespan(abjad.Offset(10), abjad.Offset(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(2)),
+            ...     abjad.Timespan.fvo(abjad.mvo(10), abjad.mvo(20)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2694,7 +2720,7 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2707,8 +2733,8 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
             ... ])
             >>> abjad.show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
@@ -2722,9 +2748,9 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(2)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(2)),
             ... ])
             >>> abjad.show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
@@ -2739,8 +2765,8 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(2)),
-            ...     abjad.Timespan(abjad.Offset(10), abjad.Offset(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(2)),
+            ...     abjad.Timespan.fvo(abjad.mvo(10), abjad.mvo(20)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2754,9 +2780,9 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
-            ...     abjad.Timespan(abjad.Offset(4), abjad.Offset(8)),
-            ...     abjad.Timespan(abjad.Offset(2), abjad.Offset(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(4), abjad.mvo(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(2), abjad.mvo(6)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2770,8 +2796,8 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2809,10 +2835,10 @@ class TimespanList(list):
             Example timespan list:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(15)),
-            ...     abjad.Timespan(abjad.Offset(20), abjad.Offset(25)),
-            ...     abjad.Timespan(abjad.Offset(20), abjad.Offset(30)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(15)),
+            ...     abjad.Timespan.fvo(abjad.mvo(20), abjad.mvo(25)),
+            ...     abjad.Timespan.fvo(abjad.mvo(20), abjad.mvo(30)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2828,7 +2854,7 @@ class TimespanList(list):
             Computes overlap factor within a specific timespan:
 
             >>> timespans.compute_overlap_factor(
-            ...     timespan=abjad.Timespan(abjad.Offset(-15), abjad.Offset(0))
+            ...     timespan=abjad.Timespan.fvo(abjad.mvo(-15), abjad.mvo(0))
             ... )
             Fraction(0, 1)
 
@@ -2837,7 +2863,7 @@ class TimespanList(list):
             Computes overlap factor:
 
             >>> timespans.compute_overlap_factor(
-            ...     timespan=abjad.Timespan(abjad.Offset(-10), abjad.Offset(5))
+            ...     timespan=abjad.Timespan.fvo(abjad.mvo(-10), abjad.mvo(5))
             ... )
             Fraction(1, 3)
 
@@ -2846,7 +2872,7 @@ class TimespanList(list):
             Computes overlap factor:
 
             >>> timespans.compute_overlap_factor(
-            ...     timespan=abjad.Timespan(abjad.Offset(-5), abjad.Offset(10))
+            ...     timespan=abjad.Timespan.fvo(abjad.mvo(-5), abjad.mvo(10))
             ... )
             Fraction(1, 1)
 
@@ -2855,7 +2881,7 @@ class TimespanList(list):
             Computes overlap factor:
 
             >>> timespans.compute_overlap_factor(
-            ...     timespan=abjad.Timespan(abjad.Offset(0), abjad.Offset(15))
+            ...     timespan=abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(15))
             ... )
             Fraction(4, 3)
 
@@ -2864,7 +2890,7 @@ class TimespanList(list):
             Computes overlap factor:
 
             >>> timespans.compute_overlap_factor(
-            ...     timespan=abjad.Timespan(abjad.Offset(5), abjad.Offset(20))
+            ...     timespan=abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(20))
             ... )
             Fraction(1, 1)
 
@@ -2873,7 +2899,7 @@ class TimespanList(list):
             Computes overlap factor:
 
             >>> timespans.compute_overlap_factor(
-            ...     timespan=abjad.Timespan(abjad.Offset(10), abjad.Offset(25))
+            ...     timespan=abjad.Timespan.fvo(abjad.mvo(10), abjad.mvo(25))
             ... )
             Fraction(1, 1)
 
@@ -2882,7 +2908,7 @@ class TimespanList(list):
             Computes overlap factor:
 
             >>> timespans.compute_overlap_factor(
-            ...     timespan=abjad.Timespan(abjad.Offset(15), abjad.Offset(30))
+            ...     timespan=abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(30))
             ... )
             Fraction(1, 1)
 
@@ -2907,10 +2933,10 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(10)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(15)),
-            ...     abjad.Timespan(abjad.Offset(20), abjad.Offset(25)),
-            ...     abjad.Timespan(abjad.Offset(20), abjad.Offset(30)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(15)),
+            ...     abjad.Timespan.fvo(abjad.mvo(20), abjad.mvo(25)),
+            ...     abjad.Timespan.fvo(abjad.mvo(20), abjad.mvo(30)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2944,9 +2970,9 @@ class TimespanList(list):
             Counts offsets:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -2972,11 +2998,11 @@ class TimespanList(list):
             Counts offsets:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
-            ...     abjad.Timespan(abjad.Offset(15), abjad.Offset(20)),
-            ...     abjad.Timespan(abjad.Offset(24), abjad.Offset(30)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(24), abjad.mvo(30)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3010,9 +3036,9 @@ class TimespanList(list):
             Counts offsets:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(9)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(9)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3041,18 +3067,18 @@ class TimespanList(list):
             Example timespan list:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(13)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
-            ...     abjad.Timespan(abjad.Offset(8), abjad.Offset(9)),
-            ...     abjad.Timespan(abjad.Offset(15), abjad.Offset(23)),
-            ...     abjad.Timespan(abjad.Offset(16), abjad.Offset(21)),
-            ...     abjad.Timespan(abjad.Offset(17), abjad.Offset(19)),
-            ...     abjad.Timespan(abjad.Offset(19), abjad.Offset(20)),
-            ...     abjad.Timespan(abjad.Offset(25), abjad.Offset(30)),
-            ...     abjad.Timespan(abjad.Offset(26), abjad.Offset(29)),
-            ...     abjad.Timespan(abjad.Offset(32), abjad.Offset(34)),
-            ...     abjad.Timespan(abjad.Offset(34), abjad.Offset(37)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(13)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(8), abjad.mvo(9)),
+            ...     abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(23)),
+            ...     abjad.Timespan.fvo(abjad.mvo(16), abjad.mvo(21)),
+            ...     abjad.Timespan.fvo(abjad.mvo(17), abjad.mvo(19)),
+            ...     abjad.Timespan.fvo(abjad.mvo(19), abjad.mvo(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(25), abjad.mvo(30)),
+            ...     abjad.Timespan.fvo(abjad.mvo(26), abjad.mvo(29)),
+            ...     abjad.Timespan.fvo(abjad.mvo(32), abjad.mvo(34)),
+            ...     abjad.Timespan.fvo(abjad.mvo(34), abjad.mvo(37)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3175,13 +3201,13 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespan = abjad.Timespan(abjad.Offset(2), abjad.Offset(5))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(2), abjad.mvo(5))
             >>> time_relation = lambda _: timespan.start_offset < _.start_offset < timespan.stop_offset
             >>> timespan = timespans.timespan_that_satisfies_time_relation(
             ...     time_relation
@@ -3207,13 +3233,13 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespan = abjad.Timespan(abjad.Offset(2), abjad.Offset(8))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(2), abjad.mvo(8))
             >>> time_relation = lambda _: timespan.start_offset < _.start_offset < timespan.stop_offset
             >>> timespans = timespans.timespans_that_satisfy_time_relation(
             ...     time_relation)
@@ -3237,20 +3263,20 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespan = abjad.Timespan(abjad.Offset(2), abjad.Offset(8))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(2), abjad.mvo(8))
             >>> time_relation = lambda _: timespan.start_offset < _.start_offset < timespan.stop_offset
             >>> timespans.has_timespan_that_satisfies_time_relation(time_relation)
             True
 
             Is false when list does not have matching timespan:
 
-            >>> timespan = abjad.Timespan(abjad.Offset(10), abjad.Offset(20))
+            >>> timespan = abjad.Timespan.fvo(abjad.mvo(10), abjad.mvo(20))
             >>> timespans.has_timespan_that_satisfies_time_relation(time_relation)
             False
 
@@ -3264,9 +3290,9 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3291,11 +3317,11 @@ class TimespanList(list):
             Partitions timespans:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(16)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(12)),
-            ...     abjad.Timespan(abjad.Offset(-2), abjad.Offset(8)),
-            ...     abjad.Timespan(abjad.Offset(15), abjad.Offset(20)),
-            ...     abjad.Timespan(abjad.Offset(24), abjad.Offset(30)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(16)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(12)),
+            ...     abjad.Timespan.fvo(abjad.mvo(-2), abjad.mvo(8)),
+            ...     abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(24), abjad.mvo(30)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3324,9 +3350,9 @@ class TimespanList(list):
             ``include_tangent_timespans`` is true:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3376,9 +3402,9 @@ class TimespanList(list):
             Reflects timespans about timespan list axis:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3395,9 +3421,9 @@ class TimespanList(list):
             Reflects timespans about arbitrary axis:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 
@@ -3429,9 +3455,9 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(5)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(10)),
-            ...     abjad.Timespan(abjad.Offset(5), abjad.Offset(25)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(5)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(25)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3456,9 +3482,9 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, range_=(0, 15), scale=0.5) # doctest: +SKIP
 
@@ -3499,9 +3525,9 @@ class TimespanList(list):
             Rotates by one timespan to the left:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(4)),
-            ...     abjad.Timespan(abjad.Offset(4), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(4)),
+            ...     abjad.Timespan.fvo(abjad.mvo(4), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3518,9 +3544,9 @@ class TimespanList(list):
             Rotates by one timespan to the right:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(4)),
-            ...     abjad.Timespan(abjad.Offset(4), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(4)),
+            ...     abjad.Timespan.fvo(abjad.mvo(4), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3571,9 +3597,9 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(2)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(2)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3588,9 +3614,9 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(2)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(2)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3605,9 +3631,9 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(2)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(2)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, range_=(-5, 10), scale=0.5) # doctest: +SKIP
 
@@ -3625,9 +3651,9 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(2)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(2)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3665,9 +3691,9 @@ class TimespanList(list):
             Scales timespans relative to timespan list start offset:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, range_=(0, 14), scale=0.5) # doctest: +SKIP
 
@@ -3684,9 +3710,9 @@ class TimespanList(list):
             Scales timespans relative to timespan list stop offset:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, range_=(-3, 10), scale=0.5) # doctest: +SKIP
 
@@ -3715,9 +3741,9 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3739,9 +3765,9 @@ class TimespanList(list):
             Splits at offset:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3762,9 +3788,9 @@ class TimespanList(list):
             Splits at offset:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
@@ -3810,10 +3836,10 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(4)),
-            ...     abjad.Timespan(abjad.Offset(4), abjad.Offset(10)),
-            ...     abjad.Timespan(abjad.Offset(15), abjad.Offset(20)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(4)),
+            ...     abjad.Timespan.fvo(abjad.mvo(4), abjad.mvo(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(15), abjad.mvo(20)),
             ... ])
             >>> abjad.show(timespans, range_=(0, 20), scale=0.5) # doctest: +SKIP
 
@@ -3859,9 +3885,9 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, range_=(0, 20), scale=0.5) # doctest: +SKIP
 
@@ -3878,9 +3904,9 @@ class TimespanList(list):
             Stretches timespans relative to arbitrary anchor:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, range_=(-8, 12), scale=0.5) # doctest: +SKIP
 
@@ -3913,9 +3939,9 @@ class TimespanList(list):
             Translates timespan by offset ``50``:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
@@ -3947,9 +3973,9 @@ class TimespanList(list):
             Translates timespan start- and stop-offsets equally:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
@@ -3967,9 +3993,9 @@ class TimespanList(list):
         ..  container:: example
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(abjad.Offset(0), abjad.Offset(3)),
-            ...     abjad.Timespan(abjad.Offset(3), abjad.Offset(6)),
-            ...     abjad.Timespan(abjad.Offset(6), abjad.Offset(10)),
+            ...     abjad.Timespan.fvo(abjad.mvo(0), abjad.mvo(3)),
+            ...     abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)),
+            ...     abjad.Timespan.fvo(abjad.mvo(6), abjad.mvo(10)),
             ... ])
             >>> abjad.show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 

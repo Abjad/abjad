@@ -36,6 +36,20 @@ def durations(items: list) -> list[Duration]:
     return durations
 
 
+def mvo(n: int, d: int | None = None) -> ValueOffset:
+    """
+    Makes value offset from ``n``.
+
+    ..  container:: example
+
+        >>> abjad.duration.mvo(1)
+        ValueOffset(fraction=Fraction(1, 1), displacement=None)
+
+    """
+    fraction = fractions.Fraction(n, d)
+    return ValueOffset(fraction)
+
+
 def pair_with_denominator(
     fraction: fractions.Fraction, denominator: int
 ) -> tuple[int, int]:
