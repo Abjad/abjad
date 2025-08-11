@@ -457,6 +457,7 @@ class Wrapper:
         else:
             return component._get_timespan().value_start_offset()
 
+    # TODO: temporarily rename to value_start_offset()
     def start_offset(self) -> _duration.ValueOffset:
         """
         Gets start offset. This is either the wrapper's synthetic offset or the

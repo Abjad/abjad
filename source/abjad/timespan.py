@@ -217,6 +217,7 @@ class OffsetCounter:
         return markup
 
 
+# TODO: make frozen
 @dataclasses.dataclass(slots=True, unsafe_hash=True)
 class Timespan:
     """

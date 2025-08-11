@@ -64,13 +64,9 @@ class Parentage(collections.abc.Sequence):
 
     '''
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_component", "_components")
 
     _do_not_deepcopy = True
-
-    ### INITIALIZER ###
 
     def __init__(self, component=None):
         components = []
@@ -78,8 +74,6 @@ class Parentage(collections.abc.Sequence):
         components.extend(component._get_parentage())
         self._component = component
         self._components = tuple(components)
-
-    ### SPECIAL METHODS ###
 
     def __eq__(self, argument: object) -> bool:
         if isinstance(argument, type(self)):
@@ -110,8 +104,6 @@ class Parentage(collections.abc.Sequence):
         Gets repr.
         """
         return f"{type(self).__name__}(component={self.component()!r})"
-
-    ### PRIVATE METHODS ###
 
     @staticmethod
     def _id_string(component):
@@ -666,8 +658,6 @@ class Parentage(collections.abc.Sequence):
         root = self.get(n=-1)
         assert isinstance(root, _score.Component), repr(root)
         return root
-
-    ### PUBLIC METHODS ###
 
     def count(self, prototype=None) -> int:
         r"""

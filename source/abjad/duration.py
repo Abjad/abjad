@@ -1395,4 +1395,11 @@ class ValueOffset:
         """
         fraction = fractions.Fraction(*offset.pair())
         value_offset = ValueOffset(fraction, displacement=offset.displacement())
+        assert value_offset.displacement == offset.displacement()
         return value_offset
+
+    def offset(self) -> Offset:
+        """
+        Makes offset from value offset.
+        """
+        return Offset(self.fraction, displacement=self.displacement)
