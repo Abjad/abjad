@@ -36,13 +36,13 @@ class OffsetCounter:
         >>> timespans = timespans - timespan_operand
         >>> offset_counter = abjad.OffsetCounter(timespans)
         >>> for item in offset_counter.items.items(): item
-        (ValueOffset(fraction=Fraction(-2, 1), displacement=None), 1)
-        (ValueOffset(fraction=Fraction(0, 1), displacement=None), 1)
-        (ValueOffset(fraction=Fraction(5, 1), displacement=None), 1)
-        (ValueOffset(fraction=Fraction(6, 1), displacement=None), 3)
-        (ValueOffset(fraction=Fraction(10, 1), displacement=None), 2)
-        (ValueOffset(fraction=Fraction(12, 1), displacement=None), 1)
-        (ValueOffset(fraction=Fraction(16, 1), displacement=None), 1)
+        (ValueOffset(Fraction(-2, 1)), 1)
+        (ValueOffset(Fraction(0, 1)), 1)
+        (ValueOffset(Fraction(5, 1)), 1)
+        (ValueOffset(Fraction(6, 1)), 3)
+        (ValueOffset(Fraction(10, 1)), 2)
+        (ValueOffset(Fraction(12, 1)), 1)
+        (ValueOffset(Fraction(16, 1)), 1)
 
         >>> abjad.show(offset_counter, scale=0.5) # doctest: +SKIP
 
@@ -595,12 +595,14 @@ class Timespan:
 
     def __repr__(self) -> str:
         """
-        Gets repr.
+        Gets interpreter representation of timespan.
         """
-        if self.annotation is None:
-            return f"{type(self).__name__}({self.start_offset!r}, {self.stop_offset!r})"
-        else:
-            return f"{type(self).__name__}({self.start_offset!r}, {self.stop_offset!r}, annotation={self.annotation!r})"
+        # string = f"{self.value_start_offset()!r}, {self.value_stop_offset()!r}"
+        string = f"{self.start_offset!r}, {self.stop_offset!r}"
+        if self.annotation is not None:
+            string = string + f", annotation={self.annotation!r}"
+        string = f"{type(self).__name__}({string})"
+        return string
 
     def __sub__(self, argument) -> TimespanList:
         """
@@ -1564,9 +1566,9 @@ class TimespanList(list):
         self[:] = sorted(new_timespans)
         return self
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
-        Gets repr.
+        Gets interpret representation of timespan list.
         """
         return f"{type(self).__name__}({list(self)})"
 
@@ -3039,10 +3041,10 @@ class TimespanList(list):
             ...     timespans.count_offsets().items.items()):
             ...     offset, count
             ...
-            (ValueOffset(fraction=Fraction(0, 1), displacement=None), 1)
-            (ValueOffset(fraction=Fraction(3, 1), displacement=None), 2)
-            (ValueOffset(fraction=Fraction(6, 1), displacement=None), 2)
-            (ValueOffset(fraction=Fraction(10, 1), displacement=None), 1)
+            (ValueOffset(Fraction(0, 1)), 1)
+            (ValueOffset(Fraction(3, 1)), 2)
+            (ValueOffset(Fraction(6, 1)), 2)
+            (ValueOffset(Fraction(10, 1)), 1)
 
         ..  container:: example
 
@@ -3071,16 +3073,16 @@ class TimespanList(list):
             ...     timespans.count_offsets().items.items()):
             ...     offset, count
             ...
-            (ValueOffset(fraction=Fraction(-2, 1), displacement=None), 1)
-            (ValueOffset(fraction=Fraction(0, 1), displacement=None), 1)
-            (ValueOffset(fraction=Fraction(5, 1), displacement=None), 1)
-            (ValueOffset(fraction=Fraction(8, 1), displacement=None), 1)
-            (ValueOffset(fraction=Fraction(12, 1), displacement=None), 1)
-            (ValueOffset(fraction=Fraction(15, 1), displacement=None), 1)
-            (ValueOffset(fraction=Fraction(16, 1), displacement=None), 1)
-            (ValueOffset(fraction=Fraction(20, 1), displacement=None), 1)
-            (ValueOffset(fraction=Fraction(24, 1), displacement=None), 1)
-            (ValueOffset(fraction=Fraction(30, 1), displacement=None), 1)
+            (ValueOffset(Fraction(-2, 1)), 1)
+            (ValueOffset(Fraction(0, 1)), 1)
+            (ValueOffset(Fraction(5, 1)), 1)
+            (ValueOffset(Fraction(8, 1)), 1)
+            (ValueOffset(Fraction(12, 1)), 1)
+            (ValueOffset(Fraction(15, 1)), 1)
+            (ValueOffset(Fraction(16, 1)), 1)
+            (ValueOffset(Fraction(20, 1)), 1)
+            (ValueOffset(Fraction(24, 1)), 1)
+            (ValueOffset(Fraction(30, 1)), 1)
 
         ..  container:: example
 
@@ -3100,10 +3102,10 @@ class TimespanList(list):
             ...     timespans.count_offsets().items.items()):
             ...     offset, count
             ...
-            (ValueOffset(fraction=Fraction(0, 1), displacement=None), 3)
-            (ValueOffset(fraction=Fraction(3, 1), displacement=None), 1)
-            (ValueOffset(fraction=Fraction(6, 1), displacement=None), 1)
-            (ValueOffset(fraction=Fraction(9, 1), displacement=None), 1)
+            (ValueOffset(Fraction(0, 1)), 3)
+            (ValueOffset(Fraction(3, 1)), 1)
+            (ValueOffset(Fraction(6, 1)), 1)
+            (ValueOffset(Fraction(9, 1)), 1)
 
         """
         return OffsetCounter(self)
