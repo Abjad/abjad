@@ -247,7 +247,7 @@ class Timespan:
         >>> left, right = annotated_timespan.split_at_offset(offset)
         >>> left.annotation.append("foo")
         >>> right
-        Timespan(Offset(1, 2), Offset(7, 8), annotation=['a', 'b', 'c', 'foo', 'foo'])
+        Timespan.fvo(ValueOffset(Fraction(1, 2)), ValueOffset(Fraction(7, 8)), annotation=['a', 'b', 'c', 'foo', 'foo'])
 
     Timespans are closed-open intervals.
     """
@@ -256,6 +256,9 @@ class Timespan:
     stop_offset: _duration.Offset | _math.Infinity = _math.Infinity()
     annotation: typing.Any = None
     # allow: bool = False
+
+    # TODO: remove after migration:
+    _is_abstract = True
 
     def __post_init__(self):
         # assert self.allow is True, repr(self.allow)
@@ -283,10 +286,10 @@ class Timespan:
             >>> timespan_4 = abjad.Timespan.fvo(abjad.mvo(10), abjad.mvo(20))
 
             >>> timespan_1 & timespan_2
-            TimespanList([Timespan(Offset(5, 1), Offset(10, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(10, 1)))])
 
             >>> timespan_1 & timespan_3
-            TimespanList([Timespan(Offset(0, 1), Offset(2, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(2, 1)))])
 
             >>> timespan_1 & timespan_4
             TimespanList([])
@@ -295,7 +298,7 @@ class Timespan:
             TimespanList([])
 
             >>> timespan_2 & timespan_4
-            TimespanList([Timespan(Offset(10, 1), Offset(12, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(12, 1)))])
 
             >>> timespan_3 & timespan_4
             TimespanList([])
@@ -552,29 +555,29 @@ class Timespan:
 
             >>> timespans = timespan_1 | timespan_2
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(12, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(12, 1)))
 
             >>> timespans = timespan_1 | timespan_3
             >>> for _ in timespans: _
-            Timespan(Offset(-2, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(10, 1)))
 
             >>> timespans = timespan_1 | timespan_4
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(20, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(20, 1)))
 
             >>> timespans = timespan_2 | timespan_3
             >>> for _ in timespans: _
-            Timespan(Offset(-2, 1), Offset(2, 1))
-            Timespan(Offset(5, 1), Offset(12, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(2, 1)))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(12, 1)))
 
             >>> timespans = timespan_2 | timespan_4
             >>> for _ in timespans: _
-            Timespan(Offset(5, 1), Offset(20, 1))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(20, 1)))
 
             >>> timespans = timespan_3 | timespan_4
             >>> for _ in timespans: _
-            Timespan(Offset(-2, 1), Offset(2, 1))
-            Timespan(Offset(10, 1), Offset(20, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(2, 1)))
+            Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(20, 1)))
 
         """
         argument = self._get_timespan(argument)
@@ -597,11 +600,11 @@ class Timespan:
         """
         Gets interpreter representation of timespan.
         """
-        # string = f"{self.value_start_offset()!r}, {self.value_stop_offset()!r}"
-        string = f"{self.start_offset!r}, {self.stop_offset!r}"
+        string = f"{self.value_start_offset()!r}, {self.value_stop_offset()!r}"
+        # string = f"{self.start_offset!r}, {self.stop_offset!r}"
         if self.annotation is not None:
             string = string + f", annotation={self.annotation!r}"
-        string = f"{type(self).__name__}({string})"
+        string = f"{type(self).__name__}.fvo({string})"
         return string
 
     def __sub__(self, argument) -> TimespanList:
@@ -619,49 +622,49 @@ class Timespan:
             TimespanList([])
 
             >>> timespan_1 - timespan_2
-            TimespanList([Timespan(Offset(0, 1), Offset(5, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(5, 1)))])
 
             >>> timespan_1 - timespan_3
-            TimespanList([Timespan(Offset(2, 1), Offset(10, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(2, 1)), ValueOffset(Fraction(10, 1)))])
 
             >>> timespan_1 - timespan_4
-            TimespanList([Timespan(Offset(0, 1), Offset(10, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(10, 1)))])
 
             >>> timespan_2 - timespan_1
-            TimespanList([Timespan(Offset(10, 1), Offset(12, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(12, 1)))])
 
             >>> timespan_2 - timespan_2
             TimespanList([])
 
             >>> timespan_2 - timespan_3
-            TimespanList([Timespan(Offset(5, 1), Offset(12, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(12, 1)))])
 
             >>> timespan_2 - timespan_4
-            TimespanList([Timespan(Offset(5, 1), Offset(10, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(10, 1)))])
 
             >>> timespan_3 - timespan_3
             TimespanList([])
 
             >>> timespan_3 - timespan_1
-            TimespanList([Timespan(Offset(-2, 1), Offset(0, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(0, 1)))])
 
             >>> timespan_3 - timespan_2
-            TimespanList([Timespan(Offset(-2, 1), Offset(2, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(2, 1)))])
 
             >>> timespan_3 - timespan_4
-            TimespanList([Timespan(Offset(-2, 1), Offset(2, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(2, 1)))])
 
             >>> timespan_4 - timespan_4
             TimespanList([])
 
             >>> timespan_4 - timespan_1
-            TimespanList([Timespan(Offset(10, 1), Offset(20, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(20, 1)))])
 
             >>> timespan_4 - timespan_2
-            TimespanList([Timespan(Offset(12, 1), Offset(20, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(12, 1)), ValueOffset(Fraction(20, 1)))])
 
             >>> timespan_4 - timespan_3
-            TimespanList([Timespan(Offset(10, 1), Offset(20, 1))])
+            TimespanList([Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(20, 1)))])
 
         Returns timespan list.
         """
@@ -758,33 +761,33 @@ class Timespan:
 
             >>> timespans = timespan_1 ^ timespan_2
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(5, 1))
-            Timespan(Offset(10, 1), Offset(12, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(5, 1)))
+            Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(12, 1)))
 
             >>> timespans = timespan_1 ^ timespan_3
             >>> for _ in timespans: _
-            Timespan(Offset(-2, 1), Offset(0, 1))
-            Timespan(Offset(2, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(0, 1)))
+            Timespan.fvo(ValueOffset(Fraction(2, 1)), ValueOffset(Fraction(10, 1)))
 
             >>> timespans = timespan_1 ^ timespan_4
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(10, 1))
-            Timespan(Offset(10, 1), Offset(20, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(10, 1)))
+            Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(20, 1)))
 
             >>> timespans = timespan_2 ^ timespan_3
             >>> for _ in timespans: _
-            Timespan(Offset(-2, 1), Offset(2, 1))
-            Timespan(Offset(5, 1), Offset(12, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(2, 1)))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(12, 1)))
 
             >>> timespans = timespan_2 ^ timespan_4
             >>> for _ in timespans: _
-            Timespan(Offset(5, 1), Offset(10, 1))
-            Timespan(Offset(12, 1), Offset(20, 1))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(10, 1)))
+            Timespan.fvo(ValueOffset(Fraction(12, 1)), ValueOffset(Fraction(20, 1)))
 
             >>> timespans = timespan_3 ^ timespan_4
             >>> for _ in timespans: _
-            Timespan(Offset(-2, 1), Offset(2, 1))
-            Timespan(Offset(10, 1), Offset(20, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(2, 1)))
+            Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(20, 1)))
 
         """
         argument = self._get_timespan(argument)
@@ -918,10 +921,9 @@ class Timespan:
             >>> timespan = abjad.Timespan.fvo(abjad.mvo(1, 2), abjad.mvo(3, 2))
             >>> for x in timespan.divide_by_proportion((1, 2, 1)):
             ...     x
-            ...
-            Timespan(Offset(1, 2), Offset(3, 4))
-            Timespan(Offset(3, 4), Offset(5, 4))
-            Timespan(Offset(5, 4), Offset(3, 2))
+            Timespan.fvo(ValueOffset(Fraction(1, 2)), ValueOffset(Fraction(3, 4)))
+            Timespan.fvo(ValueOffset(Fraction(3, 4)), ValueOffset(Fraction(5, 4)))
+            Timespan.fvo(ValueOffset(Fraction(5, 4)), ValueOffset(Fraction(3, 2)))
 
         """
         assert isinstance(proportion, tuple), repr(proportion)
@@ -962,7 +964,7 @@ class Timespan:
             >>> start_offset = abjad.ValueOffset(abjad.Fraction(0))
             >>> stop_offset = abjad.ValueOffset(abjad.Fraction(1, 4))
             >>> abjad.Timespan.fvo(start_offset, stop_offset)
-            Timespan(Offset(0, 1), Offset(1, 4))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 4)))
 
         """
         assert isinstance(
@@ -1074,7 +1076,7 @@ class Timespan:
             Reverse timespan about timespan axis:
 
             >>> abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6)).reflect()
-            Timespan(Offset(3, 1), Offset(6, 1))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(6, 1)))
 
         ..  container:: example
 
@@ -1082,7 +1084,7 @@ class Timespan:
 
             >>> timespan = abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(6))
             >>> timespan.reflect(axis=abjad.Offset(10))
-            Timespan(Offset(14, 1), Offset(17, 1))
+            Timespan.fvo(ValueOffset(Fraction(14, 1)), ValueOffset(Fraction(17, 1)))
 
         """
         if axis is None:
@@ -1104,18 +1106,18 @@ class Timespan:
             >>> timespan = abjad.Timespan.fvo(abjad.mvo(1, 5), abjad.mvo(4, 5))
 
             >>> timespan.round_offsets(1)
-            Timespan(Offset(0, 1), Offset(1, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 1)))
 
             >>> timespan.round_offsets(2)
-            Timespan(Offset(0, 1), Offset(2, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(2, 1)))
 
             >>> timespan.round_offsets(2, anchor=abjad.RIGHT)
-            Timespan(Offset(-2, 1), Offset(0, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(0, 1)))
 
             >>> timespan.round_offsets(
             ...     2, anchor=abjad.RIGHT, must_be_wellformed=False
             ... )
-            Timespan(Offset(0, 1), Offset(0, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(0, 1)))
 
         """
         multiplier = abs(fractions.Fraction(multiplier))
@@ -1150,14 +1152,14 @@ class Timespan:
             Scale timespan relative to timespan start offset:
 
             >>> timespan.scale(abjad.Fraction(2))
-            Timespan(Offset(3, 1), Offset(9, 1))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(9, 1)))
 
         ..  container:: example
 
             Scale timespan relative to timespan stop offset:
 
             >>> timespan.scale(abjad.Fraction(2), anchor=abjad.RIGHT)
-            Timespan(Offset(0, 1), Offset(6, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(6, 1)))
 
         """
         multiplier = fractions.Fraction(multiplier)
@@ -1184,7 +1186,7 @@ class Timespan:
 
             >>> timespan = abjad.Timespan.fvo(abjad.mvo(1, 2), abjad.mvo(3, 2))
             >>> timespan.set_duration(abjad.Duration(3, 5))
-            Timespan(Offset(1, 2), Offset(11, 10))
+            Timespan.fvo(ValueOffset(Fraction(1, 2)), ValueOffset(Fraction(11, 10)))
 
         """
         assert isinstance(duration, _duration.Duration), repr(duration)
@@ -1203,21 +1205,21 @@ class Timespan:
             >>> timespan = abjad.Timespan.fvo(abjad.mvo(1, 2), abjad.mvo(3, 2))
 
             >>> timespan.set_offsets(stop_offset=abjad.Offset(7, 8))
-            Timespan(Offset(1, 2), Offset(7, 8))
+            Timespan.fvo(ValueOffset(Fraction(1, 2)), ValueOffset(Fraction(7, 8)))
 
         ..  container:: example
 
             Subtracts negative ``start_offset`` from existing stop offset:
 
             >>> timespan.set_offsets(start_offset=abjad.Offset(-1, 2))
-            Timespan(Offset(1, 1), Offset(3, 2))
+            Timespan.fvo(ValueOffset(Fraction(1, 1)), ValueOffset(Fraction(3, 2)))
 
         ..  container:: example
 
             Subtracts negative ``stop_offset`` from existing stop offset:
 
             >>> timespan.set_offsets(stop_offset=abjad.Offset(-1, 2))
-            Timespan(Offset(1, 2), Offset(1, 1))
+            Timespan.fvo(ValueOffset(Fraction(1, 2)), ValueOffset(Fraction(1, 1)))
 
         """
         if start_offset is not None:
@@ -1257,16 +1259,16 @@ class Timespan:
             >>> left, right = timespan.split_at_offset(offset)
 
             >>> left
-            Timespan(Offset(0, 1), Offset(2, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(2, 1)))
 
             >>> right
-            Timespan(Offset(2, 1), Offset(5, 1))
+            Timespan.fvo(ValueOffset(Fraction(2, 1)), ValueOffset(Fraction(5, 1)))
 
             Otherwise return a copy of timespan:
 
             >>> offset = abjad.ValueOffset(abjad.Fraction(12, 1))
             >>> timespan.split_at_offset(offset)[0]
-            Timespan(Offset(0, 1), Offset(5, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(5, 1)))
 
         """
         assert isinstance(offset, _duration.ValueOffset), repr(offset)
@@ -1300,17 +1302,17 @@ class Timespan:
             >>> offsets = [abjad.ValueOffset(_) for _ in fractions_]
             >>> timespans = timespan.split_at_offsets(offsets)
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(1, 1))
-            Timespan(Offset(1, 1), Offset(3, 1))
-            Timespan(Offset(3, 1), Offset(7, 1))
-            Timespan(Offset(7, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 1)))
+            Timespan.fvo(ValueOffset(Fraction(1, 1)), ValueOffset(Fraction(3, 1)))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(7, 1)))
+            Timespan.fvo(ValueOffset(Fraction(7, 1)), ValueOffset(Fraction(10, 1)))
 
             Otherwise return a timespan list containing a copy of timespan:
 
             >>> offset = abjad.ValueOffset(abjad.Fraction(-100))
             >>> timespans = timespan.split_at_offsets([offset])
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(10, 1)))
 
         """
         assert all(isinstance(_, _duration.ValueOffset) for _ in offsets), repr(offsets)
@@ -1338,35 +1340,35 @@ class Timespan:
 
             >>> timespan = abjad.Timespan.fvo(abjad.mvo(3), abjad.mvo(10))
             >>> timespan.stretch(abjad.Fraction(2))
-            Timespan(Offset(3, 1), Offset(17, 1))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(17, 1)))
 
         .. container:: example
 
             Stretch relative to timespan stop offset:
 
             >>> timespan.stretch(abjad.Fraction(2), abjad.Offset(10))
-            Timespan(Offset(-4, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(-4, 1)), ValueOffset(Fraction(10, 1)))
 
         .. container:: example
 
             Stretch relative to offset prior to timespan:
 
             >>> timespan.stretch(abjad.Fraction(2), abjad.Offset(0, 1))
-            Timespan(Offset(6, 1), Offset(20, 1))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(20, 1)))
 
         .. container:: example
 
             Stretch relative to offset after timespan:
 
             >>> timespan.stretch(abjad.Fraction(3), abjad.Offset(12))
-            Timespan(Offset(-15, 1), Offset(6, 1))
+            Timespan.fvo(ValueOffset(Fraction(-15, 1)), ValueOffset(Fraction(6, 1)))
 
         .. container:: example
 
             Stretch relative to offset that happens during timespan:
 
             >>> timespan.stretch(abjad.Fraction(2), abjad.Offset(4))
-            Timespan(Offset(2, 1), Offset(16, 1))
+            Timespan.fvo(ValueOffset(Fraction(2, 1)), ValueOffset(Fraction(16, 1)))
 
         """
         multiplier = fractions.Fraction(multiplier)
@@ -1393,7 +1395,7 @@ class Timespan:
             >>> timespan = abjad.Timespan.fvo(abjad.mvo(5), abjad.mvo(10))
             >>> duration = abjad.Duration(2)
             >>> timespan.translate(duration)
-            Timespan(Offset(7, 1), Offset(12, 1))
+            Timespan.fvo(ValueOffset(Fraction(7, 1)), ValueOffset(Fraction(12, 1)))
 
         """
         assert isinstance(duration, _duration.Duration), repr(duration)
@@ -1413,7 +1415,7 @@ class Timespan:
             >>> timespan = abjad.Timespan.fvo(abjad.mvo(1, 2), abjad.mvo(3, 2))
             >>> duration = abjad.Duration(-1, 8)
             >>> timespan.translate_offsets(start_offset_translation=duration)
-            Timespan(Offset(3, 8), Offset(3, 2))
+            Timespan.fvo(ValueOffset(Fraction(3, 8)), ValueOffset(Fraction(3, 2)))
 
         """
         assert isinstance(start_offset_translation, _duration.Duration), repr(
@@ -1434,17 +1436,23 @@ class Timespan:
             stop_offset=new_stop_offset,
         )
 
-    def value_start_offset(self) -> _duration.ValueOffset:
+    def value_start_offset(self) -> _duration.ValueOffset | _math.NegativeInfinity:
         start_offset = self.start_offset
-        assert isinstance(start_offset, _duration.Offset)
-        value_offset = _duration.ValueOffset.from_offset(start_offset)
-        return value_offset
+        value_start_offset: _duration.ValueOffset | _math.NegativeInfinity
+        if isinstance(start_offset, _duration.Offset):
+            value_start_offset = _duration.ValueOffset.from_offset(start_offset)
+        else:
+            value_start_offset = start_offset
+        return value_start_offset
 
-    def value_stop_offset(self) -> _duration.ValueOffset:
+    def value_stop_offset(self) -> _duration.ValueOffset | _math.Infinity:
         stop_offset = self.stop_offset
-        assert isinstance(stop_offset, _duration.Offset)
-        value_offset = _duration.ValueOffset.from_offset(stop_offset)
-        return value_offset
+        value_stop_offset: _duration.ValueOffset | _math.Infinity
+        if isinstance(stop_offset, _duration.Offset):
+            value_stop_offset = _duration.ValueOffset.from_offset(stop_offset)
+        else:
+            value_stop_offset = stop_offset
+        return value_stop_offset
 
 
 @dataclasses.dataclass(slots=True)
@@ -1464,9 +1472,9 @@ class TimespanList(list):
         >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
         >>> for _ in timespans: _
-        Timespan(Offset(0, 1), Offset(3, 1))
-        Timespan(Offset(3, 1), Offset(6, 1))
-        Timespan(Offset(6, 1), Offset(10, 1))
+        Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(3, 1)))
+        Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(6, 1)))
+        Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(10, 1)))
 
     ..  container:: example
 
@@ -1482,11 +1490,11 @@ class TimespanList(list):
         >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
         >>> for _ in timespans: _
-        Timespan(Offset(0, 1), Offset(16, 1))
-        Timespan(Offset(5, 1), Offset(12, 1))
-        Timespan(Offset(-2, 1), Offset(8, 1))
-        Timespan(Offset(15, 1), Offset(20, 1))
-        Timespan(Offset(24, 1), Offset(30, 1))
+        Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(16, 1)))
+        Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(12, 1)))
+        Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(8, 1)))
+        Timespan.fvo(ValueOffset(Fraction(15, 1)), ValueOffset(Fraction(20, 1)))
+        Timespan.fvo(ValueOffset(Fraction(24, 1)), ValueOffset(Fraction(30, 1)))
 
     ..  container:: example
 
@@ -1554,9 +1562,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(5, 1), Offset(8, 1))
-            Timespan(Offset(5, 1), Offset(10, 1))
-            Timespan(Offset(5, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(8, 1)))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(10, 1)))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(10, 1)))
 
         """
         new_timespans: list[Timespan] = []
@@ -1929,8 +1937,8 @@ class TimespanList(list):
             >>> abjad.show(~timespans, range_=(-2, 30), scale=0.5) # doctest: +SKIP
 
             >>> for _ in ~timespans: _
-            Timespan(Offset(8, 1), Offset(15, 1))
-            Timespan(Offset(20, 1), Offset(24, 1))
+            Timespan.fvo(ValueOffset(Fraction(8, 1)), ValueOffset(Fraction(15, 1)))
+            Timespan.fvo(ValueOffset(Fraction(20, 1)), ValueOffset(Fraction(24, 1)))
 
         ..  container:: example
 
@@ -1972,10 +1980,10 @@ class TimespanList(list):
             >>> timespans = timespans - timespan
 
             >>> for _ in timespans: _
-            Timespan(Offset(-2, 1), Offset(5, 1))
-            Timespan(Offset(0, 1), Offset(5, 1))
-            Timespan(Offset(10, 1), Offset(12, 1))
-            Timespan(Offset(10, 1), Offset(16, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(5, 1)))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(5, 1)))
+            Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(12, 1)))
+            Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(16, 1)))
 
 
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
@@ -2451,7 +2459,7 @@ class TimespanList(list):
             >>> abjad.show(timespans.timespan(), range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> timespans.timespan()
-            Timespan(Offset(0, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(10, 1)))
 
         ..  container:: example
 
@@ -2469,14 +2477,14 @@ class TimespanList(list):
             >>> abjad.show(timespans.timespan(), range_=(0, 30), scale=0.5) # doctest: +SKIP
 
             >>> timespans.timespan()
-            Timespan(Offset(-2, 1), Offset(30, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(30, 1)))
 
         ..  container:: example
 
             Gets infinite timespan when list is empty:
 
             >>> abjad.TimespanList().timespan()
-            Timespan(NegativeInfinity(), Infinity())
+            Timespan.fvo(NegativeInfinity(), Infinity())
 
         Returns timespan.
         """
@@ -2504,8 +2512,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(5, 1))
-            Timespan(Offset(0, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(5, 1)))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(10, 1)))
 
         ..  container:: example
 
@@ -2521,8 +2529,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(1, 1))
-            Timespan(Offset(0, 1), Offset(5, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 1)))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(5, 1)))
 
         ..  container:: example
 
@@ -2541,8 +2549,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(3, 1))
-            Timespan(Offset(0, 1), Offset(7, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(3, 1)))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(7, 1)))
 
         ..  container:: example
 
@@ -2562,8 +2570,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(-2, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(-2, 1), Offset(1, 1))
-            Timespan(Offset(3, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(1, 1)))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(10, 1)))
 
 
         """
@@ -2622,7 +2630,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(10, 1)))
 
         ..  container:: example
 
@@ -2638,7 +2646,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(5, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(10, 1)))
 
         ..  container:: example
 
@@ -2655,7 +2663,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(5, 1), Offset(8, 1))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(8, 1)))
 
         """
         if 1 < len(self):
@@ -2695,7 +2703,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(10, 1)))
 
         ..  container:: example
 
@@ -2709,7 +2717,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(12, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(12, 1)))
 
         ..  container:: example
 
@@ -2724,7 +2732,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(-2, 12), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(-2, 1), Offset(12, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(12, 1)))
 
         ..  container:: example
 
@@ -2738,8 +2746,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(-2, 20), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(-2, 1), Offset(2, 1))
-            Timespan(Offset(10, 1), Offset(20, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(2, 1)))
+            Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(20, 1)))
 
         """
         timespans: list[Timespan] = []
@@ -2779,7 +2787,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(10, 1)))
 
         ..  container:: example
 
@@ -2793,8 +2801,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 12), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(5, 1))
-            Timespan(Offset(10, 1), Offset(12, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(5, 1)))
+            Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(12, 1)))
 
         ..  container:: example
 
@@ -2809,9 +2817,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(-2, 1), Offset(0, 1))
-            Timespan(Offset(2, 1), Offset(5, 1))
-            Timespan(Offset(10, 1), Offset(12, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(0, 1)))
+            Timespan.fvo(ValueOffset(Fraction(2, 1)), ValueOffset(Fraction(5, 1)))
+            Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(12, 1)))
 
         ..  container:: example
 
@@ -2825,8 +2833,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(-2, 20), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(-2, 1), Offset(2, 1))
-            Timespan(Offset(10, 1), Offset(20, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(2, 1)))
+            Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(20, 1)))
 
         ..  container:: example
 
@@ -2841,8 +2849,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(2, 1))
-            Timespan(Offset(8, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(2, 1)))
+            Timespan.fvo(ValueOffset(Fraction(8, 1)), ValueOffset(Fraction(10, 1)))
 
         ..  container:: example
 
@@ -3030,9 +3038,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(3, 1))
-            Timespan(Offset(3, 1), Offset(6, 1))
-            Timespan(Offset(6, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(3, 1)))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(6, 1)))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(10, 1)))
 
             >>> offset_counter = timespans.count_offsets()
             >>> abjad.show(offset_counter, range_=(0, 10), scale=0.5) # doctest: +SKIP
@@ -3060,11 +3068,11 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(16, 1))
-            Timespan(Offset(5, 1), Offset(12, 1))
-            Timespan(Offset(-2, 1), Offset(8, 1))
-            Timespan(Offset(15, 1), Offset(20, 1))
-            Timespan(Offset(24, 1), Offset(30, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(16, 1)))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(12, 1)))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(8, 1)))
+            Timespan.fvo(ValueOffset(Fraction(15, 1)), ValueOffset(Fraction(20, 1)))
+            Timespan.fvo(ValueOffset(Fraction(24, 1)), ValueOffset(Fraction(30, 1)))
 
             >>> offset_counter = timespans.count_offsets()
             >>> abjad.show(offset_counter, range_=(0, 30), scale=0.5) # doctest: +SKIP
@@ -3142,20 +3150,20 @@ class TimespanList(list):
             >>> for exploded_timespan_list in timespans.explode():
             ...     for _ in exploded_timespan_list: _
             ...     "---"
-            Timespan(Offset(0, 1), Offset(3, 1))
-            Timespan(Offset(5, 1), Offset(13, 1))
-            Timespan(Offset(17, 1), Offset(19, 1))
-            Timespan(Offset(19, 1), Offset(20, 1))
-            Timespan(Offset(34, 1), Offset(37, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(3, 1)))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(13, 1)))
+            Timespan.fvo(ValueOffset(Fraction(17, 1)), ValueOffset(Fraction(19, 1)))
+            Timespan.fvo(ValueOffset(Fraction(19, 1)), ValueOffset(Fraction(20, 1)))
+            Timespan.fvo(ValueOffset(Fraction(34, 1)), ValueOffset(Fraction(37, 1)))
             '---'
-            Timespan(Offset(6, 1), Offset(10, 1))
-            Timespan(Offset(16, 1), Offset(21, 1))
-            Timespan(Offset(25, 1), Offset(30, 1))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(10, 1)))
+            Timespan.fvo(ValueOffset(Fraction(16, 1)), ValueOffset(Fraction(21, 1)))
+            Timespan.fvo(ValueOffset(Fraction(25, 1)), ValueOffset(Fraction(30, 1)))
             '---'
-            Timespan(Offset(8, 1), Offset(9, 1))
-            Timespan(Offset(15, 1), Offset(23, 1))
-            Timespan(Offset(26, 1), Offset(29, 1))
-            Timespan(Offset(32, 1), Offset(34, 1))
+            Timespan.fvo(ValueOffset(Fraction(8, 1)), ValueOffset(Fraction(9, 1)))
+            Timespan.fvo(ValueOffset(Fraction(15, 1)), ValueOffset(Fraction(23, 1)))
+            Timespan.fvo(ValueOffset(Fraction(26, 1)), ValueOffset(Fraction(29, 1)))
+            Timespan.fvo(ValueOffset(Fraction(32, 1)), ValueOffset(Fraction(34, 1)))
             '---'
 
         ..  container:: example
@@ -3166,24 +3174,23 @@ class TimespanList(list):
             >>> for exploded_timespan_list in timespans.explode(inventory_count=6):
             ...     for _ in exploded_timespan_list: _
             ...     "---"
-            ...
-            Timespan(Offset(16, 1), Offset(21, 1))
-            Timespan(Offset(34, 1), Offset(37, 1))
+            Timespan.fvo(ValueOffset(Fraction(16, 1)), ValueOffset(Fraction(21, 1)))
+            Timespan.fvo(ValueOffset(Fraction(34, 1)), ValueOffset(Fraction(37, 1)))
             '---'
-            Timespan(Offset(15, 1), Offset(23, 1))
+            Timespan.fvo(ValueOffset(Fraction(15, 1)), ValueOffset(Fraction(23, 1)))
             '---'
-            Timespan(Offset(8, 1), Offset(9, 1))
-            Timespan(Offset(17, 1), Offset(19, 1))
-            Timespan(Offset(19, 1), Offset(20, 1))
-            Timespan(Offset(26, 1), Offset(29, 1))
+            Timespan.fvo(ValueOffset(Fraction(8, 1)), ValueOffset(Fraction(9, 1)))
+            Timespan.fvo(ValueOffset(Fraction(17, 1)), ValueOffset(Fraction(19, 1)))
+            Timespan.fvo(ValueOffset(Fraction(19, 1)), ValueOffset(Fraction(20, 1)))
+            Timespan.fvo(ValueOffset(Fraction(26, 1)), ValueOffset(Fraction(29, 1)))
             '---'
-            Timespan(Offset(6, 1), Offset(10, 1))
-            Timespan(Offset(32, 1), Offset(34, 1))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(10, 1)))
+            Timespan.fvo(ValueOffset(Fraction(32, 1)), ValueOffset(Fraction(34, 1)))
             '---'
-            Timespan(Offset(5, 1), Offset(13, 1))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(13, 1)))
             '---'
-            Timespan(Offset(0, 1), Offset(3, 1))
-            Timespan(Offset(25, 1), Offset(30, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(3, 1)))
+            Timespan.fvo(ValueOffset(Fraction(25, 1)), ValueOffset(Fraction(30, 1)))
             '---'
 
         """
@@ -3268,7 +3275,7 @@ class TimespanList(list):
             >>> abjad.show(timespan, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> timespan
-            Timespan(Offset(3, 1), Offset(6, 1))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(6, 1)))
 
         """
         timespans = self.timespans_that_satisfy_time_relation(time_relation)
@@ -3299,8 +3306,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(3, 1), Offset(6, 1))
-            Timespan(Offset(6, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(6, 1)))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(10, 1)))
 
         """
         result = []
@@ -3350,19 +3357,18 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(3, 1))
-            Timespan(Offset(3, 1), Offset(6, 1))
-            Timespan(Offset(6, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(3, 1)))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(6, 1)))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(10, 1)))
 
             >>> for timespan_list in timespans.partition():
             ...     for _ in timespan_list: _
             ...     "---"
-            ...
-            Timespan(Offset(0, 1), Offset(3, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(3, 1)))
             '---'
-            Timespan(Offset(3, 1), Offset(6, 1))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(6, 1)))
             '---'
-            Timespan(Offset(6, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(10, 1)))
             '---'
 
         ..  container:: example
@@ -3379,22 +3385,21 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(16, 1))
-            Timespan(Offset(5, 1), Offset(12, 1))
-            Timespan(Offset(-2, 1), Offset(8, 1))
-            Timespan(Offset(15, 1), Offset(20, 1))
-            Timespan(Offset(24, 1), Offset(30, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(16, 1)))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(12, 1)))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(8, 1)))
+            Timespan.fvo(ValueOffset(Fraction(15, 1)), ValueOffset(Fraction(20, 1)))
+            Timespan.fvo(ValueOffset(Fraction(24, 1)), ValueOffset(Fraction(30, 1)))
 
             >>> for timespan_list in timespans.partition():
             ...     for _ in timespan_list: _
             ...     "---"
-            ...
-            Timespan(Offset(-2, 1), Offset(8, 1))
-            Timespan(Offset(0, 1), Offset(16, 1))
-            Timespan(Offset(5, 1), Offset(12, 1))
-            Timespan(Offset(15, 1), Offset(20, 1))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(8, 1)))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(16, 1)))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(12, 1)))
+            Timespan.fvo(ValueOffset(Fraction(15, 1)), ValueOffset(Fraction(20, 1)))
             '---'
-            Timespan(Offset(24, 1), Offset(30, 1))
+            Timespan.fvo(ValueOffset(Fraction(24, 1)), ValueOffset(Fraction(30, 1)))
             '---'
 
         ..  container:: example
@@ -3414,10 +3419,9 @@ class TimespanList(list):
             ... ):
             ...     for _ in timespan_list: _
             ...     "---"
-            ...
-            Timespan(Offset(0, 1), Offset(3, 1))
-            Timespan(Offset(3, 1), Offset(6, 1))
-            Timespan(Offset(6, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(3, 1)))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(6, 1)))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(10, 1)))
             '---'
 
         """
@@ -3465,9 +3469,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(4, 1))
-            Timespan(Offset(4, 1), Offset(7, 1))
-            Timespan(Offset(7, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(4, 1)))
+            Timespan.fvo(ValueOffset(Fraction(4, 1)), ValueOffset(Fraction(7, 1)))
+            Timespan.fvo(ValueOffset(Fraction(7, 1)), ValueOffset(Fraction(10, 1)))
 
         ..  container:: example
 
@@ -3484,9 +3488,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(20, 1), Offset(24, 1))
-            Timespan(Offset(24, 1), Offset(27, 1))
-            Timespan(Offset(27, 1), Offset(30, 1))
+            Timespan.fvo(ValueOffset(Fraction(20, 1)), ValueOffset(Fraction(24, 1)))
+            Timespan.fvo(ValueOffset(Fraction(24, 1)), ValueOffset(Fraction(27, 1)))
+            Timespan.fvo(ValueOffset(Fraction(27, 1)), ValueOffset(Fraction(30, 1)))
 
         """
         if axis is None:
@@ -3518,8 +3522,8 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(5, 1), Offset(10, 1))
-            Timespan(Offset(5, 1), Offset(25, 1))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(10, 1)))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(25, 1)))
 
         """
         timespans = [x for x in self if x.is_wellformed()]
@@ -3545,11 +3549,11 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 15), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(3, 1))
-            Timespan(Offset(3, 1), Offset(6, 1))
-            Timespan(Offset(6, 1), Offset(10, 1))
-            Timespan(Offset(10, 1), Offset(13, 1))
-            Timespan(Offset(13, 1), Offset(15, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(3, 1)))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(6, 1)))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(10, 1)))
+            Timespan.fvo(ValueOffset(Fraction(10, 1)), ValueOffset(Fraction(13, 1)))
+            Timespan.fvo(ValueOffset(Fraction(13, 1)), ValueOffset(Fraction(15, 1)))
 
         """
         assert self.is_sorted()
@@ -3588,9 +3592,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(1, 1))
-            Timespan(Offset(1, 1), Offset(7, 1))
-            Timespan(Offset(7, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 1)))
+            Timespan.fvo(ValueOffset(Fraction(1, 1)), ValueOffset(Fraction(7, 1)))
+            Timespan.fvo(ValueOffset(Fraction(7, 1)), ValueOffset(Fraction(10, 1)))
 
         ..  container:: example
 
@@ -3607,9 +3611,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(6, 1))
-            Timespan(Offset(6, 1), Offset(9, 1))
-            Timespan(Offset(9, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(6, 1)))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(9, 1)))
+            Timespan.fvo(ValueOffset(Fraction(9, 1)), ValueOffset(Fraction(10, 1)))
 
         """
         assert isinstance(count, int)
@@ -3660,9 +3664,9 @@ class TimespanList(list):
             >>> abjad.show(rounded_timespans, range_=(0, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in rounded_timespans: _
-            Timespan(Offset(0, 1), Offset(3, 1))
-            Timespan(Offset(3, 1), Offset(6, 1))
-            Timespan(Offset(6, 1), Offset(9, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(3, 1)))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(6, 1)))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(9, 1)))
 
         ..  container:: example
 
@@ -3677,9 +3681,9 @@ class TimespanList(list):
             >>> abjad.show(rounded_timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in rounded_timespans: _
-            Timespan(Offset(0, 1), Offset(5, 1))
-            Timespan(Offset(5, 1), Offset(10, 1))
-            Timespan(Offset(5, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(5, 1)))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(10, 1)))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(10, 1)))
 
         ..  container:: example
 
@@ -3697,9 +3701,9 @@ class TimespanList(list):
             >>> abjad.show(rounded_timespans, range_=(-5, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in rounded_timespans: _
-            Timespan(Offset(-5, 1), Offset(0, 1))
-            Timespan(Offset(0, 1), Offset(5, 1))
-            Timespan(Offset(5, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(-5, 1)), ValueOffset(Fraction(0, 1)))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(5, 1)))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(10, 1)))
 
         ..  container:: example
 
@@ -3717,9 +3721,9 @@ class TimespanList(list):
             ... )
 
             >>> for _ in rounded_timespans: _
-            Timespan(Offset(0, 1), Offset(0, 1))
-            Timespan(Offset(5, 1), Offset(5, 1))
-            Timespan(Offset(5, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(0, 1)))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(5, 1)))
+            Timespan.fvo(ValueOffset(Fraction(5, 1)), ValueOffset(Fraction(10, 1)))
 
         """
         timespans = []
@@ -3754,9 +3758,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 14), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(6, 1))
-            Timespan(Offset(3, 1), Offset(9, 1))
-            Timespan(Offset(6, 1), Offset(14, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(6, 1)))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(9, 1)))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(14, 1)))
 
         ..  container:: example
 
@@ -3773,9 +3777,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(-3, 10), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(-3, 1), Offset(3, 1))
-            Timespan(Offset(0, 1), Offset(6, 1))
-            Timespan(Offset(2, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(-3, 1)), ValueOffset(Fraction(3, 1)))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(6, 1)))
+            Timespan.fvo(ValueOffset(Fraction(2, 1)), ValueOffset(Fraction(10, 1)))
 
         """
         timespans = []
@@ -3805,13 +3809,13 @@ class TimespanList(list):
 
             >>> abjad.show(left, range_=(0, 10), scale=0.5) # doctest: +SKIP
             >>> for _ in left: _
-            Timespan(Offset(0, 1), Offset(3, 1))
-            Timespan(Offset(3, 1), Offset(4, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(3, 1)))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(4, 1)))
 
             >>> abjad.show(right, range_=(0, 10), scale=0.5) # doctest: +SKIP
             >>> for _ in right: _
-            Timespan(Offset(4, 1), Offset(6, 1))
-            Timespan(Offset(6, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(4, 1)), ValueOffset(Fraction(6, 1)))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(10, 1)))
 
         ..  container:: example
 
@@ -3829,12 +3833,12 @@ class TimespanList(list):
 
             >>> abjad.show(left, range_=(0, 10), scale=0.5) # doctest: +SKIP
             >>> for _ in left: _
-            Timespan(Offset(0, 1), Offset(3, 1))
-            Timespan(Offset(3, 1), Offset(6, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(3, 1)))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(6, 1)))
 
             >>> abjad.show(right, range_=(0, 10), scale=0.5) # doctest: +SKIP
             >>> for _ in right: _
-            Timespan(Offset(6, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(10, 1)))
 
         ..  container:: example
 
@@ -3855,9 +3859,9 @@ class TimespanList(list):
 
             >>> abjad.show(right, range_=(0, 10), scale=0.5) # doctest: +SKIP
             >>> for _ in right: _
-            Timespan(Offset(0, 1), Offset(3, 1))
-            Timespan(Offset(3, 1), Offset(6, 1))
-            Timespan(Offset(6, 1), Offset(10, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(3, 1)))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(6, 1)))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(10, 1)))
 
         """
         # offset = _duration.Offset(offset)
@@ -3948,9 +3952,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(6, 1))
-            Timespan(Offset(6, 1), Offset(12, 1))
-            Timespan(Offset(12, 1), Offset(20, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(6, 1)))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(12, 1)))
+            Timespan.fvo(ValueOffset(Fraction(12, 1)), ValueOffset(Fraction(20, 1)))
 
         ..  container:: example
 
@@ -3967,9 +3971,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(-8, 1), Offset(-2, 1))
-            Timespan(Offset(-2, 1), Offset(4, 1))
-            Timespan(Offset(4, 1), Offset(12, 1))
+            Timespan.fvo(ValueOffset(Fraction(-8, 1)), ValueOffset(Fraction(-2, 1)))
+            Timespan.fvo(ValueOffset(Fraction(-2, 1)), ValueOffset(Fraction(4, 1)))
+            Timespan.fvo(ValueOffset(Fraction(4, 1)), ValueOffset(Fraction(12, 1)))
 
         """
         timespans = []
@@ -4003,9 +4007,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(50, 1), Offset(53, 1))
-            Timespan(Offset(53, 1), Offset(56, 1))
-            Timespan(Offset(56, 1), Offset(60, 1))
+            Timespan.fvo(ValueOffset(Fraction(50, 1)), ValueOffset(Fraction(53, 1)))
+            Timespan.fvo(ValueOffset(Fraction(53, 1)), ValueOffset(Fraction(56, 1)))
+            Timespan.fvo(ValueOffset(Fraction(56, 1)), ValueOffset(Fraction(60, 1)))
 
         """
         return self.translate_offsets(translation, translation)
@@ -4037,9 +4041,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(50, 1), Offset(53, 1))
-            Timespan(Offset(53, 1), Offset(56, 1))
-            Timespan(Offset(56, 1), Offset(60, 1))
+            Timespan.fvo(ValueOffset(Fraction(50, 1)), ValueOffset(Fraction(53, 1)))
+            Timespan.fvo(ValueOffset(Fraction(53, 1)), ValueOffset(Fraction(56, 1)))
+            Timespan.fvo(ValueOffset(Fraction(56, 1)), ValueOffset(Fraction(60, 1)))
 
         Translates timespan stop-offsets only:
 
@@ -4057,9 +4061,9 @@ class TimespanList(list):
             >>> abjad.show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 
             >>> for _ in timespans: _
-            Timespan(Offset(0, 1), Offset(23, 1))
-            Timespan(Offset(3, 1), Offset(26, 1))
-            Timespan(Offset(6, 1), Offset(30, 1))
+            Timespan.fvo(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(23, 1)))
+            Timespan.fvo(ValueOffset(Fraction(3, 1)), ValueOffset(Fraction(26, 1)))
+            Timespan.fvo(ValueOffset(Fraction(6, 1)), ValueOffset(Fraction(30, 1)))
 
         """
         timespans = []
