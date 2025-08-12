@@ -404,13 +404,13 @@ class Wrapper:
 
             >>> wrapper = abjad.get.wrapper(voice[0], abjad.StartTextSpan)
             >>> wrapper.start_offset(), wrapper.leaked_start_offset()
-            (ValueOffset(fraction=Fraction(0, 1), displacement=None), ValueOffset(fraction=Fraction(0, 1), displacement=None))
+            (ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(0, 1)))
 
             Start offset and leaked start offset differ for stop-text-span:
 
             >>> wrapper = abjad.get.wrapper(voice[0], abjad.StopTextSpan)
             >>> wrapper.start_offset(), wrapper.leaked_start_offset()
-            (ValueOffset(fraction=Fraction(0, 1), displacement=None), ValueOffset(fraction=Fraction(1, 2), displacement=None))
+            (ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 2)))
 
         """
         synthetic_offset = self.synthetic_offset()
@@ -442,8 +442,8 @@ class Wrapper:
             >>> abjad.attach(abjad.Ottava(0, site="after"), staff[0])
             >>> for wrapper in abjad.get.wrappers(staff[0], abjad.Ottava):
             ...     wrapper.indicator(), wrapper.site_adjusted_start_offset()
-            (Ottava(n=-1, site='before'), ValueOffset(fraction=Fraction(0, 1), displacement=None))
-            (Ottava(n=0, site='after'), ValueOffset(fraction=Fraction(1, 4), displacement=None))
+            (Ottava(n=-1, site='before'), ValueOffset(Fraction(0, 1)))
+            (Ottava(n=0, site='after'), ValueOffset(Fraction(1, 4)))
 
         """
         synthetic_offset = self.synthetic_offset()
@@ -457,6 +457,7 @@ class Wrapper:
         else:
             return component._get_timespan().value_start_offset()
 
+    # TODO: temporarily rename to value_start_offset()
     def start_offset(self) -> _duration.ValueOffset:
         """
         Gets start offset. This is either the wrapper's synthetic offset or the

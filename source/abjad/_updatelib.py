@@ -14,7 +14,6 @@ import fractions
 from . import duration as _duration
 from . import indicators as _indicators
 from . import iterate as _iterate
-from . import math as _math
 from . import obgc as _obgc
 from . import parentage as _parentage
 from . import score as _score
@@ -130,11 +129,11 @@ def _get_measure_start_offsets(component):
     pairs = []
     for wrapper in wrappers:
         component = wrapper.component()
-        start_offset = component._get_timespan().start_offset
+        start_offset = component._get_timespan().value_start_offset()
         time_signature = wrapper.unbundle_indicator()
         pair = start_offset, time_signature
         pairs.append(pair)
-    offset_zero = _duration.Offset(0)
+    offset_zero = _duration.ValueOffset(fractions.Fraction(0))
     default_time_signature = _indicators.TimeSignature((4, 4))
     default_pair = (offset_zero, default_time_signature)
     if pairs and not pairs[0] == offset_zero:
@@ -142,7 +141,7 @@ def _get_measure_start_offsets(component):
     elif not pairs:
         pairs = [default_pair]
     pairs.sort(key=lambda x: x[0])
-    score_stop_offset = root._get_timespan().stop_offset
+    score_stop_offset = root._get_timespan().value_stop_offset()
     dummy_last_pair = (score_stop_offset, None)
     pairs.append(dummy_last_pair)
     measure_start_offsets = []
@@ -151,6 +150,8 @@ def _get_measure_start_offsets(component):
         current_start_offset, current_time_signature = current_pair
         next_start_offset, next_time_signature = next_pair
         measure_start_offset = current_start_offset
+        assert isinstance(measure_start_offset, _duration.ValueOffset)
+        assert isinstance(current_start_offset, _duration.ValueOffset)
         while measure_start_offset < next_start_offset:
             measure_start_offsets.append(measure_start_offset)
             partial = current_time_signature.partial
@@ -252,9 +253,9 @@ def _make_metronome_mark_map(root):
         multiplier = fractions.Fraction(60, metronome_mark.units_per_minute)
         clocktime_duration = duration / metronome_mark.reference_duration
         clocktime_duration *= multiplier
-        timespan = _timespan.Timespan(
-            start_offset=start_offset,
-            stop_offset=stop_offset,
+        timespan = _timespan.Timespan.fvo(
+            start_offset.value_offset(),
+            stop_offset.value_offset(),
             annotation=(clocktime_start_offset, clocktime_duration),
         )
         timespans.append(timespan)
@@ -262,22 +263,26 @@ def _make_metronome_mark_map(root):
     return timespans
 
 
-# TODO: reimplement with some type of bisection
-def _to_measure_number(component, measure_start_offsets):
-    component_start_offset = component._get_timespan().start_offset
-    displacement = component_start_offset.displacement()
+def _to_measure_number(
+    component,
+    measure_start_offsets: list[_duration.ValueOffset],
+) -> int:
+    assert all(isinstance(_, _duration.ValueOffset) for _ in measure_start_offsets)
+    component_start_offset = component._get_timespan().value_start_offset()
+    displacement = component_start_offset.displacement
     if displacement is not None:
-        component_start_offset = _duration.Offset(
-            component_start_offset, displacement=None
-        )
+        assert isinstance(displacement, _duration.Duration), repr(displacement)
         # score-initial grace music only:
-        if displacement < 0 and component_start_offset == 0:
+        if displacement < 0 and component_start_offset.fraction == 0:
             measure_number = 0
             return measure_number
     measure_start_offsets = measure_start_offsets[:]
-    measure_start_offsets.append(_math.Infinity())
+    # measure_start_offsets.append(_math.Infinity())
+    # TODO: model with infinity:
+    measure_start_offsets.append(_duration.ValueOffset(fractions.Fraction(1000000000)))
     pairs = _sequence.nwise(measure_start_offsets)
     for measure_index, pair in enumerate(pairs):
+        assert all(isinstance(_, _duration.ValueOffset) for _ in pair)
         if pair[0] <= component_start_offset < pair[-1]:
             measure_number = measure_index + 1
             return measure_number
@@ -332,30 +337,42 @@ def _update_clocktime_offsets(component, timespans):
     if not timespans:
         return
     for timespan in timespans:
-        if timespan.start_offset <= component._start_offset < timespan.stop_offset:
+        if (
+            timespan.value_start_offset()
+            <= component._start_offset.value_offset()
+            < timespan.value_stop_offset()
+        ):
             pair = timespan.annotation
             clocktime_start_offset, clocktime_duration = pair
-            local_offset = component._start_offset - timespan.start_offset
+            local_offset = (
+                component._start_offset.value_offset() - timespan.value_start_offset()
+            )
             multiplier = local_offset / timespan.duration()
             duration = multiplier * clocktime_duration
             offset = clocktime_start_offset + duration
             component._start_offset_in_seconds = _duration.Offset(offset)
-        if timespan.start_offset <= component._stop_offset < timespan.stop_offset:
+        if (
+            timespan.value_start_offset()
+            <= component._stop_offset.value_offset()
+            < timespan.value_stop_offset()
+        ):
             pair = timespan.annotation
             clocktime_start_offset, clocktime_duration = pair
-            local_offset = component._stop_offset - timespan.start_offset
+            local_offset = (
+                component._stop_offset.value_offset() - timespan.value_start_offset()
+            )
             multiplier = local_offset / timespan.duration()
             duration = multiplier * clocktime_duration
             offset = clocktime_start_offset + duration
             component._stop_offset_in_seconds = _duration.Offset(offset)
             return
-    if component._stop_offset == timespans[-1].stop_offset:
+    if component._stop_offset.value_offset() == timespans[-1].value_stop_offset():
         pair = timespans[-1].annotation
         clocktime_start_offset, clocktime_duration = pair
         offset = clocktime_start_offset + clocktime_duration
         component._stop_offset_in_seconds = _duration.Offset(offset)
         return
-    raise Exception(f"can not find {offset} in {timespans}.")
+    raise Exception(f"can not find {offset!r} in {timespans}.")
 
 
 def _update_component_offsets(component):
@@ -423,13 +440,15 @@ def _update_component_offsets(component):
         stop_offset = start_offset + component._get_duration()
     component._start_offset = start_offset
     component._stop_offset = stop_offset
-    component._timespan.start_offset = start_offset
-    component._timespan.stop_offset = stop_offset
+    timespan = _timespan.Timespan.fvo(
+        start_offset.value_offset(), stop_offset.value_offset()
+    )
+    component._timespan = timespan
 
 
-def _update_measure_numbers(component):
-    measure_start_offsets = _get_measure_start_offsets(component)
-    root = _parentage.Parentage(component).root()
+def _update_measure_numbers(main_component):
+    measure_start_offsets = _get_measure_start_offsets(main_component)
+    root = _parentage.Parentage(main_component).root()
     for component in _iterate_entire_score(root):
         measure_number = _to_measure_number(component, measure_start_offsets)
         component._measure_number = measure_number

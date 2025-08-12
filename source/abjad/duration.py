@@ -36,6 +36,20 @@ def durations(items: list) -> list[Duration]:
     return durations
 
 
+def mvo(n: int, d: int | None = None) -> ValueOffset:
+    """
+    Makes value offset from ``n``.
+
+    ..  container:: example
+
+        >>> abjad.duration.mvo(1)
+        ValueOffset(Fraction(1, 1))
+
+    """
+    fraction = fractions.Fraction(n, d)
+    return ValueOffset(fraction)
+
+
 def pair_with_denominator(
     fraction: fractions.Fraction, denominator: int
 ) -> tuple[int, int]:
@@ -955,7 +969,7 @@ class Offset(Duration):
 
             >>> offset = abjad.Offset(3, 16)
             >>> offset.value_offset()
-            ValueOffset(fraction=Fraction(3, 16), displacement=None)
+            ValueOffset(Fraction(3, 16))
 
         """
         return ValueOffset.from_offset(self)
@@ -1280,11 +1294,11 @@ class ValueOffset:
 
         >>> fraction = abjad.Fraction(3, 16)
         >>> abjad.ValueOffset(fraction)
-        ValueOffset(fraction=Fraction(3, 16), displacement=None)
+        ValueOffset(Fraction(3, 16))
 
         >>> displacement = abjad.Duration(-1, 16)
         >>> abjad.ValueOffset(fraction, displacement=displacement)
-        ValueOffset(fraction=Fraction(3, 16), displacement=Duration(-1, 16))
+        ValueOffset(Fraction(3, 16), displacement=Duration(-1, 16))
 
     """
 
@@ -1352,6 +1366,26 @@ class ValueOffset:
     def __mul__(self, argument):
         raise NotImplementedError
 
+    def __repr__(self) -> str:
+        """
+        Gets interpreter representation of value offset.
+
+        ..  container:: example
+
+            >>> abjad.ValueOffset(abjad.Fraction(1, 4))
+            ValueOffset(Fraction(1, 4))
+
+            >>> duration = abjad.Duration(-1, 16)
+            >>> abjad.ValueOffset(abjad.Fraction(1, 4), displacement=duration)
+            ValueOffset(Fraction(1, 4), displacement=Duration(-1, 16))
+
+        """
+        string = f"{self.fraction!r}"
+        if self.displacement is not None:
+            string = string + f", displacement={self.displacement!r}"
+        string = f"{type(self).__name__}({string})"
+        return string
+
     __rmul__ = __mul__
 
     def __str__(self) -> str:
@@ -1395,4 +1429,11 @@ class ValueOffset:
         """
         fraction = fractions.Fraction(*offset.pair())
         value_offset = ValueOffset(fraction, displacement=offset.displacement())
+        assert value_offset.displacement == offset.displacement()
         return value_offset
+
+    def offset(self) -> Offset:
+        """
+        Makes offset from value offset.
+        """
+        return Offset(self.fraction, displacement=self.displacement)

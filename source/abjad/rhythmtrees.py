@@ -247,13 +247,13 @@ class RhythmTreeNode:
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
 
             >>> rtc.value_start_offset()
-            ValueOffset(fraction=Fraction(0, 1), displacement=None)
+            ValueOffset(Fraction(0, 1))
 
             >>> rtc[1].value_start_offset()
-            ValueOffset(fraction=Fraction(1, 2), displacement=None)
+            ValueOffset(Fraction(1, 2))
 
             >>> rtc[1][1].value_start_offset()
-            ValueOffset(fraction=Fraction(3, 4), displacement=None)
+            ValueOffset(Fraction(3, 4))
 
         """
         self._update_offsets_of_entire_tree_if_necessary()
@@ -274,16 +274,15 @@ class RhythmTreeNode:
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
 
             >>> rtc.value_stop_offset()
-            ValueOffset(fraction=Fraction(1, 1), displacement=None)
+            ValueOffset(Fraction(1, 1))
 
             >>> rtc[0].value_stop_offset()
-            ValueOffset(fraction=Fraction(1, 2), displacement=None)
+            ValueOffset(Fraction(1, 2))
 
             >>> rtc[0][0].value_stop_offset()
-            ValueOffset(fraction=Fraction(1, 4), displacement=None)
+            ValueOffset(Fraction(1, 4))
 
         """
-        # return self.start_offset() + _duration.Duration(self.duration())
         return self.value_start_offset() + _duration.Duration(self.duration())
 
 

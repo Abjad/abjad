@@ -511,22 +511,22 @@ class Meter:
             ...     for offset in offsets:
             ...         print(f"    {offset!r}")
             0:
-                ValueOffset(fraction=Fraction(0, 1), displacement=None)
-                ValueOffset(fraction=Fraction(7, 4), displacement=None)
+                ValueOffset(Fraction(0, 1))
+                ValueOffset(Fraction(7, 4))
             1:
-                ValueOffset(fraction=Fraction(0, 1), displacement=None)
-                ValueOffset(fraction=Fraction(3, 4), displacement=None)
-                ValueOffset(fraction=Fraction(5, 4), displacement=None)
-                ValueOffset(fraction=Fraction(7, 4), displacement=None)
+                ValueOffset(Fraction(0, 1))
+                ValueOffset(Fraction(3, 4))
+                ValueOffset(Fraction(5, 4))
+                ValueOffset(Fraction(7, 4))
             2:
-                ValueOffset(fraction=Fraction(0, 1), displacement=None)
-                ValueOffset(fraction=Fraction(1, 4), displacement=None)
-                ValueOffset(fraction=Fraction(1, 2), displacement=None)
-                ValueOffset(fraction=Fraction(3, 4), displacement=None)
-                ValueOffset(fraction=Fraction(1, 1), displacement=None)
-                ValueOffset(fraction=Fraction(5, 4), displacement=None)
-                ValueOffset(fraction=Fraction(3, 2), displacement=None)
-                ValueOffset(fraction=Fraction(7, 4), displacement=None)
+                ValueOffset(Fraction(0, 1))
+                ValueOffset(Fraction(1, 4))
+                ValueOffset(Fraction(1, 2))
+                ValueOffset(Fraction(3, 4))
+                ValueOffset(Fraction(1, 1))
+                ValueOffset(Fraction(5, 4))
+                ValueOffset(Fraction(3, 2))
+                ValueOffset(Fraction(7, 4))
 
         """
         inventory = []
@@ -859,15 +859,15 @@ class Meter:
             >>> for offset, weight in sorted(kernel.kernel().items()):
             ...     print(f"{offset!r}\t{weight!r}")
             ...
-            ValueOffset(fraction=Fraction(0, 1), displacement=None)	Fraction(3, 16)
-            ValueOffset(fraction=Fraction(1, 8), displacement=None)	Fraction(1, 16)
-            ValueOffset(fraction=Fraction(1, 4), displacement=None)	Fraction(1, 8)
-            ValueOffset(fraction=Fraction(3, 8), displacement=None)	Fraction(1, 16)
-            ValueOffset(fraction=Fraction(1, 2), displacement=None)	Fraction(1, 8)
-            ValueOffset(fraction=Fraction(5, 8), displacement=None)	Fraction(1, 16)
-            ValueOffset(fraction=Fraction(3, 4), displacement=None)	Fraction(1, 8)
-            ValueOffset(fraction=Fraction(7, 8), displacement=None)	Fraction(1, 16)
-            ValueOffset(fraction=Fraction(1, 1), displacement=None)	Fraction(3, 16)
+            ValueOffset(Fraction(0, 1))	Fraction(3, 16)
+            ValueOffset(Fraction(1, 8))	Fraction(1, 16)
+            ValueOffset(Fraction(1, 4))	Fraction(1, 8)
+            ValueOffset(Fraction(3, 8))	Fraction(1, 16)
+            ValueOffset(Fraction(1, 2))	Fraction(1, 8)
+            ValueOffset(Fraction(5, 8))	Fraction(1, 16)
+            ValueOffset(Fraction(3, 4))	Fraction(1, 8)
+            ValueOffset(Fraction(7, 8))	Fraction(1, 16)
+            ValueOffset(Fraction(1, 1))	Fraction(3, 16)
 
         """
         assert _math.is_positive_integer_power_of_two(denominator // self.denominator())
@@ -2043,12 +2043,8 @@ class Meter:
             durations = [_._get_preprolated_duration() for _ in logical_tie]
             logical_tie_duration = sum(durations)
             logical_tie_timespan = _getlib._get_timespan(logical_tie)
-            logical_tie_start_offset = _duration.ValueOffset.from_offset(
-                logical_tie_timespan.start_offset
-            )
-            logical_tie_stop_offset = _duration.ValueOffset.from_offset(
-                logical_tie_timespan.stop_offset
-            )
+            logical_tie_start_offset = logical_tie_timespan.value_start_offset()
+            logical_tie_stop_offset = logical_tie_timespan.value_stop_offset()
             logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
             logical_tie_stops_in_offsets = logical_tie_stop_offset in offsets
             if not _is_acceptable_logical_tie(
@@ -2593,10 +2589,7 @@ def illustrate_meter_list(
     offsets = _math.cumulative_sums(durations, start=0)
     timespans = _timespan.TimespanList()
     for one, two in _sequence.nwise(offsets):
-        timespan = _timespan.Timespan(
-            start_offset=_duration.Offset(one),
-            stop_offset=_duration.Offset(two),
-        )
+        timespan = _timespan.Timespan.fvo(_duration.mvo(one), _duration.mvo(two))
         timespans.append(timespan)
     if range_ is not None:
         minimum, maximum = range_
@@ -2679,14 +2672,14 @@ class MetricAccentKernel:
         >>> kernel = hierarchy.generate_offset_kernel_to_denominator(8)
         >>> for offset, weight in kernel.kernel().items():
         ...     print(f"{offset!r}: {weight!r}")
-        ValueOffset(fraction=Fraction(0, 1), displacement=None): Fraction(3, 14)
-        ValueOffset(fraction=Fraction(7, 8), displacement=None): Fraction(3, 14)
-        ValueOffset(fraction=Fraction(3, 8), displacement=None): Fraction(1, 7)
-        ValueOffset(fraction=Fraction(5, 8), displacement=None): Fraction(1, 7)
-        ValueOffset(fraction=Fraction(1, 8), displacement=None): Fraction(1, 14)
-        ValueOffset(fraction=Fraction(1, 4), displacement=None): Fraction(1, 14)
-        ValueOffset(fraction=Fraction(1, 2), displacement=None): Fraction(1, 14)
-        ValueOffset(fraction=Fraction(3, 4), displacement=None): Fraction(1, 14)
+        ValueOffset(Fraction(0, 1)): Fraction(3, 14)
+        ValueOffset(Fraction(7, 8)): Fraction(3, 14)
+        ValueOffset(Fraction(3, 8)): Fraction(1, 7)
+        ValueOffset(Fraction(5, 8)): Fraction(1, 7)
+        ValueOffset(Fraction(1, 8)): Fraction(1, 14)
+        ValueOffset(Fraction(1, 4)): Fraction(1, 14)
+        ValueOffset(Fraction(1, 2)): Fraction(1, 14)
+        ValueOffset(Fraction(3, 4)): Fraction(1, 14)
 
     ..  container:: example
 

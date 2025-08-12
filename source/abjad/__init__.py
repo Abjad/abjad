@@ -24,7 +24,7 @@ from . import (
 from ._version import __version__
 from .bind import annotate, attach, detach
 from .cyclictuple import CyclicTuple
-from .duration import Duration, Offset, Ratio, ValueOffset
+from .duration import Duration, Offset, Ratio, ValueOffset, mvo
 from .enums import (
     CENTER,
     DOWN,
@@ -507,6 +507,7 @@ __all__ = [
     "lyenv",
     "makers",
     "mutate",
+    "mvo",
     "on_beat_grace_container",
     "ottava",
     "override",
