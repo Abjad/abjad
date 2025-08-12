@@ -1306,7 +1306,8 @@ class ValueOffset:
     displacement: Duration | None = None
 
     def __post_init__(self):
-        assert isinstance(self.fraction, fractions.Fraction), repr(self.fraction)
+        # assert isinstance(self.fraction, fractions.Fraction), repr(self.fraction)
+        assert type(self.fraction).__name__ == "Fraction", repr(self.fraction)
         if self.displacement is not None:
             assert isinstance(self.displacement, Duration), repr(self.displacement)
 
@@ -1407,7 +1408,12 @@ class ValueOffset:
             assert isinstance(argument, int | fractions.Fraction | Duration), repr(
                 argument
             )
-            fraction = self.fraction - argument
+            result = self.fraction - argument
+            if isinstance(result, Duration):
+                fraction = result.fraction()
+            else:
+                assert isinstance(result, fractions.Fraction), repr(result)
+                fraction = result
             return ValueOffset(
                 fraction,
                 # TODO: uncomment

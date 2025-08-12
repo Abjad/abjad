@@ -798,7 +798,7 @@ class Meter:
             Matches a series of hypothetical ``4/4`` measures:
 
             >>> pairs = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
-            >>> offsets = [abjad.Offset(*_) for _ in pairs]
+            >>> offsets = [abjad.mvo(*_) for _ in pairs]
             >>> offset_counter = abjad.OffsetCounter(offsets)
             >>> for meter in abjad.Meter.fit_meters(offset_counter, meters):
             ...     print(meter.implied_time_signature())
@@ -813,7 +813,7 @@ class Meter:
             Matches a series of hypothetical ``5/4`` measures:
 
             >>> pairs = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
-            >>> offsets = [abjad.Offset(*_) for _ in pairs]
+            >>> offsets = [abjad.mvo(*_) for _ in pairs]
             >>> offset_counter = abjad.OffsetCounter(offsets)
             >>> for meter in abjad.Meter.fit_meters(offset_counter, meters):
             ...     print(meter.implied_time_signature())
@@ -2101,9 +2101,7 @@ class Meter:
                         break
                 assert split_offset is not None
                 assert isinstance(split_offset, _duration.ValueOffset)
-                # split_offset -= logical_tie_start_offset
                 fraction = split_offset.fraction - logical_tie_start_offset.fraction
-                # assert isinstance(split_offset, _duration.Duration)
                 split_offset_duration = _duration.Duration(fraction)
                 shards = _mutate.split(logical_tie[:], [split_offset_duration])
                 logical_ties = [_select.LogicalTie(shard) for shard in shards]
@@ -2121,15 +2119,12 @@ class Meter:
         for component in components:
             if not isinstance(component, _score.IndependentAfterGraceContainer):
                 nongrace_components.append(component)
-        first_start_offset = nongrace_components[0]._get_timespan().start_offset
-        last_start_offset = nongrace_components[-1]._get_timespan().start_offset
+        first_start_offset = nongrace_components[0]._get_timespan().value_start_offset()
+        last_start_offset = nongrace_components[-1]._get_timespan().value_start_offset()
         difference = last_start_offset - first_start_offset + initial_offset.fraction
         assert difference < self.implied_time_signature().duration()
         # build offset inventory, adjusted for initial offset and prolation
-        first_offset = _duration.ValueOffset.from_offset(
-            components[0]._get_timespan().start_offset
-        )
-        # first_offset -= initial_offset.fraction
+        first_offset = components[0]._get_timespan().value_start_offset()
         first_offset = _duration.ValueOffset(
             first_offset.fraction - initial_offset.fraction
         )
@@ -2687,7 +2682,7 @@ class MetricAccentKernel:
         to receive an impulse-response:
 
         >>> pairs = [(0, 8), (1, 8), (1, 8), (3, 8)]
-        >>> offsets = [abjad.Offset(*_) for _ in pairs]
+        >>> offsets = [abjad.mvo(*_) for _ in pairs]
         >>> offset_counter = abjad.OffsetCounter(offsets)
         >>> kernel(offset_counter)
         Fraction(1, 2)
@@ -2934,14 +2929,14 @@ class _MeterFittingSession:
         assert isinstance(start_offset, _duration.ValueOffset), repr(start_offset)
         if start_offset in self.cached_offset_counters():
             dictionary = self.cached_offset_counters()[start_offset]
-            offsets = [_duration.Offset(_.fraction) for _ in dictionary.keys()]
+            offsets = [_duration.ValueOffset(_.fraction) for _ in dictionary.keys()]
             return _timespan.OffsetCounter(offsets)
         offset_to_weight: dict[_duration.ValueOffset, int] = {}
         assert self.longest_kernel() is not None
         stop_offset = start_offset + self.longest_kernel().duration()
         index = bisect.bisect_left(self.ordered_offsets(), start_offset)
         if index == len(self.ordered_offsets()):
-            offsets = [_duration.Offset(_) for _ in offset_to_weight.keys()]
+            offsets = list(offset_to_weight.keys())
             return _timespan.OffsetCounter(offsets)
         offset = self.ordered_offsets()[index]
         while offset <= stop_offset:
@@ -2956,7 +2951,7 @@ class _MeterFittingSession:
                 break
             offset = self.ordered_offsets()[index]
         self.cached_offset_counters()[start_offset] = offset_to_weight
-        offsets = [_duration.Offset(_.fraction) for _ in offset_to_weight.keys()]
+        offsets = [_duration.ValueOffset(_.fraction) for _ in offset_to_weight.keys()]
         offset_counter = _timespan.OffsetCounter(offsets)
         return offset_counter
 

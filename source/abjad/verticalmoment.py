@@ -475,7 +475,7 @@ def iterate_vertical_moments(components, *, reverse=False):
     """
     moments = []
     components = _select.components(components)
-    components.sort(key=lambda _: _._get_timespan().start_offset)
+    components.sort(key=lambda _: _._get_timespan().value_start_offset())
     offset_to_components = dict()
     for component in components:
         start_offset = component._get_timespan().value_start_offset()

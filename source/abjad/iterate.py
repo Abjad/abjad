@@ -2,7 +2,6 @@
 Functions to iterate Abjad components.
 """
 
-import fractions
 import typing
 
 from . import _iterlib
@@ -1092,21 +1091,15 @@ def timeline(
     """
     generator = leaves(argument, prototype=prototype, exclude=exclude)
     components = list(generator)
-    components.sort(key=lambda _: _._get_timespan().start_offset)
+    components.sort(key=lambda _: _._get_timespan().value_start_offset())
     offset_to_components: dict[_duration.ValueOffset, list[_score.Component]] = dict()
     for component in components:
-        start_offset = component._get_timespan().start_offset
+        start_offset = component._get_timespan().value_start_offset()
         if start_offset not in offset_to_components:
-            # offset_to_components[start_offset] = []
-            value_offset = _duration.ValueOffset(
-                fractions.Fraction(*start_offset.pair())
-            )
-            offset_to_components[value_offset] = []
+            offset_to_components[start_offset] = []
     for component in components:
-        start_offset = component._get_timespan().start_offset
-        value_offset = _duration.ValueOffset(fractions.Fraction(*start_offset.pair()))
-        # offset_to_components[start_offset].append(component)
-        offset_to_components[value_offset].append(component)
+        start_offset = component._get_timespan().value_start_offset()
+        offset_to_components[start_offset].append(component)
     result: list[_score.Component] = []
     for start_offset, list_ in offset_to_components.items():
         result.extend(list_)
