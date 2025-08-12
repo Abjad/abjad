@@ -2589,10 +2589,7 @@ def illustrate_meter_list(
     offsets = _math.cumulative_sums(durations, start=0)
     timespans = _timespan.TimespanList()
     for one, two in _sequence.nwise(offsets):
-        timespan = _timespan.Timespan(
-            start_offset=_duration.Offset(one),
-            stop_offset=_duration.Offset(two),
-        )
+        timespan = _timespan.Timespan.fvo(_duration.mvo(one), _duration.mvo(two))
         timespans.append(timespan)
     if range_ is not None:
         minimum, maximum = range_

@@ -253,9 +253,9 @@ def _make_metronome_mark_map(root):
         multiplier = fractions.Fraction(60, metronome_mark.units_per_minute)
         clocktime_duration = duration / metronome_mark.reference_duration
         clocktime_duration *= multiplier
-        timespan = _timespan.Timespan(
-            start_offset=start_offset,
-            stop_offset=stop_offset,
+        timespan = _timespan.Timespan.fvo(
+            start_offset.value_offset(),
+            stop_offset.value_offset(),
             annotation=(clocktime_start_offset, clocktime_duration),
         )
         timespans.append(timespan)
@@ -440,9 +440,9 @@ def _update_component_offsets(component):
         stop_offset = start_offset + component._get_duration()
     component._start_offset = start_offset
     component._stop_offset = stop_offset
-    # component._timespan.start_offset = start_offset
-    # component._timespan.stop_offset = stop_offset
-    timespan = _timespan.Timespan(start_offset, stop_offset)
+    timespan = _timespan.Timespan.fvo(
+        start_offset.value_offset(), stop_offset.value_offset()
+    )
     component._timespan = timespan
 
 

@@ -255,8 +255,10 @@ class Timespan:
     start_offset: _duration.Offset | _math.NegativeInfinity = _math.NegativeInfinity()
     stop_offset: _duration.Offset | _math.Infinity = _math.Infinity()
     annotation: typing.Any = None
+    # allow: bool = False
 
     def __post_init__(self):
+        # assert self.allow is True, repr(self.allow)
         if self.start_offset != negative_infinity:
             assert isinstance(self.start_offset, _duration.Offset), repr(
                 self.start_offset
@@ -356,12 +358,16 @@ class Timespan:
             False
 
         """
-        assert isinstance(argument, _duration.Offset | Timespan), repr(argument)
+        assert isinstance(
+            argument, _duration.Offset | _duration.ValueOffset | Timespan
+        ), repr(argument)
         if isinstance(argument, type(self)):
             timespan = argument
+        elif isinstance(argument, _duration.ValueOffset):
+            timespan = Timespan.fvo(argument, argument)
         else:
             assert isinstance(argument, _duration.Offset), repr(argument)
-            timespan = type(self)(argument, argument)
+            timespan = Timespan.fvo(argument.value_offset(), argument.value_offset())
         assert isinstance(timespan, type(self))
         return (
             self.start_offset <= timespan.start_offset
@@ -921,10 +927,10 @@ class Timespan:
         unit_duration = self.duration() / sum(proportion)
         part_durations = [numerator * unit_duration for numerator in proportion]
         start_offsets = _math.cumulative_sums(
-            [self.start_offset] + part_durations, start=None
+            [self.value_start_offset()] + part_durations, start=None
         )
         offset_pairs = _sequence.nwise(start_offsets)
-        result = [type(self)(*offset_pair) for offset_pair in offset_pairs]
+        result = [Timespan.fvo(*offset_pair) for offset_pair in offset_pairs]
         return tuple(result)
 
     def duration(self) -> _duration.Duration:
@@ -941,8 +947,8 @@ class Timespan:
 
     @staticmethod
     def fvo(
-        start_offset: _duration.ValueOffset,
-        stop_offset: _duration.ValueOffset,
+        start_offset: _duration.ValueOffset | _math.NegativeInfinity,
+        stop_offset: _duration.ValueOffset | _math.Infinity,
         *,
         annotation: typing.Any = None,
     ) -> Timespan:
@@ -957,12 +963,30 @@ class Timespan:
             Timespan(Offset(0, 1), Offset(1, 4))
 
         """
-        assert isinstance(start_offset, _duration.ValueOffset)
-        assert isinstance(stop_offset, _duration.ValueOffset)
+        assert isinstance(
+            start_offset, _duration.ValueOffset | _math.NegativeInfinity
+        ), repr(start_offset)
+        assert isinstance(stop_offset, _duration.ValueOffset | _math.Infinity), repr(
+            stop_offset
+        )
+        conventional_start_offset: _duration.Offset | _math.NegativeInfinity
+        conventional_stop_offset: _duration.Offset | _math.Infinity
+        if isinstance(start_offset, _duration.ValueOffset):
+            conventional_start_offset = start_offset.offset()
+        else:
+            assert start_offset == _math.NegativeInfinity()
+            conventional_start_offset = start_offset
+        if isinstance(stop_offset, _duration.ValueOffset):
+            conventional_stop_offset = stop_offset.offset()
+        else:
+            assert stop_offset == _math.Infinity()
+            conventional_stop_offset = stop_offset
+
         return Timespan(
-            start_offset.offset(),
-            stop_offset.offset(),
+            conventional_start_offset,
+            conventional_stop_offset,
             annotation=annotation,
+            # allow=True,
         )
 
     def offsets(self) -> tuple[_duration.Offset, _duration.Offset]:
@@ -1678,12 +1702,12 @@ class TimespanList(list):
             sorting:
 
             >>> timespans = abjad.TimespanList([
-            ...     abjad.Timespan(
-            ...         abjad.Offset(0), abjad.Offset(1, 4), annotation="voice 1"),
-            ...     abjad.Timespan(
-            ...         abjad.Offset(0), abjad.Offset(1, 4), annotation="voice 2"),
-            ...     abjad.Timespan(
-            ...         abjad.Offset(0), abjad.Offset(1, 4), annotation="voice 10"),
+            ...     abjad.Timespan.fvo(
+            ...         abjad.mvo(0), abjad.mvo(1, 4), annotation="voice 1"),
+            ...     abjad.Timespan.fvo(
+            ...         abjad.mvo(0), abjad.mvo(1, 4), annotation="voice 2"),
+            ...     abjad.Timespan.fvo(
+            ...         abjad.mvo(0), abjad.mvo(1, 4), annotation="voice 10"),
             ... ])
 
             >>> def to_digit(string):
@@ -1962,6 +1986,7 @@ class TimespanList(list):
         self[:] = sorted(new_timespans)
         return self
 
+    # TODO: eventually remove
     @staticmethod
     def _coerce_item(item):
         if Timespan._implements_timespan_interface(item):
@@ -1973,6 +1998,7 @@ class TimespanList(list):
         else:
             return Timespan(item)
 
+    # TODO: eventually remove
     @staticmethod
     def _get_offsets(argument):
         try:
@@ -1985,10 +2011,11 @@ class TimespanList(list):
             pass
         raise TypeError(argument)
 
+    # TODO: eventually remove
     @staticmethod
     def _get_timespan(argument):
         start_offset, stop_offset = Timespan._get_offsets(argument)
-        return Timespan(start_offset, stop_offset)
+        return Timespan.fvo(start_offset.value_offset(), stop_offset.value_offset())
 
     def all_are_contiguous(self) -> bool:
         """
@@ -2332,6 +2359,17 @@ class TimespanList(list):
         else:
             return negative_infinity
 
+    def value_start_offset(self) -> _duration.ValueOffset | _math.NegativeInfinity:
+        """
+        Gets value start offset.
+        """
+        if self:
+            return min(
+                [self._get_timespan(argument).value_start_offset() for argument in self]
+            )
+        else:
+            return negative_infinity
+
     def stop_offset(self) -> _duration.Offset | _math.Infinity:
         """
         Gets stop offset.
@@ -2382,7 +2420,18 @@ class TimespanList(list):
         else:
             return infinity
 
-    def timespan(self):
+    def value_stop_offset(self) -> _duration.ValueOffset | _math.Infinity:
+        """
+        Gets value stop offset.
+        """
+        if self:
+            return max(
+                [self._get_timespan(argument).value_stop_offset() for argument in self]
+            )
+        else:
+            return infinity
+
+    def timespan(self) -> Timespan:
         """
         Gets timespan of timespan list.
 
@@ -2429,7 +2478,7 @@ class TimespanList(list):
 
         Returns timespan.
         """
-        return Timespan(self.start_offset(), self.stop_offset())
+        return Timespan.fvo(self.value_start_offset(), self.value_stop_offset())
 
     ### PUBLIC METHODS ###
 
@@ -2954,9 +3003,11 @@ class TimespanList(list):
         """
         mapping: dict = dict()
         value_offsets = list(sorted(self.count_offsets().items))
-        offsets = [_duration.Offset(_.fraction) for _ in value_offsets]
-        for start_offset, stop_offset in _sequence.nwise(offsets):
-            timespan = Timespan(start_offset, stop_offset)
+        # offsets = [_duration.Offset(_.fraction) for _ in value_offsets]
+        # for start_offset, stop_offset in _sequence.nwise(offsets):
+        for start_offset, stop_offset in _sequence.nwise(value_offsets):
+            # timespan = Timespan(start_offset, stop_offset)
+            timespan = Timespan.fvo(start_offset, stop_offset)
             overlap_factor = self.compute_overlap_factor(timespan=timespan)
             mapping[timespan] = overlap_factor
         return mapping

@@ -315,4 +315,4 @@ def _get_timespan(argument, in_seconds: bool = False):
             start_offset = timespan.value_start_offset()
         if stop_offset < timespan.value_stop_offset():
             stop_offset = timespan.value_stop_offset()
-    return _timespan.Timespan(start_offset.offset(), stop_offset.offset())
+    return _timespan.Timespan.fvo(start_offset, stop_offset)
