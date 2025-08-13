@@ -33,7 +33,7 @@ class RhythmTreeNode:
 
     def __init__(self, pair: tuple[int, int]) -> None:
         assert isinstance(pair, tuple), repr(pair)
-        self._offset = _duration.ValueOffset(fractions.Fraction(0))
+        self._offset = _duration.Offset(fractions.Fraction(0))
         self._offsets_are_current = False
         self._pair = (0, 1)
         self.set_pair(pair)
@@ -237,7 +237,7 @@ class RhythmTreeNode:
             prolations.append(prolation)
         return tuple(prolations)
 
-    def value_start_offset(self) -> _duration.ValueOffset:
+    def value_start_offset(self) -> _duration.Offset:
         """
         Gets start offset of rhythm-tree node.
 
@@ -247,21 +247,21 @@ class RhythmTreeNode:
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
 
             >>> rtc.value_start_offset()
-            ValueOffset(Fraction(0, 1))
+            Offset(Fraction(0, 1))
 
             >>> rtc[1].value_start_offset()
-            ValueOffset(Fraction(1, 2))
+            Offset(Fraction(1, 2))
 
             >>> rtc[1][1].value_start_offset()
-            ValueOffset(Fraction(3, 4))
+            Offset(Fraction(3, 4))
 
         """
         self._update_offsets_of_entire_tree_if_necessary()
         offset = self._offset
-        assert isinstance(offset, _duration.ValueOffset), repr(offset)
+        assert isinstance(offset, _duration.Offset), repr(offset)
         return offset
 
-    def value_stop_offset(self) -> _duration.ValueOffset:
+    def value_stop_offset(self) -> _duration.Offset:
         """
         Gets stop offset of rhythm-tree node.
 
@@ -271,13 +271,13 @@ class RhythmTreeNode:
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
 
             >>> rtc.value_stop_offset()
-            ValueOffset(Fraction(1, 1))
+            Offset(Fraction(1, 1))
 
             >>> rtc[0].value_stop_offset()
-            ValueOffset(Fraction(1, 2))
+            Offset(Fraction(1, 2))
 
             >>> rtc[0][0].value_stop_offset()
-            ValueOffset(Fraction(1, 4))
+            Offset(Fraction(1, 4))
 
         """
         return self.value_start_offset() + _duration.Duration(self.duration())

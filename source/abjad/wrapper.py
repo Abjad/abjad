@@ -59,7 +59,7 @@ class Wrapper:
         direction: _enums.Vertical | str | None = None,
         hide: bool = False,
         indicator: typing.Any = None,
-        synthetic_offset: _duration.ValueOffset | None = None,
+        synthetic_offset: _duration.Offset | None = None,
         tag: _tag.Tag = _tag.Tag(),
     ) -> None:
         if annotation is not None:
@@ -74,7 +74,7 @@ class Wrapper:
         assert isinstance(hide, bool), repr(hide)
         assert not isinstance(indicator, type(self)), repr(indicator)
         if synthetic_offset is not None:
-            prototype = _duration.ValueOffset
+            prototype = _duration.Offset
             assert isinstance(synthetic_offset, prototype), repr(synthetic_offset)
         assert isinstance(tag, _tag.Tag), repr(tag)
         self._annotation = annotation
@@ -369,7 +369,7 @@ class Wrapper:
         """
         return isinstance(self.indicator(), _tweaks.Bundle)
 
-    def leaked_start_offset(self) -> _duration.ValueOffset:
+    def leaked_start_offset(self) -> _duration.Offset:
         r"""
         Gets start offset and checks to see whether indicator leaks to the
         right. This is either the wrapper's synthetic offset (if set); or the
@@ -404,13 +404,13 @@ class Wrapper:
 
             >>> wrapper = abjad.get.wrapper(voice[0], abjad.StartTextSpan)
             >>> wrapper.start_offset(), wrapper.leaked_start_offset()
-            (ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(0, 1)))
+            (Offset(Fraction(0, 1)), Offset(Fraction(0, 1)))
 
             Start offset and leaked start offset differ for stop-text-span:
 
             >>> wrapper = abjad.get.wrapper(voice[0], abjad.StopTextSpan)
             >>> wrapper.start_offset(), wrapper.leaked_start_offset()
-            (ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 2)))
+            (Offset(Fraction(0, 1)), Offset(Fraction(1, 2)))
 
         """
         synthetic_offset = self.synthetic_offset()
@@ -424,7 +424,7 @@ class Wrapper:
         else:
             return component._get_timespan().value_stop_offset()
 
-    def site_adjusted_start_offset(self) -> _duration.ValueOffset:
+    def site_adjusted_start_offset(self) -> _duration.Offset:
         r"""
         Gets site-adjusted start offset. Indicators with site equal to
         ``absolute_after``, ``after`` or ``closing`` give a site-adjusted start
@@ -442,8 +442,8 @@ class Wrapper:
             >>> abjad.attach(abjad.Ottava(0, site="after"), staff[0])
             >>> for wrapper in abjad.get.wrappers(staff[0], abjad.Ottava):
             ...     wrapper.indicator(), wrapper.site_adjusted_start_offset()
-            (Ottava(n=-1, site='before'), ValueOffset(Fraction(0, 1)))
-            (Ottava(n=0, site='after'), ValueOffset(Fraction(1, 4)))
+            (Ottava(n=-1, site='before'), Offset(Fraction(0, 1)))
+            (Ottava(n=0, site='after'), Offset(Fraction(1, 4)))
 
         """
         synthetic_offset = self.synthetic_offset()
@@ -458,7 +458,7 @@ class Wrapper:
             return component._get_timespan().value_start_offset()
 
     # TODO: temporarily rename to value_start_offset()
-    def start_offset(self) -> _duration.ValueOffset:
+    def start_offset(self) -> _duration.Offset:
         """
         Gets start offset. This is either the wrapper's synthetic offset or the
         start offset of the wrapper's component.
@@ -470,7 +470,7 @@ class Wrapper:
         assert isinstance(component, _score.Component)
         return component._get_timespan().value_start_offset()
 
-    def synthetic_offset(self) -> _duration.ValueOffset | None:
+    def synthetic_offset(self) -> _duration.Offset | None:
         """
         Gets synthetic offset.
         """
