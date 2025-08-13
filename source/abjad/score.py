@@ -89,7 +89,7 @@ class Component:
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         self._tag = tag
-        self._timespan = _timespan.Timespan.fvo(_duration.mvo(0), _duration.mvo(0))
+        self._timespan = _timespan.Timespan(_duration.mvo(0), _duration.mvo(0))
         self._wrappers: list = []
 
     ### SPECIAL METHODS ###
@@ -267,7 +267,7 @@ class Component:
             _updatelib._update_now(self, offsets_in_seconds=True)
             if self._start_offset_in_seconds is None:
                 raise _exceptions.MissingMetronomeMarkError
-            return _timespan.Timespan.fvo(
+            return _timespan.Timespan(
                 self._start_offset_in_seconds.value_offset(),
                 self._stop_offset_in_seconds.value_offset(),
             )
