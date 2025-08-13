@@ -91,7 +91,7 @@ class RhythmTreeNode:
                     current_offset += _duration.Duration(child.duration())
             return current_offset
 
-        offset = _duration.Offset(0)
+        offset = _duration.mvo(0)
         root = self.root
         if root is None:
             root = self
@@ -258,11 +258,8 @@ class RhythmTreeNode:
         """
         self._update_offsets_of_entire_tree_if_necessary()
         offset = self._offset
-        if isinstance(offset, _duration.ValueOffset):
-            value_offset = offset
-        else:
-            value_offset = _duration.ValueOffset.from_offset(offset)
-        return value_offset
+        assert isinstance(offset, _duration.ValueOffset), repr(offset)
+        return offset
 
     def value_stop_offset(self) -> _duration.ValueOffset:
         """

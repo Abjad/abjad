@@ -834,147 +834,6 @@ class Duration(fractions.Fraction):
         return type(self)(self.denominator, self.numerator)
 
 
-class Offset(Duration):
-    """
-    Offset.
-
-    ..  container:: example
-
-        >>> abjad.Offset(3, 16)
-        Offset(3, 16)
-
-        >>> abjad.Offset(3, 16, displacement=abjad.Duration(-1, 16))
-        Offset(3, 16, displacement=Duration(-1, 16))
-
-    """
-
-    __slots__ = ("_displacement",)
-
-    _displacement: Duration | None
-
-    def __new__(
-        class_,
-        numerator=0,
-        denominator=None,
-        *,
-        displacement: Duration | None = None,
-    ) -> Offset:
-        self = super().__new__(class_, numerator, denominator)
-        if displacement is None and isinstance(numerator, Offset):
-            displacement = numerator.displacement()
-        if displacement is not None:
-            assert isinstance(displacement, Duration), repr(displacement)
-        self._displacement = displacement
-        return self
-
-    def __copy__(self) -> Offset:
-        return type(self)(*self.pair(), displacement=self.displacement())
-
-    def __deepcopy__(self, memo) -> Offset:
-        return self.__copy__()
-
-    def __eq__(self, argument: object) -> bool:
-        if isinstance(argument, type(self)) and self.pair() == argument.pair():
-            return (
-                self._get_nonnone_displacement() == argument._get_nonnone_displacement()
-            )
-        return super().__eq__(argument)
-
-    def __ge__(self, argument) -> bool:
-        if isinstance(argument, type(self)) and self.pair() == argument.pair():
-            return (
-                self._get_nonnone_displacement() >= argument._get_nonnone_displacement()
-            )
-        return super().__ge__(argument)
-
-    def __gt__(self, argument) -> bool:
-        if isinstance(argument, type(self)) and self.pair() == argument.pair():
-            return (
-                self._get_nonnone_displacement() > argument._get_nonnone_displacement()
-            )
-        return Duration.__gt__(self, argument)
-
-    @typing.no_type_check
-    def __hash__(self) -> int:
-        return hash((self.pair(), self._get_nonnone_displacement()))
-
-    def __le__(self, argument) -> bool:
-        if isinstance(argument, type(self)) and self.pair() == argument.pair():
-            return (
-                self._get_nonnone_displacement() <= argument._get_nonnone_displacement()
-            )
-        return super().__le__(argument)
-
-    def __lt__(self, argument) -> bool:
-        if isinstance(argument, type(self)) and self.pair() == argument.pair():
-            return (
-                self._get_nonnone_displacement() < argument._get_nonnone_displacement()
-            )
-        return super().__lt__(argument)
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation of offset.
-
-        ..  container:: example
-
-            >>> abjad.Offset(1, 4)
-            Offset(1, 4)
-
-            >>> abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16))
-            Offset(1, 4, displacement=Duration(-1, 16))
-
-        """
-        n, d = self.numerator, self.denominator
-        if self.displacement() is None:
-            return f"{type(self).__name__}({n}, {d})"
-        else:
-            string = f"{n}, {d}, displacement={self.displacement()!r}"
-            return f"{type(self).__name__}({string})"
-
-    def __sub__(self, argument):
-        if isinstance(argument, type(self)):
-            return Duration(super().__sub__(argument))
-        elif isinstance(argument, Duration):
-            return super().__sub__(argument)
-        else:
-            argument = type(self)(argument)
-            return self - argument
-
-    def _get_nonnone_displacement(self):
-        if self.displacement() is None:
-            return Duration(0)
-        return self.displacement()
-
-    def displacement(self):
-        """
-        Gets displacement.
-
-        ..  container:: example
-
-            >>> abjad.Offset(1, 4).displacement() is None
-            True
-
-            >>> abjad.Offset(1, 4, displacement=abjad.Duration(-1, 16)).displacement()
-            Duration(-1, 16)
-
-        """
-        return self._displacement
-
-    def value_offset(self) -> ValueOffset:
-        """
-        Gets offset as value offset.
-
-        ..  container:: example
-
-            >>> offset = abjad.Offset(3, 16)
-            >>> offset.value_offset()
-            ValueOffset(Fraction(3, 16))
-
-        """
-        return ValueOffset.from_offset(self)
-
-
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Ratio:
     """
@@ -1306,7 +1165,6 @@ class ValueOffset:
     displacement: Duration | None = None
 
     def __post_init__(self):
-        # assert isinstance(self.fraction, fractions.Fraction), repr(self.fraction)
         assert type(self.fraction).__name__ == "Fraction", repr(self.fraction)
         if self.displacement is not None:
             assert isinstance(self.displacement, Duration), repr(self.displacement)
@@ -1427,19 +1285,3 @@ class ValueOffset:
         if self.displacement is None:
             return Duration(0)
         return self.displacement
-
-    @staticmethod
-    def from_offset(offset: Offset) -> ValueOffset:
-        """
-        Makes value offset from ``offset``.
-        """
-        fraction = fractions.Fraction(*offset.pair())
-        value_offset = ValueOffset(fraction, displacement=offset.displacement())
-        assert value_offset.displacement == offset.displacement()
-        return value_offset
-
-    def offset(self) -> Offset:
-        """
-        Makes offset from value offset.
-        """
-        return Offset(self.fraction, displacement=self.displacement)

@@ -24,7 +24,7 @@ from . import (
 from ._version import __version__
 from .bind import annotate, attach, detach
 from .cyclictuple import CyclicTuple
-from .duration import Duration, Offset, Ratio, ValueOffset, mvo
+from .duration import Duration, Ratio, ValueOffset, mvo
 from .enums import (
     CENTER,
     DOWN,
@@ -386,7 +386,6 @@ __all__ = [
     "PitchSet",
     "Oboe",
     "Octave",
-    "Offset",
     "OffsetCounter",
     "OnBeatGraceContainer",
     "Ottava",
