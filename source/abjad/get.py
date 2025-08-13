@@ -1142,7 +1142,7 @@ def effective_indicator(
         ...     abjad.Clef("treble"),
         ...     staff[0],
         ...     hide=True,
-        ...     synthetic_offset=abjad.ValueOffset(abjad.Fraction(-1)),
+        ...     synthetic_offset=abjad.Offset(abjad.Fraction(-1)),
         ... )
         >>> abjad.attach(abjad.Clef("alto"), staff[0])
         >>> abjad.show(staff) # doctest: +SKIP
@@ -1188,7 +1188,7 @@ def effective_indicator(
         ...     abjad.Clef("alto"),
         ...     staff[-1],
         ...     hide=True,
-        ...     synthetic_offset=abjad.ValueOffset(abjad.Fraction(1)),
+        ...     synthetic_offset=abjad.Offset(abjad.Fraction(1)),
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2492,7 +2492,7 @@ def is_bar_line_crossing(argument) -> bool:
     partial = getattr(time_signature, "partial", 0)
     partial = partial or 0
     start_offset_ = timespan(argument).value_start_offset()
-    assert isinstance(start_offset_, _duration.ValueOffset)
+    assert isinstance(start_offset_, _duration.Offset)
     start_offset = start_offset_.fraction
     shifted_start = start_offset - partial
     shifted_start %= time_signature_duration
@@ -4171,39 +4171,39 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
         ...     print(f"{component!r}:")
         ...     print(f"    {timespan!r}")
         Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }"):
-            Timespan(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 1)))
+            Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 1)))
         Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice'):
-            Timespan(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 1)))
+            Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 1)))
         Note("c'4"):
-            Timespan(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 4)))
+            Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 4)))
         BeforeGraceContainer("cs'16"):
-            Timespan(ValueOffset(Fraction(1, 4), displacement=Duration(-1, 16)), ValueOffset(Fraction(1, 4)))
+            Timespan(Offset(Fraction(1, 4), displacement=Duration(-1, 16)), Offset(Fraction(1, 4)))
         Note("cs'16"):
-            Timespan(ValueOffset(Fraction(1, 4), displacement=Duration(-1, 16)), ValueOffset(Fraction(1, 4)))
+            Timespan(Offset(Fraction(1, 4), displacement=Duration(-1, 16)), Offset(Fraction(1, 4)))
         Note("d'4"):
-            Timespan(ValueOffset(Fraction(1, 4)), ValueOffset(Fraction(1, 2)))
+            Timespan(Offset(Fraction(1, 4)), Offset(Fraction(1, 2)))
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
-            Timespan(ValueOffset(Fraction(1, 2)), ValueOffset(Fraction(3, 4)))
+            Timespan(Offset(Fraction(1, 2)), Offset(Fraction(3, 4)))
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
-            Timespan(ValueOffset(Fraction(1, 2)), ValueOffset(Fraction(1, 2), displacement=Duration(1, 4)))
+            Timespan(Offset(Fraction(1, 2)), Offset(Fraction(1, 2), displacement=Duration(1, 4)))
         Chord("<e' g'>16"):
-            Timespan(ValueOffset(Fraction(1, 2)), ValueOffset(Fraction(1, 2), displacement=Duration(1, 16)))
+            Timespan(Offset(Fraction(1, 2)), Offset(Fraction(1, 2), displacement=Duration(1, 16)))
         Note("gs'16"):
-            Timespan(ValueOffset(Fraction(1, 2), displacement=Duration(1, 16)), ValueOffset(Fraction(1, 2), displacement=Duration(1, 8)))
+            Timespan(Offset(Fraction(1, 2), displacement=Duration(1, 16)), Offset(Fraction(1, 2), displacement=Duration(1, 8)))
         Note("a'16"):
-            Timespan(ValueOffset(Fraction(1, 2), displacement=Duration(1, 8)), ValueOffset(Fraction(1, 2), displacement=Duration(3, 16)))
+            Timespan(Offset(Fraction(1, 2), displacement=Duration(1, 8)), Offset(Fraction(1, 2), displacement=Duration(3, 16)))
         Note("as'16"):
-            Timespan(ValueOffset(Fraction(1, 2), displacement=Duration(3, 16)), ValueOffset(Fraction(1, 2), displacement=Duration(1, 4)))
+            Timespan(Offset(Fraction(1, 2), displacement=Duration(3, 16)), Offset(Fraction(1, 2), displacement=Duration(1, 4)))
         Voice("e'4", name='MusicVoice'):
-            Timespan(ValueOffset(Fraction(1, 2)), ValueOffset(Fraction(3, 4)))
+            Timespan(Offset(Fraction(1, 2)), Offset(Fraction(3, 4)))
         Note("e'4"):
-            Timespan(ValueOffset(Fraction(1, 2), displacement=Duration(1, 4)), ValueOffset(Fraction(3, 4)))
+            Timespan(Offset(Fraction(1, 2), displacement=Duration(1, 4)), Offset(Fraction(3, 4)))
         Note("f'4"):
-            Timespan(ValueOffset(Fraction(3, 4)), ValueOffset(Fraction(1, 1)))
+            Timespan(Offset(Fraction(3, 4)), Offset(Fraction(1, 1)))
         AfterGraceContainer("fs'16"):
-            Timespan(ValueOffset(Fraction(1, 1), displacement=Duration(-1, 16)), ValueOffset(Fraction(1, 1)))
+            Timespan(Offset(Fraction(1, 1), displacement=Duration(-1, 16)), Offset(Fraction(1, 1)))
         Note("fs'16"):
-            Timespan(ValueOffset(Fraction(1, 1), displacement=Duration(-1, 16)), ValueOffset(Fraction(1, 1)))
+            Timespan(Offset(Fraction(1, 1), displacement=Duration(-1, 16)), Offset(Fraction(1, 1)))
 
     ..  container:: example
 
@@ -4240,21 +4240,21 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
         ...     print(f"{component!r}:")
         ...     print(f"    {timespan!r}")
         Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }"):
-            Timespan(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 1)))
+            Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 1)))
         Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice'):
-            Timespan(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 1)))
+            Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 1)))
         Note("c'4"):
-            Timespan(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 4)))
+            Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 4)))
         Note("d'4"):
-            Timespan(ValueOffset(Fraction(1, 4)), ValueOffset(Fraction(1, 2)))
+            Timespan(Offset(Fraction(1, 4)), Offset(Fraction(1, 2)))
         Note("e'4"):
-            Timespan(ValueOffset(Fraction(1, 2)), ValueOffset(Fraction(3, 4)))
+            Timespan(Offset(Fraction(1, 2)), Offset(Fraction(3, 4)))
         IndependentAfterGraceContainer("gf'16"):
-            Timespan(ValueOffset(Fraction(3, 4), displacement=Duration(-1, 16)), ValueOffset(Fraction(3, 4)))
+            Timespan(Offset(Fraction(3, 4), displacement=Duration(-1, 16)), Offset(Fraction(3, 4)))
         Note("gf'16"):
-            Timespan(ValueOffset(Fraction(3, 4), displacement=Duration(-1, 16)), ValueOffset(Fraction(3, 4)))
+            Timespan(Offset(Fraction(3, 4), displacement=Duration(-1, 16)), Offset(Fraction(3, 4)))
         Note("f'4"):
-            Timespan(ValueOffset(Fraction(3, 4)), ValueOffset(Fraction(1, 1)))
+            Timespan(Offset(Fraction(3, 4)), Offset(Fraction(1, 1)))
 
     ..  container:: example
 
@@ -4290,15 +4290,15 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
         >>> for component in abjad.select.components(staff):
         ...     timespan = abjad.get.timespan(component)
         ...     print(f"{repr(component):30} {repr(timespan)}")
-        Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") Timespan(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 1)))
-        TremoloContainer("c'16 e'16")  Timespan(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 4)))
-        Note("c'16")                   Timespan(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(1, 8)))
-        Note("e'16")                   Timespan(ValueOffset(Fraction(1, 8)), ValueOffset(Fraction(1, 4)))
-        Note("cs'4")                   Timespan(ValueOffset(Fraction(1, 4)), ValueOffset(Fraction(1, 2)))
-        TremoloContainer("d'16 f'16")  Timespan(ValueOffset(Fraction(1, 2)), ValueOffset(Fraction(3, 4)))
-        Note("d'16")                   Timespan(ValueOffset(Fraction(1, 2)), ValueOffset(Fraction(5, 8)))
-        Note("f'16")                   Timespan(ValueOffset(Fraction(5, 8)), ValueOffset(Fraction(3, 4)))
-        Note("ds'4")                   Timespan(ValueOffset(Fraction(3, 4)), ValueOffset(Fraction(1, 1)))
+        Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 1)))
+        TremoloContainer("c'16 e'16")  Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 4)))
+        Note("c'16")                   Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 8)))
+        Note("e'16")                   Timespan(Offset(Fraction(1, 8)), Offset(Fraction(1, 4)))
+        Note("cs'4")                   Timespan(Offset(Fraction(1, 4)), Offset(Fraction(1, 2)))
+        TremoloContainer("d'16 f'16")  Timespan(Offset(Fraction(1, 2)), Offset(Fraction(3, 4)))
+        Note("d'16")                   Timespan(Offset(Fraction(1, 2)), Offset(Fraction(5, 8)))
+        Note("f'16")                   Timespan(Offset(Fraction(5, 8)), Offset(Fraction(3, 4)))
+        Note("ds'4")                   Timespan(Offset(Fraction(3, 4)), Offset(Fraction(1, 1)))
 
     ..  container:: example
 
@@ -4320,7 +4320,7 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
             }
 
         >>> abjad.get.timespan(staff[:3])
-        Timespan(ValueOffset(Fraction(0, 1)), ValueOffset(Fraction(3, 4)))
+        Timespan(Offset(Fraction(0, 1)), Offset(Fraction(3, 4)))
 
     """
     return _getlib._get_timespan(argument, in_seconds=in_seconds)

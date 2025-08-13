@@ -36,18 +36,18 @@ def durations(items: list) -> list[Duration]:
     return durations
 
 
-def mvo(n: int, d: int | None = None) -> ValueOffset:
+def mvo(n: int, d: int | None = None) -> Offset:
     """
     Makes value offset from ``n``.
 
     ..  container:: example
 
         >>> abjad.duration.mvo(1)
-        ValueOffset(Fraction(1, 1))
+        Offset(Fraction(1, 1))
 
     """
     fraction = fractions.Fraction(n, d)
-    return ValueOffset(fraction)
+    return Offset(fraction)
 
 
 def pair_with_denominator(
@@ -1145,19 +1145,19 @@ class Ratio:
 
 
 @dataclasses.dataclass(frozen=True, slots=True, unsafe_hash=True)
-class ValueOffset:
+class Offset:
     """
     Value offset.
 
     ..  container:: example
 
         >>> fraction = abjad.Fraction(3, 16)
-        >>> abjad.ValueOffset(fraction)
-        ValueOffset(Fraction(3, 16))
+        >>> abjad.Offset(fraction)
+        Offset(Fraction(3, 16))
 
         >>> displacement = abjad.Duration(-1, 16)
-        >>> abjad.ValueOffset(fraction, displacement=displacement)
-        ValueOffset(Fraction(3, 16), displacement=Duration(-1, 16))
+        >>> abjad.Offset(fraction, displacement=displacement)
+        Offset(Fraction(3, 16), displacement=Duration(-1, 16))
 
     """
 
@@ -1169,22 +1169,22 @@ class ValueOffset:
         if self.displacement is not None:
             assert isinstance(self.displacement, Duration), repr(self.displacement)
 
-    def __add__(self, argument: int | fractions.Fraction | Duration) -> ValueOffset:
+    def __add__(self, argument: int | fractions.Fraction | Duration) -> Offset:
         assert isinstance(argument, int | fractions.Fraction | Duration), repr(argument)
         if isinstance(argument, Duration):
             fraction = argument.fraction()
         else:
             fraction = fractions.Fraction(argument)
-        offset = ValueOffset(self.fraction + fraction, displacement=self.displacement)
+        offset = Offset(self.fraction + fraction, displacement=self.displacement)
         return offset
 
-    def __radd__(self, argument: int | fractions.Fraction | Duration) -> ValueOffset:
+    def __radd__(self, argument: int | fractions.Fraction | Duration) -> Offset:
         assert isinstance(argument, int | fractions.Fraction | Duration), repr(argument)
         if isinstance(argument, Duration):
             fraction = argument.fraction()
         else:
             fraction = fractions.Fraction(argument)
-        offset = ValueOffset(fraction + self.fraction, displacement=self.displacement)
+        offset = Offset(fraction + self.fraction, displacement=self.displacement)
         return offset
 
     def __eq__(self, argument: object) -> bool:
@@ -1231,12 +1231,12 @@ class ValueOffset:
 
         ..  container:: example
 
-            >>> abjad.ValueOffset(abjad.Fraction(1, 4))
-            ValueOffset(Fraction(1, 4))
+            >>> abjad.Offset(abjad.Fraction(1, 4))
+            Offset(Fraction(1, 4))
 
             >>> duration = abjad.Duration(-1, 16)
-            >>> abjad.ValueOffset(abjad.Fraction(1, 4), displacement=duration)
-            ValueOffset(Fraction(1, 4), displacement=Duration(-1, 16))
+            >>> abjad.Offset(abjad.Fraction(1, 4), displacement=duration)
+            Offset(Fraction(1, 4), displacement=Duration(-1, 16))
 
         """
         string = f"{self.fraction!r}"
@@ -1272,7 +1272,7 @@ class ValueOffset:
             else:
                 assert isinstance(result, fractions.Fraction), repr(result)
                 fraction = result
-            return ValueOffset(
+            return Offset(
                 fraction,
                 # TODO: uncomment
                 # displacement=self.displacement,

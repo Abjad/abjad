@@ -24,7 +24,7 @@ from . import timespan as _timespan
 
 def _get_after_grace_leaf_offsets(
     leaf,
-) -> tuple[_duration.ValueOffset, _duration.ValueOffset]:
+) -> tuple[_duration.Offset, _duration.Offset]:
     container = leaf._parent
     main_leaf = container._main_leaf
     main_leaf_stop_offset = main_leaf._timespan.value_stop_offset()
@@ -65,7 +65,7 @@ def _get_after_grace_leaf_offsets(
 
 def _get_before_grace_leaf_offsets(
     leaf,
-) -> tuple[_duration.ValueOffset, _duration.ValueOffset]:
+) -> tuple[_duration.Offset, _duration.Offset]:
     container = leaf._parent
     main_leaf = container._main_leaf
     main_leaf_start_offset = main_leaf._timespan.value_start_offset()
@@ -95,7 +95,7 @@ def _get_before_grace_leaf_offsets(
 
 def _get_independent_after_grace_leaf_offsets(
     leaf,
-) -> tuple[_duration.ValueOffset, _duration.ValueOffset]:
+) -> tuple[_duration.Offset, _duration.Offset]:
     container = leaf._parent
     main_leaf = container._sibling(-1)
     main_leaf_stop_offset = main_leaf._timespan.value_stop_offset()
@@ -136,7 +136,7 @@ def _get_independent_after_grace_leaf_offsets(
     return start_offset, stop_offset
 
 
-def _get_measure_start_offsets(component) -> list[_duration.ValueOffset]:
+def _get_measure_start_offsets(component) -> list[_duration.Offset]:
     wrappers = []
     prototype = _indicators.TimeSignature
     root = _parentage.Parentage(component).root()
@@ -167,8 +167,8 @@ def _get_measure_start_offsets(component) -> list[_duration.ValueOffset]:
         current_start_offset, current_time_signature = current_pair
         next_start_offset, next_time_signature = next_pair
         measure_start_offset = current_start_offset
-        assert isinstance(measure_start_offset, _duration.ValueOffset)
-        assert isinstance(current_start_offset, _duration.ValueOffset)
+        assert isinstance(measure_start_offset, _duration.Offset)
+        assert isinstance(current_start_offset, _duration.Offset)
         while measure_start_offset < next_start_offset:
             measure_start_offsets.append(measure_start_offset)
             partial = current_time_signature.partial
@@ -177,11 +177,11 @@ def _get_measure_start_offsets(component) -> list[_duration.ValueOffset]:
                 measure_start_offsets.append(measure_start_offset)
                 at_first_measure = False
             measure_start_offset += current_time_signature.duration()
-    assert all(isinstance(_, _duration.ValueOffset) for _ in measure_start_offsets)
+    assert all(isinstance(_, _duration.Offset) for _ in measure_start_offsets)
     return measure_start_offsets
 
 
-def _get_obgc_leaf_offsets(leaf) -> tuple[_duration.ValueOffset, _duration.ValueOffset]:
+def _get_obgc_leaf_offsets(leaf) -> tuple[_duration.Offset, _duration.Offset]:
     obgc = leaf._parent
     assert type(obgc).__name__ == "OnBeatGraceContainer", repr(obgc)
     first_nongrace_leaf = obgc.first_nongrace_leaf()
@@ -287,9 +287,9 @@ def _make_metronome_mark_map(root) -> _timespan.TimespanList | None:
 
 def _to_measure_number(
     component,
-    measure_start_offsets: list[_duration.ValueOffset],
+    measure_start_offsets: list[_duration.Offset],
 ) -> int:
-    assert all(isinstance(_, _duration.ValueOffset) for _ in measure_start_offsets)
+    assert all(isinstance(_, _duration.Offset) for _ in measure_start_offsets)
     component_start_offset = component._get_timespan().value_start_offset()
     displacement = component_start_offset.displacement
     if displacement is not None:
@@ -301,10 +301,10 @@ def _to_measure_number(
     measure_start_offsets = measure_start_offsets[:]
     # measure_start_offsets.append(_math.Infinity())
     # TODO: model with infinity:
-    measure_start_offsets.append(_duration.ValueOffset(fractions.Fraction(1000000000)))
+    measure_start_offsets.append(_duration.Offset(fractions.Fraction(1000000000)))
     pairs = _sequence.nwise(measure_start_offsets)
     for measure_index, pair in enumerate(pairs):
-        assert all(isinstance(_, _duration.ValueOffset) for _ in pair)
+        assert all(isinstance(_, _duration.Offset) for _ in pair)
         if pair[0] <= component_start_offset < pair[-1]:
             measure_number = measure_index + 1
             return measure_number
@@ -372,7 +372,7 @@ def _update_clocktime_offsets(component, timespans):
             multiplier = local_offset / timespan.duration()
             duration = multiplier * clocktime_duration
             offset = clocktime_start_offset + duration
-            assert isinstance(offset, _duration.ValueOffset)
+            assert isinstance(offset, _duration.Offset)
             component._start_offset_in_seconds = offset
         if (
             timespan.value_start_offset()
@@ -387,14 +387,14 @@ def _update_clocktime_offsets(component, timespans):
             multiplier = local_offset / timespan.duration()
             duration = multiplier * clocktime_duration
             offset = clocktime_start_offset + duration
-            assert isinstance(offset, _duration.ValueOffset)
+            assert isinstance(offset, _duration.Offset)
             component._stop_offset_in_seconds = offset
             return
     if component._timespan.value_stop_offset() == timespans[-1].value_stop_offset():
         pair = timespans[-1].annotation
         clocktime_start_offset, clocktime_duration = pair
         offset = clocktime_start_offset + clocktime_duration
-        assert isinstance(offset, _duration.ValueOffset)
+        assert isinstance(offset, _duration.Offset)
         component._stop_offset_in_seconds = offset
         return
     raise Exception(f"can not find {offset!r} in {timespans}.")
@@ -449,7 +449,7 @@ def _update_component_offsets(component) -> None:
             and _obgc._is_obgc_nongrace_voice(component._parent)
             and component is component._parent[0]
         ):
-            assert isinstance(start_offset, _duration.ValueOffset)
+            assert isinstance(start_offset, _duration.Offset)
             nongrace_voice = component._parent
             assert _obgc._is_obgc_nongrace_voice(nongrace_voice)
             obgc = None
@@ -468,11 +468,11 @@ def _update_component_offsets(component) -> None:
                     start_offset,
                     displacement=start_displacement,
                 )
-        assert isinstance(start_offset, _duration.ValueOffset), repr(start_offset)
+        assert isinstance(start_offset, _duration.Offset), repr(start_offset)
         stop_offset_duration = start_offset.fraction + component._get_duration()
-        stop_offset = _duration.ValueOffset(stop_offset_duration.fraction())
-    assert isinstance(start_offset, _duration.ValueOffset), repr(start_offset)
-    assert isinstance(stop_offset, _duration.ValueOffset), repr(stop_offset)
+        stop_offset = _duration.Offset(stop_offset_duration.fraction())
+    assert isinstance(start_offset, _duration.Offset), repr(start_offset)
+    assert isinstance(stop_offset, _duration.Offset), repr(stop_offset)
     timespan = _timespan.Timespan(start_offset, stop_offset)
     component._timespan = timespan
 

@@ -136,7 +136,7 @@ def test_RhythmTreeContainer___init___01():
     container = abjad.rhythmtrees.RhythmTreeContainer((1, 1))
     assert container.children == ()
     assert container.pair() == (1, 1)
-    assert container.value_start_offset() == abjad.ValueOffset(abjad.Fraction(0))
+    assert container.value_start_offset() == abjad.Offset(abjad.Fraction(0))
     assert container.parent is None
 
 
@@ -144,7 +144,7 @@ def test_RhythmTreeContainer___init___02():
     container = abjad.rhythmtrees.RhythmTreeContainer((2, 1), children=[])
     assert container.children == ()
     assert container.pair() == (2, 1)
-    assert container.value_start_offset() == abjad.ValueOffset(abjad.Fraction(0))
+    assert container.value_start_offset() == abjad.Offset(abjad.Fraction(0))
     assert container.parent is None
 
 
@@ -152,24 +152,24 @@ def test_RhythmTreeContainer___init___03():
     leaf_a = abjad.rhythmtrees.RhythmTreeLeaf((1, 1))
     leaf_b = abjad.rhythmtrees.RhythmTreeLeaf((2, 1))
     leaf_c = abjad.rhythmtrees.RhythmTreeLeaf((1, 1))
-    assert leaf_a.value_start_offset() == abjad.ValueOffset(abjad.Fraction(0))
+    assert leaf_a.value_start_offset() == abjad.Offset(abjad.Fraction(0))
     assert leaf_a.parent is None
-    assert leaf_b.value_start_offset() == abjad.ValueOffset(abjad.Fraction(0))
+    assert leaf_b.value_start_offset() == abjad.Offset(abjad.Fraction(0))
     assert leaf_b.parent is None
-    assert leaf_c.value_start_offset() == abjad.ValueOffset(abjad.Fraction(0))
+    assert leaf_c.value_start_offset() == abjad.Offset(abjad.Fraction(0))
     assert leaf_c.parent is None
     container = abjad.rhythmtrees.RhythmTreeContainer(
         (4, 1), children=[leaf_a, leaf_b, leaf_c]
     )
     assert container.children == (leaf_a, leaf_b, leaf_c)
     assert container.pair() == (4, 1)
-    assert container.value_start_offset() == abjad.ValueOffset(abjad.Fraction(0))
+    assert container.value_start_offset() == abjad.Offset(abjad.Fraction(0))
     assert container.parent is None
-    assert leaf_a.value_start_offset() == abjad.ValueOffset(abjad.Fraction(0))
+    assert leaf_a.value_start_offset() == abjad.Offset(abjad.Fraction(0))
     assert leaf_a.parent is container
-    assert leaf_b.value_start_offset() == abjad.ValueOffset(abjad.Fraction(1))
+    assert leaf_b.value_start_offset() == abjad.Offset(abjad.Fraction(1))
     assert leaf_b.parent is container
-    assert leaf_c.value_start_offset() == abjad.ValueOffset(abjad.Fraction(3))
+    assert leaf_c.value_start_offset() == abjad.Offset(abjad.Fraction(3))
     assert leaf_c.parent is container
 
 
@@ -520,28 +520,28 @@ def test_RhythmTreeNode_offset_01():
             abjad.rhythmtrees.RhythmTreeLeaf((2, 1)),
         ],
     )
-    assert rtc.value_start_offset() == abjad.ValueOffset(abjad.Fraction(0))
-    assert rtc[0].value_start_offset() == abjad.ValueOffset(abjad.Fraction(0))
-    assert rtc[1].value_start_offset() == abjad.ValueOffset(abjad.Fraction(1, 5))
-    assert rtc[1][0].value_start_offset() == abjad.ValueOffset(abjad.Fraction(1, 5))
-    assert rtc[1][1].value_start_offset() == abjad.ValueOffset(abjad.Fraction(11, 25))
-    assert rtc[2].value_start_offset() == abjad.ValueOffset(abjad.Fraction(3, 5))
+    assert rtc.value_start_offset() == abjad.Offset(abjad.Fraction(0))
+    assert rtc[0].value_start_offset() == abjad.Offset(abjad.Fraction(0))
+    assert rtc[1].value_start_offset() == abjad.Offset(abjad.Fraction(1, 5))
+    assert rtc[1][0].value_start_offset() == abjad.Offset(abjad.Fraction(1, 5))
+    assert rtc[1][1].value_start_offset() == abjad.Offset(abjad.Fraction(11, 25))
+    assert rtc[2].value_start_offset() == abjad.Offset(abjad.Fraction(3, 5))
     node = rtc.pop()
-    assert node.value_start_offset() == abjad.ValueOffset(abjad.Fraction(0))
+    assert node.value_start_offset() == abjad.Offset(abjad.Fraction(0))
     rtc[1].append(node)
-    assert rtc.value_start_offset() == abjad.ValueOffset(abjad.Fraction(0))
-    assert rtc[0].value_start_offset() == abjad.ValueOffset(abjad.Fraction(0))
-    assert rtc[1].value_start_offset() == abjad.ValueOffset(abjad.Fraction(1, 3))
-    assert rtc[1][0].value_start_offset() == abjad.ValueOffset(abjad.Fraction(1, 3))
-    assert rtc[1][1].value_start_offset() == abjad.ValueOffset(abjad.Fraction(13, 21))
-    assert rtc[1][2].value_start_offset() == abjad.ValueOffset(abjad.Fraction(17, 21))
+    assert rtc.value_start_offset() == abjad.Offset(abjad.Fraction(0))
+    assert rtc[0].value_start_offset() == abjad.Offset(abjad.Fraction(0))
+    assert rtc[1].value_start_offset() == abjad.Offset(abjad.Fraction(1, 3))
+    assert rtc[1][0].value_start_offset() == abjad.Offset(abjad.Fraction(1, 3))
+    assert rtc[1][1].value_start_offset() == abjad.Offset(abjad.Fraction(13, 21))
+    assert rtc[1][2].value_start_offset() == abjad.Offset(abjad.Fraction(17, 21))
     rtc.set_pair((19, 1))
-    assert rtc.value_start_offset() == abjad.ValueOffset(abjad.Fraction(0))
-    assert rtc[0].value_start_offset() == abjad.ValueOffset(abjad.Fraction(0))
-    assert rtc[1].value_start_offset() == abjad.ValueOffset(abjad.Fraction(19, 3))
-    assert rtc[1][0].value_start_offset() == abjad.ValueOffset(abjad.Fraction(19, 3))
-    assert rtc[1][1].value_start_offset() == abjad.ValueOffset(abjad.Fraction(247, 21))
-    assert rtc[1][2].value_start_offset() == abjad.ValueOffset(abjad.Fraction(323, 21))
+    assert rtc.value_start_offset() == abjad.Offset(abjad.Fraction(0))
+    assert rtc[0].value_start_offset() == abjad.Offset(abjad.Fraction(0))
+    assert rtc[1].value_start_offset() == abjad.Offset(abjad.Fraction(19, 3))
+    assert rtc[1][0].value_start_offset() == abjad.Offset(abjad.Fraction(19, 3))
+    assert rtc[1][1].value_start_offset() == abjad.Offset(abjad.Fraction(247, 21))
+    assert rtc[1][2].value_start_offset() == abjad.Offset(abjad.Fraction(323, 21))
 
 
 def test_RhythmTreeNode_parent_01():

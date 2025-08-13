@@ -70,7 +70,7 @@ class VerticalMoment:
         self,
         components: typing.Sequence[_score.Component],
         *,
-        offset: _duration.ValueOffset | None = None,
+        offset: _duration.Offset | None = None,
     ) -> None:
         assert isinstance(components, list), repr(components)
         assert all(isinstance(_, _score.Component) for _ in components), repr(
@@ -78,7 +78,7 @@ class VerticalMoment:
         )
         self._components = tuple(components)
         if offset is not None:
-            assert isinstance(offset, _duration.ValueOffset), repr(offset)
+            assert isinstance(offset, _duration.Offset), repr(offset)
         self._offset = offset
 
     def __eq__(self, argument: object) -> bool:
@@ -345,7 +345,7 @@ class VerticalMoment:
                 result.append(component)
         return tuple(result)
 
-    def offset(self) -> _duration.ValueOffset | None:
+    def offset(self) -> _duration.Offset | None:
         """
         Rational-valued score offset at which vertical moment is evaluated.
         """

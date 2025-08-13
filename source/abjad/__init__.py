@@ -24,7 +24,7 @@ from . import (
 from ._version import __version__
 from .bind import annotate, attach, detach
 from .cyclictuple import CyclicTuple
-from .duration import Duration, Ratio, ValueOffset, mvo
+from .duration import Duration, Offset, Ratio, mvo
 from .enums import (
     CENTER,
     DOWN,
@@ -457,7 +457,7 @@ __all__ = [
     "TwelveToneRow",
     "UnboundedTimeIntervalError",
     "UP",
-    "ValueOffset",
+    "Offset",
     "Vertical",
     "VerticalMoment",
     "Vibraphone",

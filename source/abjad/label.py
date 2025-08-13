@@ -1728,7 +1728,7 @@ def with_start_offsets(
     brackets=None,
     clock_time=None,
     direction=None,
-    global_offset: _duration.ValueOffset | None = None,
+    global_offset: _duration.Offset | None = None,
     markup_command=None,
 ) -> _duration.Duration:
     r"""
@@ -1860,7 +1860,7 @@ def with_start_offsets(
     """
     direction = direction or _enums.UP
     if global_offset is not None:
-        assert isinstance(global_offset, _duration.ValueOffset), repr(global_offset)
+        assert isinstance(global_offset, _duration.Offset), repr(global_offset)
     for logical_tie in _iterate.logical_ties(argument):
         if clock_time:
             timespan = logical_tie.head()._get_timespan(in_seconds=True)
