@@ -54,9 +54,7 @@ class Component:
         "_offsets_are_current",
         "_offsets_in_seconds_are_current",
         "_parent",
-        "_start_offset",
         "_start_offset_in_seconds",
-        "_stop_offset",
         "_stop_offset_in_seconds",
         "_tag",
         "_timespan",
@@ -82,9 +80,7 @@ class Component:
         self._overrides = None
         self._parent = None
         self._lilypond_setting_name_manager = None
-        self._start_offset = None
         self._start_offset_in_seconds = None
-        self._stop_offset = None
         self._stop_offset_in_seconds = None
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
@@ -268,8 +264,8 @@ class Component:
             if self._start_offset_in_seconds is None:
                 raise _exceptions.MissingMetronomeMarkError
             return _timespan.Timespan(
-                self._start_offset_in_seconds.value_offset(),
-                self._stop_offset_in_seconds.value_offset(),
+                self._start_offset_in_seconds,
+                self._stop_offset_in_seconds,
             )
         else:
             _updatelib._update_now(self, offsets=True)

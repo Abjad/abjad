@@ -2581,7 +2581,8 @@ def illustrate_meter_list(
     assert isinstance(scale, float), repr(scale)
     durations = [_.duration() for _ in meter_list]
     total_duration = sum(durations)
-    offsets = _math.cumulative_sums(durations, start=0)
+    offsets = _math.cumulative_sums(durations, start=_duration.Duration(0))
+    assert all(isinstance(_, _duration.Duration) for _ in offsets)
     timespans = _timespan.TimespanList()
     for one, two in _sequence.nwise(offsets):
         timespan = _timespan.Timespan(_duration.mvo(one), _duration.mvo(two))
@@ -2590,8 +2591,8 @@ def illustrate_meter_list(
         minimum, maximum = range_
     else:
         minimum, maximum = 0, total_duration
-    minimum = float(_duration.Offset(minimum))
-    maximum = float(_duration.Offset(maximum))
+    minimum = float(minimum)
+    maximum = float(maximum)
     if scale is None:
         scale = 1.0
     assert 0 < scale
@@ -2620,8 +2621,9 @@ def illustrate_meter_list(
             postscript_strings.append(f"0 {_timespan._fpa(weight_as_float)} rlineto")
             postscript_strings.append("stroke")
         rational_x_offset += meter.duration()
-    fraction_pairs = []
+    fraction_pairs: list[tuple[str, str]] = []
     for meter, offset in zip(meter_list, offsets):
+        assert isinstance(offset, _duration.Duration), repr(offset)
         numerator, denominator = meter.numerator(), meter.denominator()
         x_translation = float(offset) * postscript_scale
         x_translation -= postscript_x_offset
@@ -2791,7 +2793,7 @@ class MetricAccentKernel:
         else:
             return _duration.Duration(0)
 
-    def kernel(self) -> dict[_duration.Offset, fractions.Fraction]:
+    def kernel(self) -> dict[_duration.ValueOffset, fractions.Fraction]:
         """
         The kernel dictionary.
         """

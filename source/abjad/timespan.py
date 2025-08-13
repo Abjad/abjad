@@ -243,9 +243,6 @@ class Timespan:
     old_stop_offset: _duration.ValueOffset | _math.Infinity = _math.Infinity()
     annotation: typing.Any = None
 
-    # TODO: remove after migration:
-    _is_abstract = True
-
     def __post_init__(self):
         if self.old_start_offset != negative_infinity:
             assert isinstance(self.old_start_offset, _duration.ValueOffset), repr(
@@ -1372,22 +1369,10 @@ class Timespan:
         )
 
     def value_start_offset(self) -> _duration.ValueOffset | _math.NegativeInfinity:
-        start_offset = self.old_start_offset
-        value_start_offset: _duration.ValueOffset | _math.NegativeInfinity
-        if isinstance(start_offset, _duration.Offset):
-            value_start_offset = _duration.ValueOffset.from_offset(start_offset)
-        else:
-            value_start_offset = start_offset
-        return value_start_offset
+        return self.old_start_offset
 
     def value_stop_offset(self) -> _duration.ValueOffset | _math.Infinity:
-        stop_offset = self.old_stop_offset
-        value_stop_offset: _duration.ValueOffset | _math.Infinity
-        if isinstance(stop_offset, _duration.Offset):
-            value_stop_offset = _duration.ValueOffset.from_offset(stop_offset)
-        else:
-            value_stop_offset = stop_offset
-        return value_stop_offset
+        return self.old_stop_offset
 
 
 @dataclasses.dataclass(slots=True)
