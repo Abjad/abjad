@@ -1147,7 +1147,7 @@ class Ratio:
 @dataclasses.dataclass(frozen=True, slots=True, unsafe_hash=True)
 class Offset:
     """
-    Value offset.
+    Offset.
 
     ..  container:: example
 

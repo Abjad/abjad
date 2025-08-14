@@ -237,23 +237,21 @@ class Timespan:
 
     """
 
-    old_start_offset: _duration.Offset | _math.NegativeInfinity = (
-        _math.NegativeInfinity()
-    )
-    old_stop_offset: _duration.Offset | _math.Infinity = _math.Infinity()
+    start_offset: _duration.Offset | _math.NegativeInfinity = _math.NegativeInfinity()
+    stop_offset: _duration.Offset | _math.Infinity = _math.Infinity()
     annotation: typing.Any = None
 
     def __post_init__(self):
-        if self.old_start_offset != negative_infinity:
-            assert isinstance(self.old_start_offset, _duration.Offset), repr(
-                self.old_start_offset
+        if self.start_offset != negative_infinity:
+            assert isinstance(self.start_offset, _duration.Offset), repr(
+                self.start_offset
             )
-        if self.old_stop_offset != infinity:
-            assert isinstance(self.old_stop_offset, _duration.Offset), repr(
-                self.old_stop_offset
+        if self.stop_offset != infinity:
+            assert isinstance(self.stop_offset, _duration.Offset), repr(
+                self.stop_offset
             )
-        assert self.old_start_offset <= self.old_stop_offset, repr(
-            (self.old_start_offset, self.old_stop_offset)
+        assert self.start_offset <= self.stop_offset, repr(
+            (self.start_offset, self.stop_offset)
         )
 
     def __and__(self, argument) -> TimespanList:
@@ -298,8 +296,8 @@ class Timespan:
         new_stop_offset = min(self.value_stop_offset(), argument.value_stop_offset())
         timespan = dataclasses.replace(
             self,
-            old_start_offset=new_start_offset,
-            old_stop_offset=new_stop_offset,
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
         )
         return TimespanList([timespan])
 
@@ -563,8 +561,8 @@ class Timespan:
         new_stop_offset = max(self.value_stop_offset(), argument.value_stop_offset())
         timespan = dataclasses.replace(
             self,
-            old_start_offset=new_start_offset,
-            old_stop_offset=new_stop_offset,
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
         )
         return TimespanList([timespan])
 
@@ -652,8 +650,8 @@ class Timespan:
             assert isinstance(new_stop_offset, _duration.Offset)
             timespan = dataclasses.replace(
                 self,
-                old_start_offset=new_start_offset,
-                old_stop_offset=new_stop_offset,
+                start_offset=new_start_offset,
+                stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
             new_start_offset = argument.value_stop_offset()
@@ -662,8 +660,8 @@ class Timespan:
             assert isinstance(new_stop_offset, _duration.Offset)
             timespan = dataclasses.replace(
                 self,
-                old_start_offset=new_start_offset,
-                old_stop_offset=new_stop_offset,
+                start_offset=new_start_offset,
+                stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
         elif self in argument:
@@ -679,8 +677,8 @@ class Timespan:
             assert isinstance(new_stop_offset, _duration.Offset)
             timespan = dataclasses.replace(
                 self,
-                old_start_offset=new_start_offset,
-                old_stop_offset=new_stop_offset,
+                start_offset=new_start_offset,
+                stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
         elif (
@@ -694,8 +692,8 @@ class Timespan:
             assert isinstance(new_stop_offset, _duration.Offset)
             timespan = dataclasses.replace(
                 self,
-                old_start_offset=new_start_offset,
-                old_stop_offset=new_stop_offset,
+                start_offset=new_start_offset,
+                stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
         elif (
@@ -708,8 +706,8 @@ class Timespan:
             assert isinstance(new_stop_offset, _duration.Offset)
             timespan = dataclasses.replace(
                 self,
-                old_start_offset=new_start_offset,
-                old_stop_offset=new_stop_offset,
+                start_offset=new_start_offset,
+                stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
         elif (
@@ -722,8 +720,8 @@ class Timespan:
             assert isinstance(new_stop_offset, _duration.Offset)
             timespan = dataclasses.replace(
                 self,
-                old_start_offset=new_start_offset,
-                old_stop_offset=new_stop_offset,
+                start_offset=new_start_offset,
+                stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
         else:
@@ -789,13 +787,13 @@ class Timespan:
         stop_offsets.sort()
         timespan_1 = dataclasses.replace(
             self,
-            old_start_offset=start_offsets[0],
-            old_stop_offset=start_offsets[1],
+            start_offset=start_offsets[0],
+            stop_offset=start_offsets[1],
         )
         timespan_2 = dataclasses.replace(
             self,
-            old_start_offset=stop_offsets[0],
-            old_stop_offset=stop_offsets[1],
+            start_offset=stop_offsets[0],
+            stop_offset=stop_offsets[1],
         )
         if timespan_1.is_wellformed():
             result.append(timespan_1)
@@ -1036,8 +1034,8 @@ class Timespan:
                 new_start_offset = new_start_offset_duration
         result = dataclasses.replace(
             self,
-            old_start_offset=new_start_offset,
-            old_stop_offset=new_stop_offset,
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
         )
         return result
 
@@ -1080,8 +1078,8 @@ class Timespan:
             new_start_offset = stop_offset - new_duration
         result = dataclasses.replace(
             self,
-            old_start_offset=new_start_offset,
-            old_stop_offset=new_stop_offset,
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
         )
         return result
 
@@ -1100,7 +1098,7 @@ class Timespan:
         start_offset = self.value_start_offset()
         assert isinstance(start_offset, _duration.Offset), repr(start_offset)
         new_stop_offset = start_offset + duration
-        return dataclasses.replace(self, old_stop_offset=new_stop_offset)
+        return dataclasses.replace(self, stop_offset=new_stop_offset)
 
     def set_offsets(
         self,
@@ -1155,8 +1153,8 @@ class Timespan:
             new_stop_offset = self_stop_offset
         result = dataclasses.replace(
             self,
-            old_start_offset=new_start_offset,
-            old_stop_offset=new_stop_offset,
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
         )
         return result
 
@@ -1193,13 +1191,13 @@ class Timespan:
             assert isinstance(self_stop_offset, _duration.Offset)
             left = dataclasses.replace(
                 self,
-                old_start_offset=self_start_offset,
-                old_stop_offset=offset,
+                start_offset=self_start_offset,
+                stop_offset=offset,
             )
             right = dataclasses.replace(
                 self,
-                old_start_offset=offset,
-                old_stop_offset=self_stop_offset,
+                start_offset=offset,
+                stop_offset=self_stop_offset,
             )
             result.append(left)
             result.append(right)
@@ -1311,8 +1309,8 @@ class Timespan:
         new_stop_offset = _duration.Offset(new_stop_offset_duration.fraction())
         result = dataclasses.replace(
             self,
-            old_start_offset=new_start_offset,
-            old_stop_offset=new_stop_offset,
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
         )
         return result
 
@@ -1364,15 +1362,15 @@ class Timespan:
         new_stop_offset = self_stop_offset + stop_offset_translation
         return dataclasses.replace(
             self,
-            old_start_offset=new_start_offset,
-            old_stop_offset=new_stop_offset,
+            start_offset=new_start_offset,
+            stop_offset=new_stop_offset,
         )
 
     def value_start_offset(self) -> _duration.Offset | _math.NegativeInfinity:
-        return self.old_start_offset
+        return self.start_offset
 
     def value_stop_offset(self) -> _duration.Offset | _math.Infinity:
-        return self.old_stop_offset
+        return self.stop_offset
 
 
 @dataclasses.dataclass(slots=True)
@@ -2466,8 +2464,8 @@ class TimespanList(list):
                     new_start_offset = timespan.value_stop_offset() - minimum
                     new_timespan = dataclasses.replace(
                         timespan,
-                        old_start_offset=new_start_offset,
-                        old_stop_offset=timespan.value_stop_offset(),
+                        start_offset=new_start_offset,
+                        stop_offset=timespan.value_stop_offset(),
                     )
             elif maximum is not None and maximum < timespan.duration():
                 if anchor is _enums.LEFT:
@@ -2476,8 +2474,8 @@ class TimespanList(list):
                     new_start_offset = timespan.value_stop_offset() - maximum
                     new_timespan = dataclasses.replace(
                         timespan,
-                        old_start_offset=new_start_offset,
-                        old_stop_offset=timespan.value_stop_offset(),
+                        start_offset=new_start_offset,
+                        stop_offset=timespan.value_stop_offset(),
                     )
             else:
                 new_timespan = timespan
@@ -2890,8 +2888,8 @@ class TimespanList(list):
 
         """
         mapping: dict = dict()
-        value_offsets = list(sorted(self.count_offsets().items))
-        for start_offset, stop_offset in _sequence.nwise(value_offsets):
+        offsets = list(sorted(self.count_offsets().items))
+        for start_offset, stop_offset in _sequence.nwise(offsets):
             timespan = Timespan(start_offset, stop_offset)
             overlap_factor = self.compute_overlap_factor(timespan=timespan)
             mapping[timespan] = overlap_factor
