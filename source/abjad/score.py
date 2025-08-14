@@ -15,7 +15,6 @@ from . import exceptions as _exceptions
 from . import format as _format
 from . import indicators as _indicators
 from . import lyconst as _lyconst
-from . import lyproxy as _lyproxy
 from . import math as _math
 from . import overrides as _overrides
 from . import pitch as _pitch
@@ -3102,20 +3101,6 @@ class Context(Container):
 
         """
         return self._consists_commands
-
-    def lilypond_context(self):
-        """
-        Gets ``LilyPondContext`` associated with context.
-
-        Returns LilyPond context instance.
-        """
-        try:
-            lilypond_context = _lyproxy.LilyPondContext(name=self.lilypond_type())
-        except AssertionError:
-            lilypond_context = _lyproxy.LilyPondContext(
-                name=self._default_lilypond_type
-            )
-        return lilypond_context
 
     def lilypond_type(self) -> str:
         """
