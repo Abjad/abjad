@@ -301,12 +301,13 @@ class Duration(fractions.Fraction):
         r"""
         Gets clock string.
 
+        Rounds down to nearest second.
+
         ..  container:: example
 
             >>> abjad.Duration(117).clock_string()
             "1'57''"
 
-        Rounds down to nearest second.
         """
         minutes = int(self / 60)
         seconds = str(int(self - minutes * 60)).zfill(2)
