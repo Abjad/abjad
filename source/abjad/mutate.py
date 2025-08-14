@@ -551,14 +551,14 @@ def _split_container_by_duration(CONTAINER, duration, *, tag=None):
         return [], CONTAINER
     # get split point score offset
     timespan = _get.timespan(CONTAINER)
-    global_split_point = timespan.value_start_offset() + duration
+    global_split_point = timespan.start_offset + duration
     # get any duration-crossing descendents
-    cross_offset = timespan.value_start_offset() + duration
+    cross_offset = timespan.start_offset + duration
     duration_crossing_descendants = []
     for descendant in _get.descendants(CONTAINER):
         timespan = _get.timespan(descendant)
-        start_offset = timespan.value_start_offset()
-        stop_offset = timespan.value_stop_offset()
+        start_offset = timespan.start_offset
+        stop_offset = timespan.stop_offset
         if start_offset < cross_offset < stop_offset:
             duration_crossing_descendants.append(descendant)
     # any duration-crossing leaf will be at end of list
@@ -570,7 +570,7 @@ def _split_container_by_duration(CONTAINER, duration, *, tag=None):
         original_bottom_parent = bottom._parent
         did_split_leaf = True
         timespan = _get.timespan(bottom)
-        split_point_in_bottom = global_split_point - timespan.value_start_offset()
+        split_point_in_bottom = global_split_point - timespan.start_offset
         new_leaves = _split_leaf_by_durations(
             bottom,
             [split_point_in_bottom],
@@ -587,9 +587,9 @@ def _split_container_by_duration(CONTAINER, duration, *, tag=None):
             )
         for leaf in new_leaves:
             timespan = _get.timespan(leaf)
-            if timespan.value_stop_offset() == global_split_point:
+            if timespan.stop_offset == global_split_point:
                 leaf_left_of_split = leaf
-            if timespan.value_start_offset() == global_split_point:
+            if timespan.start_offset == global_split_point:
                 leaf_right_of_split = leaf
         duration_crossing_containers = duration_crossing_descendants[:-1]
         assert len(duration_crossing_containers)
@@ -600,7 +600,7 @@ def _split_container_by_duration(CONTAINER, duration, *, tag=None):
         duration_crossing_containers = duration_crossing_descendants[:]
         for leaf in _iterate.leaves(bottom):
             timespan = _get.timespan(leaf)
-            if timespan.value_start_offset() == global_split_point:
+            if timespan.start_offset == global_split_point:
                 leaf_right_of_split = leaf
                 leaf_left_of_split = _get.leaf(leaf, -1)
                 break

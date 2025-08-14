@@ -27,7 +27,7 @@ def _get_after_grace_leaf_offsets(
 ) -> tuple[_duration.Offset, _duration.Offset]:
     container = leaf._parent
     main_leaf = container._main_leaf
-    main_leaf_stop_offset = main_leaf._timespan.value_stop_offset()
+    main_leaf_stop_offset = main_leaf._timespan.stop_offset
     assert main_leaf_stop_offset is not None
     displacement = -leaf._get_duration()
     sibling = leaf._sibling(1)
@@ -68,7 +68,7 @@ def _get_before_grace_leaf_offsets(
 ) -> tuple[_duration.Offset, _duration.Offset]:
     container = leaf._parent
     main_leaf = container._main_leaf
-    main_leaf_start_offset = main_leaf._timespan.value_start_offset()
+    main_leaf_start_offset = main_leaf._timespan.start_offset
     assert main_leaf_start_offset is not None
     displacement = -leaf._get_duration()
     sibling = leaf._sibling(1)
@@ -98,7 +98,7 @@ def _get_independent_after_grace_leaf_offsets(
 ) -> tuple[_duration.Offset, _duration.Offset]:
     container = leaf._parent
     main_leaf = container._sibling(-1)
-    main_leaf_stop_offset = main_leaf._timespan.value_stop_offset()
+    main_leaf_stop_offset = main_leaf._timespan.stop_offset
     assert main_leaf_stop_offset is not None
     displacement = -leaf._get_duration()
     sibling = leaf._sibling(1)
@@ -146,7 +146,7 @@ def _get_measure_start_offsets(component) -> list[_duration.Offset]:
     pairs = []
     for wrapper in wrappers:
         component = wrapper.component()
-        start_offset = component._get_timespan().value_start_offset()
+        start_offset = component._get_timespan().start_offset
         time_signature = wrapper.unbundle_indicator()
         pair = start_offset, time_signature
         pairs.append(pair)
@@ -158,7 +158,7 @@ def _get_measure_start_offsets(component) -> list[_duration.Offset]:
     elif not pairs:
         pairs = [default_pair]
     pairs.sort(key=lambda x: x[0])
-    score_stop_offset = root._get_timespan().value_stop_offset()
+    score_stop_offset = root._get_timespan().stop_offset
     dummy_last_pair = (score_stop_offset, None)
     pairs.append(dummy_last_pair)
     measure_start_offsets = []
@@ -185,9 +185,7 @@ def _get_obgc_leaf_offsets(leaf) -> tuple[_duration.Offset, _duration.Offset]:
     obgc = leaf._parent
     assert type(obgc).__name__ == "OnBeatGraceContainer", repr(obgc)
     first_nongrace_leaf = obgc.first_nongrace_leaf()
-    first_nongrace_leaf_start_offset = (
-        first_nongrace_leaf._timespan.value_start_offset()
-    )
+    first_nongrace_leaf_start_offset = first_nongrace_leaf._timespan.start_offset
     assert first_nongrace_leaf_start_offset is not None
     first_nongrace_leaf_start_offset = dataclasses.replace(
         first_nongrace_leaf_start_offset
@@ -251,11 +249,11 @@ def _make_metronome_mark_map(root) -> _timespan.TimespanList | None:
             metronome_mark = indicators[0]
             if not metronome_mark.is_imprecise():
                 pair = (
-                    component._timespan.value_start_offset(),
+                    component._timespan.start_offset,
                     metronome_mark,
                 )
                 pairs.append(pair)
-        all_stop_offsets.add(component._timespan.value_stop_offset())
+        all_stop_offsets.add(component._timespan.stop_offset)
     pairs.sort(key=lambda _: _[0])
     if not pairs:
         return None
@@ -290,7 +288,7 @@ def _to_measure_number(
     measure_start_offsets: list[_duration.Offset],
 ) -> int:
     assert all(isinstance(_, _duration.Offset) for _ in measure_start_offsets)
-    component_start_offset = component._get_timespan().value_start_offset()
+    component_start_offset = component._get_timespan().start_offset
     displacement = component_start_offset.displacement
     if displacement is not None:
         assert isinstance(displacement, _duration.Duration), repr(displacement)
@@ -360,37 +358,33 @@ def _update_clocktime_offsets(component, timespans):
         return
     for timespan in timespans:
         if (
-            timespan.value_start_offset()
-            <= component._timespan.value_start_offset()
-            < timespan.value_stop_offset()
+            timespan.start_offset
+            <= component._timespan.start_offset
+            < timespan.stop_offset
         ):
             pair = timespan.annotation
             clocktime_start_offset, clocktime_duration = pair
-            local_offset = (
-                component._timespan.value_start_offset() - timespan.value_start_offset()
-            )
+            local_offset = component._timespan.start_offset - timespan.start_offset
             multiplier = local_offset / timespan.duration()
             duration = multiplier * clocktime_duration
             offset = clocktime_start_offset + duration
             assert isinstance(offset, _duration.Offset)
             component._start_offset_in_seconds = offset
         if (
-            timespan.value_start_offset()
-            <= component._timespan.value_stop_offset()
-            < timespan.value_stop_offset()
+            timespan.start_offset
+            <= component._timespan.stop_offset
+            < timespan.stop_offset
         ):
             pair = timespan.annotation
             clocktime_start_offset, clocktime_duration = pair
-            local_offset = (
-                component._timespan.value_stop_offset() - timespan.value_start_offset()
-            )
+            local_offset = component._timespan.stop_offset - timespan.start_offset
             multiplier = local_offset / timespan.duration()
             duration = multiplier * clocktime_duration
             offset = clocktime_start_offset + duration
             assert isinstance(offset, _duration.Offset)
             component._stop_offset_in_seconds = offset
             return
-    if component._timespan.value_stop_offset() == timespans[-1].value_stop_offset():
+    if component._timespan.stop_offset == timespans[-1].stop_offset:
         pair = timespans[-1].annotation
         clocktime_start_offset, clocktime_duration = pair
         offset = clocktime_start_offset + clocktime_duration
@@ -440,7 +434,7 @@ def _update_component_offsets(component) -> None:
     else:
         previous = component._sibling(-1)
         if previous is not None:
-            start_offset = previous._timespan.value_stop_offset()
+            start_offset = previous._timespan.stop_offset
         else:
             start_offset = _duration.mvo(0)
         # on-beat anchor leaf:

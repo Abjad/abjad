@@ -1091,14 +1091,14 @@ def timeline(
     """
     generator = leaves(argument, prototype=prototype, exclude=exclude)
     components = list(generator)
-    components.sort(key=lambda _: _._get_timespan().value_start_offset())
+    components.sort(key=lambda _: _._get_timespan().start_offset)
     offset_to_components: dict[_duration.Offset, list[_score.Component]] = dict()
     for component in components:
-        start_offset = component._get_timespan().value_start_offset()
+        start_offset = component._get_timespan().start_offset
         if start_offset not in offset_to_components:
             offset_to_components[start_offset] = []
     for component in components:
-        start_offset = component._get_timespan().value_start_offset()
+        start_offset = component._get_timespan().start_offset
         offset_to_components[start_offset].append(component)
     result: list[_score.Component] = []
     for start_offset, list_ in offset_to_components.items():

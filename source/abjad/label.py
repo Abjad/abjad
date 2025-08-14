@@ -1864,13 +1864,13 @@ def with_start_offsets(
     for logical_tie in _iterate.logical_ties(argument):
         if clock_time:
             timespan = logical_tie.head()._get_timespan(in_seconds=True)
-            start_offset = timespan.value_start_offset()
+            start_offset = timespan.start_offset
             if global_offset is not None:
                 start_offset += global_offset
             string = _duration.Duration(start_offset.fraction).clock_string()
         else:
             timespan = logical_tie.head()._get_timespan()
-            start_offset = timespan.value_start_offset()
+            start_offset = timespan.start_offset
             if global_offset is not None:
                 start_offset += global_offset
             string = str(start_offset)
@@ -1881,7 +1881,7 @@ def with_start_offsets(
         else:
             label = _indicators.Markup(rf"\markup {{ {string} }}")
         _attach(label, logical_tie.head(), direction=direction)
-    total_duration = _duration.Duration(timespan.value_stop_offset().fraction)
+    total_duration = _duration.Duration(timespan.stop_offset.fraction)
     if global_offset is not None:
         total_duration += global_offset.fraction
     return total_duration

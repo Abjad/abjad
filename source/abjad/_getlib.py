@@ -156,7 +156,7 @@ def _get_effective_wrapper(component, prototype, *, attributes=None, command=Non
     if not candidate_wrappers:
         return
     all_offsets = sorted(candidate_wrappers)
-    start_offset = component._get_timespan().value_start_offset()
+    start_offset = component._get_timespan().start_offset
     index = bisect.bisect(all_offsets, start_offset) - 1 + int(n)
     if index < 0:
         return
@@ -307,12 +307,12 @@ def _get_timespan(argument, in_seconds: bool = False):
         else:
             remaining_items.append(item)
     timespan = _get_timespan(first_item, in_seconds=in_seconds)
-    start_offset = timespan.value_start_offset()
-    stop_offset = timespan.value_stop_offset()
+    start_offset = timespan.start_offset
+    stop_offset = timespan.stop_offset
     for item in remaining_items:
         timespan = _get_timespan(item, in_seconds=in_seconds)
-        if timespan.value_start_offset() < start_offset:
-            start_offset = timespan.value_start_offset()
-        if stop_offset < timespan.value_stop_offset():
-            stop_offset = timespan.value_stop_offset()
+        if timespan.start_offset < start_offset:
+            start_offset = timespan.start_offset
+        if stop_offset < timespan.stop_offset:
+            stop_offset = timespan.stop_offset
     return _timespan.Timespan(start_offset, stop_offset)

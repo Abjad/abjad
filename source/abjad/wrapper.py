@@ -420,9 +420,9 @@ class Wrapper:
         component = self.component()
         assert isinstance(component, _score.Component)
         if not getattr(indicator, "leak", False):
-            return component._get_timespan().value_start_offset()
+            return component._get_timespan().start_offset
         else:
-            return component._get_timespan().value_stop_offset()
+            return component._get_timespan().stop_offset
 
     def site_adjusted_start_offset(self) -> _duration.Offset:
         r"""
@@ -453,11 +453,11 @@ class Wrapper:
         component = self.component()
         assert component is not None
         if site in ("absolute_after", "after", "closing"):
-            return component._get_timespan().value_stop_offset()
+            return component._get_timespan().stop_offset
         else:
-            return component._get_timespan().value_start_offset()
+            return component._get_timespan().start_offset
 
-    # TODO: temporarily rename to value_start_offset()
+    # TODO: temporarily rename to start_offset
     def start_offset(self) -> _duration.Offset:
         """
         Gets start offset. This is either the wrapper's synthetic offset or the
@@ -468,7 +468,7 @@ class Wrapper:
             return synthetic_offset
         component = self.component()
         assert isinstance(component, _score.Component)
-        return component._get_timespan().value_start_offset()
+        return component._get_timespan().start_offset
 
     def synthetic_offset(self) -> _duration.Offset | None:
         """

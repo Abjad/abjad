@@ -2491,7 +2491,7 @@ def is_bar_line_crossing(argument) -> bool:
         time_signature_duration = time_signature.duration()
     partial = getattr(time_signature, "partial", 0)
     partial = partial or 0
-    start_offset_ = timespan(argument).value_start_offset()
+    start_offset_ = timespan(argument).start_offset
     assert isinstance(start_offset_, _duration.Offset)
     start_offset = start_offset_.fraction
     shifted_start = start_offset - partial

@@ -2041,8 +2041,8 @@ class Meter:
             durations = [_._get_preprolated_duration() for _ in logical_tie]
             logical_tie_duration = sum(durations)
             logical_tie_timespan = _getlib._get_timespan(logical_tie)
-            logical_tie_start_offset = logical_tie_timespan.value_start_offset()
-            logical_tie_stop_offset = logical_tie_timespan.value_stop_offset()
+            logical_tie_start_offset = logical_tie_timespan.start_offset
+            logical_tie_stop_offset = logical_tie_timespan.stop_offset
             logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
             logical_tie_stops_in_offsets = logical_tie_stop_offset in offsets
             if not _is_acceptable_logical_tie(
@@ -2117,12 +2117,12 @@ class Meter:
         for component in components:
             if not isinstance(component, _score.IndependentAfterGraceContainer):
                 nongrace_components.append(component)
-        first_start_offset = nongrace_components[0]._get_timespan().value_start_offset()
-        last_start_offset = nongrace_components[-1]._get_timespan().value_start_offset()
+        first_start_offset = nongrace_components[0]._get_timespan().start_offset
+        last_start_offset = nongrace_components[-1]._get_timespan().start_offset
         difference = last_start_offset - first_start_offset + initial_offset.fraction
         assert difference < self.implied_time_signature().duration()
         # build offset inventory, adjusted for initial offset and prolation
-        first_offset = components[0]._get_timespan().value_start_offset()
+        first_offset = components[0]._get_timespan().start_offset
         first_offset = _duration.Offset(first_offset.fraction - initial_offset.fraction)
         if components[0]._parent is None:
             prolation = fractions.Fraction(1)
