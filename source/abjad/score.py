@@ -85,7 +85,7 @@ class Component:
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         self._tag = tag
-        self._timespan = _timespan.Timespan(_duration.mvo(0), _duration.mvo(0))
+        self._timespan = _timespan.Timespan(_duration.offset(0), _duration.offset(0))
         self._wrappers: list = []
 
     ### SPECIAL METHODS ###

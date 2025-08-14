@@ -91,7 +91,7 @@ class RhythmTreeNode:
                     current_offset += _duration.Duration(child.duration())
             return current_offset
 
-        offset = _duration.mvo(0)
+        offset = _duration.offset(0)
         root = self.root
         if root is None:
             root = self

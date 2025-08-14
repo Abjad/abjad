@@ -36,13 +36,13 @@ def durations(items: list) -> list[Duration]:
     return durations
 
 
-def mvo(n: int, d: int | None = None) -> Offset:
+def offset(n: int, d: int | None = None) -> Offset:
     """
-    Makes value offset from ``n``.
+    Makes offset from ``n``.
 
     ..  container:: example
 
-        >>> abjad.duration.mvo(1)
+        >>> abjad.duration.offset(1)
         Offset(Fraction(1, 1))
 
     """

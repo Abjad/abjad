@@ -150,7 +150,7 @@ def _get_measure_start_offsets(component) -> list[_duration.Offset]:
         time_signature = wrapper.unbundle_indicator()
         pair = start_offset, time_signature
         pairs.append(pair)
-    offset_zero = _duration.mvo(0)
+    offset_zero = _duration.offset(0)
     default_time_signature = _indicators.TimeSignature((4, 4))
     default_pair = (offset_zero, default_time_signature)
     if pairs and not pairs[0] == offset_zero:
@@ -257,17 +257,17 @@ def _make_metronome_mark_map(root) -> _timespan.TimespanList | None:
     pairs.sort(key=lambda _: _[0])
     if not pairs:
         return None
-    if pairs[0][0] != _duration.mvo(0):
+    if pairs[0][0] != _duration.offset(0):
         return None
     score_stop_offset = max(all_stop_offsets)
     timespans = _timespan.TimespanList()
-    clocktime_start_offset = _duration.mvo(0)
+    clocktime_start_offset = _duration.offset(0)
     for left, right in _sequence.nwise(pairs, wrapped=True):
         metronome_mark = left[-1]
         start_offset = left[0]
         stop_offset = right[0]
         # last timespan
-        if stop_offset == _duration.mvo(0):
+        if stop_offset == _duration.offset(0):
             stop_offset = score_stop_offset
         duration = stop_offset - start_offset
         multiplier = fractions.Fraction(60, metronome_mark.units_per_minute)
@@ -436,7 +436,7 @@ def _update_component_offsets(component) -> None:
         if previous is not None:
             start_offset = previous._timespan.stop_offset
         else:
-            start_offset = _duration.mvo(0)
+            start_offset = _duration.offset(0)
         # on-beat anchor leaf:
         if (
             component._parent is not None

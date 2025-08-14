@@ -6,34 +6,34 @@ import abjad
 def test_get_timespan_01():
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     for i, x in enumerate(voice):
-        assert abjad.get.timespan(x).start_offset == abjad.mvo(i, 8)
+        assert abjad.get.timespan(x).start_offset == abjad.duration.offset(i, 8)
 
 
 def test_get_timespan_02():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     for i, x in enumerate(staff):
-        assert abjad.get.timespan(x).start_offset == abjad.mvo(i, 8)
+        assert abjad.get.timespan(x).start_offset == abjad.duration.offset(i, 8)
 
 
 def test_get_timespan_03():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     staff[-1] = abjad.Rest((1, 8))
     for i, x in enumerate(staff):
-        assert abjad.get.timespan(x).start_offset == abjad.mvo(i, 8)
+        assert abjad.get.timespan(x).start_offset == abjad.duration.offset(i, 8)
 
 
 def test_get_timespan_04():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     staff[10:10] = [abjad.Rest((1, 8))]
     for i, x in enumerate(staff):
-        assert abjad.get.timespan(x).start_offset == abjad.mvo(i, 8)
+        assert abjad.get.timespan(x).start_offset == abjad.duration.offset(i, 8)
 
 
 def test_get_timespan_05():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     staff[10:12] = [abjad.Rest((1, 8))]
     for i, x in enumerate(staff):
-        assert abjad.get.timespan(x).start_offset == abjad.mvo(i, 8)
+        assert abjad.get.timespan(x).start_offset == abjad.duration.offset(i, 8)
 
 
 def test_get_timespan_06():
@@ -48,19 +48,19 @@ def test_get_timespan_06():
     container = abjad.Container([voice_1, voice_2])
     leaves = abjad.select.leaves(container)
     for i, x in enumerate(leaves):
-        assert abjad.get.timespan(x).start_offset == abjad.mvo(i, 8)
+        assert abjad.get.timespan(x).start_offset == abjad.duration.offset(i, 8)
 
 
 def test_get_timespan_07():
     tuplet = abjad.Tuplet("3:2", "c'8 c'8 c'8")
     for i, x in enumerate(tuplet):
-        assert abjad.get.timespan(x).start_offset == abjad.mvo(i, 12)
+        assert abjad.get.timespan(x).start_offset == abjad.duration.offset(i, 12)
 
 
 def test_get_timespan_08():
     tuplet_1 = abjad.Tuplet("3:2", "c'8 c'8 c'8")
     voice = abjad.Voice([abjad.Note(0, (1, 8)), tuplet_1, abjad.Note(0, (1, 8))])
-    offset = abjad.mvo(0)
+    offset = abjad.duration.offset(0)
     pairs = [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]
     durations = abjad.duration.durations(pairs)
     leaves = abjad.select.leaves(voice)
@@ -76,7 +76,7 @@ def test_get_timespan_09():
 
     tuplet_1 = abjad.Tuplet("3:2", "c'8 c'8 c'8")
     tuplet = abjad.Tuplet("3:2", [abjad.Note("c'4"), tuplet_1, abjad.Note("c'4")])
-    offset = abjad.mvo(0)
+    offset = abjad.duration.offset(0)
     pairs = [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]
     durations = abjad.duration.durations(pairs)
     leaves = abjad.select.leaves(tuplet)
@@ -96,10 +96,10 @@ def test_get_timespan_10():
     staff.set_simultaneous(True)
     for i, leaf in enumerate(voice_1):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.mvo(i, 8)
+        assert start_offset == abjad.duration.offset(i, 8)
     for i, leaf in enumerate(voice_2):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.mvo(i, 8)
+        assert start_offset == abjad.duration.offset(i, 8)
 
 
 def test_get_timespan_11():
@@ -112,11 +112,11 @@ def test_get_timespan_11():
     leaves = abjad.select.leaves(staff)
     for i, leaf in enumerate(leaves):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.mvo(i, 8)
+        assert start_offset == abjad.duration.offset(i, 8)
     leaves = abjad.select.leaves(voice)
     for i, leaf in enumerate(leaves):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.mvo(i, 8) + abjad.Duration(1, 8)
+        assert start_offset == abjad.duration.offset(i, 8) + abjad.Duration(1, 8)
 
 
 def test_get_timespan_12():
@@ -129,10 +129,10 @@ def test_get_timespan_12():
     abjad.Staff([voice_1, voice_2])
     for i, leaf in enumerate(voice_1):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.mvo(i, 8)
+        assert start_offset == abjad.duration.offset(i, 8)
     for i, leaf in enumerate(voice_2):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.mvo(i, 8) + abjad.Duration(1, 2)
+        assert start_offset == abjad.duration.offset(i, 8) + abjad.Duration(1, 2)
 
 
 def test_get_timespan_13():
@@ -146,10 +146,10 @@ def test_get_timespan_13():
     staff.set_simultaneous(True)
     for i, leaf in enumerate(voice_1):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.mvo(i, 8)
+        assert start_offset == abjad.duration.offset(i, 8)
     for i, leaf in enumerate(voice_2):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.mvo(i, 8)
+        assert start_offset == abjad.duration.offset(i, 8)
 
 
 def test_get_timespan_14():
@@ -164,7 +164,7 @@ def test_get_timespan_14():
     staff[0].set_simultaneous(True)
     for i, leaf in enumerate(voice_3):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.mvo(i, 8) + abjad.Duration(1, 2)
+        assert start_offset == abjad.duration.offset(i, 8) + abjad.Duration(1, 2)
 
 
 def test_get_timespan_15():
@@ -179,10 +179,10 @@ def test_get_timespan_15():
     staff[1].set_simultaneous(True)
     for i, leaf in enumerate(voice_1):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.mvo(i, 8) + abjad.Duration(1, 2)
+        assert start_offset == abjad.duration.offset(i, 8) + abjad.Duration(1, 2)
     for i, leaf in enumerate(voice_2):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.mvo(i, 8) + abjad.Duration(1, 2)
+        assert start_offset == abjad.duration.offset(i, 8) + abjad.Duration(1, 2)
 
 
 def test_get_timespan_16():
@@ -197,7 +197,7 @@ def test_get_timespan_16():
     staff[1].set_name("voice")
     for i, voice in enumerate(staff):
         start_offset = abjad.get.timespan(voice).start_offset
-        assert start_offset == abjad.mvo(4 * i, 8)
+        assert start_offset == abjad.duration.offset(4 * i, 8)
 
 
 def test_get_timespan_17():
@@ -211,9 +211,9 @@ def test_get_timespan_17():
     container[0].set_name("staff")
     container[1].set_name("staff")
     start_offset = abjad.get.timespan(container[0]).start_offset
-    assert start_offset == abjad.mvo(0)
+    assert start_offset == abjad.duration.offset(0)
     start_offset = abjad.get.timespan(container[1]).start_offset
-    assert start_offset == abjad.mvo(1, 2)
+    assert start_offset == abjad.duration.offset(1, 2)
 
 
 def test_get_timespan_18():
@@ -226,7 +226,7 @@ def test_get_timespan_18():
     )
     for i, voice in enumerate(staff):
         start_offset = abjad.get.timespan(voice).start_offset
-        assert start_offset == abjad.mvo(4 * i, 8)
+        assert start_offset == abjad.duration.offset(4 * i, 8)
 
 
 def test_get_timespan_19():
@@ -241,9 +241,9 @@ def test_get_timespan_19():
             abjad.Tuplet("3:2", "c'8 d'8 e'8"),
         ]
     )
-    assert abjad.get.timespan(voice[0]).start_offset == abjad.mvo(0, 4)
-    assert abjad.get.timespan(voice[1]).start_offset == abjad.mvo(1, 4)
-    assert abjad.get.timespan(voice[2]).start_offset == abjad.mvo(2, 4)
+    assert abjad.get.timespan(voice[0]).start_offset == abjad.duration.offset(0, 4)
+    assert abjad.get.timespan(voice[1]).start_offset == abjad.duration.offset(1, 4)
+    assert abjad.get.timespan(voice[2]).start_offset == abjad.duration.offset(2, 4)
 
 
 def test_get_timespan_20():
@@ -253,9 +253,9 @@ def test_get_timespan_20():
 
     tuplet_1 = abjad.Tuplet("3:2", "c'8 c'8 c'8")
     voice = abjad.Voice([abjad.Note(0, (1, 8)), tuplet_1, abjad.Note(0, (1, 8))])
-    assert abjad.get.timespan(voice[0]).start_offset == abjad.mvo(0, 8)
-    assert abjad.get.timespan(voice[1]).start_offset == abjad.mvo(1, 8)
-    assert abjad.get.timespan(voice[2]).start_offset == abjad.mvo(3, 8)
+    assert abjad.get.timespan(voice[0]).start_offset == abjad.duration.offset(0, 8)
+    assert abjad.get.timespan(voice[1]).start_offset == abjad.duration.offset(1, 8)
+    assert abjad.get.timespan(voice[2]).start_offset == abjad.duration.offset(3, 8)
 
 
 def test_get_timespan_21():
@@ -266,9 +266,9 @@ def test_get_timespan_21():
     tuplet_1 = abjad.Tuplet("2:1", "c'8 d'8 e'8 f'8")
     contents = [abjad.Note("c'4"), tuplet_1, abjad.Note("c'4")]
     tuplet = abjad.Tuplet("3:2", contents)
-    assert abjad.get.timespan(tuplet[0]).start_offset == abjad.mvo(0, 6)
-    assert abjad.get.timespan(tuplet[1]).start_offset == abjad.mvo(1, 6)
-    assert abjad.get.timespan(tuplet[2]).start_offset == abjad.mvo(2, 6)
+    assert abjad.get.timespan(tuplet[0]).start_offset == abjad.duration.offset(0, 6)
+    assert abjad.get.timespan(tuplet[1]).start_offset == abjad.duration.offset(1, 6)
+    assert abjad.get.timespan(tuplet[2]).start_offset == abjad.duration.offset(2, 6)
 
 
 def test_get_timespan_22():
@@ -281,8 +281,8 @@ def test_get_timespan_22():
     inner_voice.set_name("voice")
     outer_voice.set_name("voice")
     abjad.Staff([abjad.Note(1, (1, 8)), outer_voice])
-    assert abjad.get.timespan(inner_voice).start_offset == abjad.mvo(2, 8)
-    assert abjad.get.timespan(outer_voice).start_offset == abjad.mvo(1, 8)
+    assert abjad.get.timespan(inner_voice).start_offset == abjad.duration.offset(2, 8)
+    assert abjad.get.timespan(outer_voice).start_offset == abjad.duration.offset(1, 8)
 
 
 def test_get_timespan_23():
@@ -294,8 +294,8 @@ def test_get_timespan_23():
     voice_2 = abjad.Voice("c'8 d'8 e'8 f'8")
     staff = abjad.Staff([voice_1, voice_2])
     staff.set_simultaneous(True)
-    assert abjad.get.timespan(staff[0]).start_offset == abjad.mvo(0)
-    assert abjad.get.timespan(staff[1]).start_offset == abjad.mvo(0)
+    assert abjad.get.timespan(staff[0]).start_offset == abjad.duration.offset(0)
+    assert abjad.get.timespan(staff[1]).start_offset == abjad.duration.offset(0)
 
 
 def test_get_timespan_24():
@@ -312,10 +312,10 @@ def test_get_timespan_24():
     staff_1 = abjad.Staff([voice_1, voice_1b])
     staff_2 = abjad.Staff([voice_2, voice_2b])
     abjad.StaffGroup([staff_1, staff_2])
-    assert abjad.get.timespan(voice_1).start_offset == abjad.mvo(0)
-    assert abjad.get.timespan(voice_2).start_offset == abjad.mvo(0)
-    assert abjad.get.timespan(voice_1b).start_offset == abjad.mvo(4, 8)
-    assert abjad.get.timespan(voice_2b).start_offset == abjad.mvo(4, 8)
+    assert abjad.get.timespan(voice_1).start_offset == abjad.duration.offset(0)
+    assert abjad.get.timespan(voice_2).start_offset == abjad.duration.offset(0)
+    assert abjad.get.timespan(voice_1b).start_offset == abjad.duration.offset(4, 8)
+    assert abjad.get.timespan(voice_2b).start_offset == abjad.duration.offset(4, 8)
 
 
 def test_get_timespan_25():
@@ -352,9 +352,9 @@ def test_get_timespan_26():
     )
 
     start_offset = abjad.get.timespan(staff[0], in_seconds=True).start_offset
-    assert start_offset == abjad.mvo(0)
+    assert start_offset == abjad.duration.offset(0)
     start_offset = abjad.get.timespan(staff[1], in_seconds=True).start_offset
-    assert start_offset == abjad.mvo(5, 4)
+    assert start_offset == abjad.duration.offset(5, 4)
 
 
 def test_Tuplet_timespan_01():
@@ -376,13 +376,17 @@ def test_Tuplet_timespan_01():
         """
     )
 
-    assert abjad.get.timespan(staff) == abjad.Timespan(abjad.mvo(0), abjad.mvo(1))
-    assert abjad.get.timespan(staff[0]) == abjad.Timespan(abjad.mvo(0), abjad.mvo(1, 4))
+    assert abjad.get.timespan(staff) == abjad.Timespan(
+        abjad.duration.offset(0), abjad.duration.offset(1)
+    )
+    assert abjad.get.timespan(staff[0]) == abjad.Timespan(
+        abjad.duration.offset(0), abjad.duration.offset(1, 4)
+    )
     assert abjad.get.timespan(staff[1]) == abjad.Timespan(
-        abjad.mvo(1, 4), abjad.mvo(1, 2)
+        abjad.duration.offset(1, 4), abjad.duration.offset(1, 2)
     )
     assert abjad.get.timespan(staff[-1]) == abjad.Timespan(
-        abjad.mvo(1, 2), abjad.mvo(1)
+        abjad.duration.offset(1, 2), abjad.duration.offset(1)
     )
 
 
@@ -414,14 +418,14 @@ def test_Tuplet_timespan_02():
     )
 
     assert abjad.get.timespan(staff, in_seconds=True) == abjad.Timespan(
-        abjad.mvo(0), abjad.mvo(4)
+        abjad.duration.offset(0), abjad.duration.offset(4)
     )
     assert abjad.get.timespan(staff[0], in_seconds=True) == abjad.Timespan(
-        abjad.mvo(0), abjad.mvo(1)
+        abjad.duration.offset(0), abjad.duration.offset(1)
     )
     assert abjad.get.timespan(staff[1], in_seconds=True) == abjad.Timespan(
-        abjad.mvo(1), abjad.mvo(2)
+        abjad.duration.offset(1), abjad.duration.offset(2)
     )
     assert abjad.get.timespan(staff[-1], in_seconds=True) == abjad.Timespan(
-        abjad.mvo(2), abjad.mvo(4)
+        abjad.duration.offset(2), abjad.duration.offset(4)
     )

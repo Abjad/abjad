@@ -798,7 +798,7 @@ class Meter:
             Matches a series of hypothetical ``4/4`` measures:
 
             >>> pairs = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
-            >>> offsets = [abjad.mvo(*_) for _ in pairs]
+            >>> offsets = [abjad.duration.offset(*_) for _ in pairs]
             >>> offset_counter = abjad.OffsetCounter(offsets)
             >>> for meter in abjad.Meter.fit_meters(offset_counter, meters):
             ...     print(meter.implied_time_signature())
@@ -813,7 +813,7 @@ class Meter:
             Matches a series of hypothetical ``5/4`` measures:
 
             >>> pairs = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
-            >>> offsets = [abjad.mvo(*_) for _ in pairs]
+            >>> offsets = [abjad.duration.offset(*_) for _ in pairs]
             >>> offset_counter = abjad.OffsetCounter(offsets)
             >>> for meter in abjad.Meter.fit_meters(offset_counter, meters):
             ...     print(meter.implied_time_signature())
@@ -2577,7 +2577,7 @@ def illustrate_meter_list(
     assert all(isinstance(_, _duration.Duration) for _ in offsets)
     timespans = _timespan.TimespanList()
     for one, two in _sequence.nwise(offsets):
-        timespan = _timespan.Timespan(_duration.mvo(one), _duration.mvo(two))
+        timespan = _timespan.Timespan(_duration.offset(one), _duration.offset(two))
         timespans.append(timespan)
     if range_ is not None:
         minimum, maximum = range_
@@ -2676,7 +2676,7 @@ class MetricAccentKernel:
         to receive an impulse-response:
 
         >>> pairs = [(0, 8), (1, 8), (1, 8), (3, 8)]
-        >>> offsets = [abjad.mvo(*_) for _ in pairs]
+        >>> offsets = [abjad.duration.offset(*_) for _ in pairs]
         >>> offset_counter = abjad.OffsetCounter(offsets)
         >>> kernel(offset_counter)
         Fraction(1, 2)
