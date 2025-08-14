@@ -150,7 +150,10 @@ def annotation(
     """
     assert isinstance(component, _score.Component), repr(component)
     assert isinstance(key, str), repr(key)
-    return _getlib._get_annotation(component, key, default)
+    for wrapper in component._wrappers:
+        if wrapper.annotation() == key:
+            return wrapper.indicator()
+    return default
 
 
 def before_grace_container(argument):
@@ -844,7 +847,7 @@ def duration(
         (LogicalTie(items=[Note("d'4"), Note("d'4")]), Duration(1, 3), Duration(1, 2))
 
     """
-    return _getlib._get_duration(
+    return _getlib.get_duration(
         argument, in_seconds=in_seconds, preprolated=preprolated
     )
 
@@ -1393,7 +1396,7 @@ def effective_indicator(
     assert isinstance(component, _score.Component), repr(component)
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    result = _getlib._get_effective_indicator(
+    result = _getlib.get_effective_indicator(
         component,
         prototype,
         attributes=attributes,
@@ -1514,7 +1517,7 @@ def effective_staff(component: _score.Component) -> _score.Staff | None:
     """
     if not isinstance(component, _score.Component):
         raise Exception("can only get effective staff on components.")
-    staff_change = _getlib._get_effective_indicator(component, _indicators.StaffChange)
+    staff_change = _getlib.get_effective_indicator(component, _indicators.StaffChange)
     if staff_change is not None:
         for component_ in component._get_parentage():
             root = component_
@@ -1533,7 +1536,7 @@ def effective_wrapper(
     *,
     attributes: dict | None = None,
     n: int = 0,
-) -> _wrapper.Wrapper:
+) -> _wrapper.Wrapper | None:
     r"""
     Gets effective wrapper.
 
@@ -1645,8 +1648,11 @@ def effective_wrapper(
     """
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    wrapper = _getlib._get_effective_wrapper(
-        component, prototype, attributes=attributes, n=n
+    wrapper = _getlib.get_effective_wrapper(
+        component,
+        prototype,
+        attributes=attributes,
+        n=n,
     )
     return wrapper
 
@@ -1845,8 +1851,10 @@ def has_effective_indicator(
         raise Exception("can only get effective indicator on component.")
     if attributes is not None:
         assert isinstance(attributes, dict), repr(attributes)
-    indicator = _getlib._get_effective_indicator(
-        argument, prototype, attributes=attributes
+    indicator = _getlib.get_effective_indicator(
+        argument,
+        prototype,
+        attributes=attributes,
     )
     return indicator is not None
 
@@ -2482,8 +2490,9 @@ def is_bar_line_crossing(argument) -> bool:
     """
     if not isinstance(argument, _score.Component):
         raise Exception("can only get indicator on component.")
-    time_signature = _getlib._get_effective_indicator(
-        argument, _indicators.TimeSignature
+    time_signature = _getlib.get_effective_indicator(
+        argument,
+        _indicators.TimeSignature,
     )
     if time_signature is None:
         time_signature_duration = _duration.Duration(4, 4)
@@ -2637,7 +2646,7 @@ def is_grace_music(argument) -> bool:
         Note("f'4")                    False
 
     """
-    if _getlib._get_grace_container(argument) is True:
+    if _getlib.is_grace_container(argument) is True:
         return True
     for component in argument._get_parentage():
         if isinstance(component, _score.IndependentAfterGraceContainer):
@@ -4055,7 +4064,7 @@ def sounding_pitch(note: _score.Note) -> _pitch.NamedPitch:
     """
     if not isinstance(note, _score.Note):
         raise Exception("can only get sounding pitch of note.")
-    return _getlib._get_sounding_pitch(note)
+    return _getlib.get_sounding_pitch(note)
 
 
 def sounding_pitches(chord: _score.Chord) -> set[_pitch.NamedPitch]:
@@ -4094,7 +4103,7 @@ def sounding_pitches(chord: _score.Chord) -> set[_pitch.NamedPitch]:
     """
     if not isinstance(chord, _score.Chord):
         raise Exception("can only get sounding pitches of chord.")
-    pitches = _getlib._get_sounding_pitches(chord)
+    pitches = _getlib.get_sounding_pitches(chord)
     return set(pitches)
 
 
@@ -4323,7 +4332,7 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
         Timespan(Offset(Fraction(0, 1)), Offset(Fraction(3, 4)))
 
     """
-    return _getlib._get_timespan(argument, in_seconds=in_seconds)
+    return _getlib.get_timespan(argument, in_seconds=in_seconds)
 
 
 def wrapper(

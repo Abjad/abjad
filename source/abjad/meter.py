@@ -11,8 +11,9 @@ import typing
 
 import uqbar.graphs
 
-from . import _getlib, _iterlib
+from . import _iterlib
 from . import duration as _duration
+from . import get as _get
 from . import indicators as _indicators
 from . import lilypondfile as _lilypondfile
 from . import math as _math
@@ -2040,9 +2041,11 @@ class Meter:
             offsets = _get_offsets_at_depth(depth, offset_inventory)
             durations = [_._get_preprolated_duration() for _ in logical_tie]
             logical_tie_duration = sum(durations)
-            logical_tie_timespan = _getlib._get_timespan(logical_tie)
+            logical_tie_timespan = _get.timespan(logical_tie)
             logical_tie_start_offset = logical_tie_timespan.start_offset
+            assert isinstance(logical_tie_start_offset, _duration.Offset)
             logical_tie_stop_offset = logical_tie_timespan.stop_offset
+            assert isinstance(logical_tie_stop_offset, _duration.Offset)
             logical_tie_starts_in_offsets = logical_tie_start_offset in offsets
             logical_tie_stops_in_offsets = logical_tie_stop_offset in offsets
             if not _is_acceptable_logical_tie(
@@ -2061,7 +2064,6 @@ class Meter:
                         split_offset = offset
                         break
                 if split_offset is not None:
-                    # split_offset -= logical_tie_start_offset
                     split_offset_fraction = (
                         split_offset.fraction - logical_tie_start_offset.fraction
                     )

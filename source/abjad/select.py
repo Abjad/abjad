@@ -1827,13 +1827,14 @@ def group_by_contiguity(argument) -> list[list]:
     components = []
     components.extend(argument[:1])
     for item in argument[1:]:
-        this_timespan = _getlib._get_timespan(components[-1])
-        that_timespan = _getlib._get_timespan(item)
-        # remove displacement
+        this_timespan = _getlib.get_timespan(components[-1])
+        that_timespan = _getlib.get_timespan(item)
         this_stop_offset = this_timespan.stop_offset
-        this_stop_offset = _duration.Offset(this_stop_offset.fraction)
+        assert isinstance(this_stop_offset, _duration.Offset)
+        this_stop_offset = this_stop_offset.remove_displacement()
         that_start_offset = that_timespan.start_offset
-        that_start_offset = _duration.Offset(that_start_offset.fraction)
+        assert isinstance(that_start_offset, _duration.Offset)
+        that_start_offset = that_start_offset.remove_displacement()
         if this_stop_offset == that_start_offset:
             components.append(item)
         else:
@@ -1911,7 +1912,7 @@ def group_by_duration(argument) -> list[list]:
     """
 
     def predicate(argument):
-        return _getlib._get_duration(argument)
+        return _getlib.get_duration(argument)
 
     return group_by(argument, predicate=predicate)
 
@@ -5783,7 +5784,7 @@ def partition_by_durations(
             break
         component_duration = component._get_duration()
         if in_seconds:
-            component_duration = _getlib._get_duration_in_seconds(component)
+            component_duration = _getlib.get_duration(component, in_seconds=True)
         candidate_duration = cumulative_duration + component_duration
         if candidate_duration < target_duration:
             part.append(component)
@@ -5805,10 +5806,10 @@ def partition_by_durations(
                 result.append(part)
                 part = [component]
                 if in_seconds:
-                    sum_ = sum([_getlib._get_duration_in_seconds(_) for _ in part])
+                    sum_ = sum([_getlib.get_duration(_, in_seconds=True) for _ in part])
                     cumulative_duration = _duration.Duration(sum_)
                 else:
-                    sum_ = sum([_getlib._get_duration(_) for _ in part])
+                    sum_ = sum([_getlib.get_duration(_) for _ in part])
                     cumulative_duration = _duration.Duration(sum_)
                 current_duration_index += 1
                 try:
@@ -7158,8 +7159,8 @@ def with_next_leaf(argument, *, grace: bool | None = None) -> list[_score.Leaf]:
             break
         if (
             grace is None
-            or (grace is True and _getlib._get_grace_container(next_leaf))
-            or (grace is False and not _getlib._get_grace_container(next_leaf))
+            or (grace is True and _getlib.is_grace_container(next_leaf))
+            or (grace is False and not _getlib.is_grace_container(next_leaf))
         ):
             items.append(next_leaf)
             break

@@ -4,6 +4,7 @@ import typing
 
 from . import _getlib
 from . import indicators as _indicators
+from . import parentage as _parentage
 from . import score as _score
 from . import select as _select
 
@@ -28,7 +29,7 @@ def _get_leaf(argument, n: int = 0):
         candidate = _get_sibling_with_graces(argument, n)
         if isinstance(candidate, _score.Leaf):
             return candidate
-        return _getlib._get_leaf_from_leaf(argument, n)
+        return _get_leaf_from_leaf(argument, n)
     if 0 <= n:
         reverse = False
     else:
@@ -39,6 +40,35 @@ def _get_leaf(argument, n: int = 0):
         if i == n:
             return leaf
     return None
+
+
+def _get_leaf_from_leaf(leaf, n):
+    assert n in (-1, 0, 1), repr(n)
+    if n == 0:
+        return leaf
+    sibling = leaf._sibling(n)
+    if sibling is None:
+        return None
+    if n == 1:
+        components = sibling._get_descendants_starting_with()
+    else:
+        assert n == -1
+        if (
+            isinstance(sibling, _score.Container)
+            and len(sibling) == 2
+            and any(hasattr(_, "_grace_leaf_duration") for _ in sibling)
+        ):
+            if sibling[0].__class__.__name__ == "OnBeatGraceContainer":
+                main_voice = sibling[1]
+            else:
+                main_voice = sibling[0]
+            return main_voice[-1]
+        components = sibling._get_descendants_stopping_with()
+    for component in components:
+        if not isinstance(component, _score.Leaf):
+            continue
+        if are_logical_voice([leaf, component]):
+            return component
 
 
 def _get_logical_tie_leaves(leaf):
@@ -208,8 +238,8 @@ def _iterate_components(
         if isinstance(argument, prototype):
             if (
                 grace is None
-                or (grace is True and _getlib._get_grace_container(argument))
-                or (grace is False and not _getlib._get_grace_container(argument))
+                or (grace is True and _getlib.is_grace_container(argument))
+                or (grace is False and not _getlib.is_grace_container(argument))
             ):
                 if not _should_exclude(argument, exclude):
                     yield argument
@@ -253,8 +283,8 @@ def _iterate_components(
         if isinstance(argument, prototype):
             if (
                 grace is None
-                or (grace is True and _getlib._get_grace_container(argument))
-                or (grace is False and not _getlib._get_grace_container(argument))
+                or (grace is True and _getlib.is_grace_container(argument))
+                or (grace is False and not _getlib.is_grace_container(argument))
             ):
                 if not _should_exclude(argument, exclude):
                     yield argument
@@ -404,3 +434,27 @@ def _should_exclude(argument, exclude):
         if argument._has_indicator(string):
             return True
     return False
+
+
+def are_logical_voice(components: list[_score.Component], prototype=None):
+    prototype = prototype or (_score.Component,)
+    if not isinstance(prototype, tuple):
+        prototype = (prototype,)
+    assert isinstance(prototype, tuple)
+    if len(components) == 0:
+        return True
+    if all(isinstance(_, prototype) and _._parent is None for _ in components):
+        return True
+    first = components[0]
+    if not isinstance(first, prototype):
+        return False
+    same_logical_voice = True
+    parentage = _parentage.Parentage(first)
+    first_logical_voice = parentage.logical_voice()
+    for component in components[1:]:
+        parentage = _parentage.Parentage(component)
+        if parentage.logical_voice() != first_logical_voice:
+            same_logical_voice = False
+        if not parentage.is_orphan() and not same_logical_voice:
+            return False
+    return True

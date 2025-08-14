@@ -189,7 +189,7 @@ class Wrapper:
         indicator = self.unbundle_indicator()
         prototype = type(indicator)
         command = getattr(indicator, "command", None)
-        wrapper = _getlib._get_effective_wrapper(
+        wrapper = _getlib.get_effective_wrapper(
             component,
             prototype,
             attributes={"command": command},
@@ -215,7 +215,9 @@ class Wrapper:
                 context = parent
                 break
         wrapper_context = None
-        for parent in wrapper.component()._get_parentage():
+        wrapper_component = wrapper.component()
+        assert wrapper_component is not None
+        for parent in wrapper_component._get_parentage():
             if hasattr(parent, "_lilypond_type"):
                 wrapper_context = parent
                 break

@@ -808,7 +808,7 @@ def with_durations(
 
     """
     for logical_tie in _iterate.logical_ties(argument):
-        duration = _getlib._get_duration(logical_tie, in_seconds=in_seconds)
+        duration = _getlib.get_duration(logical_tie, in_seconds=in_seconds)
         pair = duration.pair()
         if denominator is not None:
             pair = _duration.pair_with_denominator(duration, denominator)
