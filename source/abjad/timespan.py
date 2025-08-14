@@ -61,8 +61,8 @@ class OffsetCounter:
         for item in self.items:
             assert isinstance(item, _duration.Offset | Timespan), repr(item)
             if isinstance(item, Timespan):
-                offsets.append(item.value_start_offset())
-                offsets.append(item.value_stop_offset())
+                offsets.append(item.start_offset)
+                offsets.append(item.stop_offset)
             else:
                 assert isinstance(item, _duration.Offset), repr(item)
                 offsets.append(item)
@@ -152,9 +152,9 @@ class OffsetCounter:
         if not self:
             return _indicators.Markup(r"\markup \null")
         if isinstance(range_, Timespan):
-            start_offset = range_.value_start_offset()
+            start_offset = range_.start_offset
             assert isinstance(start_offset, _duration.Offset)
-            stop_offset = range_.value_stop_offset()
+            stop_offset = range_.stop_offset
             assert isinstance(stop_offset, _duration.Offset)
             minimum = start_offset
             maximum = stop_offset
@@ -285,15 +285,15 @@ class Timespan:
 
         """
         if not (
-            argument.value_start_offset() <= self.value_start_offset()
-            and self.value_start_offset() < argument.value_stop_offset()
+            argument.start_offset <= self.start_offset
+            and self.start_offset < argument.stop_offset
         ) and not (
-            self.value_start_offset() <= argument.value_start_offset()
-            and argument.value_start_offset() < self.value_stop_offset()
+            self.start_offset <= argument.start_offset
+            and argument.start_offset < self.stop_offset
         ):
             return TimespanList()
-        new_start_offset = max(self.value_start_offset(), argument.value_start_offset())
-        new_stop_offset = min(self.value_stop_offset(), argument.value_stop_offset())
+        new_start_offset = max(self.start_offset, argument.start_offset)
+        new_stop_offset = min(self.stop_offset, argument.stop_offset)
         timespan = dataclasses.replace(
             self,
             start_offset=new_start_offset,
@@ -350,8 +350,8 @@ class Timespan:
             timespan = Timespan(argument, argument)
         assert isinstance(timespan, type(self))
         return (
-            self.value_start_offset() <= timespan.value_start_offset()
-            and timespan.value_stop_offset() <= self.value_stop_offset()
+            self.start_offset <= timespan.start_offset
+            and timespan.stop_offset <= self.stop_offset
         )
 
     def __eq__(self, argument: object) -> bool:
@@ -371,8 +371,8 @@ class Timespan:
 
         """
         if isinstance(argument, type(self)):
-            if self.value_start_offset() == argument.value_start_offset():
-                return self.value_stop_offset() == argument.value_stop_offset()
+            if self.start_offset == argument.start_offset:
+                return self.stop_offset == argument.stop_offset
         return False
 
     def __ge__(self, argument) -> bool:
@@ -393,18 +393,18 @@ class Timespan:
             False
 
         """
-        expr_start_offset = argument.value_start_offset()
-        expr_stop_offset = argument.value_stop_offset()
+        expr_start_offset = argument.start_offset
+        expr_stop_offset = argument.stop_offset
         if expr_stop_offset is not None:
-            if self.value_start_offset() >= expr_start_offset:
+            if self.start_offset >= expr_start_offset:
                 return True
             elif (
-                self.value_start_offset() == expr_start_offset
-                and self.value_stop_offset() >= expr_stop_offset
+                self.start_offset == expr_start_offset
+                and self.stop_offset >= expr_stop_offset
             ):
                 return True
             return False
-        return self.value_start_offset() >= expr_start_offset
+        return self.start_offset >= expr_start_offset
 
     def __gt__(self, argument) -> bool:
         """
@@ -424,18 +424,18 @@ class Timespan:
             False
 
         """
-        expr_start_offset = argument.value_start_offset()
-        expr_stop_offset = argument.value_stop_offset()
+        expr_start_offset = argument.start_offset
+        expr_stop_offset = argument.stop_offset
         if expr_stop_offset is not None:
-            if self.value_start_offset() > expr_start_offset:
+            if self.start_offset > expr_start_offset:
                 return True
             elif (
-                self.value_start_offset() == expr_start_offset
-                and self.value_stop_offset() > expr_stop_offset
+                self.start_offset == expr_start_offset
+                and self.stop_offset > expr_stop_offset
             ):
                 return True
             return False
-        return self.value_start_offset() > expr_start_offset
+        return self.start_offset > expr_start_offset
 
     def __le__(self, argument) -> bool:
         """
@@ -455,18 +455,18 @@ class Timespan:
             True
 
         """
-        expr_start_offset = argument.value_start_offset()
-        expr_stop_offset = argument.value_stop_offset()
+        expr_start_offset = argument.start_offset
+        expr_stop_offset = argument.stop_offset
         if expr_stop_offset is not None:
-            if self.value_start_offset() <= expr_start_offset:
+            if self.start_offset <= expr_start_offset:
                 return True
             elif (
-                self.value_start_offset() == expr_start_offset
-                and self.value_stop_offset() <= expr_stop_offset
+                self.start_offset == expr_start_offset
+                and self.stop_offset <= expr_stop_offset
             ):
                 return True
             return False
-        return self.value_start_offset() <= expr_start_offset
+        return self.start_offset <= expr_start_offset
 
     def __len__(self) -> int:
         """
@@ -498,18 +498,18 @@ class Timespan:
             False
 
         """
-        expr_start_offset = argument.value_start_offset()
-        expr_stop_offset = argument.value_stop_offset()
+        expr_start_offset = argument.start_offset
+        expr_stop_offset = argument.stop_offset
         if expr_stop_offset is not None:
-            if self.value_start_offset() < expr_start_offset:
+            if self.start_offset < expr_start_offset:
                 return True
             elif (
-                self.value_start_offset() == expr_start_offset
-                and self.value_stop_offset() < expr_stop_offset
+                self.start_offset == expr_start_offset
+                and self.stop_offset < expr_stop_offset
             ):
                 return True
             return False
-        return self.value_start_offset() < expr_start_offset
+        return self.start_offset < expr_start_offset
 
     def __or__(self, argument) -> TimespanList:
         """
@@ -551,14 +551,14 @@ class Timespan:
         """
         if (
             not bool(self & argument)
-            and not self.value_stop_offset() == argument.value_start_offset()
-            and not argument.value_stop_offset() == self.value_start_offset()
+            and not self.stop_offset == argument.start_offset
+            and not argument.stop_offset == self.start_offset
         ):
             result = TimespanList([self, argument])
             result.sort()
             return result
-        new_start_offset = min(self.value_start_offset(), argument.value_start_offset())
-        new_stop_offset = max(self.value_stop_offset(), argument.value_stop_offset())
+        new_start_offset = min(self.start_offset, argument.start_offset)
+        new_stop_offset = max(self.stop_offset, argument.stop_offset)
         timespan = dataclasses.replace(
             self,
             start_offset=new_start_offset,
@@ -570,7 +570,7 @@ class Timespan:
         """
         Gets interpreter representation of timespan.
         """
-        string = f"{self.value_start_offset()!r}, {self.value_stop_offset()!r}"
+        string = f"{self.start_offset!r}, {self.stop_offset!r}"
         if self.annotation is not None:
             string = string + f", annotation={self.annotation!r}"
         string = f"{type(self).__name__}({string})"
@@ -641,11 +641,11 @@ class Timespan:
         if not bool(self & argument):
             timespans.append(copy.deepcopy(self))
         elif (
-            self.value_start_offset() < argument.value_start_offset()
-            and argument.value_stop_offset() < self.value_stop_offset()
+            self.start_offset < argument.start_offset
+            and argument.stop_offset < self.stop_offset
         ):
-            new_start_offset = self.value_start_offset()
-            new_stop_offset = argument.value_start_offset()
+            new_start_offset = self.start_offset
+            new_stop_offset = argument.start_offset
             assert isinstance(new_start_offset, _duration.Offset)
             assert isinstance(new_stop_offset, _duration.Offset)
             timespan = dataclasses.replace(
@@ -654,8 +654,8 @@ class Timespan:
                 stop_offset=new_stop_offset,
             )
             timespans.append(timespan)
-            new_start_offset = argument.value_stop_offset()
-            new_stop_offset = self.value_stop_offset()
+            new_start_offset = argument.stop_offset
+            new_stop_offset = self.stop_offset
             assert isinstance(new_start_offset, _duration.Offset)
             assert isinstance(new_stop_offset, _duration.Offset)
             timespan = dataclasses.replace(
@@ -667,12 +667,12 @@ class Timespan:
         elif self in argument:
             pass
         elif (
-            argument.value_start_offset() < self.value_start_offset()
-            and self.value_start_offset() < argument.value_stop_offset()
-            and argument.value_stop_offset() <= self.value_stop_offset()
+            argument.start_offset < self.start_offset
+            and self.start_offset < argument.stop_offset
+            and argument.stop_offset <= self.stop_offset
         ):
-            new_start_offset = argument.value_stop_offset()
-            new_stop_offset = self.value_stop_offset()
+            new_start_offset = argument.stop_offset
+            new_stop_offset = self.stop_offset
             assert isinstance(new_start_offset, _duration.Offset)
             assert isinstance(new_stop_offset, _duration.Offset)
             timespan = dataclasses.replace(
@@ -682,12 +682,12 @@ class Timespan:
             )
             timespans.append(timespan)
         elif (
-            self.value_start_offset() <= argument.value_start_offset()
-            and argument.value_start_offset() < self.value_stop_offset()
-            and self.value_stop_offset() < argument.value_stop_offset()
+            self.start_offset <= argument.start_offset
+            and argument.start_offset < self.stop_offset
+            and self.stop_offset < argument.stop_offset
         ):
-            new_start_offset = self.value_start_offset()
-            new_stop_offset = argument.value_start_offset()
+            new_start_offset = self.start_offset
+            new_stop_offset = argument.start_offset
             assert isinstance(new_start_offset, _duration.Offset)
             assert isinstance(new_stop_offset, _duration.Offset)
             timespan = dataclasses.replace(
@@ -697,11 +697,11 @@ class Timespan:
             )
             timespans.append(timespan)
         elif (
-            argument.value_start_offset() == self.value_start_offset()
-            and argument.value_stop_offset() < self.value_stop_offset()
+            argument.start_offset == self.start_offset
+            and argument.stop_offset < self.stop_offset
         ):
-            new_start_offset = argument.value_stop_offset()
-            new_stop_offset = self.value_stop_offset()
+            new_start_offset = argument.stop_offset
+            new_stop_offset = self.stop_offset
             assert isinstance(new_start_offset, _duration.Offset)
             assert isinstance(new_stop_offset, _duration.Offset)
             timespan = dataclasses.replace(
@@ -711,11 +711,11 @@ class Timespan:
             )
             timespans.append(timespan)
         elif (
-            argument.value_stop_offset() == self.value_stop_offset()
-            and self.value_start_offset() < argument.value_start_offset()
+            argument.stop_offset == self.stop_offset
+            and self.start_offset < argument.start_offset
         ):
-            new_start_offset = self.value_start_offset()
-            new_stop_offset = argument.value_start_offset()
+            new_start_offset = self.start_offset
+            new_stop_offset = argument.start_offset
             assert isinstance(new_start_offset, _duration.Offset)
             assert isinstance(new_stop_offset, _duration.Offset)
             timespan = dataclasses.replace(
@@ -772,8 +772,8 @@ class Timespan:
         """
         if (
             not bool(self & argument)
-            and not self.value_stop_offset() == argument.value_start_offset()
-            and not argument.value_stop_offset() == self.value_start_offset()
+            and not self.stop_offset == argument.start_offset
+            and not argument.stop_offset == self.start_offset
         ):
             result = TimespanList()
             result.append(copy.deepcopy(self))
@@ -781,8 +781,8 @@ class Timespan:
             result.sort()
             return result
         result = TimespanList()
-        start_offsets = [self.value_start_offset(), argument.value_start_offset()]
-        stop_offsets = [self.value_stop_offset(), argument.value_stop_offset()]
+        start_offsets = [self.start_offset, argument.start_offset]
+        stop_offsets = [self.stop_offset, argument.stop_offset]
         start_offsets.sort()
         stop_offsets.sort()
         timespan_1 = dataclasses.replace(
@@ -805,9 +805,9 @@ class Timespan:
     def _as_postscript(
         self, postscript_x_offset, postscript_y_offset, postscript_scale
     ):
-        start = float(self.value_start_offset().fraction) * postscript_scale
+        start = float(self.start_offset.fraction) * postscript_scale
         start -= postscript_x_offset
-        stop = float(self.value_stop_offset().fraction) * postscript_scale
+        stop = float(self.stop_offset.fraction) * postscript_scale
         stop -= postscript_x_offset
         strings = [
             f"{_fpa(start)} {_fpa(postscript_y_offset)} moveto",
@@ -824,10 +824,7 @@ class Timespan:
 
     def _can_fuse(self, argument):
         if isinstance(argument, type(self)):
-            return (
-                bool(self & argument)
-                or self.value_stop_offset() == argument.value_start_offset()
-            )
+            return bool(self & argument) or self.stop_offset == argument.start_offset
         return False
 
     def axis(self) -> _duration.Offset:
@@ -840,7 +837,7 @@ class Timespan:
             Offset(Fraction(5, 1))
 
         """
-        start_offset, stop_offset = self.value_start_offset(), self.value_stop_offset()
+        start_offset, stop_offset = self.start_offset, self.stop_offset
         assert isinstance(start_offset, _duration.Offset)
         assert isinstance(stop_offset, _duration.Offset)
         fraction = (start_offset.fraction + stop_offset.fraction) / 2
@@ -865,7 +862,7 @@ class Timespan:
         unit_duration = self.duration() / sum(proportion)
         part_durations = [numerator * unit_duration for numerator in proportion]
         start_offsets = _math.cumulative_sums(
-            [self.value_start_offset()] + part_durations, start=None
+            [self.start_offset] + part_durations, start=None
         )
         offset_pairs = _sequence.nwise(start_offsets)
         result = [Timespan(*offset_pair) for offset_pair in offset_pairs]
@@ -881,8 +878,8 @@ class Timespan:
             Duration(10, 1)
 
         """
-        start_offset = self.value_start_offset()
-        stop_offset = self.value_stop_offset()
+        start_offset = self.start_offset
+        stop_offset = self.stop_offset
         assert isinstance(start_offset, _duration.Offset)
         assert isinstance(stop_offset, _duration.Offset)
         return stop_offset - start_offset
@@ -897,7 +894,7 @@ class Timespan:
             (Offset(Fraction(0, 1)), Offset(Fraction(10, 1)))
 
         """
-        start_offset, stop_offset = self.value_start_offset(), self.value_stop_offset()
+        start_offset, stop_offset = self.start_offset, self.stop_offset
         assert isinstance(start_offset, _duration.Offset)
         assert isinstance(stop_offset, _duration.Offset)
         return start_offset, stop_offset
@@ -958,7 +955,7 @@ class Timespan:
             True
 
         """
-        return self.value_start_offset() < self.value_stop_offset()
+        return self.start_offset < self.stop_offset
 
     def reflect(self, axis: _duration.Offset | None = None) -> Timespan:
         """
@@ -983,8 +980,8 @@ class Timespan:
         if axis is None:
             axis = self.axis()
         assert isinstance(axis, _duration.Offset), repr(axis)
-        start_distance = self.value_start_offset() - axis
-        stop_distance = self.value_stop_offset() - axis
+        start_distance = self.start_offset - axis
+        stop_distance = self.stop_offset - axis
         new_start_offset = axis - stop_distance
         new_stop_offset = axis - start_distance
         return self.set_offsets(new_start_offset, new_stop_offset)
@@ -1016,12 +1013,12 @@ class Timespan:
         """
         multiplier = abs(fractions.Fraction(multiplier))
         assert 0 < multiplier
-        start_offset = self.value_start_offset()
+        start_offset = self.start_offset
         assert isinstance(start_offset, _duration.Offset), repr(start_offset)
         new_start_offset = _duration.Offset(
             int(round(start_offset.fraction / multiplier)) * multiplier
         )
-        stop_offset = self.value_stop_offset()
+        stop_offset = self.stop_offset
         assert isinstance(stop_offset, _duration.Offset), repr(stop_offset)
         new_stop_offset = _duration.Offset(
             int(round(stop_offset.fraction / multiplier)) * multiplier
@@ -1065,8 +1062,8 @@ class Timespan:
         assert isinstance(multiplier, fractions.Fraction), repr(repr(multiplier))
         assert 0 < multiplier
         new_duration = multiplier * self.duration()
-        start_offset = self.value_start_offset()
-        stop_offset = self.value_stop_offset()
+        start_offset = self.start_offset
+        stop_offset = self.stop_offset
         assert isinstance(start_offset, _duration.Offset)
         assert isinstance(stop_offset, _duration.Offset)
         if anchor == _enums.LEFT:
@@ -1095,7 +1092,7 @@ class Timespan:
 
         """
         assert isinstance(duration, _duration.Duration), repr(duration)
-        start_offset = self.value_start_offset()
+        start_offset = self.start_offset
         assert isinstance(start_offset, _duration.Offset), repr(start_offset)
         new_stop_offset = start_offset + duration
         return dataclasses.replace(self, stop_offset=new_stop_offset)
@@ -1135,8 +1132,8 @@ class Timespan:
             assert isinstance(start_offset, _duration.Offset), repr(start_offset)
         if stop_offset is not None:
             assert isinstance(stop_offset, _duration.Offset), repr(stop_offset)
-        self_start_offset = self.value_start_offset()
-        self_stop_offset = self.value_stop_offset()
+        self_start_offset = self.start_offset
+        self_stop_offset = self.stop_offset
         assert isinstance(self_start_offset, _duration.Offset)
         assert isinstance(self_stop_offset, _duration.Offset)
         if start_offset is not None and 0 <= start_offset.fraction:
@@ -1184,9 +1181,9 @@ class Timespan:
         """
         assert isinstance(offset, _duration.Offset), repr(offset)
         result = TimespanList()
-        if self.value_start_offset() < offset < self.value_stop_offset():
-            self_start_offset = self.value_start_offset()
-            self_stop_offset = self.value_stop_offset()
+        if self.start_offset < offset < self.stop_offset:
+            self_start_offset = self.start_offset
+            self_stop_offset = self.stop_offset
             assert isinstance(self_start_offset, _duration.Offset)
             assert isinstance(self_stop_offset, _duration.Offset)
             left = dataclasses.replace(
@@ -1234,7 +1231,7 @@ class Timespan:
         offsets = [
             offset
             for offset in offsets
-            if self.value_start_offset() < offset < self.value_stop_offset()
+            if self.start_offset < offset < self.stop_offset
         ]
         offsets = sorted(set(offsets))
         result = TimespanList()
@@ -1293,17 +1290,17 @@ class Timespan:
         assert isinstance(multiplier, fractions.Fraction), repr(multiplier)
         assert 0 < multiplier
         if anchor is None:
-            self_start_offset = self.value_start_offset()
+            self_start_offset = self.start_offset
             assert isinstance(self_start_offset, _duration.Offset)
             anchor = self_start_offset
         assert isinstance(anchor, _duration.Offset), repr(anchor)
         new_start_offset_duration = (
-            multiplier * (self.value_start_offset() - anchor)
+            multiplier * (self.start_offset - anchor)
         ) + anchor.fraction
         assert isinstance(new_start_offset_duration, _duration.Duration)
         new_start_offset = _duration.Offset(new_start_offset_duration.fraction())
         new_stop_offset_duration = (
-            multiplier * (self.value_stop_offset() - anchor)
+            multiplier * (self.stop_offset - anchor)
         ) + anchor.fraction
         assert isinstance(new_stop_offset_duration, _duration.Duration)
         new_stop_offset = _duration.Offset(new_stop_offset_duration.fraction())
@@ -1354,9 +1351,9 @@ class Timespan:
         assert isinstance(stop_offset_translation, _duration.Duration), repr(
             stop_offset_translation
         )
-        self_start_offset = self.value_start_offset()
+        self_start_offset = self.start_offset
         assert isinstance(self_start_offset, _duration.Offset)
-        self_stop_offset = self.value_stop_offset()
+        self_stop_offset = self.stop_offset
         assert isinstance(self_stop_offset, _duration.Offset)
         new_start_offset = self_start_offset + start_offset_translation
         new_stop_offset = self_stop_offset + stop_offset_translation
@@ -1365,12 +1362,6 @@ class Timespan:
             start_offset=new_start_offset,
             stop_offset=new_stop_offset,
         )
-
-    def value_start_offset(self) -> _duration.Offset | _math.NegativeInfinity:
-        return self.start_offset
-
-    def value_stop_offset(self) -> _duration.Offset | _math.Infinity:
-        return self.stop_offset
 
 
 @dataclasses.dataclass(slots=True)
@@ -1775,18 +1766,18 @@ class TimespanList(list):
         maximum: _duration.Offset
         minimum: _duration.Offset
         if isinstance(range_, Timespan):
-            start_offset = range_.value_start_offset()
+            start_offset = range_.start_offset
             assert isinstance(start_offset, _duration.Offset)
-            stop_offset = range_.value_stop_offset()
+            stop_offset = range_.stop_offset
             assert isinstance(stop_offset, _duration.Offset)
             minimum = start_offset
             maximum = stop_offset
         elif range_ is not None:
             minimum, maximum = range_
         else:
-            self_start_offset = self.value_start_offset()
+            self_start_offset = self.start_offset()
             assert isinstance(self_start_offset, _duration.Offset)
-            self_stop_offset = self.value_stop_offset()
+            self_stop_offset = self.stop_offset()
             assert isinstance(self_stop_offset, _duration.Offset)
             minimum, maximum = self_start_offset, self_stop_offset
         if scale is None:
@@ -1957,11 +1948,11 @@ class TimespanList(list):
         if len(self) <= 1:
             return True
         timespans = sorted(self[:])
-        last_stop_offset = timespans[0].value_stop_offset()
+        last_stop_offset = timespans[0].stop_offset
         for timespan in timespans[1:]:
-            if timespan.value_start_offset() != last_stop_offset:
+            if timespan.start_offset != last_stop_offset:
                 return False
-            last_stop_offset = timespan.value_stop_offset()
+            last_stop_offset = timespan.stop_offset
         return True
 
     def all_are_nonoverlapping(self) -> bool:
@@ -2009,12 +2000,12 @@ class TimespanList(list):
         if len(self) <= 1:
             return True
         timespans = sorted(self[:])
-        last_stop_offset = timespans[0].value_stop_offset()
+        last_stop_offset = timespans[0].stop_offset
         for timespan in timespans[1:]:
-            if timespan.value_start_offset() < last_stop_offset:
+            if timespan.start_offset < last_stop_offset:
                 return False
-            if last_stop_offset < timespan.value_stop_offset():
-                last_stop_offset = timespan.value_stop_offset()
+            if last_stop_offset < timespan.stop_offset:
+                last_stop_offset = timespan.stop_offset
         return True
 
     def all_are_wellformed(self) -> bool:
@@ -2106,8 +2097,8 @@ class TimespanList(list):
 
         """
         if self:
-            start_offset = self.value_start_offset()
-            stop_offset = self.value_stop_offset()
+            start_offset = self.start_offset()
+            stop_offset = self.stop_offset()
             assert isinstance(start_offset, _duration.Offset)
             assert isinstance(stop_offset, _duration.Offset)
             fraction = (start_offset.fraction + stop_offset.fraction) / 2
@@ -2156,8 +2147,8 @@ class TimespanList(list):
             Duration(0, 1)
 
         """
-        start_offset = self.value_start_offset()
-        stop_offset = self.value_stop_offset()
+        start_offset = self.start_offset()
+        stop_offset = self.stop_offset()
         if isinstance(start_offset, _duration.Offset) and isinstance(
             stop_offset, _duration.Offset
         ):
@@ -2203,20 +2194,14 @@ class TimespanList(list):
             return True
         pairs = _sequence.nwise(self)
         for left_timespan, right_timespan in pairs:
-            if right_timespan.value_start_offset() < left_timespan.value_start_offset():
+            if right_timespan.start_offset < left_timespan.start_offset:
                 return False
-            if (
-                left_timespan.value_start_offset()
-                == right_timespan.value_start_offset()
-            ):
-                if (
-                    right_timespan.value_stop_offset()
-                    < left_timespan.value_stop_offset()
-                ):
+            if left_timespan.start_offset == right_timespan.start_offset:
+                if right_timespan.stop_offset < left_timespan.stop_offset:
                     return False
         return True
 
-    def value_start_offset(self) -> _duration.Offset | _math.NegativeInfinity:
+    def start_offset(self) -> _duration.Offset | _math.NegativeInfinity:
         """
         Gets start offset.
 
@@ -2233,7 +2218,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.value_start_offset()
+            >>> timespans.start_offset()
             Offset(Fraction(0, 1))
 
         ..  container:: example
@@ -2249,23 +2234,23 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.value_start_offset()
+            >>> timespans.start_offset()
             Offset(Fraction(-2, 1))
 
         ..  container:: example
 
             Gets negative infinity when timespan list is empty:
 
-            >>> abjad.TimespanList().value_start_offset()
+            >>> abjad.TimespanList().start_offset()
             NegativeInfinity()
 
         """
         if self:
-            return min([timespan.value_start_offset() for timespan in self])
+            return min([timespan.start_offset for timespan in self])
         else:
             return negative_infinity
 
-    def value_stop_offset(self) -> _duration.Offset | _math.Infinity:
+    def stop_offset(self) -> _duration.Offset | _math.Infinity:
         """
         Gets stop offset.
 
@@ -2282,7 +2267,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.value_stop_offset()
+            >>> timespans.stop_offset()
             Offset(Fraction(10, 1))
 
         ..  container:: example
@@ -2298,19 +2283,19 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
-            >>> timespans.value_stop_offset()
+            >>> timespans.stop_offset()
             Offset(Fraction(30, 1))
 
         ..  container:: example
 
             Gets infinity when timespan list is empty:
 
-            >>> abjad.TimespanList().value_stop_offset()
+            >>> abjad.TimespanList().stop_offset()
             Infinity()
 
         """
         if self:
-            return max([timespan.value_stop_offset() for timespan in self])
+            return max([timespan.stop_offset for timespan in self])
         else:
             return infinity
 
@@ -2361,7 +2346,7 @@ class TimespanList(list):
 
         Returns timespan.
         """
-        return Timespan(self.value_start_offset(), self.value_stop_offset())
+        return Timespan(self.start_offset(), self.stop_offset())
 
     ### PUBLIC METHODS ###
 
@@ -2461,21 +2446,21 @@ class TimespanList(list):
                 if anchor is _enums.LEFT:
                     new_timespan = timespan.set_duration(minimum)
                 else:
-                    new_start_offset = timespan.value_stop_offset() - minimum
+                    new_start_offset = timespan.stop_offset - minimum
                     new_timespan = dataclasses.replace(
                         timespan,
                         start_offset=new_start_offset,
-                        stop_offset=timespan.value_stop_offset(),
+                        stop_offset=timespan.stop_offset,
                     )
             elif maximum is not None and maximum < timespan.duration():
                 if anchor is _enums.LEFT:
                     new_timespan = timespan.set_duration(maximum)
                 else:
-                    new_start_offset = timespan.value_stop_offset() - maximum
+                    new_start_offset = timespan.stop_offset - maximum
                     new_timespan = dataclasses.replace(
                         timespan,
                         start_offset=new_start_offset,
-                        stop_offset=timespan.value_stop_offset(),
+                        stop_offset=timespan.stop_offset,
                     )
             else:
                 new_timespan = timespan
@@ -2877,7 +2862,7 @@ class TimespanList(list):
 
             >>> mapping = timespans.compute_overlap_factor_mapping()
             >>> for timespan, overlap_factor in mapping.items():
-            ...     timespan.value_start_offset(), timespan.value_stop_offset(), overlap_factor
+            ...     timespan.start_offset, timespan.stop_offset, overlap_factor
             ...
             (Offset(Fraction(0, 1)), Offset(Fraction(5, 1)), Fraction(1, 1))
             (Offset(Fraction(5, 1)), Offset(Fraction(10, 1)), Fraction(2, 1))
@@ -3141,7 +3126,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespan = abjad.Timespan(abjad.mvo(2), abjad.mvo(5))
-            >>> time_relation = lambda _: timespan.value_start_offset() < _.value_start_offset() < timespan.value_stop_offset()
+            >>> time_relation = lambda _: timespan.start_offset < _.start_offset < timespan.stop_offset
             >>> timespan = timespans.timespan_that_satisfies_time_relation(
             ...     time_relation
             ... )
@@ -3173,7 +3158,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespan = abjad.Timespan(abjad.mvo(2), abjad.mvo(8))
-            >>> time_relation = lambda _: timespan.value_start_offset() < _.value_start_offset() < timespan.value_stop_offset()
+            >>> time_relation = lambda _: timespan.start_offset < _.start_offset < timespan.stop_offset
             >>> timespans = timespans.timespans_that_satisfy_time_relation(
             ...     time_relation
             ... )
@@ -3204,7 +3189,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespan = abjad.Timespan(abjad.mvo(2), abjad.mvo(8))
-            >>> time_relation = lambda _: timespan.value_start_offset() < _.value_start_offset() < timespan.value_stop_offset()
+            >>> time_relation = lambda _: timespan.start_offset < _.start_offset < timespan.stop_offset
             >>> timespans.has_timespan_that_satisfies_time_relation(time_relation)
             True
 
@@ -3304,20 +3289,20 @@ class TimespanList(list):
         timespan_lists = []
         timespans = sorted(self[:])
         current_list = type(self)([timespans[0]])
-        latest_stop_offset = current_list[0].value_stop_offset()
+        latest_stop_offset = current_list[0].stop_offset
         for current_timespan in timespans[1:]:
-            if current_timespan.value_start_offset() < latest_stop_offset:
+            if current_timespan.start_offset < latest_stop_offset:
                 current_list.append(current_timespan)
             elif (
                 include_tangent_timespans
-                and current_timespan.value_start_offset() == latest_stop_offset
+                and current_timespan.start_offset == latest_stop_offset
             ):
                 current_list.append(current_timespan)
             else:
                 timespan_lists.append(current_list)
                 current_list = type(self)([current_timespan])
-            if latest_stop_offset < current_timespan.value_stop_offset():
-                latest_stop_offset = current_timespan.value_stop_offset()
+            if latest_stop_offset < current_timespan.stop_offset:
+                latest_stop_offset = current_timespan.stop_offset
         if current_list:
             timespan_lists.append(current_list)
         return tuple(timespan_lists)
@@ -3433,18 +3418,16 @@ class TimespanList(list):
         """
         assert isinstance(stop_offset, _duration.Offset), repr(stop_offset)
         assert self.is_sorted()
-        assert self.value_stop_offset() <= stop_offset
+        assert self.stop_offset() <= stop_offset
         current_timespan_index = 0
         if self:
-            while self.value_stop_offset() < stop_offset:
+            while self.stop_offset() < stop_offset:
                 current_timespan = self[current_timespan_index]
-                translation = (
-                    self.value_stop_offset() - current_timespan.value_start_offset()
-                )
+                translation = self.stop_offset() - current_timespan.start_offset
                 new_timespan = current_timespan.translate(translation)
                 self.append(new_timespan)
                 current_timespan_index += 1
-            if stop_offset < self.value_stop_offset():
+            if stop_offset < self.stop_offset():
                 self[-1] = self[-1].set_offsets(stop_offset=stop_offset)
         return self
 
@@ -3500,10 +3483,10 @@ class TimespanList(list):
             return self
         left_timespans = self[:-elements_to_move]
         right_timespans = self[-elements_to_move:]
-        split_offset = right_timespans[0].value_start_offset()
-        translation_to_left = split_offset - self.value_start_offset()
+        split_offset = right_timespans[0].start_offset
+        translation_to_left = split_offset - self.start_offset()
         translation_to_left *= -1
-        translation_to_right = self.value_stop_offset() - split_offset
+        translation_to_right = self.stop_offset() - split_offset
         translated_right_timespans = []
         for right_timespan in right_timespans:
             translated_right_timespan = right_timespan.translate_offsets(
@@ -3747,9 +3730,9 @@ class TimespanList(list):
         during_list = type(self)()
         after_list = type(self)()
         for timespan in self:
-            if timespan.value_stop_offset() <= offset:
+            if timespan.stop_offset <= offset:
                 before_list.append(timespan)
-            elif offset <= timespan.value_start_offset():
+            elif offset <= timespan.start_offset:
                 after_list.append(timespan)
             else:
                 during_list.append(timespan)
@@ -3797,11 +3780,7 @@ class TimespanList(list):
         timespan_lists = [self]
         if not self:
             return timespan_lists
-        offsets = [
-            x
-            for x in offsets
-            if self.value_start_offset() < x < self.value_stop_offset()
-        ]
+        offsets = [x for x in offsets if self.start_offset() < x < self.stop_offset()]
         for offset in offsets:
             shards = [x for x in timespan_lists[-1].split_at_offset(offset) if x]
             if shards:
@@ -3858,7 +3837,7 @@ class TimespanList(list):
         assert isinstance(multiplier, fractions.Fraction), repr(multiplier)
         timespans = []
         if anchor is None:
-            self_start_offset = self.value_start_offset()
+            self_start_offset = self.start_offset()
             assert isinstance(self_start_offset, _duration.Offset)
             anchor = self_start_offset
         assert isinstance(anchor, _duration.Offset), repr(anchor)
@@ -4007,8 +3986,8 @@ def _make_timespan_list_markup(
     for level, timespans in enumerate(exploded_timespan_lists, 0):
         postscript_y_offset = height - (level * 3) - 0.5
         for timespan in timespans:
-            offset_mapping[timespan.value_start_offset()] = level
-            offset_mapping[timespan.value_stop_offset()] = level
+            offset_mapping[timespan.start_offset] = level
+            offset_mapping[timespan.stop_offset] = level
             strings = timespan._as_postscript(
                 postscript_x_offset, postscript_y_offset, postscript_scale
             )
@@ -4050,7 +4029,7 @@ def _make_timespan_list_markup(
     )
     string = "\n".join(postscript_strings)
     postscript = string
-    x_extent = float(timespans.value_stop_offset().fraction)
+    x_extent = float(timespans.stop_offset().fraction)
     x_extent *= postscript_scale
     x_extent += postscript_x_offset
     y_extent = height + 1.5

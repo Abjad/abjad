@@ -358,7 +358,7 @@ class VerticalMoment:
         """
         result = []
         for component in self.components():
-            if component._get_timespan().value_start_offset() == self.offset():
+            if component._get_timespan().start_offset == self.offset():
                 result.append(component)
         return tuple(result)
 
@@ -475,10 +475,10 @@ def iterate_vertical_moments(components, *, reverse=False):
     """
     moments = []
     components = _select.components(components)
-    components.sort(key=lambda _: _._get_timespan().value_start_offset())
+    components.sort(key=lambda _: _._get_timespan().start_offset)
     offset_to_components = dict()
     for component in components:
-        start_offset = component._get_timespan().value_start_offset()
+        start_offset = component._get_timespan().start_offset
         if start_offset not in offset_to_components:
             offset_to_components[start_offset] = []
     # TODO: optimize with bisect
@@ -487,7 +487,7 @@ def iterate_vertical_moments(components, *, reverse=False):
         timespan = component._get_timespan()
         for offset, list_ in offset_to_components.items():
             if (
-                timespan.value_start_offset() <= offset < timespan.value_stop_offset()
+                timespan.start_offset <= offset < timespan.stop_offset
                 and component not in list_
             ):
                 list_.append(component)

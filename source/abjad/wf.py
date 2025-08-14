@@ -148,7 +148,7 @@ def check_beamed_long_notes(argument) -> tuple[list, int]:
         if stop_wrapper.leaked_start_offset() < start_wrapper.leaked_start_offset():
             violators.append(leaf)
             continue
-        leaf_start_offset = leaf._get_timespan().value_start_offset()
+        leaf_start_offset = leaf._get_timespan().start_offset
         if stop_wrapper.leaked_start_offset() == leaf_start_offset:
             violators.append(leaf)
     return violators, total
@@ -492,7 +492,7 @@ def check_overlapping_beams(argument) -> tuple[list, int]:
     violators, total = [], 0
     context_name_to_wrappers = _aggregate_context_wrappers(argument)
     for _, wrappers in context_name_to_wrappers.items():
-        wrappers.sort(key=lambda _: _get.timespan(_.component()).value_start_offset())
+        wrappers.sort(key=lambda _: _get.timespan(_.component()).start_offset)
         open_beam_count = 0
         for wrapper in wrappers:
             if _get.is_grace_music(wrapper.component()) is True:
