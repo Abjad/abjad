@@ -36,6 +36,81 @@ def durations(items: list) -> list[Duration]:
     return durations
 
 
+def is_duration(argument: object) -> bool:
+    """
+    Is true when ``argument`` is duration (but not fraction).
+
+    ..  container:: example
+
+        >>> abjad.duration.is_duration(abjad.Duration(1, 4))
+        True
+
+        >>> abjad.duration.is_duration(abjad.Fraction(1, 4))
+        False
+
+        >>> abjad.duration.is_duration(abjad.Offset(abjad.Fraction(1, 4)))
+        False
+
+        >>> abjad.duration.is_duration((1, 4))
+        False
+
+        >>> abjad.duration.is_duration(0)
+        False
+
+    """
+    return type(argument).__name__ == "Duration"
+
+
+def is_fraction(argument: object) -> bool:
+    """
+    Is true when ``argument`` is fraction (but not duration).
+
+    ..  container:: example
+
+        >>> abjad.duration.is_fraction(abjad.Duration(1, 4))
+        False
+
+        >>> abjad.duration.is_fraction(abjad.Fraction(1, 4))
+        True
+
+        >>> abjad.duration.is_fraction(abjad.Offset(abjad.Fraction(1, 4)))
+        False
+
+        >>> abjad.duration.is_fraction((1, 4))
+        False
+
+        >>> abjad.duration.is_fraction(0)
+        False
+
+    """
+    return type(argument).__name__ == "Fraction"
+
+
+def is_offset(argument: object) -> bool:
+    """
+    Is true when ``argument`` is offset.
+
+    ..  container:: example
+
+        >>> abjad.duration.is_offset(abjad.Duration(1, 4))
+        False
+
+        >>> abjad.duration.is_offset(abjad.Fraction(1, 4))
+        False
+
+        >>> abjad.duration.is_offset(abjad.Offset(abjad.Fraction(1, 4)))
+        True
+
+        >>> abjad.duration.is_offset((1, 4))
+        False
+
+        >>> abjad.duration.is_offset(0)
+        False
+
+    """
+    return type(argument).__name__ == "Offset"
+
+
 def offset(n: int, d: int | None = None) -> Offset:
     """
     Makes offset from ``n``.
@@ -1273,11 +1348,7 @@ class Offset:
             else:
                 assert isinstance(result, fractions.Fraction), repr(result)
                 fraction = result
-            return Offset(
-                fraction,
-                # TODO: uncomment
-                # displacement=self.displacement,
-            )
+            return Offset(fraction, displacement=self.displacement)
 
     def __truediv__(self, argument):
         raise NotImplementedError
@@ -1286,3 +1357,20 @@ class Offset:
         if self.displacement is None:
             return Duration(0)
         return self.displacement
+
+    def remove_displacement(self):
+        """
+        Makes new offset equal to this offset without displacement.
+
+        ..  container:: example
+
+            >>> duration = abjad.Duration(-1, 16)
+            >>> offset = abjad.Offset(abjad.Fraction(1, 4), displacement=duration)
+            >>> offset
+            Offset(Fraction(1, 4), displacement=Duration(-1, 16))
+
+            >>> offset.remove_displacement()
+            Offset(Fraction(1, 4))
+
+        """
+        return Offset(self.fraction)

@@ -576,8 +576,8 @@ class MetricModulation:
             (2, 3)
 
         """
-        left_duration = _getlib._get_duration(self.left_rhythm)
-        right_duration = _getlib._get_duration(self.right_rhythm)
+        left_duration = _getlib.get_duration(self.left_rhythm)
+        right_duration = _getlib.get_duration(self.right_rhythm)
         fraction = left_duration / right_duration
         pair = (fraction.numerator, fraction.denominator)
         return pair
