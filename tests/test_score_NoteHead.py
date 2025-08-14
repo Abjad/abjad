@@ -4,8 +4,8 @@ import abjad
 
 
 def test_NoteHead___cmp___01():
-    note_head_1 = abjad.NoteHead(12)
-    note_head_2 = abjad.NoteHead(12)
+    note_head_1 = abjad.NoteHead(abjad.NamedPitch("c''"))
+    note_head_2 = abjad.NoteHead(abjad.NamedPitch("c''"))
 
     assert not note_head_1 < note_head_2
     assert note_head_1 <= note_head_2
@@ -16,32 +16,8 @@ def test_NoteHead___cmp___01():
 
 
 def test_NoteHead___cmp___02():
-    note_head_1 = abjad.NoteHead(12)
-    note_head_2 = abjad.NoteHead(13)
-
-    assert not note_head_2 < note_head_1
-    assert not note_head_2 <= note_head_1
-    assert not note_head_2 == note_head_1
-    assert note_head_2 != note_head_1
-    assert note_head_2 > note_head_1
-    assert note_head_2 >= note_head_1
-
-
-def test_NoteHead___cmp___03():
-    note_head_1 = abjad.NoteHead(12)
-    note_head_2 = abjad.NoteHead("c''")
-
-    assert not note_head_1 < note_head_2
-    assert note_head_1 <= note_head_2
-    assert note_head_1 == note_head_2
-    assert not note_head_1 != note_head_2
-    assert not note_head_1 > note_head_2
-    assert note_head_1 >= note_head_2
-
-
-def test_NoteHead___cmp___04():
-    note_head_1 = abjad.NoteHead(12)
-    note_head_2 = 13
+    note_head_1 = abjad.NoteHead(abjad.NamedPitch("c''"))
+    note_head_2 = abjad.NoteHead(abjad.NamedPitch("cs''"))
 
     assert not note_head_2 < note_head_1
     assert not note_head_2 <= note_head_1
@@ -52,7 +28,7 @@ def test_NoteHead___cmp___04():
 
 
 def test_NoteHead___copy___01():
-    note_head_1 = abjad.NoteHead("cs''")
+    note_head_1 = abjad.NoteHead(abjad.NamedPitch("cs''"))
     note_head_1.set_is_cautionary(True)
     note_head_1.set_is_forced(True)
     abjad.tweak(note_head_1, r"\tweak color #red")
@@ -71,7 +47,7 @@ def test_NoteHead___copy___01():
 
 
 def test_NoteHead___deepcopy___01():
-    note_head_1 = abjad.NoteHead("cs''")
+    note_head_1 = abjad.NoteHead(abjad.NamedPitch("cs''"))
     abjad.tweak(note_head_1, r"\tweak color #red")
     note_head_1.set_is_cautionary(True)
     note_head_1.set_is_forced(True)
@@ -90,28 +66,10 @@ def test_NoteHead___deepcopy___01():
 
 def test_NoteHead___init___01():
     """
-    Initializes note-head by number.
-    """
-
-    notehead = abjad.NoteHead(6)
-    assert notehead.written_pitch() == abjad.NamedPitch(6)
-
-
-def test_NoteHead___init___02():
-    """
-    Initializes note-head by LilyPond-style pitch string.
-    """
-
-    notehead = abjad.NoteHead("cs,,,")
-    assert notehead.written_pitch() == abjad.NamedPitch("cs,,,")
-
-
-def test_NoteHead___init___03():
-    """
     Initializes note-head by other note-head instance.
     """
 
-    notehead = abjad.NoteHead(6)
+    notehead = abjad.NoteHead(abjad.NamedPitch("fs'"))
     new = abjad.NoteHead(notehead)
 
     assert notehead is not new
@@ -119,18 +77,21 @@ def test_NoteHead___init___03():
     assert new.written_pitch() != 6
 
 
-def test_NoteHead___init___04():
+def test_NoteHead___init___02():
     """
     Initializes note-head with tweak manager.
     """
 
-    note_head = abjad.NoteHead("cs''", tweaks=[abjad.Tweak(r"\tweak color #red")])
+    note_head = abjad.NoteHead(
+        abjad.NamedPitch("cs''"),
+        tweaks=[abjad.Tweak(r"\tweak color #red")],
+    )
 
     assert abjad.lilypond(note_head) == "\\tweak color #red\ncs''"
 
 
 def test_NoteHead_is_forced_01():
-    note_head = abjad.NoteHead(written_pitch="c'")
+    note_head = abjad.NoteHead(abjad.NamedPitch("c'"))
     assert note_head.is_forced() is None
     note_head.set_is_forced(True)
     assert note_head.is_forced() is True
@@ -139,7 +100,7 @@ def test_NoteHead_is_forced_01():
 
 
 def test_NoteHead_is_parenthesized_01():
-    note_head = abjad.NoteHead(written_pitch="c'")
+    note_head = abjad.NoteHead(abjad.NamedPitch("c'"))
     assert note_head.is_parenthesized() is None
     note_head.set_is_parenthesized(True)
     assert note_head.is_parenthesized() is True
@@ -148,7 +109,7 @@ def test_NoteHead_is_parenthesized_01():
 
 
 def test_NoteHead_is_parenthesized_02():
-    note_head = abjad.NoteHead(written_pitch="c'")
+    note_head = abjad.NoteHead(abjad.NamedPitch("c'"))
     note_head.set_is_parenthesized(True)
     assert abjad.lilypond(note_head) == abjad.string.normalize(
         r"""
@@ -186,20 +147,6 @@ def test_NoteHead_is_parenthesized_04():
 
 def test_NoteHead_written_pitch_01():
     """
-    Sets note-head head pitch with integer.
-    """
-
-    note = abjad.Note(13, (1, 4))
-    note.note_head().set_written_pitch(14)
-
-    "NoteHead(d'')"
-
-    assert abjad.lilypond(note.note_head()) == "d''"
-    assert note.note_head().written_pitch() != 14
-
-
-def test_NoteHead_written_pitch_02():
-    """
     Sets note-head pitch with pitch.
     """
 
@@ -212,7 +159,7 @@ def test_NoteHead_written_pitch_02():
     assert note.note_head().written_pitch() != 14
 
 
-def test_NoteHead_written_pitch_03():
+def test_NoteHead_written_pitch_02():
     """
     Sets note-head pitch from another note or note-head.
     Makes sure this does not cause reference problems.

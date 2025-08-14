@@ -2589,7 +2589,11 @@ class Chord(Leaf):
         if not are_parenthesized:
             are_parenthesized = [None] * len(written_pitches)
         for written_pitch, is_cautionary, is_forced, is_parenthesized in zip(
-            written_pitches, are_cautionary, are_forced, are_parenthesized
+            written_pitches,
+            are_cautionary,
+            are_forced,
+            are_parenthesized,
+            strict=True,
         ):
             if not is_cautionary:
                 is_cautionary = False
@@ -2599,7 +2603,7 @@ class Chord(Leaf):
                 is_parenthesized = False
             if written_pitch not in _lyconst.drums:
                 note_head = NoteHead(
-                    written_pitch=written_pitch,
+                    written_pitch=_pitch.NamedPitch(written_pitch),
                     is_cautionary=is_cautionary,
                     is_forced=is_forced,
                     is_parenthesized=is_parenthesized,
@@ -2717,7 +2721,8 @@ class Chord(Leaf):
             >>> chord = abjad.Chord("<g' c'' e''>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> chord.set_note_heads("c' d' fs'")
+            >>> pitches = [abjad.NamedPitch(_) for _ in "c' d' fs'".split()]
+            >>> chord.set_note_heads(pitches)
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -2733,7 +2738,8 @@ class Chord(Leaf):
                 >>> chord = abjad.Chord("<g' c'' e''>4")
                 >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> chord.set_note_heads([16, 17, 19])
+            >>> pitches = [abjad.NamedPitch(_) for _ in [16, 17, 19]]
+            >>> chord.set_note_heads(pitches)
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -2805,7 +2811,8 @@ class Chord(Leaf):
             >>> chord = abjad.Chord("<e' g' c''>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> chord.set_written_pitches("f' b' d''")
+            >>> pitches =[abjad.NamedPitch(_) for _ in "f' b' d''".split()]
+            >>> chord.set_written_pitches(pitches)
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -3303,7 +3310,8 @@ class NoteHead:
 
     ..  container:: example
 
-        >>> note_head = abjad.NoteHead("cs''")
+        >>> pitch = abjad.NamedPitch("cs''")
+        >>> note_head = abjad.NoteHead(pitch)
         >>> abjad.tweak(note_head, r"\tweak color #red")
         >>> note_head.tweaks
         (Tweak(string='\\tweak color #red', i=None, tag=None),)
@@ -3352,8 +3360,9 @@ class NoteHead:
 
     def __init__(
         self,
-        written_pitch=None,
+        written_pitch=_pitch.NamedPitch("c'"),
         *,
+        # TODO: change to booleans
         is_cautionary=None,
         is_forced=None,
         is_parenthesized=None,
@@ -3367,8 +3376,6 @@ class NoteHead:
             written_pitch = note_head.written_pitch()
             is_cautionary = note_head.is_cautionary()
             is_forced = note_head.is_forced()
-        elif written_pitch is None:
-            written_pitch = 0
         self.set_written_pitch(written_pitch)
         self.set_is_cautionary(is_cautionary)
         self.set_is_forced(is_forced)
@@ -3386,7 +3393,7 @@ class NoteHead:
         ..  container:: example
 
             >>> import copy
-            >>> note_head = abjad.NoteHead(13)
+            >>> note_head = abjad.NoteHead(abjad.NamedPitch(13))
             >>> copy.copy(note_head)
             NoteHead("cs''")
 
@@ -3403,8 +3410,8 @@ class NoteHead:
 
     def __eq__(self, argument: object) -> bool:
         """
-        Is true when ```argument`` is a note-head with written pitch equal to that of
-        this note-head.
+        Is true when ```argument`` is a note-head with written pitch equal to
+        that of this note-head.
         """
         if isinstance(argument, type(self)):
             return self.written_pitch() == argument.written_pitch()
@@ -3418,8 +3425,8 @@ class NoteHead:
 
     def __lt__(self, argument) -> bool:
         """
-        Is true when ``argument`` is a note-head with written pitch greater than that of
-        this note-head.
+        Is true when ``argument`` is a note-head with written pitch greater
+        than that of this note-head.
         """
         if isinstance(argument, type(self)):
             return self.written_pitch() < argument.written_pitch()
@@ -3435,18 +3442,18 @@ class NoteHead:
 
         ..  container:: example
 
-            >>> note_head = abjad.NoteHead(13)
-            >>> note_head
+            >>> abjad.NoteHead(abjad.NamedPitch(13))
             NoteHead("cs''")
 
         """
         strings = []
-        if isinstance(self.written_pitch(), _pitch.NamedPitch):
-            string = self.written_pitch().name()
+        self_written_pitch = self.written_pitch()
+        if isinstance(self_written_pitch, _pitch.NamedPitch):
+            string = self_written_pitch.name()
             strings.append(repr(string))
         # drum note head:
-        elif isinstance(self.written_pitch(), str):
-            string = repr(self.written_pitch())
+        elif isinstance(self_written_pitch, str):
+            string = repr(self_written_pitch)
             strings.append(string)
         if self.is_cautionary():
             string = f"is_cautionary={self.is_cautionary()!r}"
@@ -3465,12 +3472,16 @@ class NoteHead:
 
     def _get_chord_string(self) -> str:
         result = ""
-        if self.written_pitch():
-            result = self.written_pitch().name()
-            if self.is_forced():
-                result += "!"
-            if self.is_cautionary():
-                result += "?"
+        self_written_pitch = self.written_pitch()
+        if isinstance(self_written_pitch, _pitch.NamedPitch):
+            result = self_written_pitch.name()
+        else:
+            assert isinstance(self_written_pitch, str)
+            result = self_written_pitch
+        if self.is_forced():
+            result += "!"
+        if self.is_cautionary():
+            result += "?"
         return result
 
     def _get_note_head_strings(self):
@@ -3534,7 +3545,8 @@ class NoteHead:
 
             Survives pitch reassignment:
 
-            >>> note.set_written_pitch("D5")
+            >>> pitch = abjad.NamedPitch("D5")
+            >>> note.set_written_pitch(pitch)
             >>> abjad.show(note) # doctest: +SKIP
 
             >>> string = abjad.lilypond(note, tags=True)
@@ -3575,7 +3587,7 @@ class NoteHead:
 
             Suvives pitch reassignment:
 
-            >>> chord.note_heads()[0].set_written_pitch("B3")
+            >>> chord.note_heads()[0].set_written_pitch(abjad.NamedPitch("B3"))
             >>> abjad.show(chord) # doctest: +SKIP
 
             >>> string = abjad.lilypond(chord, tags=True)
@@ -3723,32 +3735,41 @@ class NoteHead:
             argument = bool(argument)
         self._is_parenthesized = argument
 
-    def written_pitch(self) -> _pitch.NamedPitch:
+    def written_pitch(self) -> _pitch.NamedPitch | str:
         """
         Gets and sets written pitch of note-head.
 
         ..  container:: example
 
-            >>> note_head = abjad.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead(abjad.NamedPitch("cs''"))
             >>> note_head.written_pitch()
             NamedPitch("cs''")
-
-            >>> note_head = abjad.NoteHead("cs''")
-            >>> note_head.set_written_pitch("d''")
-            >>> note_head.written_pitch()
-            NamedPitch("d''")
 
         """
         return self._written_pitch
 
-    def set_written_pitch(self, argument):
+    def set_written_pitch(self, argument: _pitch.NamedPitch | str) -> None:
         """
-        Sets written pitch.
+        Sets written pitch of note-head.
+
+        ..  container:: example
+
+            >>> note_head = abjad.NoteHead(abjad.NamedPitch("cs''"))
+            >>> note_head.set_written_pitch(abjad.NamedPitch("d''"))
+            >>> note_head.written_pitch()
+            NamedPitch("d''")
+
         """
-        written_pitch = _pitch.NamedPitch(argument)
-        self._written_pitch = written_pitch
+        pitch: _pitch.NamedPitch | str
+        if isinstance(argument, str):
+            assert argument in _lyconst.drums, repr(repr(argument))
+            pitch = _lyconst.drums[argument]
+        else:
+            assert isinstance(argument, _pitch.NamedPitch), repr(argument)
+            pitch = _pitch.NamedPitch(argument)
+        self._written_pitch = pitch
         if self.alternative() is not None:
-            self.alternative()[0].set_written_pitch(written_pitch)
+            self.alternative()[0].set_written_pitch(pitch)
 
 
 class DrumNoteHead(NoteHead):
@@ -3776,7 +3797,7 @@ class DrumNoteHead(NoteHead):
     ) -> None:
         NoteHead.__init__(
             self,
-            written_pitch=None,
+            written_pitch=written_pitch,
             is_cautionary=is_cautionary,
             is_forced=is_forced,
             is_parenthesized=is_parenthesized,
@@ -3793,7 +3814,9 @@ class NoteHeadList(list):
 
     ..  container:: example
 
-        >>> for _ in abjad.NoteHeadList([11, 10, 9]): _
+        >>> pitches = [abjad.NamedPitch(_) for _ in [11, 10, 9]]
+        >>> note_heads = [abjad.NoteHead(_) for _ in pitches]
+        >>> for _ in abjad.NoteHeadList(note_heads): _
         NoteHead("a'")
         NoteHead("bf'")
         NoteHead("b'")
@@ -3844,10 +3867,10 @@ class NoteHeadList(list):
                 <ef'>4
 
             >>> note_heads = []
-            >>> note_head = abjad.NoteHead("cs''")
+            >>> note_head = abjad.NoteHead(abjad.NamedPitch("cs''"))
             >>> abjad.tweak(note_head, r"\tweak color #blue")
             >>> note_heads.append(note_head)
-            >>> note_head = abjad.NoteHead("f''")
+            >>> note_head = abjad.NoteHead(abjad.NamedPitch("f''"))
             >>> abjad.tweak(note_head, r"\tweak color #green")
             >>> note_heads.append(note_head)
             >>> chord.note_heads().extend(note_heads)
@@ -4072,7 +4095,7 @@ class Note(Leaf):
         if written_pitch is not None:
             if written_pitch not in _lyconst.drums:
                 note_head = NoteHead(
-                    written_pitch=written_pitch,
+                    written_pitch=_pitch.NamedPitch(written_pitch),
                     is_cautionary=is_cautionary,
                     is_forced=is_forced,
                     is_parenthesized=is_parenthesized,
@@ -4142,7 +4165,8 @@ class Note(Leaf):
                 >>> print(string)
                 cs''8.
 
-            >>> note.set_note_head("D5")
+            >>> note_head = abjad.NoteHead(abjad.NamedPitch("D5"))
+            >>> note.set_note_head(note_head)
             >>> note.note_head()
             NoteHead("d''")
 
@@ -4198,54 +4222,33 @@ class Note(Leaf):
         """
         return Leaf.set_written_duration(self, argument)
 
-    # TODO: change Note always to have a note head
-    def written_pitch(self) -> _pitch.NamedPitch | None:
+    def written_pitch(self) -> _pitch.NamedPitch | str:
         """
-        Gets and sets written pitch.
+        Gets written pitch of note.
 
         ..  container:: example
 
-            >>> note = abjad.Note("cs''8.")
-            >>> note.written_pitch()
+            >>> abjad.Note("cs''8.").written_pitch()
             NamedPitch("cs''")
 
-            >>> abjad.show(note) # doctest: +SKIP
+        """
+        return self.note_head().written_pitch()
 
-            ..  docs::
+    def set_written_pitch(self, pitch: _pitch.NamedPitch) -> None:
+        """
+        Sets written pitch of note.
 
-                >>> string = abjad.lilypond(note)
-                >>> print(string)
-                cs''8.
+        ..  container:: example
 
-            >>> note.set_written_pitch("D5")
-            >>> note.written_pitch()
-            NamedPitch("d''")
-
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(note)
-                >>> print(string)
-                d''8.
+            >>> note = abjad.Note("c''8")
+            >>> pitch = abjad.NamedPitch("D5")
+            >>> note.set_written_pitch(pitch)
+            >>> note
+            Note("d''8")
 
         """
-        if self.note_head() is not None:
-            return self.note_head().written_pitch()
-        else:
-            return None
-
-    def set_written_pitch(self, argument):
-        if argument is None:
-            if self.note_head() is not None:
-                self.note_head().set_written_pitch(None)
-        else:
-            if self.note_head() is None:
-                note_head = NoteHead(self, written_pitch=None)
-                self.set_note_head(note_head)
-            else:
-                pitch = _pitch.NamedPitch(argument)
-                self.note_head().set_written_pitch(pitch)
+        assert isinstance(pitch, _pitch.NamedPitch), repr(pitch)
+        self.note_head().set_written_pitch(pitch)
 
     ### PUBLIC METHODS ###
 

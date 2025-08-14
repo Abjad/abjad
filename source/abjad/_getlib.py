@@ -140,7 +140,7 @@ def get_effective_wrapper(
 
 def get_sounding_pitch(note: _score.Note) -> _pitch.NamedPitch:
     note_written_pitch = note.written_pitch()
-    assert note_written_pitch is not None
+    assert isinstance(note_written_pitch, _pitch.NamedPitch)
     if "sounding pitch" in note._get_indicators(str):
         return note_written_pitch
     else:

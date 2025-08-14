@@ -99,8 +99,9 @@ def respell_with_flats(argument) -> None:
     for leaf in _iterate.leaves(argument):
         if isinstance(leaf, _score.Note):
             written_pitch = leaf.written_pitch()
-            assert written_pitch is not None
+            assert isinstance(written_pitch, _pitch.NamedPitch)
             written_pitch = written_pitch.respell(accidental="flats")
+            assert isinstance(written_pitch, _pitch.NamedPitch)
             leaf.set_written_pitch(written_pitch)
         elif isinstance(leaf, _score.Chord):
             for note_head in leaf.note_heads():
@@ -154,8 +155,9 @@ def respell_with_sharps(argument) -> None:
     for leaf in _iterate.leaves(argument):
         if isinstance(leaf, _score.Note):
             written_pitch = leaf.written_pitch()
-            assert written_pitch is not None
+            assert isinstance(written_pitch, _pitch.NamedPitch)
             written_pitch = written_pitch.respell(accidental="sharps")
+            assert isinstance(written_pitch, _pitch.NamedPitch)
             leaf.set_written_pitch(written_pitch)
         elif isinstance(leaf, _score.Chord):
             for note_head in leaf.note_heads():

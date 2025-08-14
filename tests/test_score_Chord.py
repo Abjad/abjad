@@ -454,42 +454,12 @@ def test_Chord_written_pitches_02():
     assert chord_1.written_pitches() == chord_2.written_pitches()
 
 
-def test_Chord_written_pitches_03():
+def test_Chord_set_written_pitches_01():
     """
-    Sets written pitches with pitch numbers.
-    """
-
-    chord = abjad.Chord([], (1, 4))
-    chord.set_written_pitches([4, 3, 2])
-    assert abjad.lilypond(chord) == "<d' ef' e'>4"
-
-    chord.set_written_pitches((4, 3, 2))
-    assert abjad.lilypond(chord) == "<d' ef' e'>4"
-
-
-def test_Chord_written_pitches_04():
-    """
-    Sets written pitches with pitches.
+    Sets written pitches.
     """
 
     chord = abjad.Chord([], (1, 4))
-    chord.set_written_pitches(
-        [
-            abjad.NamedPitch(4),
-            abjad.NamedPitch(3),
-            abjad.NamedPitch(2),
-        ]
-    )
-
-    assert abjad.lilypond(chord) == "<d' ef' e'>4"
-
-
-def test_Chord_written_pitches_05():
-    """
-    Sets written pitches with both pitches and pitch numbers.
-    """
-
-    chord = abjad.Chord([], (1, 4))
-    chord.set_written_pitches([4, abjad.NamedPitch(3), abjad.NamedPitch(2)])
-
+    pitches = [abjad.NamedPitch(_) for _ in [4, 3, 2]]
+    chord.set_written_pitches(pitches)
     assert abjad.lilypond(chord) == "<d' ef' e'>4"

@@ -9,7 +9,7 @@ def test_NoteHeadList___contains___01():
     assert abjad.NamedPitch(17) in chord.note_heads()
     assert abjad.NamedPitch("f''") in chord.note_heads()
     assert chord.note_heads()[1] in chord.note_heads()
-    assert abjad.NoteHead("f''") in chord.note_heads()
+    assert abjad.NoteHead(abjad.NamedPitch("f''")) in chord.note_heads()
 
 
 def test_NoteHeadList___contains___02():
@@ -19,8 +19,8 @@ def test_NoteHeadList___contains___02():
     assert 18.0 not in chord.note_heads()
     assert not abjad.NamedPitch(18) in chord.note_heads()
     assert not abjad.NamedPitch("fs''") in chord.note_heads()
-    assert not abjad.NoteHead(18) in chord.note_heads()
-    assert not abjad.NoteHead("fs''") in chord.note_heads()
+    assert not abjad.NoteHead(abjad.NamedPitch(18)) in chord.note_heads()
+    assert not abjad.NoteHead(abjad.NamedPitch("fs''")) in chord.note_heads()
 
 
 def test_NoteHeadList___delitem___01():
@@ -55,17 +55,6 @@ def test_NoteHeadList___len___01():
 
 def test_NoteHeadList___setitem___01():
     """
-    Sets note-head with pitch number.
-    """
-
-    chord = abjad.Chord("<c' d'>4")
-    chord.note_heads()[1] = 4
-
-    assert abjad.lilypond(chord) == "<c' e'>4"
-
-
-def test_NoteHeadList___setitem___02():
-    """
     Sets note-head with pitch.
     """
 
@@ -75,13 +64,13 @@ def test_NoteHeadList___setitem___02():
     assert abjad.lilypond(chord) == "<c' e'>4"
 
 
-def test_NoteHeadList___setitem___03():
+def test_NoteHeadList___setitem___02():
     """
     Sets note-head with tweaked note-head.
     """
 
     chord = abjad.Chord("<c' cs'' f''>4")
-    note_head = abjad.NoteHead(3)
+    note_head = abjad.NoteHead(abjad.NamedPitch(3))
     abjad.tweak(note_head, r"\tweak color #red")
     chord.note_heads()[0] = note_head
 
@@ -105,7 +94,7 @@ def test_NoteHeadList_append_01():
     """
 
     chord = abjad.Chord("<c' d'>4")
-    note_head = abjad.NoteHead("b'")
+    note_head = abjad.NoteHead(abjad.NamedPitch("b'"))
     abjad.tweak(note_head, r"\tweak style #'harmonic")
     chord.note_heads().append(note_head)
 
