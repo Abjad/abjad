@@ -410,16 +410,16 @@ class Meter:
                 uqbar.graphs.Edge().attach(
                     node_mapping[node.parent], node_mapping[node]
                 )
-        offset = leaves[0].value_start_offset()
+        offset = leaves[0].start_offset()
         offset_subgraph = uqbar.graphs.Graph(
             name="cluster_offsets", attributes={"style": "rounded"}
         )
         graph.append(offset_subgraph)
         make_offset_node(offset, leaves[0])
         for one, two in _sequence.nwise(leaves):
-            offset = one.value_stop_offset()
+            offset = one.stop_offset()
             make_offset_node(offset, one, two)
-        offset = leaves[-1].value_stop_offset()
+        offset = leaves[-1].stop_offset()
         make_offset_node(offset, leaves[-1], is_last=True)
         return graph
 
@@ -468,11 +468,11 @@ class Meter:
         assert isinstance(nodes, list)
         for node in nodes:
             pair = _duration.pair_with_denominator(
-                node.value_start_offset().fraction, self.denominator()
+                node.start_offset().fraction, self.denominator()
             )
             start_offset = pair
             pair = _duration.pair_with_denominator(
-                node.value_stop_offset().fraction, self.denominator()
+                node.stop_offset().fraction, self.denominator()
             )
             stop_offset = pair
             yield start_offset, stop_offset
@@ -535,7 +535,7 @@ class Meter:
         all_offsets.add(_duration.Offset(fraction))
         for depth, nodes in sorted(self.root_node()._depthwise_inventory().items()):
             for node in nodes:
-                all_offsets.add(node.value_start_offset())
+                all_offsets.add(node.start_offset())
             inventory.append(tuple(sorted(all_offsets)))
         return tuple(inventory)
 
@@ -2134,8 +2134,8 @@ class Meter:
             fractions_ = [
                 (_.fraction * prolation) + first_offset.fraction for _ in offsets
             ]
-            value_offsets = [_duration.Offset(_) for _ in fractions_]
-            offset_inventory.append(tuple(value_offsets))
+            offsets = [_duration.Offset(_) for _ in fractions_]
+            offset_inventory.append(tuple(offsets))
         # build boundary offset inventory, if applicable
         if boundary_depth is not None:
             boundary_offsets = offset_inventory[boundary_depth]
@@ -2936,8 +2936,8 @@ class _MeterFittingSession:
             count = self.offset_counter().sorted_offset_to_count[offset]
             assert isinstance(count, int)
             duration = offset - start_offset
-            value_offset = _duration.Offset(duration.fraction())
-            offset_to_weight[value_offset] = count
+            offset = _duration.Offset(duration.fraction())
+            offset_to_weight[offset] = count
             index += 1
             if index == len(self.ordered_offsets()):
                 break
