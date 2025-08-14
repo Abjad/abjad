@@ -156,12 +156,6 @@ from .instruments import (
 from .io import graph, show
 from .label import ColorMap
 from .lilypondfile import Block, LilyPondFile
-from .lyproxy import (
-    LilyPondContext,
-    LilyPondEngraver,
-    LilyPondGrob,
-    LilyPondGrobInterface,
-)
 from .math import Infinity, NegativeInfinity
 from .meter import Meter, MetricAccentKernel
 from .metricmodulation import MetricModulation
@@ -340,11 +334,7 @@ __all__ = [
     "Leaf",
     "LEFT",
     "LESS",
-    "LilyPondContext",
-    "LilyPondEngraver",
     "LilyPondFile",
-    "LilyPondGrob",
-    "LilyPondGrobInterface",
     "LilyPondLiteral",
     "LilyPondOverride",
     "LilyPondParserError",
