@@ -5620,3 +5620,11 @@ class StaffPosition:
 
     def __post_init__(self):
         assert isinstance(self.number, int), repr(self.number)
+
+
+def pitches(items: list[float]) -> list[NamedPitch]:
+    """
+    Changes ``items`` to pitches.
+    """
+    pitches = [NamedPitch(_) for _ in items]
+    return pitches

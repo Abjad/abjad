@@ -92,7 +92,7 @@ def test_NoteHead___init___02():
 
 def test_NoteHead_is_forced_01():
     note_head = abjad.NoteHead(abjad.NamedPitch("c'"))
-    assert note_head.is_forced() is None
+    assert note_head.is_forced() is False
     note_head.set_is_forced(True)
     assert note_head.is_forced() is True
     note_head.set_is_forced(False)
@@ -101,7 +101,7 @@ def test_NoteHead_is_forced_01():
 
 def test_NoteHead_is_parenthesized_01():
     note_head = abjad.NoteHead(abjad.NamedPitch("c'"))
-    assert note_head.is_parenthesized() is None
+    assert note_head.is_parenthesized() is False
     note_head.set_is_parenthesized(True)
     assert note_head.is_parenthesized() is True
     note_head.set_is_parenthesized(False)
@@ -150,7 +150,7 @@ def test_NoteHead_written_pitch_01():
     Sets note-head pitch with pitch.
     """
 
-    note = abjad.Note(13, (1, 4))
+    note = abjad.Note("cs''4")
     note.note_head().set_written_pitch(abjad.NamedPitch(14))
 
     "NoteHead(d'')"
@@ -165,8 +165,8 @@ def test_NoteHead_written_pitch_02():
     Makes sure this does not cause reference problems.
     """
 
-    n1 = abjad.Note(12, (1, 4))
-    n2 = abjad.Note(14, (1, 4))
+    n1 = abjad.Note("c''4")
+    n2 = abjad.Note("d''4")
     n1.set_written_pitch(n2.written_pitch())
 
     assert n1.written_pitch() == abjad.NamedPitch(14)

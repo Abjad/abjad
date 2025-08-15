@@ -1073,9 +1073,13 @@ def test__iterlib_are_logical_voice_27():
     Logical voice can not extend across differently named implicit voices.
     """
 
-    voice = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
+    pitches = abjad.pitch.pitches([0, 1, 2, 3])
+    duration = abjad.Duration(1, 8)
+    notes = [abjad.Note.from_pitch_and_duration(_, duration) for _ in pitches]
+    voice = abjad.Voice(notes)
     container = abjad.Container([voice])
-    notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
+    pitches = abjad.pitch.pitches([4, 5, 6, 7])
+    notes = [abjad.Note.from_pitch_and_duration(_, duration) for _ in pitches]
     container = abjad.Container([container] + notes)
 
     assert abjad.lilypond(container) == abjad.string.normalize(
@@ -1109,11 +1113,10 @@ def test__iterlib_are_logical_voice_28():
     Logical voice can not extend across differently named implicit voices.
     """
 
-    voice = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
-    voice.set_name("foo")
+    voice = abjad.Voice("c'8 cs' d' ef'", name="foo")
     container = abjad.Container([voice])
-    notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
-    container = abjad.Container([container] + notes)
+    container = abjad.Container([container])
+    container.extend("e'8 f'8 fs'8 g'8")
 
     r"""
     {
@@ -1143,12 +1146,10 @@ def test__iterlib_are_logical_voice_29():
     Logical voice can not extend across differently named implicit voices.
     """
 
-    voice_1 = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
-    voice_1.set_name("foo")
-    voice_2 = abjad.Voice([voice_1])
-    voice_2.set_name("bar")
-    notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
-    container = abjad.Container([voice_2] + notes)
+    voice_1 = abjad.Voice("c'8 cs'8 d'8 ef'8", name="foo")
+    voice_2 = abjad.Voice([voice_1], name="bar")
+    container = abjad.Container([voice_2])
+    container.extend("e'8 f'8 fs'8 g'8")
 
     assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
@@ -1182,10 +1183,10 @@ def test__iterlib_are_logical_voice_30():
     Logical voice can not extend across differently named implicit voices.
     """
 
-    voice_1 = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
+    voice_1 = abjad.Voice("c'8 cs'8 d'8 ef'8")
     voice_2 = abjad.Voice([voice_1])
-    notes = [abjad.Note(n, (1, 8)) for n in range(4, 8)]
-    container = abjad.Container([voice_2] + notes)
+    container = abjad.Container([voice_2])
+    container.extend("e'8 f'8 fs'8 g'8")
 
     assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
@@ -1219,14 +1220,14 @@ def test__iterlib_are_logical_voice_31():
     Logical voice can not extend across differently named implicit voices.
     """
 
-    notes = [abjad.Note(n, (1, 8)) for n in range(4)]
+    container_1 = abjad.Container("c'8 cs'8 d'8 ef'8")
     voice_1 = abjad.Voice("c''8 c''8 c''8 c''8")
     voice_2 = abjad.Voice("c'8 c'8 c'8 c'8")
-    container = abjad.Container([voice_1, voice_2])
-    container.set_simultaneous(True)
-    container = abjad.Container(notes + [container])
+    container_2 = abjad.Container([voice_1, voice_2])
+    container_2.set_simultaneous(True)
+    container_1.append(container_2)
 
-    assert abjad.lilypond(container) == abjad.string.normalize(
+    assert abjad.lilypond(container_1) == abjad.string.normalize(
         r"""
         {
             c'8
@@ -1253,7 +1254,7 @@ def test__iterlib_are_logical_voice_31():
         """
     )
 
-    leaves = abjad.select.leaves(container)
+    leaves = abjad.select.leaves(container_1)
     assert not abjad._iterlib.are_logical_voice(leaves[:8])
     assert not abjad._iterlib.are_logical_voice(leaves[4:])
 

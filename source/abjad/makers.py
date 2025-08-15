@@ -140,11 +140,19 @@ def _make_tied_leaf(
     leaves = []
     for numerator in numerators:
         written_duration = _duration.Duration(numerator, duration_pair[1])
-        if pitches is not None:
+        if isinstance(pitches, _pitch.NamedPitch):
+            leaf = class_.from_pitch_and_duration(
+                pitches,
+                written_duration,
+                multiplier=multiplier,
+                tag=tag,
+            )
+        elif pitches is not None:
             arguments = (pitches, written_duration)
+            leaf = class_(*arguments, multiplier=multiplier, tag=tag)
         else:
             arguments = (written_duration,)
-        leaf = class_(*arguments, multiplier=multiplier, tag=tag)
+            leaf = class_(*arguments, multiplier=multiplier, tag=tag)
         leaves.append(leaf)
     if 1 < len(leaves):
         if not issubclass(class_, _score.Rest | _score.Skip):

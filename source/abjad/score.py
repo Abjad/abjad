@@ -2,6 +2,8 @@
 Classes to model score components.
 """
 
+from __future__ import annotations
+
 import collections
 import copy
 import fractions
@@ -101,7 +103,13 @@ class Component:
 
         Returns new component.
         """
-        component = type(self)(*self.__getnewargs__(), tag=self.tag())
+        if isinstance(self, Note):
+            component = type(self).from_pitch_and_duration(
+                self.written_pitch(),
+                self.written_duration(),
+            )
+        else:
+            component = type(self)(*self.__getnewargs__(), tag=self.tag())
         if hasattr(self, "identifier"):
             component.set_identifier(self.identifier())
         if hasattr(self, "lilypond_type"):
@@ -2617,6 +2625,7 @@ class Chord(Leaf):
                     is_parenthesized=is_parenthesized,
                 )
             if isinstance(written_pitch, NoteHead):
+                assert all(isinstance(_, _tweaks.Tweak) for _ in written_pitch.tweaks)
                 note_head.tweaks = copy.deepcopy(written_pitch.tweaks)
             self._note_heads.append(note_head)
         if len(arguments) == 1 and isinstance(arguments[0], Leaf):
@@ -3362,11 +3371,10 @@ class NoteHead:
         self,
         written_pitch=_pitch.NamedPitch("c'"),
         *,
-        # TODO: change to booleans
-        is_cautionary=None,
-        is_forced=None,
-        is_parenthesized=None,
-        tweaks=None,
+        is_cautionary=False,
+        is_forced=False,
+        is_parenthesized=False,
+        tweaks=(),
     ):
         self._alternative = None
         tweaks_ = ()
@@ -3381,7 +3389,7 @@ class NoteHead:
         self.set_is_forced(is_forced)
         self.set_is_parenthesized(is_parenthesized)
         self.tweaks = None
-        if tweaks is not None:
+        if tweaks:
             assert all(isinstance(_, _tweaks.Tweak) for _ in tweaks)
             tweaks_ = tweaks_ + tuple(tweaks)
         self.tweaks = tweaks_
@@ -3653,11 +3661,12 @@ class NoteHead:
         """
         return self._is_cautionary
 
-    def set_is_cautionary(self, argument):
+    def set_is_cautionary(self, argument: bool) -> None:
         """
         Sets cautionary accidental flag.
         """
-        self._is_cautionary = bool(argument)
+        assert isinstance(argument, bool), repr(argument)
+        self._is_cautionary = argument
 
     def is_forced(self) -> bool:
         """
@@ -3688,12 +3697,11 @@ class NoteHead:
         """
         return self._is_forced
 
-    def set_is_forced(self, argument):
+    def set_is_forced(self, argument: bool) -> None:
         """
         Sets forced accidental flag.
         """
-        if argument is not None:
-            argument = bool(argument)
+        assert isinstance(argument, bool), repr(argument)
         self._is_forced = argument
 
     def is_parenthesized(self) -> bool:
@@ -3727,12 +3735,11 @@ class NoteHead:
         """
         return self._is_parenthesized
 
-    def set_is_parenthesized(self, argument):
+    def set_is_parenthesized(self, argument: bool) -> None:
         """
         Sets parenthesized accidental flag.
         """
-        if argument is not None:
-            argument = bool(argument)
+        assert isinstance(argument, bool), repr(argument)
         self._is_parenthesized = argument
 
     def written_pitch(self) -> _pitch.NamedPitch | str:
@@ -4042,11 +4049,7 @@ class Note(Leaf):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_note_head",)
-
-    ### INITIALIZER ###
 
     def __init__(
         self,
@@ -4055,40 +4058,26 @@ class Note(Leaf):
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
-        assert len(arguments) in (0, 1, 2)
-        if len(arguments) == 1 and isinstance(arguments[0], str):
+        is_cautionary = False
+        is_forced = False
+        is_parenthesized = False
+        if len(arguments) == 0:
+            written_pitch = _pitch.NamedPitch("c'")
+            written_duration = _duration.Duration(1, 4)
+        elif len(arguments) == 1:
+            assert isinstance(arguments[0], str), repr(arguments)
             string = f"{{ {arguments[0]} }}"
             parsed = self._parse_lilypond_string(string, language=language)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             arguments = tuple([parsed[0]])
-        written_pitch = None
-        is_cautionary = False
-        is_forced = False
-        is_parenthesized = False
-        if len(arguments) == 1 and isinstance(arguments[0], Leaf):
             leaf = arguments[0]
-            written_pitch = None
             written_duration = leaf.written_duration()
             if multiplier is None:
                 multiplier = leaf.multiplier()
-            if isinstance(leaf, Note) and leaf.note_head() is not None:
-                written_pitch = leaf.note_head().written_pitch()
-                is_cautionary = leaf.note_head().is_cautionary()
-                is_forced = leaf.note_head().is_forced()
-                is_parenthesized = leaf.note_head().is_parenthesized()
-            # TODO: move into separate from_chord() constructor:
-            elif isinstance(leaf, Chord):
-                written_pitches = [_.written_pitch() for _ in leaf.note_heads()]
-                if written_pitches:
-                    written_pitch = written_pitches[0]
-                    is_cautionary = leaf.note_heads()[0].is_cautionary()
-                    is_forced = leaf.note_heads()[0].is_forced()
-                    is_parenthesized = leaf.note_heads()[0].is_parenthesized()
-        elif len(arguments) == 2:
-            written_pitch, written_duration = arguments
-        elif len(arguments) == 0:
-            written_pitch = _pitch.NamedPitch("C4")
-            written_duration = _duration.Duration(1, 4)
+            written_pitch = leaf.note_head().written_pitch()
+            is_cautionary = leaf.note_head().is_cautionary()
+            is_forced = leaf.note_head().is_forced()
+            is_parenthesized = leaf.note_head().is_parenthesized()
         else:
             raise ValueError(f"can not initialize note from {arguments!r}.")
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
@@ -4117,9 +4106,7 @@ class Note(Leaf):
         if len(arguments) == 1 and isinstance(arguments[0], Leaf):
             self._copy_override_and_set_from_leaf(arguments[0])
 
-    ### SPECIAL METHODS ###
-
-    def __copy__(self, *arguments) -> "Note":
+    def __copy__(self, *arguments) -> Note:
         """
         Copies note.
         """
@@ -4134,8 +4121,6 @@ class Note(Leaf):
         """
         return (self.written_pitch(), self.written_duration())
 
-    ### PRIVATE METHODS ###
-
     def _get_body(self) -> list[str]:
         duration = self._get_formatted_duration()
         if self.note_head() is not None:
@@ -4146,6 +4131,38 @@ class Note(Leaf):
 
     def _get_compact_representation(self) -> str:
         return self._get_body()[0]
+
+    @staticmethod
+    def from_pitch_and_duration(
+        pitch: _pitch.NamedPitch,
+        duration: _duration.Duration,
+        *,
+        multiplier: tuple[int, int] | None = None,
+        tag: _tag.Tag | None = None,
+    ) -> Note:
+        """
+        Makes note from ``pitch`` and ``duration``.
+
+        ..  container:: example
+
+            >>> pitch = abjad.NamedPitch("C#5")
+            >>> duration = abjad.Duration(3, 16)
+            >>> note = abjad.Note.from_pitch_and_duration(pitch, duration)
+            >>> abjad.show(note) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(note)
+                >>> print(string)
+                cs''8.
+
+        """
+        note = Note()
+        note.set_written_pitch(pitch)
+        note.set_written_duration(duration)
+        note.set_multiplier(multiplier)
+        note.set_tag(tag)
+        return note
 
     def note_head(self) -> NoteHead:
         """
@@ -4193,18 +4210,6 @@ class Note(Leaf):
             note_head = NoteHead(written_pitch=argument)
             self._note_head = note_head
 
-    def written_duration(self) -> _duration.Duration:
-        """
-        Gets written duration of note.
-
-        ..  container:: example
-
-            >>> abjad.Note("cs''8.").written_duration()
-            Duration(3, 16)
-
-        """
-        return super().written_duration()
-
     def set_written_duration(self, argument):
         """
         Sets written duration of note.
@@ -4222,19 +4227,7 @@ class Note(Leaf):
         """
         return Leaf.set_written_duration(self, argument)
 
-    def written_pitch(self) -> _pitch.NamedPitch | str:
-        """
-        Gets written pitch of note.
-
-        ..  container:: example
-
-            >>> abjad.Note("cs''8.").written_pitch()
-            NamedPitch("cs''")
-
-        """
-        return self.note_head().written_pitch()
-
-    def set_written_pitch(self, pitch: _pitch.NamedPitch) -> None:
+    def set_written_pitch(self, pitch: _pitch.NamedPitch | str) -> None:
         """
         Sets written pitch of note.
 
@@ -4247,30 +4240,34 @@ class Note(Leaf):
             Note("d''8")
 
         """
-        assert isinstance(pitch, _pitch.NamedPitch), repr(pitch)
+        if not isinstance(pitch, _pitch.NamedPitch):
+            assert isinstance(pitch, str), repr(pitch)
+            assert pitch in _lyconst.drums, repr(pitch)
         self.note_head().set_written_pitch(pitch)
 
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def from_pitch_and_duration(pitch, duration) -> "Note":
+    def written_duration(self) -> _duration.Duration:
         """
-        Makes note from ``pitch`` and ``duration``.
+        Gets written duration of note.
 
         ..  container:: example
 
-            >>> note = abjad.Note.from_pitch_and_duration("C#5", (3, 16))
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(note)
-                >>> print(string)
-                cs''8.
+            >>> abjad.Note("cs''8.").written_duration()
+            Duration(3, 16)
 
         """
-        note = Note(pitch, duration)
-        return note
+        return super().written_duration()
+
+    def written_pitch(self) -> _pitch.NamedPitch | str:
+        """
+        Gets written pitch of note.
+
+        ..  container:: example
+
+            >>> abjad.Note("cs''8.").written_pitch()
+            NamedPitch("cs''")
+
+        """
+        return self.note_head().written_pitch()
 
 
 class Rest(Leaf):

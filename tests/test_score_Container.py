@@ -1494,7 +1494,7 @@ def test_Container_append_02():
     tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
     abjad.Voice([tuplet])
     abjad.beam(tuplet[:])
-    tuplet.append(abjad.Note(5, (1, 16)), preserve_duration=True)
+    tuplet.append(abjad.Note("f'16"), preserve_duration=True)
 
     assert abjad.lilypond(tuplet) == abjad.string.normalize(
         r"""
@@ -1987,7 +1987,7 @@ def test_Container_insert_01():
 def test_Container_insert_02():
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:])
-    voice.insert(1, abjad.Note(1, (1, 8)))
+    voice.insert(1, abjad.Note("cs'8"))
 
     assert abjad.wf.is_wellformed(voice)
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -2007,7 +2007,7 @@ def test_Container_insert_02():
 
 
 def test_Container_insert_03():
-    voice = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
+    voice = abjad.Voice("c'8 cs'8 d'8 ef'8")
     abjad.beam(voice[:])
     voice.insert(4, abjad.Rest((1, 4)))
 
@@ -2033,7 +2033,7 @@ def test_Container_insert_04():
     Insert works with really big positive values.
     """
 
-    voice = abjad.Voice([abjad.Note(n, (1, 8)) for n in range(4)])
+    voice = abjad.Voice("c'8 cs'8 d'8 ef'8")
     abjad.beam(voice[:])
     voice.insert(1000, abjad.Rest((1, 4)))
 
@@ -2061,7 +2061,7 @@ def test_Container_insert_05():
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:])
-    voice.insert(-1, abjad.Note(4.5, (1, 8)))
+    voice.insert(-1, abjad.Note("eqs'8"))
 
     assert abjad.wf.is_wellformed(voice)
     assert abjad.lilypond(voice) == abjad.string.normalize(

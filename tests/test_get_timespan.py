@@ -59,7 +59,7 @@ def test_get_timespan_07():
 
 def test_get_timespan_08():
     tuplet_1 = abjad.Tuplet("3:2", "c'8 c'8 c'8")
-    voice = abjad.Voice([abjad.Note(0, (1, 8)), tuplet_1, abjad.Note(0, (1, 8))])
+    voice = abjad.Voice([abjad.Note("c'8"), tuplet_1, abjad.Note("c'8")])
     offset = abjad.duration.offset(0)
     pairs = [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]
     durations = abjad.duration.durations(pairs)
@@ -108,7 +108,7 @@ def test_get_timespan_11():
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    staff = abjad.Staff([abjad.Note(0, (1, 8)), voice, abjad.Note(0, (1, 8))])
+    staff = abjad.Staff([abjad.Note("c'8"), voice, abjad.Note("c'8")])
     leaves = abjad.select.leaves(staff)
     for i, leaf in enumerate(leaves):
         start_offset = abjad.get.timespan(leaf).start_offset
@@ -252,7 +252,7 @@ def test_get_timespan_20():
     """
 
     tuplet_1 = abjad.Tuplet("3:2", "c'8 c'8 c'8")
-    voice = abjad.Voice([abjad.Note(0, (1, 8)), tuplet_1, abjad.Note(0, (1, 8))])
+    voice = abjad.Voice([abjad.Note("c'8"), tuplet_1, abjad.Note("c'8")])
     assert abjad.get.timespan(voice[0]).start_offset == abjad.duration.offset(0, 8)
     assert abjad.get.timespan(voice[1]).start_offset == abjad.duration.offset(1, 8)
     assert abjad.get.timespan(voice[2]).start_offset == abjad.duration.offset(3, 8)
@@ -276,11 +276,9 @@ def test_get_timespan_22():
     Offsets work on nested contexts.
     """
 
-    inner_voice = abjad.Voice("c'8 d'8 e'8 f'8")
-    outer_voice = abjad.Voice([abjad.Note(0, (1, 8)), inner_voice])
-    inner_voice.set_name("voice")
-    outer_voice.set_name("voice")
-    abjad.Staff([abjad.Note(1, (1, 8)), outer_voice])
+    inner_voice = abjad.Voice("c'8 d'8 e'8 f'8", name="voice")
+    outer_voice = abjad.Voice([abjad.Note("c'8"), inner_voice], name="voice")
+    abjad.Staff([abjad.Note("cs'8"), outer_voice])
     assert abjad.get.timespan(inner_voice).start_offset == abjad.duration.offset(2, 8)
     assert abjad.get.timespan(outer_voice).start_offset == abjad.duration.offset(1, 8)
 

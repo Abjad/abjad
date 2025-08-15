@@ -6269,7 +6269,7 @@ class LilyPondSyntacticalDefinition:
                 duration = p[5].duration
             else:
                 duration = _duration.Duration(*p[5].duration)
-            leaf = _score.Note(p[1], duration, tag=self.tag)
+            leaf = _score.Note.from_pitch_and_duration(p[1], duration, tag=self.tag)
             leaf.note_head().set_is_forced(bool(p[2]))
             leaf.note_head().set_is_cautionary(bool(p[3]))
         else:
