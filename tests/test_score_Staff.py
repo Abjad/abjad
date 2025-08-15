@@ -395,7 +395,7 @@ def test_Staff___setitem___01():
     assert isinstance(staff[2], abjad.Chord)
     assert isinstance(staff[3], abjad.Tuplet)
     assert isinstance(staff[4], abjad.Tuplet)
-    staff[-1] = abjad.Note(13, (1, 4))
+    staff[-1] = abjad.Note("cs''4")
     assert len(staff) == 5
     assert abjad.wf.is_wellformed(staff)
     assert isinstance(staff[0], abjad.Rest)
@@ -450,7 +450,7 @@ def test_Staff___setitem___05():
     staff = abjad.Staff("c'4 c'4 c'4 c'4")
 
     with pytest.raises(AssertionError):
-        staff[0] = [abjad.Note(2, (1, 4)), abjad.Note(2, (1, 4))]
+        staff[0] = [abjad.Note("d'4"), abjad.Note("d'4")]
 
 
 def test_Staff___setitem___06():

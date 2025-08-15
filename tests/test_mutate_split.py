@@ -236,7 +236,7 @@ def test_mutate__set_leaf_duration_06():
     duration does not.
     """
 
-    note = abjad.Note(0, (1, 8), multiplier=(1, 2))
+    note = abjad.Note("c'8", multiplier=(1, 2))
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
@@ -253,7 +253,7 @@ def test_mutate__set_leaf_duration_07():
     written duration does not.
     """
 
-    note = abjad.Note(0, (1, 8), multiplier=(1, 2))
+    note = abjad.Note("c'8", multiplier=(1, 2))
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
@@ -270,7 +270,7 @@ def test_mutate__set_leaf_duration_08():
     written duration does not.
     """
 
-    note = abjad.Note(0, (1, 8), multiplier=(1, 2))
+    note = abjad.Note("c'8", multiplier=(1, 2))
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
@@ -287,7 +287,7 @@ def test_mutate__set_leaf_duration_09():
     written duration does not.
     """
 
-    note = abjad.Note(0, (1, 8), multiplier=(1, 2))
+    note = abjad.Note("c'8", multiplier=(1, 2))
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
@@ -304,7 +304,7 @@ def test_mutate__set_leaf_duration_10():
     LilyPond multiplier changes but leaf written duration does not.
     """
 
-    note = abjad.Note(0, (1, 8), multiplier=(1, 2))
+    note = abjad.Note("c'8", multiplier=(1, 2))
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
@@ -647,7 +647,7 @@ def test_mutate__split_leaf_by_durations_07():
     """
 
     note = abjad.Note("c'4")
-    after_grace = abjad.AfterGraceContainer([abjad.Note(0, (1, 32))])
+    after_grace = abjad.AfterGraceContainer([abjad.Note("c'32")])
     abjad.attach(after_grace, note)
 
     new_leaves = abjad.mutate._split_leaf_by_durations(note, [abjad.Duration(1, 8)])
@@ -679,7 +679,7 @@ def test_mutate__split_leaf_by_durations_08():
     """
 
     note = abjad.Note("c'4")
-    grace = abjad.AfterGraceContainer([abjad.Note(0, (1, 32))])
+    grace = abjad.AfterGraceContainer([abjad.Note("c'32")])
     abjad.attach(grace, note)
 
     new_leaves = abjad.mutate._split_leaf_by_durations(note, [abjad.Duration(5, 32)])
@@ -711,7 +711,7 @@ def test_mutate__split_leaf_by_durations_09():
     """
 
     note = abjad.Note("c'4")
-    grace = abjad.BeforeGraceContainer([abjad.Note(0, (1, 32))])
+    grace = abjad.BeforeGraceContainer([abjad.Note("c'32")])
     abjad.attach(grace, note)
 
     new_leaves = abjad.mutate._split_leaf_by_durations(note, [abjad.Duration(1, 16)])

@@ -10,7 +10,7 @@ def test_Note___copy___01():
     Copies note.
     """
 
-    note_1 = abjad.Note(12, (1, 4))
+    note_1 = abjad.Note("c''4")
     note_2 = copy.copy(note_1)
 
     assert isinstance(note_1, abjad.Note)
@@ -38,7 +38,7 @@ def test_Note___copy___03():
     Copies note with LilyPond grob overrides and LilyPond context settings.
     """
 
-    note_1 = abjad.Note(12, (1, 4))
+    note_1 = abjad.Note("c''4")
     abjad.override(note_1).Staff.NoteHead.color = "#red"
     abjad.override(note_1).Accidental.color = "#red"
     abjad.setting(note_1).tupletFullLength = True
@@ -194,7 +194,7 @@ def test_Note___init___02():
     Initializes note with pitch in octave zero.
     """
 
-    note = abjad.Note(-37, (1, 4))
+    note = abjad.Note("b,,,4")
 
     assert abjad.lilypond(note) == "b,,,4"
 
@@ -205,17 +205,8 @@ def test_Note___init___03():
     """
 
     with pytest.raises(abjad.AssignabilityError):
-        abjad.Note(0, (5, 8))
-
-
-def test_Note___init___04():
-    """
-    Initializes note with LilyPond-style pitch string.
-    """
-
-    note = abjad.Note("c,,", (1, 4))
-
-    assert abjad.lilypond(note) == "c,,4"
+        pitch = abjad.NamedPitch(0)
+        abjad.Note.from_pitch_and_duration(pitch, abjad.Duration(5, 8))
 
 
 def test_Note___init___05():
@@ -230,20 +221,6 @@ def test_Note___init___05():
 
 def test_Note__init__06():
     """
-    REGRESSION. Initializes note from other note with multiplier.
-    """
-
-    note = abjad.Note("cs''4", multiplier=(1, 1))
-
-    assert abjad.lilypond(note) == "cs''4 * 1/1"
-
-    new_note = abjad.Note(note)
-
-    assert abjad.lilypond(new_note) == "cs''4 * 1/1"
-
-
-def test_Note__init__07():
-    """
     Initializes note with French note names.
     """
 
@@ -252,64 +229,7 @@ def test_Note__init__07():
     assert abjad.lilypond(note) == "cs''8."
 
 
-def test_Note___init___08():
-    """
-    Initializes note from chord.
-    """
-
-    chord = abjad.Chord([2, 3, 4], (1, 4))
-    note = abjad.Note(chord)
-
-    assert abjad.lilypond(note) == abjad.string.normalize(
-        r"""
-        d'4
-        """
-    )
-
-    assert abjad.wf.is_wellformed(note)
-
-
-def test_Note___init___09():
-    """
-    Initializes note from tupletized chord.
-    """
-
-    chord = abjad.Chord([2, 3, 4], (1, 4))
-    chords = abjad.mutate.copy(chord, 3)
-    tuplet = abjad.Tuplet("3:2", chords)
-    note = abjad.Note(tuplet[0])
-
-    assert abjad.lilypond(note) == abjad.string.normalize(
-        r"""
-        d'4
-        """
-    )
-
-    assert abjad.wf.is_wellformed(note)
-
-
-def test_Note___init___10():
-    """
-    Initializes note from beamed chord.
-    """
-
-    chord = abjad.Chord([2, 3, 4], (1, 8))
-    chords = abjad.mutate.copy(chord, 3)
-    voice = abjad.Voice(chords)
-    abjad.beam(voice[:])
-    note = abjad.Note(voice[0])
-
-    assert abjad.lilypond(note) == abjad.string.normalize(
-        r"""
-        d'8
-        [
-        """
-    ), print(abjad.lilypond(note))
-
-    assert abjad.wf.is_wellformed(note)
-
-
-def test_Note___init___17():
+def test_Note___init___07():
     """
     Initializes note with cautionary accidental.
     """
@@ -319,7 +239,7 @@ def test_Note___init___17():
     assert abjad.lilypond(note) == "c'?4"
 
 
-def test_Note___init___18():
+def test_Note___init___08():
     """
     Initializes note with forced accidental.
     """
@@ -329,7 +249,7 @@ def test_Note___init___18():
     assert abjad.lilypond(note) == "c'!4"
 
 
-def test_Note___init___19():
+def test_Note___init___09():
     """
     Initializes note with both forced and cautionary accidental.
     """
@@ -339,18 +259,7 @@ def test_Note___init___19():
     assert abjad.lilypond(note) == "c'!?4"
 
 
-def test_Note___init___20():
-    """
-    Initializes note from chord with forced and cautionary accidental.
-    """
-
-    chord = abjad.Chord("<c'!? e' g'>4")
-    note = abjad.Note(chord)
-
-    assert abjad.lilypond(note) == "c'!?4"
-
-
-def test_Note___init___21():
+def test_Note___init___10():
     """
     Initializes note with drum pitch.
     """

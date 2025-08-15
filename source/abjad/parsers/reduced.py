@@ -446,19 +446,19 @@ class ReducedLyParser(Parser):
         """
         note_body : pitch
         """
-        p[0] = _score.Note(p[1], self._default_duration)
+        p[0] = _score.Note.from_pitch_and_duration(p[1], self._default_duration)
 
     def p_note_body__pitch__positive_leaf_duration(self, p):
         """
         note_body : pitch positive_leaf_duration
         """
-        p[0] = _score.Note(p[1], p[2])
+        p[0] = _score.Note.from_pitch_and_duration(p[1], p[2])
 
     def p_note_body__positive_leaf_duration(self, p):
         """
         note_body : positive_leaf_duration
         """
-        p[0] = _score.Note(0, p[1])
+        p[0] = _score.Note.from_pitch_and_duration(_pitch.NamedPitch(0), p[1])
 
     def p_pitch__PITCHNAME(self, p):
         """

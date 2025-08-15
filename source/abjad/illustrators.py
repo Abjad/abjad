@@ -66,8 +66,9 @@ def _illustrate_pitch_range(range_):
     stop_pitch = _pitch.NamedPitch(range_.stop_pitch())
     start_pitch_clef = _indicators.Clef.from_pitches([start_pitch])
     stop_pitch_clef = _indicators.Clef.from_pitches([stop_pitch])
-    start_note = _score.Note(range_.start_pitch(), 1)
-    stop_note = _score.Note(range_.stop_pitch(), 1)
+    duration = _duration.Duration(1)
+    start_note = _score.Note.from_pitch_and_duration(range_.start_pitch(), duration)
+    stop_note = _score.Note.from_pitch_and_duration(range_.stop_pitch(), duration)
     if start_pitch_clef == stop_pitch_clef:
         if start_pitch_clef == _indicators.Clef("bass"):
             bass_voice = _score.Voice(name="Bass_Voice")
@@ -149,11 +150,14 @@ def _illustrate_pitch_set(set_):
 
 
 def _illustrate_pitch_class_segment(
-    segment, markup_direction=_enums.UP, figure_name=None
+    segment,
+    markup_direction=_enums.UP,
+    figure_name=None,
 ):
     notes = []
     for item in segment:
-        note = _score.Note(item, _duration.Duration(1, 8))
+        pitch = _pitch.NamedPitch(item)
+        note = _score.Note.from_pitch_and_duration(pitch, _duration.Duration(1, 8))
         notes.append(note)
     markup = None
     if isinstance(figure_name, str):
@@ -531,13 +535,19 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
             if not treble_note_heads:
                 treble_leaf = _score.Rest(written_duration)
             elif len(treble_note_heads) == 1:
-                treble_leaf = _score.Note(treble_note_heads[0], written_duration)
+                treble_leaf = _score.Note.from_pitch_and_duration(
+                    _pitch.NamedPitch("C4"), written_duration
+                )
+                treble_leaf.set_note_head(treble_note_heads[0])
             else:
                 treble_leaf = _score.Chord(treble_note_heads, written_duration)
             if not bass_note_heads:
                 bass_leaf = _score.Rest(written_duration)
             elif len(bass_note_heads) == 1:
-                bass_leaf = _score.Note(bass_note_heads[0], written_duration)
+                bass_leaf = _score.Note.from_pitch_and_duration(
+                    _pitch.NamedPitch("C4"), written_duration
+                )
+                bass_leaf.set_note_head(bass_note_heads[0])
             else:
                 bass_leaf = _score.Chord(bass_note_heads, written_duration)
         else:

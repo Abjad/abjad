@@ -355,9 +355,11 @@ def tweak(
         _score.Tuplet,
     )
     assert isinstance(indicator, prototype), repr(indicator)
-    try:
-        tweaks_ = list(indicator.tweaks)
-    except AttributeError:
+    if hasattr(indicator, "tweaks"):
+        indicator_tweaks = indicator.tweaks
+        assert all(isinstance(_, Tweak) for _ in indicator_tweaks)
+        tweaks_ = list(indicator_tweaks)
+    else:
         raise Exception(indicator)
     if tag is not None:
         assert isinstance(tag, _tag.Tag), repr(tag)

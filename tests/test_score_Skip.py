@@ -106,7 +106,7 @@ def test_Skip___init___05():
     Initializes skip from orphan note.
     """
 
-    note = abjad.Note(2, (1, 8))
+    note = abjad.Note("d'8")
     skip = abjad.Skip(note)
 
     assert isinstance(note, abjad.Note)

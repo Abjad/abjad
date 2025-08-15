@@ -51,7 +51,7 @@ def test_mutate_fuse_04():
     Makes tied notes.
     """
 
-    voice = abjad.Voice([abjad.Note(0, (2, 16)), abjad.Note(9, (3, 16))])
+    voice = abjad.Voice("c'8 a'8.")
     abjad.mutate.fuse(voice[:])
 
     assert abjad.lilypond(voice) == abjad.string.normalize(

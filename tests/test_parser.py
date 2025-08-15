@@ -4,7 +4,9 @@ import abjad
 
 
 def test_LilyPondParser__comments_01():
-    target = abjad.Container([abjad.Note(0, (1, 4))])
+    pitch, duration = abjad.NamedPitch("c'"), abjad.Duration(1, 4)
+    note = abjad.Note.from_pitch_and_duration(pitch, duration)
+    target = abjad.Container([note])
 
     string = r"""
     { c'4 }
@@ -457,18 +459,27 @@ def test_LilyPondParser__functions__relative_05():
 
 
 def test_LilyPondParser__functions__relative_06():
+    duration = abjad.Duration(1, 4)
     target = abjad.Container(
         [
-            abjad.Note("c'", (1, 4)),
-            abjad.Note("d'", (1, 4)),
-            abjad.Note("e'", (1, 4)),
-            abjad.Note("f'", (1, 4)),
+            abjad.Note.from_pitch_and_duration(abjad.NamedPitch("c'"), duration),
+            abjad.Note.from_pitch_and_duration(abjad.NamedPitch("d'"), duration),
+            abjad.Note.from_pitch_and_duration(abjad.NamedPitch("e'"), duration),
+            abjad.Note.from_pitch_and_duration(abjad.NamedPitch("f'"), duration),
             abjad.Container(
                 [
-                    abjad.Note("c''", (1, 4)),
-                    abjad.Note("d''", (1, 4)),
-                    abjad.Note("e''", (1, 4)),
-                    abjad.Note("f''", (1, 4)),
+                    abjad.Note.from_pitch_and_duration(
+                        abjad.NamedPitch("c''"), duration
+                    ),
+                    abjad.Note.from_pitch_and_duration(
+                        abjad.NamedPitch("d''"), duration
+                    ),
+                    abjad.Note.from_pitch_and_duration(
+                        abjad.NamedPitch("e''"), duration
+                    ),
+                    abjad.Note.from_pitch_and_duration(
+                        abjad.NamedPitch("f''"), duration
+                    ),
                 ]
             ),
         ]
@@ -498,16 +509,26 @@ def test_LilyPondParser__functions__relative_06():
 
 
 def test_LilyPondParser__functions__relative_07():
+    duration = abjad.Duration(1, 4)
     target = abjad.Container(
         [
-            abjad.Note("d'", (1, 4)),
-            abjad.Note("e'", (1, 4)),
+            abjad.Note.from_pitch_and_duration(abjad.NamedPitch("d'"), duration),
+            abjad.Note.from_pitch_and_duration(abjad.NamedPitch("e'"), duration),
             abjad.Container(
                 [
-                    abjad.Note("e", (1, 4)),
-                    abjad.Note("fs", (1, 4)),
+                    abjad.Note.from_pitch_and_duration(abjad.NamedPitch("e"), duration),
+                    abjad.Note.from_pitch_and_duration(
+                        abjad.NamedPitch("fs"), duration
+                    ),
                     abjad.Container(
-                        [abjad.Note("e'", (1, 4)), abjad.Note("fs'", (1, 4))]
+                        [
+                            abjad.Note.from_pitch_and_duration(
+                                abjad.NamedPitch("e'"), duration
+                            ),
+                            abjad.Note.from_pitch_and_duration(
+                                abjad.NamedPitch("fs'"), duration
+                            ),
+                        ]
                     ),
                 ]
             ),
@@ -538,12 +559,13 @@ def test_LilyPondParser__functions__relative_07():
 
 
 def test_LilyPondParser__functions__relative_08():
+    duration = abjad.Duration(1, 4)
     target = abjad.Container(
         [
-            abjad.Note("c'", (1, 4)),
-            abjad.Chord(["c'", "e'", "g'"], (1, 4)),
-            abjad.Chord(["c''", "e''", "g'''"], (1, 4)),
-            abjad.Chord(["e", "c'", "g''"], (1, 4)),
+            abjad.Note.from_pitch_and_duration(abjad.NamedPitch("c'"), duration),
+            abjad.Chord(["c'", "e'", "g'"], duration),
+            abjad.Chord(["c''", "e''", "g'''"], duration),
+            abjad.Chord(["e", "c'", "g''"], duration),
         ]
     )
 
@@ -796,7 +818,7 @@ def test_LilyPondParser__indicators__Articulation_01():
 
 
 def test_LilyPondParser__indicators__Articulation_02():
-    target = abjad.Staff([abjad.Note("c'", (1, 4))])
+    target = abjad.Staff("c'4")
     articulation = abjad.Articulation("marcato")
     abjad.attach(articulation, target[0], direction=abjad.UP)
     articulation = abjad.Articulation("stopped")
@@ -1013,7 +1035,7 @@ def test_LilyPondParser__indicators__Beam_05():
 
 
 def test_LilyPondParser__indicators__Clef_01():
-    target = abjad.Staff([abjad.Note(0, 1)])
+    target = abjad.Staff("c'1")
     clef = abjad.Clef("bass")
     abjad.attach(clef, target[0])
 
@@ -1079,7 +1101,7 @@ def test_LilyPondParser__indicators__Dynamic_01():
 
 
 def test_LilyPondParser__indicators__Glissando_01():
-    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
+    target = abjad.Container("c'1 c'1")
     abjad.glissando(target[:])
     parser = abjad.parser.LilyPondParser()
     result = parser(abjad.lilypond(target))
@@ -1322,7 +1344,7 @@ def test_LilyPondParser__indicators__HorizontalBracket_05():
 
 
 def test_LilyPondParser__indicators__KeySignature_01():
-    target = abjad.Staff([abjad.Note("fs'", 1)])
+    target = abjad.Staff("fs'1")
     key_signature = abjad.KeySignature(abjad.NamedPitchClass("g"), abjad.Mode("major"))
     abjad.attach(key_signature, target[0])
 
@@ -1344,7 +1366,7 @@ def test_LilyPondParser__indicators__KeySignature_01():
 
 
 def test_LilyPondParser__indicators__Markup_01():
-    target = abjad.Staff([abjad.Note(0, 1)])
+    target = abjad.Staff("c'1")
     markup = abjad.Markup(r"\markup { hello! }")
     abjad.attach(markup, target[0], direction=abjad.UP)
 
@@ -1367,7 +1389,7 @@ def test_LilyPondParser__indicators__Markup_01():
 
 
 def test_LilyPondParser__indicators__Markup_02():
-    target = abjad.Staff([abjad.Note(0, (1, 4))])
+    target = abjad.Staff("c'4")
     markup = abjad.Markup(r'\markup { X Y Z "a b c" }')
     abjad.attach(markup, target[0], direction=abjad.DOWN)
 
@@ -1385,10 +1407,10 @@ def test_LilyPondParser__indicators__Markup_02():
 def test_LilyPondParser__indicators__Markup_03():
     """
     Articulations following markup block are (re)lexed correctly after
-    returning to the "notes" lexical state after popping the "markup lexical state.
+    returning to the "notes" lexical state after popping the "markup lexical
+    state.
     """
-
-    target = abjad.Staff([abjad.Note(0, (1, 4)), abjad.Note(2, (1, 4))])
+    target = abjad.Staff("c'4 d'4")
     markup = abjad.Markup(r"\markup { hello }")
     abjad.attach(markup, target[0], direction=abjad.UP)
     articulation = abjad.Articulation(".")
@@ -1431,7 +1453,8 @@ def test_LilyPondParser__indicators__Markup_04():
 
 
 def test_LilyPondParser__indicators__MetronomeMark_01():
-    target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
+    staff = abjad.Staff("c'1")
+    target = abjad.Score([staff])
     mark = abjad.MetronomeMark(textual_indication='"As fast as possible"')
     abjad.attach(mark, target[0][0], context="Staff")
 
@@ -1458,7 +1481,8 @@ def test_LilyPondParser__indicators__MetronomeMark_01():
 
 
 def test_LilyPondParser__indicators__MetronomeMark_02():
-    target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
+    staff = abjad.Staff("c'1")
+    target = abjad.Score([staff])
     leaves = abjad.select.leaves(target)
     mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
     abjad.attach(mark, leaves[0], context="Staff")
@@ -1486,7 +1510,8 @@ def test_LilyPondParser__indicators__MetronomeMark_02():
 
 
 def test_LilyPondParser__indicators__MetronomeMark_03():
-    target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
+    staff = abjad.Staff("c'1")
+    target = abjad.Score([staff])
     leaves = abjad.select.leaves(target)
     mark = abjad.MetronomeMark(abjad.Duration(1, 4), (59, 63))
     abjad.attach(mark, leaves[0], context="Staff")
@@ -1514,7 +1539,8 @@ def test_LilyPondParser__indicators__MetronomeMark_03():
 
 
 def test_LilyPondParser__indicators__MetronomeMark_04():
-    target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
+    staff = abjad.Staff("c'1")
+    target = abjad.Score([staff])
     mark = abjad.MetronomeMark(
         reference_duration=abjad.Duration(1, 4),
         units_per_minute=60,
@@ -1546,7 +1572,8 @@ def test_LilyPondParser__indicators__MetronomeMark_04():
 
 
 def test_LilyPondParser__indicators__MetronomeMark_05():
-    target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
+    staff = abjad.Staff("c'1")
+    target = abjad.Score([staff])
     mark = abjad.MetronomeMark(
         reference_duration=abjad.Duration(1, 16),
         units_per_minute=(34, 55),
@@ -1681,7 +1708,7 @@ def test_LilyPondParser__indicators__PhrasingSlur_06():
 
 
 def test_LilyPondParser__indicators__RepeatTie_01():
-    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
+    target = abjad.Container("c'1 c'1")
     repeat_tie = abjad.RepeatTie()
     abjad.attach(repeat_tie, target[-1])
     parser = abjad.parser.LilyPondParser()
@@ -1826,7 +1853,7 @@ def test_LilyPondParser__indicators__Slur_07():
 
 
 def test_LilyPondParser__indicators__StemTremolo_01():
-    target = abjad.Staff([abjad.Note(0, 1)])
+    target = abjad.Staff("c'1")
     stem_tremolo = abjad.StemTremolo(4)
     abjad.attach(stem_tremolo, target[0])
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -1955,7 +1982,7 @@ def test_LilyPondParser__indicators__Text_06():
 
 
 def test_LilyPondParser__indicators__Tie_01():
-    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
+    target = abjad.Container("c'1 c'1")
     abjad.tie(target[:])
     parser = abjad.parser.LilyPondParser()
     result = parser(abjad.lilypond(target))
@@ -1979,7 +2006,7 @@ def test_LilyPondParser__indicators__Tie_04():
     With direction.
     """
 
-    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
+    target = abjad.Container("c'1 c'1")
     abjad.tie(target[:], direction=abjad.UP)
     parser = abjad.parser.LilyPondParser()
     result = parser(abjad.lilypond(target))
@@ -1991,7 +2018,7 @@ def test_LilyPondParser__indicators__Tie_05():
     With direction.
     """
 
-    target = abjad.Container([abjad.Note(0, 1), abjad.Note(0, 1)])
+    target = abjad.Container("c'1 c'1")
     abjad.tie(target[:], direction=abjad.DOWN)
     parser = abjad.parser.LilyPondParser()
     result = parser(abjad.lilypond(target))
@@ -1999,7 +2026,8 @@ def test_LilyPondParser__indicators__Tie_05():
 
 
 def test_LilyPondParser__indicators__TimeSignature_01():
-    target = abjad.Score([abjad.Staff([abjad.Note(0, 1)])])
+    staff = abjad.Staff("c'1")
+    target = abjad.Score([staff])
     time_signature = abjad.TimeSignature((8, 8))
     abjad.attach(time_signature, target[0][0])
     assert abjad.lilypond(target) == abjad.string.normalize(
@@ -2153,7 +2181,8 @@ def test_LilyPondParser__leaves__MultiMeasureRest_01():
 
 
 def test_LilyPondParser__leaves__Note_01():
-    target = abjad.Note(0, 1)
+    pitch, duration = abjad.NamedPitch("c'"), abjad.Duration(1, 4)
+    target = abjad.Note.from_pitch_and_duration(pitch, duration)
     parser = abjad.parser.LilyPondParser()
     result = parser("{ %s }" % abjad.lilypond(target))
     assert (
@@ -2268,9 +2297,13 @@ def test_LilyPondParser__misc__chord_repetition_03():
     target = abjad.Container(
         [
             abjad.Chord([0, 4, 7], (1, 8)),
-            abjad.Note(12, (1, 8)),
+            abjad.Note.from_pitch_and_duration(
+                abjad.NamedPitch(12), abjad.Duration(1, 8)
+            ),
             abjad.Chord([0, 4, 7], (1, 8)),
-            abjad.Note(12, (1, 8)),
+            abjad.Note.from_pitch_and_duration(
+                abjad.NamedPitch(12), abjad.Duration(1, 8)
+            ),
             abjad.Rest((1, 4)),
             abjad.Chord([0, 4, 7], (1, 4)),
         ]
@@ -2344,20 +2377,39 @@ def test_LilyPondParser__misc__variables_01():
                         [
                             abjad.Container(
                                 [
-                                    abjad.Container([abjad.Note(0, (1, 8))]),
-                                    abjad.Note(2, (1, 8)),
-                                    abjad.Note(4, (1, 4)),
+                                    abjad.Container(
+                                        [
+                                            abjad.Note.from_pitch_and_duration(
+                                                abjad.NamedPitch(0),
+                                                abjad.Duration(1, 8),
+                                            )
+                                        ]
+                                    ),
+                                    abjad.Note.from_pitch_and_duration(
+                                        abjad.NamedPitch(2), abjad.Duration(1, 8)
+                                    ),
+                                    abjad.Note.from_pitch_and_duration(
+                                        abjad.NamedPitch(4), abjad.Duration(1, 4)
+                                    ),
                                 ]
                             ),
-                            abjad.Note(5, (1, 4)),
-                            abjad.Note(7, (1, 2)),
+                            abjad.Note.from_pitch_and_duration(
+                                abjad.NamedPitch(5), abjad.Duration(1, 4)
+                            ),
+                            abjad.Note.from_pitch_and_duration(
+                                abjad.NamedPitch(7), abjad.Duration(1, 2)
+                            ),
                         ]
                     ),
-                    abjad.Note(9, (1, 2)),
-                    abjad.Note(11, 1),
+                    abjad.Note.from_pitch_and_duration(
+                        abjad.NamedPitch(9), abjad.Duration(1, 2)
+                    ),
+                    abjad.Note.from_pitch_and_duration(
+                        abjad.NamedPitch(11), abjad.Duration(1)
+                    ),
                 ]
             ),
-            abjad.Note(12, 1),
+            abjad.Note.from_pitch_and_duration(abjad.NamedPitch(12), abjad.Duration(1)),
         ]
     )
 

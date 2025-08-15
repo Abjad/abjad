@@ -8,7 +8,7 @@ def test_Leaf_duration_assign_01():
     Written duration can be assigned a duration.
     """
 
-    note = abjad.Note(1, (1, 4))
+    note = abjad.Note("cs'4")
     note.set_written_duration(abjad.Duration(1, 8))
     assert note.written_duration() == abjad.Duration(1, 8)
 
@@ -27,7 +27,7 @@ def test_Leaf_duration_compare_02():
     Written durations can be evaluated for equality with integers.
     """
 
-    note = abjad.Note(0, 1)
+    note = abjad.Note("c'1")
     assert note.written_duration() == 1
 
 
@@ -47,7 +47,7 @@ def test_Leaf_written_duration_01():
     Leaf durations can go up to 'maxima...': duration < (16, 1).
     """
 
-    note = abjad.Note(1, 2)
+    note = abjad.Note(r"cs'\breve")
 
     assert abjad.lilypond(note) == "cs'\\breve"
     note.set_written_duration(abjad.Duration(3))
@@ -68,4 +68,5 @@ def test_Leaf_written_duration_01():
     assert abjad.lilypond(note) == "cs'\\maxima..."
 
     with pytest.raises(abjad.AssignabilityError):
-        abjad.Note(1, 16)
+        pitch = abjad.NamedPitch("cs")
+        abjad.Note.from_pitch_and_duration(pitch, abjad.Duration(16))

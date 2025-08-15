@@ -1388,8 +1388,11 @@ def logical_tie_to_tuplet(
     basic_written_duration = prolated_duration.equal_or_greater_power_of_two()
     written_durations = [_ * basic_written_duration for _ in proportions]
     notes: list[_score.Note | _score.Tuplet]
+    pitch = _pitch.NamedPitch("c'")
     try:
-        notes = [_score.Note(0, _) for _ in written_durations]
+        notes = [
+            _score.Note.from_pitch_and_duration(pitch, _) for _ in written_durations
+        ]
     except _exceptions.AssignabilityError:
         pitches = _makers.make_pitches([0])
         denominator = target_duration.denominator
@@ -2678,8 +2681,7 @@ def wrap(argument, container):
 
         Wraps leaves in container:
 
-        >>> notes = [abjad.Note(n, (1, 8)) for n in range(8)]
-        >>> staff = abjad.Staff(notes)
+        >>> staff = abjad.Staff("c'8 cs'8 d'8 ef'8 e'8 f'8 fs'8 g'8")
         >>> score = abjad.Score([staff], name="Score")
         >>> abjad.attach(abjad.TimeSignature((4, 8)), staff[0])
         >>> container = abjad.Container()
@@ -2709,8 +2711,7 @@ def wrap(argument, container):
 
         Wraps each leaf in tuplet:
 
-        >>> notes = [abjad.Note(n, (1, 1)) for n in range(4)]
-        >>> staff = abjad.Staff(notes)
+        >>> staff = abjad.Staff("c'1 cs'1 d'1 ef'1")
         >>> for note in staff:
         ...     tuplet = abjad.Tuplet("3:2")
         ...     abjad.mutate.wrap(note, tuplet)

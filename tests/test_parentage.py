@@ -362,8 +362,8 @@ def test_Parentage_logical_voice_08():
     Orphan leaves carry equivalent containment signatures.
     """
 
-    note_1 = abjad.Note(0, (1, 8))
-    note_2 = abjad.Note(0, (1, 8))
+    note_1 = abjad.Note("c'8")
+    note_2 = abjad.Note("c'8")
 
     signature_1 = abjad.get.parentage(note_1).logical_voice()
     signature_2 = abjad.get.parentage(note_2).logical_voice()
@@ -375,14 +375,8 @@ def test_Parentage_logical_voice_09():
     Notes appear in the same logical voice.
     """
 
-    staff_1 = abjad.Staff([abjad.Voice([abjad.Note(0, (1, 8))])])
-    staff_1.set_name("staff")
-    staff_1[0].set_name("voice")
-
-    staff_2 = abjad.Staff([abjad.Voice([abjad.Note(0, (1, 8))])])
-    staff_2.set_name("staff")
-    staff_2[0].set_name("voice")
-
+    staff_1 = abjad.Staff([abjad.Voice("c'8", name="voice")], name="staff")
+    staff_2 = abjad.Staff([abjad.Voice("c'8", name="voice")], name="staff")
     staff_1_leaf_signature = abjad.get.parentage(staff_1[0][0]).logical_voice()
     staff_2_leaf_signature = abjad.get.parentage(staff_2[0][0]).logical_voice()
     assert staff_1_leaf_signature == staff_2_leaf_signature
