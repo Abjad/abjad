@@ -181,16 +181,6 @@ def test_Note___copy___07():
 
 def test_Note___init___01():
     """
-    Initializes note from empty input.
-    """
-
-    note = abjad.Note()
-
-    assert abjad.lilypond(note) == "c'4"
-
-
-def test_Note___init___02():
-    """
     Initializes note with pitch in octave zero.
     """
 
@@ -199,7 +189,7 @@ def test_Note___init___02():
     assert abjad.lilypond(note) == "b,,,4"
 
 
-def test_Note___init___03():
+def test_Note___init___02():
     """
     Initializes note with non-assignable duration.
     """
@@ -209,7 +199,7 @@ def test_Note___init___03():
         abjad.Note.from_pitch_and_duration(pitch, abjad.Duration(5, 8))
 
 
-def test_Note___init___05():
+def test_Note___init___03():
     """
     Initializes note with complete LilyPond-style note string.
     """
@@ -219,7 +209,7 @@ def test_Note___init___05():
     assert abjad.lilypond(note) == "cs8."
 
 
-def test_Note__init__06():
+def test_Note__init__04():
     """
     Initializes note with French note names.
     """
@@ -229,7 +219,7 @@ def test_Note__init__06():
     assert abjad.lilypond(note) == "cs''8."
 
 
-def test_Note___init___07():
+def test_Note___init___05():
     """
     Initializes note with cautionary accidental.
     """
@@ -239,7 +229,7 @@ def test_Note___init___07():
     assert abjad.lilypond(note) == "c'?4"
 
 
-def test_Note___init___08():
+def test_Note___init___06():
     """
     Initializes note with forced accidental.
     """
@@ -249,7 +239,7 @@ def test_Note___init___08():
     assert abjad.lilypond(note) == "c'!4"
 
 
-def test_Note___init___09():
+def test_Note___init___07():
     """
     Initializes note with both forced and cautionary accidental.
     """
@@ -259,7 +249,7 @@ def test_Note___init___09():
     assert abjad.lilypond(note) == "c'!?4"
 
 
-def test_Note___init___10():
+def test_Note___init___08():
     """
     Initializes note with drum pitch.
     """

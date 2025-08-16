@@ -62,7 +62,7 @@ def _make_leaf_on_pitch(
                 tag=tag,
             )
         elif use_multimeasure_rests is True:
-            multimeasure_rest = _score.MultimeasureRest((1), tag=tag)
+            multimeasure_rest = _score.MultimeasureRest("R1", tag=tag)
             multimeasure_rest.set_multiplier(duration.pair())
             leaves = [multimeasure_rest]
         else:
@@ -150,7 +150,12 @@ def _make_tied_leaf(
         elif pitches is not None:
             arguments = (pitches, written_duration)
             leaf = class_(*arguments, multiplier=multiplier, tag=tag)
+        elif class_ is _score.Rest:
+            leaf = class_.from_duration(
+                written_duration, multiplier=multiplier, tag=tag
+            )
         else:
+            assert class_ is _score.Skip, repr(class_)
             arguments = (written_duration,)
             leaf = class_(*arguments, multiplier=multiplier, tag=tag)
         leaves.append(leaf)

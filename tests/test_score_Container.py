@@ -1965,7 +1965,7 @@ def test_Container_insert_01():
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:])
-    voice.insert(0, abjad.Rest((1, 8)))
+    voice.insert(0, abjad.Rest("r8"))
 
     assert abjad.wf.is_wellformed(voice)
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -2009,7 +2009,7 @@ def test_Container_insert_02():
 def test_Container_insert_03():
     voice = abjad.Voice("c'8 cs'8 d'8 ef'8")
     abjad.beam(voice[:])
-    voice.insert(4, abjad.Rest((1, 4)))
+    voice.insert(4, abjad.Rest("r4"))
 
     assert abjad.wf.is_wellformed(voice)
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -2035,7 +2035,7 @@ def test_Container_insert_04():
 
     voice = abjad.Voice("c'8 cs'8 d'8 ef'8")
     abjad.beam(voice[:])
-    voice.insert(1000, abjad.Rest((1, 4)))
+    voice.insert(1000, abjad.Rest("r4"))
 
     assert abjad.wf.is_wellformed(voice)
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -2087,7 +2087,7 @@ def test_Container_insert_06():
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
     abjad.beam(voice[:])
-    voice.insert(-1000, abjad.Rest((1, 8)))
+    voice.insert(-1000, abjad.Rest("r8"))
 
     assert abjad.wf.is_wellformed(voice)
     assert abjad.lilypond(voice) == abjad.string.normalize(

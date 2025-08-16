@@ -2172,7 +2172,7 @@ def test_LilyPondParser__leaves__Chord_01():
 
 
 def test_LilyPondParser__leaves__MultiMeasureRest_01():
-    target = abjad.MultimeasureRest((1, 4))
+    target = abjad.MultimeasureRest("R1")
     parser = abjad.parser.LilyPondParser()
     result = parser("{ %s }" % abjad.lilypond(target))
     assert (
@@ -2191,7 +2191,7 @@ def test_LilyPondParser__leaves__Note_01():
 
 
 def test_LilyPondParser__leaves__Rest_01():
-    target = abjad.Rest((1, 8))
+    target = abjad.Rest("r8")
     parser = abjad.parser.LilyPondParser()
     result = parser("{ %s }" % abjad.lilypond(target))
     assert (
@@ -2304,7 +2304,7 @@ def test_LilyPondParser__misc__chord_repetition_03():
             abjad.Note.from_pitch_and_duration(
                 abjad.NamedPitch(12), abjad.Duration(1, 8)
             ),
-            abjad.Rest((1, 4)),
+            abjad.Rest("r4"),
             abjad.Chord([0, 4, 7], (1, 4)),
         ]
     )

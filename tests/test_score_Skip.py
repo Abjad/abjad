@@ -138,11 +138,11 @@ def test_Skip___init___07():
     Initializes skip from orphan rest.
     """
 
-    rest = abjad.Rest((1, 8))
+    rest = abjad.Rest("r8")
     skip = abjad.Skip(rest)
 
     assert isinstance(skip, abjad.Skip)
-    assert dir(rest) == dir(abjad.Rest((1, 4)))
+    assert dir(rest) == dir(abjad.Rest("r4"))
     assert dir(skip) == dir(abjad.Skip((1, 4)))
     assert abjad.get.parentage(skip).parent() is None
     assert skip.written_duration() == rest.written_duration()

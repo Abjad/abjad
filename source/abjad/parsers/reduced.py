@@ -541,19 +541,19 @@ class ReducedLyParser(Parser):
         """
         rest_body : RESTNAME
         """
-        p[0] = _score.Rest(self._default_duration)
+        p[0] = _score.Rest.from_duration(self._default_duration)
 
     def p_rest_body__RESTNAME__positive_leaf_duration(self, p):
         """
         rest_body : RESTNAME positive_leaf_duration
         """
-        p[0] = _score.Rest(p[2])
+        p[0] = _score.Rest.from_duration(p[2])
 
     def p_rest_body__negative_leaf_duration(self, p):
         """
         rest_body : negative_leaf_duration
         """
-        p[0] = _score.Rest(p[1])
+        p[0] = _score.Rest.from_duration(p[1])
 
     def p_slur__PAREN_L(self, p):
         """

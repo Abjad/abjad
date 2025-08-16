@@ -120,13 +120,13 @@ strings start with some rests, and use a long-short pattern for their rhythms:
     ...         short_duration = long_duration / 2
     ...         rest_duration = abjad.Fraction(3, 2) * long_duration
     ...         div = rest_duration // abjad.Duration(3, 2)
-    ...         mod = rest_duration % abjad.Duration(3, 2)
+    ...         mod = abjad.Duration(rest_duration % abjad.Duration(3, 2))
     ...         initial_rest = []
     ...         for i in range(div):
-    ...             rest = abjad.MultimeasureRest((3, 2))
+    ...             rest = abjad.MultimeasureRest("R1.")
     ...             initial_rest.append(rest)
     ...         if mod:
-    ...             rest = abjad.Rest(mod)
+    ...             rest = abjad.Rest.from_duration(mod)
     ...             initial_rest.append(rest)
     ...         chord_descents = [tuple(initial_rest)]
     ...         pitch_pair_descents = voice_to_pitch_pair_descents[voice_name]
@@ -141,7 +141,7 @@ strings start with some rests, and use a long-short pattern for their rhythms:
     ...                     chord_descent.append(chord)
     ...                 else:
     ...                     assert isinstance(pitch, abjad.NamedPitch)
-    ...                     note = abjad.Note(pitch, duration)
+    ...                     note = abjad.Note.from_pitch_and_duration(pitch, duration)
     ...                     chord_descent.append(note)
     ...                 counter = (counter + 1) % 2
     ...             chord_descents.append(tuple(chord_descent))
@@ -209,7 +209,8 @@ too:
     >>> notes = abjad.sequence.flatten(descents)
     >>> staff = abjad.Staff(notes)
     >>> score = abjad.Score([staff], name="Score")
-    >>> lists = abjad.mutate.split(staff[:], [(3, 2)], cyclic=True)
+    >>> duration = abjad.Duration(3, 2)
+    >>> lists = abjad.mutate.split(staff[:], [duration], cyclic=True)
     >>> time_signature = abjad.TimeSignature((6, 4))
     >>> leaf = abjad.select.leaf(staff, 0)
     >>> abjad.attach(time_signature, leaf)
@@ -286,8 +287,9 @@ We define more functions:
     ...     edit_cello(score, extra_components)
     ...     edit_bass(score, extra_components)
     ...     strings_staff_group = score["Strings_Staff_Group"]
+    ...     duration = abjad.Duration(6, 4)
     ...     for voice in abjad.select.components(strings_staff_group, abjad.Voice):
-    ...         lists = abjad.mutate.split(voice[:], [(6, 4)], cyclic=True)
+    ...         lists = abjad.mutate.split(voice[:], [duration], cyclic=True)
     ...         for components in lists:
     ...             container = abjad.Container()
     ...             abjad.mutate.wrap(components, container)
