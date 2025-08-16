@@ -4,7 +4,7 @@ import abjad
 
 
 def test_MultimeasureRest___copy___01():
-    multi_measure_rest_1 = abjad.MultimeasureRest((1, 4))
+    multi_measure_rest_1 = abjad.MultimeasureRest("R1")
     multi_measure_rest_2 = copy.copy(multi_measure_rest_1)
 
     assert isinstance(multi_measure_rest_1, abjad.MultimeasureRest)
@@ -15,17 +15,12 @@ def test_MultimeasureRest___copy___01():
 
 def test_MultimeasureRest___init___01():
     """
-    Initializes multimeasure rest from empty input.
+    Initializes multimeasure rest from LilyPond input.
     """
 
-    multimeasure_rest = abjad.MultimeasureRest()
+    multimeasure_rest = abjad.MultimeasureRest("R2")
 
-    assert abjad.lilypond(multimeasure_rest) == abjad.string.normalize(
-        r"""
-        R4
-        """
-    )
-
+    assert abjad.lilypond(multimeasure_rest) == abjad.string.normalize("R2")
     assert abjad.wf.is_wellformed(multimeasure_rest)
 
 
@@ -49,7 +44,6 @@ def test_MultimeasureRest___init___02():
         >>
         """
     )
-
     assert abjad.wf.is_wellformed(score)
 
 

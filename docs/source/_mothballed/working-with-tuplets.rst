@@ -159,7 +159,7 @@ Use ``extend()`` to extend a tuplet with multiple components at once:
 ::
 
     >>> notes = [abjad.Note("fs'32"), abjad.Note("e'32")]
-    >>> notes.extend([abjad.Note("d'32"), abjad.Rest((1, 32))])
+    >>> notes.extend([abjad.Note("d'32"), abjad.Rest("r32"))])
     >>> tuplet.extend(notes)
     >>> abjad.show(tuplet)
 

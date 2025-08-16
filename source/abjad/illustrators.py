@@ -519,11 +519,11 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
         written_duration = leaf.written_duration()
         if isinstance(leaf, _score.Note):
             if leaf.written_pitch() < lowest_treble_pitch:
-                treble_leaf = _score.Rest(written_duration)
+                treble_leaf = _score.Rest.from_duration(written_duration)
                 bass_leaf = copy.copy(leaf)
             else:
                 treble_leaf = copy.copy(leaf)
-                bass_leaf = _score.Rest(written_duration)
+                bass_leaf = _score.Rest.from_duration(written_duration)
         elif isinstance(leaf, _score.Chord):
             treble_note_heads, bass_note_heads = [], []
             for note_head in leaf.note_heads():
@@ -533,7 +533,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
                 else:
                     treble_note_heads.append(new_note_head)
             if not treble_note_heads:
-                treble_leaf = _score.Rest(written_duration)
+                treble_leaf = _score.Rest.from_duration(written_duration)
             elif len(treble_note_heads) == 1:
                 treble_leaf = _score.Note.from_pitch_and_duration(
                     _pitch.NamedPitch("C4"), written_duration
@@ -542,7 +542,7 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
             else:
                 treble_leaf = _score.Chord(treble_note_heads, written_duration)
             if not bass_note_heads:
-                bass_leaf = _score.Rest(written_duration)
+                bass_leaf = _score.Rest.from_duration(written_duration)
             elif len(bass_note_heads) == 1:
                 bass_leaf = _score.Note.from_pitch_and_duration(
                     _pitch.NamedPitch("C4"), written_duration

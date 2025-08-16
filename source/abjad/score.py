@@ -108,6 +108,8 @@ class Component:
                 self.written_pitch(),
                 self.written_duration(),
             )
+        elif isinstance(self, MultimeasureRest | Rest):
+            component = type(self).from_duration(self.written_duration())
         else:
             component = type(self)(*self.__getnewargs__(), tag=self.tag())
         if hasattr(self, "identifier"):
@@ -3272,36 +3274,45 @@ class MultimeasureRest(Leaf):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ()
-
-    ### INITIALIZER ###
 
     def __init__(
         self,
-        *arguments,
+        string: str,
+        *,
         language: str = "english",
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
-        if len(arguments) == 0:
-            arguments = ((1, 4),)
-        rest = Rest(*arguments, language=language)
-        Leaf.__init__(self, rest.written_duration(), multiplier=multiplier, tag=tag)
-
-    ### PRIVATE METHODS ###
+        assert isinstance(string, str), repr(string)
+        if string == "R1":
+            written_duration = _duration.Duration(1)
+        else:
+            rest = Rest(string, language=language)
+            written_duration = rest.written_duration()
+        Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
 
     def _get_body(self) -> list[str]:
-        """
-        Gets body of multimeasure rest as list of strings.
-        Picked up as contribution at format-time.
-        """
         result = "R" + str(self._get_formatted_duration())
         return [result]
 
     def _get_compact_representation(self):
         return f"R{self._get_formatted_duration()}"
+
+    @staticmethod
+    def from_duration(
+        duration: _duration.Duration,
+        *,
+        multiplier: tuple[int, int] | None = None,
+        tag: _tag.Tag | None = None,
+    ) -> MultimeasureRest:
+        """
+        Makes multimeasure rest from ``duration``.
+        """
+        assert isinstance(duration, _duration.Duration), repr(duration)
+        mmrest = MultimeasureRest("R1", multiplier=multiplier, tag=tag)
+        mmrest.set_written_duration(duration)
+        return mmrest
 
 
 @functools.total_ordering
@@ -4053,58 +4064,52 @@ class Note(Leaf):
 
     def __init__(
         self,
-        *arguments,
+        string: str,
+        *,
         language: str = "english",
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
+        assert isinstance(string, str), repr(string)
         is_cautionary = False
         is_forced = False
         is_parenthesized = False
-        if len(arguments) == 0:
+        written_pitch: _pitch.NamedPitch | str
+        if string == "c'4":
             written_pitch = _pitch.NamedPitch("c'")
             written_duration = _duration.Duration(1, 4)
-        elif len(arguments) == 1:
-            assert isinstance(arguments[0], str), repr(arguments)
-            string = f"{{ {arguments[0]} }}"
+        else:
+            string = f"{{ {string} }}"
             parsed = self._parse_lilypond_string(string, language=language)
-            assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
-            arguments = tuple([parsed[0]])
-            leaf = arguments[0]
-            written_duration = leaf.written_duration()
+            assert len(parsed) == 1 and isinstance(parsed[0], Note)
+            note = parsed[0]
+            written_duration = note.written_duration()
             if multiplier is None:
-                multiplier = leaf.multiplier()
-            written_pitch = leaf.note_head().written_pitch()
-            is_cautionary = leaf.note_head().is_cautionary()
-            is_forced = leaf.note_head().is_forced()
-            is_parenthesized = leaf.note_head().is_parenthesized()
-        else:
-            raise ValueError(f"can not initialize note from {arguments!r}.")
+                multiplier = note.multiplier()
+            note_head = note.note_head()
+            assert isinstance(note_head, NoteHead)
+            written_pitch = note_head.written_pitch()
+            is_cautionary = note_head.is_cautionary()
+            is_forced = note_head.is_forced()
+            is_parenthesized = note_head.is_parenthesized()
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
-        if written_pitch is not None:
-            if written_pitch not in _lyconst.drums:
-                note_head = NoteHead(
-                    written_pitch=_pitch.NamedPitch(written_pitch),
-                    is_cautionary=is_cautionary,
-                    is_forced=is_forced,
-                    is_parenthesized=is_parenthesized,
-                )
-                self.set_note_head(note_head)
-            else:
-                assert isinstance(written_pitch, str), repr(written_pitch)
-                note_head = DrumNoteHead(
-                    written_pitch=written_pitch,
-                    is_cautionary=is_cautionary,
-                    is_forced=is_forced,
-                    is_parenthesized=is_parenthesized,
-                )
-                self.set_note_head(note_head)
-            if isinstance(written_pitch, NoteHead):
-                self.note_head().tweaks = copy.deepcopy(written_pitch.tweaks)
+        if isinstance(written_pitch, _pitch.NamedPitch):
+            note_head = NoteHead(
+                written_pitch=written_pitch,
+                is_cautionary=is_cautionary,
+                is_forced=is_forced,
+                is_parenthesized=is_parenthesized,
+            )
         else:
-            raise Exception("must have note-head")
-        if len(arguments) == 1 and isinstance(arguments[0], Leaf):
-            self._copy_override_and_set_from_leaf(arguments[0])
+            assert isinstance(written_pitch, str), repr(written_pitch)
+            assert written_pitch in _lyconst.drums, repr(written_pitch)
+            note_head = DrumNoteHead(
+                written_pitch=written_pitch,
+                is_cautionary=is_cautionary,
+                is_forced=is_forced,
+                is_parenthesized=is_parenthesized,
+            )
+        self.set_note_head(note_head)
 
     def __copy__(self, *arguments) -> Note:
         """
@@ -4157,7 +4162,7 @@ class Note(Leaf):
                 cs''8.
 
         """
-        note = Note()
+        note = Note("c'4")
         note.set_written_pitch(pitch)
         note.set_written_duration(duration)
         note.set_multiplier(multiplier)
@@ -4298,37 +4303,54 @@ class Rest(Leaf):
 
     def __init__(
         self,
-        written_duration=None,
+        argument,
         *,
         language: str = "english",
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
-        original_input = written_duration
-        if isinstance(written_duration, Leaf):
-            multiplier = written_duration.multiplier()
-        if isinstance(written_duration, str):
-            string = f"{{ {written_duration} }}"
+        if argument == "r4":
+            written_duration = _duration.Duration(1, 4)
+        elif isinstance(argument, str):
+            string = f"{{ {argument} }}"
             parsed = self._parse_lilypond_string(string, language=language)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
-            written_duration = parsed[0]
-        if isinstance(written_duration, Leaf):
-            written_duration = written_duration.written_duration()
-        elif written_duration is None:
-            written_duration = _duration.Duration(1, 4)
-        elif isinstance(written_duration, tuple):
-            written_duration = _duration.Duration(*written_duration)
+            written_duration = parsed[0].written_duration()
+        elif isinstance(argument, tuple):
+            raise Exception(f"do not initialize tuple: {argument!r}")
         else:
-            written_duration = _duration.Duration(written_duration)
+            assert isinstance(argument, _duration.Duration), repr(repr(argument))
+            raise Exception(f"do not initialize like this: {argument!r}")
+            # written_duration = _duration.Duration(argument)
+        assert isinstance(written_duration, _duration.Duration), repr(written_duration)
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
-        if isinstance(original_input, Leaf):
-            self._copy_override_and_set_from_leaf(original_input)
 
     def _get_body(self) -> list[str]:
         return [self._get_compact_representation()]
 
     def _get_compact_representation(self) -> str:
         return f"r{self._get_formatted_duration()}"
+
+    @staticmethod
+    def from_duration(
+        duration: _duration.Duration,
+        *,
+        multiplier: tuple[int, int] | None = None,
+        tag: _tag.Tag | None = None,
+    ) -> Rest:
+        """
+        Makes rest from ``duration``
+
+        ..  container:: example
+
+            >>> duration = abjad.Duration(1, 4)
+            >>> abjad.Rest.from_duration(duration)
+            Rest('r4')
+
+        """
+        rest = Rest("r4", multiplier=multiplier, tag=tag)
+        rest.set_written_duration(duration)
+        return rest
 
 
 class Score(Context):
@@ -4460,6 +4482,9 @@ class Skip(Leaf):
             written_duration = _duration.Duration(1, 4)
         else:
             raise ValueError(f"can not initialize skip from {arguments!r}.")
+        if isinstance(written_duration, tuple):
+            written_duration = _duration.Duration(*written_duration)
+        assert isinstance(written_duration, _duration.Duration), repr(written_duration)
         Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
         if input_leaf is not None:
             self._copy_override_and_set_from_leaf(input_leaf)

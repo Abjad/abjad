@@ -17,21 +17,21 @@ def test_get_timespan_02():
 
 def test_get_timespan_03():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    staff[-1] = abjad.Rest((1, 8))
+    staff[-1] = abjad.Rest("r8")
     for i, x in enumerate(staff):
         assert abjad.get.timespan(x).start_offset == abjad.duration.offset(i, 8)
 
 
 def test_get_timespan_04():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    staff[10:10] = [abjad.Rest((1, 8))]
+    staff[10:10] = [abjad.Rest("r8")]
     for i, x in enumerate(staff):
         assert abjad.get.timespan(x).start_offset == abjad.duration.offset(i, 8)
 
 
 def test_get_timespan_05():
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    staff[10:12] = [abjad.Rest((1, 8))]
+    staff[10:12] = [abjad.Rest("r8")]
     for i, x in enumerate(staff):
         assert abjad.get.timespan(x).start_offset == abjad.duration.offset(i, 8)
 
