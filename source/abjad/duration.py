@@ -1270,28 +1270,28 @@ class Offset:
                     return True
         return False
 
-    def __ge__(self, argument) -> bool:
+    def __ge__(self, argument: object) -> bool:
         if not isinstance(argument, type(self)):
             raise TypeError
         if self.fraction == argument.fraction:
             return self._nonnone_displacement() >= argument._nonnone_displacement()
         return self.fraction >= argument.fraction
 
-    def __gt__(self, argument) -> bool:
+    def __gt__(self, argument: object) -> bool:
         if not isinstance(argument, type(self)):
             raise TypeError
         if self.fraction == argument.fraction:
             return self._nonnone_displacement() > argument._nonnone_displacement()
         return self.fraction > argument.fraction
 
-    def __le__(self, argument) -> bool:
+    def __le__(self, argument: object) -> bool:
         if not isinstance(argument, type(self)):
             raise TypeError
         if self.fraction == argument.fraction:
             return self._nonnone_displacement() <= argument._nonnone_displacement()
         return self.fraction <= argument.fraction
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         if not isinstance(argument, type(self)):
             raise TypeError
         if self.fraction == argument.fraction:

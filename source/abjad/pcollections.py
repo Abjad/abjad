@@ -916,7 +916,7 @@ class PitchRange:
         """
         return hash(repr(self))
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Is true when start pitch of this pitch-range is less than start pitch of
         ``argument`` pitch range.

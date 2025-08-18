@@ -148,11 +148,18 @@ def _make_tied_leaf(
                 tag=tag,
             )
         elif pitches is not None:
-            arguments = (pitches, written_duration)
-            leaf = class_(*arguments, multiplier=multiplier, tag=tag)
+            assert class_ is _score.Chord
+            leaf = class_.from_pitches_and_duration(
+                pitches,
+                written_duration,
+                multiplier=multiplier,
+                tag=tag,
+            )
         elif class_ is _score.Rest:
             leaf = class_.from_duration(
-                written_duration, multiplier=multiplier, tag=tag
+                written_duration,
+                multiplier=multiplier,
+                tag=tag,
             )
         else:
             assert class_ is _score.Skip, repr(class_)

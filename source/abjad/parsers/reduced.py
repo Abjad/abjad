@@ -188,7 +188,7 @@ class ReducedLyParser(Parser):
     def __init__(self, debug=False):
         self._default_duration = _duration.Duration(1, 4)
         self._toplevel_component_count = None
-        Parser.__init__(self, debug=debug)
+        super().__init__(debug=debug)
 
     ### LEX SETUP ###
 
@@ -295,13 +295,13 @@ class ReducedLyParser(Parser):
         """
         chord_body : chord_pitches
         """
-        p[0] = _score.Chord(p[1], self._default_duration)
+        p[0] = _score.Chord.from_pitches_and_duration(p[1], self._default_duration)
 
     def p_chord_body__chord_pitches__positive_leaf_duration(self, p):
         """
         chord_body : chord_pitches positive_leaf_duration
         """
-        p[0] = _score.Chord(p[1], p[2])
+        p[0] = _score.Chord.from_pitches_and_duration(p[1], p[2])
 
     def p_chord_pitches__CARAT_L__pitches__CARAT_R(self, p):
         """

@@ -285,7 +285,7 @@ def test_get_indicators_03():
 
 
 def test_get_markup_01():
-    chord = abjad.Chord([-11, 2, 5], (1, 4))
+    chord = abjad.Chord("<c' d' e'>4")
     up_markup = abjad.Markup(r"\markup UP")
     abjad.attach(up_markup, chord, direction=abjad.UP)
     down_markup = abjad.Markup(r"\markup DOWN")
@@ -295,7 +295,7 @@ def test_get_markup_01():
 
 
 def test_get_markup_02():
-    chord = abjad.Chord([-11, 2, 5], (1, 4))
+    chord = abjad.Chord("<c' d' e'>4")
     up_markup = abjad.Markup(r"\markup UP")
     abjad.attach(up_markup, chord, direction=abjad.UP)
     down_markup = abjad.Markup(r"\markup DOWN")

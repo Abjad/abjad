@@ -375,7 +375,7 @@ class Timespan:
                 return self.stop_offset == argument.stop_offset
         return False
 
-    def __ge__(self, argument) -> bool:
+    def __ge__(self, argument: object) -> bool:
         """
         Is true when ``argument`` start offset is greater or equal to timespan
         start offset.
@@ -393,20 +393,22 @@ class Timespan:
             False
 
         """
-        expr_start_offset = argument.start_offset
-        expr_stop_offset = argument.stop_offset
-        if expr_stop_offset is not None:
-            if self.start_offset >= expr_start_offset:
-                return True
-            elif (
-                self.start_offset == expr_start_offset
-                and self.stop_offset >= expr_stop_offset
-            ):
-                return True
-            return False
-        return self.start_offset >= expr_start_offset
+        if isinstance(argument, type(self)):
+            expr_start_offset = argument.start_offset
+            expr_stop_offset = argument.stop_offset
+            if expr_stop_offset is not None:
+                if self.start_offset >= expr_start_offset:
+                    return True
+                elif (
+                    self.start_offset == expr_start_offset
+                    and self.stop_offset >= expr_stop_offset
+                ):
+                    return True
+                return False
+            return self.start_offset >= expr_start_offset
+        return False
 
-    def __gt__(self, argument) -> bool:
+    def __gt__(self, argument: object) -> bool:
         """
         Is true when ``argument`` start offset is greater than timespan start
         offset.
@@ -424,20 +426,22 @@ class Timespan:
             False
 
         """
-        expr_start_offset = argument.start_offset
-        expr_stop_offset = argument.stop_offset
-        if expr_stop_offset is not None:
-            if self.start_offset > expr_start_offset:
-                return True
-            elif (
-                self.start_offset == expr_start_offset
-                and self.stop_offset > expr_stop_offset
-            ):
-                return True
-            return False
-        return self.start_offset > expr_start_offset
+        if isinstance(argument, type(self)):
+            expr_start_offset = argument.start_offset
+            expr_stop_offset = argument.stop_offset
+            if expr_stop_offset is not None:
+                if self.start_offset > expr_start_offset:
+                    return True
+                elif (
+                    self.start_offset == expr_start_offset
+                    and self.stop_offset > expr_stop_offset
+                ):
+                    return True
+                return False
+            return self.start_offset > expr_start_offset
+        return False
 
-    def __le__(self, argument) -> bool:
+    def __le__(self, argument: object) -> bool:
         """
         Is true when ``argument`` start offset is less than or equal to timespan start
         offset.
@@ -455,18 +459,20 @@ class Timespan:
             True
 
         """
-        expr_start_offset = argument.start_offset
-        expr_stop_offset = argument.stop_offset
-        if expr_stop_offset is not None:
-            if self.start_offset <= expr_start_offset:
-                return True
-            elif (
-                self.start_offset == expr_start_offset
-                and self.stop_offset <= expr_stop_offset
-            ):
-                return True
-            return False
-        return self.start_offset <= expr_start_offset
+        if isinstance(argument, type(self)):
+            expr_start_offset = argument.start_offset
+            expr_stop_offset = argument.stop_offset
+            if expr_stop_offset is not None:
+                if self.start_offset <= expr_start_offset:
+                    return True
+                elif (
+                    self.start_offset == expr_start_offset
+                    and self.stop_offset <= expr_stop_offset
+                ):
+                    return True
+                return False
+            return self.start_offset <= expr_start_offset
+        return False
 
     def __len__(self) -> int:
         """
@@ -481,7 +487,7 @@ class Timespan:
         """
         return 1
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         r"""
         Is true when ``argument`` start offset is less than timespan start offset.
 
@@ -498,18 +504,20 @@ class Timespan:
             False
 
         """
-        expr_start_offset = argument.start_offset
-        expr_stop_offset = argument.stop_offset
-        if expr_stop_offset is not None:
-            if self.start_offset < expr_start_offset:
-                return True
-            elif (
-                self.start_offset == expr_start_offset
-                and self.stop_offset < expr_stop_offset
-            ):
-                return True
-            return False
-        return self.start_offset < expr_start_offset
+        if isinstance(argument, type(self)):
+            expr_start_offset = argument.start_offset
+            expr_stop_offset = argument.stop_offset
+            if expr_stop_offset is not None:
+                if self.start_offset < expr_start_offset:
+                    return True
+                elif (
+                    self.start_offset == expr_start_offset
+                    and self.stop_offset < expr_stop_offset
+                ):
+                    return True
+                return False
+            return self.start_offset < expr_start_offset
+        return False
 
     def __or__(self, argument) -> TimespanList:
         """

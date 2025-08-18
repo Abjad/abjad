@@ -53,7 +53,7 @@ def _illustrate_metric_modulation(metric_modulation):
 
 
 def _illustrate_pitch_class_set(set_):
-    chord = _score.Chord(set_, _duration.Duration(1))
+    chord = _score.Chord.from_pitches_and_duration(set_, _duration.Duration(1))
     voice = _score.Voice([chord], name="Voice")
     staff = _score.Staff([voice], name="Staff")
     score = _score.Score([staff], name="Score")
@@ -128,11 +128,13 @@ def _illustrate_pitch_set(set_):
         else:
             upper.append(pitch)
     if upper:
-        upper = _score.Chord(upper, _duration.Duration(1))
+        pitches = _pitch.pitches(upper)
+        upper = _score.Chord.from_pitches_and_duration(pitches, _duration.Duration(1))
     else:
         upper = _score.Skip((1, 1))
     if lower:
-        lower = _score.Chord(lower, _duration.Duration(1))
+        pitches = _pitch.pitches(lower)
+        lower = _score.Chord.from_pitches_and_duration(pitches, _duration.Duration(1))
     else:
         lower = _score.Skip((1, 1))
     upper_voice = _score.Voice([upper], name="Treble_Voice")
@@ -540,7 +542,10 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
                 )
                 treble_leaf.set_note_head(treble_note_heads[0])
             else:
-                treble_leaf = _score.Chord(treble_note_heads, written_duration)
+                treble_leaf = _score.Chord.from_note_heads_and_duration(
+                    treble_note_heads,
+                    written_duration,
+                )
             if not bass_note_heads:
                 bass_leaf = _score.Rest.from_duration(written_duration)
             elif len(bass_note_heads) == 1:
@@ -549,7 +554,10 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
                 )
                 bass_leaf.set_note_head(bass_note_heads[0])
             else:
-                bass_leaf = _score.Chord(bass_note_heads, written_duration)
+                bass_leaf = _score.Chord.from_note_heads_and_duration(
+                    bass_note_heads,
+                    written_duration,
+                )
         else:
             treble_leaf = copy.copy(leaf)
             bass_leaf = copy.copy(leaf)

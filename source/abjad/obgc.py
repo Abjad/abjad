@@ -261,7 +261,12 @@ class OnBeatGraceContainer(_score.Container):
         if not isinstance(first_obgc_leaf, _score.Note | _score.Chord):
             return
         if isinstance(first_obgc_leaf, _score.Note):
-            chord = _score.Chord(first_obgc_leaf, tag=tag)
+            chord = _score.Chord.from_note_heads_and_duration(
+                [first_obgc_leaf.note_head()],
+                first_obgc_leaf.written_duration(),
+                tag=tag,
+            )
+            _score.copy_overrides_settings_and_wrappers(first_obgc_leaf, chord)
             _mutate.replace(first_obgc_leaf, chord)
             first_obgc_leaf = chord
         generator = _iterate.pitches(first_nongrace_leaf)

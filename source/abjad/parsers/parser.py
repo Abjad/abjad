@@ -1957,8 +1957,10 @@ class LilyPondLexicalDefinition:
             t.type = "MULTI_MEASURE_REST"
         elif value == "q":
             if self.client._last_chord is None:
-                self.client._last_chord = _score.Chord(
-                    ["c", "g", "c'"], (1, 4), tag=self.tag
+                self.client._last_chord = _score.Chord.from_pitches_and_duration(
+                    _pitch.pitches("c g c'".split()),
+                    _duration.Duration(1, 4),
+                    tag=self.tag,
                 )
             t.type = "CHORD_REPETITION"
         else:
@@ -2747,7 +2749,7 @@ class LilyPondParser(Parser):
         self._syndef = LilyPondSyntacticalDefinition(self, tag=tag)
 
         # build PLY parser and lexer
-        Parser.__init__(self, debug=debug)
+        super().__init__(debug=debug)
 
         self._reset_parser_variables()
 
@@ -3030,8 +3032,6 @@ class LilyPondParser(Parser):
         self._lexer.push_state("notes")
         self._default_duration = LilyPondDuration((1, 4), None)
         self._last_chord = None
-        # LilyPond's default!
-        # self._last_chord = _score.Chord(['c', 'g', "c'"], (1, 4))
         self._pitch_names = self._language_pitch_names[self.default_language()]
         self._repeated_chords = {}
 
@@ -4604,8 +4604,11 @@ class LilyPondSyntacticalDefinition:
     ):
         "event_chord : CHORD_REPETITION optional_notemode_duration post_events"
         pitches = self.client._last_chord.written_pitches()
-        duration = p[2].duration
-        chord = _score.Chord(pitches, duration, tag=self.tag)
+        if isinstance(p[2].duration, tuple):
+            duration = _duration.Duration(*p[2].duration)
+        else:
+            duration = p[2].duration
+        chord = _score.Chord.from_pitches_and_duration(pitches, duration, tag=self.tag)
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
             multiplier = fractions.Fraction(p[2].multiplier)
@@ -5743,7 +5746,11 @@ class LilyPondSyntacticalDefinition:
         self, p
     ):
         "note_chord_element : chord_body optional_notemode_duration post_events"
-        chord = _score.Chord([], p[2].duration, tag=self.tag)
+        if isinstance(p[2].duration, tuple):
+            duration = _duration.Duration(*p[2].duration)
+        else:
+            duration = p[2].duration
+        chord = _score.Chord.from_pitches_and_duration([], duration, tag=self.tag)
         pitches = []
         post_events = []
         for node in p[1]:
