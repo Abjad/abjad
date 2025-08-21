@@ -116,17 +116,26 @@ class Component:
             component = type(self).from_pitch_and_duration(
                 self.written_pitch(),
                 self.written_duration(),
+                multiplier=self.multiplier(),
                 tag=self.tag(),
             )
         elif isinstance(self, MultimeasureRest | Rest):
             component = type(self).from_duration(
                 self.written_duration(),
+                multiplier=self.multiplier(),
                 tag=self.tag(),
             )
         elif isinstance(self, Chord):
             component = type(self).from_note_heads_and_duration(
                 self.note_heads(),
                 self.written_duration(),
+                multiplier=self.multiplier(),
+                tag=self.tag(),
+            )
+        elif isinstance(self, Skip):
+            component = type(self).from_duration(
+                self.written_duration(),
+                multiplier=self.multiplier(),
                 tag=self.tag(),
             )
         else:
@@ -2531,6 +2540,9 @@ class Chord(Leaf):
     ..  container:: example
 
         >>> chord = abjad.Chord("<e' cs'' f''>4")
+        >>> chord
+        Chord("<e' cs'' f''>4")
+
         >>> abjad.show(chord) # doctest: +SKIP
 
         ..  docs::
@@ -2685,11 +2697,9 @@ class Chord(Leaf):
             assert isinstance(multiplier, tuple), repr(multiplier)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
-        chord = Chord("<c' e' g'>4")
+        chord = Chord("<c' e' g'>4", multiplier=multiplier, tag=tag)
         chord.set_note_heads([copy.copy(_) for _ in note_heads])
         chord.set_written_duration(duration)
-        chord.set_multiplier(multiplier)
-        chord.set_tag(tag)
         return chord
 
     @staticmethod
@@ -2724,11 +2734,9 @@ class Chord(Leaf):
             assert isinstance(multiplier, tuple), repr(multiplier)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
-        chord = Chord("<c' e' g'>4")
+        chord = Chord("<c' e' g'>4", multiplier=multiplier, tag=tag)
         chord.set_written_pitches(pitches)
         chord.set_written_duration(duration)
-        chord.set_multiplier(multiplier)
-        chord.set_tag(tag)
         return chord
 
     def note_heads(self) -> NoteHeadList:
@@ -3271,6 +3279,9 @@ class MultimeasureRest(Leaf):
     ..  container:: example
 
         >>> rest = abjad.MultimeasureRest("R1")
+        >>> rest
+        MultimeasureRest('R1')
+
         >>> abjad.show(rest) # doctest: +SKIP
 
         ..  docs::
@@ -3300,8 +3311,12 @@ class MultimeasureRest(Leaf):
         if string == "R1":
             written_duration = _duration.Duration(1)
         else:
-            rest = Rest(string, language=language)
-            written_duration = rest.written_duration()
+            assert isinstance(string, str), repr(string)
+            string = f"{{ {string} }}"
+            parsed = self._parse_lilypond_string(string, language=language)
+            assert len(parsed) == 1 and isinstance(parsed[0], MultimeasureRest)
+            mmrest = parsed[0]
+            written_duration = mmrest.written_duration()
         super().__init__(written_duration, multiplier=multiplier, tag=tag)
 
     def _get_body(self) -> list[str]:
@@ -4180,11 +4195,9 @@ class Note(Leaf):
             assert isinstance(multiplier, tuple), repr(multiplier)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
-        note = Note("c'4")
+        note = Note("c'4", multiplier=multiplier, tag=tag)
         note.set_written_pitch(pitch)
         note.set_written_duration(duration)
-        note.set_multiplier(multiplier)
-        note.set_tag(tag)
         return note
 
     def note_head(self) -> NoteHead:
@@ -4283,26 +4296,22 @@ class Note(Leaf):
 
 
 class Rest(Leaf):
-    r"""
+    """
     Rest.
 
     ..  container:: example
 
-        >>> rest = abjad.Rest("r8.")
-        >>> staff = abjad.Staff([rest])
-        >>> score = abjad.Score([staff], name="Score")
-        >>> abjad.attach(abjad.TimeSignature((3, 16)), rest)
-        >>> abjad.show(staff) # doctest: +SKIP
+        >>> rest = abjad.Rest("r4")
+        >>> rest
+        Rest('r4')
+
+        >>> abjad.show(rest) # doctest: +SKIP
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff)
+            >>> string = abjad.lilypond(rest)
             >>> print(string)
-            \new Staff
-            {
-                \time 3/16
-                r8.
-            }
+            r4
 
     """
 
@@ -4316,15 +4325,21 @@ class Rest(Leaf):
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
+        assert isinstance(string, str), repr(string)
+        assert isinstance(language, str), repr(language)
+        if multiplier is not None:
+            assert isinstance(multiplier, tuple), repr(multiplier)
+        if tag is not None:
+            assert isinstance(tag, _tag.Tag), repr(tag)
         if string == "r4":
             written_duration = _duration.Duration(1, 4)
         else:
             assert isinstance(string, str), repr(string)
             string = f"{{ {string} }}"
             parsed = self._parse_lilypond_string(string, language=language)
-            assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
-            written_duration = parsed[0].written_duration()
-        assert isinstance(written_duration, _duration.Duration), repr(written_duration)
+            assert len(parsed) == 1 and isinstance(parsed[0], Rest)
+            rest = parsed[0]
+            written_duration = rest.written_duration()
         super().__init__(written_duration, multiplier=multiplier, tag=tag)
 
     def _get_body(self) -> list[str]:
@@ -4440,61 +4455,33 @@ class Skip(Leaf):
             >>> print(string)
             s1
 
-        >>> skip = abjad.Skip("s1", multiplier=(5, 4))
-        >>> skip
-        Skip('s1 * 5/4')
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(skip)
-            >>> print(string)
-            s1 * 5/4
-
-        >>> note = abjad.Note("c'4", multiplier=(5, 4))
-        >>> skip = abjad.Skip(note)
-        >>> skip
-        Skip('s4 * 5/4')
-
-        ..  docs::
-
-            >>> string = abjad.lilypond(skip)
-            >>> print(string)
-            s4 * 5/4
-
     """
 
     __slots__ = ("_measure_initial_grace_note",)
 
     def __init__(
         self,
-        *arguments,
+        string: str,
         language: str = "english",
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
-        input_leaf = None
-        if len(arguments) == 1 and isinstance(arguments[0], str):
-            string = f"{{ {arguments[0]} }}"
-            parsed = self._parse_lilypond_string(string, language=language)
-            assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
-            input_leaf = parsed[0]
-            written_duration = input_leaf.written_duration()
-        elif len(arguments) == 1 and isinstance(arguments[0], Leaf):
-            input_leaf = arguments[0]
-            written_duration = input_leaf.written_duration()
-            multiplier = input_leaf.multiplier()
-        elif len(arguments) == 1 and not isinstance(arguments[0], str):
-            written_duration = arguments[0]
-        elif len(arguments) == 0:
+        assert isinstance(string, str), repr(string)
+        assert isinstance(language, str), repr(language)
+        if multiplier is not None:
+            assert isinstance(multiplier, tuple), repr(multiplier)
+        if tag is not None:
+            assert isinstance(tag, _tag.Tag), repr(tag)
+        if string == "s4":
             written_duration = _duration.Duration(1, 4)
         else:
-            raise ValueError(f"can not initialize skip from {arguments!r}.")
-        if isinstance(written_duration, tuple):
-            written_duration = _duration.Duration(*written_duration)
+            string = f"{{ {string} }}"
+            parsed = self._parse_lilypond_string(string, language=language)
+            assert len(parsed) == 1 and isinstance(parsed[0], Skip)
+            skip = parsed[0]
+            written_duration = skip.written_duration()
         assert isinstance(written_duration, _duration.Duration), repr(written_duration)
         super().__init__(written_duration, multiplier=multiplier, tag=tag)
-        if input_leaf is not None:
-            copy_overrides_settings_and_wrappers(input_leaf, self)
         self._measure_initial_grace_note = None
 
     def _get_body(self) -> list[str]:
@@ -4509,6 +4496,32 @@ class Skip(Leaf):
 
     def _get_compact_representation(self) -> str:
         return f"s{self._get_formatted_duration()}"
+
+    @staticmethod
+    def from_duration(
+        duration: _duration.Duration,
+        *,
+        multiplier: tuple[int, int] | None = None,
+        tag: _tag.Tag | None = None,
+    ) -> Skip:
+        """
+        Makes skip from ``duration``.
+
+        ..  container:: example
+
+            >>> duration = abjad.Duration(3, 16)
+            >>> abjad.Skip.from_duration(duration)
+            Skip('s8.')
+
+        """
+        assert isinstance(duration, _duration.Duration), repr(duration)
+        if multiplier is not None:
+            assert isinstance(multiplier, tuple), repr(multiplier)
+        if tag is not None:
+            assert isinstance(tag, _tag.Tag), repr(tag)
+        skip = Skip("s4", multiplier=multiplier, tag=tag)
+        skip.set_written_duration(duration)
+        return skip
 
 
 class Staff(Context):

@@ -155,16 +155,13 @@ def _make_tied_leaf(
                 multiplier=multiplier,
                 tag=tag,
             )
-        elif class_ is _score.Rest:
+        else:
+            assert class_ in (_score.Rest, _score.Skip), repr(class_)
             leaf = class_.from_duration(
                 written_duration,
                 multiplier=multiplier,
                 tag=tag,
             )
-        else:
-            assert class_ is _score.Skip, repr(class_)
-            arguments = (written_duration,)
-            leaf = class_(*arguments, multiplier=multiplier, tag=tag)
         leaves.append(leaf)
     if 1 < len(leaves):
         if not issubclass(class_, _score.Rest | _score.Skip):

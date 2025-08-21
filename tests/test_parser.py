@@ -2212,7 +2212,8 @@ def test_LilyPondParser__leaves__Rest_01():
 
 
 def test_LilyPondParser__leaves__Skip_01():
-    target = abjad.Skip((3, 8))
+    duration = abjad.Duration(3, 8)
+    target = abjad.Skip.from_duration(duration)
     parser = abjad.parser.LilyPondParser()
     result = parser("{ %s }" % abjad.lilypond(target))
     assert (

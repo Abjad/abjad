@@ -131,12 +131,12 @@ def _illustrate_pitch_set(set_):
         pitches = _pitch.pitches(upper)
         upper = _score.Chord.from_pitches_and_duration(pitches, _duration.Duration(1))
     else:
-        upper = _score.Skip((1, 1))
+        upper = _score.Skip("s1")
     if lower:
         pitches = _pitch.pitches(lower)
         lower = _score.Chord.from_pitches_and_duration(pitches, _duration.Duration(1))
     else:
-        lower = _score.Skip((1, 1))
+        lower = _score.Skip("s1")
     upper_voice = _score.Voice([upper], name="Treble_Voice")
     upper_staff = _score.Staff([upper_voice], name="Treble_Staff")
     lower_voice = _score.Voice([lower], name="Bass_Voice")

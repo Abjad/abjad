@@ -6261,7 +6261,7 @@ class LilyPondSyntacticalDefinition:
         if p[1] == "r":
             rest = _score.Rest.from_duration(p[2].duration, tag=self.tag)
         else:
-            rest = _score.Skip(p[2].duration, tag=self.tag)
+            rest = _score.Skip.from_duration(p[2].duration, tag=self.tag)
         if p[2].multiplier is not None:
             fraction = fractions.Fraction(p[2].multiplier)
             pair = (fraction.numerator, fraction.denominator)
