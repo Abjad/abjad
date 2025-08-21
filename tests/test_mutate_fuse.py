@@ -73,7 +73,7 @@ def test_mutate_fuse_05():
     Works with multiplied durations.
     """
 
-    staff = abjad.Staff([abjad.Skip((1, 1)), abjad.Skip((1, 1))])
+    staff = abjad.Staff([abjad.Skip("s1"), abjad.Skip("s1")])
     staff[0].set_multiplier((1, 16))
     staff[1].set_multiplier((5, 16))
 

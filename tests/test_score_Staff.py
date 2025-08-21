@@ -37,7 +37,7 @@ def test_Staff___delitem___01():
             abjad.Note("c'4"),
             abjad.Rest("r4"),
             abjad.Chord("<d' ef' f'>4"),
-            abjad.Skip((1, 4)),
+            abjad.Skip("s4"),
             abjad.Tuplet("5:4", "c'16 c'16 c'16 c'16"),
         ]
     )
@@ -76,7 +76,7 @@ def test_Staff___delitem___02():
             abjad.Note("c'4"),
             abjad.Rest("r4"),
             abjad.Chord("<d' ef' f'>4"),
-            abjad.Skip((1, 4)),
+            abjad.Skip("s4"),
             abjad.Tuplet("5:4", "c'16 c'16 c'16 c'16"),
         ]
     )
@@ -115,7 +115,7 @@ def test_Staff___delitem___03():
             abjad.Note("c'4"),
             abjad.Rest("r4"),
             abjad.Chord("<d' ef' f'>4"),
-            abjad.Skip((1, 4)),
+            abjad.Skip("s4"),
             abjad.Tuplet("5:4", "c'16 c'16 c'16 c'16"),
         ]
     )
@@ -154,7 +154,7 @@ def test_Staff___getitem___01():
             abjad.Note("c'4"),
             abjad.Rest("r4"),
             abjad.Chord("<d' ef' f'>4"),
-            abjad.Skip((1, 4)),
+            abjad.Skip("s4"),
             abjad.Tuplet("5:4", "c'16 c'16 c'16 c'16"),
         ]
     )
@@ -179,7 +179,7 @@ def test_Staff___getitem___02():
             abjad.Note("c'4"),
             abjad.Rest("r4"),
             abjad.Chord("<d' ef' f'>4"),
-            abjad.Skip((1, 4)),
+            abjad.Skip("s4"),
             abjad.Tuplet("5:4", "c'16 c'16 c'16 c'16"),
         ]
     )
@@ -197,7 +197,7 @@ def test_Staff___getitem___03():
             abjad.Note("c'4"),
             abjad.Rest("r4"),
             abjad.Chord("<d' ef' f'>4"),
-            abjad.Skip((1, 4)),
+            abjad.Skip("s4"),
             abjad.Tuplet("5:4", "c'16 c'16 c'16 c'16"),
         ]
     )
@@ -218,7 +218,7 @@ def test_Staff___getitem___04():
             abjad.Note("c'4"),
             abjad.Rest("r4"),
             abjad.Chord("<d' ef' f'>4"),
-            abjad.Skip((1, 4)),
+            abjad.Skip("s4"),
             abjad.Tuplet("5:4", "c'16 c'16 c'16 c'16"),
         ]
     )
@@ -239,7 +239,7 @@ def test_Staff___getitem___05():
             abjad.Note("c'4"),
             abjad.Rest("r4"),
             abjad.Chord("<d' ef' f'>4"),
-            abjad.Skip((1, 4)),
+            abjad.Skip("s4"),
             abjad.Tuplet("5:4", "c'16 c'16 c'16 c'16"),
         ]
     )
@@ -262,7 +262,7 @@ def test_Staff___getitem___06():
             abjad.Note("c'4"),
             abjad.Rest("r4"),
             abjad.Chord("<d' ef' f'>4"),
-            abjad.Skip((1, 4)),
+            abjad.Skip("s4"),
             abjad.Tuplet("5:4", "c'16 c'16 c'16 c'16"),
         ]
     )
@@ -285,7 +285,7 @@ def test_Staff___getitem___07():
             abjad.Note("c'4"),
             abjad.Rest("r4"),
             abjad.Chord("<d' ef' f'>4"),
-            abjad.Skip((1, 4)),
+            abjad.Skip("s4"),
             abjad.Tuplet("5:4", "c'16 c'16 c'16 c'16"),
         ]
     )
@@ -308,7 +308,7 @@ def test_Staff___getitem___08():
             abjad.Note("c'4"),
             abjad.Rest("r4"),
             abjad.Chord("<d' ef' f'>4"),
-            abjad.Skip((1, 4)),
+            abjad.Skip("s4"),
             abjad.Tuplet("5:4", "c'16 c'16 c'16 c'16"),
         ]
     )
@@ -359,7 +359,7 @@ def test_Staff___setitem___01():
             abjad.Note("c'4"),
             abjad.Rest("r4"),
             abjad.Chord("<d' ef' f'>4"),
-            abjad.Skip((1, 4)),
+            abjad.Skip("s4"),
             abjad.Tuplet("5:4", "c'16 c'16 c'16 c'16"),
         ]
     )
@@ -403,7 +403,7 @@ def test_Staff___setitem___01():
     assert isinstance(staff[2], abjad.Chord)
     assert isinstance(staff[3], abjad.Tuplet)
     assert isinstance(staff[4], abjad.Note)
-    staff[-3] = abjad.Skip((1, 4))
+    staff[-3] = abjad.Skip("s4")
     assert len(staff) == 5
     assert abjad.wf.is_wellformed(staff)
     assert isinstance(staff[0], abjad.Rest)
