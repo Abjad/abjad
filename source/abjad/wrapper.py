@@ -2,6 +2,8 @@
 Wrapper.
 """
 
+from __future__ import annotations
+
 import copy
 import importlib
 import typing
@@ -93,7 +95,7 @@ class Wrapper:
                 check_duplicate_indicator=check_duplicate_indicator,
             )
 
-    def __copy__(self, *arguments) -> "Wrapper":
+    def __copy__(self) -> Wrapper:
         """
         Copies all properties except component; calling code must supply
         component after copy.

@@ -2,6 +2,8 @@
 Classes to model music pitch.
 """
 
+from __future__ import annotations
+
 import copy
 import dataclasses
 import fractions
@@ -779,11 +781,13 @@ class Accidental:
             raise TypeError(f"do not know how to apply accidental to {argument!r}.")
         return argument._apply_accidental(self)
 
-    def __lt__(self, argument):
+    def __lt__(self, argument: object) -> bool:
         """
         Returns true or false.
         """
-        return self.semitones < argument.semitones
+        if isinstance(argument, type(self)):
+            return self.semitones < argument.semitones
+        return False
 
     def __neg__(self):
         """
@@ -1222,7 +1226,7 @@ class IntervalClass:
         """
         return hash(self.__class__.__name__ + repr(self))
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Compares ``number``.
         """
@@ -1440,7 +1444,7 @@ class NamedIntervalClass(IntervalClass):
         """
         return super().__hash__()
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Is true when ``argument`` is a named interval class with a number greater than
         that of this named interval.
@@ -1886,7 +1890,7 @@ class NumberedIntervalClass(IntervalClass):
         """
         return super().__hash__()
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Compares ``number``.
 
@@ -2093,7 +2097,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         """
         return type(self)(abs(self.number()))
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Compares ``number``.
         """
@@ -2189,7 +2193,7 @@ class Interval:
         """
         return hash(self.__class__.__name__ + repr(self))
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Is true when interval is less than ``argument``
         """
@@ -2418,7 +2422,7 @@ class NamedInterval(Interval):
         new_pitch = dummy_pitch + self + argument
         return NamedInterval.from_pitch_carriers(dummy_pitch, new_pitch)
 
-    def __copy__(self, *arguments) -> "NamedInterval":
+    def __copy__(self) -> NamedInterval:
         """
         Copies named interval.
 
@@ -2481,7 +2485,7 @@ class NamedInterval(Interval):
         """
         return super().__hash__()
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Compares ``semitones``.
 
@@ -2953,7 +2957,7 @@ class NumberedInterval(Interval):
             return NotImplemented
         return type(self)(float(self) + float(argument))
 
-    def __copy__(self) -> "NumberedInterval":
+    def __copy__(self) -> NumberedInterval:
         """
         Copies numbered interval.
 
@@ -3016,7 +3020,7 @@ class NumberedInterval(Interval):
         """
         return super().__hash__()
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Is true when ``argument`` is a numbered interval with same direction number as
         this numbered interval and with number greater than that of this numbered
@@ -3322,7 +3326,7 @@ class PitchClass:
         """
         return hash(self.__class__.__name__ + repr(self))
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Is true when pitch-class is less than ``argument``.
         """
@@ -3554,7 +3558,7 @@ class NamedPitchClass(PitchClass):
         """
         return super().__hash__()
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Compares ``number``.
 
@@ -3847,7 +3851,7 @@ class NumberedPitchClass(PitchClass):
         interval = NumberedInterval(argument)
         return type(self)(self.number() + interval.number() % 12)
 
-    def __copy__(self, *arguments) -> "NumberedPitchClass":
+    def __copy__(self) -> NumberedPitchClass:
         """
         Copies numbered pitch-class.
 
@@ -3903,7 +3907,7 @@ class NumberedPitchClass(PitchClass):
         """
         return super().__hash__()
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Compares ``number``.
 
@@ -4246,7 +4250,7 @@ class Pitch:
         """
         return hash(self.__class__.__name__ + repr(self))
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Is true when pitch is less than ``argument``.
         """
@@ -4468,7 +4472,7 @@ class NamedPitch(Pitch):
         interval = NamedInterval(interval)
         return interval.transpose(self)
 
-    def __copy__(self, *arguments) -> "NamedPitch":
+    def __copy__(self) -> NamedPitch:
         """
         Copies named pitch.
 
@@ -4547,7 +4551,7 @@ class NamedPitch(Pitch):
     # https://github.com/python/mypy/issues/4610
     # remove __le__ (in favor of __lt__) when mypy supports functools.total_ordering
     # or, refactor this class as a dataclass and then remove __le__
-    def __le__(self, argument) -> bool:
+    def __le__(self, argument: object) -> bool:
         """
         Is true when named pitch is less than or equal to ``argument``.
 
@@ -4589,7 +4593,7 @@ class NamedPitch(Pitch):
             return self.accidental() <= argument.accidental()
         return self_dpn <= argument_dpn
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Is true when named pitch is less than ``argument``.
 
@@ -5160,9 +5164,10 @@ class NumberedPitch(Pitch):
     # https://github.com/python/mypy/issues/4610
     # remove __le__ (in favor of __lt__) when mypy supports functools.total_ordering
     # or, refactor this class as a dataclass and then remove __le__
-    def __le__(self, argument) -> bool:
-        r"""Is true when ``argument`` can be coerced to a numbered pitch and when this
-        numbered pitch is less or equal to ``argument``.
+    def __le__(self, argument: object) -> bool:
+        r"""
+        Is true when ``argument`` can be coerced to a numbered pitch and when
+        this numbered pitch is less or equal to ``argument``.
 
         ..  container:: example
 
@@ -5198,9 +5203,10 @@ class NumberedPitch(Pitch):
             return False
         return self.number() <= argument.number()
 
-    def __lt__(self, argument) -> bool:
-        r"""Is true when ``argument`` can be coerced to a numbered pitch and when this
-        numbered pitch is less than ``argument``.
+    def __lt__(self, argument: object) -> bool:
+        r"""
+        Is true when ``argument`` can be coerced to a numbered pitch and when
+        this numbered pitch is less than ``argument``.
 
         ..  container:: example
 
@@ -5622,7 +5628,7 @@ class StaffPosition:
         assert isinstance(self.number, int), repr(self.number)
 
 
-def pitches(items: list[float]) -> list[NamedPitch]:
+def pitches(items: typing.Sequence[float | str]) -> list[NamedPitch]:
     """
     Changes ``items`` to pitches.
     """

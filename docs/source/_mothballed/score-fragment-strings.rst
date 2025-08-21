@@ -366,8 +366,10 @@ We define more functions:
     >>> def edit_cello(score, voice_to_descents):
     ...     voice = score["Cello_Voice"]
     ...     logical_tie = abjad.select.logical_tie(voice[-1], 0)
+    ...     pitches = abjad.pitch.pithces("e a".split())
+    ...     duration = leaf.written_duration()
     ...     for leaf in logical_tie:
-    ...         chord = abjad.Chord(["e,", "a,"], leaf.written_duration())
+    ...         chord = abjad.Chord.from_pitches_and_duration(pitches, duration)
     ...         abjad.mutate.replace(leaf, chord)
     ...     descents = voice_to_descents["Cello"]
     ...     descent = descents[-1]

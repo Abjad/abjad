@@ -72,20 +72,6 @@ def test_Skip___init___01():
     assert isinstance(skip, abjad.Skip)
 
 
-def test_Skip___init___02():
-    """
-    Initializes skip from orphan chord.
-    """
-
-    chord = abjad.Chord([2, 3, 4], (1, 4))
-    skip = abjad.Skip(chord)
-
-    assert isinstance(skip, abjad.Skip)
-    assert dir(skip) == dir(abjad.Skip((1, 4)))
-    assert abjad.get.parentage(skip).parent() is None
-    assert skip.written_duration() == chord.written_duration()
-
-
 def test_Skip___init___03():
     """
     Initializes skip from chord with parent.

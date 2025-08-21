@@ -47,7 +47,7 @@ class SchemeParser(Parser):
         self.expression_depth = None
         self.result = None
         self.string_accumulator = None
-        Parser.__init__(self, debug=debug)
+        super().__init__(debug=debug)
 
     ### PRIVATE METHODS ###
 

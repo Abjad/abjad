@@ -37,12 +37,26 @@ def _indent_strings(strings):
     return result
 
 
+def copy_overrides_settings_and_wrappers(
+    donor: Component, recipient: Component
+) -> None:
+    """
+    Copies overrides, settings and wrappers from ``donor`` to ``recipient``.
+    """
+    if getattr(donor, "_overrides", None) is not None:
+        recipient._overrides = copy.copy(_overrides.override(donor))
+    if getattr(donor, "_lilypond_setting_name_manager", None) is not None:
+        recipient._lilypond_setting_name_manager = copy.copy(_overrides.setting(donor))
+    for wrapper in donor._wrappers:
+        wrapper_ = copy.copy(wrapper)
+        wrapper_._component = recipient
+        wrapper_._bind_component(recipient)
+
+
 class Component:
     """
     Component.
     """
-
-    ### CLASS VARIABLES ###
 
     _allowable_sites: tuple[str, ...] = ()
 
@@ -63,8 +77,6 @@ class Component:
     )
 
     _is_abstract = True
-
-    ### INITIALIZER ###
 
     @staticmethod
     def _parse_lilypond_string(string, language="english"):
@@ -89,15 +101,12 @@ class Component:
         self._timespan = _timespan.Timespan(_duration.offset(0), _duration.offset(0))
         self._wrappers: list = []
 
-    ### SPECIAL METHODS ###
-
-    def __copy__(self, *arguments):
+    # TODO: typehint to typing.Self after removing hasattr() calls
+    def __copy__(self):
         """
         Shallow copies component.
 
         Copies indicators.
-
-        Does not copy spanners.
 
         Does not copy children.
 
@@ -107,22 +116,37 @@ class Component:
             component = type(self).from_pitch_and_duration(
                 self.written_pitch(),
                 self.written_duration(),
+                tag=self.tag(),
             )
         elif isinstance(self, MultimeasureRest | Rest):
-            component = type(self).from_duration(self.written_duration())
+            component = type(self).from_duration(
+                self.written_duration(),
+                tag=self.tag(),
+            )
+        elif isinstance(self, Chord):
+            component = type(self).from_note_heads_and_duration(
+                self.note_heads(),
+                self.written_duration(),
+                tag=self.tag(),
+            )
         else:
+            # TODO: remove __getnewargs__ from component classes:
             component = type(self)(*self.__getnewargs__(), tag=self.tag())
+        # TODO: move up to Container.__copy__()
         if hasattr(self, "identifier"):
             component.set_identifier(self.identifier())
+        # TODO: move up to Context.__copy__()
         if hasattr(self, "lilypond_type"):
             component.set_lilypond_type(self.lilypond_type())
+        # TODO: move up to Container.__copy__()
         if hasattr(self, "name"):
             component.set_name(self.name())
+        # TODO: move up to Container.__copy__()
         if hasattr(self, "simultaneous"):
             component.set_simultaneous(self.simultaneous())
-        if getattr(self, "_overrides", None) is not None:
+        if self._overrides is not None:
             component._overrides = copy.copy(_overrides.override(self))
-        if getattr(self, "_lilypond_setting_name_manager", None) is not None:
+        if self._lilypond_setting_name_manager is not None:
             component._lilypond_setting_name_manager = copy.copy(
                 _overrides.setting(self)
             )
@@ -138,6 +162,7 @@ class Component:
             wrapper_._bind_component(component)
         return component
 
+    # TODO: remove
     def __getnewargs__(self):
         """
         Gets new arguments.
@@ -145,8 +170,6 @@ class Component:
         Returns tuple.
         """
         return ()
-
-    ### PRIVATE METHODS ###
 
     def _cache_named_children(self):
         name_dictionary = {}
@@ -387,14 +410,6 @@ class Component:
             elif offsets_in_seconds:
                 component._offsets_in_seconds_are_current = False
 
-    def tag(self) -> _tag.Tag | None:
-        """
-        Gets component tag.
-        """
-        if self._tag is not None:
-            assert isinstance(self._tag, _tag.Tag), repr(self._tag)
-        return self._tag
-
     def set_tag(self, argument):
         """
         Sets component tag.
@@ -403,13 +418,19 @@ class Component:
             assert isinstance(argument, _tag.Tag), repr(argument)
         self._tag = argument
 
+    def tag(self) -> _tag.Tag | None:
+        """
+        Gets component tag.
+        """
+        if self._tag is not None:
+            assert isinstance(self._tag, _tag.Tag), repr(self._tag)
+        return self._tag
+
 
 class Leaf(Component):
     """
     Leaf.
     """
-
-    ### CLASS VARIABLES ##
 
     _allowable_sites = (
         "absolute_before",
@@ -425,8 +446,6 @@ class Leaf(Component):
         "_written_duration",
     )
 
-    ### INITIALIZER ###
-
     def __init__(
         self,
         written_duration: _duration.Duration,
@@ -434,7 +453,7 @@ class Leaf(Component):
         multiplier=None,
         tag: _tag.Tag | None = None,
     ) -> None:
-        Component.__init__(self, tag=tag)
+        super().__init__(tag=tag)
         self._after_grace_container = None
         self._before_grace_container = None
         self.set_multiplier(multiplier)
@@ -446,13 +465,8 @@ class Leaf(Component):
             written_duration_ = _duration.Duration(written_duration)
         self.set_written_duration(written_duration_)
 
-    ### SPECIAL METHODS ###
-
-    def __copy__(self, *arguments):
-        """
-        Shallow copies leaf.
-        """
-        leaf = Component.__copy__(self, *arguments)
+    def __copy__(self) -> typing.Self:
+        leaf = super().__copy__()
         leaf.set_multiplier(self.multiplier())
         before_grace_container = self._before_grace_container
         if before_grace_container is not None:
@@ -464,31 +478,12 @@ class Leaf(Component):
             grace_container._attach(leaf)
         return leaf
 
+    # TODO: remove
     def __getnewargs__(self):
-        """
-        Gets new arguments.
-
-        Returns tuple.
-        """
         return (self.written_duration(),)
 
     def __repr__(self) -> str:
-        """
-        Gets repr.
-        """
         return f"{type(self).__name__}({self._get_compact_representation()!r})"
-
-    ### PRIVATE METHODS ###
-
-    def _copy_override_and_set_from_leaf(self, leaf):
-        if getattr(leaf, "_overrides", None) is not None:
-            self._overrides = copy.copy(_overrides.override(leaf))
-        if getattr(leaf, "_lilypond_setting_name_manager", None) is not None:
-            self._lilypond_setting_name_manager = copy.copy(_overrides.setting(leaf))
-        for wrapper in leaf._wrappers:
-            wrapper_ = copy.copy(wrapper)
-            wrapper_._component = self
-            wrapper_._bind_component(self)
 
     def _format_after_site(self, contributions):
         result = []
@@ -619,7 +614,7 @@ class Leaf(Component):
             result.extend(strings)
         return result
 
-    def _get_compact_representation(self):
+    def _get_compact_representation(self) -> str:
         return f"({self._get_formatted_duration()})"
 
     def _get_following_after_grace_container(self):
@@ -634,18 +629,22 @@ class Leaf(Component):
             else:
                 return False
 
-    def _get_formatted_duration(self):
+    def _get_formatted_duration(self) -> str:
         strings = [self.written_duration().lilypond_duration_string()]
-        if self.multiplier() is not None:
-            string = f"{self.multiplier()[0]}/{self.multiplier()[1]}"
+        self_multiplier = self.multiplier()
+        if self_multiplier is not None:
+            string = f"{self_multiplier[0]}/{self_multiplier[1]}"
             strings.append(string)
         result = " * ".join(strings)
         return result
 
-    def _get_preprolated_duration(self):
+    def _get_preprolated_duration(self) -> _duration.Duration:
         duration = self.written_duration()
-        if self.multiplier() is not None:
-            duration *= fractions.Fraction(*self.multiplier())
+        self_multiplier = self.multiplier()
+        if self_multiplier is not None:
+            duration = _duration.Duration(
+                duration * fractions.Fraction(*self_multiplier)
+            )
         return duration
 
     def _get_subtree(self):
@@ -690,31 +689,34 @@ class Leaf(Component):
 
     def multiplier(self) -> tuple[int, int] | None:
         """
-        Gets leaf duration multiplier.
+        Gets leaf multiplier.
         """
         return self._multiplier
 
-    def set_multiplier(self, argument):
+    def set_multiplier(self, pair: tuple[int, int] | None) -> None:
         """
-        Sets leaf duration multiplier.
+        Sets leaf multiplier.
         """
-        if argument is not None:
-            assert isinstance(argument, tuple), repr(argument)
-            assert len(argument) == 2, repr(argument)
-        self._multiplier = argument
+        if pair is not None:
+            assert isinstance(pair, tuple), repr(pair)
+            assert len(pair) == 2, repr(pair)
+        self._multiplier = pair
+
+    def set_written_duration(self, duration: _duration.Duration) -> None:
+        """
+        Sets leaf written duration.
+        """
+        assert isinstance(duration, _duration.Duration), repr(duration)
+        if not duration.is_assignable():
+            message = f"not assignable duration: {duration!r}."
+            raise _exceptions.AssignabilityError(message)
+        self._written_duration = duration
 
     def written_duration(self) -> _duration.Duration:
         """
         Gets leaf written duration.
         """
         return self._written_duration
-
-    def set_written_duration(self, duration: _duration.Duration) -> None:
-        assert isinstance(duration, _duration.Duration), repr(duration)
-        if not duration.is_assignable():
-            message = f"not assignable duration: {duration!r}."
-            raise _exceptions.AssignabilityError(message)
-        self._written_duration = duration
 
 
 class Container(Component):
@@ -845,7 +847,7 @@ class Container(Component):
         if not isinstance(components, str):
             prototype = (Component, str)
             assert all(isinstance(_, prototype) for _ in components), repr(components)
-        Component.__init__(self, tag=tag)
+        super().__init__(tag=tag)
         self._named_children: dict = {}
         self._is_simultaneous = None
         # sets name temporarily for _find_correct_effective_context:
@@ -1959,7 +1961,7 @@ class AfterGraceContainer(Container):
     ) -> None:
         # NOTE: _main_leaf must be initialized before container initialization
         self._main_leaf = None
-        Container.__init__(self, components, language=language, tag=tag)
+        super().__init__(components, language=language, tag=tag)
         self.set_fraction(fraction)
 
     ### SPECIAL METHODS ###
@@ -2202,7 +2204,7 @@ class BeforeGraceContainer(Container):
             raise Exception(message)
         self._command = command
         self._main_leaf = None
-        Container.__init__(self, components, language=language, tag=tag)
+        super().__init__(components, language=language, tag=tag)
 
     ### SPECIAL METHODS ###
 
@@ -2539,111 +2541,41 @@ class Chord(Leaf):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_note_heads",)
-
-    ### INITIALIZER ###
 
     def __init__(
         self,
-        *arguments,
+        string: str,
         language: str = "english",
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
-        assert len(arguments) in (0, 1, 2)
-        self._note_heads = NoteHeadList()
-        if len(arguments) == 1 and isinstance(arguments[0], str):
-            string = f"{{ {arguments[0]} }}"
-            parsed = self._parse_lilypond_string(string, language=language)
-            assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
-            arguments = tuple([parsed[0]])
-        are_cautionary: list[bool | None] = []
-        are_forced: list[bool | None] = []
-        are_parenthesized: list[bool | None] = []
-        if len(arguments) == 1 and isinstance(arguments[0], Leaf):
-            leaf = arguments[0]
-            written_pitches = []
-            written_duration = leaf.written_duration()
-            if multiplier is None:
-                multiplier = leaf.multiplier()
-            # TODO: move to dedicated from_note() constructor:
-            if isinstance(leaf, Note) and leaf.note_head() is not None:
-                written_pitches.append(leaf.note_head().written_pitch())
-                are_cautionary = [leaf.note_head().is_cautionary()]
-                are_forced = [leaf.note_head().is_forced()]
-                are_parenthesized = [leaf.note_head().is_parenthesized()]
-            elif isinstance(leaf, Chord):
-                written_pitches.extend(_.written_pitch() for _ in leaf.note_heads())
-                are_cautionary = [_.is_cautionary() for _ in leaf.note_heads()]
-                are_forced = [_.is_forced() for _ in leaf.note_heads()]
-                are_parenthesized = [_.is_parenthesized() for _ in leaf.note_heads()]
-        # TODO: move to dedicated constructor:
-        elif len(arguments) == 2:
-            written_pitches, written_duration = arguments
-            if isinstance(written_pitches, str):
-                written_pitches = [_ for _ in written_pitches.split() if _]
-            elif isinstance(written_pitches, type(self)):
-                written_pitches = list(written_pitches.written_pitches())
-        elif len(arguments) == 0:
-            written_pitches = [_pitch.NamedPitch(_) for _ in [0, 4, 7]]
-            written_duration = _duration.Duration(1, 4)
+        assert isinstance(string, str), repr(string)
+        assert isinstance(language, str), repr(language)
+        if multiplier is not None:
+            assert isinstance(multiplier, tuple), repr(multiplier)
+        if tag is not None:
+            assert isinstance(tag, _tag.Tag), repr(tag)
+        if string == "<c' e' g'>4":
+            pitches = _pitch.pitches("c' e' g'".split())
+            note_heads = [NoteHead(_) for _ in pitches]
+            duration = _duration.Duration(1, 4)
         else:
-            raise ValueError(f"can not initialize chord from {arguments!r}.")
-        Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
-        if not are_cautionary:
-            are_cautionary = [None] * len(written_pitches)
-        if not are_forced:
-            are_forced = [None] * len(written_pitches)
-        if not are_parenthesized:
-            are_parenthesized = [None] * len(written_pitches)
-        for written_pitch, is_cautionary, is_forced, is_parenthesized in zip(
-            written_pitches,
-            are_cautionary,
-            are_forced,
-            are_parenthesized,
-            strict=True,
-        ):
-            if not is_cautionary:
-                is_cautionary = False
-            if not is_forced:
-                is_forced = False
-            if not is_parenthesized:
-                is_parenthesized = False
-            if written_pitch not in _lyconst.drums:
-                note_head = NoteHead(
-                    written_pitch=_pitch.NamedPitch(written_pitch),
-                    is_cautionary=is_cautionary,
-                    is_forced=is_forced,
-                    is_parenthesized=is_parenthesized,
-                )
-            else:
-                assert isinstance(written_pitch, str), repr(written_pitch)
-                note_head = DrumNoteHead(
-                    written_pitch=written_pitch,
-                    is_cautionary=is_cautionary,
-                    is_forced=is_forced,
-                    is_parenthesized=is_parenthesized,
-                )
-            if isinstance(written_pitch, NoteHead):
-                assert all(isinstance(_, _tweaks.Tweak) for _ in written_pitch.tweaks)
-                note_head.tweaks = copy.deepcopy(written_pitch.tweaks)
-            self._note_heads.append(note_head)
-        if len(arguments) == 1 and isinstance(arguments[0], Leaf):
-            self._copy_override_and_set_from_leaf(arguments[0])
+            string = f"{{ {string} }}"
+            parsed = self._parse_lilypond_string(string, language=language)
+            assert len(parsed) == 1 and isinstance(parsed[0], Chord)
+            chord = parsed[0]
+            duration = chord.written_duration()
+            if multiplier is None:
+                multiplier = chord.multiplier()
+            if tag is None:
+                tag = chord.tag()
+            note_heads = chord.note_heads()
+        super().__init__(duration, multiplier=multiplier, tag=tag)
+        self.set_note_heads(note_heads)
 
-    ### SPECIAL METHODS ###
-
-    def __copy__(self, *arguments) -> "Chord":
-        """
-        Copies chord.
-        """
-        new_chord = Leaf.__copy__(self, *arguments)
-        new_chord.note_heads()[:] = []
-        for note_head in self.note_heads():
-            note_head = copy.copy(note_head)
-            new_chord.note_heads().append(note_head)
+    def __copy__(self) -> typing.Self:
+        new_chord = super().__copy__()
         return new_chord
 
     def __getnewargs__(
@@ -2659,8 +2591,6 @@ class Chord(Leaf):
 
         """
         return self.written_pitches(), self.written_duration()
-
-    ### PRIVATE METHODS ###
 
     def _format_before_site(self, contributions):
         result = []
@@ -2681,108 +2611,156 @@ class Chord(Leaf):
             result.extend(strings)
         return result
 
-    def _format_leaf_nucleus(self):
-        result = []
+    def _format_leaf_nucleus(self) -> list[str]:
+        strings = []
         note_heads = self.note_heads()
         if any("\n" in _._get_lilypond_format() for _ in note_heads):
             for note_head in note_heads:
                 current_format = note_head._get_lilypond_format()
                 format_list = current_format.split("\n")
                 format_list = [_indentlib.INDENT + _ for _ in format_list]
-                result.extend(format_list)
-            result.insert(0, "<")
-            result.append(">")
-            result = "\n".join(result)
+                strings.extend(format_list)
+            strings.insert(0, "<")
+            strings.append(">")
+            result = "\n".join(strings)
             result += str(self._get_formatted_duration())
         else:
-            result.extend([_._get_lilypond_format() for _ in note_heads])
-            pitches = " ".join(result)
+            strings.extend([_._get_lilypond_format() for _ in note_heads])
+            pitches = " ".join(strings)
             duration = self._get_formatted_duration()
             result = f"<{pitches}>{duration}"
-        # single string, but wrapped in list bc contribution
         return [result]
 
-    def _get_compact_representation(self):
+    def _get_compact_representation(self) -> str:
         summary = self._get_summary()
         duration = self._get_formatted_duration()
         return f"<{summary}>{duration}"
 
-    def _get_summary(self):
+    def _get_summary(self) -> str:
         return " ".join([_._get_chord_string() for _ in self.note_heads()])
 
-    def note_heads(self) -> "NoteHeadList":
+    @staticmethod
+    def from_note_heads_and_duration(
+        note_heads: typing.Sequence[NoteHead],
+        duration: _duration.Duration,
+        *,
+        multiplier: tuple[int, int] | None = None,
+        tag: _tag.Tag | None = None,
+    ) -> Chord:
+        """
+        Makes chord from ``note_heads`` and ``duration``.
+
+        ..  container:: example
+
+            >>> note = abjad.Note("d'?4")
+            >>> note_heads = [note.note_head()]
+            >>> duration = abjad.Duration(1, 4)
+            >>> chord = abjad.Chord.from_note_heads_and_duration(note_heads, duration)
+            >>> abjad.show(chord) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
+                <d'?>4
+
+            >>> note.note_head()
+            NoteHead("d'", is_cautionary=True)
+
+            >>> chord.note_heads()
+            [NoteHead("d'", is_cautionary=True)]
+
+            >>> note.note_head().set_is_forced(True)
+
+            >>> note.note_head()
+            NoteHead("d'", is_cautionary=True, is_forced=True)
+
+            >>> chord.note_heads()
+            [NoteHead("d'", is_cautionary=True)]
+
+        """
+        assert all(isinstance(_, NoteHead) for _ in note_heads), repr(note_heads)
+        assert isinstance(duration, _duration.Duration), repr(duration)
+        if multiplier is not None:
+            assert isinstance(multiplier, tuple), repr(multiplier)
+        if tag is not None:
+            assert isinstance(tag, _tag.Tag), repr(tag)
+        chord = Chord("<c' e' g'>4")
+        chord.set_note_heads([copy.copy(_) for _ in note_heads])
+        chord.set_written_duration(duration)
+        chord.set_multiplier(multiplier)
+        chord.set_tag(tag)
+        return chord
+
+    @staticmethod
+    def from_pitches_and_duration(
+        pitches: typing.Sequence[_pitch.NamedPitch | str],
+        duration: _duration.Duration,
+        *,
+        multiplier: tuple[int, int] | None = None,
+        tag: _tag.Tag | None = None,
+    ) -> Chord:
+        """
+        Makes chord from ``pitches`` and ``duration``.
+
+        ..  container:: example
+
+            >>> pitches = [abjad.NamedPitch(_) for _ in "c' d' b'".split()]
+            >>> duration = abjad.Duration(1, 4)
+            >>> chord = abjad.Chord.from_pitches_and_duration(pitches, duration)
+            >>> abjad.show(chord) # doctest: +SKIP
+
+            ..  docs::
+
+                >>> string = abjad.lilypond(chord)
+                >>> print(string)
+                <c' d' b'>4
+
+        """
+        prototype = (_pitch.NamedPitch, str)
+        assert all(isinstance(_, prototype) for _ in pitches), repr(pitches)
+        assert isinstance(duration, _duration.Duration), repr(duration)
+        if multiplier is not None:
+            assert isinstance(multiplier, tuple), repr(multiplier)
+        if tag is not None:
+            assert isinstance(tag, _tag.Tag), repr(tag)
+        chord = Chord("<c' e' g'>4")
+        chord.set_written_pitches(pitches)
+        chord.set_written_duration(duration)
+        chord.set_multiplier(multiplier)
+        chord.set_tag(tag)
+        return chord
+
+    def note_heads(self) -> NoteHeadList:
         r"""
-        Gets note-heads in chord.
+        Gets chord note-heads.
 
         ..  container:: example
-
-            Gets note-heads in chord:
 
             >>> chord = abjad.Chord("<g' c'' e''>4")
-            >>> abjad.show(chord) # doctest: +SKIP
-            >>> for _ in chord.note_heads(): _
-            NoteHead("g'")
-            NoteHead("c''")
-            NoteHead("e''")
-
-        ..  container:: example
-
-            Sets note-heads with pitch names:
-
-            >>> chord = abjad.Chord("<g' c'' e''>4")
-            >>> abjad.show(chord) # doctest: +SKIP
-
-            >>> pitches = [abjad.NamedPitch(_) for _ in "c' d' fs'".split()]
-            >>> chord.set_note_heads(pitches)
-            >>> abjad.show(chord) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(chord)
-                >>> print(string)
-                <c' d' fs'>4
-
-        ..  container:: example
-
-            Sets note-heads with pitch numbers:
-
-                >>> chord = abjad.Chord("<g' c'' e''>4")
-                >>> abjad.show(chord) # doctest: +SKIP
-
-            >>> pitches = [abjad.NamedPitch(_) for _ in [16, 17, 19]]
-            >>> chord.set_note_heads(pitches)
-            >>> abjad.show(chord) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(chord)
-                >>> print(string)
-                <e'' f'' g''>4
+            >>> chord.note_heads()
+            [NoteHead("g'"), NoteHead("c''"), NoteHead("e''")]
 
         """
         return self._note_heads
 
-    def set_note_heads(self, note_heads):
+    def set_note_heads(self, note_heads: typing.Sequence[NoteHead]) -> None:
         """
         Sets note-heads in chord.
-        """
-        self._note_heads[:] = []
-        if isinstance(note_heads, str):
-            note_heads = note_heads.split()
-        self.note_heads().extend(note_heads)
-
-    def written_duration(self) -> _duration.Duration:
-        """
-        Gets written duration of chord.
 
         ..  container:: example
 
-            >>> abjad.Chord("<e' cs'' f''>4").written_duration()
-            Duration(1, 4)
-
+            >>> chord = abjad.Chord("<c' d' b'>4")
+            >>> pitches = [abjad.NamedPitch(_) for _ in "e' cs' f''".split()]
+            >>> note_heads = [abjad.NoteHead(_) for _ in pitches]
+            >>> chord.set_note_heads(note_heads)
+            >>> chord
+            Chord("<cs' e' f''>4")
 
         """
-        return super().written_duration()
+        assert all(isinstance(_, NoteHead) for _ in note_heads), repr(note_heads)
+        self._note_heads = NoteHeadList()
+        self.note_heads().extend(note_heads)
 
     def set_written_duration(self, duration: _duration.Duration) -> None:
         """
@@ -2800,6 +2778,38 @@ class Chord(Leaf):
 
         """
         Leaf.set_written_duration(self, duration)
+
+    def set_written_pitches(
+        self, pitches: typing.Sequence[_pitch.NamedPitch | str]
+    ) -> None:
+        """
+        Sets written pitches of chord.
+
+        ..  container:: example
+
+            >>> chord = abjad.Chord("<c' d' b'>4")
+            >>> pitches = [abjad.NamedPitch(_) for _ in "e' cs' f''".split()]
+            >>> chord.set_written_pitches(pitches)
+            >>> chord
+            Chord("<cs' e' f''>4")
+
+        """
+        assert all(isinstance(_, _pitch.NamedPitch) for _ in pitches), repr(pitches)
+        note_heads = [NoteHead(_) for _ in pitches]
+        self.set_note_heads(note_heads)
+
+    def written_duration(self) -> _duration.Duration:
+        """
+        Gets written duration of chord.
+
+        ..  container:: example
+
+            >>> abjad.Chord("<e' cs'' f''>4").written_duration()
+            Duration(1, 4)
+
+
+        """
+        return super().written_duration()
 
     def written_pitches(self) -> tuple[_pitch.NamedPitch, ...]:
         """
@@ -2837,9 +2847,6 @@ class Chord(Leaf):
 
         """
         return tuple(_.written_pitch() for _ in self.note_heads())
-
-    def set_written_pitches(self, pitches):
-        self.set_note_heads(pitches)
 
 
 class Cluster(Container):
@@ -2960,7 +2967,7 @@ class Context(Container):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *arguments):
+    def __copy__(self) -> typing.Self:
         """
         Shallow copies context.
 
@@ -2970,7 +2977,7 @@ class Context(Container):
 
         Returns new component.
         """
-        new_context = Container.__copy__(self)
+        new_context = super().__copy__()
         new_context._consists_commands = copy.copy(self.consists_commands())
         new_context._remove_commands = copy.copy(self.remove_commands())
         return new_context
@@ -3219,7 +3226,7 @@ class IndependentAfterGraceContainer(Container):
         language: str = "english",
         tag: _tag.Tag | None = None,
     ) -> None:
-        Container.__init__(self, components, language=language, tag=tag)
+        super().__init__(components, language=language, tag=tag)
         self.set_fraction(fraction)
 
     def __getnewargs__(self):
@@ -3258,7 +3265,7 @@ class IndependentAfterGraceContainer(Container):
 
 
 class MultimeasureRest(Leaf):
-    r"""
+    """
     Multimeasure rest.
 
     ..  container:: example
@@ -3285,18 +3292,23 @@ class MultimeasureRest(Leaf):
         tag: _tag.Tag | None = None,
     ) -> None:
         assert isinstance(string, str), repr(string)
+        assert isinstance(language, str), repr(language)
+        if multiplier is not None:
+            assert isinstance(multiplier, tuple), repr(multiplier)
+        if tag is not None:
+            assert isinstance(tag, _tag.Tag), repr(tag)
         if string == "R1":
             written_duration = _duration.Duration(1)
         else:
             rest = Rest(string, language=language)
             written_duration = rest.written_duration()
-        Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
+        super().__init__(written_duration, multiplier=multiplier, tag=tag)
 
     def _get_body(self) -> list[str]:
         result = "R" + str(self._get_formatted_duration())
         return [result]
 
-    def _get_compact_representation(self):
+    def _get_compact_representation(self) -> str:
         return f"R{self._get_formatted_duration()}"
 
     @staticmethod
@@ -3310,6 +3322,10 @@ class MultimeasureRest(Leaf):
         Makes multimeasure rest from ``duration``.
         """
         assert isinstance(duration, _duration.Duration), repr(duration)
+        if multiplier is not None:
+            assert isinstance(multiplier, tuple), repr(multiplier)
+        if tag is not None:
+            assert isinstance(tag, _tag.Tag), repr(tag)
         mmrest = MultimeasureRest("R1", multiplier=multiplier, tag=tag)
         mmrest.set_written_duration(duration)
         return mmrest
@@ -3343,7 +3359,7 @@ class NoteHead:
 
     ..  container:: example
 
-        >>> chord = abjad.Chord([0, 2, 10], (1, 4))
+        >>> chord = abjad.Chord("<c' d' bf'>4")
 
         >>> abjad.tweak(chord.note_heads()[0], r"\tweak color #red")
         >>> abjad.tweak(chord.note_heads()[0], r"\tweak thickness 2")
@@ -3405,7 +3421,7 @@ class NoteHead:
             tweaks_ = tweaks_ + tuple(tweaks)
         self.tweaks = tweaks_
 
-    def __copy__(self, *arguments) -> "NoteHead":
+    def __copy__(self) -> NoteHead:
         """
         Copies note-head.
 
@@ -3442,7 +3458,7 @@ class NoteHead:
         """
         return super().__hash__()
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Is true when ``argument`` is a note-head with written pitch greater
         than that of this note-head.
@@ -3843,7 +3859,7 @@ class NoteHeadList(list):
 
     def __init__(self, argument=()):
         note_heads = [NoteHead(_) for _ in argument]
-        list.__init__(self, note_heads)
+        super().__init__(note_heads)
         self.sort()
 
     def __setitem__(self, i, argument):
@@ -3875,7 +3891,7 @@ class NoteHeadList(list):
 
         ..  container:: example
 
-            >>> chord = abjad.Chord("<ef'>")
+            >>> chord = abjad.Chord("<ef'>4")
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -4049,14 +4065,17 @@ class Note(Leaf):
 
     ..  container:: example
 
-        >>> note = abjad.Note("cs''8.")
+        >>> note = abjad.Note("c'4")
+        >>> note
+        Note("c'4")
+
         >>> abjad.show(note) # doctest: +SKIP
 
         ..  docs::
 
             >>> string = abjad.lilypond(note)
             >>> print(string)
-            cs''8.
+            c'4
 
     """
 
@@ -4071,6 +4090,11 @@ class Note(Leaf):
         tag: _tag.Tag | None = None,
     ) -> None:
         assert isinstance(string, str), repr(string)
+        assert isinstance(language, str), repr(language)
+        if multiplier is not None:
+            assert isinstance(multiplier, tuple), repr(multiplier)
+        if tag is not None:
+            assert isinstance(tag, _tag.Tag), repr(tag)
         is_cautionary = False
         is_forced = False
         is_parenthesized = False
@@ -4092,7 +4116,7 @@ class Note(Leaf):
             is_cautionary = note_head.is_cautionary()
             is_forced = note_head.is_forced()
             is_parenthesized = note_head.is_parenthesized()
-        Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
+        super().__init__(written_duration, multiplier=multiplier, tag=tag)
         if isinstance(written_pitch, _pitch.NamedPitch):
             note_head = NoteHead(
                 written_pitch=written_pitch,
@@ -4111,27 +4135,15 @@ class Note(Leaf):
             )
         self.set_note_head(note_head)
 
-    def __copy__(self, *arguments) -> Note:
-        """
-        Copies note.
-        """
-        new_note = Leaf.__copy__(self, *arguments)
+    def __copy__(self) -> typing.Self:
+        new_note = super().__copy__()
         note_head = copy.copy(self.note_head())
         new_note.set_note_head(note_head)
         return new_note
 
-    def __getnewargs__(self) -> tuple:
-        """
-        Gets new arguments.
-        """
-        return (self.written_pitch(), self.written_duration())
-
     def _get_body(self) -> list[str]:
         duration = self._get_formatted_duration()
-        if self.note_head() is not None:
-            string = self.note_head()._get_lilypond_format(duration=duration)
-        else:
-            string = duration
+        string = self.note_head()._get_lilypond_format(duration=duration)
         return [string]
 
     def _get_compact_representation(self) -> str:
@@ -4139,7 +4151,7 @@ class Note(Leaf):
 
     @staticmethod
     def from_pitch_and_duration(
-        pitch: _pitch.NamedPitch,
+        pitch: _pitch.NamedPitch | str,
         duration: _duration.Duration,
         *,
         multiplier: tuple[int, int] | None = None,
@@ -4162,6 +4174,12 @@ class Note(Leaf):
                 cs''8.
 
         """
+        assert isinstance(pitch, _pitch.NamedPitch | str), repr(pitch)
+        assert isinstance(duration, _duration.Duration), repr(duration)
+        if multiplier is not None:
+            assert isinstance(multiplier, tuple), repr(multiplier)
+        if tag is not None:
+            assert isinstance(tag, _tag.Tag), repr(tag)
         note = Note("c'4")
         note.set_written_pitch(pitch)
         note.set_written_duration(duration)
@@ -4171,66 +4189,55 @@ class Note(Leaf):
 
     def note_head(self) -> NoteHead:
         """
-        Gets note-head.
+        Gets note note-head.
 
         .. container:: example
 
-            >>> note = abjad.Note("cs''8.")
+            >>> note = abjad.Note("c'4")
             >>> note.note_head()
-            NoteHead("cs''")
-
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(note)
-                >>> print(string)
-                cs''8.
-
-            >>> note_head = abjad.NoteHead(abjad.NamedPitch("D5"))
-            >>> note.set_note_head(note_head)
-            >>> note.note_head()
-            NoteHead("d''")
-
-            >>> abjad.show(note) # doctest: +SKIP
-
-            ..  docs::
-
-                >>> string = abjad.lilypond(note)
-                >>> print(string)
-                d''8.
+            NoteHead("c'")
 
         """
         return self._note_head
 
-    def set_note_head(self, argument):
+    def set_note_head(self, note_head: NoteHead) -> None:
         """
-        Sets note-head.
-        """
-        if isinstance(argument, type(None)):
-            self._note_head = None
-        elif isinstance(argument, NoteHead):
-            self._note_head = argument
-        else:
-            note_head = NoteHead(written_pitch=argument)
-            self._note_head = note_head
+        Sets note-head of note.
 
-    def set_written_duration(self, argument):
+        .. container:: example
+
+            >>> note = abjad.Note("c''4")
+            >>> note.note_head()
+            NoteHead("c''")
+
+            >>> pitch = abjad.NamedPitch("d''")
+            >>> note_head = abjad.NoteHead(pitch)
+            >>> note.set_note_head(note_head)
+            >>> note.note_head()
+            NoteHead("d''")
+
+        """
+        assert isinstance(note_head, NoteHead), repr(note_head)
+        self._note_head = note_head
+
+    def set_written_duration(self, duration: _duration.Duration) -> None:
         """
         Sets written duration of note.
 
         ..  container::
 
-            >>> note = abjad.Note("cs''8.")
+            >>> note = abjad.Note("c'4")
             >>> note.written_duration()
-            Duration(3, 16)
+            Duration(1, 4)
 
-            >>> note.set_written_duration(abjad.Duration(1, 16))
+            >>> duration = abjad.Duration(1, 16)
+            >>> note.set_written_duration(duration)
             >>> note.written_duration()
             Duration(1, 16)
 
         """
-        return Leaf.set_written_duration(self, argument)
+        assert isinstance(duration, _duration.Duration), repr(duration)
+        return Leaf.set_written_duration(self, duration)
 
     def set_written_pitch(self, pitch: _pitch.NamedPitch | str) -> None:
         """
@@ -4256,8 +4263,8 @@ class Note(Leaf):
 
         ..  container:: example
 
-            >>> abjad.Note("cs''8.").written_duration()
-            Duration(3, 16)
+            >>> abjad.Note("c'4").written_duration()
+            Duration(1, 4)
 
         """
         return super().written_duration()
@@ -4268,8 +4275,8 @@ class Note(Leaf):
 
         ..  container:: example
 
-            >>> abjad.Note("cs''8.").written_pitch()
-            NamedPitch("cs''")
+            >>> abjad.Note("c'4").written_pitch()
+            NamedPitch("c'")
 
         """
         return self.note_head().written_pitch()
@@ -4303,27 +4310,22 @@ class Rest(Leaf):
 
     def __init__(
         self,
-        argument,
+        string: str,
         *,
         language: str = "english",
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
-        if argument == "r4":
+        if string == "r4":
             written_duration = _duration.Duration(1, 4)
-        elif isinstance(argument, str):
-            string = f"{{ {argument} }}"
+        else:
+            assert isinstance(string, str), repr(string)
+            string = f"{{ {string} }}"
             parsed = self._parse_lilypond_string(string, language=language)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             written_duration = parsed[0].written_duration()
-        elif isinstance(argument, tuple):
-            raise Exception(f"do not initialize tuple: {argument!r}")
-        else:
-            assert isinstance(argument, _duration.Duration), repr(repr(argument))
-            raise Exception(f"do not initialize like this: {argument!r}")
-            # written_duration = _duration.Duration(argument)
         assert isinstance(written_duration, _duration.Duration), repr(written_duration)
-        Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
+        super().__init__(written_duration, multiplier=multiplier, tag=tag)
 
     def _get_body(self) -> list[str]:
         return [self._get_compact_representation()]
@@ -4348,6 +4350,11 @@ class Rest(Leaf):
             Rest('r4')
 
         """
+        assert isinstance(duration, _duration.Duration), repr(duration)
+        if multiplier is not None:
+            assert isinstance(multiplier, tuple), repr(multiplier)
+        if tag is not None:
+            assert isinstance(tag, _tag.Tag), repr(tag)
         rest = Rest("r4", multiplier=multiplier, tag=tag)
         rest.set_written_duration(duration)
         return rest
@@ -4485,9 +4492,9 @@ class Skip(Leaf):
         if isinstance(written_duration, tuple):
             written_duration = _duration.Duration(*written_duration)
         assert isinstance(written_duration, _duration.Duration), repr(written_duration)
-        Leaf.__init__(self, written_duration, multiplier=multiplier, tag=tag)
+        super().__init__(written_duration, multiplier=multiplier, tag=tag)
         if input_leaf is not None:
-            self._copy_override_and_set_from_leaf(input_leaf)
+            copy_overrides_settings_and_wrappers(input_leaf, self)
         self._measure_initial_grace_note = None
 
     def _get_body(self) -> list[str]:
@@ -4669,7 +4676,7 @@ class TremoloContainer(Container):
     ) -> None:
         assert _math.is_assignable_integer(count), repr(count)
         self._count = count
-        Container.__init__(self, components, language=language, tag=tag)
+        super().__init__(components, language=language, tag=tag)
         if len(self) != 2:
             raise Exception(f"must contain 2 leaves (not {len(self)}")
 
@@ -4805,7 +4812,7 @@ class Tuplet(Container):
         tag: _tag.Tag | None = None,
         tweaks: _tweaks.Tweak | None = None,
     ) -> None:
-        Container.__init__(self, components, language=language, tag=tag)
+        super().__init__(components, language=language, tag=tag)
         self.tweaks: tuple[_tweaks.Tweak, ...] = ()
         if isinstance(ratio, _duration.Ratio):
             ratio_ = ratio

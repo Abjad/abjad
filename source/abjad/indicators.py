@@ -3673,7 +3673,7 @@ class MetronomeMark:
         if self.decimal is not None:
             assert isinstance(self.decimal, bool | str), repr(self.decimal)
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Is true when ``argument`` is a metronome mark with quarters per minute greater
         than that of this metronome mark.

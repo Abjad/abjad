@@ -1316,13 +1316,13 @@ class Infinity:
         """
         return self._value
 
-    def __ge__(self, argument) -> bool:
+    def __ge__(self, argument: object) -> bool:
         """
         Is true for all values of ``argument``.
         """
         return self._value >= argument
 
-    def __gt__(self, argument) -> bool:
+    def __gt__(self, argument: object) -> bool:
         """
         Is true for all noninfinite values of ``argument``.
         """
@@ -1334,13 +1334,13 @@ class Infinity:
         """
         return hash(self.__class__.__name__ + str(self))
 
-    def __le__(self, argument) -> bool:
+    def __le__(self, argument: object) -> bool:
         """
         Is true when ``argument`` is infinite.
         """
         return self._value <= argument
 
-    def __lt__(self, argument) -> bool:
+    def __lt__(self, argument: object) -> bool:
         """
         Is true for no values of ``argument``.
         """

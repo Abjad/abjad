@@ -39,7 +39,7 @@ class AbjadGrapher(uqbar.graphs.Grapher):
     """
 
     def __init__(self, graphable, format_="pdf", layout="dot"):
-        uqbar.graphs.Grapher.__init__(self, graphable, format_=format_, layout=layout)
+        super().__init__(graphable, format_=format_, layout=layout)
 
     def abjad_output_directory(self) -> pathlib.Path:
         """

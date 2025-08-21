@@ -563,9 +563,18 @@ def test_LilyPondParser__functions__relative_08():
     target = abjad.Container(
         [
             abjad.Note.from_pitch_and_duration(abjad.NamedPitch("c'"), duration),
-            abjad.Chord(["c'", "e'", "g'"], duration),
-            abjad.Chord(["c''", "e''", "g'''"], duration),
-            abjad.Chord(["e", "c'", "g''"], duration),
+            abjad.Chord.from_pitches_and_duration(
+                abjad.pitch.pitches(["c'", "e'", "g'"]),
+                duration,
+            ),
+            abjad.Chord.from_pitches_and_duration(
+                abjad.pitch.pitches(["c''", "e''", "g'''"]),
+                duration,
+            ),
+            abjad.Chord.from_pitches_and_duration(
+                abjad.pitch.pitches(["e", "c'", "g''"]),
+                duration,
+            ),
         ]
     )
 
@@ -2163,7 +2172,10 @@ def test_LilyPondParser__indicators__Trill_06():
 
 
 def test_LilyPondParser__leaves__Chord_01():
-    target = abjad.Chord([0, 1, 4], (1, 4))
+    target = abjad.Chord.from_pitches_and_duration(
+        abjad.pitch.pitches([0, 1, 4]),
+        abjad.Duration(1, 4),
+    )
     parser = abjad.parser.LilyPondParser()
     result = parser("{ %s }" % abjad.lilypond(target))
     assert (
@@ -2226,10 +2238,22 @@ def test_LilyPondParser__lilypondfile__ScoreBlock_01():
 def test_LilyPondParser__misc__chord_repetition_01():
     target = abjad.Container(
         [
-            abjad.Chord([0, 4, 7], (1, 4)),
-            abjad.Chord([0, 4, 7], (1, 4)),
-            abjad.Chord([0, 4, 7], (1, 4)),
-            abjad.Chord([0, 4, 7], (1, 4)),
+            abjad.Chord.from_pitches_and_duration(
+                abjad.pitch.pitches([0, 4, 7]),
+                abjad.Duration(1, 4),
+            ),
+            abjad.Chord.from_pitches_and_duration(
+                abjad.pitch.pitches([0, 4, 7]),
+                abjad.Duration(1, 4),
+            ),
+            abjad.Chord.from_pitches_and_duration(
+                abjad.pitch.pitches([0, 4, 7]),
+                abjad.Duration(1, 4),
+            ),
+            abjad.Chord.from_pitches_and_duration(
+                abjad.pitch.pitches([0, 4, 7]),
+                abjad.Duration(1, 4),
+            ),
         ]
     )
 
@@ -2251,14 +2275,15 @@ def test_LilyPondParser__misc__chord_repetition_01():
 
 
 def test_LilyPondParser__misc__chord_repetition_02():
+    pitches = abjad.pitch.pitches([0, 4, 7])
     target = abjad.Voice(
         [
-            abjad.Chord([0, 4, 7], (1, 8)),
-            abjad.Chord([0, 4, 7], (1, 8)),
-            abjad.Chord([0, 4, 7], (1, 4)),
-            abjad.Chord([0, 4, 7], (3, 16)),
-            abjad.Chord([0, 4, 7], (1, 16)),
-            abjad.Chord([0, 4, 7], (1, 4)),
+            abjad.Chord.from_pitches_and_duration(pitches, abjad.Duration(1, 8)),
+            abjad.Chord.from_pitches_and_duration(pitches, abjad.Duration(1, 8)),
+            abjad.Chord.from_pitches_and_duration(pitches, abjad.Duration(1, 4)),
+            abjad.Chord.from_pitches_and_duration(pitches, abjad.Duration(3, 16)),
+            abjad.Chord.from_pitches_and_duration(pitches, abjad.Duration(1, 16)),
+            abjad.Chord.from_pitches_and_duration(pitches, abjad.Duration(1, 4)),
         ]
     )
     dynamic = abjad.Dynamic("p")
@@ -2294,18 +2319,30 @@ def test_LilyPondParser__misc__chord_repetition_02():
 
 
 def test_LilyPondParser__misc__chord_repetition_03():
+    pitches = abjad.pitch.pitches([0, 4, 7])
     target = abjad.Container(
         [
-            abjad.Chord([0, 4, 7], (1, 8)),
-            abjad.Note.from_pitch_and_duration(
-                abjad.NamedPitch(12), abjad.Duration(1, 8)
+            abjad.Chord.from_pitches_and_duration(
+                pitches,
+                abjad.Duration(1, 8),
             ),
-            abjad.Chord([0, 4, 7], (1, 8)),
             abjad.Note.from_pitch_and_duration(
-                abjad.NamedPitch(12), abjad.Duration(1, 8)
+                abjad.NamedPitch(12),
+                abjad.Duration(1, 8),
+            ),
+            abjad.Chord.from_pitches_and_duration(
+                pitches,
+                abjad.Duration(1, 8),
+            ),
+            abjad.Note.from_pitch_and_duration(
+                abjad.NamedPitch(12),
+                abjad.Duration(1, 8),
             ),
             abjad.Rest("r4"),
-            abjad.Chord([0, 4, 7], (1, 4)),
+            abjad.Chord.from_pitches_and_duration(
+                pitches,
+                abjad.Duration(1, 4),
+            ),
         ]
     )
 

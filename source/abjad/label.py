@@ -146,7 +146,7 @@ def color_note_heads(argument, color_map=pc_number_to_color) -> None:
 
     ..  container:: example
 
-        >>> chord = abjad.Chord([12, 14, 18, 21, 23], (1, 4))
+        >>> chord = abjad.Chord("<c'' d'' fs'' a'' b''>4")
         >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]
         >>> colors = ["#red", "#blue", "#green"]
         >>> color_map = abjad.ColorMap(colors=colors, pitch_iterables=pitches)
