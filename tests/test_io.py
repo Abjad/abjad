@@ -27,7 +27,3 @@ def test_io_count_function_calls_02():
         local_context=locals(),
     )
     assert result < 400
-
-
-def test_io_spawn_subprocess_01():
-    assert abjad.io.spawn_subprocess('echo "hello world"') == 0

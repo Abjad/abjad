@@ -137,7 +137,7 @@ strings start with some rests, and use a long-short pattern for their rhythms:
     ...             for pitch in pitch_pair_descent:
     ...                 duration = durations[counter]
     ...                 if isinstance(pitch, tuple):
-    ...                     chord = abjad.Chord(pitch, duration)
+    ...                     chord = abjad.Chord.from_pitches_and_duration(pitch, duration)
     ...                     chord_descent.append(chord)
     ...                 else:
     ...                     assert isinstance(pitch, abjad.NamedPitch)
@@ -298,8 +298,9 @@ We define more functions:
     ...     voice = score["Violin_1_Voice"]
     ...     descents = voice_to_descents["Violin_1"]
     ...     container = abjad.Container(descents[-1])
-    ...     for duration in 43 * [(6, 4)]:
-    ...         note = abjad.Note("c'", duration)
+    ...     pitch = abjad.NamedPitch("c'")
+    ...     for duration in 43 * [abjad.Duration(6, 4)]:
+    ...         note = abjad.Note.from_pitch_and_duration(pitch, duration)
     ...         tie = abjad.Tie()
     ...         abjad.attach(tie, note)
     ...         container.append(note)
@@ -310,7 +311,8 @@ We define more functions:
     ...     voice = score["Violin_2_Voice"]
     ...     descents = voice_to_descents["Violin_2"]
     ...     container = abjad.Container(descents[-1])
-    ...     container[-1].set_written_duration((1, 1))
+    ...     duration = abjad.Duration(1, 1)
+    ...     container[-1].set_written_duration(duration)
     ...     container.append("a2")
     ...     for leaf in container:
     ...         articulation = abjad.Articulation("accent")
@@ -336,9 +338,9 @@ We define more functions:
     ...     container = abjad.Container(descents[-1])
     ...     for leaf in container:
     ...         if leaf.written_duration() == abjad.Duration(4, 4):
-    ...             leaf.set_written_duration((8, 4))
+    ...             leaf.set_written_duration(abjad.Duration(8, 4))
     ...         else:
-    ...             leaf.set_written_duration((4, 4))
+    ...             leaf.set_written_duration(abjad.Duration(4, 4))
     ...         articulation = abjad.Articulation("accent")
     ...         abjad.attach(articulation, leaf)
     ...         articulation = abjad.Articulation("tenuto")
@@ -355,8 +357,9 @@ We define more functions:
     ...     abjad.attach(articulation, container[-1])
     ...     tie = abjad.Tie()
     ...     abjad.attach(tie, container[-1])
-    ...     for duration in 20 * [(6, 4)]:
-    ...         note = abjad.Note("e", duration)
+    ...     pitch = abjad.NamedPitch("e")
+    ...     for duration in 20 * [abjad.Duration(6, 4)]:
+    ...         note = abjad.Note.from_pitch_and_duration(pitch, duration)
     ...         tie = abjad.Tie()
     ...         abjad.attach(tie, note)
     ...         container.append(note)
@@ -366,9 +369,9 @@ We define more functions:
     >>> def edit_cello(score, voice_to_descents):
     ...     voice = score["Cello_Voice"]
     ...     logical_tie = abjad.select.logical_tie(voice[-1], 0)
-    ...     pitches = abjad.pitch.pithces("e a".split())
-    ...     duration = leaf.written_duration()
+    ...     pitches = abjad.pitch.pitches("e a".split())
     ...     for leaf in logical_tie:
+    ...         duration = leaf.written_duration()
     ...         chord = abjad.Chord.from_pitches_and_duration(pitches, duration)
     ...         abjad.mutate.replace(leaf, chord)
     ...     descents = voice_to_descents["Cello"]
@@ -378,7 +381,8 @@ We define more functions:
     ...         if isinstance(chord, abjad.Note):
     ...             continue
     ...         pitch = chord.written_pitches()[1]
-    ...         note = abjad.Note(pitch, chord.written_duration())
+    ...         duration = chord.written_duration()
+    ...         note = abjad.Note.from_pitch_and_duration(pitch, duration)
     ...         articulation = abjad.Articulation("accent")
     ...         abjad.attach(articulation, note)
     ...         articulation = abjad.Articulation("tenuto")
