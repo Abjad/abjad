@@ -43,13 +43,13 @@ class AbjadGrapher(uqbar.graphs.Grapher):
 
     def abjad_output_directory(self) -> pathlib.Path:
         """
-        Gets output directory.
+        Gets Abjad output directory.
         """
         return pathlib.Path(configuration["abjad_output_directory"])
 
     def open_output_path(self, output_path):
         """
-        Open ``output_path``.
+        Opens ``output_path``.
         """
         open_file(str(output_path))
 
@@ -85,9 +85,12 @@ class LilyPondIO:
 
     def __call__(self):
         with _contextmanagers.Timer() as format_timer:
-            string = self.string or self.string()
+            string = self.string or self.lilypond_format()
         format_time = format_timer.elapsed_time
-        render_prefix = self.render_prefix or self.render_prefix(string)
+        if self.render_prefix is None:
+            render_prefix = self.timestamp_checksum_render_prefix(string)
+        else:
+            render_prefix = self.render_prefix
         render_directory = self.render_directory()
         input_path = (render_directory / render_prefix).with_suffix(".ly")
         self.persist_string(string, input_path)
@@ -113,6 +116,12 @@ class LilyPondIO:
                 self.open_output_path(output_path)
         return openable_paths, format_time, render_time, success, log
 
+    def abjad_output_directory(self) -> pathlib.Path:
+        """
+        Gets Abjad output directory.
+        """
+        return pathlib.Path(configuration["abjad_output_directory"])
+
     def copy_stylesheets(self, render_directory):
         """
         Copies stylesheets.
@@ -120,6 +129,16 @@ class LilyPondIO:
         for directory in self.stylesheets_directories():
             for path in directory.glob("*.*ly"):
                 shutil.copy(path, render_directory)
+
+    def lilypond_format(self) -> str:
+        """
+        Gets LilyPond format string.
+        """
+        if isinstance(self.illustrable, _lilypondfile.LilyPondFile):
+            lilypond_file = self.illustrable
+        else:
+            lilypond_file = _illustrators.illustrate(self.illustrable, **self.keywords)
+        return lilypond_file._get_lilypond_format()
 
     def lilypond_path(self):
         """
@@ -133,79 +152,6 @@ class LilyPondIO:
             else:
                 lilypond_path = "lilypond"
         return lilypond_path
-
-    def openable_paths(
-        self, output_paths: typing.Iterable[pathlib.Path]
-    ) -> typing.Iterator[pathlib.Path]:
-        """
-        Gets openable paths.
-        """
-        for path in output_paths:
-            if path.suffix in (".pdf", ".mid", ".midi", ".svg", ".png"):
-                yield path
-
-    def abjad_output_directory(self) -> pathlib.Path:
-        """
-        Gets output directory.
-        """
-        return pathlib.Path(configuration["abjad_output_directory"])
-
-    def render_command(self, input_path, lilypond_path) -> str:
-        """
-        Gets render command.
-        """
-        parts = [
-            str(lilypond_path),
-            *self.flags,
-            "-dno-point-and-click",
-            "-o",
-            str(input_path.with_suffix("")),
-            str(input_path),
-        ]
-        return " ".join(parts)
-
-    def render_directory(self):
-        """
-        Gets render directory.
-        """
-        return pathlib.Path(tempfile.mkdtemp())
-
-    def render_prefix(self, string) -> str:
-        """
-        Gets render prefix.
-        """
-        timestamp = re.sub(r"[^\w]", "-", datetime.datetime.now().isoformat())
-        checksum = hashlib.sha1(string.encode()).hexdigest()[:7]
-        return f"{timestamp}-{checksum}"
-
-    def string(self) -> str:
-        """
-        Gets string.
-        """
-        if isinstance(self.illustrable, _lilypondfile.LilyPondFile):
-            lilypond_file = self.illustrable
-        else:
-            lilypond_file = _illustrators.illustrate(self.illustrable, **self.keywords)
-        return lilypond_file._get_lilypond_format()
-
-    def stylesheets_directories(self) -> list[pathlib.Path]:
-        """
-        Gets stylesheets directories.
-        """
-        directories = []
-        path = getattr(abjad, "__path__")
-        abjad_path = pathlib.Path(path[0])
-        directory = abjad_path / "scm"
-        directories.append(directory)
-        try:
-            string = configuration["sphinx_stylesheets_directory"]
-        except KeyError:
-            string = ""
-        if string != "":
-            for path in string.split(":"):
-                directory = pathlib.Path(path)
-                directories.append(directory)
-        return directories
 
     def migrate_assets(
         self, render_prefix, render_directory, output_directory
@@ -228,6 +174,16 @@ class LilyPondIO:
         """
         open_file(str(output_path))
 
+    def openable_paths(
+        self, output_paths: typing.Iterable[pathlib.Path]
+    ) -> typing.Iterator[pathlib.Path]:
+        """
+        Gets openable paths.
+        """
+        for path in output_paths:
+            if path.suffix in (".pdf", ".mid", ".midi", ".svg", ".png"):
+                yield path
+
     def persist_log(self, string, input_path):
         """
         Persists log ``string`` to ``input_path``.
@@ -239,6 +195,26 @@ class LilyPondIO:
         Persists ``string`` to ``input_path``.
         """
         input_path.write_text(string)
+
+    def render_command(self, input_path, lilypond_path) -> str:
+        """
+        Gets render command.
+        """
+        parts = [
+            str(lilypond_path),
+            *self.flags,
+            "-dno-point-and-click",
+            "-o",
+            str(input_path.with_suffix("")),
+            str(input_path),
+        ]
+        return " ".join(parts)
+
+    def render_directory(self):
+        """
+        Gets render directory.
+        """
+        return pathlib.Path(tempfile.mkdtemp())
 
     def run_command(self, command):
         """
@@ -253,6 +229,33 @@ class LilyPondIO:
         text = completed_process.stdout.decode("utf-8")
         success = completed_process.returncode == 0
         return text, success
+
+    def stylesheets_directories(self) -> list[pathlib.Path]:
+        """
+        Gets stylesheets directories.
+        """
+        directories = []
+        path = getattr(abjad, "__path__")
+        abjad_path = pathlib.Path(path[0])
+        directory = abjad_path / "scm"
+        directories.append(directory)
+        try:
+            string = configuration["sphinx_stylesheets_directory"]
+        except KeyError:
+            string = ""
+        if string != "":
+            for path in string.split(":"):
+                directory = pathlib.Path(path)
+                directories.append(directory)
+        return directories
+
+    def timestamp_checksum_render_prefix(self, string) -> str:
+        """
+        Gets timestamp-checksum render prefix.
+        """
+        timestamp = re.sub(r"[^\w]", "-", datetime.datetime.now().isoformat())
+        checksum = hashlib.sha1(string.encode()).hexdigest()[:7]
+        return f"{timestamp}-{checksum}"
 
 
 # TODO: maybe move to separate module
@@ -284,9 +287,9 @@ class Player(LilyPondIO):
             if path.suffix in (".mid", ".midi"):
                 yield path
 
-    def string(self) -> str:
+    def lilypond_format(self) -> str:
         """
-        Gets string.
+        Gets LilyPond format string.
         """
         lilypond_file = _illustrators.illustrate(self.illustrable, **self.keywords)
         assert "score" in lilypond_file, repr(lilypond_file)
@@ -912,7 +915,7 @@ def open_file(
     else:
         command = f"{viewer} {file_path}"
     if not test:
-        spawn_subprocess(command)
+        subprocess.call(command, shell=True)
 
 
 def open_last_log() -> None:
@@ -1029,17 +1032,3 @@ def run_lilypond(
     if postscript_path.is_file():
         postscript_path.unlink()
     return exit_code
-
-
-# TODO: remove because Abjad doesn't need to implement this;
-#       use subprocess.call(command, shell=True) instead
-def spawn_subprocess(command: str) -> int:
-    """
-    Spawns subprocess and runs ``command``.
-
-    The function is basically a reimplementation of the
-    deprecated ``os.system()`` using Python's ``subprocess`` module.
-
-    Redirects stderr to stdout.
-    """
-    return subprocess.call(command, shell=True)
