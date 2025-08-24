@@ -137,7 +137,7 @@ strings start with some rests, and use a long-short pattern for their rhythms:
     ...             for pitch in pitch_pair_descent:
     ...                 duration = durations[counter]
     ...                 if isinstance(pitch, tuple):
-    ...                     chord = abjad.Chord.from_pitches_and_duration(pitch, duration)
+    ...                     chord = abjad.Chord.from_duration_and_pitches(duration, pitch)
     ...                     chord_descent.append(chord)
     ...                 else:
     ...                     assert isinstance(pitch, abjad.NamedPitch)
@@ -372,7 +372,7 @@ We define more functions:
     ...     pitches = abjad.pitch.pitches("e a".split())
     ...     for leaf in logical_tie:
     ...         duration = leaf.written_duration()
-    ...         chord = abjad.Chord.from_pitches_and_duration(pitches, duration)
+    ...         chord = abjad.Chord.from_duration_and_pitches(duration, pitches)
     ...         abjad.mutate.replace(leaf, chord)
     ...     descents = voice_to_descents["Cello"]
     ...     descent = descents[-1]

@@ -69,4 +69,4 @@ def test_Leaf_written_duration_01():
 
     with pytest.raises(abjad.AssignabilityError):
         pitch = abjad.NamedPitch("cs")
-        abjad.Note.from_pitch_and_duration(pitch, abjad.Duration(16))
+        abjad.Note.from_duration_and_pitch(abjad.Duration(16), pitch)

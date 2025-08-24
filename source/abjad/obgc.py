@@ -261,9 +261,9 @@ class OnBeatGraceContainer(_score.Container):
         if not isinstance(first_obgc_leaf, _score.Note | _score.Chord):
             return
         if isinstance(first_obgc_leaf, _score.Note):
-            chord = _score.Chord.from_note_heads_and_duration(
-                [first_obgc_leaf.note_head()],
+            chord = _score.Chord.from_duration_and_note_heads(
                 first_obgc_leaf.written_duration(),
+                [first_obgc_leaf.note_head()],
                 tag=tag,
             )
             _score.copy_overrides_settings_and_wrappers(first_obgc_leaf, chord)

@@ -141,17 +141,17 @@ def _make_tied_leaf(
     for numerator in numerators:
         written_duration = _duration.Duration(numerator, duration_pair[1])
         if isinstance(pitches, _pitch.NamedPitch):
-            leaf = class_.from_pitch_and_duration(
-                pitches,
+            leaf = class_.from_duration_and_pitch(
                 written_duration,
+                pitches,
                 multiplier=multiplier,
                 tag=tag,
             )
         elif pitches is not None:
             assert class_ is _score.Chord
-            leaf = class_.from_pitches_and_duration(
-                pitches,
+            leaf = class_.from_duration_and_pitches(
                 written_duration,
+                pitches,
                 multiplier=multiplier,
                 tag=tag,
             )

@@ -1391,7 +1391,7 @@ def logical_tie_to_tuplet(
     pitch = _pitch.NamedPitch("c'")
     try:
         notes = [
-            _score.Note.from_pitch_and_duration(pitch, _) for _ in written_durations
+            _score.Note.from_duration_and_pitch(_, pitch) for _ in written_durations
         ]
     except _exceptions.AssignabilityError:
         pitches = _makers.make_pitches([0])
