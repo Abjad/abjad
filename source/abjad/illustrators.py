@@ -53,7 +53,7 @@ def _illustrate_metric_modulation(metric_modulation):
 
 
 def _illustrate_pitch_class_set(set_):
-    chord = _score.Chord.from_pitches_and_duration(set_, _duration.Duration(1))
+    chord = _score.Chord.from_duration_and_pitches(_duration.Duration(1), set_)
     voice = _score.Voice([chord], name="Voice")
     staff = _score.Staff([voice], name="Staff")
     score = _score.Score([staff], name="Score")
@@ -67,8 +67,8 @@ def _illustrate_pitch_range(range_):
     start_pitch_clef = _indicators.Clef.from_pitches([start_pitch])
     stop_pitch_clef = _indicators.Clef.from_pitches([stop_pitch])
     duration = _duration.Duration(1)
-    start_note = _score.Note.from_pitch_and_duration(range_.start_pitch(), duration)
-    stop_note = _score.Note.from_pitch_and_duration(range_.stop_pitch(), duration)
+    start_note = _score.Note.from_duration_and_pitch(duration, range_.start_pitch())
+    stop_note = _score.Note.from_duration_and_pitch(duration, range_.stop_pitch())
     if start_pitch_clef == stop_pitch_clef:
         if start_pitch_clef == _indicators.Clef("bass"):
             bass_voice = _score.Voice(name="Bass_Voice")
@@ -129,12 +129,12 @@ def _illustrate_pitch_set(set_):
             upper.append(pitch)
     if upper:
         pitches = _pitch.pitches(upper)
-        upper = _score.Chord.from_pitches_and_duration(pitches, _duration.Duration(1))
+        upper = _score.Chord.from_duration_and_pitches(_duration.Duration(1), pitches)
     else:
         upper = _score.Skip("s1")
     if lower:
         pitches = _pitch.pitches(lower)
-        lower = _score.Chord.from_pitches_and_duration(pitches, _duration.Duration(1))
+        lower = _score.Chord.from_duration_and_pitches(_duration.Duration(1), pitches)
     else:
         lower = _score.Skip("s1")
     upper_voice = _score.Voice([upper], name="Treble_Voice")
@@ -159,7 +159,7 @@ def _illustrate_pitch_class_segment(
     notes = []
     for item in segment:
         pitch = _pitch.NamedPitch(item)
-        note = _score.Note.from_pitch_and_duration(pitch, _duration.Duration(1, 8))
+        note = _score.Note.from_duration_and_pitch(_duration.Duration(1, 8), pitch)
         notes.append(note)
     markup = None
     if isinstance(figure_name, str):
@@ -537,26 +537,28 @@ def make_piano_score(leaves=None, lowest_treble_pitch="B3"):
             if not treble_note_heads:
                 treble_leaf = _score.Rest.from_duration(written_duration)
             elif len(treble_note_heads) == 1:
-                treble_leaf = _score.Note.from_pitch_and_duration(
-                    _pitch.NamedPitch("C4"), written_duration
+                treble_leaf = _score.Note.from_duration_and_pitch(
+                    written_duration,
+                    _pitch.NamedPitch("C4"),
                 )
                 treble_leaf.set_note_head(treble_note_heads[0])
             else:
-                treble_leaf = _score.Chord.from_note_heads_and_duration(
-                    treble_note_heads,
+                treble_leaf = _score.Chord.from_duration_and_note_heads(
                     written_duration,
+                    treble_note_heads,
                 )
             if not bass_note_heads:
                 bass_leaf = _score.Rest.from_duration(written_duration)
             elif len(bass_note_heads) == 1:
-                bass_leaf = _score.Note.from_pitch_and_duration(
-                    _pitch.NamedPitch("C4"), written_duration
+                bass_leaf = _score.Note.from_duration_and_pitch(
+                    written_duration,
+                    _pitch.NamedPitch("C4"),
                 )
                 bass_leaf.set_note_head(bass_note_heads[0])
             else:
-                bass_leaf = _score.Chord.from_note_heads_and_duration(
-                    bass_note_heads,
+                bass_leaf = _score.Chord.from_duration_and_note_heads(
                     written_duration,
+                    bass_note_heads,
                 )
         else:
             treble_leaf = copy.copy(leaf)

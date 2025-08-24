@@ -295,13 +295,13 @@ class ReducedLyParser(Parser):
         """
         chord_body : chord_pitches
         """
-        p[0] = _score.Chord.from_pitches_and_duration(p[1], self._default_duration)
+        p[0] = _score.Chord.from_duration_and_pitches(self._default_duration, p[1])
 
     def p_chord_body__chord_pitches__positive_leaf_duration(self, p):
         """
         chord_body : chord_pitches positive_leaf_duration
         """
-        p[0] = _score.Chord.from_pitches_and_duration(p[1], p[2])
+        p[0] = _score.Chord.from_duration_and_pitches(p[2], p[1])
 
     def p_chord_pitches__CARAT_L__pitches__CARAT_R(self, p):
         """
@@ -446,19 +446,19 @@ class ReducedLyParser(Parser):
         """
         note_body : pitch
         """
-        p[0] = _score.Note.from_pitch_and_duration(p[1], self._default_duration)
+        p[0] = _score.Note.from_duration_and_pitch(self._default_duration, p[1])
 
     def p_note_body__pitch__positive_leaf_duration(self, p):
         """
         note_body : pitch positive_leaf_duration
         """
-        p[0] = _score.Note.from_pitch_and_duration(p[1], p[2])
+        p[0] = _score.Note.from_duration_and_pitch(p[2], p[1])
 
     def p_note_body__positive_leaf_duration(self, p):
         """
         note_body : positive_leaf_duration
         """
-        p[0] = _score.Note.from_pitch_and_duration(_pitch.NamedPitch(0), p[1])
+        p[0] = _score.Note.from_duration_and_pitch(p[1], _pitch.NamedPitch(0))
 
     def p_pitch__PITCHNAME(self, p):
         """

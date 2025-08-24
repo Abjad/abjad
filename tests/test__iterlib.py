@@ -1075,11 +1075,11 @@ def test__iterlib_are_logical_voice_27():
 
     pitches = abjad.pitch.pitches([0, 1, 2, 3])
     duration = abjad.Duration(1, 8)
-    notes = [abjad.Note.from_pitch_and_duration(_, duration) for _ in pitches]
+    notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in pitches]
     voice = abjad.Voice(notes)
     container = abjad.Container([voice])
     pitches = abjad.pitch.pitches([4, 5, 6, 7])
-    notes = [abjad.Note.from_pitch_and_duration(_, duration) for _ in pitches]
+    notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in pitches]
     container = abjad.Container([container] + notes)
 
     assert abjad.lilypond(container) == abjad.string.normalize(

@@ -113,9 +113,9 @@ class Component:
         Returns new component.
         """
         if isinstance(self, Note):
-            component = type(self).from_pitch_and_duration(
-                self.written_pitch(),
+            component = type(self).from_duration_and_pitch(
                 self.written_duration(),
+                self.written_pitch(),
                 multiplier=self.multiplier(),
                 tag=self.tag(),
             )
@@ -126,9 +126,9 @@ class Component:
                 tag=self.tag(),
             )
         elif isinstance(self, Chord):
-            component = type(self).from_note_heads_and_duration(
-                self.note_heads(),
+            component = type(self).from_duration_and_note_heads(
                 self.written_duration(),
+                self.note_heads(),
                 multiplier=self.multiplier(),
                 tag=self.tag(),
             )
@@ -2652,9 +2652,9 @@ class Chord(Leaf):
         return " ".join([_._get_chord_string() for _ in self.note_heads()])
 
     @staticmethod
-    def from_note_heads_and_duration(
-        note_heads: typing.Sequence[NoteHead],
+    def from_duration_and_note_heads(
         duration: _duration.Duration,
+        note_heads: typing.Sequence[NoteHead],
         *,
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
@@ -2667,7 +2667,7 @@ class Chord(Leaf):
             >>> note = abjad.Note("d'?4")
             >>> note_heads = [note.note_head()]
             >>> duration = abjad.Duration(1, 4)
-            >>> chord = abjad.Chord.from_note_heads_and_duration(note_heads, duration)
+            >>> chord = abjad.Chord.from_duration_and_note_heads(duration, note_heads)
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -2703,21 +2703,21 @@ class Chord(Leaf):
         return chord
 
     @staticmethod
-    def from_pitches_and_duration(
-        pitches: typing.Sequence[_pitch.NamedPitch | str],
+    def from_duration_and_pitches(
         duration: _duration.Duration,
+        pitches: typing.Sequence[_pitch.NamedPitch | str],
         *,
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> Chord:
         """
-        Makes chord from ``pitches`` and ``duration``.
+        Makes chord from ``duration`` and ``pitches``.
 
         ..  container:: example
 
-            >>> pitches = [abjad.NamedPitch(_) for _ in "c' d' b'".split()]
             >>> duration = abjad.Duration(1, 4)
-            >>> chord = abjad.Chord.from_pitches_and_duration(pitches, duration)
+            >>> pitches = [abjad.NamedPitch(_) for _ in "c' d' b'".split()]
+            >>> chord = abjad.Chord.from_duration_and_pitches(duration, pitches)
             >>> abjad.show(chord) # doctest: +SKIP
 
             ..  docs::
@@ -4165,21 +4165,21 @@ class Note(Leaf):
         return self._get_body()[0]
 
     @staticmethod
-    def from_pitch_and_duration(
-        pitch: _pitch.NamedPitch | str,
+    def from_duration_and_pitch(
         duration: _duration.Duration,
+        pitch: _pitch.NamedPitch | str,
         *,
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> Note:
         """
-        Makes note from ``pitch`` and ``duration``.
+        Makes note from ``duration`` and ``pitch``.
 
         ..  container:: example
 
             >>> pitch = abjad.NamedPitch("C#5")
             >>> duration = abjad.Duration(3, 16)
-            >>> note = abjad.Note.from_pitch_and_duration(pitch, duration)
+            >>> note = abjad.Note.from_duration_and_pitch(duration, pitch)
             >>> abjad.show(note) # doctest: +SKIP
 
             ..  docs::
