@@ -87,7 +87,9 @@ Use ``middle_c_sounding_pitch`` to get an instrument's level of transposition:
 
 ::
 
-    >>> note = abjad.Note(violin.middle_c_sounding_pitch, 4)
+    >>> duration = abjad.Duration(1, 4)
+    >>> pitch = violin.middle_c_sounding_pitch
+    >>> note = abjad.Note.from_duration_and_pitch(duration, pitch)
     >>> abjad.show(note)
 
 Getting an instrument's clefs

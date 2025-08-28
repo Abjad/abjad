@@ -3,6 +3,7 @@ Enumeration, of rhythmic cells
 
 ..
 
+
 ----
 
 ::
@@ -27,8 +28,9 @@ The following functions recreate Malt's results in Abjad:
     ...     denominator = 2 ** exponent
     ...     outer_string = f"{numerator}:{denominator}"
     ...     lone_note_denominator = denominator * 4
-    ...     lone_note_duration = (1, lone_note_denominator)
-    ...     lone_note = abjad.Note("c'", lone_note_duration)
+    ...     lone_note_duration = abjad.Duration(1, lone_note_denominator)
+    ...     pitch = abjad.NamedPitch("c'")
+    ...     lone_note = abjad.Note.from_duration_and_pitch(lone_note_duration, pitch)
     ...     proportion = inner * (1,)
     ...     duration = abjad.Duration(outer, lone_note_denominator)
     ...     inner_tuplet = abjad.makers.make_tuplet(duration, proportion)
@@ -114,4 +116,4 @@ Here's the rhythmic retrograde of the same:
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
-:author:`[Bača (1.1, 3.2, 3.24, 3.26)]`
+:author:`[Bača (1.1, 3.2, 3.24, 3.26, 3.29)]`

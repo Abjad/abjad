@@ -24,23 +24,24 @@ Define helper functions:
     ...     ji_cents = fractions.Fraction(log_ratio * log_2)
     ...     semitones = ji_cents / 100
     ...     parts = math.modf(semitones)
-    ...     pitch = abjad.NumberedPitch(note_head.written_pitch()) + parts[1]
+    ...     numbered_pitch = abjad.NumberedPitch(note_head.written_pitch()) + parts[1]
     ...     remainder = round(parts[0] * 100)
     ...     if 50 < abs(remainder):
     ...         if 0 < remainder:
-    ...             pitch += 1
+    ...             numbered_pitch += 1
     ...             remainder = -100 + remainder
     ...         else:
-    ...             pitch -= 1
+    ...             numbered_pitch -= 1
     ...             remainder = 100 + remainder
     ...     if quarter_tones:
     ...         if 25 < abs(remainder):
     ...             if 0 < remainder:
-    ...                 pitch += 0.5
+    ...                 numbered_pitch += 0.5
     ...                 remainder = -50 + remainder
     ...             else:
-    ...                 pitch -= 0.5
+    ...                 numbered_pitch -= 0.5
     ...                 remainder = 50 + remainder
+    ...     pitch = abjad.NamedPitch(numbered_pitch)
     ...     note_head.set_written_pitch(pitch)
     ...
 
@@ -58,26 +59,26 @@ Define helper functions:
     ...     ji_cents = fractions.Fraction(log_ratio * log_2)
     ...     semitones = ji_cents / 100
     ...     parts = math.modf(semitones)
-    ...     pitch = abjad.NumberedPitch(note_head.written_pitch()) + parts[1]
-    ...     if bass is False or pitch <= -8:
+    ...     numbered_pitch = abjad.NumberedPitch(note_head.written_pitch()) + parts[1]
+    ...     if bass is False or numbered_pitch <= -8:
     ...         direction = abjad.DOWN
     ...     else:
     ...         direction = abjad.UP
     ...     remainder = round(parts[0] * 100)
     ...     if 50 < abs(remainder):
     ...         if 0 < remainder:
-    ...             pitch += 1
+    ...             numbered_pitch += 1
     ...             remainder = -100 + remainder
     ...         else:
-    ...             pitch -= 1
+    ...             numbered_pitch -= 1
     ...             remainder = 100 + remainder
     ...     if quarter_tones:
     ...         if 25 < abs(remainder):
     ...             if 0 < remainder:
-    ...                 pitch += 0.5
+    ...                 numbered_pitch += 0.5
     ...                 remainder = -50 + remainder
     ...             else:
-    ...                 pitch -= 0.5
+    ...                 numbered_pitch -= 0.5
     ...                 remainder = 50 + remainder
     ...     if remainder < 0:
     ...         cent_string = f"{remainder}"
@@ -85,7 +86,7 @@ Define helper functions:
     ...         cent_string = f"+{remainder}"
     ...     string = rf"\markup {cent_string}"
     ...     markup = abjad.Markup(string)
-    ...     if pitch <= -8:
+    ...     if numbered_pitch <= -8:
     ...         padding = r"- \tweak padding 1"
     ...     else:
     ...         padding = r"- \tweak padding 2.5"
@@ -106,15 +107,19 @@ Define helper functions:
     ...     staff_3 = abjad.Staff(name="Staff_3")
     ...     group = abjad.StaffGroup([staff_1, staff_2, staff_3], name="Staff_Group")
     ...     score = abjad.Score([group], name="Score")
+    ...     duration = abjad.Duration(1, 1)
+    ...     pitch = abjad.NamedPitch(fundamental)
     ...     for triad in trichords:
     ...         for i, ratio in enumerate(triad):
     ...             staff = group[i]
-    ...             note = abjad.Note(fundamental, (1, 1))
+    ...             note = abjad.Note.from_duration_and_pitch(duration, pitch)
     ...             tune_to_ratio(note.note_head(), ratio)
     ...             bass = False
     ...             if i == 2:
     ...                 bass = True
-    ...             markup, direction = return_cent_markup(note.note_head(), ratio, bass=bass)
+    ...             markup, direction = return_cent_markup(
+    ...                 note.note_head(), ratio, bass=bass
+    ...             )
     ...             abjad.attach(markup, note, direction=direction)
     ...             staff.append(note)
     ...     for measure_number in (1, 11, 21, 31):
@@ -206,4 +211,4 @@ Create list of triad sequences written as ratios:
     ...
     >>> abjad.show(file)
 
-:author:`[Evans (3.2)]`
+:author:`[Evans (3.2); Bača (3.29)]`

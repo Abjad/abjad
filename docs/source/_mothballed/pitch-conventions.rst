@@ -13,10 +13,11 @@ Abjad numbers pitches like this:
     >>> score = abjad.illustrators.make_piano_score()
     >>> treble_staff, bass_staff = score["Treble_Staff"], score["Bass_Staff"]
     >>> duration = abjad.Duration(1, 32)
-    >>> pitches = range(-12, 12 + 1)
-    >>> for pitch in pitches:
-    ...     note = abjad.Note(pitch, duration)
-    ...     rest = abjad.Rest(duration)
+    >>> numbers = range(-12, 12 + 1)
+    >>> for number in numbers:
+    ...     pitch = abjad.NamedPitch(number)
+    ...     note = abjad.Note.from_duration_and_pitch(duration, pitch)
+    ...     rest = abjad.Rest.from_duration(duration)
     ...     if 0 <= note.written_pitch().number():
     ...         treble_staff.append(note)
     ...         bass_staff.append(rest)
@@ -62,16 +63,17 @@ Abjad numbers diatonic pitches like this:
     >>> score = abjad.illustrators.make_piano_score()
     >>> treble_staff, bass_staff = score["Treble_Staff"], score["Bass_Staff"]
     >>> duration = abjad.Duration(1, 32)
-    >>> pitches = []
-    >>> diatonic_pitches = [0, 2, 4, 5, 7, 9, 11]
-    >>> pitches.extend([-24 + x for x in diatonic_pitches])
-    >>> pitches.extend([-12 + x for x in diatonic_pitches])
-    >>> pitches.extend([0 + x for x in diatonic_pitches])
-    >>> pitches.extend([12 + x for x in diatonic_pitches])
-    >>> pitches.append(24)
-    >>> for pitch in pitches:
-    ...     note = abjad.Note(pitch, duration)
-    ...     rest = abjad.Rest(duration)
+    >>> numbers = []
+    >>> diatonic_numbers = [0, 2, 4, 5, 7, 9, 11]
+    >>> numbers.extend([-24 + x for x in diatonic_numbers])
+    >>> numbers.extend([-12 + x for x in diatonic_numbers])
+    >>> numbers.extend([0 + x for x in diatonic_numbers])
+    >>> numbers.extend([12 + x for x in diatonic_numbers])
+    >>> numbers.append(24)
+    >>> for number in numbers:
+    ...     pitch = abjad.NamedPitch(number)
+    ...     note = abjad.Note.from_duration_and_pitch(duration, pitch)
+    ...     rest = abjad.Rest.from_duration(duration)
     ...     if 0 <= note.written_pitch().number():
     ...         treble_staff.append(note)
     ...         bass_staff.append(rest)

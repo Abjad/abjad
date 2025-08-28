@@ -3,6 +3,7 @@ Magic square, from twelve-tone row
 
 ..
 
+
 ----
 
 The first function below accumulates the twelve transpositions of a twelve-tone row,
@@ -25,8 +26,13 @@ example:
     >>> def make_score(row):
     ...     score = abjad.Score(name="Score")
     ...     transpositions = make_transpositions(row)
+    ...     duration = abjad.Duration(1, 4)
     ...     for i, transposition in enumerate(transpositions):
-    ...         notes = [abjad.Note(_, (1, 4)) for _ in transposition] 
+    ...         notes = []
+    ...         for numbered_pitch in transposition:
+    ...             pitch = abjad.NamedPitch(numbered_pitch)
+    ...             note = abjad.Note.from_duration_and_pitch(duration, pitch)
+    ...             notes.append(note)
     ...         voice = abjad.Voice(notes, name=f"Voice_{i}")
     ...         staff = abjad.Staff([voice], name=f"Staff_{i}")
     ...         score.append(staff)
@@ -106,4 +112,4 @@ From Koblyakov's analysis of Pierre Boulez's `Marteau sans maître` (1955).
 
 From Benjamin Britten's `The Turn of the Screw` (1954).
 
-:author:`[Bača (3.3).]`
+:author:`[Bača (3.3, 3.29).]`

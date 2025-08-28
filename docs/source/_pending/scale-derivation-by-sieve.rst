@@ -12,9 +12,11 @@ First we define a function to illustrate the examples that follow:
 ::
 
     >>> def illustrate_scale(pattern, length, transposition):
-    ...     pitches = list(range(length))
-    ...     pitches = abjad.sequence.retain_pattern(pitches, pattern)
-    ...     notes = [abjad.Note(_ + transposition, (1, 16)) for _ in pitches]
+    ...     numbers = list(range(length))
+    ...     numbers = abjad.sequence.retain_pattern(numbers, pattern)
+    ...     pitches = [abjad.NamedPitch(_) for _ in numbers]
+    ...     duration = abjad.Duration(1, 16)
+    ...     notes = [abjad.Note.from_duration_and_pitch(duration, _ + transposition) for _ in pitches]
     ...     score = abjad.illustrators.make_piano_score(notes)
     ...     treble_staff = score["Treble_Staff"]
     ...     abjad.override(score).BarLine.stencil = False
@@ -26,7 +28,7 @@ First we define a function to illustrate the examples that follow:
     ...     abjad.override(score).SpanBar.stencil = False
     ...     abjad.override(score).Stem.stencil = False
     ...     abjad.override(score).TimeSignature.stencil = False
-    ...     abjad.setting(score).proportionalNotationDuration = r"\musicLength 1*1/25"
+    ...     abjad.setting(score).proportionalNotationDuration = "#1/25"
     ...     lilypond_file = abjad.LilyPondFile(
     ...         items=[
     ...             "#(set-global-staff-size 16)",
@@ -74,4 +76,4 @@ Non-octave scale in Joel Hoffman's **Piano Concerto**:
     >>> lilypond_file = illustrate_scale(scale, 84, -37)
     >>> abjad.show(lilypond_file)
 
-:author:`[Evans (3.2)]`
+:author:`[Evans (3.2); Bača (3.29)]`
