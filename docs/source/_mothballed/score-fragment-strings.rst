@@ -1,5 +1,6 @@
 :orphan:
 
+
 Score fragment, strings
 =======================
 
@@ -141,7 +142,7 @@ strings start with some rests, and use a long-short pattern for their rhythms:
     ...                     chord_descent.append(chord)
     ...                 else:
     ...                     assert isinstance(pitch, abjad.NamedPitch)
-    ...                     note = abjad.Note.from_pitch_and_duration(pitch, duration)
+    ...                     note = abjad.Note.from_duration_and_pitch(duration, pitch)
     ...                     chord_descent.append(note)
     ...                 counter = (counter + 1) % 2
     ...             chord_descents.append(tuple(chord_descent))
@@ -300,7 +301,7 @@ We define more functions:
     ...     container = abjad.Container(descents[-1])
     ...     pitch = abjad.NamedPitch("c'")
     ...     for duration in 43 * [abjad.Duration(6, 4)]:
-    ...         note = abjad.Note.from_pitch_and_duration(pitch, duration)
+    ...         note = abjad.Note.from_duration_and_pitch(duration, pitch)
     ...         tie = abjad.Tie()
     ...         abjad.attach(tie, note)
     ...         container.append(note)
@@ -359,7 +360,7 @@ We define more functions:
     ...     abjad.attach(tie, container[-1])
     ...     pitch = abjad.NamedPitch("e")
     ...     for duration in 20 * [abjad.Duration(6, 4)]:
-    ...         note = abjad.Note.from_pitch_and_duration(pitch, duration)
+    ...         note = abjad.Note.from_duration_and_pitch(duration, pitch)
     ...         tie = abjad.Tie()
     ...         abjad.attach(tie, note)
     ...         container.append(note)
@@ -382,7 +383,7 @@ We define more functions:
     ...             continue
     ...         pitch = chord.written_pitches()[1]
     ...         duration = chord.written_duration()
-    ...         note = abjad.Note.from_pitch_and_duration(pitch, duration)
+    ...         note = abjad.Note.from_duration_and_pitch(duration, pitch)
     ...         articulation = abjad.Articulation("accent")
     ...         abjad.attach(articulation, note)
     ...         articulation = abjad.Articulation("tenuto")

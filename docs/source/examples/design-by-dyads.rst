@@ -1,17 +1,18 @@
 Design, by dyads
 ================
 
+
 ..
 
 ----
 
-The function below pairs pitches at corresponding positions in a segment partitioned into
-halves. A sequence of two-note chords results. A first optional parameter flips the
-pitches in chords specified by index. A second optional parameter transposes chords,
-specified again by index. Two examples follow. The first operates on the regular
-structure of an ascending chromatic scale. The second successively tranforms a segment
-with greater intervallic variety. The implementation given here generalizes a process due
-to Luigi Nono:
+The function below pairs pitches at corresponding positions in a segment
+partitioned into halves. A sequence of two-note chords results. A first
+optional parameter flips the pitches in chords specified by index. A second
+optional parameter transposes chords, specified again by index. Two examples
+follow. The first operates on the regular structure of an ascending chromatic
+scale. The second successively tranforms a segment with greater intervallic
+variety. The implementation given here generalizes a process due to Luigi Nono:
 
 ::
 
@@ -26,8 +27,9 @@ to Luigi Nono:
     ...     right = segment[center:]
     ...     pairs = zip(left, right)
     ...     chords = []
+    ...     duration = abjad.Duration(1, 4)
     ...     for i, pair in enumerate(pairs):
-    ...         chord = abjad.Chord(pair, (1, 4))
+    ...         chord = abjad.Chord.from_duration_and_pitches(duration, pair)
     ...         if i in flip:
     ...             pitches = chord.written_pitches()
     ...             lower, higher = pitches
@@ -71,7 +73,9 @@ Examples
 **Example 1a.** Ascending chromatic scale:
 
     >>> string = "cs'' d'' ef'' e'' f'' fs'' g'' gs'' a'' bf'' b'' c'''"
-    >>> notes = [abjad.Note(_, (1, 4)) for _ in string.split()]
+    >>> pitches = abjad.pitch.pitches(string.split())
+    >>> duration = abjad.Duration(1, 4)
+    >>> notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in pitches]
     >>> score = abjad.illustrators.make_piano_score(notes)
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
@@ -110,7 +114,9 @@ Diotima* (1980).
 **Example 2a.** Starting segment written by hand:
 
     >>> string = "d, b af c'' a' fs'' g'' gs'' as'' b'' d'' f' g' ef' e df c bf,"
-    >>> notes = [abjad.Note(_, (1, 4)) for _ in string.split()]
+    >>> pitches = abjad.pitch.pitches(string.split())
+    >>> duration = abjad.Duration(1, 4)
+    >>> notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in pitches]
     >>> score = abjad.illustrators.make_piano_score(notes)
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
@@ -123,7 +129,8 @@ Diotima* (1980).
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
-**Example 2c.** Starting segment; partitioned; chords at indexes 0, 1, 2, 4 flipped:
+**Example 2c.** Starting segment; partitioned; chords at indexes 0, 1, 2, 4
+flipped:
 
     >>> string = "d, b af c'' a' fs'' g'' gs'' as'' b'' d'' f' g' ef' e df c bf,"
     >>> chords = partition(string, flip=[0, 1, 2, 4])
@@ -131,8 +138,8 @@ Diotima* (1980).
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
-**Example 2d.** Starting segment; partitioned; chords 0, 1, 2, 4 flipped; chords at
-indexes 0, 1 selectively transposed:
+**Example 2d.** Starting segment; partitioned; chords 0, 1, 2, 4 flipped;
+chords at indexes 0, 1 selectively transposed:
 
     >>> string = "d, b af c'' a' fs'' g'' gs'' as'' b'' d'' f' g' ef' e df c bf,"
     >>> transpositions = [(0, "-36"), (1, "-24")]
@@ -141,4 +148,5 @@ indexes 0, 1 selectively transposed:
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
-:author:`[Evans (3.2), Bača (3.2, 3.7); generalized from Luigi Nono, example 1d, above.]`
+:author:`[Evans (3.2), Bača (3.2, 3.7, 3.29); generalized from Luigi Nono,
+example 1d, above.]`

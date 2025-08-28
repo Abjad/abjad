@@ -17,9 +17,11 @@ The functions we'll use:
 
 ::
 
-    >>> def make_cell(pitches, hand):
-    ...     pitches = pitches.split()
-    ...     notes = [abjad.Note(pitch, (1, 8)) for pitch in pitches]
+    >>> def make_cell(pitch_string, hand):
+    ...     strings = pitch_string.split()
+    ...     pitches = abjad.pitch.pitches(strings)
+    ...     duration = abjad.Duration(1, 8)
+    ...     notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in pitches]
     ...     rh_lower_voice = abjad.Voice(notes, name=f"{hand}_Lower_Voice")
     ...     abjad.beam(notes)
     ...     abjad.slur(notes)
@@ -30,11 +32,11 @@ The functions we'll use:
     ...     command = abjad.VoiceNumber(2)
     ...     abjad.attach(command, notes[0])
     ...     numerator = int(math.ceil(len(pitches) / 2.0))
-    ...     duration = (numerator, 8)
+    ...     duration = abjad.Duration(numerator, 8)
     ...     lower_pitch = abjad.NamedPitch(pitches[0])
     ...     upper_pitch = lower_pitch + abjad.NamedInterval("P8")
     ...     octave_pitches = [lower_pitch, upper_pitch]
-    ...     chord = abjad.Chord(octave_pitches, duration)
+    ...     chord = abjad.Chord.from_duration_and_pitches(duration, octave_pitches)
     ...     articulation = abjad.Articulation(">")
     ...     abjad.attach(articulation, chord)
     ...     command = abjad.VoiceNumber(2)
@@ -51,7 +53,7 @@ The functions we'll use:
 
     >>> def make_measure(pitches, hand):
     ...     measure = abjad.Container()
-    ...     duration = 0
+    ...     duration = abjad.Duration(0)
     ...     sublists = pitches.split("|")
     ...     for sublist in sublists:
     ...         container = make_cell(sublist, hand)
@@ -155,8 +157,10 @@ stems of the notes point down.
 
 ::
 
-    >>> pitches = "b e' f'".split()
-    >>> notes = [abjad.Note(_, (1, 8)) for _ in pitches]
+    >>> strings = "b e' f'".split()
+    >>> pitches = abjad.pitch.pitches(strings)
+    >>> duration = abjad.Duration(1, 8)
+    >>> notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in pitches]
     >>> rh_lower_voice = abjad.Voice(notes, name="RH_Lower_Voice")
     >>> abjad.beam(notes)
     >>> abjad.slur(notes)
@@ -167,7 +171,6 @@ stems of the notes point down.
     >>> command = abjad.VoiceNumber(2)
     >>> abjad.attach(command, notes[0])
     >>> abjad.show(rh_lower_voice)
-
 
 Now we construct the octave. The duration of the chord is half the duration of the
 running eighth notes if the duration of the running notes is divisible by two. Otherwise
@@ -181,15 +184,14 @@ articulation marking and finally add the chord to a voice. We attach a LilyPond
     >>> upper_pitch = lower_pitch + abjad.NamedInterval("P8")
     >>> octave_pitches = [lower_pitch, upper_pitch]
     >>> numerator = int(math.ceil(len(pitches) / 2.))
-    >>> duration = (numerator, 8)
-    >>> chord = abjad.Chord(octave_pitches, duration)
+    >>> duration = abjad.Duration(numerator, 8)
+    >>> chord = abjad.Chord.from_duration_and_pitches(duration, octave_pitches)
     >>> articulation = abjad.Articulation(">")
     >>> abjad.attach(articulation, chord)
     >>> rh_upper_voice = abjad.Voice([chord], name="RH_Upper_Voice")
     >>> command = abjad.VoiceNumber(1)
     >>> abjad.attach(command, rh_upper_voice[0])
     >>> abjad.show(rh_upper_voice)
-
 
 Finally we combine the two voices in a simultaneous container:
 
@@ -280,4 +282,4 @@ The final result:
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
-:author:`[Adán (2.0), Bača (3.2)]`
+:author:`[Adán (2.0), Bača (3.2), (3.29)]`

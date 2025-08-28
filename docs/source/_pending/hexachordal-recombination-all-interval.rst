@@ -100,13 +100,15 @@ function to do the same:
 
     >>> def make_score(segment):
     ...     treble_pitches, bass_pitches = [], []
-    ...     for pitch in segment:
-    ...         if pitch.number() < 0:
+    ...     for numbered_pitch in segment:
+    ...         pitch = abjad.NamedPitch(numbered_pitch)
+    ...         if numbered_pitch.number() < 0:
     ...             bass_pitches.append(pitch)
     ...         else:
     ...             treble_pitches.append(pitch)
-    ...     treble_chord = abjad.Chord(treble_pitches, (1, 1))
-    ...     bass_chord = abjad.Chord(bass_pitches, (1, 1))
+    ...     duration = abjad.Duration(1, 1)
+    ...     treble_chord = abjad.Chord.from_duration_and_pitches(duration, treble_pitches)
+    ...     bass_chord = abjad.Chord.from_duration_and_pitches(duration, bass_pitches)
     ...     clef = abjad.Clef("bass")
     ...     abjad.attach(clef, bass_chord)
     ...     treble_staff = abjad.Staff([treble_chord], name="RH")
@@ -198,5 +200,6 @@ its complement:
     >>> lilypond_file = abjad.LilyPondFile([score])
     >>> abjad.show(lilypond_file)
 
-:author:`[Evans (3.2), Bača (3.7); ex. Elliott Carter's concept of parallel-inverted
-all-interval collections; hexachords appear in Carter's Harmony Book.]`
+:author:`[Evans (3.2), Bača (3.7), (3.29); ex. Elliott Carter's concept of
+parallel-inverted all-interval collections; hexachords appear in Carter's
+Harmony Book.]`

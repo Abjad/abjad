@@ -11,7 +11,8 @@ Rotation, by row index
 
     >>> def make_rotation_chart(permutation, label):
     ...     rotations = [0, -1, -2, -3, -4, -5]
-    ...     source_staff = abjad.Staff([abjad.Note(_, (1, 16)) for _ in permutation])
+    ...     duration = abjad.Duration(1, 16)
+    ...     source_staff = abjad.Staff([abjad.Note.from_duration_and_pitch(duration, abjad.NamedPitch(_)) for _ in permutation])
     ...     markup = abjad.Markup(rf'\markup "{label}"')
     ...     abjad.attach(markup, source_staff[0], direction=abjad.UP)
     ...     score = abjad.Score([source_staff], name="Score")
@@ -29,7 +30,7 @@ Rotation, by row index
     ...         abjad.InstrumentName("IV"),
     ...         abjad.InstrumentName("V"),
     ...     ]
-    ...     for r, instrument_name in zip(rotations, instrument_names):
+    ...     for r, instrument_name in zip(rotations, instrument_names, strict=True):
     ...         staff = abjad.Staff()
     ...         sets = [
     ...             abjad.PitchClassSegment(hexachords[0]).rotate(r),
@@ -48,7 +49,7 @@ Rotation, by row index
     ...             abjad.Markup(r"\markup \box δ"),
     ...         ]
     ...         for set, name in zip(sets, names):
-    ...             voice = abjad.Voice([abjad.Note(_, (1, 16)) for _ in set])
+    ...             voice = abjad.Voice([abjad.Note.from_duration_and_pitch(duration, abjad.NamedPitch(_)) for _ in set])
     ...             for leaf in abjad.select.leaves(voice):
     ...                 markup = abjad.Markup(
     ...                     rf"\markup {abjad.NumberedPitchClass(leaf.written_pitch())}",
@@ -141,4 +142,5 @@ this?
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])
     >>> abjad.show(lilypond_file)
 
-:author:`[Evans (3.2); ex. Igor Stravinsky, Abraham and Isaac (1962--63).]`
+:author:`[Evans (3.2); Bača (3.29); ex. Igor Stravinsky, Abraham and Isaac
+(1962--63).]`

@@ -12,7 +12,8 @@ First we define functions to illustrate the examples that follow:
 ::
 
     >>> def illustrate_row(row):
-    ...     notes = [abjad.Note(_, (1, 8)) for _ in row]
+    ...     duration = abjad.Duration(1, 8)
+    ...     notes = [abjad.Note.from_duration_and_pitch(duration, abjad.NamedPitch(_)) for _ in row]
     ...     score = abjad.illustrators.make_piano_score(notes)
     ...     treble_staff = score["Treble_Staff"]
     ...     abjad.override(treble_staff).BarLine.stencil = False
@@ -72,4 +73,4 @@ Show retrograde inversion:
     >>> file = illustrate_row(row.invert().retrograde())
     >>> abjad.show(file)
 
-:author:`[Evans (3.2), Bača (3.7)]`
+:author:`[Evans (3.2); Bača (3.7), (3.29)]`
