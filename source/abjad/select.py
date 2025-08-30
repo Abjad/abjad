@@ -264,7 +264,7 @@ def chord(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets, strict=True)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
@@ -352,7 +352,7 @@ def chords(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets, strict=True)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
@@ -1057,7 +1057,7 @@ def flatten(argument, depth: int = 1) -> list:
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets, strict=True)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
@@ -1144,7 +1144,7 @@ def flatten(argument, depth: int = 1) -> list:
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets, strict=True)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
@@ -2452,7 +2452,7 @@ def leaf(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets, strict=True)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
@@ -4307,7 +4307,7 @@ def note(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets, strict=True)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
@@ -4395,7 +4395,7 @@ def notes(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets, strict=True)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
@@ -5980,7 +5980,7 @@ def rest(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets, strict=True)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
@@ -6068,7 +6068,7 @@ def rests(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets, strict=True)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
@@ -6165,7 +6165,7 @@ def run(argument, n: int, *, exclude: Exclude | None = None) -> list[_score.Leaf
         ...     "r16 d'16 d'16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 e'16 e'16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets, strict=True)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
@@ -6257,7 +6257,7 @@ def runs(
         ...     "r16 d'16 d'16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 e'16 e'16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets, strict=True)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]
@@ -6535,7 +6535,7 @@ def tuplet(
         ...     "r16 bf'16 <a'' b''>16 d'16 <e' fs'>4 ~ <e' fs'>16",
         ...     "r16 bf'16 <a'' b''>16 e'16 <fs' gs'>4 ~ <fs' gs'>16",
         ... ]
-        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets)
+        >>> tuplets = zip(["9:8", "9:8", "9:8"], tuplets, strict=True)
         >>> tuplets = [abjad.Tuplet(*_) for _ in tuplets]
         >>> lilypond_file = abjad.illustrators.components(tuplets)
         >>> staff = lilypond_file["Staff"]

@@ -35,7 +35,7 @@ Tone-clock tesselation in Jenny McLeod's `Tone Clock Piece I`.
 
     >>> def tesselate_segment(segment, steering, inversions):
     ...     field = []
-    ...     for bool, i in zip(inversions, steering):
+    ...     for bool, i in zip(inversions, steering, strict=True):
     ...         transposition = ipf
     ...         if bool:
     ...             transposition = transposition.invert().retrograde()

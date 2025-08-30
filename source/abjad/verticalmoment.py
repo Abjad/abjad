@@ -84,7 +84,7 @@ class VerticalMoment:
     def __eq__(self, argument: object) -> bool:
         if isinstance(argument, type(self)):
             if len(self) == len(argument):
-                for c, d in zip(self.components(), argument.components()):
+                for c, d in zip(self.components(), argument.components(), strict=True):
                     if c is not d:
                         return False
                 else:

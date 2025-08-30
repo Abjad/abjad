@@ -416,7 +416,7 @@ def sort_roman(strings: list[str]) -> list[str]:
             except roman.InvalidRomanNumeralError:
                 list_.append(word)
         lists.append(list_)
-    pairs = list(zip(strings, lists))
+    pairs = list(zip(strings, lists, strict=True))
     pairs.sort(key=lambda pair: pair[1])
     strings_ = [pair[0] for pair in pairs]
     return strings_

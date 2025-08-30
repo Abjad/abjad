@@ -1943,7 +1943,9 @@ class ColorMap:
         return self._color_dictionary[pitch_class.number()]
 
     def _initialize_color_dictionary(self):
-        for pitch_iterable, color in zip(self.pitch_iterables, self.colors):
+        for pitch_iterable, color in zip(
+            self.pitch_iterables, self.colors, strict=True
+        ):
             for pitch in pitch_iterable:
                 pc = _pitch.NumberedPitchClass(pitch)
                 keys = set(self._color_dictionary.keys())

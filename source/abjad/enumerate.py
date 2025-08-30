@@ -74,7 +74,7 @@ def _partition_by_rgf(sequence, rgf: list[int]) -> list[list]:
     for part_index in range(max(rgf)):
         part: list = []
         partition.append(part)
-    for n, part_number in zip(sequence, rgf):
+    for n, part_number in zip(sequence, rgf, strict=True):
         part_index = part_number - 1
         part = partition[part_index]
         part.append(n)
@@ -412,7 +412,7 @@ def yield_partitions(argument) -> typing.Iterator:
         binary_string = binary_string.zfill(length)
         part = list(argument[0:1])
         partition = [part]
-        for n, token in zip(argument[1:], binary_string):
+        for n, token in zip(argument[1:], binary_string, strict=True):
             if int(token) == 0:
                 part.append(n)
             else:

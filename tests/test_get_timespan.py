@@ -80,7 +80,7 @@ def test_get_timespan_09():
     pairs = [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]
     durations = abjad.duration.durations(pairs)
     leaves = abjad.select.leaves(tuplet)
-    for leaf, duration in zip(leaves, durations):
+    for leaf, duration in zip(leaves, durations, strict=True):
         assert abjad.get.timespan(leaf).start_offset == offset
         offset += duration
 
