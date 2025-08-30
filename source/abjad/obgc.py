@@ -133,16 +133,6 @@ class OnBeatGraceContainer(_score.Container):
             )
         self._grace_leaf_duration = grace_leaf_duration
 
-    ### SPECIAL METHODS ###
-
-    def __getnewargs__(self):
-        """
-        Gets new after grace container arguments.
-
-        Returns tuple of single empty list.
-        """
-        return ([],)
-
     ### PRIVATE METHODS ###
 
     def _format_invocation(self):
