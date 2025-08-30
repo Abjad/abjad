@@ -112,10 +112,12 @@ class Component:
 
         Returns new component.
         """
-        if isinstance(self, Note):
-            component = type(self).from_duration_and_pitch(
+        if isinstance(self, AfterGraceContainer):
+            component = type(self)(self.fraction(), tag=self.tag())
+        elif isinstance(self, Chord):
+            component = type(self).from_duration_and_note_heads(
                 self.written_duration(),
-                self.written_pitch(),
+                self.note_heads(),
                 multiplier=self.multiplier(),
                 tag=self.tag(),
             )
@@ -125,10 +127,10 @@ class Component:
                 multiplier=self.multiplier(),
                 tag=self.tag(),
             )
-        elif isinstance(self, Chord):
-            component = type(self).from_duration_and_note_heads(
+        elif isinstance(self, Note):
+            component = type(self).from_duration_and_pitch(
                 self.written_duration(),
-                self.note_heads(),
+                self.written_pitch(),
                 multiplier=self.multiplier(),
                 tag=self.tag(),
             )
@@ -138,9 +140,12 @@ class Component:
                 multiplier=self.multiplier(),
                 tag=self.tag(),
             )
+        elif isinstance(self, Tuplet):
+            component = type(self)(str(self.ratio()), tag=self.tag())
+        elif isinstance(self, TremoloContainer):
+            component = type(self)(str(self.count()), tag=self.tag())
         else:
-            # TODO: remove __getnewargs__ from component classes:
-            component = type(self)(*self.__getnewargs__(), tag=self.tag())
+            component = type(self)(tag=self.tag())
         # TODO: move up to Container.__copy__()
         if hasattr(self, "identifier"):
             component.set_identifier(self.identifier())
@@ -170,15 +175,6 @@ class Component:
             wrapper_._component = component
             wrapper_._bind_component(component)
         return component
-
-    # TODO: remove
-    def __getnewargs__(self):
-        """
-        Gets new arguments.
-
-        Returns tuple.
-        """
-        return ()
 
     def _cache_named_children(self):
         name_dictionary = {}
@@ -486,10 +482,6 @@ class Leaf(Component):
             grace_container = after_grace_container._copy_with_children()
             grace_container._attach(leaf)
         return leaf
-
-    # TODO: remove
-    def __getnewargs__(self):
-        return (self.written_duration(),)
 
     def __repr__(self) -> str:
         return f"{type(self).__name__}({self._get_compact_representation()!r})"
@@ -1010,12 +1002,6 @@ class Container(Component):
                 raise ValueError(f"multiple components named {argument!r}.")
             return self._named_children.__getitem__(argument)[0]
         raise ValueError(f"can not get container at {argument!r}.")
-
-    def __getnewargs__(self) -> tuple:
-        """
-        Gets new container arguments.
-        """
-        return ([],)
 
     def __iter__(self) -> typing.Iterator:
         """
@@ -1973,20 +1959,6 @@ class AfterGraceContainer(Container):
         super().__init__(components, language=language, tag=tag)
         self.set_fraction(fraction)
 
-    ### SPECIAL METHODS ###
-
-    def __getnewargs__(self) -> tuple[tuple[int, int] | None]:
-        """
-        Gets new after grace container arguments.
-
-        ..  container:: example
-
-            >>> abjad.AfterGraceContainer("d'8", fraction=(15, 16)).__getnewargs__()
-            ((15, 16),)
-
-        """
-        return (self.fraction(),)
-
     ### PRIVATE METHODS ###
 
     def _attach(self, leaf):
@@ -2214,16 +2186,6 @@ class BeforeGraceContainer(Container):
         self._command = command
         self._main_leaf = None
         super().__init__(components, language=language, tag=tag)
-
-    ### SPECIAL METHODS ###
-
-    def __getnewargs__(self) -> tuple:
-        """
-        Gets new grace container arguments.
-
-        Returns tuple of single empty list.
-        """
-        return ([],)
 
     ### PRIVATE METHODS ###
 
@@ -2589,20 +2551,6 @@ class Chord(Leaf):
     def __copy__(self) -> typing.Self:
         new_chord = super().__copy__()
         return new_chord
-
-    def __getnewargs__(
-        self,
-    ) -> tuple[tuple[_pitch.NamedPitch, ...], _duration.Duration]:
-        """
-        Gets new chord arguments.
-
-        ..  container:: example
-
-            >>> abjad.Chord("<c' d'>4").__getnewargs__()
-            ((NamedPitch("c'"), NamedPitch("d'")), Duration(1, 4))
-
-        """
-        return self.written_pitches(), self.written_duration()
 
     def _format_before_site(self, contributions):
         result = []
@@ -2990,14 +2938,6 @@ class Context(Container):
         new_context._remove_commands = copy.copy(self.remove_commands())
         return new_context
 
-    def __getnewargs__(self):
-        """
-        Gets new context arguments.
-
-        Returns tuple.
-        """
-        return ([],)
-
     def __repr__(self) -> str:
         """
         Gets interpreter representation of context.
@@ -3236,14 +3176,6 @@ class IndependentAfterGraceContainer(Container):
     ) -> None:
         super().__init__(components, language=language, tag=tag)
         self.set_fraction(fraction)
-
-    def __getnewargs__(self):
-        """
-        Gets new after grace container arguments.
-
-        Returns tuple of single empty list.
-        """
-        return ([],)
 
     def _format_open_brackets_site(self, contributions):
         result = []
@@ -4693,12 +4625,6 @@ class TremoloContainer(Container):
         if len(self) != 2:
             raise Exception(f"must contain 2 leaves (not {len(self)}")
 
-    def __getnewargs__(self) -> tuple:
-        """
-        Gets new arguments of tremolo container.
-        """
-        return (self.count(),)
-
     def _format_open_brackets_site(self, contributions) -> list[str]:
         result = []
         result.append(rf"\repeat tremolo {self.count()}")
@@ -4841,13 +4767,6 @@ class Tuplet(Container):
         self.set_ratio(ratio_)
 
     ### SPECIAL METHODS ###
-
-    def __getnewargs__(self) -> tuple:
-        """
-        Gets new arguments of tuplet.
-        """
-        string = str(self.ratio())
-        return (string,)
 
     def __repr__(self) -> str:
         """
