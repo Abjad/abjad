@@ -68,5 +68,6 @@ def test_Leaf_written_duration_01():
     assert abjad.lilypond(note) == "cs'\\maxima..."
 
     with pytest.raises(abjad.AssignabilityError):
+        duration = abjad.Duration(16)
         pitch = abjad.NamedPitch("cs")
-        abjad.Note.from_duration_and_pitch(abjad.Duration(16), pitch)
+        abjad.Note.from_duration_and_pitch(duration, pitch)

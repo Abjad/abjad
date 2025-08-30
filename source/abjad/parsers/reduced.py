@@ -295,13 +295,16 @@ class ReducedLyParser(Parser):
         """
         chord_body : chord_pitches
         """
-        p[0] = _score.Chord.from_duration_and_pitches(self._default_duration, p[1])
+        duration = self._default_duration
+        pitches = p[1]
+        p[0] = _score.Chord.from_duration_and_pitches(duration, pitches)
 
     def p_chord_body__chord_pitches__positive_leaf_duration(self, p):
         """
         chord_body : chord_pitches positive_leaf_duration
         """
-        p[0] = _score.Chord.from_duration_and_pitches(p[2], p[1])
+        duration, pitches = p[2], p[1]
+        p[0] = _score.Chord.from_duration_and_pitches(duration, pitches)
 
     def p_chord_pitches__CARAT_L__pitches__CARAT_R(self, p):
         """
@@ -446,19 +449,22 @@ class ReducedLyParser(Parser):
         """
         note_body : pitch
         """
-        p[0] = _score.Note.from_duration_and_pitch(self._default_duration, p[1])
+        duration, pitch = self._default_duration, p[1]
+        p[0] = _score.Note.from_duration_and_pitch(duration, pitch)
 
     def p_note_body__pitch__positive_leaf_duration(self, p):
         """
         note_body : pitch positive_leaf_duration
         """
-        p[0] = _score.Note.from_duration_and_pitch(p[2], p[1])
+        duration, pitch = p[2], p[1]
+        p[0] = _score.Note.from_duration_and_pitch(duration, pitch)
 
     def p_note_body__positive_leaf_duration(self, p):
         """
         note_body : positive_leaf_duration
         """
-        p[0] = _score.Note.from_duration_and_pitch(p[1], _pitch.NamedPitch(0))
+        duration, pitch = p[1], _pitch.NamedPitch(0)
+        p[0] = _score.Note.from_duration_and_pitch(duration, pitch)
 
     def p_pitch__PITCHNAME(self, p):
         """
@@ -541,19 +547,22 @@ class ReducedLyParser(Parser):
         """
         rest_body : RESTNAME
         """
-        p[0] = _score.Rest.from_duration(self._default_duration)
+        duration = self._default_duration
+        p[0] = _score.Rest.from_duration(duration)
 
     def p_rest_body__RESTNAME__positive_leaf_duration(self, p):
         """
         rest_body : RESTNAME positive_leaf_duration
         """
-        p[0] = _score.Rest.from_duration(p[2])
+        duration = p[2]
+        p[0] = _score.Rest.from_duration(duration)
 
     def p_rest_body__negative_leaf_duration(self, p):
         """
         rest_body : negative_leaf_duration
         """
-        p[0] = _score.Rest.from_duration(p[1])
+        duration = p[1]
+        p[0] = _score.Rest.from_duration(duration)
 
     def p_slur__PAREN_L(self, p):
         """
