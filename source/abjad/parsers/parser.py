@@ -1957,9 +1957,12 @@ class LilyPondLexicalDefinition:
             t.type = "MULTI_MEASURE_REST"
         elif value == "q":
             if self.client._last_chord is None:
+                duration = _duration.Duration(1, 4)
+                strings = "c g c'".split()
+                pitches = _pitch.pitches(strings)
                 self.client._last_chord = _score.Chord.from_duration_and_pitches(
-                    _duration.Duration(1, 4),
-                    _pitch.pitches("c g c'".split()),
+                    duration,
+                    pitches,
                     tag=self.tag,
                 )
             t.type = "CHORD_REPETITION"
@@ -4625,8 +4628,8 @@ class LilyPondSyntacticalDefinition:
         self, p
     ):
         "event_chord : MULTI_MEASURE_REST optional_notemode_duration post_events"
-        # rest = _score.MultimeasureRest(p[2].duration, tag=self.tag)
-        rest = _score.MultimeasureRest.from_duration(p[2].duration, tag=self.tag)
+        duration = p[2].duration
+        rest = _score.MultimeasureRest.from_duration(duration, tag=self.tag)
         if p[2].multiplier is not None:
             fraction = fractions.Fraction(p[2].multiplier)
             pair = (fraction.numerator, fraction.denominator)
@@ -5750,7 +5753,8 @@ class LilyPondSyntacticalDefinition:
             duration = _duration.Duration(*p[2].duration)
         else:
             duration = p[2].duration
-        chord = _score.Chord.from_duration_and_pitches(duration, [], tag=self.tag)
+        pitches = []
+        chord = _score.Chord.from_duration_and_pitches(duration, pitches, tag=self.tag)
         pitches = []
         post_events = []
         for node in p[1]:
@@ -6258,10 +6262,11 @@ class LilyPondSyntacticalDefinition:
 
     def p_simple_element__RESTNAME__optional_notemode_duration(self, p):
         "simple_element : RESTNAME optional_notemode_duration"
+        duration = p[2].duration
         if p[1] == "r":
-            rest = _score.Rest.from_duration(p[2].duration, tag=self.tag)
+            rest = _score.Rest.from_duration(duration, tag=self.tag)
         else:
-            rest = _score.Skip.from_duration(p[2].duration, tag=self.tag)
+            rest = _score.Skip.from_duration(duration, tag=self.tag)
         if p[2].multiplier is not None:
             fraction = fractions.Fraction(p[2].multiplier)
             pair = (fraction.numerator, fraction.denominator)
@@ -6277,7 +6282,8 @@ class LilyPondSyntacticalDefinition:
                 duration = p[5].duration
             else:
                 duration = _duration.Duration(*p[5].duration)
-            leaf = _score.Note.from_duration_and_pitch(duration, p[1], tag=self.tag)
+            pitch = p[1]
+            leaf = _score.Note.from_duration_and_pitch(duration, pitch, tag=self.tag)
             leaf.note_head().set_is_forced(bool(p[2]))
             leaf.note_head().set_is_cautionary(bool(p[3]))
         else:
