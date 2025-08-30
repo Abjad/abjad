@@ -1065,7 +1065,7 @@ def partition_integer_by_proportion(n: int, proportion: tuple[int, ...]) -> list
     if sign(n) == -1:
         result = [-_ for _ in result]
     ratio_signs = [sign(_) for _ in proportion]
-    result = [pair[0] * pair[1] for pair in zip(ratio_signs, result)]
+    result = [pair[0] * pair[1] for pair in zip(ratio_signs, result, strict=True)]
     return result
 
 

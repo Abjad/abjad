@@ -1547,7 +1547,7 @@ def _classify_set_classes(transposition_only=False):
 
 def _yield_all_pitch_class_sets():
     def _helper(binary_string):
-        result = zip(binary_string, range(len(binary_string)))
+        result = zip(binary_string, range(len(binary_string)), strict=True)
         result = [string[1] for string in result if string[0] == "1"]
         return result
 

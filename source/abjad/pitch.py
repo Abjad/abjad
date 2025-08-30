@@ -1342,7 +1342,7 @@ class IntervalClass:
             return new_note
         elif hasattr(pitch_carrier, "written_pitches"):
             new_chord = copy.copy(pitch_carrier)
-            pairs = zip(new_chord.note_heads(), pitch_carrier.note_heads())
+            pairs = zip(new_chord.note_heads(), pitch_carrier.note_heads(), strict=True)
             for new_nh, old_nh in pairs:
                 new_pitch = old_nh.written_pitch().transpose(self)
                 new_nh.set_written_pitch(new_pitch)
@@ -2343,7 +2343,7 @@ class Interval:
             return new_note
         elif hasattr(pitch_carrier, "written_pitches"):
             new_chord = copy.copy(pitch_carrier)
-            pairs = zip(new_chord.note_heads(), pitch_carrier.note_heads())
+            pairs = zip(new_chord.note_heads(), pitch_carrier.note_heads(), strict=True)
             for new_nh, old_nh in pairs:
                 new_pitch = old_nh.written_pitch().transpose(self)
                 new_nh.set_written_pitch(new_pitch)

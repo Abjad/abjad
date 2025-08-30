@@ -48,7 +48,7 @@ Rotation, by row index
     ...             abjad.Markup(r"\markup \box γ"),
     ...             abjad.Markup(r"\markup \box δ"),
     ...         ]
-    ...         for set, name in zip(sets, names):
+    ...         for set, name in zip(sets, names, strict=True):
     ...             voice = abjad.Voice([abjad.Note.from_duration_and_pitch(duration, abjad.NamedPitch(_)) for _ in set])
     ...             for leaf in abjad.select.leaves(voice):
     ...                 markup = abjad.Markup(

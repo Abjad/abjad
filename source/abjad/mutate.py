@@ -464,7 +464,7 @@ def _set_leaf_duration(leaf, new_duration, *, tag=None):
                 _bind.detach(indicator, leaf)
     all_leaves = [leaf] + following_leaves
     assert len(all_leaves) == len(new_leaves)
-    for all_leaf, new_leaf in zip(all_leaves, new_leaves):
+    for all_leaf, new_leaf in zip(all_leaves, new_leaves, strict=True):
         all_leaf.set_written_duration(new_leaf.written_duration())
     logical_tie = _get.logical_tie(leaf)
     logical_tie_leaves = list(logical_tie)

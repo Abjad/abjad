@@ -619,7 +619,9 @@ def make_leaves(
         current_pitch_lists = pitch_lists[0 : len(duration_list)]
         pitch_lists = pitch_lists[len(duration_list) :]
         if len(factors) == 0:
-            for pitch_list, duration in zip(current_pitch_lists, duration_list):
+            for pitch_list, duration in zip(
+                current_pitch_lists, duration_list, strict=True
+            ):
                 leaves = _make_leaf_on_pitch(
                     pitch_list,
                     duration,
@@ -639,7 +641,9 @@ def make_leaves(
             ratio = 1 / fractions.Fraction(*multiplier)
             duration_list = [ratio * _ for _ in duration_list]
             tuplet_leaves: list[_score.Leaf] = []
-            for pitch_list, duration in zip(current_pitch_lists, duration_list):
+            for pitch_list, duration in zip(
+                current_pitch_lists, duration_list, strict=True
+            ):
                 leaves = _make_leaf_on_pitch(
                     pitch_list,
                     duration,

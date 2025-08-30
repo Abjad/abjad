@@ -294,7 +294,7 @@ measure definitions:
     ...     assert len(choices) == len(corpus)
     ...     measure_number = 1
     ...     measures = []
-    ...     for choice, measure_possibilities in zip(choices, corpus):
+    ...     for choice, measure_possibilities in zip(choices, corpus, strict=True):
     ...         if measure_number != 8:
     ...             measure = measure_possibilities[choice - 1]
     ...             measures.append(measure)

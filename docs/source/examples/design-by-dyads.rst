@@ -25,7 +25,7 @@ variety. The implementation given here generalizes a process due to Luigi Nono:
     ...     center = int(len(segment) / 2)
     ...     left = segment[:center]
     ...     right = segment[center:]
-    ...     pairs = zip(left, right)
+    ...     pairs = zip(left, right, strict=True)
     ...     chords = []
     ...     duration = abjad.Duration(1, 4)
     ...     for i, pair in enumerate(pairs):

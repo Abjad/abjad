@@ -279,7 +279,7 @@ def components(
         parts = _select.partition_by_durations(leaves, durations)
         assert len(parts) == len(time_signatures)
         previous_time_signature = None
-        for time_signature, part in zip(time_signatures, parts):
+        for time_signature, part in zip(time_signatures, parts, strict=True):
             assert isinstance(time_signature, _indicators.TimeSignature)
             if time_signature != previous_time_signature:
                 _bind.attach(time_signature, _select.leaf(part, 0))

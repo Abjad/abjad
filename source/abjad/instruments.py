@@ -426,7 +426,7 @@ class Tuning:
         result: list[tuple[_pitch.NamedPitch | None, ...]] = []
         for permutation in unique_tuples:
             sequences: list = []
-            for pitch_range, pitch_class in zip(pitch_ranges, permutation):
+            for pitch_range, pitch_class in zip(pitch_ranges, permutation, strict=True):
                 pitches: list[_pitch.NamedPitch | None]
                 if pitch_class is None:
                     sequences.append([None])

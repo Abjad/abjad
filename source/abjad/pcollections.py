@@ -510,7 +510,7 @@ class PitchClassSet(frozenset):
             normal_orders.append(normal_order)
             normal_orders = [_transpose_to_zero(_) for _ in normal_orders]
             assert len(normal_orders) == 2
-            for left_pc, right_pc in zip(*normal_orders):
+            for left_pc, right_pc in zip(*normal_orders, strict=True):
                 if left_pc == right_pc:
                     continue
                 if left_pc < right_pc:
@@ -3157,7 +3157,7 @@ def _get_most_compact_ordering(candidates):
         widths.append(width)
     minimum_width = min(widths)
     candidates_ = []
-    for candidate, width in zip(candidates, widths):
+    for candidate, width in zip(candidates, widths, strict=True):
         if width == minimum_width:
             candidates_.append(candidate)
     candidates = candidates_
@@ -3177,7 +3177,7 @@ def _get_most_compact_ordering(candidates):
             widths.append(width)
         minimum_width = min(widths)
         candidates_ = []
-        for candidate, width in zip(candidates, widths):
+        for candidate, width in zip(candidates, widths, strict=True):
             if width == minimum_width:
                 candidates_.append(candidate)
         candidates = candidates_
