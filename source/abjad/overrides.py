@@ -791,9 +791,9 @@ def override(argument):
         OverrideInterface()
 
     """
-    if getattr(argument, "_overrides", None) is None:
-        argument._overrides = OverrideInterface()
-    return argument._overrides
+    if getattr(argument, "_override_interface", None) is None:
+        argument._override_interface = OverrideInterface()
+    return argument._override_interface
 
 
 def setting(argument):
@@ -834,6 +834,6 @@ def setting(argument):
         SettingInterface(('instrumentName', '\\markup "Vn. I"'))
 
     """
-    if getattr(argument, "_lilypond_setting_name_manager", None) is None:
-        argument._lilypond_setting_name_manager = SettingInterface()
-    return argument._lilypond_setting_name_manager
+    if getattr(argument, "_setting_interface", None) is None:
+        argument._setting_interface = SettingInterface()
+    return argument._setting_interface
