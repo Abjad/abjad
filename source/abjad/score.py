@@ -41,12 +41,15 @@ def copy_overrides_settings_and_wrappers(
     donor: Component, recipient: Component
 ) -> None:
     """
-    Copies overrides, settings and wrappers from ``donor`` to ``recipient``.
+    Copies override interface, setting interface and wrappers from ``donor`` to
+    ``recipient``.
     """
-    if getattr(donor, "_overrides", None) is not None:
-        recipient._overrides = copy.copy(_overrides.override(donor))
-    if getattr(donor, "_lilypond_setting_name_manager", None) is not None:
-        recipient._lilypond_setting_name_manager = copy.copy(_overrides.setting(donor))
+    if getattr(donor, "_override_interface", None) is not None:
+        override_interface = _overrides.override(donor)
+        recipient._override_interface = copy.copy(override_interface)
+    if getattr(donor, "_setting_interface", None) is not None:
+        setting_interface = _overrides.setting(donor)
+        recipient._setting_interface = copy.copy(setting_interface)
     for wrapper in donor._wrappers:
         wrapper_ = copy.copy(wrapper)
         wrapper_._component = recipient
@@ -63,12 +66,12 @@ class Component:
     __slots__ = (
         "_indicators_are_current",
         "_is_forbidden_to_update",
-        "_overrides",
-        "_lilypond_setting_name_manager",
         "_measure_number",
         "_offsets_are_current",
         "_offsets_in_seconds_are_current",
+        "_override_interface",
         "_parent",
+        "_setting_interface",
         "_start_offset_in_seconds",
         "_stop_offset_in_seconds",
         "_tag",
@@ -90,9 +93,9 @@ class Component:
         self._measure_number = None
         self._offsets_are_current = False
         self._offsets_in_seconds_are_current = False
-        self._overrides = None
+        self._override_interface = None
         self._parent = None
-        self._lilypond_setting_name_manager = None
+        self._setting_interface = None
         self._start_offset_in_seconds = None
         self._stop_offset_in_seconds = None
         if tag is not None:
@@ -101,79 +104,10 @@ class Component:
         self._timespan = _timespan.Timespan(_duration.offset(0), _duration.offset(0))
         self._wrappers: list = []
 
-    # TODO: typehint to typing.Self after removing hasattr() calls
-    def __copy__(self):
-        """
-        Shallow copies component.
-
-        Copies indicators.
-
-        Does not copy children.
-
-        Returns new component.
-        """
-        if isinstance(self, AfterGraceContainer):
-            component = type(self)(self.fraction(), tag=self.tag())
-        elif isinstance(self, Chord):
-            component = type(self).from_duration_and_note_heads(
-                self.written_duration(),
-                self.note_heads(),
-                multiplier=self.multiplier(),
-                tag=self.tag(),
-            )
-        elif isinstance(self, MultimeasureRest | Rest):
-            component = type(self).from_duration(
-                self.written_duration(),
-                multiplier=self.multiplier(),
-                tag=self.tag(),
-            )
-        elif isinstance(self, Note):
-            component = type(self).from_duration_and_pitch(
-                self.written_duration(),
-                self.written_pitch(),
-                multiplier=self.multiplier(),
-                tag=self.tag(),
-            )
-        elif isinstance(self, Skip):
-            component = type(self).from_duration(
-                self.written_duration(),
-                multiplier=self.multiplier(),
-                tag=self.tag(),
-            )
-        elif isinstance(self, Tuplet):
-            component = type(self)(str(self.ratio()), tag=self.tag())
-        elif isinstance(self, TremoloContainer):
-            component = type(self)(str(self.count()), tag=self.tag())
-        else:
-            component = type(self)(tag=self.tag())
-        # TODO: move up to Container.__copy__()
-        if hasattr(self, "identifier"):
-            component.set_identifier(self.identifier())
-        # TODO: move up to Context.__copy__()
-        if hasattr(self, "lilypond_type"):
-            component.set_lilypond_type(self.lilypond_type())
-        # TODO: move up to Container.__copy__()
-        if hasattr(self, "name"):
-            component.set_name(self.name())
-        # TODO: move up to Container.__copy__()
-        if hasattr(self, "simultaneous"):
-            component.set_simultaneous(self.simultaneous())
-        if self._overrides is not None:
-            component._overrides = copy.copy(_overrides.override(self))
-        if self._lilypond_setting_name_manager is not None:
-            component._lilypond_setting_name_manager = copy.copy(
-                _overrides.setting(self)
-            )
-        for wrapper in self._wrappers:
-            if not wrapper.annotation():
-                continue
-            wrapper_ = copy.copy(wrapper)
-            wrapper_._component = component
-            wrapper_._bind_component(component)
-        for wrapper in self._get_wrappers():
-            wrapper_ = copy.copy(wrapper)
-            wrapper_._component = component
-            wrapper_._bind_component(component)
+    def __copy__(self) -> typing.Self:
+        component = type(self)()
+        component.set_tag(self.tag())
+        copy_overrides_settings_and_wrappers(self, component)
         return component
 
     def _cache_named_children(self):
@@ -472,6 +406,7 @@ class Leaf(Component):
 
     def __copy__(self) -> typing.Self:
         leaf = super().__copy__()
+        leaf.set_written_duration(self.written_duration())
         leaf.set_multiplier(self.multiplier())
         before_grace_container = self._before_grace_container
         if before_grace_container is not None:
@@ -813,8 +748,6 @@ class Container(Component):
 
     """
 
-    ### CLASS VARIABLES ###
-
     _allowable_sites = (
         "absolute_before",
         "before",
@@ -831,8 +764,6 @@ class Container(Component):
         "_name",
         "_is_simultaneous",
     )
-
-    ### INITIALIZER ###
 
     def __init__(
         self,
@@ -859,12 +790,7 @@ class Container(Component):
         # sets name permanently after _initalize_components:
         self.set_name(name)
 
-    ### SPECIAL METHODS ###
-
     def __contains__(self, argument) -> bool:
-        """
-        Is true when ``argument`` appears in container.
-        """
         if isinstance(argument, str):
             return argument in self._named_children
         else:
@@ -873,6 +799,13 @@ class Container(Component):
                     return True
             else:
                 return False
+
+    def __copy__(self) -> typing.Self:
+        container = super().__copy__()
+        container.set_identifier(self.identifier())
+        container.set_name(self.name())
+        container.set_simultaneous(self.simultaneous())
+        return container
 
     def __delitem__(self, i) -> None:
         r"""
@@ -1090,8 +1023,6 @@ class Container(Component):
             component._set_parent(self)
         for wrapper in wrappers:
             wrapper._update_effective_context()
-
-    ### PRIVATE METHODS ###
 
     def _copy_with_children(self):
         new_container = self.__copy__()
@@ -1940,11 +1871,7 @@ class AfterGraceContainer(Container):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = ("_fraction", "_main_leaf")
-
-    ### INITIALIZER ###
 
     def __init__(
         self,
@@ -1959,7 +1886,10 @@ class AfterGraceContainer(Container):
         super().__init__(components, language=language, tag=tag)
         self.set_fraction(fraction)
 
-    ### PRIVATE METHODS ###
+    def __copy__(self) -> typing.Self:
+        agcontainer = super().__copy__()
+        agcontainer.set_fraction(self.fraction())
+        return agcontainer
 
     def _attach(self, leaf):
         if not hasattr(leaf, "written_duration"):
@@ -2519,7 +2449,8 @@ class Chord(Leaf):
 
     def __init__(
         self,
-        string: str,
+        string: str = "<c' e' g'>4",
+        *,
         language: str = "english",
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
@@ -2531,9 +2462,9 @@ class Chord(Leaf):
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         if string == "<c' e' g'>4":
+            duration = _duration.Duration(1, 4)
             pitches = _pitch.pitches("c' e' g'".split())
             note_heads = [NoteHead(_) for _ in pitches]
-            duration = _duration.Duration(1, 4)
         else:
             string = f"{{ {string} }}"
             parsed = self._parse_lilypond_string(string, language=language)
@@ -2549,8 +2480,9 @@ class Chord(Leaf):
         self.set_note_heads(note_heads)
 
     def __copy__(self) -> typing.Self:
-        new_chord = super().__copy__()
-        return new_chord
+        chord = super().__copy__()
+        chord.set_note_heads(self.note_heads())
+        return chord
 
     def _format_before_site(self, contributions):
         result = []
@@ -2715,8 +2647,9 @@ class Chord(Leaf):
 
         """
         assert all(isinstance(_, NoteHead) for _ in note_heads), repr(note_heads)
-        self._note_heads = NoteHeadList()
-        self.note_heads().extend(note_heads)
+        note_heads = [copy.copy(_) for _ in note_heads]
+        note_head_list = NoteHeadList(note_heads)
+        self._note_heads = note_head_list
 
     def set_written_duration(self, duration: _duration.Duration) -> None:
         """
@@ -2862,8 +2795,6 @@ class Context(Container):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = (
         "_lilypond_type",
         "_consists_commands",
@@ -2896,8 +2827,6 @@ class Context(Container):
         "ChordNames",
     )
 
-    ### INITIALIZER ###
-
     def __init__(
         self,
         components=None,
@@ -2921,37 +2850,14 @@ class Context(Container):
             tag=tag,
         )
 
-    ### SPECIAL METHODS ###
-
     def __copy__(self) -> typing.Self:
-        """
-        Shallow copies context.
-
-        Copies indicators.
-
-        Does not copy children.
-
-        Returns new component.
-        """
-        new_context = super().__copy__()
-        new_context._consists_commands = copy.copy(self.consists_commands())
-        new_context._remove_commands = copy.copy(self.remove_commands())
-        return new_context
+        context = super().__copy__()
+        context.set_lilypond_type(self.lilypond_type())
+        context._consists_commands = copy.copy(self.consists_commands())
+        context._remove_commands = copy.copy(self.remove_commands())
+        return context
 
     def __repr__(self) -> str:
-        """
-        Gets interpreter representation of context.
-
-        ..  container:: example
-
-            >>> context = abjad.Context(
-            ...     lilypond_type='GlobalContext',
-            ...     name='Meter_Voice',
-            ... )
-            >>> repr(context)
-            "Context(lilypond_type='GlobalContext', name='Meter_Voice')"
-
-        """
         parameters = []
         if self.components():
             string = repr(self._get_contents_summary())
@@ -2964,8 +2870,6 @@ class Context(Container):
             parameters.append(f"simultaneous={self.simultaneous()!r}")
         string = ", ".join(parameters)
         return f"{type(self).__name__}({string})"
-
-    ### PRIVATE METHODS ###
 
     def _format_closing_site(self, contributions):
         result = []
@@ -3228,7 +3132,7 @@ class MultimeasureRest(Leaf):
 
     def __init__(
         self,
-        string: str,
+        string: str = "R1",
         *,
         language: str = "english",
         multiplier: tuple[int, int] | None = None,
@@ -3368,18 +3272,7 @@ class NoteHead:
             tweaks_ = tweaks_ + tuple(tweaks)
         self.tweaks = tweaks_
 
-    def __copy__(self) -> NoteHead:
-        """
-        Copies note-head.
-
-        ..  container:: example
-
-            >>> import copy
-            >>> note_head = abjad.NoteHead(abjad.NamedPitch(13))
-            >>> copy.copy(note_head)
-            NoteHead("cs''")
-
-        """
+    def __copy__(self) -> typing.Self:
         result = type(self)(
             self.written_pitch(),
             is_cautionary=self.is_cautionary(),
@@ -3829,6 +3722,7 @@ class NoteHeadList(list):
             note_head = item
         else:
             note_head = NoteHead(item)
+        note_head = copy.copy(note_head)
         list.append(self, note_head)
         self.sort()
 
@@ -3871,6 +3765,7 @@ class NoteHeadList(list):
 
         """
         note_heads = [_ if isinstance(_, NoteHead) else NoteHead(_) for _ in items]
+        note_heads = [copy.copy(_) for _ in note_heads]
         list.extend(self, note_heads)
         self.sort()
 
@@ -4030,7 +3925,7 @@ class Note(Leaf):
 
     def __init__(
         self,
-        string: str,
+        string: str = "c'4",
         *,
         language: str = "english",
         multiplier: tuple[int, int] | None = None,
@@ -4083,10 +3978,9 @@ class Note(Leaf):
         self.set_note_head(note_head)
 
     def __copy__(self) -> typing.Self:
-        new_note = super().__copy__()
-        note_head = copy.copy(self.note_head())
-        new_note.set_note_head(note_head)
-        return new_note
+        note = super().__copy__()
+        note.set_note_head(self.note_head())
+        return note
 
     def _get_body(self) -> list[str]:
         duration = self._get_formatted_duration()
@@ -4163,6 +4057,7 @@ class Note(Leaf):
 
         """
         assert isinstance(note_head, NoteHead), repr(note_head)
+        note_head = copy.copy(note_head)
         self._note_head = note_head
 
     def set_written_duration(self, duration: _duration.Duration) -> None:
@@ -4251,7 +4146,7 @@ class Rest(Leaf):
 
     def __init__(
         self,
-        string: str,
+        string: str = "r4",
         *,
         language: str = "english",
         multiplier: tuple[int, int] | None = None,
@@ -4393,7 +4288,8 @@ class Skip(Leaf):
 
     def __init__(
         self,
-        string: str,
+        string: str = "s4",
+        *,
         language: str = "english",
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
@@ -4625,6 +4521,11 @@ class TremoloContainer(Container):
         if len(self) != 2:
             raise Exception(f"must contain 2 leaves (not {len(self)}")
 
+    def __copy__(self) -> typing.Self:
+        tcontainer = super().__copy__()
+        tcontainer.set_count(self.count())
+        return tcontainer
+
     def _format_open_brackets_site(self, contributions) -> list[str]:
         result = []
         result.append(rf"\repeat tremolo {self.count()}")
@@ -4643,12 +4544,19 @@ class TremoloContainer(Container):
 
         ..  container:: example
 
-            >>> tremolo_container = abjad.TremoloContainer(2, "<c' d'>16 e'16")
-            >>> tremolo_container.count()
+            >>> tcontainer = abjad.TremoloContainer(2, "<c' d'>16 e'16")
+            >>> tcontainer.count()
             2
 
         """
         return self._count
+
+    def set_count(self, count: int) -> None:
+        """
+        Sets count.
+        """
+        assert isinstance(count, int), repr(count)
+        self._count = count
 
 
 class Tuplet(Container):
@@ -4733,14 +4641,10 @@ class Tuplet(Container):
 
     """
 
-    ### CLASS VARIABLES ###
-
     __slots__ = (
         "_ratio",
         "tweaks",
     )
-
-    ### INITIALIZER ###
 
     def __init__(
         self,
@@ -4766,16 +4670,14 @@ class Tuplet(Container):
             raise ValueError(message)
         self.set_ratio(ratio_)
 
-    ### SPECIAL METHODS ###
+    def __copy__(self) -> typing.Self:
+        tuplet = super().__copy__()
+        tuplet.set_ratio(self.ratio())
+        return tuplet
 
     def __repr__(self) -> str:
-        """
-        Gets interpreter representation of tuplet.
-        """
         string = self._get_contents_summary()
         return f"{type(self).__name__}({str(self.ratio())!r}, {string!r})"
-
-    ### PRIVATE METHODS ###
 
     def _format_after_site(self, contributions) -> list[str]:
         result = []
