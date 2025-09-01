@@ -413,13 +413,13 @@ def _immediately_precedes(component_1, component_2, ignore_before_after_grace=No
     # OnBeatGraceContainer is a proper container
     grace_prototype = (_score.AfterGraceContainer, _score.BeforeGraceContainer)
     while current is not None:
-        sibling = _iterlib._get_sibling_with_graces(current, 1)
+        sibling = _iterlib.get_sibling_with_graces(current, 1)
         while (
             ignore_before_after_grace
             and sibling is not None
             and isinstance(sibling._parent, grace_prototype)
         ):
-            sibling = _iterlib._get_sibling_with_graces(sibling, 1)
+            sibling = _iterlib.get_sibling_with_graces(sibling, 1)
         if sibling is None:
             current = current._parent
         else:

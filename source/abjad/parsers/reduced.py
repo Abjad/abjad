@@ -424,7 +424,7 @@ class ReducedLyParser(Parser):
         measure = _score.Container()
         for x in p[3]:
             measure.append(x)
-        leaf = _iterlib._get_leaf(measure, 0)
+        leaf = _iterlib.get_leaf(measure, 0)
         time_signature = _indicators.TimeSignature(p[2])
         try:
             _bind._unsafe_attach(time_signature, leaf)

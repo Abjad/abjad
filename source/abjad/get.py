@@ -602,7 +602,7 @@ def descendants(argument) -> list[_score.Component]:
         argument = [argument]
     components = []
     for item in argument:
-        generator = _iterlib._iterate_descendants(item)
+        generator = _iterlib.iterate_descendants(item)
         for component in generator:
             if component not in components:
                 components.append(component)
@@ -2995,7 +2995,7 @@ def leaf(argument, n: int = 0) -> _score.Leaf | None:
         ---
 
     """
-    return _iterlib._get_leaf(argument, n=n)
+    return _iterlib.get_leaf(argument, n=n)
 
 
 def lineage(argument) -> "Lineage":
@@ -3378,7 +3378,7 @@ def logical_tie(argument) -> "_select.LogicalTie":
     """
     if not isinstance(argument, _score.Leaf):
         raise Exception("can only get logical tie on leaf.")
-    leaves = _iterlib._get_logical_tie_leaves(argument)
+    leaves = _iterlib.get_logical_tie_leaves(argument)
     return _select.LogicalTie(leaves)
 
 
