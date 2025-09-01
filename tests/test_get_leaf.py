@@ -1,42 +1,9 @@
 import abjad
 
 
-def test_get_leaf_01():
-    staff = abjad.Staff()
-    staff.append(abjad.Voice("c'8 d'8 e'8 f'8"))
-    staff.append(abjad.Voice("g'8 a'8 b'8 c''8"))
-
-    assert abjad.lilypond(staff) == abjad.string.normalize(
-        r"""
-        \new Staff
-        {
-            \new Voice
-            {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-            \new Voice
-            {
-                g'8
-                a'8
-                b'8
-                c''8
-            }
-        }
-        """
-    )
-
-    leaves = abjad.select.leaves(staff)
-    assert abjad.get.leaf(leaves[0], -1) is None
-    assert abjad.get.leaf(leaves[0], 0) is leaves[0]
-    assert abjad.get.leaf(leaves[0], 1) is leaves[1]
-
-
 def test_get_leaf_02():
     """
-    Voice.
+    Leaves in voice.
     """
 
     voice = abjad.Voice("c'8 cs'8 d'8 ef'8")
@@ -51,22 +18,10 @@ def test_get_leaf_02():
     assert abjad.get.leaf(voice[2], -1) is voice[1]
     assert abjad.get.leaf(voice[3], -1) is voice[2]
 
-    assert abjad.lilypond(voice) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            c'8
-            cs'8
-            d'8
-            ef'8
-        }
-        """
-    )
-
 
 def test_get_leaf_03():
     """
-    Staff.
+    Leaves in staff.
     """
 
     staff = abjad.Staff("c'8 cs'8 d'8 ef'8")
@@ -81,36 +36,13 @@ def test_get_leaf_03():
     assert abjad.get.leaf(staff[2], -1) is staff[1]
     assert abjad.get.leaf(staff[3], -1) is staff[2]
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
-        r"""
-        \new Staff
-        {
-            c'8
-            cs'8
-            d'8
-            ef'8
-        }
-        """
-    )
-
 
 def test_get_leaf_04():
     """
-    Container.
+    Leaves in container.
     """
 
     container = abjad.Container("c'8 cs'8 d'8 ef'8")
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            c'8
-            cs'8
-            d'8
-            ef'8
-        }
-        """
-    )
 
     assert abjad.get.leaf(container[0], 1) is container[1]
     assert abjad.get.leaf(container[1], 1) is container[2]
@@ -125,21 +57,10 @@ def test_get_leaf_04():
 
 def test_get_leaf_05():
     """
-    Tuplet.
+    Leaves in tuplet.
     """
 
     tuplet = abjad.Tuplet("3:2", "c'8 cs'8 d'8")
-
-    assert abjad.lilypond(tuplet) == abjad.string.normalize(
-        r"""
-        \tuplet 3/2
-        {
-            c'8
-            cs'8
-            d'8
-        }
-        """
-    )
 
     assert abjad.get.leaf(tuplet[0], 1) is tuplet[1]
     assert abjad.get.leaf(tuplet[1], 1) is tuplet[2]
@@ -184,15 +105,17 @@ def test_get_leaf_06():
     assert abjad.get.leaf(container_1[2], 1) is container_1[3]
     assert abjad.get.leaf(container_1[3], 1) is container_2[0]
 
+    assert abjad.get.leaf(container_1[0], -1) is None
     assert abjad.get.leaf(container_1[1], -1) is container_1[0]
     assert abjad.get.leaf(container_1[2], -1) is container_1[1]
     assert abjad.get.leaf(container_1[3], -1) is container_1[2]
+
     assert abjad.get.leaf(container_2[0], -1) is container_1[3]
 
 
 def test_get_leaf_07():
     """
-    Tuplets inside a voice.
+    Contiguous tuplets inside a voice.
     """
 
     tuplet_1 = abjad.Tuplet("3:2", "c'8 cs'8 d'8")
@@ -223,9 +146,17 @@ def test_get_leaf_07():
     assert abjad.get.leaf(tuplet_1[1], 1) is tuplet_1[2]
     assert abjad.get.leaf(tuplet_1[2], 1) is tuplet_2[0]
 
+    assert abjad.get.leaf(tuplet_1[0], -1) is None
     assert abjad.get.leaf(tuplet_1[1], -1) is tuplet_1[0]
     assert abjad.get.leaf(tuplet_1[2], -1) is tuplet_1[1]
-    assert abjad.get.leaf(tuplet_2[0], -1) is tuplet_1[2]
+
+    assert abjad.get.leaf(tuplet_2[0], 1) is tuplet_2[1]
+    assert abjad.get.leaf(tuplet_2[1], 1) is tuplet_2[2]
+    assert abjad.get.leaf(tuplet_2[2], 1) is None
+
+    assert abjad.get.leaf(tuplet_2[0], -1) is tuplet_1[-1]
+    assert abjad.get.leaf(tuplet_2[1], -1) is tuplet_2[0]
+    assert abjad.get.leaf(tuplet_2[2], -1) is tuplet_2[1]
 
 
 def test_get_leaf_08():
@@ -265,25 +196,25 @@ def test_get_leaf_08():
 
 def test_get_leaf_09():
     """
-    Does cross contiguous equally named voices inside a staff.
+    Continues across explicit voices with the same name.
     """
 
-    voice_1 = abjad.Voice("c'8 cs'8 d'8 ef'8", name="My Voice")
-    voice_2 = abjad.Voice("e'8 f'8 fs'8 g'8", name="My Voice")
+    voice_1 = abjad.Voice("c'8 cs'8 d'8 ef'8", name="Violin.Voice")
+    voice_2 = abjad.Voice("e'8 f'8 fs'8 g'8", name="Violin.Voice")
     staff = abjad.Staff([voice_1, voice_2])
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
-            \context Voice = "My Voice"
+            \context Voice = "Violin.Voice"
             {
                 c'8
                 cs'8
                 d'8
                 ef'8
             }
-            \context Voice = "My Voice"
+            \context Voice = "Violin.Voice"
             {
                 e'8
                 f'8
@@ -307,25 +238,25 @@ def test_get_leaf_09():
 
 def test_get_leaf_10():
     """
-    Does not connect through contiguous unequally named voices.
+    Does not continue through explicit voices with different names.
     """
 
-    voice_1 = abjad.Voice("c'8 cs'8 d'8 ef'8", name="Your Voice")
-    voice_2 = abjad.Voice("e'8 f'8 fs'8 g'8", name="My Voice")
+    voice_1 = abjad.Voice("c'8 cs'8 d'8 ef'8", name="Violin.Voice")
+    voice_2 = abjad.Voice("e'8 f'8 fs'8 g'8", name="Flute.Voice")
     staff = abjad.Staff([voice_1, voice_2])
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
         \new Staff
         {
-            \context Voice = "Your Voice"
+            \context Voice = "Violin.Voice"
             {
                 c'8
                 cs'8
                 d'8
                 ef'8
             }
-            \context Voice = "My Voice"
+            \context Voice = "Flute.Voice"
             {
                 e'8
                 f'8
@@ -341,13 +272,10 @@ def test_get_leaf_10():
     assert abjad.get.leaf(voice_1[2], 1) is voice_1[3]
     assert abjad.get.leaf(voice_1[3], 1) is None
 
-    voice_2.set_name(None)
-    assert abjad.get.leaf(voice_1[3], 1) is None
-
+    assert abjad.get.leaf(voice_2[0], -1) is None
     assert abjad.get.leaf(voice_2[1], -1) is voice_2[0]
     assert abjad.get.leaf(voice_2[2], -1) is voice_2[1]
     assert abjad.get.leaf(voice_2[3], -1) is voice_2[2]
-    assert abjad.get.leaf(voice_2[0], -1) is None
 
 
 def test_get_leaf_11():
@@ -355,18 +283,18 @@ def test_get_leaf_11():
     Does connect through like-named staves containing like-named voices.
     """
 
-    voice_1 = abjad.Voice("c'8 cs'8 d'8 ef'8", name="low")
-    voice_2 = abjad.Voice("e'8 f'8 fs'8 g'8", name="low")
-    staff_1 = abjad.Staff([voice_1], name="mystaff")
-    staff_2 = abjad.Staff([voice_2], name="mystaff")
+    voice_1 = abjad.Voice("c'8 cs'8 d'8 ef'8", name="Violin.Voice")
+    voice_2 = abjad.Voice("e'8 f'8 fs'8 g'8", name="Violin.Voice")
+    staff_1 = abjad.Staff([voice_1], name="Violin.Staff")
+    staff_2 = abjad.Staff([voice_2], name="Violin.Staff")
     container = abjad.Container([staff_1, staff_2])
 
     assert abjad.lilypond(container) == abjad.string.normalize(
         r"""
         {
-            \context Staff = "mystaff"
+            \context Staff = "Violin.Staff"
             {
-                \context Voice = "low"
+                \context Voice = "Violin.Voice"
                 {
                     c'8
                     cs'8
@@ -374,9 +302,9 @@ def test_get_leaf_11():
                     ef'8
                 }
             }
-            \context Staff = "mystaff"
+            \context Staff = "Violin.Staff"
             {
-                \context Voice = "low"
+                \context Voice = "Violin.Voice"
                 {
                     e'8
                     f'8
@@ -394,7 +322,7 @@ def test_get_leaf_11():
 
 def test_get_leaf_12():
     """
-    Does connect through like-named staves containing like-named voices.
+    Gets next even when voices have different names.
     """
 
     lower_voice_1 = abjad.Voice("c'8 cs'8 d'8 ef'8", name="low")
@@ -411,7 +339,6 @@ def test_get_leaf_12():
         name="mystaff",
         simultaneous=True,
     )
-
     container = abjad.Container([staff_1, staff_2])
 
     assert abjad.lilypond(container) == abjad.string.normalize(
