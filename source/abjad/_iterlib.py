@@ -9,30 +9,6 @@ from . import score as _score
 from . import select as _select
 
 
-def _are_logical_voice(components: list[_score.Component], prototype=None):
-    prototype = prototype or (_score.Component,)
-    if not isinstance(prototype, tuple):
-        prototype = (prototype,)
-    assert isinstance(prototype, tuple)
-    if len(components) == 0:
-        return True
-    if all(isinstance(_, prototype) and _._parent is None for _ in components):
-        return True
-    first = components[0]
-    if not isinstance(first, prototype):
-        return False
-    same_logical_voice = True
-    parentage = _parentage.Parentage(first)
-    first_logical_voice = parentage.logical_voice()
-    for component in components[1:]:
-        parentage = _parentage.Parentage(component)
-        if parentage.logical_voice() != first_logical_voice:
-            same_logical_voice = False
-        if not parentage.is_orphan() and not same_logical_voice:
-            return False
-    return True
-
-
 def _coerce_exclude(exclude):
     if exclude is None:
         exclude = ()
@@ -71,11 +47,16 @@ def _get_leaf_from_leaf(leaf: _score.Leaf, n: int) -> _score.Leaf | None:
             return final_leaf_in_voice
         descendants = sibling._get_descendants_stopping_with()
     for descendant in descendants:
-        if not isinstance(descendant, _score.Leaf):
-            continue
-        if _are_logical_voice([leaf, descendant]):
-            return descendant
+        if isinstance(descendant, _score.Leaf):
+            if _have_same_logical_voice(leaf, descendant):
+                return descendant
     return None
+
+
+def _have_same_logical_voice(component_1, component_2):
+    logical_voice_1 = _parentage.Parentage(component_1).logical_voice()
+    logical_voice_2 = _parentage.Parentage(component_2).logical_voice()
+    return logical_voice_1 == logical_voice_2
 
 
 def _is_obgc_nongrace_voice(argument):
