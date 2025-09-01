@@ -29,7 +29,7 @@ def _head_filter_subresult(result, head):
     result_ = []
     for item in result:
         if isinstance(item, _score.Component):
-            leaves = _iterlib._get_logical_tie_leaves(item)
+            leaves = _iterlib.get_logical_tie_leaves(item)
             if head == (item is leaves[0]):
                 result_.append(item)
             else:
@@ -39,7 +39,7 @@ def _head_filter_subresult(result, head):
                 raise NotImplementedError(item)
             components = []
             for component in item:
-                leaves = _iterlib._get_logical_tie_leaves(component)
+                leaves = _iterlib.get_logical_tie_leaves(component)
                 if head == leaves[0]:
                     components.append(item)
                 else:
@@ -61,7 +61,7 @@ def _tail_filter_subresult(result, tail):
     result_ = []
     for item in result:
         if isinstance(item, _score.Component):
-            leaves = _iterlib._get_logical_tie_leaves(item)
+            leaves = _iterlib.get_logical_tie_leaves(item)
             if tail == (item is leaves[-1]):
                 result_.append(item)
             else:
@@ -71,7 +71,7 @@ def _tail_filter_subresult(result, tail):
                 raise NotImplementedError(item)
             components = []
             for component in item:
-                leaves = _iterlib._get_logical_tie_leaves(component)
+                leaves = _iterlib.get_logical_tie_leaves(component)
                 if tail == leaves[-1]:
                     components.append(item)
                 else:
@@ -819,7 +819,7 @@ def components(
             }
 
     """
-    generator = _iterlib._public_iterate_components(
+    generator = _iterlib.public_iterate_components(
         argument, prototype=prototype, exclude=exclude, grace=None, reverse=reverse
     )
     result = []
@@ -4216,7 +4216,7 @@ def logical_ties(
             }
 
     '''
-    generator = _iterlib._iterate_logical_ties(
+    generator = _iterlib.iterate_logical_ties(
         argument,
         exclude=exclude,
         grace=None,
@@ -6506,7 +6506,7 @@ def top(argument, *, exclude: Exclude | None = None) -> list[_score.Component]:
 
     """
     result = []
-    for component in _iterlib._public_iterate_components(argument, exclude=exclude):
+    for component in _iterlib.public_iterate_components(argument, exclude=exclude):
         for component_ in _parentage.Parentage(component):
             if (
                 _is_immediate_child_of_outermost_voice(component_)
@@ -6787,7 +6787,7 @@ def tuplets(
         result = []
         for tuplet in tuplets:
             count = 0
-            for component in _iterlib._iterate_descendants(tuplet):
+            for component in _iterlib.iterate_descendants(tuplet):
                 if isinstance(component, _score.Tuplet):
                     count += 1
             if -count == level:
@@ -7154,7 +7154,7 @@ def with_next_leaf(argument, *, grace: bool | None = None) -> list[_score.Leaf]:
     items = leaves(argument)
     previous_leaf = items[-1]
     while True:
-        next_leaf = _iterlib._get_leaf(previous_leaf, n=1)
+        next_leaf = _iterlib.get_leaf(previous_leaf, n=1)
         if next_leaf is None:
             break
         if (
@@ -7450,7 +7450,7 @@ def with_previous_leaf(argument) -> list[_score.Leaf]:
 
     """
     items = leaves(argument)
-    previous_leaf = _iterlib._get_leaf(items[0], n=-1)
+    previous_leaf = _iterlib.get_leaf(items[0], n=-1)
     if previous_leaf is not None:
         items.insert(0, previous_leaf)
     return items

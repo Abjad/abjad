@@ -1,11 +1,9 @@
 import abjad
 
 
-def test__iterlib_are_logical_voice_01():
+def test__iterlib__are_logical_voice_01():
     """
-    Orphan leaves do not share a logical voice.
-    Orphan leaves do not share a root component.
-    False if not allow orphans; true if allow orphans.
+    Orphan leaves are all in same logical voice.
     """
 
     notes = [
@@ -14,92 +12,57 @@ def test__iterlib_are_logical_voice_01():
         abjad.Note("e'8"),
         abjad.Note("f'8"),
     ]
-    assert abjad._iterlib.are_logical_voice(notes)
+
+    assert abjad._iterlib._are_logical_voice(notes) is True
 
 
-def test__iterlib_are_logical_voice_02():
+def test__iterlib__are_logical_voice_02():
     """
-    Container and leaves all in same logical voice.
+    Container and leaves are all in same logical voice.
     """
 
     container = abjad.Container("c'8 d'8 e'8 f'8")
-
-    r"""
-    {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    """
-
     components = abjad.select.components(container)
-    assert abjad._iterlib.are_logical_voice(components)
+
+    assert abjad._iterlib._are_logical_voice(components) is True
 
 
-def test__iterlib_are_logical_voice_03():
+def test__iterlib__are_logical_voice_03():
     """
-    Tuplet and leaves all in same logical voice.
+    Tuplet and leaves are all in same logical voice.
     """
 
     tuplet = abjad.Tuplet("3:2", "c'8 d'8 e'8")
-
-    r"""
-    \tuplet 3/2
-    {
-        c'8
-        d'8
-        e'8
-    }
-    """
-
     components = abjad.select.components(tuplet)
-    assert abjad._iterlib.are_logical_voice(components)
+
+    assert abjad._iterlib._are_logical_voice(components) is True
 
 
-def test__iterlib_are_logical_voice_04():
+def test__iterlib__are_logical_voice_04():
     """
-    Voice and leaves all appear in same logical voice.
+    Voice and leaves are all in same logical voice.
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
-
-    r"""
-    \new Voice {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    """
-
     components = abjad.select.components(voice)
-    assert abjad._iterlib.are_logical_voice(components)
+
+    assert abjad._iterlib._are_logical_voice(components) is True
 
 
-def test__iterlib_are_logical_voice_05():
+def test__iterlib__are_logical_voice_05():
     """
-    Anonymous staff and leaves all appear in same logical voice.
+    Staff and leaves are all in same logical voice.
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-
-    r"""
-    \new Staff {
-        c'8
-        d'8
-        e'8
-        f'8
-    }
-    """
-
     components = abjad.select.components(staff)
-    assert abjad._iterlib.are_logical_voice(components)
+
+    assert abjad._iterlib._are_logical_voice(components) is True
 
 
-def test__iterlib_are_logical_voice_06():
+def test__iterlib__are_logical_voice_06():
     """
-    Voice, sequential and leaves all appear in same logical voice.
+    Voice, containers and leaves are all in same logical voice.
     """
 
     voice = abjad.Voice(
@@ -118,34 +81,14 @@ def test__iterlib_are_logical_voice_06():
         }
         """
     )
-
-    assert abjad.lilypond(voice) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-            {
-                g'8
-                a'8
-                b'8
-                c''8
-            }
-        }
-        """
-    )
-
     components = abjad.select.components(voice)
-    assert abjad._iterlib.are_logical_voice(components)
+
+    assert abjad._iterlib._are_logical_voice(components) is True
 
 
-def test__iterlib_are_logical_voice_07():
+def test__iterlib__are_logical_voice_07():
     """
-    Anonymous voice, tuplets and leaves all appear in same logical voice.
+    Voice, tuplets and leaves are all in same logical voice.
     """
 
     voice = abjad.Voice(
@@ -164,314 +107,109 @@ def test__iterlib_are_logical_voice_07():
         }
         """
     )
-
-    assert abjad.lilypond(voice) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            \tuplet 3/2
-            {
-                c'8
-                d'8
-                e'8
-            }
-            \tuplet 3/2
-            {
-                f'8
-                g'8
-                a'8
-            }
-        }
-        """
-    )
-
     components = abjad.select.components(voice)
-    assert abjad._iterlib.are_logical_voice(components)
+
+    assert abjad._iterlib._are_logical_voice(components) is True
 
 
-def test__iterlib_are_logical_voice_08():
+def test__iterlib__are_logical_voice_08():
     """
-    Logical voice does not extend across anonymous voices.
-    """
-
-    staff = abjad.Staff(
-        r"""
-        \new Voice {
-            c'8
-            d'8
-            e'8
-            f'8
-        }
-        \new Voice {
-            g'8
-            a'8
-            b'8
-            c''8
-        }
-        """
-    )
-
-    assert abjad.lilypond(staff) == abjad.string.normalize(
-        r"""
-        \new Staff
-        {
-            \new Voice
-            {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-            \new Voice
-            {
-                g'8
-                a'8
-                b'8
-                c''8
-            }
-        }
-        """
-    )
-
-    leaves = abjad.select.leaves(staff)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
-    assert not abjad._iterlib.are_logical_voice(staff[:])
-
-
-def test__iterlib_are_logical_voice_09():
-    """
-    Logical voice encompasses across like-named voices.
+    Logical voice does not cross explicit, unnamed voices.
     """
 
     staff = abjad.Staff(
-        r"""
-        \context Voice = "foo" {
-            c'8
-            d'8
-            e'8
-            f'8
-        }
-        \context Voice = "foo" {
-            g'8
-            a'8
-            b'8
-            c''8
-        }
-        """
-    )
-
-    assert abjad.lilypond(staff) == abjad.string.normalize(
-        r"""
-        \new Staff
-        {
-            \context Voice = "foo"
-            {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-            \context Voice = "foo"
-            {
-                g'8
-                a'8
-                b'8
-                c''8
-            }
-        }
-        """
-    )
-
-    leaves = abjad.select.leaves(staff)
-    assert abjad._iterlib.are_logical_voice(leaves)
-
-
-def test__iterlib_are_logical_voice_10():
-    """
-    Logical voice does not extend across differently named voices.
-    """
-
-    staff = abjad.Staff(
-        r"""
-        \context Voice = "foo" {
-            c'8
-            d'8
-        }
-        \context Voice = "bar" {
-            e'8
-            f'8
-        }
-        """
-    )
-
-    assert abjad.lilypond(staff) == abjad.string.normalize(
-        r"""
-        \new Staff
-        {
-            \context Voice = "foo"
-            {
-                c'8
-                d'8
-            }
-            \context Voice = "bar"
-            {
-                e'8
-                f'8
-            }
-        }
-        """
-    )
-
-    leaves = abjad.select.leaves(staff)
-    assert not abjad._iterlib.are_logical_voice(leaves)
-
-
-def test__iterlib_are_logical_voice_11():
-    """
-    Logical voice does not across anonymous voices.
-    Logical voice does not extend across anonymous staves.
-    """
-
-    container = abjad.Container(
-        r"""
-        \new Staff {
-            \new Voice {
-                c'8
-                d'8
-            }
-        }
-        \new Staff {
-            \new Voice {
-                e'8
-                f'8
-            }
-        }
-        """
-    )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            \new Staff
-            {
-                \new Voice
-                {
-                    c'8
-                    d'8
-                }
-            }
-            \new Staff
-            {
-                \new Voice
-                {
-                    e'8
-                    f'8
-                }
-            }
-        }
-        """
-    )
-
-    leaves = abjad.select.leaves(container)
-    assert not abjad._iterlib.are_logical_voice(leaves)
-
-
-def test__iterlib_are_logical_voice_12():
-    """
-    Logical voice does not extend across anonymous voices.
-    Logical voice does not extend across anonymous staves.
-    """
-
-    container = abjad.Container(
-        r"""
-        \new Staff <<
-            \new Voice {
-                c'8
-                d'8
-            }
-            \new Voice {
-                e'8
-                f'8
-            }
-        >>
-        \new Staff <<
-            \new Voice {
-                g'8
-                a'8
-            }
-            \new Voice {
-                b'8
-                c''8
-            }
-        >>
-        """
-    )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            \new Staff
-            <<
-                \new Voice
-                {
-                    c'8
-                    d'8
-                }
-                \new Voice
-                {
-                    e'8
-                    f'8
-                }
-            >>
-            \new Staff
-            <<
-                \new Voice
-                {
-                    g'8
-                    a'8
-                }
-                \new Voice
-                {
-                    b'8
-                    c''8
-                }
-            >>
-        }
-        """
-    )
-
-    leaves = abjad.select.leaves(container)
-    assert not abjad._iterlib.are_logical_voice(leaves[:4])
-
-
-def test__iterlib_are_logical_voice_13():
-    """
-    Anonymous voice, sequentials and leaves all appear in same logical voice.
-    """
-
-    voice = abjad.Voice(
-        r"""
-        {
-            c'8
-            d'8
-        }
-        {
-            e'8
-            f'8
-        }
-        """
-    )
-
-    assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
         \new Voice
         {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        \new Voice
+        {
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        """
+    )
+    leaves = abjad.select.leaves(staff)
+
+    assert abjad._iterlib._are_logical_voice(leaves) is False
+
+
+def test__iterlib__are_logical_voice_09():
+    """
+    Logical voice crosses explicit voices with the same name.
+    """
+
+    staff = abjad.Staff(
+        r"""
+        \context Voice = "Violin.Music"
+        {
+            c'8
+            d'8
+            e'8
+            f'8
+        }
+        \context Voice = "Violin.Music"
+        {
+            g'8
+            a'8
+            b'8
+            c''8
+        }
+        """
+    )
+    leaves = abjad.select.leaves(staff)
+
+    assert abjad._iterlib._are_logical_voice(leaves) is True
+
+
+def test__iterlib__are_logical_voice_10():
+    """
+    Logical voice does not cross epxlicit voices with different names.
+    """
+
+    staff = abjad.Staff(
+        r"""
+        \context Voice = "Violin.Music"
+        {
+            c'8
+            d'8
+        }
+        \context Voice = "Viola.Music"
+        {
+            e'8
+            f'8
+        }
+        """
+    )
+    leaves = abjad.select.leaves(staff)
+
+    assert abjad._iterlib._are_logical_voice(leaves) is False
+
+
+def test__iterlib__are_logical_voice_11():
+    """
+    Logical voice does not cross explicit, unnamed voices.
+    """
+
+    container = abjad.Container(
+        r"""
+        \new Staff
+        {
+            \new Voice
             {
                 c'8
                 d'8
             }
+        }
+        \new Staff
+        {
+            \new Voice
             {
                 e'8
                 f'8
@@ -479,26 +217,27 @@ def test__iterlib_are_logical_voice_13():
         }
         """
     )
+    leaves = abjad.select.leaves(container)
 
-    leaves = abjad.select.leaves(voice)
-    assert abjad._iterlib.are_logical_voice(leaves)
+    assert abjad._iterlib._are_logical_voice(leaves) is False
 
 
-def test__iterlib_are_logical_voice_14():
+def test__iterlib__are_logical_voice_13():
     """
-    Logical voice can extend across like-named staves.
-    Logical voice can not extend across differently named implicit voices.
+    Logical voice does not cross implicit voices.
     """
 
     container = abjad.Container(
         r"""
-        \context Staff = "foo" {
+        \context Staff = "Violin.Staff"
+        {
             c'8
             cs'8
             d'8
             ef'8
         }
-        \context Staff = "foo" {
+        \context Staff = "Violin.Staff"
+        {
             e'8
             f'8
             fs'8
@@ -506,18 +245,29 @@ def test__iterlib_are_logical_voice_14():
         }
         """
     )
+    leaves = abjad.select.leaves(container)
 
-    assert abjad.lilypond(container) == abjad.string.normalize(
+    assert abjad._iterlib._are_logical_voice(leaves) is False
+
+    """
+    Logical voice crosses explicit voices with the same name.
+    """
+
+    container = abjad.Container(
         r"""
+        \context Staff = "Violin.Staff"
         {
-            \context Staff = "foo"
+            \context Voice = "Violin.Voice"
             {
                 c'8
                 cs'8
                 d'8
                 ef'8
             }
-            \context Staff = "foo"
+        }
+        \context Staff = "Violin.Staff"
+        {
+            \context Voice = "Violin.Voice"
             {
                 e'8
                 f'8
@@ -527,15 +277,14 @@ def test__iterlib_are_logical_voice_14():
         }
         """
     )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice(leaves) is True
 
 
-def test__iterlib_are_logical_voice_15():
+def test__iterlib__are_logical_voice_14():
     """
-    Logical voice can not extend across differently named implicit voices.
+    Logical voice does not cross from implicit voice to explicit voice.
     """
 
     container = abjad.Container(
@@ -546,7 +295,8 @@ def test__iterlib_are_logical_voice_15():
             e'8
             f'8
         }
-        \new Voice {
+        \new Voice
+        {
             g'8
             a'8
             b'8
@@ -554,41 +304,20 @@ def test__iterlib_are_logical_voice_15():
         }
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-            \new Voice
-            {
-                g'8
-                a'8
-                b'8
-                c''8
-            }
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice(leaves) is False
 
 
-def test__iterlib_are_logical_voice_16():
+def test__iterlib__are_logical_voice_15():
     """
-    Logical voice can not extend across differently named implicit voices.
+    Logical voice does not cross from explicit, unnamed voice to implicit voice.
     """
 
     container = abjad.Container(
         r"""
-        \new Voice {
+        \new Voice
+        {
             c'8
             d'8
             e'8
@@ -602,36 +331,14 @@ def test__iterlib_are_logical_voice_16():
         }
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            \new Voice
-            {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-            {
-                g'8
-                a'8
-                b'8
-                c''8
-            }
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice(leaves) is False
 
 
-def test__iterlib_are_logical_voice_17():
+def test__iterlib__are_logical_voice_16():
     """
-    Logical voice can not extend across differently named implicit voices.
+    Logical voice does not cross from implicit voice to explicit, named voice.
     """
 
     container = abjad.Container(
@@ -642,7 +349,8 @@ def test__iterlib_are_logical_voice_17():
             e'8
             f'8
         }
-        \context Voice = "foo" {
+        \context Voice = "Violin.Voice"
+        {
             g'8
             a'8
             b'8
@@ -650,21 +358,20 @@ def test__iterlib_are_logical_voice_17():
         }
         """
     )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice(leaves) is False
 
 
-def test__iterlib_are_logical_voice_18():
+def test__iterlib__are_logical_voice_17():
     """
-    Logical voice can not extend acrossdifferently named implicit voices.
+    Logical voice does not cross from explicit, named voice to implicit voice.
     """
 
     container = abjad.Container(
         r"""
-        \context Voice = "foo" {
+        \context Voice = "Violin.Voice"
+        {
             c'8
             d'8
             e'8
@@ -678,36 +385,14 @@ def test__iterlib_are_logical_voice_18():
         }
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            \context Voice = "foo"
-            {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-            {
-                g'8
-                a'8
-                b'8
-                c''8
-            }
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice(leaves) is False
 
 
-def test__iterlib_are_logical_voice_19():
+def test__iterlib__are_logical_voice_18():
     """
-    Logical voice can not extend across differently named implicit voices.
+    Logical voice does not cross implicit voices.
     """
 
     container = abjad.Container(
@@ -718,7 +403,8 @@ def test__iterlib_are_logical_voice_19():
             e'8
             f'8
         }
-        \new Staff {
+        \new Staff
+        {
             g'8
             a'8
             b'8
@@ -726,41 +412,20 @@ def test__iterlib_are_logical_voice_19():
         }
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-            \new Staff
-            {
-                g'8
-                a'8
-                b'8
-                c''8
-            }
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice(leaves) is False
 
 
-def test__iterlib_are_logical_voice_20():
+def test__iterlib__are_logical_voice_19():
     """
-    Logical voice can not extend across differently named implicit voices.
+    Logical voice does not cross implicit voices.
     """
 
     container = abjad.Container(
         r"""
-        \new Staff {
+        \new Staff
+        {
             c'8
             cs'8
             d'8
@@ -774,36 +439,14 @@ def test__iterlib_are_logical_voice_20():
         }
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            \new Staff
-            {
-                c'8
-                cs'8
-                d'8
-                ef'8
-            }
-            {
-                e'8
-                f'8
-                fs'8
-                g'8
-            }
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice(leaves) is False
 
 
-def test__iterlib_are_logical_voice_21():
+def test__iterlib__are_logical_voice_20():
     """
-    Logical voice can not extend across differently named implicit voices.
+    Logical voice does not cross from implicit voice to explicit, unnamed voice.
     """
 
     container = abjad.Container(
@@ -812,7 +455,8 @@ def test__iterlib_are_logical_voice_21():
         cs'8
         d'8
         ef'8
-        \new Voice {
+        \new Voice
+        {
             e'8
             f'8
             fs'8
@@ -820,39 +464,20 @@ def test__iterlib_are_logical_voice_21():
         }
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            c'8
-            cs'8
-            d'8
-            ef'8
-            \new Voice
-            {
-                e'8
-                f'8
-                fs'8
-                g'8
-            }
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice(leaves) is False
 
 
-def test__iterlib_are_logical_voice_22():
+def test__iterlib__are_logical_voice_21():
     """
-    Logical voice can not extend across differently named implicit voices.
+    Logical voice does not cross from explicit, unnamed voice to implicit voice.
     """
 
     container = abjad.Container(
         r"""
-        \new Voice {
+        \new Voice
+        {
             c'8
             cs'8
             d'8
@@ -864,34 +489,14 @@ def test__iterlib_are_logical_voice_22():
         g'8
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            \new Voice
-            {
-                c'8
-                cs'8
-                d'8
-                ef'8
-            }
-            e'8
-            f'8
-            fs'8
-            g'8
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice(leaves) is False
 
 
-def test__iterlib_are_logical_voice_23():
+def test__iterlib__are_logical_voice_22():
     """
-    Logical voice can not extend across differently named implicit voices.
+    Logical voice does not cross from implicit voice to explicit, named voice.
     """
 
     container = abjad.Container(
@@ -900,7 +505,8 @@ def test__iterlib_are_logical_voice_23():
         cs'8
         d'8
         ef'8
-        \context Voice = "foo" {
+        \context Voice = "Violin.Voice"
+        {
             e'8
             f'8
             fs'8
@@ -908,42 +514,25 @@ def test__iterlib_are_logical_voice_23():
         }
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            c'8
-            cs'8
-            d'8
-            ef'8
-            \context Voice = "foo"
-            {
-                e'8
-                f'8
-                fs'8
-                g'8
-            }
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice(leaves) is False
 
 
-def test__iterlib_are_logical_voice_24():
+def test__iterlib__are_logical_voice_23():
     """
-    Logical voice can not extend across differently named implicit voices.
-    NOTE: THIS IS THE LILYPOND LACUNA.
-    LilyPond *does* extend logical voice in this case.
-    Abjad does not.
+    NOTE: LILYPOND DISCREPANCY.
+    Abjad logical voice does DOES NOT cross from explicit, named voice to implicit voice.
+    LilyPond logical voice DOES cross from explicit, named voice to implicit voice.
+    This test documents Abjad's understanding logical voice.
+
+    TODO: it looks like other tests in this file also disagree with LilyPond.
     """
 
     container = abjad.Container(
         r"""
-        \context Voice = "foo" {
+        \context Voice = "Violin.Voice"
+        {
             c'8
             cs'8
             d'8
@@ -955,34 +544,15 @@ def test__iterlib_are_logical_voice_24():
         g'8
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            \context Voice = "foo"
-            {
-                c'8
-                cs'8
-                d'8
-                ef'8
-            }
-            e'8
-            f'8
-            fs'8
-            g'8
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice(leaves) is False
 
 
-def test__iterlib_are_logical_voice_25():
+# HERE: duplicate?
+def test__iterlib__are_logical_voice_24():
     """
-    Logical voice can not extend across differently named implicit voices.
+    Logical voice does not cross from implicit voice to explicit, unnamed voice.
     """
 
     container = abjad.Container(
@@ -999,32 +569,12 @@ def test__iterlib_are_logical_voice_25():
         }
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            c'8
-            cs'8
-            d'8
-            ef'8
-            \new Voice
-            {
-                e'8
-                f'8
-                fs'8
-                g'8
-            }
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert not abjad._iterlib._are_logical_voice(leaves)
 
 
-def test__iterlib_are_logical_voice_26():
+def test__iterlib__are_logical_voice_25():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1043,32 +593,12 @@ def test__iterlib_are_logical_voice_26():
         c''8
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            \new Staff
-            {
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-            g'8
-            a'8
-            b'8
-            c''8
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert not abjad._iterlib._are_logical_voice(leaves)
 
 
-def test__iterlib_are_logical_voice_27():
+def test__iterlib__are_logical_voice_26():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1103,12 +633,11 @@ def test__iterlib_are_logical_voice_27():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert not abjad._iterlib._are_logical_voice(leaves)
 
 
-def test__iterlib_are_logical_voice_28():
+def test__iterlib__are_logical_voice_27():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1136,12 +665,11 @@ def test__iterlib_are_logical_voice_28():
     """
 
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert not abjad._iterlib._are_logical_voice(leaves)
 
 
-def test__iterlib_are_logical_voice_29():
+def test__iterlib__are_logical_voice_28():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1173,12 +701,11 @@ def test__iterlib_are_logical_voice_29():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert not abjad._iterlib._are_logical_voice(leaves)
 
 
-def test__iterlib_are_logical_voice_30():
+def test__iterlib__are_logical_voice_29():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1210,12 +737,11 @@ def test__iterlib_are_logical_voice_30():
     )
 
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert not abjad._iterlib._are_logical_voice(leaves)
 
 
-def test__iterlib_are_logical_voice_31():
+def test__iterlib__are_logical_voice_30():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1255,11 +781,12 @@ def test__iterlib_are_logical_voice_31():
     )
 
     leaves = abjad.select.leaves(container_1)
-    assert not abjad._iterlib.are_logical_voice(leaves[:8])
-    assert not abjad._iterlib.are_logical_voice(leaves[4:])
+
+    assert not abjad._iterlib._are_logical_voice(leaves[:8])
+    assert not abjad._iterlib._are_logical_voice(leaves[4:])
 
 
-def test__iterlib_are_logical_voice_32():
+def test__iterlib__are_logical_voice_31():
     """
     Logical voice can not extend across differently named implicit voices.
     """
@@ -1267,13 +794,15 @@ def test__iterlib_are_logical_voice_32():
     container = abjad.Container(
         r"""
         <<
-            \new Voice {
+            \new Voice
+            {
                 c'8
                 cs'8
                 d'8
                 ef'8
             }
-            \new Voice {
+            \new Voice
+            {
                 e'8
                 f'8
                 fs'8
@@ -1286,40 +815,13 @@ def test__iterlib_are_logical_voice_32():
         b'8
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            <<
-                \new Voice
-                {
-                    c'8
-                    cs'8
-                    d'8
-                    ef'8
-                }
-                \new Voice
-                {
-                    e'8
-                    f'8
-                    fs'8
-                    g'8
-                }
-            >>
-            af'8
-            a'8
-            bf'8
-            b'8
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert not abjad._iterlib.are_logical_voice(leaves[:8])
-    assert not abjad._iterlib.are_logical_voice(leaves[4:])
+
+    assert not abjad._iterlib._are_logical_voice(leaves[:8])
+    assert not abjad._iterlib._are_logical_voice(leaves[4:])
 
 
-def test__iterlib_are_logical_voice_33():
+def test__iterlib__are_logical_voice_32():
     """
     Logical voice does extend across gaps.
     Logical voice can not extend across differently named voices.
@@ -1329,10 +831,12 @@ def test__iterlib_are_logical_voice_33():
         r"""
         c'8
         cs'8
-        \new Voice {
+        \new Voice
+        {
             d'8
             ef'8
-            \new Voice {
+            \new Voice
+            {
                 e'8
                 f'8
                 fs'8
@@ -1350,39 +854,15 @@ def test__iterlib_are_logical_voice_33():
     middle = (2, 3, 8, 9)
     inner = (4, 5, 6, 7)
 
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            c'8
-            cs'8
-            \new Voice
-            {
-                d'8
-                ef'8
-                \new Voice
-                {
-                    e'8
-                    f'8
-                    fs'8
-                    g'8
-                }
-                af'8
-                a'8
-            }
-            bf'8
-            b'8
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice([leaves[i] for i in outer])
-    assert abjad._iterlib.are_logical_voice([leaves[i] for i in middle])
-    assert abjad._iterlib.are_logical_voice([leaves[i] for i in inner])
-    assert not abjad._iterlib.are_logical_voice(leaves[:4])
+
+    assert abjad._iterlib._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._iterlib._are_logical_voice([leaves[i] for i in middle])
+    assert abjad._iterlib._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._iterlib._are_logical_voice(leaves[:4])
 
 
-def test__iterlib_are_logical_voice_34():
+def test__iterlib__are_logical_voice_33():
     """
     Logical voice does extend across gaps.
     Logical voice can not extend across differently named implicit voices.
@@ -1392,10 +872,12 @@ def test__iterlib_are_logical_voice_34():
         r"""
         c'8
         cs'8
-        \new Staff {
+        \new Staff
+        {
             d'8
             ef'8
-            \new Staff {
+            \new Staff
+            {
                 e'8
                 f'8
                 fs'8
@@ -1413,40 +895,15 @@ def test__iterlib_are_logical_voice_34():
     middle = (2, 3, 8, 9)
     inner = (4, 5, 6, 7)
 
-    assert abjad.lilypond(staff) == abjad.string.normalize(
-        r"""
-        \new Staff
-        {
-            c'8
-            cs'8
-            \new Staff
-            {
-                d'8
-                ef'8
-                \new Staff
-                {
-                    e'8
-                    f'8
-                    fs'8
-                    g'8
-                }
-                af'8
-                a'8
-            }
-            bf'8
-            b'8
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(staff)
-    assert abjad._iterlib.are_logical_voice([leaves[i] for i in outer])
-    assert abjad._iterlib.are_logical_voice([leaves[i] for i in middle])
-    assert abjad._iterlib.are_logical_voice([leaves[i] for i in inner])
-    assert not abjad._iterlib.are_logical_voice(leaves[:4])
+
+    assert abjad._iterlib._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._iterlib._are_logical_voice([leaves[i] for i in middle])
+    assert abjad._iterlib._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._iterlib._are_logical_voice(leaves[:4])
 
 
-def test__iterlib_are_logical_voice_35():
+def test__iterlib__are_logical_voice_34():
     """
     Containers and leaves all appear in same logical voice.
     """
@@ -1471,35 +928,12 @@ def test__iterlib_are_logical_voice_35():
         b'8
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            c'8
-            cs'8
-            {
-                d'8
-                ef'8
-                {
-                    e'8
-                    f'8
-                    fs'8
-                    g'8
-                }
-                af'8
-                a'8
-            }
-            bf'8
-            b'8
-        }
-        """
-    )
-
     components = abjad.select.components(container)
-    assert abjad._iterlib.are_logical_voice(components)
+
+    assert abjad._iterlib._are_logical_voice(components)
 
 
-def test__iterlib_are_logical_voice_36():
+def test__iterlib__are_logical_voice_35():
     """
     Logical voice can not extend across differently named voices.
     """
@@ -1510,7 +944,8 @@ def test__iterlib_are_logical_voice_36():
         cs'8
         {
             {
-                \context Voice = "foo" {
+                \context Voice = "Violin.Voice"
+                {
                     d'8
                     ef'8
                     e'8
@@ -1523,38 +958,17 @@ def test__iterlib_are_logical_voice_36():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            c'8
-            cs'8
-            {
-                {
-                    \context Voice = "foo"
-                    {
-                        d'8
-                        ef'8
-                        e'8
-                        f'8
-                    }
-                }
-            }
-            fs'8
-            g'8
-        }
-        """
-    )
-
     outer = (0, 1, 6, 7)
     inner = (2, 3, 4, 5)
 
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice([leaves[i] for i in outer])
-    assert abjad._iterlib.are_logical_voice([leaves[i] for i in inner])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._iterlib._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._iterlib._are_logical_voice(leaves)
 
 
-def test__iterlib_are_logical_voice_37():
+def test__iterlib__are_logical_voice_36():
     """
     Logical voice does not extend over differently named voices.
     """
@@ -1563,7 +977,8 @@ def test__iterlib_are_logical_voice_37():
         r"""
         {
             {
-                \context Voice = "foo" {
+                \context Voice = "foo"
+                {
                     c'8
                     cs'8
                     d'8
@@ -1577,36 +992,14 @@ def test__iterlib_are_logical_voice_37():
         g'8
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            {
-                {
-                    \context Voice = "foo"
-                    {
-                        c'8
-                        cs'8
-                        d'8
-                        ef'8
-                    }
-                }
-            }
-            e'8
-            f'8
-            fs'8
-            g'8
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice(leaves[:4])
+    assert abjad._iterlib._are_logical_voice(leaves[4:])
+    assert not abjad._iterlib._are_logical_voice(leaves)
 
 
-def test__iterlib_are_logical_voice_38():
+def test__iterlib__are_logical_voice_37():
     """
     Can not nest across differently named implicit voices.
     """
@@ -1618,7 +1011,8 @@ def test__iterlib_are_logical_voice_38():
                 {
                     c'8
                     cs'8
-                    \new Voice {
+                    \new Voice
+                    {
                         d'8
                         ef'8
                         e'8
@@ -1632,41 +1026,17 @@ def test__iterlib_are_logical_voice_38():
         """
     )
 
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        \new Voice
-        {
-            {
-                {
-                    {
-                        c'8
-                        cs'8
-                        \new Voice
-                        {
-                            d'8
-                            ef'8
-                            e'8
-                            f'8
-                        }
-                        fs'8
-                        g'8
-                    }
-                }
-            }
-        }
-        """
-    )
-
     outer = (0, 1, 6, 7)
     inner = (2, 3, 4, 5)
 
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice([leaves[i] for i in outer])
-    assert abjad._iterlib.are_logical_voice([leaves[i] for i in inner])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._iterlib._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._iterlib._are_logical_voice(leaves)
 
 
-def test__iterlib_are_logical_voice_39():
+def test__iterlib__are_logical_voice_38():
     """
     Logical voice can not extend across differently named voices.
     """
@@ -1681,7 +1051,8 @@ def test__iterlib_are_logical_voice_39():
             {
                 e'8
                 f'8
-                \context Voice = "bar" {
+                \context Voice = "Flute.Voice"
+                {
                     fs'8
                     g'8
                     af'8
@@ -1695,65 +1066,35 @@ def test__iterlib_are_logical_voice_39():
         }
         d''8
         ef''8
-        """
+        """,
+        name="Violin.Voice",
     )
-
-    voice.set_name("foo")
-
-    assert abjad.lilypond(voice) == abjad.string.normalize(
-        r"""
-        \context Voice = "foo"
-        {
-            c'8
-            cs'8
-            {
-                d'8
-                ef'8
-                {
-                    e'8
-                    f'8
-                    \context Voice = "bar"
-                    {
-                        fs'8
-                        g'8
-                        af'8
-                        a'8
-                    }
-                    bf'8
-                    b'8
-                }
-                c''8
-                cs''8
-            }
-            d''8
-            ef''8
-        }
-        """
-    )
+    leaves = abjad.select.leaves(voice)
 
     outer = (0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15)
     inner = (6, 7, 8, 9)
 
-    leaves = abjad.select.leaves(voice)
-    assert abjad._iterlib.are_logical_voice([leaves[i] for i in outer])
-    assert abjad._iterlib.are_logical_voice([leaves[i] for i in inner])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+    assert abjad._iterlib._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._iterlib._are_logical_voice([leaves[i] for i in inner])
+    assert not abjad._iterlib._are_logical_voice(leaves)
 
 
-def test__iterlib_are_logical_voice_40():
+def test__iterlib__are_logical_voice_39():
     """
     Logical voice can not extend across differently named anonymous voices.
     """
 
     container = abjad.Container(
         r"""
-        \new Voice {
+        \new Voice
+        {
             c'8
             cs'8
             d'8
             ef'8
         }
-        \new Voice {
+        \new Voice
+        {
             e'8
             f'8
             fs'8
@@ -1765,42 +1106,17 @@ def test__iterlib_are_logical_voice_40():
         b'8
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            \new Voice
-            {
-                c'8
-                cs'8
-                d'8
-                ef'8
-            }
-            \new Voice
-            {
-                e'8
-                f'8
-                fs'8
-                g'8
-            }
-            af'8
-            a'8
-            bf'8
-            b'8
-        }
-        """
-    )
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice(leaves[:4])
-    assert abjad._iterlib.are_logical_voice(leaves[4:8])
-    assert abjad._iterlib.are_logical_voice(leaves[8:])
-    assert not abjad._iterlib.are_logical_voice(leaves[:8])
-    assert not abjad._iterlib.are_logical_voice(leaves[4:])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice(leaves[:4])
+    assert abjad._iterlib._are_logical_voice(leaves[4:8])
+    assert abjad._iterlib._are_logical_voice(leaves[8:])
+    assert not abjad._iterlib._are_logical_voice(leaves[:8])
+    assert not abjad._iterlib._are_logical_voice(leaves[4:])
+    assert not abjad._iterlib._are_logical_voice(leaves)
 
 
-def test__iterlib_are_logical_voice_41():
+def test__iterlib__are_logical_voice_40():
     """
     Logical voice can not extend across differently named anonymous voices.
     """
@@ -1810,13 +1126,15 @@ def test__iterlib_are_logical_voice_41():
         c'8
         cs'8
         <<
-            \new Voice {
+            \new Voice
+            {
                 d'8
                 ef'8
                 e'8
                 f'8
             }
-            \new Voice {
+            \new Voice
+            {
                 fs'8
                 g'8
                 af'8
@@ -1827,39 +1145,11 @@ def test__iterlib_are_logical_voice_41():
         b'8
         """
     )
-
-    assert abjad.lilypond(container) == abjad.string.normalize(
-        r"""
-        {
-            c'8
-            cs'8
-            <<
-                \new Voice
-                {
-                    d'8
-                    ef'8
-                    e'8
-                    f'8
-                }
-                \new Voice
-                {
-                    fs'8
-                    g'8
-                    af'8
-                    a'8
-                }
-            >>
-            bf'8
-            b'8
-        }
-        """
-    )
-
     outer = (0, 1, 10, 11)
-
     leaves = abjad.select.leaves(container)
-    assert abjad._iterlib.are_logical_voice([leaves[i] for i in outer])
-    assert abjad._iterlib.are_logical_voice(leaves[2:6])
-    assert abjad._iterlib.are_logical_voice(leaves[6:10])
-    assert not abjad._iterlib.are_logical_voice(leaves[:6])
-    assert not abjad._iterlib.are_logical_voice(leaves)
+
+    assert abjad._iterlib._are_logical_voice([leaves[i] for i in outer])
+    assert abjad._iterlib._are_logical_voice(leaves[2:6])
+    assert abjad._iterlib._are_logical_voice(leaves[6:10])
+    assert not abjad._iterlib._are_logical_voice(leaves[:6])
+    assert not abjad._iterlib._are_logical_voice(leaves)

@@ -2357,7 +2357,7 @@ def _iterate_rewrite_inputs(
     for component in argument:
         assert isinstance(component, _score.Component)
         if isinstance(component, _score.Note | _score.Chord):
-            this_tie_leaves = _iterlib._get_logical_tie_leaves(component)
+            this_tie_leaves = _iterlib.get_logical_tie_leaves(component)
             this_tie = _select.LogicalTie(this_tie_leaves)
             if current_leaf_group is None:
                 current_leaf_group = []

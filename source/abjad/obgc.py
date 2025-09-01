@@ -176,7 +176,7 @@ class OnBeatGraceContainer(_score.Container):
         """
         nongrace_voice = self.nongrace_voice()
         final_nongrace_leaf = _select.leaf(nongrace_voice, -1, grace=False)
-        next_leaf = _iterlib._get_leaf(final_nongrace_leaf, 1)
+        next_leaf = _iterlib.get_leaf(final_nongrace_leaf, 1)
         if next_leaf is None:
             return
         if _get.has_indicator(next_leaf, _indicators.VoiceNumber):
@@ -240,7 +240,7 @@ class OnBeatGraceContainer(_score.Container):
         self_tag = self.tag()
         assert self_tag is not None, repr(self_tag)
         tag = self_tag.append(_tag.Tag(string))
-        first_obgc_leaf = _iterlib._get_leaf(self, 0)
+        first_obgc_leaf = _iterlib.get_leaf(self, 0)
         if not isinstance(first_obgc_leaf, _score.Note | _score.Chord):
             message = "must start with note or chord:\n"
             message += f"    {repr(self)}"
@@ -822,7 +822,7 @@ def on_beat_grace_container(
         message = "nongrace leaves must be contiguous in same parent:\n"
         message += f"   {repr(nongrace_leaves)}"
         raise Exception(message)
-    first_nongrace_leaf = _iterlib._get_leaf(nongrace_leaves, 0)
+    first_nongrace_leaf = _iterlib.get_leaf(nongrace_leaves, 0)
     music_voice = _parentage.Parentage(first_nongrace_leaf).get(_score.Voice)
     assert isinstance(music_voice, _score.Voice), repr(music_voice)
     if music_voice.name() is None:
@@ -857,7 +857,7 @@ def on_beat_grace_container(
         _bind.attach(literal, obgc[0], tag=tag)
     if not do_not_slur:
         _spanners.slur(obgc[:], tag=tag)
-    first_obgc_leaf = _iterlib._get_leaf(obgc, 0)
+    first_obgc_leaf = _iterlib.get_leaf(obgc, 0)
     _bind.detach(_indicators.VoiceNumber(), first_nongrace_leaf)
     _bind.attach(
         grace_polyphony_command,
@@ -871,8 +871,8 @@ def on_beat_grace_container(
         tag=tag,
     )
     if not do_not_attach_one_voice_command:
-        final_nongrace_leaf = _iterlib._get_leaf(nongrace_leaves, -1)
-        next_leaf = _iterlib._get_leaf(final_nongrace_leaf, 1)
+        final_nongrace_leaf = _iterlib.get_leaf(nongrace_leaves, -1)
+        next_leaf = _iterlib.get_leaf(final_nongrace_leaf, 1)
         if next_leaf is not None:
             command = _indicators.VoiceNumber()
             _bind.attach(command, next_leaf, tag=tag)

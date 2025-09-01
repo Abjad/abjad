@@ -1237,7 +1237,7 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
     prototype = prototype or _pitch.NamedInterval
     for note in _iterate.leaves(argument, _score.Note):
         label = None
-        next_leaf = _iterlib._get_leaf(note, 1)
+        next_leaf = _iterlib.get_leaf(note, 1)
         if isinstance(next_leaf, _score.Note):
             interval = _pitch.NamedInterval.from_pitch_carriers(note, next_leaf)
             interval = prototype(interval)

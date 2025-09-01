@@ -9,6 +9,30 @@ from . import score as _score
 from . import select as _select
 
 
+def _are_logical_voice(components: list[_score.Component], prototype=None):
+    prototype = prototype or (_score.Component,)
+    if not isinstance(prototype, tuple):
+        prototype = (prototype,)
+    assert isinstance(prototype, tuple)
+    if len(components) == 0:
+        return True
+    if all(isinstance(_, prototype) and _._parent is None for _ in components):
+        return True
+    first = components[0]
+    if not isinstance(first, prototype):
+        return False
+    same_logical_voice = True
+    parentage = _parentage.Parentage(first)
+    first_logical_voice = parentage.logical_voice()
+    for component in components[1:]:
+        parentage = _parentage.Parentage(component)
+        if parentage.logical_voice() != first_logical_voice:
+            same_logical_voice = False
+        if not parentage.is_orphan() and not same_logical_voice:
+            return False
+    return True
+
+
 def _coerce_exclude(exclude):
     if exclude is None:
         exclude = ()
@@ -20,29 +44,8 @@ def _coerce_exclude(exclude):
     return exclude
 
 
-def _get_leaf(argument, n: int = 0):
-    if n not in (-1, 0, 1):
-        message = "n must be -1, 0 or 1:\n"
-        message += f"   {repr(n)}"
-        raise Exception(message)
-    if isinstance(argument, _score.Leaf):
-        candidate = _get_sibling_with_graces(argument, n)
-        if isinstance(candidate, _score.Leaf):
-            return candidate
-        return _get_leaf_from_leaf(argument, n)
-    if 0 <= n:
-        reverse = False
-    else:
-        reverse = True
-        n = abs(n) - 1
-    leaves = _public_iterate_leaves(argument, reverse=reverse)
-    for i, leaf in enumerate(leaves):
-        if i == n:
-            return leaf
-    return None
-
-
-def _get_leaf_from_leaf(leaf, n):
+def _get_leaf_from_leaf(leaf: _score.Leaf, n: int) -> _score.Leaf | None:
+    assert isinstance(leaf, _score.Leaf), repr(leaf)
     assert n in (-1, 0, 1), repr(n)
     if n == 0:
         return leaf
@@ -50,7 +53,7 @@ def _get_leaf_from_leaf(leaf, n):
     if sibling is None:
         return None
     if n == 1:
-        components = sibling._get_descendants_starting_with()
+        descendants = sibling._get_descendants_starting_with()
     else:
         assert n == -1
         if (
@@ -62,49 +65,17 @@ def _get_leaf_from_leaf(leaf, n):
                 main_voice = sibling[1]
             else:
                 main_voice = sibling[0]
-            return main_voice[-1]
-        components = sibling._get_descendants_stopping_with()
-    for component in components:
-        if not isinstance(component, _score.Leaf):
+            assert isinstance(main_voice, _score.Voice), repr(main_voice)
+            final_leaf_in_voice = main_voice[-1]
+            assert isinstance(final_leaf_in_voice, _score.Leaf)
+            return final_leaf_in_voice
+        descendants = sibling._get_descendants_stopping_with()
+    for descendant in descendants:
+        if not isinstance(descendant, _score.Leaf):
             continue
-        if are_logical_voice([leaf, component]):
-            return component
-
-
-def _get_logical_tie_leaves(leaf):
-    if _is_unpitched(leaf):
-        return [leaf]
-    leaves_before, leaves_after = [], []
-    current_leaf = leaf
-    while True:
-        previous_leaf = _get_leaf(current_leaf, -1)
-        if previous_leaf is None:
-            break
-        if _is_unpitched(previous_leaf):
-            break
-        if current_leaf._has_indicator(
-            _indicators.RepeatTie
-        ) or previous_leaf._has_indicator(_indicators.Tie):
-            leaves_before.insert(0, previous_leaf)
-        else:
-            break
-        current_leaf = previous_leaf
-    current_leaf = leaf
-    while True:
-        next_leaf = _get_leaf(current_leaf, 1)
-        if next_leaf is None:
-            break
-        if _is_unpitched(next_leaf):
-            break
-        if current_leaf._has_indicator(_indicators.Tie) or next_leaf._has_indicator(
-            _indicators.RepeatTie
-        ):
-            leaves_after.append(next_leaf)
-        else:
-            break
-        current_leaf = next_leaf
-    leaves = leaves_before + [leaf] + leaves_after
-    return leaves
+        if _are_logical_voice([leaf, descendant]):
+            return descendant
+    return None
 
 
 def _is_obgc_nongrace_voice(argument):
@@ -115,86 +86,6 @@ def _is_obgc_nongrace_voice(argument):
     ):
         return True
     return False
-
-
-def _get_sibling_with_graces(component, n):
-    assert n in (-1, 0, 1), repr(component, n)
-    if n == 0:
-        return component
-    if component._parent is None:
-        return None
-    if component._parent.simultaneous():
-        return None
-    if (
-        n == 1
-        and getattr(component._parent, "_main_leaf", None)
-        and component._parent._main_leaf._before_grace_container is component._parent
-        and component is component._parent[-1]
-    ):
-        return component._parent._main_leaf
-    # component is final leaf in obgc
-    if (
-        n == 1
-        and component is component._parent[-1]
-        and component._parent.__class__.__name__ == "OnBeatGraceContainer"
-    ):
-        return component._parent.first_nongrace_leaf()
-    if (
-        n == 1
-        and getattr(component._parent, "_main_leaf", None)
-        and component._parent._main_leaf._after_grace_container is component._parent
-        and component is component._parent[-1]
-    ):
-        main_leaf = component._parent._main_leaf
-        if main_leaf is main_leaf._parent[-1]:
-            return None
-        index = main_leaf._parent.index(main_leaf)
-        return main_leaf._parent[index + 1]
-    if n == 1 and getattr(component, "_after_grace_container", None):
-        return component._after_grace_container[0]
-    if (
-        n == -1
-        and getattr(component._parent, "_main_leaf", None)
-        and component._parent._main_leaf._after_grace_container is component._parent
-        and component is component._parent[0]
-    ):
-        return component._parent._main_leaf
-    if (
-        n == -1
-        and getattr(component._parent, "_main_leaf", None)
-        and component._parent._main_leaf._before_grace_container is component._parent
-        and component is component._parent[0]
-    ):
-        main_leaf = component._parent._main_leaf
-        if main_leaf is main_leaf._parent[0]:
-            return None
-        index = main_leaf._parent.index(main_leaf)
-        return main_leaf._parent[index - 1]
-    # component is first leaf in obgc nongrace voice
-    if (
-        n == -1
-        and component is component._parent[0]
-        and type(component._parent).__name__ == "Voice"
-        and type(component._parent._parent).__name__ == "Container"
-        and type(component._parent._parent[0]).__name__ == "OnBeatGraceContainer"
-    ):
-        obgc = component._parent._parent[0]
-        return obgc[-1]
-    if n == -1 and getattr(component, "_before_grace_container", None):
-        return component._before_grace_container[-1]
-    index = component._parent.index(component) + n
-    if not (0 <= index < len(component._parent)):
-        return None
-    candidate = component._parent[index]
-    if n == 1 and getattr(candidate, "_before_grace_container", None):
-        return candidate._before_grace_container[0]
-    if n == 1 and candidate.__class__.__name__ == "IndependentAfterGraceContainer":
-        return candidate[0]
-    if n == -1 and getattr(candidate, "_after_grace_container", None):
-        return candidate._after_grace_container[-1]
-    if n == -1 and candidate.__class__.__name__ == "IndependentAfterGraceContainer":
-        return candidate[-1]
-    return candidate
 
 
 def _is_unpitched(leaf):
@@ -313,12 +204,158 @@ def _iterate_components(
                 )
 
 
-def _iterate_descendants(component, cross_offset=None):
+def _should_exclude(argument, exclude):
+    assert isinstance(exclude, tuple)
+    for string in exclude:
+        if argument._has_indicator(string):
+            return True
+    return False
+
+
+def get_leaf(argument, n: int = 0):
+    if n not in (-1, 0, 1):
+        message = "n must be -1, 0 or 1:\n"
+        message += f"   {repr(n)}"
+        raise Exception(message)
+    if isinstance(argument, _score.Leaf):
+        candidate = get_sibling_with_graces(argument, n)
+        if isinstance(candidate, _score.Leaf):
+            return candidate
+        return _get_leaf_from_leaf(argument, n)
+    if 0 <= n:
+        reverse = False
+    else:
+        reverse = True
+        n = abs(n) - 1
+    leaves = public_iterate_leaves(argument, reverse=reverse)
+    for i, leaf in enumerate(leaves):
+        if i == n:
+            return leaf
+    return None
+
+
+def get_logical_tie_leaves(leaf):
+    if _is_unpitched(leaf):
+        return [leaf]
+    leaves_before, leaves_after = [], []
+    current_leaf = leaf
+    while True:
+        previous_leaf = get_leaf(current_leaf, -1)
+        if previous_leaf is None:
+            break
+        if _is_unpitched(previous_leaf):
+            break
+        if current_leaf._has_indicator(
+            _indicators.RepeatTie
+        ) or previous_leaf._has_indicator(_indicators.Tie):
+            leaves_before.insert(0, previous_leaf)
+        else:
+            break
+        current_leaf = previous_leaf
+    current_leaf = leaf
+    while True:
+        next_leaf = get_leaf(current_leaf, 1)
+        if next_leaf is None:
+            break
+        if _is_unpitched(next_leaf):
+            break
+        if current_leaf._has_indicator(_indicators.Tie) or next_leaf._has_indicator(
+            _indicators.RepeatTie
+        ):
+            leaves_after.append(next_leaf)
+        else:
+            break
+        current_leaf = next_leaf
+    leaves = leaves_before + [leaf] + leaves_after
+    return leaves
+
+
+def get_sibling_with_graces(component, n):
+    assert n in (-1, 0, 1), repr(component, n)
+    if n == 0:
+        return component
+    if component._parent is None:
+        return None
+    if component._parent.simultaneous():
+        return None
+    if (
+        n == 1
+        and getattr(component._parent, "_main_leaf", None)
+        and component._parent._main_leaf._before_grace_container is component._parent
+        and component is component._parent[-1]
+    ):
+        return component._parent._main_leaf
+    # component is final leaf in obgc
+    if (
+        n == 1
+        and component is component._parent[-1]
+        and component._parent.__class__.__name__ == "OnBeatGraceContainer"
+    ):
+        return component._parent.first_nongrace_leaf()
+    if (
+        n == 1
+        and getattr(component._parent, "_main_leaf", None)
+        and component._parent._main_leaf._after_grace_container is component._parent
+        and component is component._parent[-1]
+    ):
+        main_leaf = component._parent._main_leaf
+        if main_leaf is main_leaf._parent[-1]:
+            return None
+        index = main_leaf._parent.index(main_leaf)
+        return main_leaf._parent[index + 1]
+    if n == 1 and getattr(component, "_after_grace_container", None):
+        return component._after_grace_container[0]
+    if (
+        n == -1
+        and getattr(component._parent, "_main_leaf", None)
+        and component._parent._main_leaf._after_grace_container is component._parent
+        and component is component._parent[0]
+    ):
+        return component._parent._main_leaf
+    if (
+        n == -1
+        and getattr(component._parent, "_main_leaf", None)
+        and component._parent._main_leaf._before_grace_container is component._parent
+        and component is component._parent[0]
+    ):
+        main_leaf = component._parent._main_leaf
+        if main_leaf is main_leaf._parent[0]:
+            return None
+        index = main_leaf._parent.index(main_leaf)
+        return main_leaf._parent[index - 1]
+    # component is first leaf in obgc nongrace voice
+    if (
+        n == -1
+        and component is component._parent[0]
+        and type(component._parent).__name__ == "Voice"
+        and type(component._parent._parent).__name__ == "Container"
+        and type(component._parent._parent[0]).__name__ == "OnBeatGraceContainer"
+    ):
+        obgc = component._parent._parent[0]
+        return obgc[-1]
+    if n == -1 and getattr(component, "_before_grace_container", None):
+        return component._before_grace_container[-1]
+    index = component._parent.index(component) + n
+    if not (0 <= index < len(component._parent)):
+        return None
+    candidate = component._parent[index]
+    if n == 1 and getattr(candidate, "_before_grace_container", None):
+        return candidate._before_grace_container[0]
+    if n == 1 and candidate.__class__.__name__ == "IndependentAfterGraceContainer":
+        return candidate[0]
+    if n == -1 and getattr(candidate, "_after_grace_container", None):
+        return candidate._after_grace_container[-1]
+    if n == -1 and candidate.__class__.__name__ == "IndependentAfterGraceContainer":
+        return candidate[-1]
+    return candidate
+
+
+def iterate_descendants(component, cross_offset=None):
     assert isinstance(component, _score.Component), repr(component)
     if component is None:
         components = ()
     else:
-        generator = _public_iterate_components(component)
+        generator = public_iterate_components(component)
         components = list(generator)
     result = []
     if cross_offset is None:
@@ -336,7 +373,7 @@ def _iterate_descendants(component, cross_offset=None):
     return tuple(result)
 
 
-def _iterate_logical_ties(
+def iterate_logical_ties(
     argument,
     *,
     exclude=None,
@@ -346,10 +383,10 @@ def _iterate_logical_ties(
     reverse=None,
 ) -> typing.Iterator[_select.LogicalTie]:
     yielded_logical_ties = set()
-    for leaf in _public_iterate_leaves(
+    for leaf in public_iterate_leaves(
         argument, exclude=exclude, grace=grace, pitched=pitched, reverse=reverse
     ):
-        leaves = _get_logical_tie_leaves(leaf)
+        leaves = get_logical_tie_leaves(leaf)
         if leaf is not leaves[0]:
             continue
         if (
@@ -363,8 +400,13 @@ def _iterate_logical_ties(
                 yield logical_tie
 
 
-def _public_iterate_components(
-    argument, prototype=None, *, exclude=None, grace=None, reverse=None
+def public_iterate_components(
+    argument,
+    prototype=None,
+    *,
+    exclude=None,
+    grace=None,
+    reverse=None,
 ):
     if isinstance(argument, _score.Container):
         for component in _iterate_components(
@@ -379,7 +421,7 @@ def _public_iterate_components(
     elif isinstance(argument, collections.abc.Iterable):
         if not reverse:
             for item in argument:
-                generator = _public_iterate_components(
+                generator = public_iterate_components(
                     item,
                     prototype,
                     exclude=exclude,
@@ -389,7 +431,7 @@ def _public_iterate_components(
                 yield from generator
         else:
             for item in reversed(argument):
-                generator = _public_iterate_components(
+                generator = public_iterate_components(
                     item,
                     prototype,
                     exclude=exclude,
@@ -409,7 +451,7 @@ def _public_iterate_components(
             yield component
 
 
-def _public_iterate_leaves(
+def public_iterate_leaves(
     argument,
     prototype=None,
     *,
@@ -423,38 +465,6 @@ def _public_iterate_leaves(
         prototype = (_score.Chord, _score.Note)
     elif pitched is False:
         prototype = (_score.MultimeasureRest, _score.Rest, _score.Skip)
-    return _public_iterate_components(
+    return public_iterate_components(
         argument, prototype=prototype, exclude=exclude, grace=grace, reverse=reverse
     )
-
-
-def _should_exclude(argument, exclude):
-    assert isinstance(exclude, tuple)
-    for string in exclude:
-        if argument._has_indicator(string):
-            return True
-    return False
-
-
-def are_logical_voice(components: list[_score.Component], prototype=None):
-    prototype = prototype or (_score.Component,)
-    if not isinstance(prototype, tuple):
-        prototype = (prototype,)
-    assert isinstance(prototype, tuple)
-    if len(components) == 0:
-        return True
-    if all(isinstance(_, prototype) and _._parent is None for _ in components):
-        return True
-    first = components[0]
-    if not isinstance(first, prototype):
-        return False
-    same_logical_voice = True
-    parentage = _parentage.Parentage(first)
-    first_logical_voice = parentage.logical_voice()
-    for component in components[1:]:
-        parentage = _parentage.Parentage(component)
-        if parentage.logical_voice() != first_logical_voice:
-            same_logical_voice = False
-        if not parentage.is_orphan() and not same_logical_voice:
-            return False
-    return True

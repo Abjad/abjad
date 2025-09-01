@@ -1037,11 +1037,11 @@ def glissando(
         raise Exception(message)
 
     def _is_last_in_tie_chain(leaf):
-        logical_tie = _iterlib._get_logical_tie_leaves(leaf)
+        logical_tie = _iterlib.get_logical_tie_leaves(leaf)
         return leaf is logical_tie[-1]
 
     def _next_leaf_changes_current_pitch(leaf):
-        next_leaf = _iterlib._get_leaf(leaf, 1)
+        next_leaf = _iterlib.get_leaf(leaf, 1)
         if (
             isinstance(leaf, _score.Note)
             and isinstance(next_leaf, _score.Note)
@@ -1064,7 +1064,7 @@ def glissando(
                 note_head.set_is_parenthesized(True)
 
     def _previous_leaf_changes_current_pitch(leaf):
-        previous_leaf = _iterlib._get_leaf(leaf, -1)
+        previous_leaf = _iterlib.get_leaf(leaf, -1)
         if (
             isinstance(leaf, _score.Note)
             and isinstance(previous_leaf, _score.Note)
