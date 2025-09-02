@@ -6404,7 +6404,6 @@ class LilyPondSyntacticalDefinition:
 
     def p_steno_duration__bare_unsigned__dots(self, p):
         "steno_duration : bare_unsigned dots"
-        assert _duration.Duration.is_token(p[1])
         dots = p[2].value
         token = str(p[1]) + "." * dots
         duration = _duration.Duration.from_lilypond_duration_string(token)

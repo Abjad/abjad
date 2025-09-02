@@ -12,6 +12,7 @@ from . import duration as _duration
 from . import enums as _enums
 from . import indicators as _indicators
 from . import iterate as _iterate
+from . import math as _math
 from . import overrides as _overrides
 from . import pcollections as _pcollections
 from . import pitch as _pitch
@@ -1867,7 +1868,7 @@ def with_start_offsets(
             start_offset = timespan.start_offset
             if global_offset is not None:
                 start_offset += global_offset
-            string = _duration.Duration(start_offset.fraction).clock_string()
+            string = _math.clock_string(start_offset.fraction)
         else:
             timespan = logical_tie.head()._get_timespan()
             start_offset = timespan.start_offset
