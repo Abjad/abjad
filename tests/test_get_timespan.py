@@ -318,18 +318,18 @@ def test_get_timespan_24():
 
 def test_get_timespan_25():
     """
-    Offset seconds can not calculate without excplit metronome mark.
+    Offset-in-seconds can not calculate without excplit metronome mark.
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
 
-    with pytest.raises(Exception):
+    with pytest.raises(abjad.exceptions.MissingMetronomeMarkError):
         abjad.get.timespan(staff[0], in_seconds=True).start_offset
 
 
 def test_get_timespan_26():
     """
-    Offset seconds work with explicit metronome mark.
+    Offset-in-seconds work with explicit metronome mark.
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
