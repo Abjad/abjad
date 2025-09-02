@@ -261,7 +261,7 @@ def _make_metronome_mark_map(root) -> _timespan.TimespanList | None:
         return None
     score_stop_offset = max(all_stop_offsets)
     timespans = _timespan.TimespanList()
-    clocktime_start_offset = _duration.offset(0)
+    start_offset_in_seconds = _duration.offset(0)
     for left, right in _sequence.nwise(pairs, wrapped=True):
         metronome_mark = left[-1]
         start_offset = left[0]
@@ -270,16 +270,17 @@ def _make_metronome_mark_map(root) -> _timespan.TimespanList | None:
         if stop_offset == _duration.offset(0):
             stop_offset = score_stop_offset
         duration = stop_offset - start_offset
+        assert isinstance(duration, _duration.Duration)
+        duration_in_seconds = duration / metronome_mark.reference_duration
         multiplier = fractions.Fraction(60, metronome_mark.units_per_minute)
-        clocktime_duration = duration / metronome_mark.reference_duration
-        clocktime_duration *= multiplier
+        duration_in_seconds *= multiplier
         timespan = _timespan.Timespan(
             start_offset,
             stop_offset,
-            annotation=(clocktime_start_offset, clocktime_duration),
+            annotation=(start_offset_in_seconds, duration_in_seconds),
         )
         timespans.append(timespan)
-        clocktime_start_offset += clocktime_duration
+        start_offset_in_seconds += duration_in_seconds
     return timespans
 
 
@@ -349,49 +350,74 @@ def _update_all_offsets_in_seconds(root):
     _update_all_offsets(root)
     timespans = _make_metronome_mark_map(root)
     for component in _iterate_entire_score(root):
-        _update_clocktime_offsets(component, timespans)
+        _update_offsets_in_seconds(component, timespans)
         component._offsets_in_seconds_are_current = True
 
 
-def _update_clocktime_offsets(component, timespans):
-    if not timespans:
+def _update_offsets_in_seconds(
+    component: _score.Component,
+    timespans: list[_timespan.Timespan] | None,
+) -> None:
+    assert isinstance(component, _score.Component)
+    if timespans is None:
         return
+    assert isinstance(timespans, list)
+    assert all(isinstance(_, _timespan.Timespan) for _ in timespans)
+    the_start_offset = None
+    the_stop_offset = None
+    skip_final_check = False
+    component_timespan = component._timespan
+    assert isinstance(component_timespan, _timespan.Timespan)
+    component_start_offset = component_timespan.start_offset
+    component_stop_offset = component_timespan.stop_offset
+    assert isinstance(component_start_offset, _duration.Offset)
+    assert isinstance(component_stop_offset, _duration.Offset)
     for timespan in timespans:
-        if (
-            timespan.start_offset
-            <= component._timespan.start_offset
-            < timespan.stop_offset
-        ):
-            pair = timespan.annotation
-            clocktime_start_offset, clocktime_duration = pair
-            local_offset = component._timespan.start_offset - timespan.start_offset
+        start_offset_in_seconds, duration_in_seconds = timespan.annotation
+        assert isinstance(start_offset_in_seconds, _duration.Offset)
+        assert _duration.is_fraction(duration_in_seconds)
+        timespan_start_offset = timespan.start_offset
+        assert isinstance(timespan_start_offset, _duration.Offset)
+        if timespan.start_offset <= component_start_offset < timespan.stop_offset:
+            local_offset = component_start_offset - timespan_start_offset
             multiplier = local_offset / timespan.duration()
-            duration = multiplier * clocktime_duration
-            offset = clocktime_start_offset + duration
+            assert _duration.is_fraction(multiplier)
+            duration = multiplier * duration_in_seconds
+            assert _duration.is_fraction(duration)
+            offset = start_offset_in_seconds + duration
             assert isinstance(offset, _duration.Offset)
-            component._start_offset_in_seconds = offset
-        if (
-            timespan.start_offset
-            <= component._timespan.stop_offset
-            < timespan.stop_offset
-        ):
-            pair = timespan.annotation
-            clocktime_start_offset, clocktime_duration = pair
-            local_offset = component._timespan.stop_offset - timespan.start_offset
+            the_start_offset = offset
+        if timespan.start_offset <= component_stop_offset < timespan.stop_offset:
+            local_offset = component_stop_offset - timespan_start_offset
             multiplier = local_offset / timespan.duration()
-            duration = multiplier * clocktime_duration
-            offset = clocktime_start_offset + duration
+            assert _duration.is_fraction(multiplier)
+            duration = multiplier * duration_in_seconds
+            assert _duration.is_fraction(duration)
+            offset = start_offset_in_seconds + duration
             assert isinstance(offset, _duration.Offset)
-            component._stop_offset_in_seconds = offset
-            return
-    if component._timespan.stop_offset == timespans[-1].stop_offset:
+            the_stop_offset = offset
+            skip_final_check = True
+            break
+    if skip_final_check is True:
+        if the_start_offset is not None and the_stop_offset is not None:
+            timespan_in_seconds = _timespan.Timespan(
+                start_offset=the_start_offset,
+                stop_offset=the_stop_offset,
+            )
+            component._timespan_in_seconds = timespan_in_seconds
+    elif component_timespan.stop_offset == timespans[-1].stop_offset:
         pair = timespans[-1].annotation
-        clocktime_start_offset, clocktime_duration = pair
-        offset = clocktime_start_offset + clocktime_duration
+        start_offset_in_seconds, duration_in_seconds = pair
+        offset = start_offset_in_seconds + duration_in_seconds
         assert isinstance(offset, _duration.Offset)
-        component._stop_offset_in_seconds = offset
-        return
-    raise Exception(f"can not find {offset!r} in {timespans}.")
+        assert isinstance(the_start_offset, _duration.Offset), repr(the_start_offset)
+        timespan_in_seconds = _timespan.Timespan(
+            start_offset=the_start_offset,
+            stop_offset=offset,
+        )
+        component._timespan_in_seconds = timespan_in_seconds
+    else:
+        raise Exception(f"can not find {offset!r} in {timespans}.")
 
 
 def _update_component_offsets(component) -> None:

@@ -72,10 +72,9 @@ class Component:
         "_override_interface",
         "_parent",
         "_setting_interface",
-        "_start_offset_in_seconds",
-        "_stop_offset_in_seconds",
         "_tag",
         "_timespan",
+        "_timespan_in_seconds",
         "_wrappers",
     )
 
@@ -96,12 +95,11 @@ class Component:
         self._override_interface = None
         self._parent = None
         self._setting_interface = None
-        self._start_offset_in_seconds = None
-        self._stop_offset_in_seconds = None
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         self._tag = tag
-        self._timespan = _timespan.Timespan(_duration.offset(0), _duration.offset(0))
+        self._timespan: _timespan.Timespan | None = None
+        self._timespan_in_seconds: _timespan.Timespan | None = None
         self._wrappers: list = []
 
     def __copy__(self) -> typing.Self:
@@ -229,16 +227,14 @@ class Component:
         if 0 <= index < len(self._parent):
             return self._parent[index]
 
-    def _get_timespan(self, in_seconds=False):
-        if in_seconds:
+    def _get_timespan(self, in_seconds: bool = False):
+        if in_seconds is True:
             _updatelib._update_now(self, offsets_in_seconds=True)
-            if self._start_offset_in_seconds is None:
+            if self._timespan_in_seconds is None:
                 raise _exceptions.MissingMetronomeMarkError
-            return _timespan.Timespan(
-                self._start_offset_in_seconds,
-                self._stop_offset_in_seconds,
-            )
+            return self._timespan_in_seconds
         else:
+            assert in_seconds is False
             _updatelib._update_now(self, offsets=True)
             return self._timespan
 
