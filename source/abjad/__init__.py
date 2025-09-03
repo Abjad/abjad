@@ -24,7 +24,7 @@ from . import (
 from ._version import __version__
 from .bind import annotate, attach, detach
 from .cyclictuple import CyclicTuple
-from .duration import Duration, Offset, Ratio, offset
+from .duration import Duration, Offset, Ratio, ValueDuration, offset
 from .enums import (
     CENTER,
     DOWN,
@@ -448,6 +448,7 @@ __all__ = [
     "UnboundedTimeIntervalError",
     "UP",
     "Offset",
+    "ValueDuration",
     "Vertical",
     "VerticalMoment",
     "Vibraphone",

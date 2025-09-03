@@ -701,6 +701,88 @@ class Duration(fractions.Fraction):
         return type(self)(self.denominator, self.numerator)
 
 
+@dataclasses.dataclass(frozen=True, slots=True, unsafe_hash=True)
+class ValueDuration:
+    """
+    Value duration.
+
+    ..  container:: example
+
+        >>> abjad.ValueDuration(2, 8)
+        ValueDuration(numerator=1, denominator=4)
+
+    """
+
+    numerator: int
+    denominator: int
+
+    def __post_init__(self) -> None:
+        assert self.denominator != 0, repr(self.denominator)
+        numerator, denominator = self.numerator, self.denominator
+        if denominator < 0:
+            numerator, denominator = -numerator, -denominator
+        if numerator == 0:
+            numerator, denominator = 0, 1
+        else:
+            g = math.gcd(numerator, denominator)
+            numerator //= g
+            denominator //= g
+        object.__setattr__(self, "numerator", numerator)
+        object.__setattr__(self, "denominator", denominator)
+
+    def __abs__(self) -> ValueDuration:
+        numerator, denominator = abs(self.numerator), self.denominator
+        return ValueDuration(numerator, denominator)
+
+    def __add__(self, other: ValueDuration) -> ValueDuration:
+        if isinstance(other, ValueDuration):
+            a, b = self.numerator, self.denominator
+            c, d = other.numerator, other.denominator
+            return ValueDuration(a * d + c * b, b * d)
+        return NotImplemented
+
+    def __neg__(self) -> ValueDuration:
+        numerator, denominator = self.numerator, self.denominator
+        return ValueDuration(-numerator, denominator)
+
+    def __rmul__(self, other: int | fractions.Fraction) -> ValueDuration:
+        if isinstance(other, int):
+            other = fractions.Fraction(other, 1)
+        if isinstance(other, fractions.Fraction):
+            a, b = self.numerator, self.denominator
+            c, d = other.numerator, other.denominator
+            return ValueDuration(a * c, b * d)
+        return NotImplemented
+
+    def __sub__(self, other: ValueDuration) -> ValueDuration:
+        if isinstance(other, ValueDuration):
+            a, b = self.numerator, self.denominator
+            c, d = other.numerator, other.denominator
+            return ValueDuration(a * d - c * b, b * d)
+        return NotImplemented
+
+    @typing.overload
+    def __truediv__(self, other: ValueDuration) -> fractions.Fraction:
+        pass
+
+    @typing.overload
+    def __truediv__(self, other: int | fractions.Fraction) -> ValueDuration:
+        pass
+
+    def __truediv__(self, other):
+        if isinstance(other, int):
+            other = fractions.Fraction(other, 1)
+        if isinstance(other, ValueDuration):
+            a, b = self.numerator, self.denominator
+            c, d = other.numerator, other.denominator
+            return fractions.Fraction(a * d, b * c)
+        if isinstance(other, fractions.Fraction):
+            a, b = self.numerator, self.denominator
+            c, d = other.numerator, other.denominator
+            return ValueDuration(a * d, b * c)
+        return NotImplemented
+
+
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
 class Ratio:
     """
