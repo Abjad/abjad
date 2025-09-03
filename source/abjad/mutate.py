@@ -15,6 +15,7 @@ from . import get as _get
 from . import indicators as _indicators
 from . import iterate as _iterate
 from . import makers as _makers
+from . import math as _math
 from . import parentage as _parentage
 from . import pitch as _pitch
 from . import score as _score
@@ -1385,7 +1386,8 @@ def logical_tie_to_tuplet(
     target_duration = sum(_._get_preprolated_duration() for _ in argument)
     assert isinstance(target_duration, _duration.Duration)
     prolated_duration = target_duration / sum(proportions)
-    basic_written_duration = prolated_duration.equal_or_greater_power_of_two()
+    fraction = _math.equal_or_greater_power_of_two(prolated_duration)
+    basic_written_duration = _duration.Duration(fraction)
     written_durations = [_ * basic_written_duration for _ in proportions]
     notes: list[_score.Note | _score.Tuplet]
     pitch = _pitch.NamedPitch("c'")

@@ -631,12 +631,8 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             basic_prolated_fraction = tuplet_duration / contents_duration
             assert isinstance(basic_prolated_fraction, fractions.Fraction)
             basic_written_duration = _duration.Duration(basic_prolated_fraction)
-            basic_written_duration = (
-                basic_written_duration.equal_or_greater_power_of_two()
-            )
-            assert isinstance(basic_written_duration, _duration.Duration), repr(
-                basic_written_duration
-            )
+            fraction = _math.equal_or_greater_power_of_two(basic_written_duration)
+            basic_written_duration = _duration.Duration(fraction)
             tuplet = _score.Tuplet("1:1", [])
             for node in rtc.children:
                 if isinstance(node, type(self)):

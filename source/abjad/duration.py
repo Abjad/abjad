@@ -223,18 +223,16 @@ class Duration(fractions.Fraction):
         pass
 
     @typing.overload
-    def __add__(self, argument: float) -> float:
+    def __add__(self, argument: float) -> typing.NoReturn:
         pass
 
     @typing.overload
-    def __add__(self, argument: complex) -> complex:
+    def __add__(self, argument: complex) -> typing.NoReturn:
         pass
 
     def __add__(self, argument):
         result = super().__add__(argument)
-        if isinstance(result, fractions.Fraction):
-            return type(self)(result)
-        return result
+        return type(self)(result)
 
     @typing.overload
     def __mul__(self, other: int | fractions.Fraction) -> fractions.Fraction:
@@ -372,23 +370,6 @@ class Duration(fractions.Fraction):
             return type(self)(result)
         return result
 
-    def clock_string(self) -> str:
-        r"""
-        Gets clock string.
-
-        Rounds down to nearest second.
-
-        ..  container:: example
-
-            >>> abjad.Duration(117).clock_string()
-            "1'57''"
-
-        """
-        minutes = int(self / 60)
-        seconds = str(int(self - minutes * 60)).zfill(2)
-        clock_string = f"{minutes}'{seconds}''"
-        return clock_string
-
     def dot_count(self) -> int:
         r"""
         Gets dot count.
@@ -435,179 +416,6 @@ class Duration(fractions.Fraction):
         dot_count = digit_sum - 1
         return dot_count
 
-    # TODO: port logic to rmakers and then remove
-    @staticmethod
-    def durations_to_nonreduced_fractions(
-        durations: list[Duration],
-    ) -> list[tuple[int, int]]:
-        """
-        Changes ``durations`` to pairs sharing least common denominator.
-
-        ..  container:: example
-
-            >>> items = [abjad.Duration(2, 4), 3, (5, 16)]
-            >>> durations = abjad.duration.durations(items)
-            >>> result = abjad.Duration.durations_to_nonreduced_fractions(durations)
-            >>> for x in result:
-            ...     x
-            ...
-            (8, 16)
-            (48, 16)
-            (5, 16)
-
-        """
-        assert all(isinstance(_, Duration) for _ in durations), repr(durations)
-        denominators = [_.denominator for _ in durations]
-        lcd = _math.least_common_multiple(*denominators)
-        pairs = [pair_with_denominator(_, lcd) for _ in durations]
-        return pairs
-
-    # TODO: move to math.py or remove
-    def equal_or_greater_assignable(self) -> Duration:
-        r"""
-        Gets assignable duration equal to or just greater than this duration.
-
-        ..  container:: example
-
-            >>> for numerator in range(1, 16 + 1):
-            ...     duration = abjad.Duration(numerator, 16)
-            ...     result = duration.equal_or_greater_assignable()
-            ...     sixteenths = abjad.duration.pair_with_denominator(duration, 16)
-            ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
-            ...
-            1/16    1/16
-            2/16    1/8
-            3/16    3/16
-            4/16    1/4
-            5/16    3/8
-            6/16    3/8
-            7/16    7/16
-            8/16    1/2
-            9/16    3/4
-            10/16   3/4
-            11/16   3/4
-            12/16   3/4
-            13/16   7/8
-            14/16   7/8
-            15/16   15/16
-            16/16   1
-
-        """
-        good_denominator = _math.greatest_power_of_two_less_equal(self.denominator)
-        current_numerator = self.numerator
-        candidate = type(self)(current_numerator, good_denominator)
-        while not candidate.is_assignable():
-            current_numerator += 1
-            candidate = type(self)(current_numerator, good_denominator)
-        return candidate
-
-    # TODO: move to math.py or remove
-    def equal_or_greater_power_of_two(self) -> Duration:
-        r"""
-        Gets duration equal or just greater power of two.
-
-        ..  container:: example
-
-            >>> for numerator in range(1, 16 + 1):
-            ...     duration = abjad.Duration(numerator, 16)
-            ...     result = duration.equal_or_greater_power_of_two()
-            ...     sixteenths = abjad.duration.pair_with_denominator(duration, 16)
-            ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
-            ...
-            1/16    1/16
-            2/16    1/8
-            3/16    1/4
-            4/16    1/4
-            5/16    1/2
-            6/16    1/2
-            7/16    1/2
-            8/16    1/2
-            9/16    1
-            10/16   1
-            11/16   1
-            12/16   1
-            13/16   1
-            14/16   1
-            15/16   1
-            16/16   1
-
-        """
-        denominator_exponent = -int(math.ceil(math.log(self, 2)))
-        return type(self)(fractions.Fraction(1, 2) ** denominator_exponent)
-
-    # TODO: move to math.py or remove
-    def equal_or_lesser_assignable(self) -> Duration:
-        r"""
-        Gets assignable duration equal or just less than this duration.
-
-        ..  container:: example
-
-            >>> for numerator in range(1, 16 + 1):
-            ...     duration = abjad.Duration(numerator, 16)
-            ...     result = duration.equal_or_lesser_assignable()
-            ...     sixteenths = abjad.duration.pair_with_denominator(duration, 16)
-            ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
-            ...
-            1/16    1/16
-            2/16    1/8
-            3/16    3/16
-            4/16    1/4
-            5/16    1/4
-            6/16    3/8
-            7/16    7/16
-            8/16    1/2
-            9/16    1/2
-            10/16   1/2
-            11/16   1/2
-            12/16   3/4
-            13/16   3/4
-            14/16   7/8
-            15/16   15/16
-            16/16   1
-
-        """
-        good_denominator = 2 ** (int(math.ceil(math.log(self.denominator, 2))) + 0)
-        current_numerator = self.numerator
-        candidate = type(self)(current_numerator, good_denominator)
-        while not candidate.is_assignable():
-            current_numerator -= 1
-            candidate = type(self)(current_numerator, good_denominator)
-        return candidate
-
-    # TODO: move to math.py or remove
-    def equal_or_lesser_power_of_two(self) -> Duration:
-        r"""
-        Gets duration of the form ``d**2`` equal to or just less than this
-        duration.
-
-        ..  container:: example
-
-            >>> for numerator in range(1, 16 + 1):
-            ...     duration = abjad.Duration(numerator, 16)
-            ...     result = duration.equal_or_lesser_power_of_two()
-            ...     sixteenths = abjad.duration.pair_with_denominator(duration, 16)
-            ...     print(f"{sixteenths[0]}/{sixteenths[1]}\t{result!s}")
-            ...
-            1/16    1/16
-            2/16    1/8
-            3/16    1/8
-            4/16    1/4
-            5/16    1/4
-            6/16    1/4
-            7/16    1/4
-            8/16    1/2
-            9/16    1/2
-            10/16   1/2
-            11/16   1/2
-            12/16   1/2
-            13/16   1/2
-            14/16   1/2
-            15/16   1/2
-            16/16   1
-
-        """
-        return type(self)(fractions.Fraction(1, 2) ** self.exponent())
-
     def exponent(self) -> int:
         r"""
         Gets base-2 exponent.
@@ -652,7 +460,8 @@ class Duration(fractions.Fraction):
             >>> for n in range(1, 16 + 1):
             ...     duration = abjad.Duration(n, 64)
             ...     sixty_fourths = abjad.duration.pair_with_denominator(duration, 64)
-            ...     print(f"{sixty_fourths[0]}/{sixty_fourths[1]}\t{duration.flag_count()}")
+            ...     numerator, denominator = sixty_fourths
+            ...     print(f"{numerator}/{denominator}\t{duration.flag_count()}")
             ...
             1/64    4
             2/64    3
@@ -839,24 +648,6 @@ class Duration(fractions.Fraction):
         """
         return _math.is_nonnegative_integer_power_of_two(self.denominator)
 
-    # TODO: move logic to parser.py and then remove
-    @staticmethod
-    def is_token(argument) -> bool:
-        """
-        Is true when ``argument`` correctly initializes a duration.
-
-        ..  container:: example
-
-            >>> abjad.Duration.is_token('8.')
-            True
-
-        """
-        try:
-            Duration.__new__(Duration, argument)
-            return True
-        except Exception:
-            return False
-
     def lilypond_duration_string(self) -> str:
         """
         Gets LilyPond duration string.
@@ -869,7 +660,7 @@ class Duration(fractions.Fraction):
         """
         if not self.is_assignable():
             raise _exceptions.AssignabilityError(self)
-        undotted_rational = self.equal_or_lesser_power_of_two()
+        undotted_rational = fractions.Fraction(1, 2) ** self.exponent()
         if undotted_rational <= 1:
             undotted_duration_string = str(undotted_rational.denominator)
         elif undotted_rational == type(self)(2, 1):
@@ -985,14 +776,13 @@ class Ratio:
         """
         return f"{self.numerator}:{self.denominator}"
 
-    # TODO: rename to fraction()
-    def as_fraction(self):
+    def fraction(self):
         """
         Changes (unreduced) ratio to (reduced) fraction.
 
         ..  container:: example
 
-            >>> abjad.Ratio(6, 4).as_fraction()
+            >>> abjad.Ratio(6, 4).fraction()
             Fraction(3, 2)
 
         """
@@ -1174,7 +964,7 @@ class Ratio:
             True
 
         """
-        fraction = self.as_fraction()
+        fraction = self.fraction()
         if self.numerator == fraction.numerator:
             if self.denominator == fraction.denominator:
                 return True
@@ -1298,6 +1088,10 @@ class Offset:
             return self._nonnone_displacement() < argument._nonnone_displacement()
         return self.fraction < argument.fraction
 
+    def __mod__(self, argument: int | fractions.Fraction) -> typing.Self:
+        fraction = self.fraction % argument
+        return type(self)(fraction=fraction, displacement=self.displacement)
+
     def __mul__(self, argument):
         raise NotImplementedError
 
@@ -1357,6 +1151,21 @@ class Offset:
         if self.displacement is None:
             return Duration(0)
         return self.displacement
+
+    def duration(self) -> Duration:
+        """
+        Changes offset to duration.
+
+        ..  container:: example
+
+            >>> fraction = abjad.Fraction(1, 4)
+            >>> offset = abjad.Offset(fraction)
+            >>> offset.duration()
+            Duration(1, 4)
+
+        """
+        assert self.displacement is None, repr(self)
+        return Duration(self.fraction)
 
     def remove_displacement(self):
         """

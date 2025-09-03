@@ -2455,9 +2455,9 @@ def indicators(
     return indicators
 
 
-def is_bar_line_crossing(argument) -> bool:
+def is_bar_line_crossing(component: _score.Component) -> bool:
     r"""
-    Is true when ``argument`` crosses bar line.
+    Is true when ``component`` crosses bar line.
 
     ..  container:: example
 
@@ -2488,25 +2488,24 @@ def is_bar_line_crossing(argument) -> bool:
         Note("e'4") False
 
     """
-    if not isinstance(argument, _score.Component):
+    if not isinstance(component, _score.Component):
         raise Exception("can only get indicator on component.")
     time_signature = _getlib.get_effective_indicator(
-        argument,
+        component,
         _indicators.TimeSignature,
     )
     if time_signature is None:
         time_signature_duration = _duration.Duration(4, 4)
+        partial = _duration.Duration(0)
     else:
         time_signature_duration = time_signature.duration()
-    partial = getattr(time_signature, "partial", 0)
-    partial = partial or 0
-    start_offset_ = timespan(argument).start_offset
-    assert isinstance(start_offset_, _duration.Offset)
-    start_offset = start_offset_.fraction
-    shifted_start = start_offset - partial
-    shifted_start %= time_signature_duration
-    stop_offset = argument._get_duration() + shifted_start
-    if time_signature_duration < stop_offset:
+        partial = time_signature.partial or _duration.Duration(0)
+    component_start_offset = timespan(component).start_offset
+    assert isinstance(component_start_offset, _duration.Offset)
+    shifted_start_offset = component_start_offset - partial
+    shifted_start_offset %= time_signature_duration
+    stop_offset = shifted_start_offset + component._get_duration()
+    if time_signature_duration < stop_offset.duration():
         return True
     return False
 

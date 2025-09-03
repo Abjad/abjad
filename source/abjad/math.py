@@ -305,6 +305,24 @@ def binomial_coefficient(n, k) -> int:
     return math.factorial(n) // (math.factorial(n - k) * math.factorial(k))
 
 
+def clock_string(fraction: fractions.Fraction) -> str:
+    """
+    Changes ``fraction`` to clock string.
+
+    Rounds down to nearest second.
+
+    ..  container:: example
+
+        >>> abjad.math.clock_string(abjad.Fraction(117))
+        "1'57''"
+
+    """
+    minutes = int(fraction / 60)
+    seconds = str(int(fraction - minutes * 60)).zfill(2)
+    string = f"{minutes}'{seconds}''"
+    return string
+
+
 def cumulative_products(argument):
     """
     Gets cumulative products of ``argument``.
@@ -457,6 +475,41 @@ def divisors(n) -> list[int]:
     divisors.extend(codivisors)
     divisors.sort()
     return divisors
+
+
+def equal_or_greater_power_of_two(n) -> fractions.Fraction:
+    """
+    Gets fraction equal or just greater power of two from ``n``.
+
+    ..  container:: example
+
+        >>> for numerator in range(1, 16 + 1):
+        ...     fraction = abjad.Fraction(numerator, 16)
+        ...     result = abjad.math.equal_or_greater_power_of_two(fraction)
+        ...     sixteenths = abjad.duration.pair_with_denominator(fraction, 16)
+        ...     numerator, denominator = sixteenths
+        ...     print(f"{numerator}/{denominator}\t{result!s}")
+        ...
+        1/16    1/16
+        2/16    1/8
+        3/16    1/4
+        4/16    1/4
+        5/16    1/2
+        6/16    1/2
+        7/16    1/2
+        8/16    1/2
+        9/16    1
+        10/16   1
+        11/16   1
+        12/16   1
+        13/16   1
+        14/16   1
+        15/16   1
+        16/16   1
+
+    """
+    denominator_exponent = -int(math.ceil(math.log(n, 2)))
+    return fractions.Fraction(fractions.Fraction(1, 2) ** denominator_exponent)
 
 
 def factors(n) -> list[int]:

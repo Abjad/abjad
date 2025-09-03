@@ -5213,7 +5213,7 @@ class Tuplet(Container):
             Fraction(2, 3)
 
         """
-        return self.ratio().reciprocal().as_fraction()
+        return self.ratio().reciprocal().fraction()
 
     def normalize_ratio(self) -> None:
         r"""
