@@ -66,6 +66,7 @@ class_to_default_values = {
     abjad.TimeSignature: ((4, 4),),
     abjad.Tweak: (r"\tweak color #red",),
     abjad.Offset: (abjad.Fraction(3, 16),),
+    abjad.ValueDuration: (1, 4),
     abjad.VerticalMoment: ([abjad.Staff("c'4 d'4 e'4 f'4")],),
 }
 
