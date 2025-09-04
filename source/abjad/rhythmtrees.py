@@ -654,7 +654,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             tuplet.set_ratio(ratio)
             return [tuplet]
 
-        tuplet_duration_ = duration.fraction() * _duration.Duration(*self.pair())
+        tuplet_duration_ = duration.as_fraction() * _duration.Duration(*self.pair())
         assert isinstance(tuplet_duration_, _duration.Duration)
         components = recurse(self, tuplet_duration_)
         assert all(isinstance(_, _score.Leaf | _score.Tuplet) for _ in components)

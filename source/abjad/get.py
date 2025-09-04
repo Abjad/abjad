@@ -610,7 +610,9 @@ def descendants(argument) -> list[_score.Component]:
 
 
 def duration(
-    argument, in_seconds: bool = False, preprolated: bool = False
+    argument,
+    in_seconds: bool = False,
+    preprolated: bool = False,
 ) -> _duration.Duration:
     r"""
     Gets duration.
@@ -847,9 +849,12 @@ def duration(
         (LogicalTie(items=[Note("d'4"), Note("d'4")]), Duration(1, 3), Duration(1, 2))
 
     """
-    return _getlib.get_duration(
-        argument, in_seconds=in_seconds, preprolated=preprolated
+    duration = _getlib.get_duration(
+        argument,
+        in_seconds=in_seconds,
+        preprolated=preprolated,
     )
+    return duration
 
 
 def effective_indicator(

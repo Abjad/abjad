@@ -490,7 +490,7 @@ def _update_component_offsets(component) -> None:
                 )
         assert isinstance(start_offset, _duration.Offset), repr(start_offset)
         stop_offset_duration = start_offset.fraction + component._get_duration()
-        stop_offset = _duration.Offset(stop_offset_duration.fraction())
+        stop_offset = _duration.Offset(stop_offset_duration.as_fraction())
     assert isinstance(start_offset, _duration.Offset), repr(start_offset)
     assert isinstance(stop_offset, _duration.Offset), repr(stop_offset)
     timespan = _timespan.Timespan(start_offset, stop_offset)

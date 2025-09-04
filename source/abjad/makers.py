@@ -826,7 +826,7 @@ def make_notes(
             numerator = _math.greatest_power_of_two_less_equal(denominator)
             duration = _duration.Duration(numerator, denominator)
             duration_list = [
-                duration.reciprocal().fraction() * _ for _ in duration_list
+                duration.reciprocal().as_fraction() * _ for _ in duration_list
             ]
             notes = _make_unprolated_notes(
                 pitches_,

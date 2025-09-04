@@ -1306,12 +1306,12 @@ class Timespan:
             multiplier * (self.start_offset - anchor)
         ) + anchor.fraction
         assert isinstance(new_start_offset_duration, _duration.Duration)
-        new_start_offset = _duration.Offset(new_start_offset_duration.fraction())
+        new_start_offset = _duration.Offset(new_start_offset_duration.as_fraction())
         new_stop_offset_duration = (
             multiplier * (self.stop_offset - anchor)
         ) + anchor.fraction
         assert isinstance(new_stop_offset_duration, _duration.Duration)
-        new_stop_offset = _duration.Offset(new_stop_offset_duration.fraction())
+        new_stop_offset = _duration.Offset(new_stop_offset_duration.as_fraction())
         result = dataclasses.replace(
             self,
             start_offset=new_start_offset,

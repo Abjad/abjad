@@ -5503,7 +5503,7 @@ class Tuplet(Container):
         multiplier = _duration.Duration(self.multiplier() * dot_duration)
         ratio = _duration.Ratio(*multiplier.reciprocal().pair())
         self.set_ratio(ratio)
-        reciprocal_dot_fraction = dot_duration.reciprocal().fraction()
+        reciprocal_dot_fraction = dot_duration.reciprocal().as_fraction()
         for component in self:
             duration = component.written_duration()
             duration *= reciprocal_dot_fraction

@@ -52,6 +52,39 @@ def test_duration_ValueDuration___add__():
     assert duration == abjad.ValueDuration(3, 4)
 
 
+def test_duration_ValueDuration___eq__():
+
+    assert abjad.ValueDuration(1, 4) == abjad.ValueDuration(1, 4)
+    assert abjad.ValueDuration(1, 4) == abjad.ValueDuration(2, 8)
+    assert not abjad.ValueDuration(1, 4) == abjad.Fraction(1, 4)
+
+
+def test_duration_ValueDuration___ge__():
+
+    assert abjad.ValueDuration(1, 4) >= abjad.ValueDuration(1, 4)
+
+
+def test_duration_ValueDuration___gt__():
+
+    assert abjad.ValueDuration(2, 4) > abjad.ValueDuration(1, 4)
+
+
+def test_duration_ValueDuration___le__():
+
+    assert abjad.ValueDuration(1, 4) <= abjad.ValueDuration(1, 4)
+
+
+def test_duration_ValueDuration___lt__():
+
+    assert abjad.ValueDuration(1, 4) < abjad.ValueDuration(2, 4)
+
+
+def test_duration_ValueDuration___ne__():
+
+    assert abjad.ValueDuration(1, 4) != abjad.ValueDuration(2, 4)
+    assert abjad.ValueDuration(1, 4) != abjad.Fraction(1, 4)
+
+
 def test_duration_ValueDuration___neg__():
 
     assert -abjad.ValueDuration(1, 4) == abjad.ValueDuration(-1, 4)

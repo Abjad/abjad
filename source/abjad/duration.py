@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import dataclasses
 import fractions
+import functools
 import math
 import re
 import typing
@@ -30,6 +31,8 @@ def durations(items: list) -> list[Duration]:
             duration = Duration(*item)
         elif callable(getattr(item, "duration", None)):
             duration = item.duration()
+        elif callable(getattr(item, "as_integer_ratio", None)):
+            duration = Duration(*item.as_integer_ratio())
         else:
             duration = Duration(item)
         durations.append(duration)
@@ -201,6 +204,25 @@ def pair_with_denominator(
     return pair
 
 
+def value_durations(items: list) -> list[ValueDuration]:
+    """
+    Changes ``items`` to value durations.
+
+    ..  container:: example
+
+        >>> items = [(15, 8), (3, 8), abjad.TimeSignature((3, 4))]
+        >>> abjad.duration.value_durations(items)
+        [ValueDuration(numerator=15, denominator=8), ValueDuration(numerator=3, denominator=8), ValueDuration(numerator=3, denominator=4)]
+
+    """
+    value_durations = []
+    for duration in durations(items):
+        numerator, denominator = duration.pair()
+        value_duration = ValueDuration(numerator, denominator)
+        value_durations.append(value_duration)
+    return value_durations
+
+
 class Duration(fractions.Fraction):
     """
     Duration.
@@ -370,6 +392,42 @@ class Duration(fractions.Fraction):
             return type(self)(result)
         return result
 
+    def as_fraction(self):
+        """
+        Returns duration as fraction.
+
+        ..  container:: example
+
+            >>> abjad.Duration(1, 4).as_fraction()
+            Fraction(1, 4)
+
+        """
+        return fractions.Fraction(self)
+
+    def as_integer_ratio(self) -> tuple[int, int]:
+        """
+        Changes duration to (numerator, denominator) pair.
+
+        ..  container:: example
+
+            >>> abjad.Duration(1, 4).as_integer_ratio()
+            (1, 4)
+
+        """
+        return self.numerator, self.denominator
+
+    def as_value_duration(self) -> ValueDuration:
+        """
+        Changes duration to value duration.
+
+        ..  container:: example
+
+            >>> abjad.Duration(1, 4).as_value_duration()
+            ValueDuration(numerator=1, denominator=4)
+
+        """
+        return ValueDuration(self.numerator, self.denominator)
+
     def dot_count(self) -> int:
         r"""
         Gets dot count.
@@ -484,12 +542,6 @@ class Duration(fractions.Fraction):
         log = math.log(float(self.numerator) / self.denominator, 2)
         count = -int(math.floor(log)) - 2
         return max(count, 0)
-
-    def fraction(self):
-        """
-        Returns duration as fraction.
-        """
-        return fractions.Fraction(self)
 
     @staticmethod
     def from_clock_string(clock_string) -> Duration:
@@ -701,6 +753,7 @@ class Duration(fractions.Fraction):
         return type(self)(self.denominator, self.numerator)
 
 
+@functools.total_ordering
 @dataclasses.dataclass(frozen=True, slots=True, unsafe_hash=True)
 class ValueDuration:
     """
@@ -740,6 +793,19 @@ class ValueDuration:
             c, d = other.numerator, other.denominator
             return ValueDuration(a * d + c * b, b * d)
         return NotImplemented
+
+    def __eq__(self, other: object) -> bool:
+        if isinstance(other, ValueDuration):
+            return self.as_integer_ratio() == other.as_integer_ratio()
+        return NotImplemented
+
+    def __float__(self) -> float:
+        return float(fractions.Fraction(self.numerator, self.denominator))
+
+    def __lt__(self, other: object) -> bool:
+        if not isinstance(other, ValueDuration):
+            return NotImplemented
+        return self.numerator * other.denominator < other.numerator * self.denominator
 
     def __neg__(self) -> ValueDuration:
         numerator, denominator = self.numerator, self.denominator
@@ -781,6 +847,42 @@ class ValueDuration:
             c, d = other.numerator, other.denominator
             return ValueDuration(a * d, b * c)
         return NotImplemented
+
+    def as_duration(self) -> Duration:
+        """
+        Changes value duration to vanilla duration.
+
+        ..  container:: example
+
+            >>> abjad.ValueDuration(1, 4).as_duration()
+            Duration(1, 4)
+
+        """
+        return Duration(*self.as_integer_ratio())
+
+    def as_fraction(self) -> fractions.Fraction:
+        """
+        Returns value duration as fraction.
+
+        ..  container:: example
+
+            >>> abjad.ValueDuration(1, 4).as_fraction()
+            Fraction(1, 4)
+
+        """
+        return fractions.Fraction(*self.as_integer_ratio())
+
+    def as_integer_ratio(self) -> tuple[int, int]:
+        """
+        Changes duration to (numerator, denominator) pair.
+
+        ..  container:: example
+
+            >>> abjad.ValueDuration(1, 4).as_integer_ratio()
+            (1, 4)
+
+        """
+        return self.numerator, self.denominator
 
 
 @dataclasses.dataclass(frozen=True, order=True, slots=True, unsafe_hash=True)
@@ -1120,7 +1222,7 @@ class Offset:
     def __add__(self, argument: int | fractions.Fraction | Duration) -> Offset:
         assert isinstance(argument, int | fractions.Fraction | Duration), repr(argument)
         if isinstance(argument, Duration):
-            fraction = argument.fraction()
+            fraction = argument.as_fraction()
         else:
             fraction = fractions.Fraction(argument)
         offset = Offset(self.fraction + fraction, displacement=self.displacement)
@@ -1129,7 +1231,7 @@ class Offset:
     def __radd__(self, argument: int | fractions.Fraction | Duration) -> Offset:
         assert isinstance(argument, int | fractions.Fraction | Duration), repr(argument)
         if isinstance(argument, Duration):
-            fraction = argument.fraction()
+            fraction = argument.as_fraction()
         else:
             fraction = fractions.Fraction(argument)
         offset = Offset(fraction + self.fraction, displacement=self.displacement)
@@ -1220,7 +1322,7 @@ class Offset:
             )
             result = self.fraction - argument
             if isinstance(result, Duration):
-                fraction = result.fraction()
+                fraction = result.as_fraction()
             else:
                 assert isinstance(result, fractions.Fraction), repr(result)
                 fraction = result
