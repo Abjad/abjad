@@ -2897,8 +2897,7 @@ class _MeterFittingSession:
                 winning_kernel = kernel_scores[-1].kernel
                 assert isinstance(winning_kernel, MetricAccentKernel)
             selected_kernels.append(winning_kernel)
-            # current_offset += winning_kernel.duration()
-            fraction = current_offset.fraction + winning_kernel.duration().fraction()
+            fraction = current_offset.fraction + winning_kernel.duration().as_fraction()
             current_offset = _duration.Offset(fraction)
         selected_meters = [self.kernels()[_] for _ in selected_kernels]
         assert all(isinstance(_, Meter) for _ in selected_meters), repr(selected_meters)
@@ -2938,7 +2937,7 @@ class _MeterFittingSession:
             count = self.offset_counter().sorted_offset_to_count[offset]
             assert isinstance(count, int)
             duration = offset - start_offset
-            offset = _duration.Offset(duration.fraction())
+            offset = _duration.Offset(duration.as_fraction())
             offset_to_weight[offset] = count
             index += 1
             if index == len(self.ordered_offsets()):
