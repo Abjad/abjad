@@ -66,15 +66,16 @@ class RhythmTreeNode:
         node = self
         assert hasattr(node, "parent"), repr(node)
         while node.parent is not None:
-            pair = _duration.Duration(*node.pair())
+            pair = _duration.ValueDuration(*node.pair())
             parent_contents_duration = node.parent._get_contents_duration()
             fraction = pair / parent_contents_duration
             assert isinstance(fraction, fractions.Fraction), repr(fraction)
-            duration = _duration.Duration(fraction)
-            assert isinstance(duration, _duration.Duration), repr(duration)
+            # duration = _duration.ValueDuration(fraction)
+            duration = _duration.ValueDuration(*fraction.as_integer_ratio())
+            assert isinstance(duration, _duration.ValueDuration), repr(duration)
             result.append(duration.pair())
             node = node.parent
-        duration = _duration.Duration(*node.pair())
+        duration = _duration.ValueDuration(*node.pair())
         result.append(duration.pair())
         return tuple(reversed(result))
 
@@ -88,7 +89,8 @@ class RhythmTreeNode:
                 else:
                     child._offset = current_offset
                     child._offsets_are_current = True
-                    current_offset += _duration.Duration(child.duration())
+                    # current_offset += _duration.ValueDuration(child.duration())
+                    current_offset += child.duration()
             return current_offset
 
         offset = _duration.offset(0)
@@ -105,7 +107,7 @@ class RhythmTreeNode:
         if not self._get_node_state_flags()["_offsets_are_current"]:
             self._update_offsets_of_entire_tree()
 
-    def duration(self) -> _duration.Duration:
+    def duration(self) -> _duration.ValueDuration:
         r"""
         Gets duration of rhythm-tree node.
 
@@ -113,7 +115,7 @@ class RhythmTreeNode:
 
             >>> string = '(1 ((1 (1 1)) (1 (1 1))))'
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
-            >>> components = rtc(abjad.Duration(1, 1))
+            >>> components = rtc(abjad.ValueDuration(1, 1))
             >>> voice = abjad.Voice(components)
             >>> score = abjad.Score([voice])
             >>> abjad.setting(score).proportionalNotationDuration = "#1/12"
@@ -148,18 +150,18 @@ class RhythmTreeNode:
                 >>
 
             >>> rtc.duration()
-            Duration(1, 1)
+            ValueDuration(numerator=1, denominator=1)
 
             >>> rtc[1].duration()
-            Duration(1, 2)
+            ValueDuration(numerator=1, denominator=2)
 
             >>> rtc[1][1].duration()
-            Duration(1, 4)
+            ValueDuration(numerator=1, denominator=4)
 
         """
         numerator = self.prolation().numerator * self.pair()[0]
         denominator = self.prolation().denominator * self.pair()[1]
-        return _duration.Duration(numerator, denominator)
+        return _duration.ValueDuration(numerator, denominator)
 
     def pair(self) -> tuple[int, int]:
         """
@@ -230,8 +232,8 @@ class RhythmTreeNode:
         pairs = _sequence.nwise(self.parentage)
         for child, parent in pairs:
             parent_contents_duration = parent._get_contents_duration()
-            assert isinstance(parent_contents_duration, _duration.Duration)
-            parent_preprolated_duration = _duration.Duration(*parent.pair())
+            assert isinstance(parent_contents_duration, _duration.ValueDuration)
+            parent_preprolated_duration = _duration.ValueDuration(*parent.pair())
             duration = parent_preprolated_duration / parent_contents_duration
             prolation = fractions.Fraction(duration)
             prolations.append(prolation)
@@ -280,7 +282,8 @@ class RhythmTreeNode:
             Offset(Fraction(1, 4))
 
         """
-        return self.start_offset() + _duration.Duration(self.duration())
+        # return self.start_offset() + _duration.ValueDuration(self.duration())
+        return self.start_offset() + self.duration()
 
 
 class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
@@ -292,7 +295,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         Pitched rhythm-tree leaves makes notes:
 
         >>> rtl = abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_unpitched=False)
-        >>> components = rtl(abjad.Duration(1, 4))
+        >>> components = rtl(abjad.ValueDuration(1, 4))
         >>> voice = abjad.Voice(components)
         >>> abjad.setting(voice[0]).Score.proportionalNotationDuration = "#1/12"
         >>> abjad.show(voice) # doctest: +SKIP
@@ -314,7 +317,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         Unpitched rhythm-tree leaves make rests:
 
         >>> rtl = abjad.rhythmtrees.RhythmTreeLeaf((5, 1), is_unpitched=True)
-        >>> components = rtl(abjad.Duration(1, 4))
+        >>> components = rtl(abjad.ValueDuration(1, 4))
         >>> voice = abjad.Voice(components)
         >>> abjad.setting(voice[0]).Score.proportionalNotationDuration = "#1/12"
         >>> abjad.show(voice) # doctest: +SKIP
@@ -347,12 +350,12 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         self.set_is_unpitched(is_unpitched)
 
     def __call__(
-        self, duration: _duration.Duration
+        self, duration: _duration.ValueDuration
     ) -> list[_score.Leaf | _score.Tuplet]:
         """
         Makes list of leaves and / or tuplets equal to ``duration``.
         """
-        assert isinstance(duration, _duration.Duration), repr(duration)
+        assert isinstance(duration, _duration.ValueDuration), repr(duration)
         pitches: list[int | None]
         if self.is_unpitched() is False:
             pitches = [0]
@@ -360,7 +363,9 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
             assert self.is_unpitched() is True
             pitches = [None]
         pitch_lists = _makers.make_pitch_lists(pitches)
-        duration = _duration.Duration(fractions.Fraction(*self.pair()) * duration)
+        # duration = _duration.ValueDuration(fractions.Fraction(*self.pair()) * duration)
+        duration = fractions.Fraction(*self.pair()) * duration
+        assert isinstance(duration, _duration.ValueDuration), repr(duration)
         components = _makers.make_leaves(pitch_lists, [duration])
         return components
 
@@ -369,7 +374,7 @@ class RhythmTreeLeaf(RhythmTreeNode, uqbar.containers.UniqueTreeNode):
         Gets Graphviz graph of rhythm-tree leaf.
         """
         graph = uqbar.graphs.Graph(name="G")
-        label = str(_duration.Duration(*self.pair()))
+        label = str(_duration.ValueDuration(*self.pair()))
         node = uqbar.graphs.Node(attributes={"label": label, "shape": "box"})
         graph.append(node)
         return graph
@@ -449,7 +454,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
         Call rhythm-tree containers with a duration to make components:
 
-        >>> components = rtc(abjad.Duration(1, 1))
+        >>> components = rtc(abjad.ValueDuration(1, 1))
         >>> voice = abjad.Voice(components)
         >>> abjad.setting(voice[0]).Score.proportionalNotationDuration = "#1/12"
         >>> abjad.show(voice) # doctest: +SKIP
@@ -499,7 +504,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
         ..  container:: example
 
             >>> rtc_a = abjad.rhythmtrees.parse('(1 (1 1 1))')[0]
-            >>> components = rtc_a(abjad.Duration(1, 2))
+            >>> components = rtc_a(abjad.ValueDuration(1, 2))
             >>> voice = abjad.Voice(components)
             >>> leaf = abjad.select.leaf(voice, 0)
             >>> abjad.setting(leaf).Score.proportionalNotationDuration = "#1/12"
@@ -521,7 +526,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
                 }
 
             >>> rtc_b = abjad.rhythmtrees.parse('(1 (3 4))')[0]
-            >>> components = rtc_b(abjad.Duration(1, 2))
+            >>> components = rtc_b(abjad.ValueDuration(1, 2))
             >>> voice = abjad.Voice(components)
             >>> leaf = abjad.select.leaf(voice, 0)
             >>> abjad.setting(leaf).Score.proportionalNotationDuration = "#1/12"
@@ -542,7 +547,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
                 }
 
             >>> rtc_c = rtc_a + rtc_b
-            >>> components = rtc_c(abjad.Duration(1, 2))
+            >>> components = rtc_c(abjad.ValueDuration(1, 2))
             >>> voice = abjad.Voice(components)
             >>> leaf = abjad.select.leaf(voice, 0)
             >>> abjad.setting(leaf).Score.proportionalNotationDuration = "#1/12"
@@ -578,15 +583,17 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
         """
         assert isinstance(rtc, RhythmTreeContainer), repr(rtc)
-        new_duration = _duration.Duration(self.duration())
-        new_duration += _duration.Duration(rtc.duration())
+        # new_duration = _duration.ValueDuration(self.duration())
+        new_duration = self.duration()
+        # new_duration += _duration.ValueDuration(rtc.duration())
+        new_duration = new_duration + rtc.duration()
         container = RhythmTreeContainer(new_duration.pair())
         container.extend(self[:])
         container.extend(rtc[:])
         return container
 
     def __call__(
-        self, duration: _duration.Duration
+        self, duration: _duration.ValueDuration
     ) -> list[_score.Leaf | _score.Tuplet]:
         r"""
         Makes list of leaves and / or tuplets equal to ``duration``.
@@ -595,7 +602,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
 
             >>> string = '(1 (1 (2 (1 1 1)) 2))'
             >>> rtc = abjad.rhythmtrees.parse(string)[0]
-            >>> components = rtc(abjad.Duration(1, 1))
+            >>> components = rtc(abjad.ValueDuration(1, 1))
             >>> voice = abjad.Voice(components)
             >>> abjad.setting(voice[0]).proportionalNotationDuration = "#1/12"
             >>> abjad.show(voice) # doctest: +SKIP
@@ -621,18 +628,24 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
                 }
 
         """
-        assert isinstance(duration, _duration.Duration), repr(duration)
-        assert 0 < duration
+        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        assert _duration.ValueDuration(0) < duration
 
         def recurse(rtc, tuplet_duration):
             assert isinstance(rtc, RhythmTreeContainer), repr(rtc)
-            assert isinstance(tuplet_duration, _duration.Duration)
+            assert isinstance(tuplet_duration, _duration.ValueDuration)
             contents_duration = rtc._get_contents_duration()
             basic_prolated_fraction = tuplet_duration / contents_duration
             assert isinstance(basic_prolated_fraction, fractions.Fraction)
-            basic_written_duration = _duration.Duration(basic_prolated_fraction)
+            # basic_written_duration = _duration.ValueDuration(basic_prolated_fraction)
+            basic_written_duration = _duration.ValueDuration(
+                *basic_prolated_fraction.as_integer_ratio()
+            )
             fraction = _math.equal_or_greater_power_of_two(basic_written_duration)
-            basic_written_duration = _duration.Duration(fraction)
+            # basic_written_duration = _duration.ValueDuration(fraction)
+            basic_written_duration = _duration.ValueDuration(
+                *fraction.as_integer_ratio()
+            )
             tuplet = _score.Tuplet("1:1", [])
             for node in rtc.children:
                 if isinstance(node, type(self)):
@@ -654,8 +667,10 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
             tuplet.set_ratio(ratio)
             return [tuplet]
 
-        tuplet_duration_ = duration.as_fraction() * _duration.Duration(*self.pair())
-        assert isinstance(tuplet_duration_, _duration.Duration)
+        tuplet_duration_ = duration.as_fraction() * _duration.ValueDuration(
+            *self.pair()
+        )
+        assert isinstance(tuplet_duration_, _duration.ValueDuration)
         components = recurse(self, tuplet_duration_)
         assert all(isinstance(_, _score.Leaf | _score.Tuplet) for _ in components)
         return components
@@ -710,7 +725,12 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
         nodes.extend(self.depth_first())
         for node in nodes:
             graphviz_node = uqbar.graphs.Node()
-            label = str(_duration.Duration(*node.pair()))
+            # label = str(_duration.ValueDuration(*node.pair()))
+            numerator, denominator = node.pair()
+            if denominator == 1:
+                label = str(numerator)
+            else:
+                label = f"{numerator}/{denominator}"
             graphviz_node.attributes["label"] = label
             if isinstance(node, type(self)):
                 graphviz_node.attributes["shape"] = "triangle"
@@ -740,7 +760,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
     ### PRIVATE METHODS ###
 
     def _get_contents_duration(self):
-        durations = [_duration.Duration(*_.pair()) for _ in self]
+        durations = [_duration.ValueDuration(*_.pair()) for _ in self]
         duration = sum(durations)
         return duration
 
@@ -816,7 +836,7 @@ class RhythmTreeParser(Parser):
                 2
                 1))))
 
-        >>> components = rtc(abjad.Duration(1, 2))
+        >>> components = rtc(abjad.ValueDuration(1, 2))
         >>> abjad.tweak(components[0], r"\tweak text #tuplet-number::calc-fraction-text")
         >>> voice = abjad.Voice(components)
         >>> staff = abjad.Staff([voice])
@@ -889,10 +909,10 @@ class RhythmTreeParser(Parser):
         r"-?[1-9]\d*(/[1-9]\d*)?"
         parts = t.value.partition("/")
         if not parts[2]:
-            t.value = _duration.Duration(int(parts[0]))
+            t.value = _duration.ValueDuration(int(parts[0]))
         else:
             numerator, denominator = int(parts[0]), int(parts[2])
-            duration = _duration.Duration(numerator, denominator)
+            duration = _duration.ValueDuration(numerator, denominator)
             if numerator == duration.numerator:
                 t.value = duration
             else:
@@ -916,7 +936,7 @@ class RhythmTreeParser(Parser):
         if isinstance(p[2], tuple):
             pair = p[2]
         else:
-            assert isinstance(p[2], _duration.Duration)
+            assert isinstance(p[2], _duration.ValueDuration)
             pair = p[2].pair()
         p[0] = RhythmTreeContainer(pair, children=p[3])
 
@@ -933,9 +953,9 @@ class RhythmTreeParser(Parser):
         if isinstance(p[1], int):
             pair = (abs(p[1]), 1)
         else:
-            assert isinstance(p[1], _duration.Duration), repr(p[1])
+            assert isinstance(p[1], _duration.ValueDuration), repr(p[1])
             pair = abs(p[1]).pair()
-        p[0] = RhythmTreeLeaf(pair, is_unpitched=not 0 < p[1])
+        p[0] = RhythmTreeLeaf(pair, is_unpitched=not _duration.ValueDuration(0) < p[1])
 
     def p_node__container(self, p):
         """
@@ -987,13 +1007,13 @@ class RhythmTreeParser(Parser):
 
 
 def call(
-    nodes, duration: _duration.Duration = _duration.Duration(1, 4)
+    nodes, duration: _duration.ValueDuration = _duration.ValueDuration(1, 4)
 ) -> list[_score.Leaf | _score.Tuplet]:
     """
     Calls each node in ``nodes`` with ``duration``.
     """
     assert all(isinstance(_, RhythmTreeContainer | RhythmTreeLeaf) for _ in nodes)
-    assert isinstance(duration, _duration.Duration), repr(duration)
+    assert isinstance(duration, _duration.ValueDuration), repr(duration)
     components = []
     for node in nodes:
         components_ = node(duration)
@@ -1232,7 +1252,7 @@ def parse(string: str) -> list[RhythmTreeContainer | RhythmTreeLeaf]:
 
         >>> string = "(1 (1 (1 (1 1)) 1))"
         >>> nodes = abjad.rhythmtrees.parse(string)
-        >>> components = abjad.rhythmtrees.call(nodes, abjad.Duration(1, 2))
+        >>> components = abjad.rhythmtrees.call(nodes, abjad.ValueDuration(1, 2))
         >>> voice = abjad.Voice(components)
         >>> leaf = abjad.select.leaf(voice, 0)
         >>> abjad.setting(leaf).Score.proportionalNotationDuration = "#1/12"

@@ -82,7 +82,7 @@ Change pitches to notes like this:
     >>> intervals = "M2 M2 m2 M2 M2 M2 m2".split()
     >>> intervals = [abjad.NamedInterval(_) for _ in intervals]
     >>> pitches = make_scale("a'", intervals)
-    >>> duration = abjad.Duration(1, 4)
+    >>> duration = abjad.ValueDuration(1, 4)
     >>> notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in pitches]
 
 ::
@@ -100,7 +100,7 @@ Reverse scale direction like this:
 
 ::
 
-    >>> duration = abjad.Duration(1, 4)
+    >>> duration = abjad.ValueDuration(1, 4)
     >>> retrograde = reversed(pitches)
     >>> notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in retrograde]
 
@@ -119,7 +119,7 @@ Join ascending and descending segments like this:
 
 ::
 
-    >>> duration = abjad.Duration(1, 4)
+    >>> duration = abjad.ValueDuration(1, 4)
     >>> notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in pitches]
     >>> retrograde = reversed(pitches)
     >>> descending = [abjad.Note.from_duration_and_pitch(duration, _) for _ in retrograde]
@@ -164,7 +164,7 @@ This function enumerates scales in any mode:
     ...     intervals = mode_to_intervals[mode_name]
     ...     intervals = intervals.split()
     ...     intervals = [abjad.NamedInterval(_) for _ in intervals]
-    ...     duration = abjad.Duration(1, 4)
+    ...     duration = abjad.ValueDuration(1, 4)
     ...     for tonic in tonics:
     ...         pitch_class = abjad.NamedPitchClass(tonic)
     ...         mode = abjad.Mode(mode_name)

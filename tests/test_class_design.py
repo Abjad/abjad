@@ -42,6 +42,7 @@ def _list_all_classes():
 
 
 classes = _list_all_classes()
+classes.remove(abjad.math.SupportsAbsAdd)
 
 
 class_to_default_values = {
@@ -57,7 +58,7 @@ class_to_default_values = {
     abjad.Markup: (r"\markup Allegro",),
     abjad.Meter: (abjad.meter.make_best_guess_rtc((4, 4)),),
     abjad.MetricModulation: (abjad.Note("c'4"), abjad.Note("c'4.")),
-    abjad.MetronomeMark: (abjad.Duration(1, 4), 90),
+    abjad.MetronomeMark: (abjad.ValueDuration(1, 4), 90),
     abjad.Parentage: (abjad.Note("c'4"),),
     abjad.Ratio: (6, 4),
     abjad.ShortInstrumentName: (r"\markup Vc.",),

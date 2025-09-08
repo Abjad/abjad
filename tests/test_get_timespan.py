@@ -62,7 +62,7 @@ def test_get_timespan_08():
     voice = abjad.Voice([abjad.Note("c'8"), tuplet_1, abjad.Note("c'8")])
     offset = abjad.duration.offset(0)
     pairs = [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]
-    durations = abjad.duration.durations(pairs)
+    durations = abjad.duration.value_durations(pairs)
     leaves = abjad.select.leaves(voice)
     for leaf, duration in zip(leaves, durations, strict=True):
         assert abjad.get.timespan(leaf).start_offset == offset
@@ -78,7 +78,7 @@ def test_get_timespan_09():
     tuplet = abjad.Tuplet("3:2", [abjad.Note("c'4"), tuplet_1, abjad.Note("c'4")])
     offset = abjad.duration.offset(0)
     pairs = [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]
-    durations = abjad.duration.durations(pairs)
+    durations = abjad.duration.value_durations(pairs)
     leaves = abjad.select.leaves(tuplet)
     for leaf, duration in zip(leaves, durations, strict=True):
         assert abjad.get.timespan(leaf).start_offset == offset
@@ -116,7 +116,7 @@ def test_get_timespan_11():
     leaves = abjad.select.leaves(voice)
     for i, leaf in enumerate(leaves):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.duration.offset(i, 8) + abjad.Duration(1, 8)
+        assert start_offset == abjad.duration.offset(i, 8) + abjad.ValueDuration(1, 8)
 
 
 def test_get_timespan_12():
@@ -132,7 +132,7 @@ def test_get_timespan_12():
         assert start_offset == abjad.duration.offset(i, 8)
     for i, leaf in enumerate(voice_2):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.duration.offset(i, 8) + abjad.Duration(1, 2)
+        assert start_offset == abjad.duration.offset(i, 8) + abjad.ValueDuration(1, 2)
 
 
 def test_get_timespan_13():
@@ -164,7 +164,7 @@ def test_get_timespan_14():
     staff[0].set_simultaneous(True)
     for i, leaf in enumerate(voice_3):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.duration.offset(i, 8) + abjad.Duration(1, 2)
+        assert start_offset == abjad.duration.offset(i, 8) + abjad.ValueDuration(1, 2)
 
 
 def test_get_timespan_15():
@@ -179,10 +179,10 @@ def test_get_timespan_15():
     staff[1].set_simultaneous(True)
     for i, leaf in enumerate(voice_1):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.duration.offset(i, 8) + abjad.Duration(1, 2)
+        assert start_offset == abjad.duration.offset(i, 8) + abjad.ValueDuration(1, 2)
     for i, leaf in enumerate(voice_2):
         start_offset = abjad.get.timespan(leaf).start_offset
-        assert start_offset == abjad.duration.offset(i, 8) + abjad.Duration(1, 2)
+        assert start_offset == abjad.duration.offset(i, 8) + abjad.ValueDuration(1, 2)
 
 
 def test_get_timespan_16():
@@ -333,7 +333,7 @@ def test_get_timespan_26():
     """
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
-    mark = abjad.MetronomeMark(abjad.Duration(1, 8), 48)
+    mark = abjad.MetronomeMark(abjad.ValueDuration(1, 8), 48)
     abjad.attach(mark, staff[0], context="Staff")
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
@@ -392,7 +392,7 @@ def test_Tuplet_timespan_02():
     staff = abjad.Staff(r"c'4 d'4 \tuplet 3/2 { e'4 f'4 g'4 }")
     leaves = abjad.select.leaves(staff)
     score = abjad.Score([staff])
-    mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
+    mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 60)
     abjad.attach(mark, leaves[0])
 
     assert abjad.lilypond(score) == abjad.string.normalize(

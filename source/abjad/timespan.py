@@ -876,14 +876,14 @@ class Timespan:
         result = [Timespan(*offset_pair) for offset_pair in offset_pairs]
         return tuple(result)
 
-    def duration(self) -> _duration.Duration:
+    def duration(self) -> _duration.ValueDuration:
         """
         Gets duration of timespan.
 
         ..  container:: example
 
             >>> abjad.Timespan(abjad.duration.offset(0), abjad.duration.offset(10)).duration()
-            Duration(10, 1)
+            ValueDuration(numerator=10, denominator=1)
 
         """
         start_offset = self.start_offset
@@ -907,7 +907,7 @@ class Timespan:
         assert isinstance(stop_offset, _duration.Offset)
         return start_offset, stop_offset
 
-    def overlap_with_timespan(self, timespan: Timespan) -> _duration.Duration:
+    def overlap_with_timespan(self, timespan: Timespan) -> _duration.ValueDuration:
         """
         Gets duration of overlap with ``timespan``.
 
@@ -919,38 +919,40 @@ class Timespan:
             >>> timespan_4 = abjad.Timespan(abjad.duration.offset(12), abjad.duration.offset(22))
 
             >>> timespan_1.overlap_with_timespan(timespan_1)
-            Duration(15, 1)
+            ValueDuration(numerator=15, denominator=1)
 
             >>> timespan_1.overlap_with_timespan(timespan_2)
-            Duration(5, 1)
+            ValueDuration(numerator=5, denominator=1)
 
             >>> timespan_1.overlap_with_timespan(timespan_3)
-            Duration(0, 1)
+            ValueDuration(numerator=0, denominator=1)
 
             >>> timespan_1.overlap_with_timespan(timespan_4)
-            Duration(3, 1)
+            ValueDuration(numerator=3, denominator=1)
 
             >>> timespan_2.overlap_with_timespan(timespan_2)
-            Duration(5, 1)
+            ValueDuration(numerator=5, denominator=1)
 
             >>> timespan_2.overlap_with_timespan(timespan_3)
-            Duration(0, 1)
+            ValueDuration(numerator=0, denominator=1)
 
             >>> timespan_2.overlap_with_timespan(timespan_4)
-            Duration(0, 1)
+            ValueDuration(numerator=0, denominator=1)
 
             >>> timespan_3.overlap_with_timespan(timespan_3)
-            Duration(0, 1)
+            ValueDuration(numerator=0, denominator=1)
 
             >>> timespan_3.overlap_with_timespan(timespan_4)
-            Duration(0, 1)
+            ValueDuration(numerator=0, denominator=1)
 
             >>> timespan_4.overlap_with_timespan(timespan_4)
-            Duration(10, 1)
+            ValueDuration(numerator=10, denominator=1)
 
         """
         assert isinstance(timespan, Timespan), repr(timespan)
-        result = _duration.Duration(sum(x.duration() for x in self & timespan))
+        result = sum(
+            [x.duration() for x in self & timespan], start=_duration.ValueDuration(0)
+        )
         return result
 
     def is_wellformed(self) -> bool:
@@ -1035,7 +1037,9 @@ class Timespan:
             if anchor is _enums.LEFT:
                 new_stop_offset = new_stop_offset + multiplier
             else:
-                new_start_offset_duration = new_start_offset - multiplier
+                new_start_offset_duration = new_start_offset - _duration.ValueDuration(
+                    *multiplier.as_integer_ratio()
+                )
                 new_start_offset = new_start_offset_duration
         result = dataclasses.replace(
             self,
@@ -1088,18 +1092,18 @@ class Timespan:
         )
         return result
 
-    def set_duration(self, duration: _duration.Duration) -> Timespan:
+    def set_duration(self, duration: _duration.ValueDuration) -> Timespan:
         """
         Sets timespan duration to ``duration``.
 
         ..  container:: example
 
             >>> timespan = abjad.Timespan(abjad.duration.offset(1, 2), abjad.duration.offset(3, 2))
-            >>> timespan.set_duration(abjad.Duration(3, 5))
+            >>> timespan.set_duration(abjad.ValueDuration(3, 5))
             Timespan(Offset(Fraction(1, 2)), Offset(Fraction(11, 10)))
 
         """
-        assert isinstance(duration, _duration.Duration), repr(duration)
+        assert isinstance(duration, _duration.ValueDuration), repr(duration)
         start_offset = self.start_offset
         assert isinstance(start_offset, _duration.Offset), repr(start_offset)
         new_stop_offset = start_offset + duration
@@ -1304,13 +1308,13 @@ class Timespan:
         assert isinstance(anchor, _duration.Offset), repr(anchor)
         new_start_offset_duration = (
             multiplier * (self.start_offset - anchor)
-        ) + anchor.fraction
-        assert isinstance(new_start_offset_duration, _duration.Duration)
+        ) + _duration.ValueDuration(*anchor.fraction.as_integer_ratio())
+        assert isinstance(new_start_offset_duration, _duration.ValueDuration)
         new_start_offset = _duration.Offset(new_start_offset_duration.as_fraction())
         new_stop_offset_duration = (
             multiplier * (self.stop_offset - anchor)
-        ) + anchor.fraction
-        assert isinstance(new_stop_offset_duration, _duration.Duration)
+        ) + _duration.ValueDuration(*anchor.fraction.as_integer_ratio())
+        assert isinstance(new_stop_offset_duration, _duration.ValueDuration)
         new_stop_offset = _duration.Offset(new_stop_offset_duration.as_fraction())
         result = dataclasses.replace(
             self,
@@ -1320,7 +1324,7 @@ class Timespan:
         return result
 
     def translate(
-        self, duration: _duration.Duration = _duration.Duration(0)
+        self, duration: _duration.ValueDuration = _duration.ValueDuration(0)
     ) -> Timespan:
         """
         Translates timespan by ``duration``.
@@ -1328,18 +1332,18 @@ class Timespan:
         ..  container:: example
 
             >>> timespan = abjad.Timespan(abjad.duration.offset(5), abjad.duration.offset(10))
-            >>> duration = abjad.Duration(2)
+            >>> duration = abjad.ValueDuration(2)
             >>> timespan.translate(duration)
             Timespan(Offset(Fraction(7, 1)), Offset(Fraction(12, 1)))
 
         """
-        assert isinstance(duration, _duration.Duration), repr(duration)
+        assert isinstance(duration, _duration.ValueDuration), repr(duration)
         return self.translate_offsets(duration, duration)
 
     def translate_offsets(
         self,
-        start_offset_translation: _duration.Duration = _duration.Duration(0),
-        stop_offset_translation: _duration.Duration = _duration.Duration(0),
+        start_offset_translation: _duration.ValueDuration = _duration.ValueDuration(0),
+        stop_offset_translation: _duration.ValueDuration = _duration.ValueDuration(0),
     ) -> Timespan:
         """
         Translates timespan start offset by ``start_offset_translation`` and
@@ -1348,15 +1352,15 @@ class Timespan:
         ..  container:: example
 
             >>> timespan = abjad.Timespan(abjad.duration.offset(1, 2), abjad.duration.offset(3, 2))
-            >>> duration = abjad.Duration(-1, 8)
+            >>> duration = abjad.ValueDuration(-1, 8)
             >>> timespan.translate_offsets(start_offset_translation=duration)
             Timespan(Offset(Fraction(3, 8)), Offset(Fraction(3, 2)))
 
         """
-        assert isinstance(start_offset_translation, _duration.Duration), repr(
+        assert isinstance(start_offset_translation, _duration.ValueDuration), repr(
             start_offset_translation
         )
-        assert isinstance(stop_offset_translation, _duration.Duration), repr(
+        assert isinstance(stop_offset_translation, _duration.ValueDuration), repr(
             stop_offset_translation
         )
         self_start_offset = self.start_offset
@@ -2113,7 +2117,7 @@ class TimespanList(list):
             return _duration.Offset(fraction)
         return None
 
-    def duration(self) -> _duration.Duration:
+    def duration(self) -> _duration.ValueDuration:
         """
         Gets duration of timespan list.
 
@@ -2129,7 +2133,7 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.duration()
-            Duration(10, 1)
+            ValueDuration(numerator=10, denominator=1)
 
         ..  container:: example
 
@@ -2145,14 +2149,14 @@ class TimespanList(list):
             >>> abjad.show(timespans, scale=0.5) # doctest: +SKIP
 
             >>> timespans.duration()
-            Duration(32, 1)
+            ValueDuration(numerator=32, denominator=1)
 
         ..  container:: example
 
             Gets zero when timespan list is empty:
 
             >>> abjad.TimespanList().duration()
-            Duration(0, 1)
+            ValueDuration(numerator=0, denominator=1)
 
         """
         start_offset = self.start_offset()
@@ -2163,7 +2167,7 @@ class TimespanList(list):
             duration = stop_offset - start_offset
             return duration
         else:
-            return _duration.Duration(0)
+            return _duration.ValueDuration(0)
 
     def is_sorted(self) -> bool:
         """
@@ -2443,9 +2447,9 @@ class TimespanList(list):
         """
         assert anchor in (_enums.LEFT, _enums.RIGHT)
         if minimum is not None:
-            minimum = _duration.Duration(minimum)
+            minimum = _duration.ValueDuration(minimum)
         if maximum is not None:
-            maximum = _duration.Duration(maximum)
+            maximum = _duration.ValueDuration(maximum)
         if minimum is not None and maximum is not None:
             assert minimum <= maximum
         timespans = type(self)()
@@ -2845,9 +2849,14 @@ class TimespanList(list):
         timespans = self.timespans_that_satisfy_time_relation(
             lambda _: bool(_ & timespan)
         )
-        total_overlap = _duration.Duration(
-            sum(x.overlap_with_timespan(timespan) for x in timespans)
+        # total_overlap = _duration.ValueDuration(
+        #     sum(x.overlap_with_timespan(timespan) for x in timespans)
+        # )
+        total_overlap = sum(
+            [x.overlap_with_timespan(timespan) for x in timespans],
+            start=_duration.ValueDuration(0),
         )
+        assert isinstance(total_overlap, _duration.ValueDuration), repr(total_overlap)
         overlap_factor = fractions.Fraction(total_overlap / timespan.duration())
         return overlap_factor
 
@@ -3493,7 +3502,8 @@ class TimespanList(list):
         right_timespans = self[-elements_to_move:]
         split_offset = right_timespans[0].start_offset
         translation_to_left = split_offset - self.start_offset()
-        translation_to_left *= -1
+        # translation_to_left *= -1
+        translation_to_left = -1 * translation_to_left
         translation_to_right = self.stop_offset() - split_offset
         translated_right_timespans = []
         for right_timespan in right_timespans:
@@ -3856,7 +3866,7 @@ class TimespanList(list):
         return self
 
     def translate(
-        self, translation: _duration.Duration = _duration.Duration(0)
+        self, translation: _duration.ValueDuration = _duration.ValueDuration(0)
     ) -> TimespanList:
         """
         Translates timespans by ``translation``.
@@ -3874,7 +3884,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
-            >>> duration = abjad.Duration(50)
+            >>> duration = abjad.ValueDuration(50)
             >>> timespans = timespans.translate(duration)
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
@@ -3888,8 +3898,8 @@ class TimespanList(list):
 
     def translate_offsets(
         self,
-        start_offset_translation: _duration.Duration = _duration.Duration(0),
-        stop_offset_translation: _duration.Duration = _duration.Duration(0),
+        start_offset_translation: _duration.ValueDuration = _duration.ValueDuration(0),
+        stop_offset_translation: _duration.ValueDuration = _duration.ValueDuration(0),
     ) -> TimespanList:
         """
         Translates timespans by ``start_offset_translation`` and
@@ -3908,7 +3918,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
-            >>> duration = abjad.Duration(50)
+            >>> duration = abjad.ValueDuration(50)
             >>> timespans = timespans.translate_offsets(duration, duration)
             >>> abjad.show(timespans, range_=(0, 60), scale=0.5) # doctest: +SKIP
 
@@ -3928,7 +3938,7 @@ class TimespanList(list):
             ... ])
             >>> abjad.show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 
-            >>> duration = abjad.Duration(20)
+            >>> duration = abjad.ValueDuration(20)
             >>> timespans = timespans.translate_offsets(stop_offset_translation=duration)
             >>> abjad.show(timespans, range_=(0, 30), scale=0.5) # doctest: +SKIP
 

@@ -12,6 +12,7 @@ import sys
 import typing
 
 from . import cyclictuple as _cyclictuple
+from . import duration as _duration
 from . import enums as _enums
 from . import math as _math
 
@@ -28,7 +29,8 @@ def _partition_sequence_cyclically_by_weights_at_least(
         target_weight = weights[target_weight_index % len_weights]
         item = l_copy.pop(0)
         current_part.append(item)
-        if target_weight <= _math.weight(current_part):
+        # if target_weight <= _math.weight(current_part):
+        if target_weight <= _math.weight(current_part, start=type(current_part[0])(0)):
             result.append(current_part)
             current_part = []
             target_weight_index += 1
@@ -51,8 +53,11 @@ def _partition_sequence_cyclically_by_weights_at_most(
     while l_copy:
         current_target_weight = weights[current_target_weight_index % len(weights)]
         item = l_copy.pop(0)
-        current_part_weight = _math.weight(current_part)
-        candidate_part_weight = current_part_weight + _math.weight([item])
+        # current_part_weight = _math.weight(current_part)
+        current_part_weight = _math.weight(current_part, start=type(sequence[0])(0))
+        candidate_part_weight = current_part_weight + _math.weight(
+            [item], start=type(item)(0)
+        )
         if candidate_part_weight < current_target_weight:
             current_part.append(item)
         elif candidate_part_weight == current_target_weight:
@@ -92,7 +97,9 @@ def _partition_sequence_once_by_weights_at_least(sequence, weights, overhang=Fal
                         break
                 raise Exception("too few elements in sequence.")
             current_part.append(item)
-            if target_weight <= _math.weight(current_part):
+            if target_weight <= _math.weight(
+                current_part, start=type(current_part[0])(0)
+            ):
                 result.append(current_part)
                 current_part = []
                 break
@@ -113,8 +120,12 @@ def _partition_sequence_once_by_weights_at_most(sequence, weights, overhang=Fals
                 item = l_copy.pop(0)
             except IndexError:
                 raise Exception("too few elements in sequence.")
-            current_weight = _math.weight(current_part)
-            candidate_weight = current_weight + _math.weight([item])
+            # current_weight = _math.weight(current_part)
+            current_weight = _math.weight(current_part, start=type(sequence[0])(0))
+            # candidate_weight = current_weight + _math.weight([item])
+            candidate_weight = current_weight + _math.weight(
+                [item], start=type(item)(0)
+            )
             if candidate_weight < target_weight:
                 current_part.append(item)
             elif candidate_weight == target_weight:
@@ -820,7 +831,8 @@ def partition_by_proportion_of_weights(sequence, weights: tuple[int, ...]) -> li
     assert all(isinstance(_, int | float | fractions.Fraction) for _ in sequence)
     assert isinstance(weights, tuple), repr(weights)
     assert all(isinstance(_, int) for _ in weights), repr(weights)
-    sequence_weight = _math.weight(sequence)
+    # sequence_weight = _math.weight(sequence)
+    sequence_weight = _math.weight(sequence, start=type(sequence[0])(0))
     partitioned_weights = _math.partition_integer_by_proportion(
         sequence_weight, tuple(weights)
     )
@@ -831,7 +843,11 @@ def partition_by_proportion_of_weights(sequence, weights: tuple[int, ...]) -> li
     current_cumulative_weight = cumulative_weights.pop(0)
     for item in sequence:
         sublist.append(item)
-        while current_cumulative_weight <= _math.weight(flatten(items, depth=-1)):
+        # while current_cumulative_weight <= _math.weight(flatten(items, depth=-1)):
+        while current_cumulative_weight <= _math.weight(
+            flatten(items, depth=-1),
+            start=type(flatten(items, depth=-1)[0])(0),
+        ):
             try:
                 current_cumulative_weight = cumulative_weights.pop(0)
                 sublist = []
@@ -844,7 +860,7 @@ def partition_by_proportion_of_weights(sequence, weights: tuple[int, ...]) -> li
 
 def partition_by_weights(
     sequence,
-    weights: typing.Sequence[int | fractions.Fraction],
+    weights: typing.Sequence[int | fractions.Fraction | _duration.ValueDuration],
     *,
     cyclic: bool = False,
     overhang: bool = False,
@@ -1110,7 +1126,7 @@ def partition_by_weights(
 
 def split(
     sequence,
-    weights: typing.Sequence[int | fractions.Fraction],
+    weights: typing.Sequence[int | fractions.Fraction | _duration.ValueDuration],
     *,
     cyclic: bool = False,
     overhang: bool = False,
@@ -1180,19 +1196,20 @@ def split(
         with overhang; then expresses durations as pairs with denominator:
 
         >>> sequence = list([
-        ...     abjad.Duration(20, 2),
-        ...     abjad.Duration(-20, 2),
-        ...     abjad.Duration(20, 2),
-        ...     abjad.Duration(-20, 2),
+        ...     abjad.ValueDuration(20, 2),
+        ...     abjad.ValueDuration(-20, 2),
+        ...     abjad.ValueDuration(20, 2),
+        ...     abjad.ValueDuration(-20, 2),
         ... ])
 
         >>> for part in abjad.sequence.split(
         ...     sequence,
-        ...     (3, 15, 3),
+        ...     abjad.duration.value_durations([3, 15, 3]),
         ...     cyclic=True,
         ...     overhang=True,
         ... ):
-        ...     [abjad.duration.pair_with_denominator(_, 2) for _ in part]
+        ...     fractions = [_.as_fraction() for _ in part]
+        ...     [abjad.duration.pair_with_denominator(_, 2) for _ in fractions]
         ...
         [(6, 2)]
         [(14, 2), (-16, 2)]
@@ -1207,27 +1224,43 @@ def split(
     current_piece: list[typing.Any] = []
     if cyclic:
         weights = repeat_to_weight(
-            weights, _math.weight(sequence), allow_total=_enums.LESS
+            weights,
+            # _math.weight(sequence),
+            _math.weight(sequence, start=type(sequence[0])(0)),
+            allow_total=_enums.LESS,
         )
     for weight in weights:
-        current_piece_weight = _math.weight(current_piece)
+        if current_piece == []:
+            current_piece_weight = type(weight)(0)
+        else:
+            # current_piece_weight = _math.weight(current_piece)
+            current_piece_weight = _math.weight(
+                current_piece, start=type(current_piece[0])(0)
+            )
         while current_piece_weight < weight:
             current_piece.append(sequence[current_index])
             current_index += 1
-            current_piece_weight = _math.weight(current_piece)
+            # current_piece_weight = _math.weight(current_piece)
+            current_piece_weight = _math.weight(
+                current_piece, start=type(current_piece[0])(0)
+            )
         if current_piece_weight == weight:
             current_piece_ = type(sequence)(current_piece)
             result.append(current_piece_)
             current_piece = []
         elif weight < current_piece_weight:
-            overage = current_piece_weight - weight
+            # assert type(weight) is type(current_piece_weight)
+            # overage = current_piece_weight - weight
+            overage = typing.cast(typing.Any, current_piece_weight) - weight
             current_last_element = current_piece.pop(-1)
             needed = abs(current_last_element) - overage
-            needed *= _math.sign(current_last_element)
+            # needed *= _math.sign(current_last_element)
+            needed = _math.sign(current_last_element) * needed
             current_piece.append(needed)
             current_piece_ = type(sequence)(current_piece)
             result.append(current_piece_)
-            overage *= _math.sign(current_last_element)
+            # overage *= _math.sign(current_last_element)
+            overage = _math.sign(current_last_element) * overage
             current_piece = [overage]
     if overhang:
         last_piece = current_piece
@@ -1259,7 +1292,7 @@ def filter(sequence, predicate: typing.Callable | None = None):
         >>> sequence = list(staff)
 
         >>> abjad.sequence.filter(
-        ...     sequence, lambda _: _.written_duration() == abjad.Duration(1, 8)
+        ...     sequence, lambda _: _.written_duration() == abjad.ValueDuration(1, 8)
         ... )
         [Note("d'8"), Note("f'8")]
 
@@ -1946,7 +1979,7 @@ def repeat_to_length(sequence, length: int = 0, *, start: int = 0):
 
 def repeat_to_weight(
     sequence,
-    weight: int | fractions.Fraction,
+    weight: int | fractions.Fraction | _duration.ValueDuration,
     *,
     allow_total: _enums.Comparison = _enums.EXACT,
 ):
@@ -1972,35 +2005,39 @@ def repeat_to_weight(
         >>> abjad.sequence.repeat_to_weight([5, -5, -5], 23, allow_total=abjad.LESS)
         [5, -5, -5, 5]
 
-        >>> sequence = [abjad.Duration(3, 16)]
-        >>> weight = abjad.Duration(5, 4)
+        >>> sequence = [abjad.ValueDuration(3, 16)]
+        >>> weight = abjad.ValueDuration(5, 4)
         >>> sequence = abjad.sequence.repeat_to_weight(sequence, weight)
         >>> sum(sequence)
-        Duration(5, 4)
+        ValueDuration(numerator=5, denominator=4)
 
-        >>> [abjad.duration.pair_with_denominator(_, 16) for _ in sequence]
+        >>> fractions = [_.as_fraction() for _ in sequence]
+        >>> [abjad.duration.pair_with_denominator(_, 16) for _ in fractions]
         [(3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (3, 16), (2, 16)]
 
     """
-    assert 0 <= weight
+    assert type(weight)(0) <= weight
     if allow_total is _enums.EXACT:
-        sequence_weight = _math.weight(sequence)
+        # sequence_weight = _math.weight(sequence)
+        sequence_weight = _math.weight(sequence, start=type(sequence[0])(0))
         complete_repetitions = int(math.ceil(float(weight) / float(sequence_weight)))
         items = list(sequence)
         items = complete_repetitions * items
         overage = complete_repetitions * sequence_weight - weight
         for item in reversed(items):
-            if 0 < overage:
+            if type(overage)(0) < overage:
                 element_weight = abs(item)
                 candidate_overage = overage - element_weight
-                if 0 <= candidate_overage:
+                if type(candidate_overage)(0) <= candidate_overage:
                     overage = candidate_overage
                     items.pop()
                 else:
                     absolute_amount_to_keep = element_weight - overage
-                    assert 0 < absolute_amount_to_keep
+                    # assert 0 < absolute_amount_to_keep
+                    assert type(absolute_amount_to_keep)(0) < absolute_amount_to_keep
                     signed_amount_to_keep = absolute_amount_to_keep
-                    signed_amount_to_keep *= _math.sign(item)
+                    # signed_amount_to_keep *= _math.sign(item)
+                    signed_amount_to_keep = _math.sign(item) * signed_amount_to_keep
                     items.pop()
                     items.append(signed_amount_to_keep)
                     break
@@ -2009,16 +2046,19 @@ def repeat_to_weight(
     elif allow_total is _enums.LESS:
         items = [sequence[0]]
         i = 1
-        while _math.weight(items) < weight:
+        # while _math.weight(items) < weight:
+        while _math.weight(items, start=type(items[0])(0)) < weight:
             items.append(sequence[i % len(sequence)])
             i += 1
-        if weight < _math.weight(items):
+        # if weight < _math.weight(items):
+        if weight < _math.weight(items, start=type(items[0])(0)):
             items = items[:-1]
         return type(sequence)(items)
     elif allow_total is _enums.MORE:
         items = [sequence[0]]
         i = 1
-        while _math.weight(items) < weight:
+        # while _math.weight(items) < weight:
+        while _math.weight(items, start=type(items[0])(0)) < weight:
             items.append(sequence[i % len(sequence)])
             i += 1
         return type(sequence)(items)
@@ -2312,7 +2352,7 @@ def truncate(
     sequence,
     *,
     sum_: int | fractions.Fraction | None = None,
-    weight: int | fractions.Fraction | None = None,
+    weight: int | fractions.Fraction | _duration.ValueDuration | None = None,
 ):
     """
     Truncates ``sequence``.
@@ -2373,25 +2413,33 @@ def truncate(
 
     """
     if weight is not None:
-        assert 0 <= weight, repr(weight)
+        assert type(weight)(0) <= weight, repr(weight)
         items = []
-        if 0 < weight:
-            total = 0
+        if type(weight)(0) < weight:
+            total = type(weight)(0)
             for item in sequence:
                 total += abs(item)
                 if total < weight:
                     items.append(item)
                 else:
                     sign = _math.sign(item)
-                    trimmed_part = weight - _math.weight(items)
-                    trimmed_part *= sign
+                    # trimmed_part = weight - _math.weight(items)
+                    if items == []:
+                        trimmed_part = weight
+                    else:
+                        # trimmed_part = weight - _math.weight(items)
+                        trimmed_part = weight - _math.weight(
+                            items, start=type(items[0])(0)
+                        )
+                    # trimmed_part *= sign
+                    trimmed_part = sign * trimmed_part
                     items.append(trimmed_part)
                     break
     elif sum_ is not None:
-        assert 0 <= sum_, repr(sum_)
+        assert type(sum_)(0) <= sum_, repr(sum_)
         items = []
-        if 0 < sum_:
-            total = 0
+        if type(sum_)(0) < sum_:
+            total = type(sum_)(0)
             for item in sequence:
                 total += item
                 if total < sum_:

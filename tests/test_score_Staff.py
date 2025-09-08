@@ -419,9 +419,9 @@ def test_Staff___setitem___02():
     """
 
     staff = abjad.Staff("c'4 c'4 c'4 c'4")
-    assert staff._get_contents_duration() == abjad.Duration(4, 4)
+    assert staff._get_contents_duration() == abjad.ValueDuration(4, 4)
     staff[:] = "c'8 c'8 c'8 c'8"
-    assert staff._get_contents_duration() == abjad.Duration(4, 8)
+    assert staff._get_contents_duration() == abjad.ValueDuration(4, 8)
 
 
 def test_Staff___setitem___03():
@@ -490,9 +490,9 @@ def test_Staff___setitem___08():
     staff[0:4] = chords
     assert len(staff) == 8
     for x in staff[0:4]:
-        assert x.written_duration() == abjad.Duration(1, 4)
+        assert x.written_duration() == abjad.ValueDuration(1, 4)
     for x in staff[4:8]:
-        assert x.written_duration() == abjad.Duration(1, 8)
+        assert x.written_duration() == abjad.ValueDuration(1, 8)
     assert abjad.wf.is_wellformed(staff)
 
 
@@ -523,7 +523,7 @@ def test_Staff_append_01():
     staff.append(abjad.Note("c'4"))
     assert abjad.wf.is_wellformed(staff)
     assert len(staff) == 5
-    assert staff._get_contents_duration() == abjad.Duration(5, 4)
+    assert staff._get_contents_duration() == abjad.ValueDuration(5, 4)
 
 
 def test_Staff_append_02():
@@ -535,7 +535,7 @@ def test_Staff_append_02():
     staff.append("<d' ef' f'>4")
     assert abjad.wf.is_wellformed(staff)
     assert len(staff) == 5
-    assert staff._get_contents_duration() == abjad.Duration(5, 4)
+    assert staff._get_contents_duration() == abjad.ValueDuration(5, 4)
 
 
 def test_Staff_append_03():
@@ -547,7 +547,7 @@ def test_Staff_append_03():
     staff.append(abjad.Tuplet("3:2", "c'8 c'8 c'8"))
     assert abjad.wf.is_wellformed(staff)
     assert len(staff) == 5
-    assert staff._get_contents_duration() == abjad.Duration(5, 4)
+    assert staff._get_contents_duration() == abjad.ValueDuration(5, 4)
 
 
 def test_Staff_engraver_consists_01():

@@ -3231,7 +3231,7 @@ def voice_horizontally(
 
         >>> pcs = [abjad.NamedPitchClass(_) for _ in "c b d e f g e b a c".split()]
         >>> pitches = abjad.pcollections.voice_horizontally(pcs)
-        >>> duration = abjad.Duration(1, 8)
+        >>> duration = abjad.ValueDuration(1, 8)
         >>> notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in pitches]
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -3287,7 +3287,7 @@ def voice_vertically(
 
         >>> pcs = [abjad.NamedPitchClass(_) for _ in "c ef g bf d f af".split()]
         >>> pitches = abjad.pcollections.voice_vertically(pcs)
-        >>> duration = abjad.Duration(1, 8)
+        >>> duration = abjad.ValueDuration(1, 8)
         >>> notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in pitches]
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP

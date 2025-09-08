@@ -1916,7 +1916,7 @@ def test_Container_extend_10():
     Lists must be flattened.
     """
 
-    duration = abjad.Duration(1, 4)
+    duration = abjad.ValueDuration(1, 4)
     lists = [
         abjad.makers.make_notes(abjad.makers.make_pitches([0, 2]), [duration]),
         abjad.makers.make_notes(abjad.makers.make_pitches([4, 5]), [duration]),

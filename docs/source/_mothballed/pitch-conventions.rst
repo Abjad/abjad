@@ -12,7 +12,7 @@ Abjad numbers pitches like this:
 
     >>> score = abjad.illustrators.make_piano_score()
     >>> treble_staff, bass_staff = score["Treble_Staff"], score["Bass_Staff"]
-    >>> duration = abjad.Duration(1, 32)
+    >>> duration = abjad.ValueDuration(1, 32)
     >>> numbers = range(-12, 12 + 1)
     >>> for number in numbers:
     ...     pitch = abjad.NamedPitch(number)
@@ -62,7 +62,7 @@ Abjad numbers diatonic pitches like this:
 
     >>> score = abjad.illustrators.make_piano_score()
     >>> treble_staff, bass_staff = score["Treble_Staff"], score["Bass_Staff"]
-    >>> duration = abjad.Duration(1, 32)
+    >>> duration = abjad.ValueDuration(1, 32)
     >>> numbers = []
     >>> diatonic_numbers = [0, 2, 4, 5, 7, 9, 11]
     >>> numbers.extend([-24 + x for x in diatonic_numbers])

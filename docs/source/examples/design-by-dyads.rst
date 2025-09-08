@@ -27,7 +27,7 @@ variety. The implementation given here generalizes a process due to Luigi Nono:
     ...     right = segment[center:]
     ...     pairs = zip(left, right, strict=True)
     ...     chords = []
-    ...     duration = abjad.Duration(1, 4)
+    ...     duration = abjad.ValueDuration(1, 4)
     ...     for i, pair in enumerate(pairs):
     ...         chord = abjad.Chord.from_duration_and_pitches(duration, pair)
     ...         if i in flip:
@@ -74,7 +74,7 @@ Examples
 
     >>> string = "cs'' d'' ef'' e'' f'' fs'' g'' gs'' a'' bf'' b'' c'''"
     >>> pitches = abjad.pitch.pitches(string.split())
-    >>> duration = abjad.Duration(1, 4)
+    >>> duration = abjad.ValueDuration(1, 4)
     >>> notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in pitches]
     >>> score = abjad.illustrators.make_piano_score(notes)
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])
@@ -115,7 +115,7 @@ Diotima* (1980).
 
     >>> string = "d, b af c'' a' fs'' g'' gs'' as'' b'' d'' f' g' ef' e df c bf,"
     >>> pitches = abjad.pitch.pitches(string.split())
-    >>> duration = abjad.Duration(1, 4)
+    >>> duration = abjad.ValueDuration(1, 4)
     >>> notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in pitches]
     >>> score = abjad.illustrators.make_piano_score(notes)
     >>> lilypond_file = abjad.LilyPondFile([preamble, score])

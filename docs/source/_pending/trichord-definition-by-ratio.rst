@@ -107,7 +107,7 @@ Define helper functions:
     ...     staff_3 = abjad.Staff(name="Staff_3")
     ...     group = abjad.StaffGroup([staff_1, staff_2, staff_3], name="Staff_Group")
     ...     score = abjad.Score([group], name="Score")
-    ...     duration = abjad.Duration(1, 1)
+    ...     duration = abjad.ValueDuration(1, 1)
     ...     pitch = abjad.NamedPitch(fundamental)
     ...     for triad in trichords:
     ...         for i, ratio in enumerate(triad):

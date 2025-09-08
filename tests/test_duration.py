@@ -51,6 +51,9 @@ def test_duration_ValueDuration___add__():
     duration = abjad.ValueDuration(1, 4) + abjad.ValueDuration(2, 4)
     assert duration == abjad.ValueDuration(3, 4)
 
+    durations = abjad.duration.value_durations([(1, 8), (2, 8), (3, 8)])
+    assert sum(durations) == abjad.ValueDuration(3, 4)
+
 
 def test_duration_ValueDuration___eq__():
 
@@ -124,7 +127,7 @@ def test_duration_Offset___copy__():
 
     offset_1 = abjad.Offset(
         abjad.Fraction(1, 4),
-        displacement=abjad.Duration(-1, 16),
+        displacement=abjad.ValueDuration(-1, 16),
     )
     offset_2 = copy.copy(offset_1)
 
@@ -136,7 +139,7 @@ def test_duration_Offset___deepcopy__():
 
     offset_1 = abjad.Offset(
         abjad.Fraction(1, 4),
-        displacement=abjad.Duration(-1, 16),
+        displacement=abjad.ValueDuration(-1, 16),
     )
     offset_2 = copy.deepcopy(offset_1)
 
@@ -147,8 +150,12 @@ def test_duration_Offset___deepcopy__():
 def test_duration_Offset___eq__():
 
     # With equal numerators, denominators and displacement:
-    offset_1 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
+    offset_1 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
+    offset_2 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
 
     assert offset_1 == offset_1
     assert offset_1 == offset_2
@@ -156,8 +163,12 @@ def test_duration_Offset___eq__():
     assert offset_2 == offset_2
 
     # With equal numerators and denominators but differing grace displacements:
-    offset_1 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 8))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
+    offset_1 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 8)
+    )
+    offset_2 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
 
     assert offset_1 == offset_1
     assert not offset_1 == offset_2
@@ -166,7 +177,7 @@ def test_duration_Offset___eq__():
 
     # With differing numerators and denominators. Ignores grace displacements:
     offset_1 = abjad.Offset(abjad.Fraction(1, 4))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 2), displacement=abjad.Duration(-99))
+    offset_2 = abjad.Offset(abjad.Fraction(1, 2), displacement=abjad.ValueDuration(-99))
 
     assert offset_1 == offset_1
     assert not offset_1 == offset_2
@@ -177,8 +188,12 @@ def test_duration_Offset___eq__():
 def test_duration_Offset___ge__():
 
     # With equal numerators, denominators and displacement:
-    offset_1 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
+    offset_1 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
+    offset_2 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
 
     assert offset_1 >= offset_1
     assert offset_1 >= offset_2
@@ -186,8 +201,12 @@ def test_duration_Offset___ge__():
     assert offset_2 >= offset_2
 
     # With equal numerators and denominators but differing grace displacements:
-    offset_1 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 8))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
+    offset_1 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 8)
+    )
+    offset_2 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
 
     assert offset_1 >= offset_1
     assert not offset_1 >= offset_2
@@ -196,7 +215,7 @@ def test_duration_Offset___ge__():
 
     # With differing numerators and denominators. Ignores grace displacements:
     offset_1 = abjad.Offset(abjad.Fraction(1, 4))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 2), displacement=abjad.Duration(-99))
+    offset_2 = abjad.Offset(abjad.Fraction(1, 2), displacement=abjad.ValueDuration(-99))
 
     assert offset_1 >= offset_1
     assert not offset_1 >= offset_2
@@ -207,8 +226,12 @@ def test_duration_Offset___ge__():
 def test_duration_Offset___gt__():
 
     # With equal numerators, denominators and displacement:
-    offset_1 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
+    offset_1 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
+    offset_2 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
 
     assert not offset_1 > offset_1
     assert not offset_1 > offset_2
@@ -216,8 +239,12 @@ def test_duration_Offset___gt__():
     assert not offset_2 > offset_2
 
     # With equal numerators and denominators but differing grace displacements:
-    offset_1 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 8))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
+    offset_1 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 8)
+    )
+    offset_2 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
 
     assert not offset_1 > offset_1
     assert not offset_1 > offset_2
@@ -226,7 +253,7 @@ def test_duration_Offset___gt__():
 
     # With differing numerators and denominators. Ignores grace displacements:
     offset_1 = abjad.Offset(abjad.Fraction(1, 4))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 2), displacement=abjad.Duration(-99))
+    offset_2 = abjad.Offset(abjad.Fraction(1, 2), displacement=abjad.ValueDuration(-99))
 
     assert not offset_1 > offset_1
     assert not offset_1 > offset_2
@@ -237,8 +264,12 @@ def test_duration_Offset___gt__():
 def test_duration_Offset___le__():
 
     # With equal numerators, denominators and displacement:
-    offset_1 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
+    offset_1 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
+    offset_2 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
 
     assert offset_1 <= offset_1
     assert offset_1 <= offset_2
@@ -246,8 +277,12 @@ def test_duration_Offset___le__():
     assert offset_2 <= offset_2
 
     # With equal numerators and denominators but differing grace displacements:
-    offset_1 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 8))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
+    offset_1 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 8)
+    )
+    offset_2 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
 
     assert offset_1 <= offset_1
     assert offset_1 <= offset_2
@@ -256,7 +291,7 @@ def test_duration_Offset___le__():
 
     # With differing numerators and denominators. Ignores grace displacements:
     offset_1 = abjad.Offset(abjad.Fraction(1, 4))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 2), displacement=abjad.Duration(-99))
+    offset_2 = abjad.Offset(abjad.Fraction(1, 2), displacement=abjad.ValueDuration(-99))
 
     assert offset_1 <= offset_1
     assert offset_1 <= offset_2
@@ -267,8 +302,12 @@ def test_duration_Offset___le__():
 def test_duration_Offset___lt__():
 
     # With equal numerators, denominators and displacement:
-    offset_1 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
+    offset_1 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
+    offset_2 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
 
     assert not offset_1 < offset_1
     assert not offset_1 < offset_2
@@ -276,8 +315,12 @@ def test_duration_Offset___lt__():
     assert not offset_2 < offset_2
 
     # With equal numerators and denominators but differing nonzero grace displacements:
-    offset_1 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 8))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 16))
+    offset_1 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 8)
+    )
+    offset_2 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 16)
+    )
 
     assert not offset_1 < offset_1
     assert offset_1 < offset_2
@@ -285,7 +328,9 @@ def test_duration_Offset___lt__():
     assert not offset_2 < offset_2
 
     # With equal numerators and denominators but differing zero-valued displacement:
-    offset_1 = abjad.Offset(abjad.Fraction(1, 4), displacement=abjad.Duration(-1, 8))
+    offset_1 = abjad.Offset(
+        abjad.Fraction(1, 4), displacement=abjad.ValueDuration(-1, 8)
+    )
     offset_2 = abjad.Offset(abjad.Fraction(1, 4))
 
     assert not offset_1 < offset_1
@@ -295,7 +340,7 @@ def test_duration_Offset___lt__():
 
     # With differing numerators and denominators. Ignores grace displacements:
     offset_1 = abjad.Offset(abjad.Fraction(1, 4))
-    offset_2 = abjad.Offset(abjad.Fraction(1, 2), displacement=abjad.Duration(-99))
+    offset_2 = abjad.Offset(abjad.Fraction(1, 2), displacement=abjad.ValueDuration(-99))
 
     assert not offset_1 < offset_1
     assert offset_1 < offset_2
@@ -308,9 +353,9 @@ def test_duration_Offset___sub__():
     # Offset taken from offset returns duration:
     offset_1 = abjad.Offset(abjad.Fraction(2))
     offset_2 = abjad.Offset(abjad.Fraction(1, 2))
-    assert offset_1 - offset_2 == abjad.Duration(3, 2)
+    assert offset_1 - offset_2 == abjad.ValueDuration(3, 2)
 
     # Duration taken from offset returns another offset:
     offset = abjad.Offset(abjad.Fraction(2))
-    duration = abjad.Duration(1, 2)
+    duration = abjad.ValueDuration(1, 2)
     assert offset - duration == abjad.Offset(abjad.Fraction(3, 2))

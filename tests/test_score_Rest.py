@@ -75,4 +75,4 @@ def test_Rest___init___01():
 
     rest = abjad.Rest("r8.")
 
-    assert rest.written_duration() == abjad.Duration(3, 16)
+    assert rest.written_duration() == abjad.ValueDuration(3, 16)

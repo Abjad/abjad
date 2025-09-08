@@ -10,7 +10,7 @@ r"""
     >>> container = abjad.BeforeGraceContainer("gs'16")
     >>> abjad.attach(container, music_voice[1])
     >>> obgc = abjad.on_beat_grace_container(
-    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=abjad.Duration(1, 24)
+    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=abjad.ValueDuration(1, 24)
     ... )
     >>> abjad.attach(abjad.Articulation(">"), obgc[0])
     >>> staff = abjad.Staff([music_voice])
@@ -67,7 +67,7 @@ r"""
 
     >>> music_voice = abjad.Voice("c'4 d' e' f'", name="MusicVoice")
     >>> obgc = abjad.on_beat_grace_container(
-    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=abjad.Duration(1, 24)
+    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=abjad.ValueDuration(1, 24)
     ... )
     >>> abjad.attach(abjad.Articulation(">"), obgc[0])
     >>> container = abjad.BeforeGraceContainer("gs'16")
@@ -129,7 +129,7 @@ r"""
     >>> container = abjad.AfterGraceContainer("cs'16")
     >>> abjad.attach(container, music_voice[1])
     >>> obgc = abjad.on_beat_grace_container(
-    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=abjad.Duration(1, 24)
+    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=abjad.ValueDuration(1, 24)
     ... )
     >>> abjad.attach(abjad.Articulation(">"), obgc[0])
     >>> staff = abjad.Staff([music_voice])
@@ -222,10 +222,10 @@ r"""
     Staff("{ b4 d'4 e'4 f'4 }")    Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 1)))
     Voice("b4 d'4 e'4 f'4", name='MusicVoice') Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 1)))
     Note('b4')                     Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 4)))
-    AfterGraceContainer("c'16")    Timespan(Offset(Fraction(1, 4), displacement=Duration(-1, 8)), Offset(Fraction(1, 4), displacement=Duration(-1, 16)))
-    Note("c'16")                   Timespan(Offset(Fraction(1, 4), displacement=Duration(-1, 8)), Offset(Fraction(1, 4), displacement=Duration(-1, 16)))
-    BeforeGraceContainer("cs'16")  Timespan(Offset(Fraction(1, 4), displacement=Duration(-1, 16)), Offset(Fraction(1, 4)))
-    Note("cs'16")                  Timespan(Offset(Fraction(1, 4), displacement=Duration(-1, 16)), Offset(Fraction(1, 4)))
+    AfterGraceContainer("c'16")    Timespan(Offset(Fraction(1, 4), displacement=ValueDuration(numerator=-1, denominator=8)), Offset(Fraction(1, 4), displacement=ValueDuration(numerator=-1, denominator=16)))
+    Note("c'16")                   Timespan(Offset(Fraction(1, 4), displacement=ValueDuration(numerator=-1, denominator=8)), Offset(Fraction(1, 4), displacement=ValueDuration(numerator=-1, denominator=16)))
+    BeforeGraceContainer("cs'16")  Timespan(Offset(Fraction(1, 4), displacement=ValueDuration(numerator=-1, denominator=16)), Offset(Fraction(1, 4)))
+    Note("cs'16")                  Timespan(Offset(Fraction(1, 4), displacement=ValueDuration(numerator=-1, denominator=16)), Offset(Fraction(1, 4)))
     Note("d'4")                    Timespan(Offset(Fraction(1, 4)), Offset(Fraction(1, 2)))
     Note("e'4")                    Timespan(Offset(Fraction(1, 2)), Offset(Fraction(3, 4)))
     Note("f'4")                    Timespan(Offset(Fraction(3, 4)), Offset(Fraction(1, 1)))
@@ -238,7 +238,7 @@ r"""
     >>> container = abjad.AfterGraceContainer("c'16")
     >>> abjad.attach(container, music_voice[0])
     >>> obgc = abjad.on_beat_grace_container(
-    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=abjad.Duration(1, 24)
+    ...     "a'8 b' c'' b'", music_voice[1:3], grace_leaf_duration=abjad.ValueDuration(1, 24)
     ... )
     >>> abjad.attach(abjad.Articulation(">"), obgc[0])
     >>> staff = abjad.Staff([music_voice])
@@ -297,18 +297,19 @@ r"""
     Staff("{ b4 { { <d' a'>8 * 1/3 b'8 * 1/3 c''8 * 1/3 b'8 * 1/3 } { d'4 e'4 } } f'4 }") Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 1)))
     Voice("b4 { { <d' a'>8 * 1/3 b'8 * 1/3 c''8 * 1/3 b'8 * 1/3 } { d'4 e'4 } } f'4", name='MusicVoice') Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 1)))
     Note('b4')                     Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 4)))
-    AfterGraceContainer("c'16")    Timespan(Offset(Fraction(1, 4), displacement=Duration(-1, 16)), Offset(Fraction(1, 4)))
-    Note("c'16")                   Timespan(Offset(Fraction(1, 4), displacement=Duration(-1, 16)), Offset(Fraction(1, 4)))
+    AfterGraceContainer("c'16")    Timespan(Offset(Fraction(1, 4), displacement=ValueDuration(numerator=-1, denominator=16)), Offset(Fraction(1, 4)))
+    Note("c'16")                   Timespan(Offset(Fraction(1, 4), displacement=ValueDuration(numerator=-1, denominator=16)), Offset(Fraction(1, 4)))
     Container("{ <d' a'>8 * 1/3 b'8 * 1/3 c''8 * 1/3 b'8 * 1/3 } { d'4 e'4 }") Timespan(Offset(Fraction(1, 4)), Offset(Fraction(3, 4)))
-    OnBeatGraceContainer("<d' a'>8 * 1/3 b'8 * 1/3 c''8 * 1/3 b'8 * 1/3") Timespan(Offset(Fraction(1, 4)), Offset(Fraction(1, 4), displacement=Duration(1, 6)))
-    Chord("<d' a'>8 * 1/3")        Timespan(Offset(Fraction(1, 4)), Offset(Fraction(1, 4), displacement=Duration(1, 24)))
-    Note("b'8 * 1/3")              Timespan(Offset(Fraction(1, 4), displacement=Duration(1, 24)), Offset(Fraction(1, 4), displacement=Duration(1, 12)))
-    Note("c''8 * 1/3")             Timespan(Offset(Fraction(1, 4), displacement=Duration(1, 12)), Offset(Fraction(1, 4), displacement=Duration(1, 8)))
-    Note("b'8 * 1/3")              Timespan(Offset(Fraction(1, 4), displacement=Duration(1, 8)), Offset(Fraction(1, 4), displacement=Duration(1, 6)))
+    OnBeatGraceContainer("<d' a'>8 * 1/3 b'8 * 1/3 c''8 * 1/3 b'8 * 1/3") Timespan(Offset(Fraction(1, 4)), Offset(Fraction(1, 4), displacement=ValueDuration(numerator=1, denominator=6)))
+    Chord("<d' a'>8 * 1/3")        Timespan(Offset(Fraction(1, 4)), Offset(Fraction(1, 4), displacement=ValueDuration(numerator=1, denominator=24)))
+    Note("b'8 * 1/3")              Timespan(Offset(Fraction(1, 4), displacement=ValueDuration(numerator=1, denominator=24)), Offset(Fraction(1, 4), displacement=ValueDuration(numerator=1, denominator=12)))
+    Note("c''8 * 1/3")             Timespan(Offset(Fraction(1, 4), displacement=ValueDuration(numerator=1, denominator=12)), Offset(Fraction(1, 4), displacement=ValueDuration(numerator=1, denominator=8)))
+    Note("b'8 * 1/3")              Timespan(Offset(Fraction(1, 4), displacement=ValueDuration(numerator=1, denominator=8)), Offset(Fraction(1, 4), displacement=ValueDuration(numerator=1, denominator=6)))
     Voice("d'4 e'4", name='MusicVoice') Timespan(Offset(Fraction(1, 4)), Offset(Fraction(3, 4)))
-    Note("d'4")                    Timespan(Offset(Fraction(1, 4), displacement=Duration(1, 6)), Offset(Fraction(1, 2)))
+    Note("d'4")                    Timespan(Offset(Fraction(1, 4), displacement=ValueDuration(numerator=1, denominator=6)), Offset(Fraction(1, 2)))
     Note("e'4")                    Timespan(Offset(Fraction(1, 2)), Offset(Fraction(3, 4)))
     Note("f'4")                    Timespan(Offset(Fraction(3, 4)), Offset(Fraction(1, 1)))
+
 
 """
 

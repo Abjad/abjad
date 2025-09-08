@@ -613,7 +613,7 @@ def duration(
     argument,
     in_seconds: bool = False,
     preprolated: bool = False,
-) -> _duration.Duration:
+) -> _duration.ValueDuration:
     r"""
     Gets duration.
 
@@ -684,23 +684,23 @@ def duration(
         >>> for component in abjad.select.components(staff):
         ...     duration = abjad.get.duration(component)
         ...     print(f"{repr(component):30} {repr(duration)}")
-        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") Duration(1, 1)
-        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') Duration(1, 1)
-        Note("c'4")                    Duration(1, 4)
-        BeforeGraceContainer("cs'16")  Duration(1, 16)
-        Note("cs'16")                  Duration(1, 16)
-        Note("d'4")                    Duration(1, 4)
-        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") Duration(1, 4)
-        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") Duration(1, 4)
-        Chord("<e' g'>16")             Duration(1, 16)
-        Note("gs'16")                  Duration(1, 16)
-        Note("a'16")                   Duration(1, 16)
-        Note("as'16")                  Duration(1, 16)
-        Voice("e'4", name='MusicVoice') Duration(1, 4)
-        Note("e'4")                    Duration(1, 4)
-        Note("f'4")                    Duration(1, 4)
-        AfterGraceContainer("fs'16")   Duration(1, 16)
-        Note("fs'16")                  Duration(1, 16)
+        Staff("{ c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4 }") ValueDuration(numerator=1, denominator=1)
+        Voice("c'4 d'4 { { <e' g'>16 gs'16 a'16 as'16 } { e'4 } } f'4", name='MusicVoice') ValueDuration(numerator=1, denominator=1)
+        Note("c'4")                    ValueDuration(numerator=1, denominator=4)
+        BeforeGraceContainer("cs'16")  ValueDuration(numerator=1, denominator=16)
+        Note("cs'16")                  ValueDuration(numerator=1, denominator=16)
+        Note("d'4")                    ValueDuration(numerator=1, denominator=4)
+        Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }") ValueDuration(numerator=1, denominator=4)
+        OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16") ValueDuration(numerator=1, denominator=4)
+        Chord("<e' g'>16")             ValueDuration(numerator=1, denominator=16)
+        Note("gs'16")                  ValueDuration(numerator=1, denominator=16)
+        Note("a'16")                   ValueDuration(numerator=1, denominator=16)
+        Note("as'16")                  ValueDuration(numerator=1, denominator=16)
+        Voice("e'4", name='MusicVoice') ValueDuration(numerator=1, denominator=4)
+        Note("e'4")                    ValueDuration(numerator=1, denominator=4)
+        Note("f'4")                    ValueDuration(numerator=1, denominator=4)
+        AfterGraceContainer("fs'16")   ValueDuration(numerator=1, denominator=16)
+        Note("fs'16")                  ValueDuration(numerator=1, denominator=16)
 
     ..  container:: example
 
@@ -735,14 +735,14 @@ def duration(
         >>> for component in abjad.select.components(staff):
         ...     duration = abjad.get.duration(component)
         ...     print(f"{repr(component):30} {repr(duration)}")
-        Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }") Duration(1, 1)
-        Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice') Duration(1, 1)
-        Note("c'4")                    Duration(1, 4)
-        Note("d'4")                    Duration(1, 4)
-        Note("e'4")                    Duration(1, 4)
-        IndependentAfterGraceContainer("gf'16") Duration(0, 1)
-        Note("gf'16")                  Duration(1, 16)
-        Note("f'4")                    Duration(1, 4)
+        Staff("{ c'4 d'4 e'4 { gf'16 } f'4 }") ValueDuration(numerator=1, denominator=1)
+        Voice("c'4 d'4 e'4 { gf'16 } f'4", name='MusicVoice') ValueDuration(numerator=1, denominator=1)
+        Note("c'4")                    ValueDuration(numerator=1, denominator=4)
+        Note("d'4")                    ValueDuration(numerator=1, denominator=4)
+        Note("e'4")                    ValueDuration(numerator=1, denominator=4)
+        IndependentAfterGraceContainer("gf'16") ValueDuration(numerator=0, denominator=1)
+        Note("gf'16")                  ValueDuration(numerator=1, denominator=16)
+        Note("f'4")                    ValueDuration(numerator=1, denominator=4)
 
     ..  container:: example
 
@@ -778,15 +778,15 @@ def duration(
         >>> for component in abjad.select.components(staff):
         ...     duration = abjad.get.duration(component)
         ...     print(f"{repr(component):30} {repr(duration)}")
-        Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") Duration(1, 1)
-        TremoloContainer("c'16 e'16")  Duration(1, 4)
-        Note("c'16")                   Duration(1, 8)
-        Note("e'16")                   Duration(1, 8)
-        Note("cs'4")                   Duration(1, 4)
-        TremoloContainer("d'16 f'16")  Duration(1, 4)
-        Note("d'16")                   Duration(1, 8)
-        Note("f'16")                   Duration(1, 8)
-        Note("ds'4")                   Duration(1, 4)
+        Staff("{ c'16 e'16 } cs'4 { d'16 f'16 } ds'4") ValueDuration(numerator=1, denominator=1)
+        TremoloContainer("c'16 e'16")  ValueDuration(numerator=1, denominator=4)
+        Note("c'16")                   ValueDuration(numerator=1, denominator=8)
+        Note("e'16")                   ValueDuration(numerator=1, denominator=8)
+        Note("cs'4")                   ValueDuration(numerator=1, denominator=4)
+        TremoloContainer("d'16 f'16")  ValueDuration(numerator=1, denominator=4)
+        Note("d'16")                   ValueDuration(numerator=1, denominator=8)
+        Note("f'16")                   ValueDuration(numerator=1, denominator=8)
+        Note("ds'4")                   ValueDuration(numerator=1, denominator=4)
 
     ..  container:: example
 
@@ -809,7 +809,7 @@ def duration(
 
         >>> components = staff[:3]
         >>> abjad.get.duration(components)
-        Duration(3, 4)
+        ValueDuration(numerator=3, denominator=4)
 
     ..  container:: example
 
@@ -845,8 +845,8 @@ def duration(
         ...     duration = abjad.get.duration(lt)
         ...     preprolated = abjad.get.duration(lt, preprolated=True)
         ...     lt, duration, preprolated
-        (LogicalTie(items=[Note("c'4"), Note("c'4")]), Duration(1, 3), Duration(1, 2))
-        (LogicalTie(items=[Note("d'4"), Note("d'4")]), Duration(1, 3), Duration(1, 2))
+        (LogicalTie(items=[Note("c'4"), Note("c'4")]), ValueDuration(numerator=1, denominator=3), ValueDuration(numerator=1, denominator=2))
+        (LogicalTie(items=[Note("d'4"), Note("d'4")]), ValueDuration(numerator=1, denominator=3), ValueDuration(numerator=1, denominator=2))
 
     """
     duration = _getlib.get_duration(
@@ -2500,15 +2500,15 @@ def is_bar_line_crossing(component: _score.Component) -> bool:
         _indicators.TimeSignature,
     )
     if time_signature is None:
-        time_signature_duration = _duration.Duration(4, 4)
-        partial = _duration.Duration(0)
+        time_signature_duration = _duration.ValueDuration(4, 4)
+        partial = _duration.ValueDuration(0)
     else:
         time_signature_duration = time_signature.duration()
-        partial = time_signature.partial or _duration.Duration(0)
+        partial = time_signature.partial or _duration.ValueDuration(0)
     component_start_offset = timespan(component).start_offset
     assert isinstance(component_start_offset, _duration.Offset)
     shifted_start_offset = component_start_offset - partial
-    shifted_start_offset %= time_signature_duration
+    shifted_start_offset %= time_signature_duration.as_fraction()
     stop_offset = shifted_start_offset + component._get_duration()
     if time_signature_duration < stop_offset.duration():
         return True
@@ -4190,33 +4190,33 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
         Note("c'4"):
             Timespan(Offset(Fraction(0, 1)), Offset(Fraction(1, 4)))
         BeforeGraceContainer("cs'16"):
-            Timespan(Offset(Fraction(1, 4), displacement=Duration(-1, 16)), Offset(Fraction(1, 4)))
+            Timespan(Offset(Fraction(1, 4), displacement=ValueDuration(numerator=-1, denominator=16)), Offset(Fraction(1, 4)))
         Note("cs'16"):
-            Timespan(Offset(Fraction(1, 4), displacement=Duration(-1, 16)), Offset(Fraction(1, 4)))
+            Timespan(Offset(Fraction(1, 4), displacement=ValueDuration(numerator=-1, denominator=16)), Offset(Fraction(1, 4)))
         Note("d'4"):
             Timespan(Offset(Fraction(1, 4)), Offset(Fraction(1, 2)))
         Container("{ <e' g'>16 gs'16 a'16 as'16 } { e'4 }"):
             Timespan(Offset(Fraction(1, 2)), Offset(Fraction(3, 4)))
         OnBeatGraceContainer("<e' g'>16 gs'16 a'16 as'16"):
-            Timespan(Offset(Fraction(1, 2)), Offset(Fraction(1, 2), displacement=Duration(1, 4)))
+            Timespan(Offset(Fraction(1, 2)), Offset(Fraction(1, 2), displacement=ValueDuration(numerator=1, denominator=4)))
         Chord("<e' g'>16"):
-            Timespan(Offset(Fraction(1, 2)), Offset(Fraction(1, 2), displacement=Duration(1, 16)))
+            Timespan(Offset(Fraction(1, 2)), Offset(Fraction(1, 2), displacement=ValueDuration(numerator=1, denominator=16)))
         Note("gs'16"):
-            Timespan(Offset(Fraction(1, 2), displacement=Duration(1, 16)), Offset(Fraction(1, 2), displacement=Duration(1, 8)))
+            Timespan(Offset(Fraction(1, 2), displacement=ValueDuration(numerator=1, denominator=16)), Offset(Fraction(1, 2), displacement=ValueDuration(numerator=1, denominator=8)))
         Note("a'16"):
-            Timespan(Offset(Fraction(1, 2), displacement=Duration(1, 8)), Offset(Fraction(1, 2), displacement=Duration(3, 16)))
+            Timespan(Offset(Fraction(1, 2), displacement=ValueDuration(numerator=1, denominator=8)), Offset(Fraction(1, 2), displacement=ValueDuration(numerator=3, denominator=16)))
         Note("as'16"):
-            Timespan(Offset(Fraction(1, 2), displacement=Duration(3, 16)), Offset(Fraction(1, 2), displacement=Duration(1, 4)))
+            Timespan(Offset(Fraction(1, 2), displacement=ValueDuration(numerator=3, denominator=16)), Offset(Fraction(1, 2), displacement=ValueDuration(numerator=1, denominator=4)))
         Voice("e'4", name='MusicVoice'):
             Timespan(Offset(Fraction(1, 2)), Offset(Fraction(3, 4)))
         Note("e'4"):
-            Timespan(Offset(Fraction(1, 2), displacement=Duration(1, 4)), Offset(Fraction(3, 4)))
+            Timespan(Offset(Fraction(1, 2), displacement=ValueDuration(numerator=1, denominator=4)), Offset(Fraction(3, 4)))
         Note("f'4"):
             Timespan(Offset(Fraction(3, 4)), Offset(Fraction(1, 1)))
         AfterGraceContainer("fs'16"):
-            Timespan(Offset(Fraction(1, 1), displacement=Duration(-1, 16)), Offset(Fraction(1, 1)))
+            Timespan(Offset(Fraction(1, 1), displacement=ValueDuration(numerator=-1, denominator=16)), Offset(Fraction(1, 1)))
         Note("fs'16"):
-            Timespan(Offset(Fraction(1, 1), displacement=Duration(-1, 16)), Offset(Fraction(1, 1)))
+            Timespan(Offset(Fraction(1, 1), displacement=ValueDuration(numerator=-1, denominator=16)), Offset(Fraction(1, 1)))
 
     ..  container:: example
 
@@ -4263,9 +4263,9 @@ def timespan(argument, in_seconds: bool = False) -> _timespan.Timespan:
         Note("e'4"):
             Timespan(Offset(Fraction(1, 2)), Offset(Fraction(3, 4)))
         IndependentAfterGraceContainer("gf'16"):
-            Timespan(Offset(Fraction(3, 4), displacement=Duration(-1, 16)), Offset(Fraction(3, 4)))
+            Timespan(Offset(Fraction(3, 4), displacement=ValueDuration(numerator=-1, denominator=16)), Offset(Fraction(3, 4)))
         Note("gf'16"):
-            Timespan(Offset(Fraction(3, 4), displacement=Duration(-1, 16)), Offset(Fraction(3, 4)))
+            Timespan(Offset(Fraction(3, 4), displacement=ValueDuration(numerator=-1, denominator=16)), Offset(Fraction(3, 4)))
         Note("f'4"):
             Timespan(Offset(Fraction(3, 4)), Offset(Fraction(1, 1)))
 
