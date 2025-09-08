@@ -15,7 +15,7 @@ First we define a function to illustrate the examples that follow:
     ...     numbers = list(range(length))
     ...     numbers = abjad.sequence.retain_pattern(numbers, pattern)
     ...     pitches = [abjad.NamedPitch(_) for _ in numbers]
-    ...     duration = abjad.Duration(1, 16)
+    ...     duration = abjad.ValueDuration(1, 16)
     ...     notes = [abjad.Note.from_duration_and_pitch(duration, _ + transposition) for _ in pitches]
     ...     score = abjad.illustrators.make_piano_score(notes)
     ...     treble_staff = score["Treble_Staff"]

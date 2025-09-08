@@ -14,26 +14,26 @@ from . import wrapper as _wrapper
 _dummy = _parentage
 
 
-def _get_duration_in_seconds(component: _score.Component) -> _duration.Duration:
+def _get_duration_in_seconds(component: _score.Component) -> _duration.ValueDuration:
     if isinstance(component, _score.Container):
         durations = [_get_duration_in_seconds(_) for _ in component]
         if component.simultaneous():
             return max(durations)
         else:
-            return sum(durations, start=_duration.Duration(0))
+            return sum(durations, start=_duration.ValueDuration(0))
     else:
         mark = get_effective_indicator(component, _indicators.MetronomeMark)
         if mark is not None and mark.is_imprecise() is False:
             fraction = component._get_duration() / mark.reference_duration
             fraction = fraction / mark.units_per_minute * 60
             assert _duration.is_fraction(fraction), repr(fraction)
-            return _duration.Duration(fraction)
+            return _duration.ValueDuration(*fraction.as_integer_ratio())
         raise _exceptions.MissingMetronomeMarkError
 
 
 def get_duration(
     argument, *, in_seconds: bool = False, preprolated: bool = False
-) -> _duration.Duration:
+) -> _duration.ValueDuration:
     if preprolated is True:
         if hasattr(argument, "_get_preprolated_duration"):
             duration = argument._get_preprolated_duration()
@@ -46,7 +46,9 @@ def get_duration(
         else:
             return argument._get_duration()
     durations = [get_duration(_, in_seconds=in_seconds) for _ in argument]
-    return _duration.Duration(sum(durations))
+    duration = sum(durations, start=_duration.ValueDuration(0))
+    assert isinstance(duration, _duration.ValueDuration), repr(duration)
+    return duration
 
 
 def get_effective_indicator(

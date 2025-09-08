@@ -106,7 +106,7 @@ function to do the same:
     ...             bass_pitches.append(pitch)
     ...         else:
     ...             treble_pitches.append(pitch)
-    ...     duration = abjad.Duration(1, 1)
+    ...     duration = abjad.ValueDuration(1, 1)
     ...     treble_chord = abjad.Chord.from_duration_and_pitches(duration, treble_pitches)
     ...     bass_chord = abjad.Chord.from_duration_and_pitches(duration, bass_pitches)
     ...     clef = abjad.Clef("bass")

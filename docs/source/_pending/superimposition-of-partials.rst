@@ -51,7 +51,7 @@ First we define functions to illustrate the examples that follow:
     ... ):
     ...     pitch = abjad.NamedPitch(fundamental)
     ...     notes = []
-    ...     duration = abjad.Duration(1, 16)
+    ...     duration = abjad.ValueDuration(1, 16)
     ...     for ratio in sequence:
     ...         note = abjad.Note.from_duration_and_pitch(duration, pitch)
     ...         tune_to_ratio(note.note_head(), ratio, quarter_tones=with_quarter_tones)

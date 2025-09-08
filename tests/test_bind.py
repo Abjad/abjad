@@ -16,7 +16,7 @@ def test_bind_01():
     staff = abjad.Staff([voice])
     score = abjad.Score([staff])
     leaf = abjad.select.leaf(staff, 0)
-    mark = abjad.MetronomeMark(abjad.Duration(1, 4), 72)
+    mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 72)
     abjad.attach(mark, leaf)
     score[:] = []
     string = abjad.lilypond(staff)
@@ -40,8 +40,8 @@ def test_bind_02():
     """
 
     score = abjad.Score(r"\new Staff { c'' d'' e'' f'' } \new Staff { c' d' e' f' }")
-    mark_1 = abjad.MetronomeMark(abjad.Duration(1, 8), 52)
-    mark_2 = abjad.MetronomeMark(abjad.Duration(1, 8), 73)
+    mark_1 = abjad.MetronomeMark(abjad.ValueDuration(1, 8), 52)
+    mark_2 = abjad.MetronomeMark(abjad.ValueDuration(1, 8), 73)
     abjad.attach(mark_1, score[0][0])
 
     with pytest.raises(Exception):

@@ -265,7 +265,7 @@ def attach(
         >>> staff_1 = abjad.Staff("c''4 d''4 e''4 f''4")
         >>> staff_2 = abjad.Staff("c'4 d'4 e'4 f'4")
         >>> score = abjad.Score([staff_1, staff_2])
-        >>> metronome_mark = abjad.MetronomeMark(abjad.Duration(1, 4), 52)
+        >>> metronome_mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 52)
         >>> abjad.attach(metronome_mark, staff_1[0])
         >>> abjad.show(score) # doctest: +SKIP
 

@@ -29,7 +29,7 @@ compose:
     ...     abjad.NamedPitchClass("g"), abjad.Mode("major")
     ... )
     >>> abjad.attach(key_signature, voice[0])
-    >>> time_signature = abjad.TimeSignature((2, 4), partial=abjad.Duration(1, 8))
+    >>> time_signature = abjad.TimeSignature((2, 4), partial=abjad.ValueDuration(1, 8))
     >>> abjad.attach(time_signature, voice[0])
     >>> articulation = abjad.Articulation("turn")
     >>> abjad.attach(articulation, voice[5])

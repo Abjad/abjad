@@ -1107,7 +1107,7 @@ def partition_integer_by_proportion(n: int, proportion: tuple[int, ...]) -> list
     assert isinstance(proportion, tuple), repr(proportion)
     assert all(isinstance(_, int) for _ in proportion), repr(proportion)
     result = [0]
-    parts = [float(abs(n)) * abs(_) / weight(proportion) for _ in proportion]
+    parts = [float(abs(n)) * abs(_) / weight(proportion, start=0) for _ in proportion]
     cumulative_parts = cumulative_sums(parts, start=None)
     for part in cumulative_parts:
         rounded_part = int(round(part)) - sum(result)
@@ -1235,27 +1235,46 @@ def sign(n) -> int:
         1
 
     """
-    return (0 < n) - (n < 0)
+    return (type(n)(0) < n) - (n < type(n)(0))
 
 
-def weight(argument) -> int:
+class SupportsAbsAdd(typing.Protocol):
+
+    def __abs__(self) -> typing.Self:
+        pass
+
+    def __add__(self, other: typing.Self, /) -> typing.Self:
+        pass
+
+
+T = typing.TypeVar("T", bound=SupportsAbsAdd)
+
+
+# def weight(sequence, start=0) -> int:
+def weight(sequence: typing.Sequence[T], *, start: T) -> T:
     """
-    Gets weight of ``argument``.
+    Gets weight of ``sequence``.
 
-    Defined equal to sum of the absolute value of items in ``argument``.
+    Defined equal to sum of the absolute value of items in ``sequence``.
 
     ..  container:: example
 
-        >>> abjad.math.weight([-1, -2, 3, 4, 5])
+        >>> abjad.math.weight([-1, -2, 3, 4, 5], start=0)
         15
 
     ..  container:: example
 
-        >>> abjad.math.weight([])
+        >>> abjad.math.weight([], start=0)
         0
 
+    ..  container:: example
+
+        >>> durations = abjad.duration.value_durations([(1, 8), (2, 8), (3, 8)])
+        >>> abjad.math.weight(durations, start=abjad.ValueDuration(0))
+        ValueDuration(numerator=3, denominator=4)
+
     """
-    return sum([abs(_) for _ in argument])
+    return sum([abs(_) for _ in sequence], start=start)
 
 
 def yield_all_compositions_of_integer(n: int) -> typing.Iterator[tuple[int, ...]]:

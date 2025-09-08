@@ -9,7 +9,7 @@ import abjad
 def test_RhythmTreeContainer___call___01():
     rtm = "(1 (1 (2 (1 1 1)) 2))"
     rtc = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
-    result = rtc(abjad.Duration(1, 4))
+    result = rtc(abjad.ValueDuration(1, 4))
     assert isinstance(result, list)
     assert len(result) == 1
     assert abjad.lilypond(result[0]) == abjad.string.normalize(
@@ -32,7 +32,7 @@ def test_RhythmTreeContainer___call___01():
 def test_RhythmTreeContainer___call___02():
     rtm = "(1 (1 (2 (1 1 1 1)) 1))"
     rtc = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
-    components = rtc(abjad.Duration(1, 4))
+    components = rtc(abjad.ValueDuration(1, 4))
     staff = abjad.Staff(components)
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
@@ -241,8 +241,8 @@ def test_RhythmTreeContainer_contents_duration_01():
     container = abjad.rhythmtrees.RhythmTreeContainer(
         (1, 1), children=[leaf_a, subcontainer, leaf_d]
     )
-    assert container._get_contents_duration() == 6
-    assert subcontainer._get_contents_duration() == 5
+    assert container._get_contents_duration() == abjad.ValueDuration(6)
+    assert subcontainer._get_contents_duration() == abjad.ValueDuration(5)
 
 
 def test_RhythmTreeContainer_extend_01():
@@ -387,18 +387,18 @@ def test_RhythmTreeLeaf___eq___02():
 def test_RhythmTreeNode___call___01():
     rtm = "(1 (1 1 1 1))"
     rtc = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
-    components = rtc(abjad.Duration(1, 4))
+    components = rtc(abjad.ValueDuration(1, 4))
     assert len(components) == 1
     tuplet = components[0]
     assert len(tuplet) == 4
     assert all(isinstance(_, abjad.Note) for _ in tuplet)
-    assert all(_.written_duration() == abjad.Duration(1, 16) for _ in tuplet)
+    assert all(_.written_duration() == abjad.ValueDuration(1, 16) for _ in tuplet)
 
 
 def test_RhythmTreeNode___call___02():
     rtm = "(1 (1 (2 (1 1 1)) 2))"
     rtc = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
-    result = rtc(abjad.Duration(1, 4))
+    result = rtc(abjad.ValueDuration(1, 4))
     assert isinstance(result, list)
     assert len(result) == 1
     assert abjad.lilypond(result[0]) == abjad.string.normalize(
@@ -421,7 +421,7 @@ def test_RhythmTreeNode___call___02():
 def test_RhythmTreeNode___call___03():
     rtm = "(1 (1 (2 (1 (2 (1 1)) 1)) 2))"
     rtc = abjad.rhythmtrees.RhythmTreeParser()(rtm)[0]
-    components = rtc(abjad.Duration(1, 4))
+    components = rtc(abjad.ValueDuration(1, 4))
     staff = abjad.Staff(components)
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
@@ -483,26 +483,26 @@ def test_RhythmTreeNode_duration_01():
             abjad.rhythmtrees.RhythmTreeLeaf((2, 1)),
         ],
     )
-    assert rtc.duration() == abjad.Duration(1, 1)
-    assert rtc[0].duration() == abjad.Duration(1, 5)
-    assert rtc[1].duration() == abjad.Duration(2, 5)
-    assert rtc[1][0].duration() == abjad.Duration(6, 25)
-    assert rtc[1][1].duration() == abjad.Duration(4, 25)
-    assert rtc[2].duration() == abjad.Duration(2, 5)
+    assert rtc.duration() == abjad.ValueDuration(1, 1)
+    assert rtc[0].duration() == abjad.ValueDuration(1, 5)
+    assert rtc[1].duration() == abjad.ValueDuration(2, 5)
+    assert rtc[1][0].duration() == abjad.ValueDuration(6, 25)
+    assert rtc[1][1].duration() == abjad.ValueDuration(4, 25)
+    assert rtc[2].duration() == abjad.ValueDuration(2, 5)
     rtc[1].append(rtc.pop())
-    assert rtc.duration() == abjad.Duration(1, 1)
-    assert rtc[0].duration() == abjad.Duration(1, 3)
-    assert rtc[1].duration() == abjad.Duration(2, 3)
-    assert rtc[1][0].duration() == abjad.Duration(6, 21)
-    assert rtc[1][1].duration() == abjad.Duration(4, 21)
-    assert rtc[1][2].duration() == abjad.Duration(4, 21)
+    assert rtc.duration() == abjad.ValueDuration(1, 1)
+    assert rtc[0].duration() == abjad.ValueDuration(1, 3)
+    assert rtc[1].duration() == abjad.ValueDuration(2, 3)
+    assert rtc[1][0].duration() == abjad.ValueDuration(6, 21)
+    assert rtc[1][1].duration() == abjad.ValueDuration(4, 21)
+    assert rtc[1][2].duration() == abjad.ValueDuration(4, 21)
     rtc.set_pair((19, 1))
-    assert rtc.duration() == abjad.Duration(19, 1)
-    assert rtc[0].duration() == abjad.Duration(19, 3)
-    assert rtc[1].duration() == abjad.Duration(38, 3)
-    assert rtc[1][0].duration() == abjad.Duration(114, 21)
-    assert rtc[1][1].duration() == abjad.Duration(76, 21)
-    assert rtc[1][2].duration() == abjad.Duration(76, 21)
+    assert rtc.duration() == abjad.ValueDuration(19, 1)
+    assert rtc[0].duration() == abjad.ValueDuration(19, 3)
+    assert rtc[1].duration() == abjad.ValueDuration(38, 3)
+    assert rtc[1][0].duration() == abjad.ValueDuration(114, 21)
+    assert rtc[1][1].duration() == abjad.ValueDuration(76, 21)
+    assert rtc[1][2].duration() == abjad.ValueDuration(76, 21)
 
 
 def test_RhythmTreeNode_offset_01():

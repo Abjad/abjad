@@ -47,7 +47,7 @@ def beam(
     beam_lone_notes: bool = False,
     beam_rests: bool | None = True,
     direction: _enums.Vertical | None = None,
-    durations: typing.Sequence[_duration.Duration] | None = None,
+    durations: typing.Sequence[_duration.ValueDuration] | None = None,
     span_beam_count: int | None = None,
     start_beam: _indicators.StartBeam | _tweaks.Bundle | None = None,
     stemlet_length: int | float | None = None,
@@ -140,6 +140,10 @@ def beam(
             }
 
     """
+    if durations is not None:
+        assert all(isinstance(_, _duration.ValueDuration) for _ in durations), repr(
+            durations
+        )
     original_leaves = list(_iterate.leaves(argument))
     silent_prototype = (_score.MultimeasureRest, _score.Rest, _score.Skip)
 
@@ -236,7 +240,6 @@ def beam(
         return previous, next_
 
     span_beam_count = span_beam_count or 1
-    durations = [_duration.Duration(_) for _ in durations]
     leaf_durations = [_._get_duration() for _ in original_leaves]
     parts = _sequence.partition_by_weights(leaf_durations, durations, overhang=True)
     part_counts = [len(_) for _ in parts]
@@ -1804,7 +1807,7 @@ def tie(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
     direction: _enums.Vertical | None = None,
-    repeat: bool | _duration.Duration | typing.Callable = False,
+    repeat: bool | _duration.ValueDuration | typing.Callable = False,
     tag: _tag.Tag | None = None,
 ) -> None:
     r"""
@@ -1927,7 +1930,7 @@ def tie(
         Repeat tie threshold works like this:
 
         >>> voice = abjad.Voice("d'4. d'2 d'4. d'2", name="Voice")
-        >>> abjad.tie(voice[:], repeat=abjad.Duration(4, 8))
+        >>> abjad.tie(voice[:], repeat=abjad.ValueDuration(4, 8))
         >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -1969,7 +1972,7 @@ def tie(
                 d'8
             }
 
-        >>> abjad.tie(voice[:], repeat=abjad.Duration(4, 8))
+        >>> abjad.tie(voice[:], repeat=abjad.ValueDuration(4, 8))
         >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -1995,15 +1998,15 @@ def tie(
     elif repeat in (None, False):
 
         def inequality(item):
-            return item < 0
+            return item < _duration.ValueDuration(0)
 
     elif repeat is True:
 
         def inequality(item):
-            return item >= 0
+            return item >= _duration.ValueDuration(0)
 
     else:
-        assert isinstance(repeat, _duration.Duration), repr(repeat)
+        assert isinstance(repeat, _duration.ValueDuration), repr(repeat)
 
         def inequality(item):
             return item >= repeat

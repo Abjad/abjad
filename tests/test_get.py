@@ -10,7 +10,7 @@ def test_get_is_bar_line_crossing_01():
 
     staff = abjad.Staff("c'8 d'8 e'4 f'8")
     abjad.Score([staff], name="Score")
-    time_signature = abjad.TimeSignature((2, 8), partial=abjad.Duration(1, 8))
+    time_signature = abjad.TimeSignature((2, 8), partial=abjad.ValueDuration(1, 8))
     abjad.attach(time_signature, staff[0])
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
@@ -52,9 +52,9 @@ def test_get_duration_01():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     score = abjad.Score([staff])
-    mark = abjad.MetronomeMark(abjad.Duration(1, 4), 38)
+    mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 38)
     abjad.attach(mark, staff[0])
-    mark = abjad.MetronomeMark(abjad.Duration(1, 4), 42)
+    mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 42)
     abjad.attach(mark, staff[2])
 
     assert abjad.lilypond(score) == abjad.string.normalize(
@@ -74,7 +74,7 @@ def test_get_duration_01():
         """
     )
 
-    assert abjad.get.duration(score, in_seconds=True) == abjad.Duration(400, 133)
+    assert abjad.get.duration(score, in_seconds=True) == abjad.ValueDuration(400, 133)
 
 
 def test_get_duration_02():
@@ -94,9 +94,9 @@ def test_get_duration_03():
 
     staff = abjad.Staff("c'8 d'8 e'8 f'8")
     abjad.Score([staff])
-    mark = abjad.MetronomeMark(abjad.Duration(1, 4), 38)
+    mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 38)
     abjad.attach(mark, staff[0])
-    mark = abjad.MetronomeMark(abjad.Duration(1, 4), 42)
+    mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 42)
     abjad.attach(mark, staff[2])
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
@@ -113,10 +113,10 @@ def test_get_duration_03():
         """
     )
 
-    assert abjad.get.duration(staff[0], in_seconds=True) == abjad.Duration(15, 19)
-    assert abjad.get.duration(staff[1], in_seconds=True) == abjad.Duration(15, 19)
-    assert abjad.get.duration(staff[2], in_seconds=True) == abjad.Duration(5, 7)
-    assert abjad.get.duration(staff[3], in_seconds=True) == abjad.Duration(5, 7)
+    assert abjad.get.duration(staff[0], in_seconds=True) == abjad.ValueDuration(15, 19)
+    assert abjad.get.duration(staff[1], in_seconds=True) == abjad.ValueDuration(15, 19)
+    assert abjad.get.duration(staff[2], in_seconds=True) == abjad.ValueDuration(5, 7)
+    assert abjad.get.duration(staff[3], in_seconds=True) == abjad.ValueDuration(5, 7)
 
 
 def test_get_duration_04():
@@ -180,7 +180,7 @@ def test_get_has_indicator_02():
     abjad.attach(articulation, staff[0])
 
     assert abjad.get.has_indicator(staff[0], abjad.Articulation)
-    assert not abjad.get.has_indicator(staff[1], abjad.Duration)
+    assert not abjad.get.has_indicator(staff[1], abjad.ValueDuration)
 
 
 def test_get_has_indicator_03():
