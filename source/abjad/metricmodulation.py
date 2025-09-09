@@ -96,7 +96,7 @@ class MetricModulation:
 
         With ties:
 
-        >>> durations = [abjad.ValueDuration(5, 16)]
+        >>> durations = [abjad.Duration(5, 16)]
         >>> pitches = [abjad.NamedPitch("c'")]
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> metric_modulation = abjad.MetricModulation(

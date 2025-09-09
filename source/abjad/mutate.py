@@ -431,7 +431,7 @@ def _immediately_precedes(component_1, component_2, ignore_before_after_grace=No
 
 
 def _set_leaf_duration(leaf, new_duration, *, tag=None):
-    assert isinstance(new_duration, _duration.ValueDuration), repr(new_duration)
+    assert isinstance(new_duration, _duration.Duration), repr(new_duration)
     if leaf.multiplier() is not None:
         fraction = new_duration / leaf.written_duration()
         pair = (fraction.numerator, fraction.denominator)
@@ -545,10 +545,10 @@ def _split_container_at_index(CONTAINER, i):
 def _split_container_by_duration(CONTAINER, duration, *, tag=None):
     if CONTAINER.simultaneous():
         return _split_simultaneous_by_duration(CONTAINER, duration=duration, tag=tag)
-    # duration = _duration.ValueDuration(duration)
-    assert isinstance(duration, _duration.ValueDuration)
-    assert _duration.ValueDuration(0) <= duration, repr(duration)
-    if duration == _duration.ValueDuration(0):
+    # duration = _duration.Duration(duration)
+    assert isinstance(duration, _duration.Duration)
+    assert _duration.Duration(0) <= duration, repr(duration)
+    if duration == _duration.Duration(0):
         # TODO: disallow and raise Exception
         return [], CONTAINER
     # get split point score offset
@@ -661,10 +661,8 @@ def _split_simultaneous_by_duration(CONTAINER, duration, *, tag=None):
 
 
 def _split_leaf_by_durations(leaf, durations, *, cyclic=False, tag=None):
-    # durations = [_duration.ValueDuration(_) for _ in durations]
-    assert all(isinstance(_, _duration.ValueDuration) for _ in durations), repr(
-        durations
-    )
+    # durations = [_duration.Duration(_) for _ in durations]
+    assert all(isinstance(_, _duration.Duration) for _ in durations), repr(durations)
     leaf_duration = _get.duration(leaf)
     if cyclic:
         durations = _sequence.repeat_to_weight(durations, leaf_duration)
@@ -1388,10 +1386,10 @@ def logical_tie_to_tuplet(
     """
     assert all(isinstance(_, int) for _ in proportions), repr(proportions)
     target_duration = sum(_._get_preprolated_duration() for _ in argument)
-    assert isinstance(target_duration, _duration.ValueDuration)
+    assert isinstance(target_duration, _duration.Duration)
     prolated_duration = target_duration / sum(proportions)
     fraction = _math.equal_or_greater_power_of_two(prolated_duration)
-    basic_written_duration = _duration.ValueDuration(*fraction.as_integer_ratio())
+    basic_written_duration = _duration.Duration(*fraction.as_integer_ratio())
     written_durations = [_ * basic_written_duration for _ in proportions]
     notes: list[_score.Note | _score.Tuplet]
     pitch = _pitch.NamedPitch("c'")
@@ -1402,7 +1400,7 @@ def logical_tie_to_tuplet(
     except _exceptions.AssignabilityError:
         pitches = _makers.make_pitches([0])
         denominator = target_duration.denominator
-        note_durations = [_duration.ValueDuration(_, denominator) for _ in proportions]
+        note_durations = [_duration.Duration(_, denominator) for _ in proportions]
         notes = _makers.make_notes(pitches, note_durations, tag=tag)
     multiplier = target_duration / _get.duration(notes)
     ratio = _duration.Ratio(multiplier.denominator, multiplier.numerator)
@@ -1456,7 +1454,7 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
                 }
             }
 
-        >>> duration = abjad.ValueDuration(1, 16)
+        >>> duration = abjad.Duration(1, 16)
         >>> pitches = abjad.makers.make_pitches("c' d' e' f' c' d' e' f'")
         >>> notes = abjad.makers.make_notes(pitches, [duration])
         >>> abjad.mutate.replace([tuplet_1], notes)
@@ -1601,7 +1599,7 @@ def replace(argument, recipients, *, wrappers: bool = False) -> None:
 
         >>> staff = abjad.Staff("c'2 ~ c'2")
         >>> pitches = abjad.makers.make_pitches([0])
-        >>> durations = [abjad.ValueDuration(5, 8)]
+        >>> durations = [abjad.Duration(5, 8)]
         >>> tied_notes = abjad.makers.make_notes(pitches, durations)
         >>> abjad.mutate.replace(staff[:1], tied_notes)
 
@@ -1852,7 +1850,7 @@ def scale(argument, multiplier) -> None:
 # TODO: add example showing grace and after grace handling.
 def split(
     argument,
-    durations: list[_duration.ValueDuration],
+    durations: list[_duration.Duration],
     *,
     cyclic: bool = False,
     tag: _tag.Tag | None = None,
@@ -1886,7 +1884,7 @@ def split(
                 \f
             }
 
-        >>> durations = [abjad.ValueDuration(3, 4)]
+        >>> durations = [abjad.Duration(3, 4)]
         >>> result = abjad.mutate.split(
         ...     voice[:],
         ...     durations,
@@ -1951,7 +1949,7 @@ def split(
                 }
             }
 
-        >>> durations = [abjad.ValueDuration(1, 8)]
+        >>> durations = [abjad.Duration(1, 8)]
         >>> result = abjad.mutate.split(
         ...     staff[:],
         ...     durations,
@@ -2082,7 +2080,7 @@ def split(
                 >>
             }
 
-        >>> durations = [abjad.ValueDuration(3, 8)]
+        >>> durations = [abjad.Duration(3, 8)]
         >>> result = abjad.mutate.split(
         ...     container,
         ...     durations,
@@ -2174,7 +2172,7 @@ def split(
                 \laissezVibrer
             }
 
-        >>> durations = [abjad.ValueDuration(1, 8)]
+        >>> durations = [abjad.Duration(1, 8)]
         >>> result = abjad.mutate.split(
         ...     staff[:],
         ...     durations,
@@ -2224,7 +2222,7 @@ def split(
                 d'2
             }
 
-        >>> result = abjad.mutate.split(staff[0], [abjad.ValueDuration(1, 32)])
+        >>> result = abjad.mutate.split(staff[0], [abjad.Duration(1, 32)])
         >>> abjad.show(staff) # doctest: +SKIP
 
         ..  docs::
@@ -2271,7 +2269,7 @@ def split(
                 }
             }
 
-        >>> durations = [abjad.ValueDuration(1, 8)]
+        >>> durations = [abjad.Duration(1, 8)]
         >>> result = abjad.mutate.split(music_voice[:], durations, cyclic=True)
         >>> abjad.show(staff) # doctest: +SKIP
 
@@ -2308,9 +2306,7 @@ def split(
     if isinstance(components, _score.Component):
         components = [components]
     assert all(isinstance(_, _score.Component) for _ in components)
-    assert all(isinstance(_, _duration.ValueDuration) for _ in durations), repr(
-        durations
-    )
+    assert all(isinstance(_, _duration.Duration) for _ in durations), repr(durations)
     assert len(durations), repr(durations)
     total_component_duration = _get.duration(components)
     total_split_duration = sum(durations)
@@ -2320,7 +2316,7 @@ def split(
     elif total_split_duration < total_component_duration:
         # final_offset = total_component_duration - sum(durations)
         final_offset = total_component_duration - sum(
-            durations, start=_duration.ValueDuration(0)
+            durations, start=_duration.Duration(0)
         )
         durations.append(final_offset)
     elif total_component_duration < total_split_duration:
@@ -2333,7 +2329,7 @@ def split(
     assert total_split_duration == total_component_duration
     result, shard = [], []
     offset_index = 0
-    current_shard_duration = _duration.ValueDuration(0)
+    current_shard_duration = _duration.Duration(0)
     remaining_components = list(components[:])
     advance_to_next_offset = True
     # build shards:
@@ -2357,7 +2353,7 @@ def split(
             shard.append(current_component)
             result.append(shard)
             shard = []
-            current_shard_duration = _duration.ValueDuration(0)
+            current_shard_duration = _duration.Duration(0)
             offset_index += 1
         # if current component would exceed current shard
         elif next_split_point < candidate_shard_duration:
@@ -2401,7 +2397,7 @@ def split(
                 remaining_components.__setitem__(slice(0, 0), right_list)
             shard = []
             offset_index += 1
-            current_shard_duration = _duration.ValueDuration(0)
+            current_shard_duration = _duration.Duration(0)
         # if current component would not fill current shard
         elif candidate_shard_duration < next_split_point:
             shard.append(current_component)
@@ -2671,7 +2667,7 @@ def wrap(argument, container):
         the tuplet initializer:
 
         >>> pitches = abjad.makers.make_pitches([0, 2, 4])
-        >>> durations = [abjad.ValueDuration(1, 8)]
+        >>> durations = [abjad.Duration(1, 8)]
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> tuplet = abjad.Tuplet("3:2", [])
         >>> abjad.mutate.wrap(notes, tuplet)

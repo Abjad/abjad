@@ -11,7 +11,7 @@ Rotation, by row index
 
     >>> def make_rotation_chart(permutation, label):
     ...     rotations = [0, -1, -2, -3, -4, -5]
-    ...     duration = abjad.ValueDuration(1, 16)
+    ...     duration = abjad.Duration(1, 16)
     ...     source_staff = abjad.Staff([abjad.Note.from_duration_and_pitch(duration, abjad.NamedPitch(_)) for _ in permutation])
     ...     markup = abjad.Markup(rf'\markup "{label}"')
     ...     abjad.attach(markup, source_staff[0], direction=abjad.UP)

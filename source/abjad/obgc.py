@@ -53,7 +53,7 @@ class OnBeatGraceContainer(_score.Container):
         >>> music_voice = abjad.Voice("c'4 d'4 e'4 f'4", name="MusicVoice")
         >>> string = "<d' g'>8 a' b' c'' d'' c'' b' a' b' c'' d''"
         >>> obgc = abjad.on_beat_grace_container(
-        ...     string, music_voice[1:3], grace_leaf_duration=abjad.ValueDuration(1, 24)
+        ...     string, music_voice[1:3], grace_leaf_duration=abjad.Duration(1, 24)
         ... )
         >>> abjad.attach(abjad.Articulation(">"), obgc[0])
         >>> staff = abjad.Staff([music_voice])
@@ -121,14 +121,14 @@ class OnBeatGraceContainer(_score.Container):
         self,
         components: str | typing.Sequence[_score.Leaf] = (),
         *,
-        grace_leaf_duration: _duration.ValueDuration | None = None,
+        grace_leaf_duration: _duration.Duration | None = None,
         identifier: str | None = None,
         name: str | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
         super().__init__(components, identifier=identifier, name=name, tag=tag)
         if grace_leaf_duration is not None:
-            assert isinstance(grace_leaf_duration, _duration.ValueDuration), repr(
+            assert isinstance(grace_leaf_duration, _duration.Duration), repr(
                 grace_leaf_duration
             )
         self._grace_leaf_duration = grace_leaf_duration
@@ -226,7 +226,7 @@ class OnBeatGraceContainer(_score.Container):
         assert len(polyphony_container) == 2, repr(polyphony_container)
         return polyphony_container
 
-    def grace_leaf_duration(self) -> _duration.ValueDuration | None:
+    def grace_leaf_duration(self) -> _duration.Duration | None:
         """
         Gets grace leaf duration.
         """
@@ -295,7 +295,7 @@ def on_beat_grace_container(
     do_not_slash: bool = False,
     do_not_slur: bool = False,
     grace_font_size: int = -3,
-    grace_leaf_duration: _duration.ValueDuration | None = None,
+    grace_leaf_duration: _duration.Duration | None = None,
     grace_polyphony_command: _indicators.VoiceNumber = _indicators.VoiceNumber(1),
     nongrace_polyphony_command: _indicators.VoiceNumber = _indicators.VoiceNumber(2),
     tag: _tag.Tag = _tag.Tag(),
@@ -319,7 +319,7 @@ def on_beat_grace_container(
         ...     obgc = abjad.on_beat_grace_container(
         ...         obgc_string,
         ...         music_voice[1:3],
-        ...         grace_leaf_duration=abjad.ValueDuration(1, 30),
+        ...         grace_leaf_duration=abjad.Duration(1, 30),
         ...         grace_polyphony_command=grace_polyphony_command,
         ...         nongrace_polyphony_command=nongrace_polyphony_command,
         ...     )

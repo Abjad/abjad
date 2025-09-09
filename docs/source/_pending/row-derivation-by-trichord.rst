@@ -12,7 +12,7 @@ First we define functions to illustrate the examples that follow:
 ::
 
     >>> def illustrate_row(row):
-    ...     duration = abjad.ValueDuration(1, 8)
+    ...     duration = abjad.Duration(1, 8)
     ...     notes = [abjad.Note.from_duration_and_pitch(duration, abjad.NamedPitch(_)) for _ in row]
     ...     score = abjad.illustrators.make_piano_score(notes)
     ...     treble_staff = score["Treble_Staff"]

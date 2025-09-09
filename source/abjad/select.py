@@ -238,13 +238,13 @@ class LogicalTie(collections.abc.Sequence):
         assert self.items()
         return self.items()[-1]
 
-    def written_duration(self) -> _duration.ValueDuration:
+    def written_duration(self) -> _duration.Duration:
         """
         Sum of written duration of all components in logical tie.
         """
         return sum(
             [_.written_duration() for _ in self],
-            start=_duration.ValueDuration(0),
+            start=_duration.Duration(0),
         )
 
 
@@ -1007,7 +1007,7 @@ def filter(argument, predicate=None) -> list:
 
         >>> result = abjad.select.runs(staff)
         >>> result = abjad.select.filter(
-        ...     result, lambda _ : abjad.get.duration(_) == abjad.ValueDuration(2, 8)
+        ...     result, lambda _ : abjad.get.duration(_) == abjad.Duration(2, 8)
         ... )
         >>> for item in result:
         ...     item
@@ -1613,7 +1613,7 @@ def group_by_contiguity(argument) -> list[list]:
 
         >>> result = abjad.select.leaves(staff)
         >>> result = abjad.select.filter(
-        ...     result, lambda _: abjad.get.duration(_) == abjad.ValueDuration(1, 16)
+        ...     result, lambda _: abjad.get.duration(_) == abjad.Duration(1, 16)
         ... )
         >>> result = abjad.select.group_by_contiguity(result)
         >>> for item in result:
@@ -1666,7 +1666,7 @@ def group_by_contiguity(argument) -> list[list]:
 
         >>> result = abjad.select.logical_ties(staff)
         >>> result = abjad.select.filter(
-        ...     result, lambda _: abjad.get.duration(_) < abjad.ValueDuration(1, 4)
+        ...     result, lambda _: abjad.get.duration(_) < abjad.Duration(1, 4)
         ... )
         >>> result = abjad.select.group_by_contiguity(result)
         >>> result = [abjad.select.leaf(_, 0) for _ in result]
@@ -2327,7 +2327,7 @@ def group_by_measure(argument) -> list[list]:
 
         >>> staff = abjad.Staff(r"c'4 | d'4 e'4 f'4 | g'4 a'4 b'4")
         >>> score = abjad.Score([staff], name="Score")
-        >>> time_signature = abjad.TimeSignature((3, 4), partial=abjad.ValueDuration(1, 4))
+        >>> time_signature = abjad.TimeSignature((3, 4), partial=abjad.Duration(1, 4))
         >>> abjad.attach(time_signature, staff[0])
 
         >>> leaves = abjad.select.leaves(staff)
@@ -5018,7 +5018,7 @@ def partition_by_durations(
         >>> leaves = abjad.select.leaves(staff)
         >>> result = abjad.select.partition_by_durations(
         ...     leaves,
-        ...     [abjad.ValueDuration(3, 8)],
+        ...     [abjad.Duration(3, 8)],
         ...     cyclic=True,
         ...     fill=abjad.EXACT,
         ...     in_seconds=False,
@@ -5095,7 +5095,7 @@ def partition_by_durations(
         >>> result = abjad.select.leaves(staff)
         >>> result = abjad.select.partition_by_durations(
         ...     result,
-        ...     [abjad.ValueDuration(3, 8)],
+        ...     [abjad.Duration(3, 8)],
         ...     cyclic=False,
         ...     fill=abjad.EXACT,
         ...     in_seconds=False,
@@ -5166,7 +5166,7 @@ def partition_by_durations(
         >>> result = abjad.select.leaves(staff)
         >>> result = abjad.select.partition_by_durations(
         ...     result,
-        ...     [abjad.ValueDuration(3, 16), abjad.ValueDuration(1, 16)],
+        ...     [abjad.Duration(3, 16), abjad.Duration(1, 16)],
         ...     cyclic=True,
         ...     fill=abjad.MORE,
         ...     in_seconds=False,
@@ -5246,7 +5246,7 @@ def partition_by_durations(
         >>> result = abjad.select.leaves(staff)
         >>> result = abjad.select.partition_by_durations(
         ...     result,
-        ...     [abjad.ValueDuration(3, 16)],
+        ...     [abjad.Duration(3, 16)],
         ...     cyclic=True,
         ...     fill=abjad.LESS,
         ...     in_seconds=False,
@@ -5327,7 +5327,7 @@ def partition_by_durations(
         >>> result = abjad.select.leaves(staff)
         >>> result = abjad.select.partition_by_durations(
         ...     result,
-        ...     [abjad.ValueDuration(3, 16)],
+        ...     [abjad.Duration(3, 16)],
         ...     cyclic=False,
         ...     fill=abjad.LESS,
         ...     in_seconds=False,
@@ -5392,7 +5392,7 @@ def partition_by_durations(
         ...     abjad.attach(time_signature, container[0])
         ...
         >>> abjad.setting(staff).autoBeaming = False
-        >>> mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 60)
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         >>> leaf = abjad.get.leaf(staff, 0)
         >>> abjad.attach(mark, leaf, context='Staff')
 
@@ -5471,7 +5471,7 @@ def partition_by_durations(
         ...     abjad.attach(time_signature, container[0])
         ...
         >>> abjad.setting(staff).autoBeaming = False
-        >>> mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 60)
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         >>> leaf = abjad.get.leaf(staff, 0)
         >>> abjad.attach(mark, leaf, context='Staff')
 
@@ -5553,7 +5553,7 @@ def partition_by_durations(
         ...     abjad.attach(time_signature, container[0])
         ...
         >>> abjad.setting(staff).autoBeaming = False
-        >>> mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 60)
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         >>> leaf = abjad.get.leaf(staff, 0)
         >>> abjad.attach(mark, leaf, context='Staff')
 
@@ -5628,7 +5628,7 @@ def partition_by_durations(
         ...     abjad.attach(time_signature, container[0])
         ...
         >>> abjad.setting(staff).autoBeaming = False
-        >>> mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 60)
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         >>> leaf = abjad.get.leaf(staff, 0)
         >>> abjad.attach(mark, leaf, context='Staff')
 
@@ -5713,7 +5713,7 @@ def partition_by_durations(
         ...     abjad.attach(time_signature, container[0])
         ...
         >>> abjad.setting(staff).autoBeaming = False
-        >>> mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 60)
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         >>> leaf = abjad.get.leaf(staff, 0)
         >>> abjad.attach(mark, leaf, context='Staff')
 
@@ -5778,7 +5778,7 @@ def partition_by_durations(
     part = []
     current_duration_index = 0
     target_duration = durations[current_duration_index]
-    cumulative_duration = _duration.ValueDuration(0)
+    cumulative_duration = _duration.Duration(0)
     components_copy = list(argument)
     while True:
         try:
@@ -5788,11 +5788,11 @@ def partition_by_durations(
         component_duration = component._get_duration()
         if in_seconds:
             component_duration = _getlib.get_duration(component, in_seconds=True)
-        assert isinstance(component_duration, _duration.ValueDuration)
+        assert isinstance(component_duration, _duration.Duration)
         candidate_duration = cumulative_duration + component_duration
-        assert isinstance(candidate_duration, _duration.ValueDuration)
-        assert isinstance(target_duration, _duration.ValueDuration)
-        assert isinstance(cumulative_duration, _duration.ValueDuration)
+        assert isinstance(candidate_duration, _duration.Duration)
+        assert isinstance(target_duration, _duration.Duration)
+        assert isinstance(cumulative_duration, _duration.Duration)
         if candidate_duration < target_duration:
             part.append(component)
             cumulative_duration = candidate_duration
@@ -5800,7 +5800,7 @@ def partition_by_durations(
             part.append(component)
             result.append(part)
             part = []
-            cumulative_duration = _duration.ValueDuration(0)
+            cumulative_duration = _duration.Duration(0)
             current_duration_index += 1
             try:
                 target_duration = durations[current_duration_index]
@@ -5815,19 +5815,19 @@ def partition_by_durations(
                 if in_seconds:
                     sum_ = sum(
                         [_getlib.get_duration(_, in_seconds=True) for _ in part],
-                        start=_duration.ValueDuration(0),
+                        start=_duration.Duration(0),
                     )
-                    # cumulative_duration = _duration.ValueDuration(sum_)
+                    # cumulative_duration = _duration.Duration(sum_)
                     cumulative_duration = sum_
-                    assert isinstance(cumulative_duration, _duration.ValueDuration)
+                    assert isinstance(cumulative_duration, _duration.Duration)
                 else:
                     sum_ = sum(
                         [_getlib.get_duration(_) for _ in part],
-                        start=_duration.ValueDuration(0),
+                        start=_duration.Duration(0),
                     )
-                    # cumulative_duration = _duration.ValueDuration(sum_)
+                    # cumulative_duration = _duration.Duration(sum_)
                     cumulative_duration = sum_
-                    assert isinstance(cumulative_duration, _duration.ValueDuration)
+                    assert isinstance(cumulative_duration, _duration.Duration)
                 current_duration_index += 1
                 try:
                     target_duration = durations[current_duration_index]
@@ -5842,15 +5842,15 @@ def partition_by_durations(
                 part.append(component)
                 result.append(part)
                 part = []
-                cumulative_duration = _duration.ValueDuration(0)
+                cumulative_duration = _duration.Duration(0)
                 current_duration_index += 1
                 try:
                     target_duration = durations[current_duration_index]
                 except IndexError:
                     break
-    assert isinstance(candidate_duration, _duration.ValueDuration)
-    assert isinstance(target_duration, _duration.ValueDuration)
-    assert isinstance(cumulative_duration, _duration.ValueDuration)
+    assert isinstance(candidate_duration, _duration.Duration)
+    assert isinstance(target_duration, _duration.Duration)
+    assert isinstance(cumulative_duration, _duration.Duration)
     if len(part):
         if overhang:
             result.append(part)

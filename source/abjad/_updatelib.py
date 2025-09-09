@@ -45,8 +45,8 @@ def _get_after_grace_leaf_offsets(
             before_grace_container = sibling._before_grace_container
             duration = before_grace_container._get_duration()
             displacement -= duration
-    assert isinstance(displacement, _duration.ValueDuration), repr(displacement)
-    if displacement == _duration.ValueDuration(0):
+    assert isinstance(displacement, _duration.Duration), repr(displacement)
+    if displacement == _duration.Duration(0):
         start_offset = main_leaf_stop_offset
     else:
         start_offset = dataclasses.replace(
@@ -54,8 +54,8 @@ def _get_after_grace_leaf_offsets(
             displacement=displacement,
         )
     displacement += leaf._get_duration()
-    assert isinstance(displacement, _duration.ValueDuration), repr(displacement)
-    if displacement == _duration.ValueDuration(0):
+    assert isinstance(displacement, _duration.Duration), repr(displacement)
+    if displacement == _duration.Duration(0):
         stop_offset = main_leaf_stop_offset
     else:
         stop_offset = dataclasses.replace(
@@ -77,8 +77,8 @@ def _get_before_grace_leaf_offsets(
     while sibling is not None and sibling._parent is container:
         displacement -= sibling._get_duration()
         sibling = sibling._sibling(1)
-    assert isinstance(displacement, _duration.ValueDuration), repr(displacement)
-    if displacement == _duration.ValueDuration(0):
+    assert isinstance(displacement, _duration.Duration), repr(displacement)
+    if displacement == _duration.Duration(0):
         start_offset = dataclasses.replace(main_leaf_start_offset)
     else:
         start_offset = dataclasses.replace(
@@ -86,8 +86,8 @@ def _get_before_grace_leaf_offsets(
             displacement=displacement,
         )
     displacement += leaf._get_duration()
-    assert isinstance(displacement, _duration.ValueDuration), repr(displacement)
-    if displacement == _duration.ValueDuration(0):
+    assert isinstance(displacement, _duration.Duration), repr(displacement)
+    if displacement == _duration.Duration(0):
         stop_offset = dataclasses.replace(main_leaf_start_offset)
     else:
         stop_offset = dataclasses.replace(
@@ -122,8 +122,8 @@ def _get_independent_after_grace_leaf_offsets(
             duration = before_grace_container._get_duration()
             displacement -= duration
     """
-    assert isinstance(displacement, _duration.ValueDuration), repr(displacement)
-    if displacement == _duration.ValueDuration(0):
+    assert isinstance(displacement, _duration.Duration), repr(displacement)
+    if displacement == _duration.Duration(0):
         start_offset = dataclasses.replace(main_leaf_stop_offset)
     else:
         start_offset = dataclasses.replace(
@@ -131,8 +131,8 @@ def _get_independent_after_grace_leaf_offsets(
             displacement=displacement,
         )
     displacement += leaf._get_duration()
-    assert isinstance(displacement, _duration.ValueDuration), repr(displacement)
-    if displacement == _duration.ValueDuration(0):
+    assert isinstance(displacement, _duration.Duration), repr(displacement)
+    if displacement == _duration.Duration(0):
         stop_offset = dataclasses.replace(main_leaf_stop_offset)
     else:
         stop_offset = dataclasses.replace(
@@ -196,13 +196,13 @@ def _get_obgc_leaf_offsets(leaf) -> tuple[_duration.Offset, _duration.Offset]:
     first_nongrace_leaf_start_offset = dataclasses.replace(
         first_nongrace_leaf_start_offset
     )
-    start_displacement: _duration.ValueDuration | None = _duration.ValueDuration(0)
+    start_displacement: _duration.Duration | None = _duration.Duration(0)
     sibling = leaf._sibling(-1)
     while sibling is not None and sibling._parent is obgc:
         start_displacement += sibling._get_duration()
         sibling = sibling._sibling(-1)
     stop_displacement = start_displacement + leaf._get_duration()
-    if start_displacement == _duration.ValueDuration(0):
+    if start_displacement == _duration.Duration(0):
         start_displacement = None
     start_offset = dataclasses.replace(
         first_nongrace_leaf_start_offset,
@@ -276,7 +276,7 @@ def _make_metronome_mark_map(root) -> _timespan.TimespanList | None:
         if stop_offset == _duration.offset(0):
             stop_offset = score_stop_offset
         duration = stop_offset - start_offset
-        assert isinstance(duration, _duration.ValueDuration)
+        assert isinstance(duration, _duration.Duration)
         duration_in_seconds = duration / metronome_mark.reference_duration
         multiplier = fractions.Fraction(60, metronome_mark.units_per_minute)
         duration_in_seconds *= multiplier
@@ -298,10 +298,10 @@ def _to_measure_number(
     component_start_offset = component._get_timespan().start_offset
     displacement = component_start_offset.displacement
     if displacement is not None:
-        assert isinstance(displacement, _duration.ValueDuration), repr(displacement)
+        assert isinstance(displacement, _duration.Duration), repr(displacement)
         # score-initial grace music only:
         if (
-            displacement < _duration.ValueDuration(0)
+            displacement < _duration.Duration(0)
             and component_start_offset.fraction == 0
         ):
             measure_number = 0
@@ -499,7 +499,7 @@ def _update_component_offsets(component) -> None:
                 )
         assert isinstance(start_offset, _duration.Offset), repr(start_offset)
         stop_offset_duration = (
-            _duration.ValueDuration(*start_offset.fraction.as_integer_ratio())
+            _duration.Duration(*start_offset.fraction.as_integer_ratio())
             + component._get_duration()
         )
         stop_offset = _duration.Offset(stop_offset_duration.as_fraction())

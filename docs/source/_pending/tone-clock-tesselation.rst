@@ -12,7 +12,7 @@ Tone-clock tesselation in Jenny McLeod's `Tone Clock Piece I`.
     >>> def illustrate_trichords(trichords):
     ...     group = abjad.StaffGroup([abjad.Staff(), abjad.Staff(), abjad.Staff()])
     ...     score = abjad.Score([group])
-    ...     duration = abjad.ValueDuration(1, 1)
+    ...     duration = abjad.Duration(1, 1)
     ...     for triad in trichords:
     ...         for i, pitch in enumerate(triad):
     ...             staff = group[i]

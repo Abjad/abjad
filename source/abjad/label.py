@@ -1036,7 +1036,7 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
 
         >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
         >>> pitches = abjad.makers.make_pitches(pitch_numbers)
-        >>> durations = [abjad.ValueDuration(1, 4)]
+        >>> durations = [abjad.Duration(1, 4)]
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> abjad.label.with_intervals(staff, prototype=None)
@@ -1076,7 +1076,7 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
 
         >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
         >>> pitches = abjad.makers.make_pitches(pitch_numbers)
-        >>> durations = [abjad.ValueDuration(1, 4)]
+        >>> durations = [abjad.Duration(1, 4)]
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> prototype = abjad.NamedIntervalClass
@@ -1117,7 +1117,7 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
 
         >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
         >>> pitches = abjad.makers.make_pitches(pitch_numbers)
-        >>> durations = [abjad.ValueDuration(1, 4)]
+        >>> durations = [abjad.Duration(1, 4)]
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> prototype = abjad.NumberedInterval
@@ -1158,7 +1158,7 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
 
         >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
         >>> pitches = abjad.makers.make_pitches(pitch_numbers)
-        >>> durations = [abjad.ValueDuration(1, 4)]
+        >>> durations = [abjad.Duration(1, 4)]
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> prototype = abjad.NumberedIntervalClass
@@ -1199,7 +1199,7 @@ def with_intervals(argument, direction=_enums.UP, prototype=None) -> None:
 
         >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
         >>> pitches = abjad.makers.make_pitches(pitch_numbers)
-        >>> durations = [abjad.ValueDuration(1, 4)]
+        >>> durations = [abjad.Duration(1, 4)]
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> prototype = abjad.NumberedInversionEquivalentIntervalClass
@@ -1731,7 +1731,7 @@ def with_start_offsets(
     direction=None,
     global_offset: _duration.Offset | None = None,
     markup_command=None,
-) -> _duration.ValueDuration:
+) -> _duration.Duration:
     r"""
     Labels logical ties in ``argument`` with start offsets.
 
@@ -1744,7 +1744,7 @@ def with_start_offsets(
         >>> string = r"\tuplet 3/2 { c'4 d'4 e'4 ~ } e'4 ef'4"
         >>> staff = abjad.Staff(string)
         >>> abjad.label.with_start_offsets(staff, direction=abjad.UP)
-        ValueDuration(numerator=1, denominator=1)
+        Duration(numerator=1, denominator=1)
 
         >>> abjad.override(staff).TextScript.staff_padding = 4
         >>> abjad.override(staff).TupletBracket.staff_padding = 0
@@ -1782,10 +1782,10 @@ def with_start_offsets(
 
         >>> staff = abjad.Staff(r"c'2 d' e' f'")
         >>> score = abjad.Score([staff])
-        >>> mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 60)
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         >>> abjad.attach(mark, staff[0])
         >>> abjad.label.with_start_offsets(staff, clock_time=True)
-        ValueDuration(numerator=8, denominator=1)
+        Duration(numerator=8, denominator=1)
 
         >>> abjad.override(staff).TextScript.staff_padding = 4
         >>> abjad.override(staff).TupletBracket.staff_padding = 0
@@ -1823,14 +1823,14 @@ def with_start_offsets(
 
         >>> staff = abjad.Staff(r"c'2 d' e' f'")
         >>> score = abjad.Score([staff])
-        >>> mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 60)
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
         >>> abjad.attach(mark, staff[0])
         >>> abjad.label.with_start_offsets(
         ...     staff,
         ...     clock_time=True,
         ...     markup_command=r'\dark_cyan_markup',
         ...     )
-        ValueDuration(numerator=8, denominator=1)
+        Duration(numerator=8, denominator=1)
 
         >>> abjad.override(staff).TextScript.staff_padding = 4
         >>> abjad.override(staff).TupletBracket.staff_padding = 0
@@ -1882,7 +1882,7 @@ def with_start_offsets(
         else:
             label = _indicators.Markup(rf"\markup {{ {string} }}")
         _attach(label, logical_tie.head(), direction=direction)
-    # total_duration = _duration.ValueDuration(timespan.stop_offset.fraction)
+    # total_duration = _duration.Duration(timespan.stop_offset.fraction)
     total_duration = timespan.stop_offset.duration()
     if global_offset is not None:
         total_duration += global_offset.fraction

@@ -796,7 +796,7 @@ class Clef:
 
             >>> numbers = list(range(-12, -6))
             >>> pitches = abjad.makers.make_pitches(numbers)
-            >>> durations = [abjad.ValueDuration(1, 4)]
+            >>> durations = [abjad.Duration(1, 4)]
             >>> notes = abjad.makers.make_notes(pitches, durations)
             >>> staff = abjad.Staff(notes)
             >>> pitches = abjad.iterate.pitches(staff)
@@ -3370,7 +3370,7 @@ class MetronomeMark:
         >>> score = abjad.Score()
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
-        >>> mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 90)
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), 90)
         >>> abjad.attach(mark, staff[0])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -3398,7 +3398,7 @@ class MetronomeMark:
         >>> score = abjad.Score()
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
-        >>> mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), fractions.Fraction(272, 3))
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), fractions.Fraction(272, 3))
         >>> abjad.attach(mark, staff[0])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', score])
         >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -3425,7 +3425,7 @@ class MetronomeMark:
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
         >>> mark = abjad.MetronomeMark(
-        ...     abjad.ValueDuration(1, 4),
+        ...     abjad.Duration(1, 4),
         ...     fractions.Fraction(272, 3),
         ...     decimal="90.66",
         ... )
@@ -3455,7 +3455,7 @@ class MetronomeMark:
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
         >>> mark = abjad.MetronomeMark(
-        ...     abjad.ValueDuration(1, 4),
+        ...     abjad.Duration(1, 4),
         ...     fractions.Fraction(901, 10),
         ...     decimal=True,
         ... )
@@ -3486,7 +3486,7 @@ class MetronomeMark:
         >>> score = abjad.Score()
         >>> staff = abjad.Staff("c'8 d'8 e'8 f'8")
         >>> score.append(staff)
-        >>> mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), (120, 133), "Quick")
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), (120, 133), "Quick")
         >>> abjad.attach(mark, staff[0])
         >>> abjad.show(score) # doctest: +SKIP
 
@@ -3512,11 +3512,11 @@ class MetronomeMark:
 
         >>> import fractions
         >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
-        ...     abjad.ValueDuration(1, 4),
+        ...     abjad.Duration(1, 4),
         ...     67.5,
         ...  )
         >>> mark = abjad.MetronomeMark(
-        ...     reference_duration=abjad.ValueDuration(1, 4),
+        ...     reference_duration=abjad.Duration(1, 4),
         ...     units_per_minute=fractions.Fraction(135, 2),
         ...     custom_markup=markup,
         ...  )
@@ -3547,18 +3547,18 @@ class MetronomeMark:
         Decimal overrides:
 
         >>> import fractions
-        >>> mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), fractions.Fraction(272, 3))
+        >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), fractions.Fraction(272, 3))
         >>> mark.decimal
         False
 
         >>> mark = abjad.MetronomeMark(
-        ...     abjad.ValueDuration(1, 4), fractions.Fraction(272, 3), decimal="90.66",
+        ...     abjad.Duration(1, 4), fractions.Fraction(272, 3), decimal="90.66",
         ... )
         >>> mark.decimal
         '90.66'
 
         >>> mark = abjad.MetronomeMark(
-        ...     abjad.ValueDuration(1, 4), fractions.Fraction(901, 10), decimal=True,
+        ...     abjad.Duration(1, 4), fractions.Fraction(901, 10), decimal=True,
         ... )
         >>> mark.decimal
         True
@@ -3570,7 +3570,7 @@ class MetronomeMark:
 
         >>> staff = abjad.Staff("c'4 d' e' f'")
         >>> score = abjad.Score([staff])
-        >>> metronome_mark_1 = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 72)
+        >>> metronome_mark_1 = abjad.MetronomeMark(abjad.Duration(1, 4), 72)
         >>> abjad.attach(metronome_mark_1, staff[0])
         >>> metronome_mark_2 = abjad.MetronomeMark(textual_indication="Allegro")
         >>> abjad.attach(metronome_mark_2, staff[2], hide=True)
@@ -3594,8 +3594,8 @@ class MetronomeMark:
         ...     prototype = abjad.MetronomeMark
         ...     leaf, abjad.get.effective_indicator(leaf, prototype)
         ...
-        (Note("c'4"), MetronomeMark(reference_duration=ValueDuration(numerator=1, denominator=4), units_per_minute=72, textual_indication=None, custom_markup=None, decimal=False))
-        (Note("d'4"), MetronomeMark(reference_duration=ValueDuration(numerator=1, denominator=4), units_per_minute=72, textual_indication=None, custom_markup=None, decimal=False))
+        (Note("c'4"), MetronomeMark(reference_duration=Duration(numerator=1, denominator=4), units_per_minute=72, textual_indication=None, custom_markup=None, decimal=False))
+        (Note("d'4"), MetronomeMark(reference_duration=Duration(numerator=1, denominator=4), units_per_minute=72, textual_indication=None, custom_markup=None, decimal=False))
         (Note("e'4"), MetronomeMark(reference_duration=None, units_per_minute=None, textual_indication='Allegro', custom_markup=None, decimal=False))
         (Note("f'4"), MetronomeMark(reference_duration=None, units_per_minute=None, textual_indication='Allegro', custom_markup=None, decimal=False))
 
@@ -3603,8 +3603,8 @@ class MetronomeMark:
 
         Equality testing:
 
-        >>> mark_1 = abjad.MetronomeMark(abjad.ValueDuration(3, 32), 52)
-        >>> mark_2 = abjad.MetronomeMark(abjad.ValueDuration(3, 32), 52)
+        >>> mark_1 = abjad.MetronomeMark(abjad.Duration(3, 32), 52)
+        >>> mark_2 = abjad.MetronomeMark(abjad.Duration(3, 32), 52)
 
         >>> mark_1 == mark_2
         True
@@ -3614,8 +3614,8 @@ class MetronomeMark:
 
     ..  container:: example
 
-        >>> mark_1 = abjad.MetronomeMark(abjad.ValueDuration(3, 32), 52)
-        >>> mark_2 = abjad.MetronomeMark(abjad.ValueDuration(6, 32), 104)
+        >>> mark_1 = abjad.MetronomeMark(abjad.Duration(3, 32), 52)
+        >>> mark_2 = abjad.MetronomeMark(abjad.Duration(6, 32), 104)
 
         >>> mark_1 == mark_2
         False
@@ -3625,9 +3625,9 @@ class MetronomeMark:
 
     ..  container:: example
 
-        >>> mark_1 = abjad.MetronomeMark(abjad.ValueDuration(3, 32), 52, "Langsam")
-        >>> mark_2 = abjad.MetronomeMark(abjad.ValueDuration(3, 32), 52, "Langsam")
-        >>> mark_3 = abjad.MetronomeMark(abjad.ValueDuration(3, 32), 52, "Slow")
+        >>> mark_1 = abjad.MetronomeMark(abjad.Duration(3, 32), 52, "Langsam")
+        >>> mark_2 = abjad.MetronomeMark(abjad.Duration(3, 32), 52, "Langsam")
+        >>> mark_3 = abjad.MetronomeMark(abjad.Duration(3, 32), 52, "Slow")
 
         >>> mark_1 == mark_2
         True
@@ -3637,7 +3637,7 @@ class MetronomeMark:
 
     """
 
-    reference_duration: _duration.ValueDuration | None = None
+    reference_duration: _duration.Duration | None = None
     units_per_minute: int | fractions.Fraction | None = None
     textual_indication: str | None = None
     custom_markup: Markup | None = None
@@ -3653,7 +3653,7 @@ class MetronomeMark:
 
     def __post_init__(self):
         if self.reference_duration:
-            assert isinstance(self.reference_duration, _duration.ValueDuration), repr(
+            assert isinstance(self.reference_duration, _duration.Duration), repr(
                 self.reference_duration
             )
         if isinstance(self.units_per_minute, float):
@@ -3665,7 +3665,7 @@ class MetronomeMark:
         assert isinstance(self.units_per_minute, prototype)
         if isinstance(self.units_per_minute, collections.abc.Sequence):
             assert len(self.units_per_minute) == 2
-            item_prototype = (int, _duration.ValueDuration)
+            item_prototype = (int, _duration.Duration)
             assert all(isinstance(_, item_prototype) for _ in self.units_per_minute)
         assert isinstance(self.textual_indication, str | type(None))
         if self.custom_markup is not None:
@@ -3784,7 +3784,7 @@ class MetronomeMark:
 
             Imprecise metronome marks:
 
-            >>> duration = abjad.ValueDuration(1, 4)
+            >>> duration = abjad.Duration(1, 4)
 
             >>> abjad.MetronomeMark(textual_indication="Langsam").is_imprecise()
             True
@@ -3822,7 +3822,7 @@ class MetronomeMark:
 
         ..  container:: example
 
-            >>> mark = abjad.MetronomeMark(abjad.ValueDuration(1, 8), 52)
+            >>> mark = abjad.MetronomeMark(abjad.Duration(1, 8), 52)
             >>> mark.quarters_per_minute()
             Fraction(104, 1)
 
@@ -3831,12 +3831,12 @@ class MetronomeMark:
             return None
         if isinstance(self.units_per_minute, tuple):
             low = (
-                _duration.ValueDuration(1, 4)
+                _duration.Duration(1, 4)
                 / self.reference_duration
                 * self.units_per_minute[0]
             )
             high = (
-                _duration.ValueDuration(1, 4)
+                _duration.Duration(1, 4)
                 / self.reference_duration
                 * self.units_per_minute[1]
             )
@@ -3845,12 +3845,12 @@ class MetronomeMark:
         units_per_minute = self.units_per_minute
         assert reference_duration is not None
         assert units_per_minute is not None
-        result = _duration.ValueDuration(1, 4) / reference_duration * units_per_minute
+        result = _duration.Duration(1, 4) / reference_duration * units_per_minute
         return fractions.Fraction(result)
 
     def duration_to_milliseconds(
-        self, duration: _duration.ValueDuration
-    ) -> _duration.ValueDuration:
+        self, duration: _duration.Duration
+    ) -> _duration.Duration:
         """
         Gets millisecond value of ``duration`` under a given metronome mark.
 
@@ -3858,27 +3858,27 @@ class MetronomeMark:
 
         ..  container:: example
 
-            >>> mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), 60)
-            >>> duration = abjad.ValueDuration(3, 8)
+            >>> mark = abjad.MetronomeMark(abjad.Duration(1, 4), 60)
+            >>> duration = abjad.Duration(3, 8)
             >>> mark.duration_to_milliseconds(duration)
-            ValueDuration(numerator=1500, denominator=1)
+            Duration(numerator=1500, denominator=1)
 
         """
-        assert isinstance(self.reference_duration, _duration.ValueDuration)
-        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        assert isinstance(self.reference_duration, _duration.Duration)
+        assert isinstance(duration, _duration.Duration), repr(duration)
         denominator = self.reference_duration.denominator
         numerator = self.reference_duration.numerator
         whole_note_duration = fractions.Fraction(1000)
         whole_note_duration *= fractions.Fraction(denominator, numerator)
         whole_note_duration *= fractions.Fraction(60, self.units_per_minute)
-        assert isinstance(duration, _duration.ValueDuration)
+        assert isinstance(duration, _duration.Duration)
         result = whole_note_duration * duration
-        assert isinstance(result, _duration.ValueDuration)
+        assert isinstance(result, _duration.Duration)
         return result
 
     @staticmethod
     def make_tempo_equation_markup(
-        reference_duration: _duration.ValueDuration,
+        reference_duration: _duration.Duration,
         units_per_minute: float,
         *,
         decimal: bool = False,
@@ -3890,7 +3890,7 @@ class MetronomeMark:
 
         ..  container:: example
 
-            >>> duration = abjad.ValueDuration(1, 4)
+            >>> duration = abjad.Duration(1, 4)
             >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(duration,  90)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', markup])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -3905,7 +3905,7 @@ class MetronomeMark:
 
             Float-valued metronome mark:
 
-            >>> duration = abjad.ValueDuration(1, 4)
+            >>> duration = abjad.Duration(1, 4)
             >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(duration, 90.1)
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', markup])
             >>> abjad.show(lilypond_file) # doctest: +SKIP
@@ -3922,7 +3922,7 @@ class MetronomeMark:
 
             >>> import fractions
             >>> markup = abjad.MetronomeMark.make_tempo_equation_markup(
-            ...     abjad.ValueDuration(1, 4),
+            ...     abjad.Duration(1, 4),
             ...     fractions.Fraction(272, 3),
             ... )
             >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', markup])
@@ -3935,7 +3935,7 @@ class MetronomeMark:
                 \markup \abjad-metronome-mark-mixed-number-markup #2 #0 #1 #"90" #"2" #"3"
 
         """
-        assert isinstance(reference_duration, _duration.ValueDuration), repr(
+        assert isinstance(reference_duration, _duration.Duration), repr(
             reference_duration
         )
         reference_duration_ = reference_duration
@@ -7313,7 +7313,7 @@ class TimeSignature:
     """
 
     pair: tuple[int, int]
-    partial: _duration.ValueDuration | None = None
+    partial: _duration.Duration | None = None
 
     check_effective_context: typing.ClassVar[bool] = True
     context: typing.ClassVar[str] = "Score"
@@ -7326,7 +7326,7 @@ class TimeSignature:
         assert isinstance(self.pair[0], int)
         assert isinstance(self.pair[1], int)
         if self.partial is not None:
-            assert isinstance(self.partial, _duration.ValueDuration), repr(self.partial)
+            assert isinstance(self.partial, _duration.Duration), repr(self.partial)
 
     def _get_contributions(self, *, wrapper=None):
         assert wrapper is not None
@@ -7366,17 +7366,17 @@ class TimeSignature:
         """
         return self.pair[1]
 
-    def duration(self) -> _duration.ValueDuration:
+    def duration(self) -> _duration.Duration:
         """
         Gets duration of time signature.
 
         ..  container:: example
 
             >>> abjad.TimeSignature((3, 8)).duration()
-            ValueDuration(numerator=3, denominator=8)
+            Duration(numerator=3, denominator=8)
 
         """
-        return _duration.ValueDuration(*self.pair)
+        return _duration.Duration(*self.pair)
 
     @property
     def numerator(self) -> int:

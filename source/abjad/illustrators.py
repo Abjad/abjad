@@ -53,7 +53,7 @@ def _illustrate_metric_modulation(metric_modulation):
 
 
 def _illustrate_pitch_class_set(set_):
-    duration = _duration.ValueDuration(1)
+    duration = _duration.Duration(1)
     chord = _score.Chord.from_duration_and_pitches(duration, set_)
     voice = _score.Voice([chord], name="Voice")
     staff = _score.Staff([voice], name="Staff")
@@ -67,7 +67,7 @@ def _illustrate_pitch_range(range_):
     stop_pitch = _pitch.NamedPitch(range_.stop_pitch())
     start_pitch_clef = _indicators.Clef.from_pitches([start_pitch])
     stop_pitch_clef = _indicators.Clef.from_pitches([stop_pitch])
-    duration = _duration.ValueDuration(1)
+    duration = _duration.Duration(1)
     start_note = _score.Note.from_duration_and_pitch(duration, start_pitch)
     stop_note = _score.Note.from_duration_and_pitch(duration, stop_pitch)
     if start_pitch_clef == stop_pitch_clef:
@@ -109,7 +109,7 @@ def _illustrate_pitch_range(range_):
 
 def _illustrate_pitch_segment(segment):
     named_pitches = [_pitch.NamedPitch(x) for x in segment]
-    notes = _makers.make_notes(named_pitches, [_duration.ValueDuration(1, 1)])
+    notes = _makers.make_notes(named_pitches, [_duration.Duration(1, 1)])
     score = make_piano_score(leaves=notes)
     _overrides.override(score).TimeSignature.stencil = False
     _overrides.override(score).BarLine.stencil = False
@@ -128,7 +128,7 @@ def _illustrate_pitch_set(set_):
             lower.append(pitch)
         else:
             upper.append(pitch)
-    duration = _duration.ValueDuration(1)
+    duration = _duration.Duration(1)
     if upper:
         pitches = _pitch.pitches(upper)
         upper = _score.Chord.from_duration_and_pitches(duration, pitches)
@@ -159,7 +159,7 @@ def _illustrate_pitch_class_segment(
     figure_name=None,
 ):
     notes = []
-    duration = _duration.ValueDuration(1, 8)
+    duration = _duration.Duration(1, 8)
     for item in segment:
         pitch = _pitch.NamedPitch(item)
         note = _score.Note.from_duration_and_pitch(duration, pitch)
@@ -243,7 +243,7 @@ def attach_markup_struts(lilypond_file):
     _overrides.tweaks(markup, r"- \tweak staff-padding 11")
     _overrides.tweaks(markup, r"- \tweak transparent ##t")
     duration = _get.duration(rhythmic_staff)
-    if _duration.ValueDuration(6, 4) < duration:
+    if _duration.Duration(6, 4) < duration:
         last_leaf = _get.leaf(rhythmic_staff, -1)
         markup = _indicators.Markup(r"\markup I", direction=_enums.UP)
         _bind.attach(markup, last_leaf)

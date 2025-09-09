@@ -58,7 +58,7 @@ class_to_default_values = {
     abjad.Markup: (r"\markup Allegro",),
     abjad.Meter: (abjad.meter.make_best_guess_rtc((4, 4)),),
     abjad.MetricModulation: (abjad.Note("c'4"), abjad.Note("c'4.")),
-    abjad.MetronomeMark: (abjad.ValueDuration(1, 4), 90),
+    abjad.MetronomeMark: (abjad.Duration(1, 4), 90),
     abjad.Parentage: (abjad.Note("c'4"),),
     abjad.Ratio: (6, 4),
     abjad.ShortInstrumentName: (r"\markup Vc.",),
@@ -67,7 +67,7 @@ class_to_default_values = {
     abjad.TimeSignature: ((4, 4),),
     abjad.Tweak: (r"\tweak color #red",),
     abjad.Offset: (abjad.Fraction(3, 16),),
-    abjad.ValueDuration: (1, 4),
+    abjad.Duration: (1, 4),
     abjad.VerticalMoment: ([abjad.Staff("c'4 d'4 e'4 f'4")],),
 }
 

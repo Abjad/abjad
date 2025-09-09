@@ -26,7 +26,7 @@ example:
     >>> def make_score(row):
     ...     score = abjad.Score(name="Score")
     ...     transpositions = make_transpositions(row)
-    ...     duration = abjad.ValueDuration(1, 4)
+    ...     duration = abjad.Duration(1, 4)
     ...     for i, transposition in enumerate(transpositions):
     ...         notes = []
     ...         for numbered_pitch in transposition:

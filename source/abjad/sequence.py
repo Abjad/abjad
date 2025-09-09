@@ -860,7 +860,7 @@ def partition_by_proportion_of_weights(sequence, weights: tuple[int, ...]) -> li
 
 def partition_by_weights(
     sequence,
-    weights: typing.Sequence[int | fractions.Fraction | _duration.ValueDuration],
+    weights: typing.Sequence[int | fractions.Fraction | _duration.Duration],
     *,
     cyclic: bool = False,
     overhang: bool = False,
@@ -1126,7 +1126,7 @@ def partition_by_weights(
 
 def split(
     sequence,
-    weights: typing.Sequence[int | fractions.Fraction | _duration.ValueDuration],
+    weights: typing.Sequence[int | fractions.Fraction | _duration.Duration],
     *,
     cyclic: bool = False,
     overhang: bool = False,
@@ -1196,10 +1196,10 @@ def split(
         with overhang; then expresses durations as pairs with denominator:
 
         >>> sequence = list([
-        ...     abjad.ValueDuration(20, 2),
-        ...     abjad.ValueDuration(-20, 2),
-        ...     abjad.ValueDuration(20, 2),
-        ...     abjad.ValueDuration(-20, 2),
+        ...     abjad.Duration(20, 2),
+        ...     abjad.Duration(-20, 2),
+        ...     abjad.Duration(20, 2),
+        ...     abjad.Duration(-20, 2),
         ... ])
 
         >>> for part in abjad.sequence.split(
@@ -1292,7 +1292,7 @@ def filter(sequence, predicate: typing.Callable | None = None):
         >>> sequence = list(staff)
 
         >>> abjad.sequence.filter(
-        ...     sequence, lambda _: _.written_duration() == abjad.ValueDuration(1, 8)
+        ...     sequence, lambda _: _.written_duration() == abjad.Duration(1, 8)
         ... )
         [Note("d'8"), Note("f'8")]
 
@@ -1979,7 +1979,7 @@ def repeat_to_length(sequence, length: int = 0, *, start: int = 0):
 
 def repeat_to_weight(
     sequence,
-    weight: int | fractions.Fraction | _duration.ValueDuration,
+    weight: int | fractions.Fraction | _duration.Duration,
     *,
     allow_total: _enums.Comparison = _enums.EXACT,
 ):
@@ -2005,11 +2005,11 @@ def repeat_to_weight(
         >>> abjad.sequence.repeat_to_weight([5, -5, -5], 23, allow_total=abjad.LESS)
         [5, -5, -5, 5]
 
-        >>> sequence = [abjad.ValueDuration(3, 16)]
-        >>> weight = abjad.ValueDuration(5, 4)
+        >>> sequence = [abjad.Duration(3, 16)]
+        >>> weight = abjad.Duration(5, 4)
         >>> sequence = abjad.sequence.repeat_to_weight(sequence, weight)
         >>> sum(sequence)
-        ValueDuration(numerator=5, denominator=4)
+        Duration(numerator=5, denominator=4)
 
         >>> fractions = [_.as_fraction() for _ in sequence]
         >>> [abjad.duration.pair_with_denominator(_, 16) for _ in fractions]
@@ -2352,7 +2352,7 @@ def truncate(
     sequence,
     *,
     sum_: int | fractions.Fraction | None = None,
-    weight: int | fractions.Fraction | _duration.ValueDuration | None = None,
+    weight: int | fractions.Fraction | _duration.Duration | None = None,
 ):
     """
     Truncates ``sequence``.
