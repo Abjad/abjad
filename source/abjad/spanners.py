@@ -47,7 +47,7 @@ def beam(
     beam_lone_notes: bool = False,
     beam_rests: bool | None = True,
     direction: _enums.Vertical | None = None,
-    durations: typing.Sequence[_duration.ValueDuration] | None = None,
+    durations: typing.Sequence[_duration.Duration] | None = None,
     span_beam_count: int | None = None,
     start_beam: _indicators.StartBeam | _tweaks.Bundle | None = None,
     stemlet_length: int | float | None = None,
@@ -141,7 +141,7 @@ def beam(
 
     """
     if durations is not None:
-        assert all(isinstance(_, _duration.ValueDuration) for _ in durations), repr(
+        assert all(isinstance(_, _duration.Duration) for _ in durations), repr(
             durations
         )
     original_leaves = list(_iterate.leaves(argument))
@@ -1807,7 +1807,7 @@ def tie(
     argument: _score.Component | typing.Sequence[_score.Component],
     *,
     direction: _enums.Vertical | None = None,
-    repeat: bool | _duration.ValueDuration | typing.Callable = False,
+    repeat: bool | _duration.Duration | typing.Callable = False,
     tag: _tag.Tag | None = None,
 ) -> None:
     r"""
@@ -1930,7 +1930,7 @@ def tie(
         Repeat tie threshold works like this:
 
         >>> voice = abjad.Voice("d'4. d'2 d'4. d'2", name="Voice")
-        >>> abjad.tie(voice[:], repeat=abjad.ValueDuration(4, 8))
+        >>> abjad.tie(voice[:], repeat=abjad.Duration(4, 8))
         >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -1972,7 +1972,7 @@ def tie(
                 d'8
             }
 
-        >>> abjad.tie(voice[:], repeat=abjad.ValueDuration(4, 8))
+        >>> abjad.tie(voice[:], repeat=abjad.Duration(4, 8))
         >>> abjad.show(voice) # doctest: +SKIP
 
         ..  docs::
@@ -1998,15 +1998,15 @@ def tie(
     elif repeat in (None, False):
 
         def inequality(item):
-            return item < _duration.ValueDuration(0)
+            return item < _duration.Duration(0)
 
     elif repeat is True:
 
         def inequality(item):
-            return item >= _duration.ValueDuration(0)
+            return item >= _duration.Duration(0)
 
     else:
-        assert isinstance(repeat, _duration.ValueDuration), repr(repeat)
+        assert isinstance(repeat, _duration.Duration), repr(repeat)
 
         def inequality(item):
             return item >= repeat

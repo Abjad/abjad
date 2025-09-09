@@ -20,7 +20,7 @@ The functions we'll use:
     >>> def make_cell(pitch_string, hand):
     ...     strings = pitch_string.split()
     ...     pitches = abjad.pitch.pitches(strings)
-    ...     duration = abjad.ValueDuration(1, 8)
+    ...     duration = abjad.Duration(1, 8)
     ...     notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in pitches]
     ...     rh_lower_voice = abjad.Voice(notes, name=f"{hand}_Lower_Voice")
     ...     abjad.beam(notes)
@@ -32,7 +32,7 @@ The functions we'll use:
     ...     command = abjad.VoiceNumber(2)
     ...     abjad.attach(command, notes[0])
     ...     numerator = int(math.ceil(len(pitches) / 2.0))
-    ...     duration = abjad.ValueDuration(numerator, 8)
+    ...     duration = abjad.Duration(numerator, 8)
     ...     lower_pitch = abjad.NamedPitch(pitches[0])
     ...     upper_pitch = lower_pitch + abjad.NamedInterval("P8")
     ...     octave_pitches = [lower_pitch, upper_pitch]
@@ -53,7 +53,7 @@ The functions we'll use:
 
     >>> def make_measure(pitches, hand):
     ...     measure = abjad.Container()
-    ...     duration = abjad.ValueDuration(0)
+    ...     duration = abjad.Duration(0)
     ...     sublists = pitches.split("|")
     ...     for sublist in sublists:
     ...         container = make_cell(sublist, hand)
@@ -159,7 +159,7 @@ stems of the notes point down.
 
     >>> strings = "b e' f'".split()
     >>> pitches = abjad.pitch.pitches(strings)
-    >>> duration = abjad.ValueDuration(1, 8)
+    >>> duration = abjad.Duration(1, 8)
     >>> notes = [abjad.Note.from_duration_and_pitch(duration, _) for _ in pitches]
     >>> rh_lower_voice = abjad.Voice(notes, name="RH_Lower_Voice")
     >>> abjad.beam(notes)
@@ -184,7 +184,7 @@ articulation marking and finally add the chord to a voice. We attach a LilyPond
     >>> upper_pitch = lower_pitch + abjad.NamedInterval("P8")
     >>> octave_pitches = [lower_pitch, upper_pitch]
     >>> numerator = int(math.ceil(len(pitches) / 2.))
-    >>> duration = abjad.ValueDuration(numerator, 8)
+    >>> duration = abjad.Duration(numerator, 8)
     >>> chord = abjad.Chord.from_duration_and_pitches(duration, octave_pitches)
     >>> articulation = abjad.Articulation(">")
     >>> abjad.attach(articulation, chord)

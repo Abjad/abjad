@@ -117,11 +117,11 @@ strings start with some rests, and use a long-short pattern for their rhythms:
     ...     voice_names = ["Violin_1", "Violin_2", "Viola", "Cello", "Bass"]
     ...     voice_to_descents = {}
     ...     for i, voice_name in enumerate(voice_names):
-    ...         long_duration = abjad.ValueDuration(1, 2) * (2 ** i)
+    ...         long_duration = abjad.Duration(1, 2) * (2 ** i)
     ...         short_duration = long_duration / 2
     ...         rest_duration = abjad.Fraction(3, 2) * long_duration
-    ...         div = rest_duration // abjad.ValueDuration(3, 2)
-    ...         mod = abjad.ValueDuration(rest_duration % abjad.ValueDuration(3, 2))
+    ...         div = rest_duration // abjad.Duration(3, 2)
+    ...         mod = abjad.Duration(rest_duration % abjad.Duration(3, 2))
     ...         initial_rest = []
     ...         for i in range(div):
     ...             rest = abjad.MultimeasureRest("R1.")
@@ -210,7 +210,7 @@ too:
     >>> notes = abjad.sequence.flatten(descents)
     >>> staff = abjad.Staff(notes)
     >>> score = abjad.Score([staff], name="Score")
-    >>> duration = abjad.ValueDuration(3, 2)
+    >>> duration = abjad.Duration(3, 2)
     >>> lists = abjad.mutate.split(staff[:], [duration], cyclic=True)
     >>> time_signature = abjad.TimeSignature((6, 4))
     >>> leaf = abjad.select.leaf(staff, 0)
@@ -288,7 +288,7 @@ We define more functions:
     ...     edit_cello(score, extra_components)
     ...     edit_bass(score, extra_components)
     ...     strings_staff_group = score["Strings_Staff_Group"]
-    ...     duration = abjad.ValueDuration(6, 4)
+    ...     duration = abjad.Duration(6, 4)
     ...     for voice in abjad.select.components(strings_staff_group, abjad.Voice):
     ...         lists = abjad.mutate.split(voice[:], [duration], cyclic=True)
     ...         for components in lists:
@@ -300,7 +300,7 @@ We define more functions:
     ...     descents = voice_to_descents["Violin_1"]
     ...     container = abjad.Container(descents[-1])
     ...     pitch = abjad.NamedPitch("c'")
-    ...     for duration in 43 * [abjad.ValueDuration(6, 4)]:
+    ...     for duration in 43 * [abjad.Duration(6, 4)]:
     ...         note = abjad.Note.from_duration_and_pitch(duration, pitch)
     ...         tie = abjad.Tie()
     ...         abjad.attach(tie, note)
@@ -312,7 +312,7 @@ We define more functions:
     ...     voice = score["Violin_2_Voice"]
     ...     descents = voice_to_descents["Violin_2"]
     ...     container = abjad.Container(descents[-1])
-    ...     duration = abjad.ValueDuration(1, 1)
+    ...     duration = abjad.Duration(1, 1)
     ...     container[-1].set_written_duration(duration)
     ...     container.append("a2")
     ...     for leaf in container:
@@ -338,10 +338,10 @@ We define more functions:
     ...     descents = voice_to_descents["Viola"]
     ...     container = abjad.Container(descents[-1])
     ...     for leaf in container:
-    ...         if leaf.written_duration() == abjad.ValueDuration(4, 4):
-    ...             leaf.set_written_duration(abjad.ValueDuration(8, 4))
+    ...         if leaf.written_duration() == abjad.Duration(4, 4):
+    ...             leaf.set_written_duration(abjad.Duration(8, 4))
     ...         else:
-    ...             leaf.set_written_duration(abjad.ValueDuration(4, 4))
+    ...             leaf.set_written_duration(abjad.Duration(4, 4))
     ...         articulation = abjad.Articulation("accent")
     ...         abjad.attach(articulation, leaf)
     ...         articulation = abjad.Articulation("tenuto")
@@ -359,7 +359,7 @@ We define more functions:
     ...     tie = abjad.Tie()
     ...     abjad.attach(tie, container[-1])
     ...     pitch = abjad.NamedPitch("e")
-    ...     for duration in 20 * [abjad.ValueDuration(6, 4)]:
+    ...     for duration in 20 * [abjad.Duration(6, 4)]:
     ...         note = abjad.Note.from_duration_and_pitch(duration, pitch)
     ...         tie = abjad.Tie()
     ...         abjad.attach(tie, note)
@@ -403,7 +403,7 @@ We define more functions:
 
     >>> def attach_contexted_indicators(score):
     ...     leaf = abjad.select.leaf(score["Bell_Staff"], 0)
-    ...     metronome_mark = abjad.MetronomeMark(abjad.ValueDuration(1, 4), (112, 120))
+    ...     metronome_mark = abjad.MetronomeMark(abjad.Duration(1, 4), (112, 120))
     ...     abjad.attach(metronome_mark, leaf)
     ...     time_signature = abjad.TimeSignature((6, 4))
     ...     abjad.attach(time_signature, leaf)

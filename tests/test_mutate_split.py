@@ -23,7 +23,7 @@ def test_mutate__set_leaf_duration_01():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.mutate._set_leaf_duration(voice[1], abjad.ValueDuration(5, 32))
+    abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(5, 32))
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -69,7 +69,7 @@ def test_mutate__set_leaf_duration_02():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.mutate._set_leaf_duration(voice[1], abjad.ValueDuration(5, 32))
+    abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(5, 32))
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -94,7 +94,7 @@ def test_mutate__set_leaf_duration_02():
 def test_mutate__set_leaf_duration_03():
     """
     Changes leaf to nontied duration.
-    Same as voice.set_written_duration(abjad.ValueDuration(3, 16)).
+    Same as voice.set_written_duration(abjad.Duration(3, 16)).
     """
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
@@ -114,7 +114,7 @@ def test_mutate__set_leaf_duration_03():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.mutate._set_leaf_duration(voice[1], abjad.ValueDuration(3, 16))
+    abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(3, 16))
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -156,7 +156,7 @@ def test_mutate__set_leaf_duration_04():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.mutate._set_leaf_duration(voice[1], abjad.ValueDuration(5, 48))
+    abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(5, 48))
     abjad.makers.tweak_tuplet_bracket_edge_height(voice)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -205,7 +205,7 @@ def test_mutate__set_leaf_duration_05():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.mutate._set_leaf_duration(voice[1], abjad.ValueDuration(1, 12))
+    abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(1, 12))
     abjad.makers.tweak_tuplet_bracket_edge_height(voice)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -240,7 +240,7 @@ def test_mutate__set_leaf_duration_06():
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
-    abjad.mutate._set_leaf_duration(note, abjad.ValueDuration(1, 32))
+    abjad.mutate._set_leaf_duration(note, abjad.Duration(1, 32))
 
     assert abjad.wf.is_wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 1/4"
@@ -257,7 +257,7 @@ def test_mutate__set_leaf_duration_07():
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
-    abjad.mutate._set_leaf_duration(note, abjad.ValueDuration(3, 32))
+    abjad.mutate._set_leaf_duration(note, abjad.Duration(3, 32))
 
     assert abjad.wf.is_wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 3/4"
@@ -274,7 +274,7 @@ def test_mutate__set_leaf_duration_08():
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
-    abjad.mutate._set_leaf_duration(note, abjad.ValueDuration(5, 32))
+    abjad.mutate._set_leaf_duration(note, abjad.Duration(5, 32))
 
     assert abjad.wf.is_wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 5/4"
@@ -291,7 +291,7 @@ def test_mutate__set_leaf_duration_09():
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
-    abjad.mutate._set_leaf_duration(note, abjad.ValueDuration(1, 24))
+    abjad.mutate._set_leaf_duration(note, abjad.Duration(1, 24))
 
     assert abjad.wf.is_wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 1/3"
@@ -308,7 +308,7 @@ def test_mutate__set_leaf_duration_10():
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
-    abjad.mutate._set_leaf_duration(note, abjad.ValueDuration(5, 24))
+    abjad.mutate._set_leaf_duration(note, abjad.Duration(5, 24))
 
     assert abjad.wf.is_wellformed(note)
     assert abjad.lilypond(note) == "c'8 * 5/3"
@@ -336,7 +336,7 @@ def test_mutate__set_leaf_duration_11():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.mutate._set_leaf_duration(voice[1], abjad.ValueDuration(5, 32))
+    abjad.mutate._set_leaf_duration(voice[1], abjad.Duration(5, 32))
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -392,7 +392,7 @@ def test_mutate__split_container_by_duration_01():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.mutate._split_container_by_duration(voice[0], abjad.ValueDuration(1, 32))
+    abjad.mutate._split_container_by_duration(voice[0], abjad.Duration(1, 32))
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -458,7 +458,7 @@ def test_mutate__split_container_by_duration_02():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.mutate._split_container_by_duration(voice[0], abjad.ValueDuration(1, 5))
+    abjad.mutate._split_container_by_duration(voice[0], abjad.Duration(1, 5))
     abjad.makers.tweak_tuplet_bracket_edge_height(voice)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -520,7 +520,7 @@ def test_mutate__split_leaf_by_durations_01():
         """
     ), print(abjad.lilypond(staff))
 
-    abjad.mutate._split_leaf_by_durations(staff[1], [abjad.ValueDuration(1, 32)])
+    abjad.mutate._split_leaf_by_durations(staff[1], [abjad.Duration(1, 32)])
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
@@ -553,7 +553,7 @@ def test_mutate__split_leaf_by_durations_02():
 
     voice = abjad.Voice(r"\tuplet 3/2 { c'8 [ d'8 e'8 ] }")
     leaf = abjad.get.leaf(voice, 0)
-    abjad.mutate._split_leaf_by_durations(leaf, [abjad.ValueDuration(1, 20)])
+    abjad.mutate._split_leaf_by_durations(leaf, [abjad.Duration(1, 20)])
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -585,11 +585,11 @@ def test_mutate__split_leaf_by_durations_03():
     """
 
     staff = abjad.Staff("c'4")
-    abjad.mutate._split_leaf_by_durations(staff[0], [abjad.ValueDuration(3, 4)])
+    abjad.mutate._split_leaf_by_durations(staff[0], [abjad.Duration(3, 4)])
 
     assert len(staff) == 1
     assert isinstance(staff[0], abjad.Note)
-    assert staff[0].written_duration() == abjad.ValueDuration(1, 4)
+    assert staff[0].written_duration() == abjad.Duration(1, 4)
 
 
 def test_mutate__split_leaf_by_durations_04():
@@ -598,9 +598,7 @@ def test_mutate__split_leaf_by_durations_04():
     """
 
     note = abjad.Note("c'4")
-    new_leaves = abjad.mutate._split_leaf_by_durations(
-        note, [abjad.ValueDuration(1, 16)]
-    )
+    new_leaves = abjad.mutate._split_leaf_by_durations(note, [abjad.Duration(1, 16)])
     assert all(isinstance(_, abjad.Note) for _ in new_leaves)
 
 
@@ -610,7 +608,7 @@ def test_mutate__split_leaf_by_durations_05():
     """
 
     staff = abjad.Staff([abjad.Note("c'4")])
-    abjad.mutate._split_leaf_by_durations(staff[0], [abjad.ValueDuration(1, 8)])
+    abjad.mutate._split_leaf_by_durations(staff[0], [abjad.Duration(1, 8)])
 
     assert len(staff) == 2
     assert abjad.wf.is_wellformed(staff)
@@ -623,7 +621,7 @@ def test_mutate__split_leaf_by_durations_06():
 
     staff = abjad.Staff([abjad.Note("c'4")])
     new_leaves = abjad.mutate._split_leaf_by_durations(
-        staff[0], [abjad.ValueDuration(5, 32)]
+        staff[0], [abjad.Duration(5, 32)]
     )
 
     assert all(isinstance(_, abjad.Note) for _ in new_leaves)
@@ -652,9 +650,7 @@ def test_mutate__split_leaf_by_durations_07():
     after_grace = abjad.AfterGraceContainer([abjad.Note("c'32")])
     abjad.attach(after_grace, note)
 
-    new_leaves = abjad.mutate._split_leaf_by_durations(
-        note, [abjad.ValueDuration(1, 8)]
-    )
+    new_leaves = abjad.mutate._split_leaf_by_durations(note, [abjad.Duration(1, 8)])
     staff = abjad.Staff(new_leaves)
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
@@ -686,9 +682,7 @@ def test_mutate__split_leaf_by_durations_08():
     grace = abjad.AfterGraceContainer([abjad.Note("c'32")])
     abjad.attach(grace, note)
 
-    new_leaves = abjad.mutate._split_leaf_by_durations(
-        note, [abjad.ValueDuration(5, 32)]
-    )
+    new_leaves = abjad.mutate._split_leaf_by_durations(note, [abjad.Duration(5, 32)])
     staff = abjad.Staff(new_leaves)
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
@@ -720,9 +714,7 @@ def test_mutate__split_leaf_by_durations_09():
     grace = abjad.BeforeGraceContainer([abjad.Note("c'32")])
     abjad.attach(grace, note)
 
-    new_leaves = abjad.mutate._split_leaf_by_durations(
-        note, [abjad.ValueDuration(1, 16)]
-    )
+    new_leaves = abjad.mutate._split_leaf_by_durations(note, [abjad.Duration(1, 16)])
     staff = abjad.Staff(new_leaves)
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
@@ -778,7 +770,7 @@ def test_mutate__split_leaf_by_durations_10():
         """
     ), print(abjad.lilypond(voice))
 
-    abjad.mutate._split_leaf_by_durations(leaves[0], [abjad.ValueDuration(1, 32)])
+    abjad.mutate._split_leaf_by_durations(leaves[0], [abjad.Duration(1, 32)])
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -843,7 +835,7 @@ def test_mutate_split_01():
     ), print(abjad.lilypond(voice))
 
     notes = voice[0][1:2]
-    result = abjad.mutate.split(notes, [abjad.ValueDuration(3, 64)], cyclic=True)
+    result = abjad.mutate.split(notes, [abjad.Duration(3, 64)], cyclic=True)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -918,7 +910,7 @@ def test_mutate_split_02():
         """
     ), print(abjad.lilypond(staff))
 
-    result = abjad.mutate.split(leaves, [abjad.ValueDuration(3, 32)], cyclic=True)
+    result = abjad.mutate.split(leaves, [abjad.Duration(3, 32)], cyclic=True)
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
@@ -1003,7 +995,7 @@ def test_mutate_split_03():
     ), print(abjad.lilypond(staff))
 
     notes = voice[0][1:]
-    result = abjad.mutate.split(notes, [abjad.ValueDuration(1, 32)], cyclic=True)
+    result = abjad.mutate.split(notes, [abjad.Duration(1, 32)], cyclic=True)
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
@@ -1085,7 +1077,7 @@ def test_mutate_split_04():
         """
     ), print(abjad.lilypond(staff))
 
-    result = abjad.mutate.split(leaves, [abjad.ValueDuration(1, 16)], cyclic=True)
+    result = abjad.mutate.split(leaves, [abjad.Duration(1, 16)], cyclic=True)
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
@@ -1170,7 +1162,7 @@ def test_mutate_split_05():
     ), print(abjad.lilypond(staff))
 
     measures = voice[:1]
-    result = abjad.mutate.split(measures, [abjad.ValueDuration(1, 16)], cyclic=True)
+    result = abjad.mutate.split(measures, [abjad.Duration(1, 16)], cyclic=True)
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
@@ -1257,7 +1249,7 @@ def test_mutate_split_06():
     ), print(abjad.lilypond(staff))
 
     measures = voice[:]
-    result = abjad.mutate.split(measures, [abjad.ValueDuration(3, 32)], cyclic=True)
+    result = abjad.mutate.split(measures, [abjad.Duration(3, 32)], cyclic=True)
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""
@@ -1320,7 +1312,7 @@ def test_mutate_split_07():
     abjad.beam(leaves)
 
     tuplets = voice[1:2]
-    abjad.mutate.split(tuplets, [abjad.ValueDuration(1, 12)])
+    abjad.mutate.split(tuplets, [abjad.Duration(1, 12)])
     abjad.makers.tweak_tuplet_bracket_edge_height(voice)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
@@ -1365,7 +1357,7 @@ def test_mutate_split_08():
     abjad.beam(leaves)
 
     measures = voice[1:2]
-    abjad.mutate.split(measures, [abjad.ValueDuration(1, 8)])
+    abjad.mutate.split(measures, [abjad.Duration(1, 8)])
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -1399,7 +1391,7 @@ def test_mutate_split_09():
 
     voice = abjad.Voice("c'8 d'8 e'8 f'8")
 
-    result = abjad.mutate.split([voice], [abjad.ValueDuration(1, 4)])
+    result = abjad.mutate.split([voice], [abjad.Duration(1, 4)])
 
     assert not len(voice)
 
@@ -1439,7 +1431,7 @@ def test_mutate_split_10():
     staff = abjad.Staff([abjad.Voice("c'8 d'8 e'8 f'8")])
     voice = staff[0]
 
-    result = abjad.mutate.split([voice], [abjad.ValueDuration(1, 4)])
+    result = abjad.mutate.split([voice], [abjad.Duration(1, 4)])
 
     left = result[0][0]
     right = result[1][0]
@@ -1503,7 +1495,7 @@ def test_mutate_split_11():
     leaves = abjad.select.leaves(container)
     abjad.beam(leaves)
 
-    result = abjad.mutate.split([container], [abjad.ValueDuration(1, 4)])
+    result = abjad.mutate.split([container], [abjad.Duration(1, 4)])
 
     left = result[0][0]
     right = result[1][0]
@@ -1584,7 +1576,7 @@ def test_mutate_split_12():
     staff = abjad.Staff([voice])
     abjad.beam(tuplet[:])
 
-    result = abjad.mutate.split([tuplet], [abjad.ValueDuration(1, 5)])
+    result = abjad.mutate.split([tuplet], [abjad.Duration(1, 5)])
     abjad.makers.tweak_tuplet_bracket_edge_height(voice)
 
     left = result[0][0]
@@ -1708,9 +1700,7 @@ def test_mutate_split_13():
     ), print(abjad.lilypond(voice))
 
     note = voice[0]
-    abjad.mutate.split(
-        note, [abjad.ValueDuration(1, 8), abjad.ValueDuration(3, 8)], cyclic=True
-    )
+    abjad.mutate.split(note, [abjad.Duration(1, 8), abjad.Duration(3, 8)], cyclic=True)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -1772,7 +1762,7 @@ def test_mutate_split_14():
     ), print(abjad.lilypond(voice))
 
     container = voice[0]
-    abjad.mutate.split(container, [abjad.ValueDuration(1, 8)], cyclic=True)
+    abjad.mutate.split(container, [abjad.Duration(1, 8)], cyclic=True)
 
     assert abjad.lilypond(voice) == abjad.string.normalize(
         r"""
@@ -1809,7 +1799,7 @@ def test_mutate_split_15():
     staff = abjad.Staff("c'4")
 
     notes = staff[:1]
-    abjad.mutate.split(notes, [abjad.ValueDuration(5, 24)])
+    abjad.mutate.split(notes, [abjad.Duration(5, 24)])
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""

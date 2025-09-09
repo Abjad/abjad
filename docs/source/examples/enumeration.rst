@@ -28,11 +28,11 @@ The following functions recreate Malt's results in Abjad:
     ...     denominator = 2 ** exponent
     ...     outer_string = f"{numerator}:{denominator}"
     ...     lone_note_denominator = denominator * 4
-    ...     lone_note_duration = abjad.ValueDuration(1, lone_note_denominator)
+    ...     lone_note_duration = abjad.Duration(1, lone_note_denominator)
     ...     pitch = abjad.NamedPitch("c'")
     ...     lone_note = abjad.Note.from_duration_and_pitch(lone_note_duration, pitch)
     ...     proportion = inner * (1,)
-    ...     duration = abjad.ValueDuration(outer, lone_note_denominator)
+    ...     duration = abjad.Duration(outer, lone_note_denominator)
     ...     inner_tuplet = abjad.makers.make_tuplet(duration, proportion)
     ...     pair = abjad.duration.pair_with_denominator(inner_tuplet.multiplier(), inner)
     ...     ratio = abjad.Ratio(pair[1], pair[0])

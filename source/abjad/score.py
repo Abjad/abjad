@@ -383,7 +383,7 @@ class Leaf(Component):
 
     def __init__(
         self,
-        written_duration: _duration.ValueDuration,
+        written_duration: _duration.Duration,
         *,
         multiplier=None,
         tag: _tag.Tag | None = None,
@@ -392,12 +392,12 @@ class Leaf(Component):
         self._after_grace_container = None
         self._before_grace_container = None
         self.set_multiplier(multiplier)
-        if isinstance(written_duration, _duration.ValueDuration):
+        if isinstance(written_duration, _duration.Duration):
             written_duration_ = written_duration
         elif isinstance(written_duration, tuple):
-            written_duration_ = _duration.ValueDuration(*written_duration)
+            written_duration_ = _duration.Duration(*written_duration)
         else:
-            written_duration_ = _duration.ValueDuration(written_duration)
+            written_duration_ = _duration.Duration(written_duration)
         self.set_written_duration(written_duration_)
 
     def __copy__(self) -> typing.Self:
@@ -570,7 +570,7 @@ class Leaf(Component):
         result = " * ".join(strings)
         return result
 
-    def _get_preprolated_duration(self) -> _duration.ValueDuration:
+    def _get_preprolated_duration(self) -> _duration.Duration:
         duration = self.written_duration()
         self_multiplier = self.multiplier()
         if self_multiplier is not None:
@@ -632,17 +632,17 @@ class Leaf(Component):
             assert len(pair) == 2, repr(pair)
         self._multiplier = pair
 
-    def set_written_duration(self, duration: _duration.ValueDuration) -> None:
+    def set_written_duration(self, duration: _duration.Duration) -> None:
         """
         Sets leaf written duration.
         """
-        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        assert isinstance(duration, _duration.Duration), repr(duration)
         if not duration.is_assignable():
             message = f"not assignable duration: {duration!r}."
             raise _exceptions.AssignabilityError(message)
         self._written_duration = duration
 
-    def written_duration(self) -> _duration.ValueDuration:
+    def written_duration(self) -> _duration.Duration:
         """
         Gets leaf written duration.
         """
@@ -1168,11 +1168,10 @@ class Container(Component):
     def _get_contents_duration(self):
         if self.simultaneous():
             return max(
-                [_duration.ValueDuration(0)]
-                + [_._get_preprolated_duration() for _ in self]
+                [_duration.Duration(0)] + [_._get_preprolated_duration() for _ in self]
             )
         else:
-            duration = _duration.ValueDuration(0)
+            duration = _duration.Duration(0)
             for component in self:
                 duration += component._get_preprolated_duration()
             return duration
@@ -2457,7 +2456,7 @@ class Chord(Leaf):
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         if string == "<c' e' g'>4":
-            duration = _duration.ValueDuration(1, 4)
+            duration = _duration.Duration(1, 4)
             pitches = _pitch.pitches("c' e' g'".split())
             note_heads = [NoteHead(_) for _ in pitches]
         else:
@@ -2528,7 +2527,7 @@ class Chord(Leaf):
 
     @staticmethod
     def from_duration_and_note_heads(
-        duration: _duration.ValueDuration,
+        duration: _duration.Duration,
         note_heads: typing.Sequence[NoteHead],
         *,
         multiplier: tuple[int, int] | None = None,
@@ -2541,7 +2540,7 @@ class Chord(Leaf):
 
             >>> note = abjad.Note("d'?4")
             >>> note_heads = [note.note_head()]
-            >>> duration = abjad.ValueDuration(1, 4)
+            >>> duration = abjad.Duration(1, 4)
             >>> chord = abjad.Chord.from_duration_and_note_heads(duration, note_heads)
             >>> abjad.show(chord) # doctest: +SKIP
 
@@ -2567,7 +2566,7 @@ class Chord(Leaf):
 
         """
         assert all(isinstance(_, NoteHead) for _ in note_heads), repr(note_heads)
-        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        assert isinstance(duration, _duration.Duration), repr(duration)
         if multiplier is not None:
             assert isinstance(multiplier, tuple), repr(multiplier)
         if tag is not None:
@@ -2579,7 +2578,7 @@ class Chord(Leaf):
 
     @staticmethod
     def from_duration_and_pitches(
-        duration: _duration.ValueDuration,
+        duration: _duration.Duration,
         pitches: typing.Sequence[_pitch.NamedPitch | str],
         *,
         multiplier: tuple[int, int] | None = None,
@@ -2590,7 +2589,7 @@ class Chord(Leaf):
 
         ..  container:: example
 
-            >>> duration = abjad.ValueDuration(1, 4)
+            >>> duration = abjad.Duration(1, 4)
             >>> pitches = [abjad.NamedPitch(_) for _ in "c' d' b'".split()]
             >>> chord = abjad.Chord.from_duration_and_pitches(duration, pitches)
             >>> abjad.show(chord) # doctest: +SKIP
@@ -2604,7 +2603,7 @@ class Chord(Leaf):
         """
         prototype = (_pitch.NamedPitch, str)
         assert all(isinstance(_, prototype) for _ in pitches), repr(pitches)
-        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        assert isinstance(duration, _duration.Duration), repr(duration)
         if multiplier is not None:
             assert isinstance(multiplier, tuple), repr(multiplier)
         if tag is not None:
@@ -2646,7 +2645,7 @@ class Chord(Leaf):
         note_head_list = NoteHeadList(note_heads)
         self._note_heads = note_head_list
 
-    def set_written_duration(self, duration: _duration.ValueDuration) -> None:
+    def set_written_duration(self, duration: _duration.Duration) -> None:
         """
         Sets written duration of chord.
 
@@ -2654,11 +2653,11 @@ class Chord(Leaf):
 
             >>> chord = abjad.Chord("<e' cs'' f''>4")
             >>> chord.written_duration()
-            ValueDuration(numerator=1, denominator=4)
+            Duration(numerator=1, denominator=4)
 
-            >>> chord.set_written_duration(abjad.ValueDuration(1, 16))
+            >>> chord.set_written_duration(abjad.Duration(1, 16))
             >>> chord.written_duration()
-            ValueDuration(numerator=1, denominator=16)
+            Duration(numerator=1, denominator=16)
 
         """
         Leaf.set_written_duration(self, duration)
@@ -2682,14 +2681,14 @@ class Chord(Leaf):
         note_heads = [NoteHead(_) for _ in pitches]
         self.set_note_heads(note_heads)
 
-    def written_duration(self) -> _duration.ValueDuration:
+    def written_duration(self) -> _duration.Duration:
         """
         Gets written duration of chord.
 
         ..  container:: example
 
             >>> abjad.Chord("<e' cs'' f''>4").written_duration()
-            ValueDuration(numerator=1, denominator=4)
+            Duration(numerator=1, denominator=4)
 
         """
         return super().written_duration()
@@ -3081,7 +3080,7 @@ class IndependentAfterGraceContainer(Container):
         return result
 
     def _get_preprolated_duration(self):
-        return _duration.ValueDuration(0)
+        return _duration.Duration(0)
 
     def fraction(self) -> tuple[int, int] | None:
         r"""
@@ -3139,7 +3138,7 @@ class MultimeasureRest(Leaf):
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         if string == "R1":
-            written_duration = _duration.ValueDuration(1)
+            written_duration = _duration.Duration(1)
         else:
             assert isinstance(string, str), repr(string)
             string = f"{{ {string} }}"
@@ -3158,7 +3157,7 @@ class MultimeasureRest(Leaf):
 
     @staticmethod
     def from_duration(
-        duration: _duration.ValueDuration,
+        duration: _duration.Duration,
         *,
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
@@ -3166,7 +3165,7 @@ class MultimeasureRest(Leaf):
         """
         Makes multimeasure rest from ``duration``.
         """
-        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        assert isinstance(duration, _duration.Duration), repr(duration)
         if multiplier is not None:
             assert isinstance(multiplier, tuple), repr(multiplier)
         if tag is not None:
@@ -3937,7 +3936,7 @@ class Note(Leaf):
         written_pitch: _pitch.NamedPitch | str
         if string == "c'4":
             written_pitch = _pitch.NamedPitch("c'")
-            written_duration = _duration.ValueDuration(1, 4)
+            written_duration = _duration.Duration(1, 4)
         else:
             string = f"{{ {string} }}"
             parsed = self._parse_lilypond_string(string, language=language)
@@ -3986,7 +3985,7 @@ class Note(Leaf):
 
     @staticmethod
     def from_duration_and_pitch(
-        duration: _duration.ValueDuration,
+        duration: _duration.Duration,
         pitch: _pitch.NamedPitch | str,
         *,
         multiplier: tuple[int, int] | None = None,
@@ -3998,7 +3997,7 @@ class Note(Leaf):
         ..  container:: example
 
             >>> pitch = abjad.NamedPitch("C#5")
-            >>> duration = abjad.ValueDuration(3, 16)
+            >>> duration = abjad.Duration(3, 16)
             >>> note = abjad.Note.from_duration_and_pitch(duration, pitch)
             >>> abjad.show(note) # doctest: +SKIP
 
@@ -4010,7 +4009,7 @@ class Note(Leaf):
 
         """
         assert isinstance(pitch, _pitch.NamedPitch | str), repr(pitch)
-        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        assert isinstance(duration, _duration.Duration), repr(duration)
         if multiplier is not None:
             assert isinstance(multiplier, tuple), repr(multiplier)
         if tag is not None:
@@ -4054,7 +4053,7 @@ class Note(Leaf):
         note_head = copy.copy(note_head)
         self._note_head = note_head
 
-    def set_written_duration(self, duration: _duration.ValueDuration) -> None:
+    def set_written_duration(self, duration: _duration.Duration) -> None:
         """
         Sets written duration of note.
 
@@ -4062,15 +4061,15 @@ class Note(Leaf):
 
             >>> note = abjad.Note("c'4")
             >>> note.written_duration()
-            ValueDuration(numerator=1, denominator=4)
+            Duration(numerator=1, denominator=4)
 
-            >>> duration = abjad.ValueDuration(1, 16)
+            >>> duration = abjad.Duration(1, 16)
             >>> note.set_written_duration(duration)
             >>> note.written_duration()
-            ValueDuration(numerator=1, denominator=16)
+            Duration(numerator=1, denominator=16)
 
         """
-        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        assert isinstance(duration, _duration.Duration), repr(duration)
         return Leaf.set_written_duration(self, duration)
 
     def set_written_pitch(self, pitch: _pitch.NamedPitch | str) -> None:
@@ -4091,14 +4090,14 @@ class Note(Leaf):
             assert pitch in _lyconst.drums, repr(pitch)
         self.note_head().set_written_pitch(pitch)
 
-    def written_duration(self) -> _duration.ValueDuration:
+    def written_duration(self) -> _duration.Duration:
         """
         Gets written duration of note.
 
         ..  container:: example
 
             >>> abjad.Note("c'4").written_duration()
-            ValueDuration(numerator=1, denominator=4)
+            Duration(numerator=1, denominator=4)
 
         """
         return super().written_duration()
@@ -4153,7 +4152,7 @@ class Rest(Leaf):
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         if string == "r4":
-            written_duration = _duration.ValueDuration(1, 4)
+            written_duration = _duration.Duration(1, 4)
         else:
             assert isinstance(string, str), repr(string)
             string = f"{{ {string} }}"
@@ -4171,7 +4170,7 @@ class Rest(Leaf):
 
     @staticmethod
     def from_duration(
-        duration: _duration.ValueDuration,
+        duration: _duration.Duration,
         *,
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
@@ -4181,12 +4180,12 @@ class Rest(Leaf):
 
         ..  container:: example
 
-            >>> duration = abjad.ValueDuration(1, 4)
+            >>> duration = abjad.Duration(1, 4)
             >>> abjad.Rest.from_duration(duration)
             Rest('r4')
 
         """
-        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        assert isinstance(duration, _duration.Duration), repr(duration)
         if multiplier is not None:
             assert isinstance(multiplier, tuple), repr(multiplier)
         if tag is not None:
@@ -4295,16 +4294,14 @@ class Skip(Leaf):
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         if string == "s4":
-            written_duration = _duration.ValueDuration(1, 4)
+            written_duration = _duration.Duration(1, 4)
         else:
             string = f"{{ {string} }}"
             parsed = self._parse_lilypond_string(string, language=language)
             assert len(parsed) == 1 and isinstance(parsed[0], Skip)
             skip = parsed[0]
             written_duration = skip.written_duration()
-        assert isinstance(written_duration, _duration.ValueDuration), repr(
-            written_duration
-        )
+        assert isinstance(written_duration, _duration.Duration), repr(written_duration)
         super().__init__(written_duration, multiplier=multiplier, tag=tag)
         self._measure_initial_grace_note = None
 
@@ -4323,7 +4320,7 @@ class Skip(Leaf):
 
     @staticmethod
     def from_duration(
-        duration: _duration.ValueDuration,
+        duration: _duration.Duration,
         *,
         multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
@@ -4333,12 +4330,12 @@ class Skip(Leaf):
 
         ..  container:: example
 
-            >>> duration = abjad.ValueDuration(3, 16)
+            >>> duration = abjad.Duration(3, 16)
             >>> abjad.Skip.from_duration(duration)
             Skip('s8.')
 
         """
-        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        assert isinstance(duration, _duration.Duration), repr(duration)
         if multiplier is not None:
             assert isinstance(multiplier, tuple), repr(multiplier)
         if tag is not None:
@@ -4492,12 +4489,12 @@ class TremoloContainer(Container):
         Duration of container equal to contents duration multiplied by count:
 
         >>> abjad.get.duration(staff[0])
-        ValueDuration(numerator=1, denominator=4)
+        Duration(numerator=1, denominator=4)
 
         Duration of each leaf equal to written duration multiplied by count:
 
         >>> abjad.get.duration(staff[0][0])
-        ValueDuration(numerator=1, denominator=8)
+        Duration(numerator=1, denominator=8)
 
     """
 
@@ -4528,7 +4525,7 @@ class TremoloContainer(Container):
         result.append("{")
         return result
 
-    def _get_preprolated_duration(self) -> _duration.ValueDuration:
+    def _get_preprolated_duration(self) -> _duration.Duration:
         return self._get_prolation() * self._get_contents_duration()
 
     def _get_prolation(self) -> fractions.Fraction:
@@ -4746,7 +4743,7 @@ class Tuplet(Container):
             return f"{{ {str(self.ratio())} }}"
         return f"{{ {str(self.ratio())} {self._get_contents_summary()} }}"
 
-    def _get_preprolated_duration(self) -> _duration.ValueDuration:
+    def _get_preprolated_duration(self) -> _duration.Duration:
         return self.multiplier() * self._get_contents_duration()
 
     def _get_prolation(self) -> fractions.Fraction:
@@ -5199,7 +5196,7 @@ class Tuplet(Container):
                 continue
             assert isinstance(component, Leaf), repr(component)
             duration = self.multiplier() * component.written_duration()
-            # if not _duration.ValueDuration(duration).is_assignable():
+            # if not _duration.Duration(duration).is_assignable():
             if not duration.is_assignable():
                 return False
         return True
@@ -5500,9 +5497,9 @@ class Tuplet(Container):
         global_dot_count = dot_counts.pop()
         if global_dot_count == 0:
             return
-        # dot_duration = _duration.ValueDuration.from_dot_count(global_dot_count)
-        dot_duration = _duration.ValueDuration.from_dot_count(global_dot_count)
-        # multiplier = _duration.ValueDuration(self.multiplier() * dot_duration)
+        # dot_duration = _duration.Duration.from_dot_count(global_dot_count)
+        dot_duration = _duration.Duration.from_dot_count(global_dot_count)
+        # multiplier = _duration.Duration(self.multiplier() * dot_duration)
         multiplier = self.multiplier() * dot_duration
         ratio = _duration.Ratio(*multiplier.reciprocal().pair())
         self.set_ratio(ratio)
@@ -5706,7 +5703,7 @@ class Tuplet(Container):
                 component.set_ratio(ratio)
             elif isinstance(component, Leaf):
                 duration = component.written_duration()
-                # duration = _duration.ValueDuration(self.multiplier() * duration)
+                # duration = _duration.Duration(self.multiplier() * duration)
                 duration = self.multiplier() * duration
                 component.set_written_duration(duration)
             else:

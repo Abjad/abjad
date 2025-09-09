@@ -540,7 +540,7 @@ class Meter:
             inventory.append(tuple(sorted(all_offsets)))
         return tuple(inventory)
 
-    def duration(self) -> _duration.ValueDuration:
+    def duration(self) -> _duration.Duration:
         """
         Gets duration of meter.
 
@@ -549,10 +549,10 @@ class Meter:
             >>> rtc = abjad.meter.make_best_guess_rtc((7, 4))
             >>> meter = abjad.Meter(rtc)
             >>> meter.duration()
-            ValueDuration(numerator=7, denominator=4)
+            Duration(numerator=7, denominator=4)
 
         """
-        return _duration.ValueDuration(self.numerator(), self.denominator())
+        return _duration.Duration(self.numerator(), self.denominator())
 
     def fraction_string(self) -> str:
         """
@@ -876,8 +876,8 @@ class Meter:
         for offset_tuple in inventory:
             assert isinstance(offset_tuple, tuple)
             assert all(isinstance(_, _duration.Offset) for _ in offset_tuple)
-        old_flag_count = _duration.ValueDuration(1, self.denominator()).flag_count()
-        new_flag_count = _duration.ValueDuration(1, denominator).flag_count()
+        old_flag_count = _duration.Duration(1, self.denominator()).flag_count()
+        new_flag_count = _duration.Duration(1, denominator).flag_count()
         extra_depth = new_flag_count - old_flag_count
         assert isinstance(extra_depth, int), repr(extra_depth)
         for _ in range(extra_depth):
@@ -2067,11 +2067,11 @@ class Meter:
                     split_offset_fraction = (
                         split_offset.fraction - logical_tie_start_offset.fraction
                     )
-                    # split_offset_duration = _duration.ValueDuration(split_offset_fraction)
-                    split_offset_duration = _duration.ValueDuration(
+                    # split_offset_duration = _duration.Duration(split_offset_fraction)
+                    split_offset_duration = _duration.Duration(
                         *split_offset_fraction.as_integer_ratio()
                     )
-                    assert isinstance(split_offset_duration, _duration.ValueDuration)
+                    assert isinstance(split_offset_duration, _duration.Duration)
                     shards = _mutate.split(logical_tie[:], [split_offset_duration])
                     logical_ties = [_select.LogicalTie(_) for _ in shards]
                     for logical_tie in logical_ties:
@@ -2105,10 +2105,8 @@ class Meter:
                 assert split_offset is not None
                 assert isinstance(split_offset, _duration.Offset)
                 fraction = split_offset.fraction - logical_tie_start_offset.fraction
-                # split_offset_duration = _duration.ValueDuration(fraction)
-                split_offset_duration = _duration.ValueDuration(
-                    *fraction.as_integer_ratio()
-                )
+                # split_offset_duration = _duration.Duration(fraction)
+                split_offset_duration = _duration.Duration(*fraction.as_integer_ratio())
                 shards = _mutate.split(logical_tie[:], [split_offset_duration])
                 logical_ties = [_select.LogicalTie(shard) for shard in shards]
                 for logical_tie in logical_ties:
@@ -2165,7 +2163,7 @@ class Meter:
                 pass
             else:
                 duration = sum([_._get_preprolated_duration() for _ in item])
-                assert isinstance(duration, _duration.ValueDuration), repr(duration)
+                assert isinstance(duration, _duration.Duration), repr(duration)
                 if duration.numerator == 1:
                     denominator = 4 * duration.denominator
                     pair = _duration.pair_with_denominator(
@@ -2200,12 +2198,10 @@ def _get_offsets_at_depth(
             assert isinstance(first, _duration.Offset), repr(first)
             new_offsets.append(first)
             difference_fraction = second.fraction - first.fraction
-            difference = _duration.ValueDuration(
-                *difference_fraction.as_integer_ratio()
-            )
+            difference = _duration.Duration(*difference_fraction.as_integer_ratio())
             # half = (first + second) / 2
             half = _duration.Offset((first.fraction + second.fraction) / 2)
-            if _duration.ValueDuration(1, 8) < difference:
+            if _duration.Duration(1, 8) < difference:
                 new_offsets.append(half)
             else:
                 one_quarter = _duration.Offset((first.fraction + half.fraction) / 2)
@@ -2222,12 +2218,12 @@ def _get_offsets_at_depth(
 
 
 def _is_acceptable_logical_tie(
-    logical_tie_duration: _duration.ValueDuration,
+    logical_tie_duration: _duration.Duration,
     logical_tie_starts_in_offsets: bool = False,
     logical_tie_stops_in_offsets: bool = False,
     maximum_dot_count: int | None = None,
 ) -> bool:
-    assert isinstance(logical_tie_duration, _duration.ValueDuration), repr(
+    assert isinstance(logical_tie_duration, _duration.Duration), repr(
         logical_tie_duration
     )
     assert isinstance(logical_tie_starts_in_offsets, bool)
@@ -2590,8 +2586,8 @@ def illustrate_meter_list(
     assert isinstance(scale, float), repr(scale)
     durations = [_.duration() for _ in meter_list]
     total_duration = sum(durations)
-    offsets = _math.cumulative_sums(durations, start=_duration.ValueDuration(0))
-    assert all(isinstance(_, _duration.ValueDuration) for _ in offsets)
+    offsets = _math.cumulative_sums(durations, start=_duration.Duration(0))
+    assert all(isinstance(_, _duration.Duration) for _ in offsets)
     timespans = _timespan.TimespanList()
     for one, two in _sequence.nwise(offsets):
         # timespan = _timespan.Timespan(_duration.offset(one), _duration.offset(two))
@@ -2636,7 +2632,7 @@ def illustrate_meter_list(
         rational_x_offset += meter.duration()
     fraction_pairs: list[tuple[str, str]] = []
     for meter, offset in zip(meter_list, offsets):
-        assert isinstance(offset, _duration.ValueDuration), repr(offset)
+        assert isinstance(offset, _duration.Duration), repr(offset)
         numerator, denominator = meter.numerator(), meter.denominator()
         x_translation = float(offset) * postscript_scale
         x_translation -= postscript_x_offset
@@ -2797,16 +2793,14 @@ class MetricAccentKernel:
         """
         return f"{type(self).__name__}(kernel={self.kernel()})"
 
-    def duration(self) -> _duration.ValueDuration:
+    def duration(self) -> _duration.Duration:
         """
         Gets duration.
         """
         if self._offsets:
-            return _duration.ValueDuration(
-                *self._offsets[-1].fraction.as_integer_ratio()
-            )
+            return _duration.Duration(*self._offsets[-1].fraction.as_integer_ratio())
         else:
-            return _duration.ValueDuration(0)
+            return _duration.Duration(0)
 
     def kernel(self) -> dict[_duration.Offset, fractions.Fraction]:
         """

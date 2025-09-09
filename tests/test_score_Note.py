@@ -195,7 +195,7 @@ def test_Note___init___02():
     """
 
     with pytest.raises(abjad.AssignabilityError):
-        duration = abjad.ValueDuration(5, 8)
+        duration = abjad.Duration(5, 8)
         pitch = abjad.NamedPitch(0)
         abjad.Note.from_duration_and_pitch(duration, pitch)
 

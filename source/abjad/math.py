@@ -1227,7 +1227,7 @@ def sign(n) -> int:
 
         Returns 1 on positive ``n``:
 
-        >>> abjad.math.sign(abjad.ValueDuration(9, 8))
+        >>> abjad.math.sign(abjad.Duration(9, 8))
         1
 
     """
@@ -1266,8 +1266,8 @@ def weight(sequence: typing.Sequence[T], *, start: T) -> T:
     ..  container:: example
 
         >>> durations = abjad.duration.value_durations([(1, 8), (2, 8), (3, 8)])
-        >>> abjad.math.weight(durations, start=abjad.ValueDuration(0))
-        ValueDuration(numerator=3, denominator=4)
+        >>> abjad.math.weight(durations, start=abjad.Duration(0))
+        Duration(numerator=3, denominator=4)
 
     """
     return sum([abs(_) for _ in sequence], start=start)

@@ -50,9 +50,9 @@ class LilyPondDuration:
         self.multiplier = multiplier
 
 
-_lyenv.current_module["breve"] = LilyPondDuration(_duration.ValueDuration(2, 1), None)
-_lyenv.current_module["longa"] = LilyPondDuration(_duration.ValueDuration(4, 1), None)
-_lyenv.current_module["maxima"] = LilyPondDuration(_duration.ValueDuration(8, 1), None)
+_lyenv.current_module["breve"] = LilyPondDuration(_duration.Duration(2, 1), None)
+_lyenv.current_module["longa"] = LilyPondDuration(_duration.Duration(4, 1), None)
+_lyenv.current_module["maxima"] = LilyPondDuration(_duration.Duration(8, 1), None)
 
 
 class MarkupCommand:
@@ -1957,7 +1957,7 @@ class LilyPondLexicalDefinition:
             t.type = "MULTI_MEASURE_REST"
         elif value == "q":
             if self.client._last_chord is None:
-                duration = _duration.ValueDuration(1, 4)
+                duration = _duration.Duration(1, 4)
                 strings = "c g c'".split()
                 pitches = _pitch.pitches(strings)
                 self.client._last_chord = _score.Chord.from_duration_and_pitches(
@@ -4608,7 +4608,7 @@ class LilyPondSyntacticalDefinition:
         "event_chord : CHORD_REPETITION optional_notemode_duration post_events"
         pitches = self.client._last_chord.written_pitches()
         if isinstance(p[2].duration, tuple):
-            duration = _duration.ValueDuration(*p[2].duration)
+            duration = _duration.Duration(*p[2].duration)
         else:
             duration = p[2].duration
         chord = _score.Chord.from_duration_and_pitches(duration, pitches, tag=self.tag)
@@ -5750,9 +5750,9 @@ class LilyPondSyntacticalDefinition:
     ):
         "note_chord_element : chord_body optional_notemode_duration post_events"
         if isinstance(p[2].duration, tuple):
-            duration = _duration.ValueDuration(*p[2].duration)
+            duration = _duration.Duration(*p[2].duration)
         else:
-            assert isinstance(p[2].duration, _duration.ValueDuration)
+            assert isinstance(p[2].duration, _duration.Duration)
             duration = p[2].duration
         pitches = []
         chord = _score.Chord.from_duration_and_pitches(duration, pitches, tag=self.tag)
@@ -6279,12 +6279,12 @@ class LilyPondSyntacticalDefinition:
     ):
         "simple_element : pitch exclamations questions octave_check optional_notemode_duration optional_rest"
         if not p[6]:
-            if isinstance(p[5].duration, _duration.ValueDuration):
-                duration = _duration.ValueDuration(*p[5].duration.pair())
-            elif isinstance(p[5].duration, _duration.ValueDuration):
+            if isinstance(p[5].duration, _duration.Duration):
+                duration = _duration.Duration(*p[5].duration.pair())
+            elif isinstance(p[5].duration, _duration.Duration):
                 duration = p[5].duration
             else:
-                duration = _duration.ValueDuration(*p[5].duration)
+                duration = _duration.Duration(*p[5].duration)
             pitch = p[1]
             leaf = _score.Note.from_duration_and_pitch(duration, pitch, tag=self.tag)
             leaf.note_head().set_is_forced(bool(p[2]))
@@ -6402,14 +6402,14 @@ class LilyPondSyntacticalDefinition:
         if dots:
             duration = duration.lilypond_duration_string()
             duration += "." * dots
-            duration = _duration.ValueDuration.from_lilypond_duration_string(duration)
+            duration = _duration.Duration.from_lilypond_duration_string(duration)
         p[0] = LilyPondDuration(duration, multiplier)
 
     def p_steno_duration__bare_unsigned__dots(self, p):
         "steno_duration : bare_unsigned dots"
         dots = p[2].value
         token = str(p[1]) + "." * dots
-        duration = _duration.ValueDuration.from_lilypond_duration_string(token)
+        duration = _duration.Duration.from_lilypond_duration_string(token)
         p[0] = LilyPondDuration(duration, None)
 
     ### steno_pitch ###
