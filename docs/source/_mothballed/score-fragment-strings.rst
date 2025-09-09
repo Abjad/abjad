@@ -121,7 +121,7 @@ strings start with some rests, and use a long-short pattern for their rhythms:
     ...         short_duration = long_duration / 2
     ...         rest_duration = abjad.Fraction(3, 2) * long_duration
     ...         div = rest_duration // abjad.ValueDuration(3, 2)
-    ...         mod = abjad.ValueDuration(rest_duration % abjad.Duration(3, 2))
+    ...         mod = abjad.ValueDuration(rest_duration % abjad.ValueDuration(3, 2))
     ...         initial_rest = []
     ...         for i in range(div):
     ...             rest = abjad.MultimeasureRest("R1.")

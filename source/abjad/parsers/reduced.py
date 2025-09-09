@@ -186,7 +186,7 @@ class ReducedLyParser(Parser):
     ### INITIALIZER ###
 
     def __init__(self, debug=False):
-        self._default_duration = _duration.Duration(1, 4)
+        self._default_duration = _duration.ValueDuration(1, 4)
         self._toplevel_component_count = None
         super().__init__(debug=debug)
 
@@ -304,10 +304,8 @@ class ReducedLyParser(Parser):
         chord_body : chord_pitches positive_leaf_duration
         """
         duration, pitches = p[2], p[1]
-        assert isinstance(duration, _duration.Duration), repr(duration)
-        p[0] = _score.Chord.from_duration_and_pitches(
-            duration.as_value_duration(), pitches
-        )
+        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        p[0] = _score.Chord.from_duration_and_pitches(duration, pitches)
 
     def p_chord_pitches__CARAT_L__pitches__CARAT_R(self, p):
         """
@@ -444,7 +442,7 @@ class ReducedLyParser(Parser):
         duration_log = p[1]
         dots = "." * p[2]
         string = f"{abs(duration_log)}{dots}"
-        duration = _duration.Duration.from_lilypond_duration_string(string)
+        duration = _duration.ValueDuration.from_lilypond_duration_string(string)
         self._default_duration = duration
         p[0] = duration
 
@@ -453,24 +451,24 @@ class ReducedLyParser(Parser):
         note_body : pitch
         """
         duration, pitch = self._default_duration, p[1]
-        assert isinstance(duration, _duration.Duration), repr(duration)
-        p[0] = _score.Note.from_duration_and_pitch(duration.as_value_duration(), pitch)
+        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        p[0] = _score.Note.from_duration_and_pitch(duration, pitch)
 
     def p_note_body__pitch__positive_leaf_duration(self, p):
         """
         note_body : pitch positive_leaf_duration
         """
         duration, pitch = p[2], p[1]
-        assert isinstance(duration, _duration.Duration), repr(duration)
-        p[0] = _score.Note.from_duration_and_pitch(duration.as_value_duration(), pitch)
+        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        p[0] = _score.Note.from_duration_and_pitch(duration, pitch)
 
     def p_note_body__positive_leaf_duration(self, p):
         """
         note_body : positive_leaf_duration
         """
         duration, pitch = p[1], _pitch.NamedPitch(0)
-        assert isinstance(duration, _duration.Duration), repr(duration)
-        p[0] = _score.Note.from_duration_and_pitch(duration.as_value_duration(), pitch)
+        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        p[0] = _score.Note.from_duration_and_pitch(duration, pitch)
 
     def p_pitch__PITCHNAME(self, p):
         """
@@ -508,7 +506,7 @@ class ReducedLyParser(Parser):
         """
         duration_log = p[1]
         dots = "." * p[2]
-        duration = _duration.Duration.from_lilypond_duration_string(
+        duration = _duration.ValueDuration.from_lilypond_duration_string(
             f"{abs(duration_log)}{dots}"
         )
         self._default_duration = duration
@@ -561,16 +559,16 @@ class ReducedLyParser(Parser):
         rest_body : RESTNAME positive_leaf_duration
         """
         duration = p[2]
-        assert isinstance(duration, _duration.Duration), repr(duration)
-        p[0] = _score.Rest.from_duration(duration.as_value_duration())
+        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        p[0] = _score.Rest.from_duration(duration)
 
     def p_rest_body__negative_leaf_duration(self, p):
         """
         rest_body : negative_leaf_duration
         """
         duration = p[1]
-        assert isinstance(duration, _duration.Duration), repr(duration)
-        p[0] = _score.Rest.from_duration(duration.as_value_duration())
+        assert isinstance(duration, _duration.ValueDuration), repr(duration)
+        p[0] = _score.Rest.from_duration(duration)
 
     def p_slur__PAREN_L(self, p):
         """
@@ -671,7 +669,7 @@ class ReducedLyParser(Parser):
 
     def _setup(self):
         self._toplevel_component_count = 0
-        self._default_duration = _duration.Duration(1, 4)
+        self._default_duration = _duration.ValueDuration(1, 4)
 
     def debug(self):
         """

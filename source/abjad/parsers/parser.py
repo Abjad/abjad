@@ -5751,12 +5751,8 @@ class LilyPondSyntacticalDefinition:
         "note_chord_element : chord_body optional_notemode_duration post_events"
         if isinstance(p[2].duration, tuple):
             duration = _duration.ValueDuration(*p[2].duration)
-        elif isinstance(p[2].duration, _duration.Duration):
-            duration = p[2].duration.as_value_duration()
         else:
-            assert isinstance(p[2].duration, _duration.ValueDuration), repr(
-                p[2].duration
-            )
+            assert isinstance(p[2].duration, _duration.ValueDuration)
             duration = p[2].duration
         pitches = []
         chord = _score.Chord.from_duration_and_pitches(duration, pitches, tag=self.tag)
@@ -6283,7 +6279,7 @@ class LilyPondSyntacticalDefinition:
     ):
         "simple_element : pitch exclamations questions octave_check optional_notemode_duration optional_rest"
         if not p[6]:
-            if isinstance(p[5].duration, _duration.Duration):
+            if isinstance(p[5].duration, _duration.ValueDuration):
                 duration = _duration.ValueDuration(*p[5].duration.pair())
             elif isinstance(p[5].duration, _duration.ValueDuration):
                 duration = p[5].duration
