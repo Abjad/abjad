@@ -842,9 +842,6 @@ def is_integer_equivalent_number(argument) -> bool:
         >>> abjad.math.is_integer_equivalent_number(12.0)
         True
 
-        >>> abjad.math.is_integer_equivalent_number(abjad.Duration(1, 2))
-        False
-
     """
     if int(argument) == argument:
         return True
@@ -879,8 +876,8 @@ def is_nonnegative_integer_equivalent_number(argument) -> bool:
 
     ..  container:: example
 
-        >>> duration = abjad.Duration(4, 2)
-        >>> abjad.math.is_nonnegative_integer_equivalent_number(duration)
+        >>> fraction = abjad.Fraction(2)
+        >>> abjad.math.is_nonnegative_integer_equivalent_number(fraction)
         True
 
     """
@@ -946,9 +943,8 @@ def is_positive_integer_equivalent_number(argument) -> bool:
 
     ..  container:: example
 
-        >>> abjad.math.is_positive_integer_equivalent_number(
-        ...     abjad.Duration(4, 2)
-        ...     )
+        >>> fraction = abjad.Fraction(2)
+        >>> abjad.math.is_positive_integer_equivalent_number(fraction)
         True
 
     """
@@ -1231,7 +1227,7 @@ def sign(n) -> int:
 
         Returns 1 on positive ``n``:
 
-        >>> abjad.math.sign(abjad.Duration(9, 8))
+        >>> abjad.math.sign(abjad.ValueDuration(9, 8))
         1
 
     """
