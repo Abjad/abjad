@@ -2287,6 +2287,8 @@ def rotate(sequence, n: int = 0):
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     """
+    # TODO: make this work:
+    # assert isinstance(n, int), repr(n)
     n = n or 0
     items = []
     if len(sequence):
