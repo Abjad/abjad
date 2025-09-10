@@ -6,7 +6,6 @@ import collections
 import copy
 import dataclasses
 import functools
-import types
 import typing
 
 from . import enumerate as _enumerate
@@ -593,6 +592,15 @@ PitchClassSet._wrap_methods(
 )
 
 
+@dataclasses.dataclass(frozen=True)
+class _ParsedRangeString:
+    close_bracket: str
+    open_bracket: str
+    range_string: str
+    start_pitch: str
+    stop_pitch: str
+
+
 @functools.total_ordering
 class PitchRange:
     r"""
@@ -996,7 +1004,6 @@ class PitchRange:
         else:
             start_pitch = _pitch.NamedPitch(start_pitch_string)
             start_pitch_repr = start_pitch.get_name_in_locale(locale="us")
-
         if stop_pitch_string == "1000":
             stop_pitch = None
             stop_pitch_repr = "+inf"
@@ -1007,7 +1014,7 @@ class PitchRange:
             stop_pitch_repr = stop_pitch.get_name_in_locale(locale="us")
         start, stop = open_bracket, close_bracket
         normalized_range_string = f"{start}{start_pitch_repr}, {stop_pitch_repr}{stop}"
-        return types.SimpleNamespace(
+        return _ParsedRangeString(
             close_bracket=close_bracket,
             open_bracket=open_bracket,
             range_string=normalized_range_string,
