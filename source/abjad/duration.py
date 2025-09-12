@@ -152,14 +152,14 @@ def pair_with_denominator(
     return pair
 
 
-def value_durations(items: list) -> list[Duration]:
+def durations(items: list) -> list[Duration]:
     """
-    Changes ``items`` to value durations.
+    Changes ``items`` to durations.
 
     ..  container:: example
 
         >>> items = [(15, 8), (3, 8), abjad.TimeSignature((3, 4))]
-        >>> abjad.duration.value_durations(items)
+        >>> abjad.duration.durations(items)
         [Duration(numerator=15, denominator=8), Duration(numerator=3, denominator=8), Duration(numerator=3, denominator=4)]
 
     """

@@ -13,7 +13,7 @@ def test_duration_Duration___add__():
     duration = abjad.Duration(1, 4) + abjad.Duration(2, 4)
     assert duration == abjad.Duration(3, 4)
 
-    durations = abjad.duration.value_durations([(1, 8), (2, 8), (3, 8)])
+    durations = abjad.duration.durations([(1, 8), (2, 8), (3, 8)])
     assert sum(durations) == abjad.Duration(3, 4)
 
 
