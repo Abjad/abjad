@@ -5771,7 +5771,7 @@ def partition_by_durations(
 
     """
     fill = fill or _enums.EXACT
-    durations = _duration.value_durations(durations)
+    durations = _duration.durations(durations)
     if cyclic:
         durations = _cyclictuple.CyclicTuple(durations)
     result = []

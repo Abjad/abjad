@@ -300,7 +300,7 @@ def make_leaves(
         Interprets nondyadic durations as (possibly incomplete) tuplets:
 
         >>> pitch_list = [abjad.NamedPitch("d''")]
-        >>> durations = abjad.duration.value_durations([(1, 3)])
+        >>> durations = abjad.duration.durations([(1, 3)])
         >>> leaves = abjad.makers.make_leaves([pitch_list], durations)
         >>> abjad.makers.tweak_tuplet_bracket_edge_height(leaves)
         >>> staff = abjad.Staff(leaves)
@@ -408,7 +408,7 @@ def make_leaves(
 
         >>> pitch_lists = abjad.makers.make_pitch_lists([[12, 14], []])
         >>> pairs = [(1, 16), (1, 16), (1, 8), (1, 8), (1, 8)]
-        >>> durations = abjad.duration.value_durations(pairs)
+        >>> durations = abjad.duration.durations(pairs)
         >>> leaves = abjad.makers.make_leaves(pitch_lists, durations)
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -430,7 +430,7 @@ def make_leaves(
         than the length of ``pitch_lists``:
 
         >>> pitch_lists = abjad.makers.make_pitch_lists([[12, 14], [], 10, 9, 7])
-        >>> durations = abjad.duration.value_durations([(1, 16), (1, 8)])
+        >>> durations = abjad.duration.durations([(1, 16), (1, 8)])
         >>> leaves = abjad.makers.make_leaves(pitch_lists, durations)
         >>> staff = abjad.Staff(leaves)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -453,7 +453,7 @@ def make_leaves(
         Avoids durations greater than or equal to ``forbidden_note_duration``:
 
         >>> pitch_lists = abjad.makers.make_pitch_lists("f' g'")
-        >>> durations = abjad.duration.value_durations([(5, 8)])
+        >>> durations = abjad.duration.durations([(5, 8)])
         >>> leaves = abjad.makers.make_leaves(pitch_lists, durations)
         >>> staff = abjad.Staff(leaves)
         >>> score = abjad.Score([staff], name="Score")
@@ -511,7 +511,7 @@ def make_leaves(
         Writes tied durations in monotonically decreasing order by default:
 
         >>> pitch_list = [abjad.NamedPitch("ds''")]
-        >>> durations = abjad.duration.value_durations([(13, 16)])
+        >>> durations = abjad.duration.durations([(13, 16)])
         >>> leaves = abjad.makers.make_leaves([pitch_list], durations)
         >>> staff = abjad.Staff(leaves)
         >>> score = abjad.Score([staff], name="Score")
@@ -562,7 +562,7 @@ def make_leaves(
         Interprets empty pitch lists as skips when ``skips_instead_of_rests``
         is true:
 
-        >>> durations = abjad.duration.value_durations([(13, 16)])
+        >>> durations = abjad.duration.durations([(13, 16)])
         >>> abjad.makers.make_leaves([[]], durations, skips_instead_of_rests=True)
         [Skip('s2.'), Skip('s16')]
 
@@ -571,7 +571,7 @@ def make_leaves(
         Interprets empty pitch lists as multimeasure rests when
         ``use_multimeasure_rests`` is true:
 
-        >>> durations = abjad.duration.value_durations([(3, 8), (5, 8)])
+        >>> durations = abjad.duration.durations([(3, 8), (5, 8)])
         >>> leaves = abjad.makers.make_leaves(
         ...     [[]],
         ...     durations,
@@ -680,7 +680,7 @@ def make_notes(
 
         >>> pitches = abjad.makers.make_pitches("c' d'")
         >>> pairs = [(1, 16), (1, 16), (1, 8), (1, 8), (1, 8)]
-        >>> durations = abjad.duration.value_durations(pairs)
+        >>> durations = abjad.duration.durations(pairs)
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> score = abjad.Score([staff], name="Score")
@@ -703,7 +703,7 @@ def make_notes(
         than the length of ``pitches``:
 
         >>> pitches = abjad.makers.make_pitches("c' d' e' f' g'")
-        >>> durations = abjad.duration.value_durations([(1, 16), (1, 8)])
+        >>> durations = abjad.duration.durations([(1, 16), (1, 8)])
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -726,7 +726,7 @@ def make_notes(
         Interprets nondyadic durations as (possibly incomplete) tuplets:
 
         >>> pitches = abjad.makers.make_pitches([0])
-        >>> durations = abjad.duration.value_durations([(1, 16), (1, 12), (1, 8)])
+        >>> durations = abjad.duration.durations([(1, 16), (1, 12), (1, 8)])
         >>> components = abjad.makers.make_notes(pitches, durations)
         >>> abjad.makers.tweak_tuplet_bracket_edge_height(components)
         >>> staff = abjad.Staff(components)
@@ -765,7 +765,7 @@ def make_notes(
         Writes tied durations in monotonically decreasing order by default:
 
         >>> pitches = abjad.makers.make_pitches([0])
-        >>> durations = abjad.duration.value_durations([(13, 16)])
+        >>> durations = abjad.duration.durations([(13, 16)])
         >>> notes = abjad.makers.make_notes(pitches, durations)
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP
@@ -785,7 +785,7 @@ def make_notes(
         ``increase_monotonic`` is true:
 
         >>> pitches = abjad.makers.make_pitches([0])
-        >>> durations = abjad.duration.value_durations([(13, 16)])
+        >>> durations = abjad.duration.durations([(13, 16)])
         >>> notes = abjad.makers.make_notes(pitches, durations, increase_monotonic=True)
         >>> staff = abjad.Staff(notes)
         >>> abjad.show(staff) # doctest: +SKIP

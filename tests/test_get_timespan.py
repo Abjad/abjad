@@ -62,7 +62,7 @@ def test_get_timespan_08():
     voice = abjad.Voice([abjad.Note("c'8"), tuplet_1, abjad.Note("c'8")])
     offset = abjad.duration.offset(0)
     pairs = [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]
-    durations = abjad.duration.value_durations(pairs)
+    durations = abjad.duration.durations(pairs)
     leaves = abjad.select.leaves(voice)
     for leaf, duration in zip(leaves, durations, strict=True):
         assert abjad.get.timespan(leaf).start_offset == offset
@@ -78,7 +78,7 @@ def test_get_timespan_09():
     tuplet = abjad.Tuplet("3:2", [abjad.Note("c'4"), tuplet_1, abjad.Note("c'4")])
     offset = abjad.duration.offset(0)
     pairs = [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]
-    durations = abjad.duration.value_durations(pairs)
+    durations = abjad.duration.durations(pairs)
     leaves = abjad.select.leaves(tuplet)
     for leaf, duration in zip(leaves, durations, strict=True):
         assert abjad.get.timespan(leaf).start_offset == offset

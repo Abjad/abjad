@@ -862,7 +862,7 @@ def test_LilyPondParser__indicators__Articulation_02():
 
 
 def test_LilyPondParser__indicators__Articulation_03():
-    durations = abjad.duration.value_durations([(1, 4), (1, 4), (1, 2), (1, 1)])
+    durations = abjad.duration.durations([(1, 4), (1, 4), (1, 2), (1, 1)])
     pitches = abjad.makers.make_pitches(["c''", "c''", "b'", "c''"])
     notes = abjad.makers.make_notes(pitches, durations)
     target = abjad.Container(notes)
@@ -900,7 +900,7 @@ def test_LilyPondParser__indicators__Articulation_03():
 
 
 def test_LilyPondParser__indicators__BarLine_01():
-    durations = abjad.duration.value_durations([(1, 4), (1, 4), (1, 2)])
+    durations = abjad.duration.durations([(1, 4), (1, 4), (1, 2)])
     pitches = abjad.makers.make_pitches(["e'", "d'", "c'"])
     notes = abjad.makers.make_notes(pitches, durations)
     target = abjad.Staff(notes)
@@ -2382,7 +2382,7 @@ def test_LilyPondParser__misc__comments_01():
 def test_LilyPondParser__misc__default_duration_01():
     pitches = abjad.makers.make_pitches([0])
     pairs = [(1, 4), (1, 2), (1, 2), (1, 8), (1, 8), (3, 16), (3, 16)]
-    durations = abjad.duration.value_durations(pairs)
+    durations = abjad.duration.durations(pairs)
     notes = abjad.makers.make_notes(pitches, durations)
     target = abjad.Container(notes)
     target[-2].set_multiplier((5, 17))

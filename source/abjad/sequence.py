@@ -1204,7 +1204,7 @@ def split(
 
         >>> for part in abjad.sequence.split(
         ...     sequence,
-        ...     abjad.duration.value_durations([3, 15, 3]),
+        ...     abjad.duration.durations([3, 15, 3]),
         ...     cyclic=True,
         ...     overhang=True,
         ... ):
