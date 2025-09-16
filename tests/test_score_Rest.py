@@ -42,7 +42,7 @@ def test_Rest___copy___02():
     Copies rest with LilyPond multiplier.
     """
 
-    rest_1 = abjad.Rest("r4", multiplier=(1, 2))
+    rest_1 = abjad.Rest("r4", dmp=(1, 2))
     rest_2 = copy.copy(rest_1)
 
     assert isinstance(rest_1, abjad.Rest)

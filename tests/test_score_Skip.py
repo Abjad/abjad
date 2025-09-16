@@ -22,7 +22,7 @@ def test_Skip___copy___02():
     Copies skip with LilyPond multiplier.
     """
 
-    skip_1 = abjad.Skip("s4", multiplier=(1, 2))
+    skip_1 = abjad.Skip("s4", dmp=(1, 2))
     skip_2 = copy.copy(skip_1)
 
     assert isinstance(skip_1, abjad.Skip)
