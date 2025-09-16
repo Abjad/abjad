@@ -236,7 +236,7 @@ def test_mutate__set_leaf_duration_06():
     duration does not.
     """
 
-    note = abjad.Note("c'8", multiplier=(1, 2))
+    note = abjad.Note("c'8", dmp=(1, 2))
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
@@ -253,7 +253,7 @@ def test_mutate__set_leaf_duration_07():
     written duration does not.
     """
 
-    note = abjad.Note("c'8", multiplier=(1, 2))
+    note = abjad.Note("c'8", dmp=(1, 2))
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
@@ -270,7 +270,7 @@ def test_mutate__set_leaf_duration_08():
     written duration does not.
     """
 
-    note = abjad.Note("c'8", multiplier=(1, 2))
+    note = abjad.Note("c'8", dmp=(1, 2))
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
@@ -287,7 +287,7 @@ def test_mutate__set_leaf_duration_09():
     written duration does not.
     """
 
-    note = abjad.Note("c'8", multiplier=(1, 2))
+    note = abjad.Note("c'8", dmp=(1, 2))
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 
@@ -304,7 +304,7 @@ def test_mutate__set_leaf_duration_10():
     LilyPond multiplier changes but leaf written duration does not.
     """
 
-    note = abjad.Note("c'8", multiplier=(1, 2))
+    note = abjad.Note("c'8", dmp=(1, 2))
 
     assert abjad.lilypond(note) == "c'8 * 1/2"
 

@@ -432,7 +432,7 @@ def _immediately_precedes(component_1, component_2, ignore_before_after_grace=No
 
 def _set_leaf_duration(leaf, new_duration, *, tag=None):
     assert isinstance(new_duration, _duration.Duration), repr(new_duration)
-    if leaf.multiplier() is not None:
+    if leaf.dmp() is not None:
         fraction = new_duration / leaf.written_duration()
         pair = (fraction.numerator, fraction.denominator)
         leaf.set_multiplier(pair)
@@ -1818,7 +1818,7 @@ def scale(argument, multiplier) -> None:
 
         Scales leaves carrying LilyPond multiplier:
 
-        >>> note = abjad.Note("c'8", multiplier=(1, 2))
+        >>> note = abjad.Note("c'8", dmp=(1, 2))
         >>> abjad.show(note) # doctest: +SKIP
 
         ..  docs::

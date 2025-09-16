@@ -24,7 +24,7 @@ def test_Note___copy___02():
     Copies note with LilyPond multiplier.
     """
 
-    note_1 = abjad.Note("c''4", multiplier=(1, 2))
+    note_1 = abjad.Note("c''4", dmp=(1, 2))
     note_2 = copy.copy(note_1)
 
     assert isinstance(note_1, abjad.Note)

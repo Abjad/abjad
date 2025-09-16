@@ -148,7 +148,7 @@ def _make_tied_leaf(
             leaf = class_.from_duration_and_pitch(
                 duration,
                 pitches,
-                multiplier=multiplier,
+                dmp=multiplier,
                 tag=tag,
             )
         elif pitches is not None:
@@ -156,12 +156,12 @@ def _make_tied_leaf(
             leaf = class_.from_duration_and_pitches(
                 duration,
                 pitches,
-                multiplier=multiplier,
+                dmp=multiplier,
                 tag=tag,
             )
         else:
             assert class_ in (_score.Rest, _score.Skip), repr(class_)
-            leaf = class_.from_duration(duration, multiplier=multiplier, tag=tag)
+            leaf = class_.from_duration(duration, dmp=multiplier, tag=tag)
         leaves.append(leaf)
     if 1 < len(leaves):
         if not issubclass(class_, _score.Rest | _score.Skip):

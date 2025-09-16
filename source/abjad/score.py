@@ -377,7 +377,7 @@ class Leaf(Component):
     __slots__ = (
         "_after_grace_container",
         "_before_grace_container",
-        "_multiplier",
+        "_dmp",
         "_written_duration",
     )
 
@@ -385,13 +385,13 @@ class Leaf(Component):
         self,
         written_duration: _duration.Duration,
         *,
-        multiplier=None,
+        dmp=None,
         tag: _tag.Tag | None = None,
     ) -> None:
         super().__init__(tag=tag)
         self._after_grace_container = None
         self._before_grace_container = None
-        self.set_multiplier(multiplier)
+        self.set_multiplier(dmp)
         if isinstance(written_duration, _duration.Duration):
             written_duration_ = written_duration
         elif isinstance(written_duration, tuple):
@@ -403,7 +403,7 @@ class Leaf(Component):
     def __copy__(self) -> typing.Self:
         leaf = super().__copy__()
         leaf.set_written_duration(self.written_duration())
-        leaf.set_multiplier(self.multiplier())
+        leaf.set_multiplier(self.dmp())
         before_grace_container = self._before_grace_container
         if before_grace_container is not None:
             grace_container = before_grace_container._copy_with_children()
@@ -563,7 +563,7 @@ class Leaf(Component):
 
     def _get_formatted_duration(self) -> str:
         strings = [self.written_duration().lilypond_duration_string()]
-        self_multiplier = self.multiplier()
+        self_multiplier = self.dmp()
         if self_multiplier is not None:
             string = f"{self_multiplier[0]}/{self_multiplier[1]}"
             strings.append(string)
@@ -572,7 +572,7 @@ class Leaf(Component):
 
     def _get_preprolated_duration(self) -> _duration.Duration:
         duration = self.written_duration()
-        self_multiplier = self.multiplier()
+        self_multiplier = self.dmp()
         if self_multiplier is not None:
             duration = fractions.Fraction(*self_multiplier) * duration
         return duration
@@ -617,20 +617,20 @@ class Leaf(Component):
         self_written_duration = multiplier * self.written_duration()
         self.set_written_duration(self_written_duration)
 
-    def multiplier(self) -> tuple[int, int] | None:
+    def dmp(self) -> tuple[int, int] | None:
         """
-        Gets leaf multiplier.
+        Gets duration-multiplier pair of leaf.
         """
-        return self._multiplier
+        return self._dmp
 
     def set_multiplier(self, pair: tuple[int, int] | None) -> None:
         """
-        Sets leaf multiplier.
+        Sets duration-multiplier pair on leaf.
         """
         if pair is not None:
             assert isinstance(pair, tuple), repr(pair)
             assert len(pair) == 2, repr(pair)
-        self._multiplier = pair
+        self._dmp = pair
 
     def set_written_duration(self, duration: _duration.Duration) -> None:
         """
@@ -2445,14 +2445,14 @@ class Chord(Leaf):
         self,
         string: str = "<c' e' g'>4",
         *,
+        dmp: tuple[int, int] | None = None,
         language: str = "english",
-        multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
         assert isinstance(string, str), repr(string)
         assert isinstance(language, str), repr(language)
-        if multiplier is not None:
-            assert isinstance(multiplier, tuple), repr(multiplier)
+        if dmp is not None:
+            assert isinstance(dmp, tuple), repr(dmp)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         if string == "<c' e' g'>4":
@@ -2465,12 +2465,12 @@ class Chord(Leaf):
             assert len(parsed) == 1 and isinstance(parsed[0], Chord)
             chord = parsed[0]
             duration = chord.written_duration()
-            if multiplier is None:
-                multiplier = chord.multiplier()
+            if dmp is None:
+                dmp = chord.dmp()
             if tag is None:
                 tag = chord.tag()
             note_heads = chord.note_heads()
-        super().__init__(duration, multiplier=multiplier, tag=tag)
+        super().__init__(duration, dmp=dmp, tag=tag)
         self.set_note_heads(note_heads)
 
     def __copy__(self) -> typing.Self:
@@ -2530,7 +2530,7 @@ class Chord(Leaf):
         duration: _duration.Duration,
         note_heads: typing.Sequence[NoteHead],
         *,
-        multiplier: tuple[int, int] | None = None,
+        dmp: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> Chord:
         """
@@ -2567,11 +2567,11 @@ class Chord(Leaf):
         """
         assert all(isinstance(_, NoteHead) for _ in note_heads), repr(note_heads)
         assert isinstance(duration, _duration.Duration), repr(duration)
-        if multiplier is not None:
-            assert isinstance(multiplier, tuple), repr(multiplier)
+        if dmp is not None:
+            assert isinstance(dmp, tuple), repr(dmp)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
-        chord = Chord("<c' e' g'>4", multiplier=multiplier, tag=tag)
+        chord = Chord("<c' e' g'>4", dmp=dmp, tag=tag)
         chord.set_note_heads([copy.copy(_) for _ in note_heads])
         chord.set_written_duration(duration)
         return chord
@@ -2581,7 +2581,7 @@ class Chord(Leaf):
         duration: _duration.Duration,
         pitches: typing.Sequence[_pitch.NamedPitch | str],
         *,
-        multiplier: tuple[int, int] | None = None,
+        dmp: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> Chord:
         """
@@ -2604,11 +2604,11 @@ class Chord(Leaf):
         prototype = (_pitch.NamedPitch, str)
         assert all(isinstance(_, prototype) for _ in pitches), repr(pitches)
         assert isinstance(duration, _duration.Duration), repr(duration)
-        if multiplier is not None:
-            assert isinstance(multiplier, tuple), repr(multiplier)
+        if dmp is not None:
+            assert isinstance(dmp, tuple), repr(dmp)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
-        chord = Chord("<c' e' g'>4", multiplier=multiplier, tag=tag)
+        chord = Chord("<c' e' g'>4", dmp=dmp, tag=tag)
         chord.set_written_pitches(pitches)
         chord.set_written_duration(duration)
         return chord
@@ -3127,14 +3127,14 @@ class MultimeasureRest(Leaf):
         self,
         string: str = "R1",
         *,
+        dmp: tuple[int, int] | None = None,
         language: str = "english",
-        multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
         assert isinstance(string, str), repr(string)
         assert isinstance(language, str), repr(language)
-        if multiplier is not None:
-            assert isinstance(multiplier, tuple), repr(multiplier)
+        if dmp is not None:
+            assert isinstance(dmp, tuple), repr(dmp)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         if string == "R1":
@@ -3146,7 +3146,7 @@ class MultimeasureRest(Leaf):
             assert len(parsed) == 1 and isinstance(parsed[0], MultimeasureRest)
             mmrest = parsed[0]
             written_duration = mmrest.written_duration()
-        super().__init__(written_duration, multiplier=multiplier, tag=tag)
+        super().__init__(written_duration, dmp=dmp, tag=tag)
 
     def _get_body(self) -> list[str]:
         result = "R" + str(self._get_formatted_duration())
@@ -3159,18 +3159,18 @@ class MultimeasureRest(Leaf):
     def from_duration(
         duration: _duration.Duration,
         *,
-        multiplier: tuple[int, int] | None = None,
+        dmp: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> MultimeasureRest:
         """
         Makes multimeasure rest from ``duration``.
         """
         assert isinstance(duration, _duration.Duration), repr(duration)
-        if multiplier is not None:
-            assert isinstance(multiplier, tuple), repr(multiplier)
+        if dmp is not None:
+            assert isinstance(dmp, tuple), repr(dmp)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
-        mmrest = MultimeasureRest("R1", multiplier=multiplier, tag=tag)
+        mmrest = MultimeasureRest("R1", dmp=dmp, tag=tag)
         mmrest.set_written_duration(duration)
         return mmrest
 
@@ -3920,14 +3920,14 @@ class Note(Leaf):
         self,
         string: str = "c'4",
         *,
+        dmp: tuple[int, int] | None = None,
         language: str = "english",
-        multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
         assert isinstance(string, str), repr(string)
         assert isinstance(language, str), repr(language)
-        if multiplier is not None:
-            assert isinstance(multiplier, tuple), repr(multiplier)
+        if dmp is not None:
+            assert isinstance(dmp, tuple), repr(dmp)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         is_cautionary = False
@@ -3943,15 +3943,15 @@ class Note(Leaf):
             assert len(parsed) == 1 and isinstance(parsed[0], Note)
             note = parsed[0]
             written_duration = note.written_duration()
-            if multiplier is None:
-                multiplier = note.multiplier()
+            if dmp is None:
+                dmp = note.dmp()
             note_head = note.note_head()
             assert isinstance(note_head, NoteHead)
             written_pitch = note_head.written_pitch()
             is_cautionary = note_head.is_cautionary()
             is_forced = note_head.is_forced()
             is_parenthesized = note_head.is_parenthesized()
-        super().__init__(written_duration, multiplier=multiplier, tag=tag)
+        super().__init__(written_duration, dmp=dmp, tag=tag)
         if isinstance(written_pitch, _pitch.NamedPitch):
             note_head = NoteHead(
                 written_pitch=written_pitch,
@@ -3988,7 +3988,7 @@ class Note(Leaf):
         duration: _duration.Duration,
         pitch: _pitch.NamedPitch | str,
         *,
-        multiplier: tuple[int, int] | None = None,
+        dmp: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> Note:
         """
@@ -4010,11 +4010,11 @@ class Note(Leaf):
         """
         assert isinstance(pitch, _pitch.NamedPitch | str), repr(pitch)
         assert isinstance(duration, _duration.Duration), repr(duration)
-        if multiplier is not None:
-            assert isinstance(multiplier, tuple), repr(multiplier)
+        if dmp is not None:
+            assert isinstance(dmp, tuple), repr(dmp)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
-        note = Note("c'4", multiplier=multiplier, tag=tag)
+        note = Note("c'4", dmp=dmp, tag=tag)
         note.set_written_pitch(pitch)
         note.set_written_duration(duration)
         return note
@@ -4141,14 +4141,14 @@ class Rest(Leaf):
         self,
         string: str = "r4",
         *,
+        dmp: tuple[int, int] | None = None,
         language: str = "english",
-        multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
         assert isinstance(string, str), repr(string)
         assert isinstance(language, str), repr(language)
-        if multiplier is not None:
-            assert isinstance(multiplier, tuple), repr(multiplier)
+        if dmp is not None:
+            assert isinstance(dmp, tuple), repr(dmp)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         if string == "r4":
@@ -4160,7 +4160,7 @@ class Rest(Leaf):
             assert len(parsed) == 1 and isinstance(parsed[0], Rest)
             rest = parsed[0]
             written_duration = rest.written_duration()
-        super().__init__(written_duration, multiplier=multiplier, tag=tag)
+        super().__init__(written_duration, dmp=dmp, tag=tag)
 
     def _get_body(self) -> list[str]:
         return [self._get_compact_representation()]
@@ -4172,7 +4172,7 @@ class Rest(Leaf):
     def from_duration(
         duration: _duration.Duration,
         *,
-        multiplier: tuple[int, int] | None = None,
+        dmp: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> Rest:
         """
@@ -4186,11 +4186,11 @@ class Rest(Leaf):
 
         """
         assert isinstance(duration, _duration.Duration), repr(duration)
-        if multiplier is not None:
-            assert isinstance(multiplier, tuple), repr(multiplier)
+        if dmp is not None:
+            assert isinstance(dmp, tuple), repr(dmp)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
-        rest = Rest("r4", multiplier=multiplier, tag=tag)
+        rest = Rest("r4", dmp=dmp, tag=tag)
         rest.set_written_duration(duration)
         return rest
 
@@ -4283,14 +4283,14 @@ class Skip(Leaf):
         self,
         string: str = "s4",
         *,
+        dmp: tuple[int, int] | None = None,
         language: str = "english",
-        multiplier: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> None:
         assert isinstance(string, str), repr(string)
         assert isinstance(language, str), repr(language)
-        if multiplier is not None:
-            assert isinstance(multiplier, tuple), repr(multiplier)
+        if dmp is not None:
+            assert isinstance(dmp, tuple), repr(dmp)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
         if string == "s4":
@@ -4302,7 +4302,7 @@ class Skip(Leaf):
             skip = parsed[0]
             written_duration = skip.written_duration()
         assert isinstance(written_duration, _duration.Duration), repr(written_duration)
-        super().__init__(written_duration, multiplier=multiplier, tag=tag)
+        super().__init__(written_duration, dmp=dmp, tag=tag)
         self._measure_initial_grace_note = None
 
     def _get_body(self) -> list[str]:
@@ -4322,7 +4322,7 @@ class Skip(Leaf):
     def from_duration(
         duration: _duration.Duration,
         *,
-        multiplier: tuple[int, int] | None = None,
+        dmp: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
     ) -> Skip:
         """
@@ -4336,11 +4336,11 @@ class Skip(Leaf):
 
         """
         assert isinstance(duration, _duration.Duration), repr(duration)
-        if multiplier is not None:
-            assert isinstance(multiplier, tuple), repr(multiplier)
+        if dmp is not None:
+            assert isinstance(dmp, tuple), repr(dmp)
         if tag is not None:
             assert isinstance(tag, _tag.Tag), repr(tag)
-        skip = Skip("s4", multiplier=multiplier, tag=tag)
+        skip = Skip("s4", dmp=dmp, tag=tag)
         skip.set_written_duration(duration)
         return skip
 
@@ -5109,7 +5109,7 @@ class Tuplet(Container):
             if isinstance(component, Tuplet):
                 continue
             elif hasattr(component, "written_duration"):
-                if component.multiplier() is not None:
+                if component.dmp() is not None:
                     return False
         return True
 
@@ -5196,7 +5196,6 @@ class Tuplet(Container):
                 continue
             assert isinstance(component, Leaf), repr(component)
             duration = self.multiplier() * component.written_duration()
-            # if not _duration.Duration(duration).is_assignable():
             if not duration.is_assignable():
                 return False
         return True
@@ -5497,16 +5496,13 @@ class Tuplet(Container):
         global_dot_count = dot_counts.pop()
         if global_dot_count == 0:
             return
-        # dot_duration = _duration.Duration.from_dot_count(global_dot_count)
         dot_duration = _duration.Duration.from_dot_count(global_dot_count)
-        # multiplier = _duration.Duration(self.multiplier() * dot_duration)
         multiplier = self.multiplier() * dot_duration
         ratio = _duration.Ratio(*multiplier.reciprocal().pair())
         self.set_ratio(ratio)
         reciprocal_dot_fraction = dot_duration.reciprocal().as_fraction()
         for component in self:
             duration = component.written_duration()
-            # duration *= reciprocal_dot_fraction
             duration = reciprocal_dot_fraction * duration
             component.set_written_duration(duration)
 
@@ -5703,7 +5699,6 @@ class Tuplet(Container):
                 component.set_ratio(ratio)
             elif isinstance(component, Leaf):
                 duration = component.written_duration()
-                # duration = _duration.Duration(self.multiplier() * duration)
                 duration = self.multiplier() * duration
                 component.set_written_duration(duration)
             else:
