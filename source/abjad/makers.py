@@ -211,7 +211,7 @@ def make_leaves(
     skips_instead_of_rests: bool = False,
     tag: _tag.Tag | None = None,
     use_multimeasure_rests: bool = False,
-):
+) -> list[_score.Leaf | _score.Tuplet]:
     r"""
     Makes leaves from ``pitch_lists`` and ``durations``.
 
@@ -660,6 +660,8 @@ def make_leaves(
             ratio_ = _duration.Ratio(denominator, numerator)
             tuplet = _score.Tuplet(ratio_, tuplet_leaves)
             result.append(tuplet)
+    assert isinstance(result, list)
+    assert all(isinstance(_, _score.Leaf | _score.Tuplet) for _ in result), repr(result)
     return result
 
 
