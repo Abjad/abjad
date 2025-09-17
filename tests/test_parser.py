@@ -2385,8 +2385,8 @@ def test_LilyPondParser__misc__default_duration_01():
     durations = abjad.duration.durations(pairs)
     notes = abjad.makers.make_notes(pitches, durations)
     target = abjad.Container(notes)
-    target[-2].set_multiplier((5, 17))
-    target[-1].set_multiplier((5, 17))
+    target[-2].set_dmp((5, 17))
+    target[-1].set_dmp((5, 17))
     assert abjad.lilypond(target) == abjad.string.normalize(
         r"""
         {

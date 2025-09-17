@@ -74,8 +74,8 @@ def test_mutate_fuse_05():
     """
 
     staff = abjad.Staff([abjad.Skip("s1"), abjad.Skip("s1")])
-    staff[0].set_multiplier((1, 16))
-    staff[1].set_multiplier((5, 16))
+    staff[0].set_dmp((1, 16))
+    staff[1].set_dmp((5, 16))
 
     assert abjad.lilypond(staff) == abjad.string.normalize(
         r"""

@@ -435,7 +435,7 @@ def _set_leaf_duration(leaf, new_duration, *, tag=None):
     if leaf.dmp() is not None:
         fraction = new_duration / leaf.written_duration()
         pair = (fraction.numerator, fraction.denominator)
-        leaf.set_multiplier(pair)
+        leaf.set_dmp(pair)
         return [leaf]
     try:
         leaf.set_written_duration(new_duration)

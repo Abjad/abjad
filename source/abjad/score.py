@@ -391,7 +391,7 @@ class Leaf(Component):
         super().__init__(tag=tag)
         self._after_grace_container = None
         self._before_grace_container = None
-        self.set_multiplier(dmp)
+        self.set_dmp(dmp)
         if isinstance(written_duration, _duration.Duration):
             written_duration_ = written_duration
         elif isinstance(written_duration, tuple):
@@ -403,7 +403,7 @@ class Leaf(Component):
     def __copy__(self) -> typing.Self:
         leaf = super().__copy__()
         leaf.set_written_duration(self.written_duration())
-        leaf.set_multiplier(self.dmp())
+        leaf.set_dmp(self.dmp())
         before_grace_container = self._before_grace_container
         if before_grace_container is not None:
             grace_container = before_grace_container._copy_with_children()
@@ -623,14 +623,14 @@ class Leaf(Component):
         """
         return self._dmp
 
-    def set_multiplier(self, pair: tuple[int, int] | None) -> None:
+    def set_dmp(self, dmp: tuple[int, int] | None) -> None:
         """
         Sets duration-multiplier pair on leaf.
         """
-        if pair is not None:
-            assert isinstance(pair, tuple), repr(pair)
-            assert len(pair) == 2, repr(pair)
-        self._dmp = pair
+        if dmp is not None:
+            assert isinstance(dmp, tuple), repr(dmp)
+            assert len(dmp) == 2, repr(dmp)
+        self._dmp = dmp
 
     def set_written_duration(self, duration: _duration.Duration) -> None:
         """
@@ -5084,7 +5084,7 @@ class Tuplet(Container):
 
             >>> tuplet = abjad.Tuplet("1:1", "c'8 d'8 e'8")
             >>> abjad.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")
-            >>> tuplet[0].set_multiplier((2, 1))
+            >>> tuplet[0].set_dmp((2, 1))
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
