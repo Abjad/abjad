@@ -283,7 +283,7 @@ class OnBeatGraceContainer(_score.Container):
                 assert grace_leaf_duration is not None
                 fraction = grace_leaf_duration / duration
                 pair = (fraction.numerator, fraction.denominator)
-                leaf.set_multiplier(pair)
+                leaf.set_dmp(pair)
 
 
 def on_beat_grace_container(

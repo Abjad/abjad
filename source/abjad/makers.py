@@ -63,7 +63,7 @@ def _make_leaf_on_pitch(
             )
         elif use_multimeasure_rests is True:
             multimeasure_rest = _score.MultimeasureRest("R1", tag=tag)
-            multimeasure_rest.set_multiplier(duration.pair())
+            multimeasure_rest.set_dmp(duration.pair())
             leaves = [multimeasure_rest]
         else:
             leaves = _make_tied_leaf(

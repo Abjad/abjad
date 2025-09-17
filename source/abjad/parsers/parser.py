@@ -4633,7 +4633,7 @@ class LilyPondSyntacticalDefinition:
         if p[2].multiplier is not None:
             fraction = fractions.Fraction(p[2].multiplier)
             pair = (fraction.numerator, fraction.denominator)
-            rest.set_multiplier(pair)
+            rest.set_dmp(pair)
         self.client._process_post_events(rest, p[3])
         p[0] = rest
 
@@ -5767,7 +5767,7 @@ class LilyPondSyntacticalDefinition:
         if p[2].multiplier is not None:
             fraction = fractions.Fraction(p[2].multiplier)
             pair = (fraction.numerator, fraction.denominator)
-            chord.set_multiplier(pair)
+            chord.set_dmp(pair)
         self.client._process_post_events(chord, post_events)
         p[0] = chord
 
@@ -6271,7 +6271,7 @@ class LilyPondSyntacticalDefinition:
         if p[2].multiplier is not None:
             fraction = fractions.Fraction(p[2].multiplier)
             pair = (fraction.numerator, fraction.denominator)
-            rest.set_multiplier(pair)
+            rest.set_dmp(pair)
         p[0] = rest
 
     def p_simple_element__pitch__exclamations__questions__octave_check__optional_notemode_duration__optional_rest(
@@ -6294,7 +6294,7 @@ class LilyPondSyntacticalDefinition:
         if p[5].multiplier is not None:
             fraction = fractions.Fraction(p[5].multiplier)
             pair = (fraction.numerator, fraction.denominator)
-            leaf.set_multiplier(pair)
+            leaf.set_dmp(pair)
         # TODO: handle exclamations, questions, octave_check
         p[0] = leaf
 

@@ -98,7 +98,7 @@ def _illustrate_pitch_range(range_):
         _bind.attach(_indicators.Clef("treble"), treble_voice[0])
         _bind.attach(_indicators.Clef("bass"), bass_voice[0])
     for leaf in _iterate.leaves(score):
-        leaf.set_multiplier((1, 4))
+        leaf.set_dmp((1, 4))
     _overrides.override(score).BarLine.stencil = False
     _overrides.override(score).SpanBar.stencil = False
     _overrides.override(score).Glissando.thickness = 2
@@ -115,7 +115,7 @@ def _illustrate_pitch_segment(segment):
     _overrides.override(score).BarLine.stencil = False
     _overrides.override(score).SpanBar.stencil = False
     for leaf in _iterate.leaves(score):
-        leaf.set_multiplier((1, 8))
+        leaf.set_dmp((1, 8))
     _overrides.override(score).Rest.transparent = True
     lilypond_file = _lilypondfile.LilyPondFile([score])
     return lilypond_file
