@@ -29,7 +29,6 @@ def _partition_sequence_cyclically_by_weights_at_least(
         target_weight = weights[target_weight_index % len_weights]
         item = l_copy.pop(0)
         current_part.append(item)
-        # if target_weight <= _math.weight(current_part):
         if target_weight <= _math.weight(current_part, start=type(current_part[0])(0)):
             result.append(current_part)
             current_part = []
@@ -53,7 +52,6 @@ def _partition_sequence_cyclically_by_weights_at_most(
     while l_copy:
         current_target_weight = weights[current_target_weight_index % len(weights)]
         item = l_copy.pop(0)
-        # current_part_weight = _math.weight(current_part)
         current_part_weight = _math.weight(current_part, start=type(sequence[0])(0))
         candidate_part_weight = current_part_weight + _math.weight(
             [item], start=type(item)(0)
@@ -120,9 +118,7 @@ def _partition_sequence_once_by_weights_at_most(sequence, weights, overhang=Fals
                 item = l_copy.pop(0)
             except IndexError:
                 raise Exception("too few elements in sequence.")
-            # current_weight = _math.weight(current_part)
             current_weight = _math.weight(current_part, start=type(sequence[0])(0))
-            # candidate_weight = current_weight + _math.weight([item])
             candidate_weight = current_weight + _math.weight(
                 [item], start=type(item)(0)
             )
@@ -831,7 +827,6 @@ def partition_by_proportion_of_weights(sequence, weights: tuple[int, ...]) -> li
     assert all(isinstance(_, int | float | fractions.Fraction) for _ in sequence)
     assert isinstance(weights, tuple), repr(weights)
     assert all(isinstance(_, int) for _ in weights), repr(weights)
-    # sequence_weight = _math.weight(sequence)
     sequence_weight = _math.weight(sequence, start=type(sequence[0])(0))
     partitioned_weights = _math.partition_integer_by_proportion(
         sequence_weight, tuple(weights)
@@ -843,7 +838,6 @@ def partition_by_proportion_of_weights(sequence, weights: tuple[int, ...]) -> li
     current_cumulative_weight = cumulative_weights.pop(0)
     for item in sequence:
         sublist.append(item)
-        # while current_cumulative_weight <= _math.weight(flatten(items, depth=-1)):
         while current_cumulative_weight <= _math.weight(
             flatten(items, depth=-1),
             start=type(flatten(items, depth=-1)[0])(0),
@@ -1225,7 +1219,6 @@ def split(
     if cyclic:
         weights = repeat_to_weight(
             weights,
-            # _math.weight(sequence),
             _math.weight(sequence, start=type(sequence[0])(0)),
             allow_total=_enums.LESS,
         )
@@ -1233,14 +1226,12 @@ def split(
         if current_piece == []:
             current_piece_weight = type(weight)(0)
         else:
-            # current_piece_weight = _math.weight(current_piece)
             current_piece_weight = _math.weight(
                 current_piece, start=type(current_piece[0])(0)
             )
         while current_piece_weight < weight:
             current_piece.append(sequence[current_index])
             current_index += 1
-            # current_piece_weight = _math.weight(current_piece)
             current_piece_weight = _math.weight(
                 current_piece, start=type(current_piece[0])(0)
             )
@@ -1249,17 +1240,13 @@ def split(
             result.append(current_piece_)
             current_piece = []
         elif weight < current_piece_weight:
-            # assert type(weight) is type(current_piece_weight)
-            # overage = current_piece_weight - weight
             overage = typing.cast(typing.Any, current_piece_weight) - weight
             current_last_element = current_piece.pop(-1)
             needed = abs(current_last_element) - overage
-            # needed *= _math.sign(current_last_element)
             needed = _math.sign(current_last_element) * needed
             current_piece.append(needed)
             current_piece_ = type(sequence)(current_piece)
             result.append(current_piece_)
-            # overage *= _math.sign(current_last_element)
             overage = _math.sign(current_last_element) * overage
             current_piece = [overage]
     if overhang:
@@ -2018,7 +2005,6 @@ def repeat_to_weight(
     """
     assert type(weight)(0) <= weight
     if allow_total is _enums.EXACT:
-        # sequence_weight = _math.weight(sequence)
         sequence_weight = _math.weight(sequence, start=type(sequence[0])(0))
         complete_repetitions = int(math.ceil(float(weight) / float(sequence_weight)))
         items = list(sequence)
@@ -2033,10 +2019,8 @@ def repeat_to_weight(
                     items.pop()
                 else:
                     absolute_amount_to_keep = element_weight - overage
-                    # assert 0 < absolute_amount_to_keep
                     assert type(absolute_amount_to_keep)(0) < absolute_amount_to_keep
                     signed_amount_to_keep = absolute_amount_to_keep
-                    # signed_amount_to_keep *= _math.sign(item)
                     signed_amount_to_keep = _math.sign(item) * signed_amount_to_keep
                     items.pop()
                     items.append(signed_amount_to_keep)
@@ -2046,18 +2030,15 @@ def repeat_to_weight(
     elif allow_total is _enums.LESS:
         items = [sequence[0]]
         i = 1
-        # while _math.weight(items) < weight:
         while _math.weight(items, start=type(items[0])(0)) < weight:
             items.append(sequence[i % len(sequence)])
             i += 1
-        # if weight < _math.weight(items):
         if weight < _math.weight(items, start=type(items[0])(0)):
             items = items[:-1]
         return type(sequence)(items)
     elif allow_total is _enums.MORE:
         items = [sequence[0]]
         i = 1
-        # while _math.weight(items) < weight:
         while _math.weight(items, start=type(items[0])(0)) < weight:
             items.append(sequence[i % len(sequence)])
             i += 1
@@ -2425,15 +2406,12 @@ def truncate(
                     items.append(item)
                 else:
                     sign = _math.sign(item)
-                    # trimmed_part = weight - _math.weight(items)
                     if items == []:
                         trimmed_part = weight
                     else:
-                        # trimmed_part = weight - _math.weight(items)
                         trimmed_part = weight - _math.weight(
                             items, start=type(items[0])(0)
                         )
-                    # trimmed_part *= sign
                     trimmed_part = sign * trimmed_part
                     items.append(trimmed_part)
                     break
@@ -2450,43 +2428,6 @@ def truncate(
                     items.append(sum_ - sum(items))
                     break
     return type(sequence)(items)
-
-
-def weight(sequence) -> typing.Any:
-    """
-    Gets weight of ``sequence``.
-
-    ..  container:: example
-
-        >>> abjad.sequence.weight([])
-        0
-
-        >>> abjad.sequence.weight([1])
-        1
-
-        >>> abjad.sequence.weight([1, 2, 3])
-        6
-
-        >>> abjad.sequence.weight([1, 2, -3])
-        6
-
-        >>> abjad.sequence.weight([-1, -2, -3])
-        6
-
-        >>> abjad.sequence.weight([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10])
-        55
-
-        >>> abjad.sequence.weight([[1, -7, -7], [1, -8 -8]])
-        32
-
-    """
-    weights = []
-    for item in sequence:
-        if isinstance(item, collections.abc.Iterable):
-            weights.append(weight(item))
-        else:
-            weights.append(abs(item))
-    return sum(weights)
 
 
 def zip(
