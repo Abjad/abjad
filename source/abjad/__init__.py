@@ -225,7 +225,6 @@ from .score import (
     Tuplet,
     Voice,
 )
-from .select import LogicalTie
 from .setclass import SetClass
 from .spanners import (
     beam,
@@ -340,7 +339,6 @@ __all__ = [
     "LilyPondParserError",
     "LilyPondSetting",
     "Lineage",
-    "LogicalTie",
     "Marimba",
     "Markup",
     "Meter",
