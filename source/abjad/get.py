@@ -844,9 +844,15 @@ def duration(
         >>> for lt in abjad.select.logical_ties(staff):
         ...     duration = abjad.get.duration(lt)
         ...     preprolated = abjad.get.duration(lt, preprolated=True)
-        ...     lt, duration, preprolated
-        (LogicalTie(items=[Note("c'4"), Note("c'4")]), Duration(numerator=1, denominator=3), Duration(numerator=1, denominator=2))
-        (LogicalTie(items=[Note("d'4"), Note("d'4")]), Duration(numerator=1, denominator=3), Duration(numerator=1, denominator=2))
+        ...     lt
+        ...     print(f"\t{duration}")
+        ...     print(f"\t{preprolated}")
+        [Note("c'4"), Note("c'4")]
+            Duration(numerator=1, denominator=3)
+            Duration(numerator=1, denominator=2)
+        [Note("d'4"), Note("d'4")]
+            Duration(numerator=1, denominator=3)
+            Duration(numerator=1, denominator=2)
 
     """
     duration = _getlib.get_duration(
@@ -2688,12 +2694,12 @@ def is_sustained(argument) -> bool:
     leaves = _select.leaves(argument)
     for leaf in leaves:
         lt = logical_tie(leaf)
-        if lt.head() is leaf:
+        if lt[0] is leaf:
             lt_head_count += 1
     if lt_head_count == 0:
         return True
     lt = logical_tie(leaves[0])
-    if lt.head() is leaves[0] and lt_head_count == 1:
+    if lt[0] is leaves[0] and lt_head_count == 1:
         return True
     return False
 
@@ -3206,7 +3212,7 @@ def lineage(argument) -> "Lineage":
     return Lineage(argument)
 
 
-def logical_tie(argument) -> "_select.LogicalTie":
+def logical_tie(argument) -> list[_score.Leaf]:
     r"""
     Gets logical tie.
 
@@ -3277,16 +3283,16 @@ def logical_tie(argument) -> "_select.LogicalTie":
         >>> for leaf in abjad.select.leaves(staff):
         ...     lt = abjad.get.logical_tie(leaf)
         ...     print(f"{repr(leaf):30} {repr(lt)}")
-        Note("c'4")                    LogicalTie(items=[Note("c'4")])
-        Note("cs'16")                  LogicalTie(items=[Note("cs'16")])
-        Note("d'4")                    LogicalTie(items=[Note("d'4")])
-        Chord("<e' g'>16")             LogicalTie(items=[Chord("<e' g'>16")])
-        Note("gs'16")                  LogicalTie(items=[Note("gs'16")])
-        Note("a'16")                   LogicalTie(items=[Note("a'16")])
-        Note("as'16")                  LogicalTie(items=[Note("as'16")])
-        Note("e'4")                    LogicalTie(items=[Note("e'4")])
-        Note("f'4")                    LogicalTie(items=[Note("f'4")])
-        Note("fs'16")                  LogicalTie(items=[Note("fs'16")])
+        Note("c'4")                    [Note("c'4")]
+        Note("cs'16")                  [Note("cs'16")]
+        Note("d'4")                    [Note("d'4")]
+        Chord("<e' g'>16")             [Chord("<e' g'>16")]
+        Note("gs'16")                  [Note("gs'16")]
+        Note("a'16")                   [Note("a'16")]
+        Note("as'16")                  [Note("as'16")]
+        Note("e'4")                    [Note("e'4")]
+        Note("f'4")                    [Note("f'4")]
+        Note("fs'16")                  [Note("fs'16")]
 
     ..  container:: example
 
@@ -3322,12 +3328,12 @@ def logical_tie(argument) -> "_select.LogicalTie":
         >>> for leaf in abjad.select.leaves(staff):
         ...     lt = abjad.get.logical_tie(leaf)
         ...     print(f"{repr(leaf):30} {repr(lt)}")
-        Note("c'16")                   LogicalTie(items=[Note("c'16")])
-        Note("e'16")                   LogicalTie(items=[Note("e'16")])
-        Note("cs'4")                   LogicalTie(items=[Note("cs'4")])
-        Note("d'16")                   LogicalTie(items=[Note("d'16")])
-        Note("f'16")                   LogicalTie(items=[Note("f'16")])
-        Note("ds'4")                   LogicalTie(items=[Note("ds'4")])
+        Note("c'16")                   [Note("c'16")]
+        Note("e'16")                   [Note("e'16")]
+        Note("cs'4")                   [Note("cs'4")]
+        Note("d'16")                   [Note("d'16")]
+        Note("f'16")                   [Note("f'16")]
+        Note("ds'4")                   [Note("ds'4")]
 
     ..  container:: example
 
@@ -3350,10 +3356,10 @@ def logical_tie(argument) -> "_select.LogicalTie":
             }
 
         >>> abjad.get.logical_tie(staff[0])
-        LogicalTie(items=[Note("c'4")])
+        [Note("c'4")]
 
         >>> abjad.get.logical_tie(staff[1])
-        LogicalTie(items=[Rest('r4')])
+        [Rest('r4')]
 
         Omits spurious rest when user repeat-ties into rest from note:
 
@@ -3374,16 +3380,16 @@ def logical_tie(argument) -> "_select.LogicalTie":
             }
 
         >>> abjad.get.logical_tie(voice[0])
-        LogicalTie(items=[Rest('r4')])
+        [Rest('r4')]
 
         >>> abjad.get.logical_tie(voice[1])
-        LogicalTie(items=[Note("c'4")])
+        [Note("c'4")]
 
     """
     if not isinstance(argument, _score.Leaf):
         raise Exception("can only get logical tie on leaf.")
     leaves = _iterlib.get_logical_tie_leaves(argument)
-    return _select.LogicalTie(leaves)
+    return leaves
 
 
 def markup(

@@ -4293,10 +4293,10 @@ class RepeatTie:
         >>> for leaf in voice:
         ...     leaf, abjad.get.logical_tie(leaf)
         ...
-        (Note("c'4"), LogicalTie(items=[Note("c'4"), Note("c'4")]))
-        (Note("c'4"), LogicalTie(items=[Note("c'4"), Note("c'4")]))
-        (Note("d'4"), LogicalTie(items=[Note("d'4")]))
-        (Note("d'4"), LogicalTie(items=[Note("d'4")]))
+        (Note("c'4"), [Note("c'4"), Note("c'4")])
+        (Note("c'4"), [Note("c'4"), Note("c'4")])
+        (Note("d'4"), [Note("d'4")])
+        (Note("d'4"), [Note("d'4")])
 
     ..  container:: example
 
@@ -7069,11 +7069,10 @@ class Tie:
         >>> for leaf in staff:
         ...     leaf, abjad.get.logical_tie(leaf)
         ...
-        (Note("c'4"), LogicalTie(items=[Note("c'4"), Note("c'4")]))
-        (Note("c'4"), LogicalTie(items=[Note("c'4"), Note("c'4")]))
-        (Note("d'4"), LogicalTie(items=[Note("d'4")]))
-        (Note("d'4"), LogicalTie(items=[Note("d'4")]))
-
+        (Note("c'4"), [Note("c'4"), Note("c'4")])
+        (Note("c'4"), [Note("c'4"), Note("c'4")])
+        (Note("d'4"), [Note("d'4")])
+        (Note("d'4"), [Note("d'4")])
 
     ..  container:: example
 

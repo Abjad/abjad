@@ -6,7 +6,6 @@ from . import _getlib
 from . import indicators as _indicators
 from . import parentage as _parentage
 from . import score as _score
-from . import select as _select
 
 
 def _coerce_exclude(exclude):
@@ -362,7 +361,7 @@ def iterate_logical_ties(
     nontrivial=None,
     pitched=None,
     reverse=None,
-) -> typing.Iterator[_select.LogicalTie]:
+) -> typing.Iterator[list[_score.Leaf]]:
     yielded_logical_ties = set()
     for leaf in public_iterate_leaves(
         argument, exclude=exclude, grace=grace, pitched=pitched, reverse=reverse
@@ -375,10 +374,10 @@ def iterate_logical_ties(
             or (nontrivial is True and not len(leaves) == 1)
             or (nontrivial is False and len(leaves) == 1)
         ):
-            logical_tie = _select.LogicalTie(leaves)
+            logical_tie = tuple(leaves)
             if logical_tie not in yielded_logical_ties:
                 yielded_logical_ties.add(logical_tie)
-                yield logical_tie
+                yield leaves
 
 
 def public_iterate_components(

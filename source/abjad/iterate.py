@@ -9,7 +9,6 @@ from . import duration as _duration
 from . import pcollections as _pcollections
 from . import pitch as _pitch
 from . import score as _score
-from . import select as _select
 
 
 @typing.overload
@@ -487,7 +486,7 @@ def logical_ties(
     nontrivial=None,
     pitched=None,
     reverse=None,
-) -> typing.Iterator[_select.LogicalTie]:
+) -> typing.Iterator[list[_score.Leaf]]:
     r"""
     Iterates logical ties in ``argument``.
 
@@ -521,10 +520,10 @@ def logical_ties(
         >>> for logical_tie in abjad.iterate.logical_ties(staff):
         ...     logical_tie
         ...
-        LogicalTie(items=[Note("c'4"), Note("c'16")])
-        LogicalTie(items=[Note("d'8")])
-        LogicalTie(items=[Note("e'8")])
-        LogicalTie(items=[Note("f'4"), Note("f'16")])
+        [Note("c'4"), Note("c'16")]
+        [Note("d'8")]
+        [Note("e'8")]
+        [Note("f'4"), Note("f'16")]
 
     ..  container:: example
 
@@ -594,65 +593,65 @@ def logical_ties(
 
         >>> for lt in abjad.iterate.logical_ties(staff):
         ...     lt
-        LogicalTie(items=[Note("c'4")])
-        LogicalTie(items=[Note("cs'16")])
-        LogicalTie(items=[Note("d'4")])
-        LogicalTie(items=[Chord("<e' g'>16")])
-        LogicalTie(items=[Note("gs'16")])
-        LogicalTie(items=[Note("a'16")])
-        LogicalTie(items=[Note("as'16")])
-        LogicalTie(items=[Note("e'4")])
-        LogicalTie(items=[Note("f'4")])
-        LogicalTie(items=[Note("fs'16")])
+        [Note("c'4")]
+        [Note("cs'16")]
+        [Note("d'4")]
+        [Chord("<e' g'>16")]
+        [Note("gs'16")]
+        [Note("a'16")]
+        [Note("as'16")]
+        [Note("e'4")]
+        [Note("f'4")]
+        [Note("fs'16")]
 
         >>> for lt in abjad.iterate.logical_ties(staff, reverse=True):
         ...     lt
-        LogicalTie(items=[Note("fs'16")])
-        LogicalTie(items=[Note("f'4")])
-        LogicalTie(items=[Note("e'4")])
-        LogicalTie(items=[Note("as'16")])
-        LogicalTie(items=[Note("a'16")])
-        LogicalTie(items=[Note("gs'16")])
-        LogicalTie(items=[Chord("<e' g'>16")])
-        LogicalTie(items=[Note("d'4")])
-        LogicalTie(items=[Note("cs'16")])
-        LogicalTie(items=[Note("c'4")])
+        [Note("fs'16")]
+        [Note("f'4")]
+        [Note("e'4")]
+        [Note("as'16")]
+        [Note("a'16")]
+        [Note("gs'16")]
+        [Chord("<e' g'>16")]
+        [Note("d'4")]
+        [Note("cs'16")]
+        [Note("c'4")]
 
         Set ``grace=True`` to iterate grace logical ties only:
 
         >>> for lt in abjad.iterate.logical_ties(staff, grace=True):
         ...     lt
-        LogicalTie(items=[Note("cs'16")])
-        LogicalTie(items=[Chord("<e' g'>16")])
-        LogicalTie(items=[Note("gs'16")])
-        LogicalTie(items=[Note("a'16")])
-        LogicalTie(items=[Note("as'16")])
-        LogicalTie(items=[Note("fs'16")])
+        [Note("cs'16")]
+        [Chord("<e' g'>16")]
+        [Note("gs'16")]
+        [Note("a'16")]
+        [Note("as'16")]
+        [Note("fs'16")]
 
         >>> for lt in abjad.iterate.logical_ties(staff, grace=True, reverse=True):
         ...     lt
-        LogicalTie(items=[Note("fs'16")])
-        LogicalTie(items=[Note("as'16")])
-        LogicalTie(items=[Note("a'16")])
-        LogicalTie(items=[Note("gs'16")])
-        LogicalTie(items=[Chord("<e' g'>16")])
-        LogicalTie(items=[Note("cs'16")])
+        [Note("fs'16")]
+        [Note("as'16")]
+        [Note("a'16")]
+        [Note("gs'16")]
+        [Chord("<e' g'>16")]
+        [Note("cs'16")]
 
         Set ``grace=False`` to iterate nongrace logical ties only:
 
         >>> for lt in abjad.iterate.logical_ties(staff, grace=False):
         ...     lt
-        LogicalTie(items=[Note("c'4")])
-        LogicalTie(items=[Note("d'4")])
-        LogicalTie(items=[Note("e'4")])
-        LogicalTie(items=[Note("f'4")])
+        [Note("c'4")]
+        [Note("d'4")]
+        [Note("e'4")]
+        [Note("f'4")]
 
         >>> for lt in abjad.iterate.logical_ties(staff, grace=False, reverse=True):
         ...     lt
-        LogicalTie(items=[Note("f'4")])
-        LogicalTie(items=[Note("e'4")])
-        LogicalTie(items=[Note("d'4")])
-        LogicalTie(items=[Note("c'4")])
+        [Note("f'4")]
+        [Note("e'4")]
+        [Note("d'4")]
+        [Note("c'4")]
 
     ..  container:: example
 
@@ -692,41 +691,41 @@ def logical_ties(
 
         >>> for lt in abjad.iterate.logical_ties(staff):
         ...     lt
-        LogicalTie(items=[Note("c'4"), Note("c'8")])
-        LogicalTie(items=[Note("d'4")])
-        LogicalTie(items=[Note("e'4"), Note("e'8")])
-        LogicalTie(items=[Note("f'8")])
+        [Note("c'4"), Note("c'8")]
+        [Note("d'4")]
+        [Note("e'4"), Note("e'8")]
+        [Note("f'8")]
 
         >>> for lt in abjad.iterate.logical_ties(staff, reverse=True):
         ...     lt
-        LogicalTie(items=[Note("f'8")])
-        LogicalTie(items=[Note("e'4"), Note("e'8")])
-        LogicalTie(items=[Note("d'4")])
-        LogicalTie(items=[Note("c'4"), Note("c'8")])
+        [Note("f'8")]
+        [Note("e'4"), Note("e'8")]
+        [Note("d'4")]
+        [Note("c'4"), Note("c'8")]
 
         Set ``nontrivial=True`` to iterate nontrivial logical ties only:
 
         >>> for lt in abjad.iterate.logical_ties(staff, nontrivial=True):
         ...     lt
-        LogicalTie(items=[Note("c'4"), Note("c'8")])
-        LogicalTie(items=[Note("e'4"), Note("e'8")])
+        [Note("c'4"), Note("c'8")]
+        [Note("e'4"), Note("e'8")]
 
         >>> for lt in abjad.iterate.logical_ties(staff, nontrivial=True, reverse=True):
         ...     lt
-        LogicalTie(items=[Note("e'4"), Note("e'8")])
-        LogicalTie(items=[Note("c'4"), Note("c'8")])
+        [Note("e'4"), Note("e'8")]
+        [Note("c'4"), Note("c'8")]
 
         Set ``nontrivial=False`` to iterate trivial logical ties only:
 
         >>> for lt in abjad.iterate.logical_ties(staff, nontrivial=False):
         ...     lt
-        LogicalTie(items=[Note("d'4")])
-        LogicalTie(items=[Note("f'8")])
+        [Note("d'4")]
+        [Note("f'8")]
 
         >>> for lt in abjad.iterate.logical_ties(staff, nontrivial=False, reverse=True):
         ...     lt
-        LogicalTie(items=[Note("f'8")])
-        LogicalTie(items=[Note("d'4")])
+        [Note("f'8")]
+        [Note("d'4")]
 
     ..  container:: example
 
@@ -763,41 +762,41 @@ def logical_ties(
 
         >>> for lt in abjad.iterate.logical_ties(staff):
         ...     lt
-        LogicalTie(items=[Note("c'4"), Note("c'8")])
-        LogicalTie(items=[Rest('r4')])
-        LogicalTie(items=[Note("d'4"), Note("d'8")])
-        LogicalTie(items=[Rest('r4')])
+        [Note("c'4"), Note("c'8")]
+        [Rest('r4')]
+        [Note("d'4"), Note("d'8")]
+        [Rest('r4')]
 
         >>> for lt in abjad.iterate.logical_ties(staff, reverse=True):
         ...     lt
-        LogicalTie(items=[Rest('r4')])
-        LogicalTie(items=[Note("d'4"), Note("d'8")])
-        LogicalTie(items=[Rest('r4')])
-        LogicalTie(items=[Note("c'4"), Note("c'8")])
+        [Rest('r4')]
+        [Note("d'4"), Note("d'8")]
+        [Rest('r4')]
+        [Note("c'4"), Note("c'8")]
 
         Set ``pitched=True`` to iterate pitched logical ties only:
 
         >>> for lt in abjad.iterate.logical_ties(staff, pitched=True):
         ...     lt
-        LogicalTie(items=[Note("c'4"), Note("c'8")])
-        LogicalTie(items=[Note("d'4"), Note("d'8")])
+        [Note("c'4"), Note("c'8")]
+        [Note("d'4"), Note("d'8")]
 
         >>> for lt in abjad.iterate.logical_ties(staff, pitched=True, reverse=True):
         ...     lt
-        LogicalTie(items=[Note("d'4"), Note("d'8")])
-        LogicalTie(items=[Note("c'4"), Note("c'8")])
+        [Note("d'4"), Note("d'8")]
+        [Note("c'4"), Note("c'8")]
 
         Set ``pitched=False`` to iterate unpitched logical ties only:
 
         >>> for lt in abjad.iterate.logical_ties(staff, pitched=False):
         ...     lt
-        LogicalTie(items=[Rest('r4')])
-        LogicalTie(items=[Rest('r4')])
+        [Rest('r4')]
+        [Rest('r4')]
 
         >>> for lt in abjad.iterate.logical_ties(staff, pitched=False, reverse=True):
         ...     lt
-        LogicalTie(items=[Rest('r4')])
-        LogicalTie(items=[Rest('r4')])
+        [Rest('r4')]
+        [Rest('r4')]
 
     ..  container:: example
 
@@ -827,7 +826,7 @@ def logical_ties(
         >>> for logical_tie in abjad.iterate.logical_ties(components):
         ...     logical_tie
         ...
-        LogicalTie(items=[Note("c'8"), Note("c'8"), Note("c'8")])
+        [Note("c'8"), Note("c'8"), Note("c'8")]
 
     """
     return _iterlib.iterate_logical_ties(

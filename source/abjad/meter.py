@@ -21,7 +21,6 @@ from . import mutate as _mutate
 from . import parentage as _parentage
 from . import rhythmtrees as _rhythmtrees
 from . import score as _score
-from . import select as _select
 from . import sequence as _sequence
 from . import timespan as _timespan
 
@@ -2030,12 +2029,13 @@ class Meter:
         assert isinstance(do_not_rewrite_tuplets, bool)
 
         def recurse(
-            logical_tie: _select.LogicalTie,
+            logical_tie: list[_score.Leaf],
             boundary_depth: int | None = None,
             boundary_offsets=(),
             depth: int = 0,
         ) -> None:
-            assert isinstance(logical_tie, _select.LogicalTie), repr(logical_tie)
+            assert isinstance(logical_tie, list), repr(logical_tie)
+            assert all(isinstance(_, _score.Leaf) for _ in logical_tie)
             assert isinstance(boundary_offsets, tuple), repr(boundary_offsets)
             assert all(isinstance(_, _duration.Offset) for _ in boundary_offsets)
             offsets = _get_offsets_at_depth(depth, offset_inventory)
@@ -2073,7 +2073,7 @@ class Meter:
                     )
                     assert isinstance(split_offset_duration, _duration.Duration)
                     shards = _mutate.split(logical_tie[:], [split_offset_duration])
-                    logical_ties = [_select.LogicalTie(_) for _ in shards]
+                    logical_ties = [list(_) for _ in shards]
                     for logical_tie in logical_ties:
                         recurse(
                             logical_tie,
@@ -2105,10 +2105,9 @@ class Meter:
                 assert split_offset is not None
                 assert isinstance(split_offset, _duration.Offset)
                 fraction = split_offset.fraction - logical_tie_start_offset.fraction
-                # split_offset_duration = _duration.Duration(fraction)
                 split_offset_duration = _duration.Duration(*fraction.as_integer_ratio())
                 shards = _mutate.split(logical_tie[:], [split_offset_duration])
-                logical_ties = [_select.LogicalTie(shard) for shard in shards]
+                logical_ties = [list(shard) for shard in shards]
                 for logical_tie in logical_ties:
                     recurse(
                         logical_tie,
@@ -2152,7 +2151,8 @@ class Meter:
         iterator = _iterate_rewrite_inputs(components)
         items = tuple(iterator)
         for item in items:
-            if isinstance(item, _select.LogicalTie):
+            # if _is_logical_tie(item):
+            if isinstance(item, list) and all(isinstance(_, _score.Leaf) for _ in item):
                 recurse(
                     item,
                     boundary_depth=boundary_depth,
@@ -2265,7 +2265,7 @@ def _is_boundary_crossing_logical_tie(
 
 def _iterate_rewrite_inputs(
     argument: typing.Sequence[_score.Component],
-) -> typing.Iterator[_select.LogicalTie | _score.Container]:
+) -> typing.Iterator[list[_score.Leaf] | _score.Container]:
     r"""
     Iterates topmost masked logical ties, rest groups and containers in
     ``argument``, masked by ``argument``.
@@ -2335,31 +2335,31 @@ def _iterate_rewrite_inputs(
         >>> for x in abjad.meter._iterate_rewrite_inputs(staff[0]):
         ...     x
         ...
-        LogicalTie(items=[Note("c'4")])
-        LogicalTie(items=[Note("d'4")])
+        [Note("c'4")]
+        [Note("d'4")]
 
         >>> for x in abjad.meter._iterate_rewrite_inputs(staff[1]):
         ...     x
         ...
-        LogicalTie(items=[Note("d'8.")])
-        LogicalTie(items=[Rest('r16'), Rest('r8.')])
-        LogicalTie(items=[Note("e'16")])
+        [Note("d'8.")]
+        [Rest('r16'), Rest('r8.')]
+        [Note("e'16")]
         Tuplet('3:2', "e'8 e'8 f'8")
-        LogicalTie(items=[Note("f'4")])
+        [Note("f'4")]
 
         >>> for x in abjad.meter._iterate_rewrite_inputs(staff[2]):
         ...     x
         ...
-        LogicalTie(items=[Note("f'8")])
-        LogicalTie(items=[Note("g'8"), Note("g'4")])
-        LogicalTie(items=[Note("a'4"), Note("a'8")])
-        LogicalTie(items=[Note("b'8")])
+        [Note("f'8")]
+        [Note("g'8"), Note("g'4")]
+        [Note("a'4"), Note("a'8")]
+        [Note("b'8")]
 
         >>> for x in abjad.meter._iterate_rewrite_inputs(staff[3]):
         ...     x
         ...
-        LogicalTie(items=[Note("b'4")])
-        LogicalTie(items=[Note("c''4")])
+        [Note("b'4")]
+        [Note("c''4")]
 
     """
     last_tie = None
@@ -2369,13 +2369,13 @@ def _iterate_rewrite_inputs(
         assert isinstance(component, _score.Component)
         if isinstance(component, _score.Note | _score.Chord):
             this_tie_leaves = _iterlib.get_logical_tie_leaves(component)
-            this_tie = _select.LogicalTie(this_tie_leaves)
+            this_tie = list(this_tie_leaves)
             if current_leaf_group is None:
                 current_leaf_group = []
             elif (
                 current_leaf_group_is_silent or this_tie is None or last_tie != this_tie
             ):
-                yield _select.LogicalTie(current_leaf_group)
+                yield list(current_leaf_group)
                 current_leaf_group = []
             current_leaf_group_is_silent = False
             current_leaf_group.append(component)
@@ -2384,21 +2384,21 @@ def _iterate_rewrite_inputs(
             if current_leaf_group is None:
                 current_leaf_group = []
             elif not current_leaf_group_is_silent:
-                yield _select.LogicalTie(current_leaf_group)
+                yield list(current_leaf_group)
                 current_leaf_group = []
             current_leaf_group_is_silent = True
             current_leaf_group.append(component)
             last_tie = None
         elif isinstance(component, _score.Container):
             if current_leaf_group is not None:
-                yield _select.LogicalTie(current_leaf_group)
+                yield list(current_leaf_group)
                 current_leaf_group = None
                 last_tie = None
             yield component
         else:
             raise Exception(f"unhandled component: {component!r}.")
     if current_leaf_group is not None:
-        yield _select.LogicalTie(current_leaf_group)
+        yield list(current_leaf_group)
 
 
 def illustrate_meter_list(

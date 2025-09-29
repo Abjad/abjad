@@ -2,7 +2,6 @@
 Functions to select score components.
 """
 
-import collections
 import enum
 import itertools
 import typing
@@ -126,126 +125,6 @@ def _trim_subresult(result, trim):
         assert isinstance(result__, list), repr(result__)
         result = result__
     return result
-
-
-class LogicalTie(collections.abc.Sequence):
-    """
-    Logical tie of a component.
-
-    ..  container:: example
-
-        >>> staff = abjad.Staff("c' d' e' ~ e'")
-        >>> abjad.show(staff) # doctest: +SKIP
-
-        >>> abjad.select.logical_tie(staff[2])
-        LogicalTie(items=[Note("e'4"), Note("e'4")])
-
-    """
-
-    __slots__ = ("_items",)
-
-    def __init__(self, items=None):
-        if items is None:
-            items = []
-        if isinstance(items, _score.Component):
-            items = [items]
-        items = tuple(items)
-        for item in items:
-            if not isinstance(item, _score.Component):
-                raise Exception("components only:\n    {items!r}")
-        self._items = tuple(items)
-
-    def __contains__(self, argument) -> bool:
-        """
-        Is true when ``argument`` is in logical tie.
-        """
-        return argument in self.items()
-
-    def __eq__(self, argument: object) -> bool:
-        """
-        Is true when ``argument`` is logical tie and when items in ``argument``
-        equal those in logical tie.
-        """
-        if isinstance(argument, type(self)):
-            return self.items() == argument.items()
-        elif isinstance(argument, collections.abc.Sequence):
-            return self.items() == tuple(argument)
-        return False
-
-    def __hash__(self) -> int:
-        """
-        Hashes logical tie.
-        """
-        return id(self)
-
-    def __len__(self) -> int:
-        """
-        Gets number of items in logical tie.
-        """
-        return len(self.items())
-
-    def __repr__(self) -> str:
-        """
-        Gets interpreter representation of logical tie.
-        """
-        return f"{type(self).__name__}(items={list(self.items())!r})"
-
-    def __getitem__(self, argument):
-        """
-        Gets ``argument``.
-
-        Returns component or list (not logical tie).
-        """
-        result = self.items().__getitem__(argument)
-        if isinstance(result, tuple):
-            result = list(result)
-        return result
-
-    def _scale(self, multiplier):
-        for leaf in list(self):
-            leaf._scale(multiplier)
-
-    def head(self) -> _score.Leaf:
-        """
-        Reference to element ``0`` in logical tie.
-        """
-        assert self.items()
-        return self.items()[0]
-
-    def items(self) -> tuple:
-        """
-        Gets items in logical tie.
-        """
-        return self._items
-
-    def is_pitched(self) -> bool:
-        """
-        Is true when logical tie head is a note or chord.
-        """
-        head = self.head()
-        return hasattr(head, "written_pitch") or hasattr(head, "written_pitches")
-
-    def is_trivial(self) -> bool:
-        """
-        Is true when length of logical tie is less than or equal to ``1``.
-        """
-        return len(self) <= 1
-
-    def tail(self) -> _score.Leaf:
-        """
-        Gets last leaf in logical tie.
-        """
-        assert self.items()
-        return self.items()[-1]
-
-    def written_duration(self) -> _duration.Duration:
-        """
-        Sum of written duration of all components in logical tie.
-        """
-        return sum(
-            [_.written_duration() for _ in self],
-            start=_duration.Duration(0),
-        )
 
 
 def chord(
@@ -905,8 +784,8 @@ def exclude(argument, indices: typing.Sequence[int], period: int | None = None) 
         >>> for item in result:
         ...     item
         ...
-        LogicalTie(items=[Note("d'8"), Note("d'8")])
-        LogicalTie(items=[Note("f'8")])
+        [Note("d'8"), Note("d'8")]
+        [Note("f'8")]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1306,8 +1185,8 @@ def get(
         >>> for item in result:
         ...     item
         ...
-        LogicalTie(items=[Note("c'8")])
-        LogicalTie(items=[Note("e'8"), Note("e'8"), Note("e'8")])
+        [Note("c'8")]
+        [Note("e'8"), Note("e'8"), Note("e'8")]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1780,10 +1659,10 @@ def group_by_contiguity(argument) -> list[list]:
         >>> for item in result:
         ...     item
         ...
-        [LogicalTie(items=[Note("c'8"), Note("c'16")]), LogicalTie(items=[Note("c'16")])]
-        [LogicalTie(items=[Note("c'16")]), LogicalTie(items=[Note("c'16")])]
-        [LogicalTie(items=[Note("d'8"), Note("d'16")]), LogicalTie(items=[Note("d'16")])]
-        [LogicalTie(items=[Note("d'16")]), LogicalTie(items=[Note("d'16")])]
+        [[Note("c'8"), Note("c'16")], [Note("c'16")]]
+        [[Note("c'16")], [Note("c'16")]]
+        [[Note("d'8"), Note("d'16")], [Note("d'16")]]
+        [[Note("d'16")], [Note("d'16")]]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1865,12 +1744,12 @@ def group_by_duration(argument) -> list[list]:
         >>> for item in result:
         ...     item
         ...
-        [LogicalTie(items=[Note("c'4"), Note("c'16")])]
-        [LogicalTie(items=[Note("d'16"), Note("d'16")])]
-        [LogicalTie(items=[Note("d'16")])]
-        [LogicalTie(items=[Note("e'4"), Note("e'16")])]
-        [LogicalTie(items=[Note("f'16"), Note("f'16")])]
-        [LogicalTie(items=[Note("f'16")])]
+        [[Note("c'4"), Note("c'16")]]
+        [[Note("d'16"), Note("d'16")]]
+        [[Note("d'16")]]
+        [[Note("e'4"), Note("e'16")]]
+        [[Note("f'16"), Note("f'16")]]
+        [[Note("f'16")]]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -1937,10 +1816,10 @@ def group_by_length(argument) -> list[list]:
         >>> for item in result:
         ...     item
         ...
-        [LogicalTie(items=[Note("c'4"), Note("c'16")]), LogicalTie(items=[Note("d'16"), Note("d'16")])]
-        [LogicalTie(items=[Note("d'16")])]
-        [LogicalTie(items=[Note("e'4"), Note("e'16")]), LogicalTie(items=[Note("f'16"), Note("f'16")])]
-        [LogicalTie(items=[Note("f'16")])]
+        [[Note("c'4"), Note("c'16")], [Note("d'16"), Note("d'16")]]
+        [[Note("d'16")]]
+        [[Note("e'4"), Note("e'16")], [Note("f'16"), Note("f'16")]]
+        [[Note("f'16")]]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2279,9 +2158,9 @@ def group_by_measure(argument) -> list[list]:
         >>> for item in result:
         ...     item
         ...
-        [LogicalTie(items=[Note("c'8")]), LogicalTie(items=[Note("d'8"), Note("d'8")])]
-        [LogicalTie(items=[Note("e'8"), Note("e'8")])]
-        [LogicalTie(items=[Note("f'8")]), LogicalTie(items=[Note("g'8"), Note("g'8")])]
+        [[Note("c'8")], [Note("d'8"), Note("d'8")]]
+        [[Note("e'8"), Note("e'8")]]
+        [[Note("f'8")], [Note("g'8"), Note("g'8")]]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -2376,10 +2255,10 @@ def group_by_pitch(argument) -> list[list]:
         >>> for item in result:
         ...     item
         ...
-        [LogicalTie(items=[Note("c'4"), Note("c'16")])]
-        [LogicalTie(items=[Note("d'16"), Note("d'16")]), LogicalTie(items=[Note("d'16")])]
-        [LogicalTie(items=[Note("e'4"), Note("e'16")])]
-        [LogicalTie(items=[Note("f'16"), Note("f'16")]), LogicalTie(items=[Note("f'16")])]
+        [[Note("c'4"), Note("c'16")]]
+        [[Note("d'16"), Note("d'16")], [Note("d'16")]]
+        [[Note("e'4"), Note("e'16")]]
+        [[Note("f'16"), Note("f'16")], [Note("f'16")]]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -3587,7 +3466,7 @@ def logical_tie(
     nontrivial: bool | None = None,
     pitched: bool | None = None,
     reverse: bool | None = None,
-) -> LogicalTie:
+) -> list[_score.Leaf]:
     r"""
     Selects logical tie ``n`` in ``argument``.
 
@@ -3616,7 +3495,7 @@ def logical_ties(
     nontrivial: bool | None = None,
     pitched: bool | None = None,
     reverse: bool | None = None,
-) -> list[LogicalTie]:
+) -> list[list[_score.Leaf]]:
     r'''
     Selects logical ties in ``argument``.
 
@@ -3631,12 +3510,12 @@ def logical_ties(
         >>> for item in result:
         ...     item
         ...
-        LogicalTie(items=[Note("c'8")])
-        LogicalTie(items=[Note("d'8"), Note("d'8")])
-        LogicalTie(items=[Note("e'8")])
-        LogicalTie(items=[Rest('r8')])
-        LogicalTie(items=[Note("f'8"), Note("f'8")])
-        LogicalTie(items=[Rest('r8')])
+        [Note("c'8")]
+        [Note("d'8"), Note("d'8")]
+        [Note("e'8")]
+        [Rest('r8')]
+        [Note("f'8"), Note("f'8")]
+        [Rest('r8')]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -3685,10 +3564,10 @@ def logical_ties(
         >>> for item in result:
         ...     item
         ...
-        LogicalTie(items=[Note("c'8")])
-        LogicalTie(items=[Note("d'8"), Note("d'8")])
-        LogicalTie(items=[Note("e'8")])
-        LogicalTie(items=[Note("f'8"), Note("f'8")])
+        [Note("c'8")]
+        [Note("d'8"), Note("d'8")]
+        [Note("e'8")]
+        [Note("f'8"), Note("f'8")]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -3738,8 +3617,8 @@ def logical_ties(
         ... )
         >>> for item in result:
         ...     item
-        LogicalTie(items=[Note("d'8"), Note("d'8")])
-        LogicalTie(items=[Note("f'8"), Note("f'8")])
+        [Note("d'8"), Note("d'8")]
+        [Note("f'8"), Note("f'8")]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -3789,9 +3668,9 @@ def logical_ties(
         >>> for item in result:
         ...     item
         ...
-        [LogicalTie(items=[Note("c'8")]), LogicalTie(items=[Note("d'8")]), LogicalTie(items=[Note("e'8"), Note("e'8")])]
-        [LogicalTie(items=[Note("g'8")]), LogicalTie(items=[Note("a'8"), Note("a'8")])]
-        [LogicalTie(items=[Note("c''8")]), LogicalTie(items=[Note("d''8")])]
+        [[Note("c'8")], [Note("d'8")], [Note("e'8"), Note("e'8")]]
+        [[Note("g'8")], [Note("a'8"), Note("a'8")]]
+        [[Note("c''8")], [Note("d''8")]]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -3860,8 +3739,8 @@ def logical_ties(
         >>> for item in result:
         ...     item
         ...
-        [LogicalTie(items=[Note("g'8")]), LogicalTie(items=[Note("a'8"), Note("a'8")])]
-        [LogicalTie(items=[Note("c''8")]), LogicalTie(items=[Note("d''8")])]
+        [[Note("g'8")], [Note("a'8"), Note("a'8")]]
+        [[Note("c''8")], [Note("d''8")]]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -3925,14 +3804,14 @@ def logical_ties(
         >>> for item in result:
         ...     item
         ...
-        LogicalTie(items=[Note("c'8")])
-        LogicalTie(items=[Note("cf''16")])
-        LogicalTie(items=[Note("bf'16")])
-        LogicalTie(items=[Note("d'8")])
-        LogicalTie(items=[Note("af'16")])
-        LogicalTie(items=[Note("gf'16")])
-        LogicalTie(items=[Note("e'8")])
-        LogicalTie(items=[Note("f'8")])
+        [Note("c'8")]
+        [Note("cf''16")]
+        [Note("bf'16")]
+        [Note("d'8")]
+        [Note("af'16")]
+        [Note("gf'16")]
+        [Note("e'8")]
+        [Note("f'8")]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -3983,11 +3862,11 @@ def logical_ties(
         >>> for item in result:
         ...     item
         ...
-        LogicalTie(items=[Note("c'4")])
-        LogicalTie(items=[Note("d'4")])
-        LogicalTie(items=[Note("e'4")])
-        LogicalTie(items=[Note("gf'16")])
-        LogicalTie(items=[Note("f'4")])
+        [Note("c'4")]
+        [Note("d'4")]
+        [Note("e'4")]
+        [Note("gf'16")]
+        [Note("f'4")]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4036,10 +3915,10 @@ def logical_ties(
         >>> for item in result:
         ...     item
         ...
-        LogicalTie(items=[Note("c'8")])
-        LogicalTie(items=[Note("d'8")])
-        LogicalTie(items=[Note("e'8")])
-        LogicalTie(items=[Note("f'8")])
+        [Note("c'8")]
+        [Note("d'8")]
+        [Note("e'8")]
+        [Note("f'8")]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4086,10 +3965,10 @@ def logical_ties(
         >>> for item in result:
         ...     item
         ...
-        LogicalTie(items=[Note("c'4")])
-        LogicalTie(items=[Note("d'4")])
-        LogicalTie(items=[Note("e'4")])
-        LogicalTie(items=[Note("f'4")])
+        [Note("c'4")]
+        [Note("d'4")]
+        [Note("e'4")]
+        [Note("f'4")]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4138,10 +4017,10 @@ def logical_ties(
         >>> for item in result:
         ...     item
         ...
-        LogicalTie(items=[Note("cf''16")])
-        LogicalTie(items=[Note("bf'16")])
-        LogicalTie(items=[Note("af'16")])
-        LogicalTie(items=[Note("gf'16")])
+        [Note("cf''16")]
+        [Note("bf'16")]
+        [Note("af'16")]
+        [Note("gf'16")]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4188,7 +4067,7 @@ def logical_ties(
         >>> for item in result:
         ...     item
         ...
-        LogicalTie(items=[Note("gf'16")])
+        [Note("gf'16")]
 
         >>> abjad.label.color_leaves(result, ["#red", "#blue"])
         >>> lilypond_file = abjad.LilyPondFile([r'\include "abjad.ily"', staff])
@@ -4231,8 +4110,8 @@ def logical_ties(
     for logical_tie in generator:
         if (
             grace is None
-            or (grace is True and _get.is_grace_music(logical_tie.head()))
-            or (grace is False and not _get.is_grace_music(logical_tie.head()))
+            or (grace is True and _get.is_grace_music(logical_tie[0]))
+            or (grace is False and not _get.is_grace_music(logical_tie[0]))
         ):
             result.append(logical_tie)
     return result
