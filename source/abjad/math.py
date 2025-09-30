@@ -2,6 +2,8 @@
 Math functions.
 """
 
+from __future__ import annotations
+
 import collections
 import fractions
 import itertools
@@ -832,7 +834,7 @@ def is_integer_equivalent_n_tuple(argument, n) -> bool:
     )
 
 
-def is_integer_equivalent_number(argument) -> bool:
+def is_integer_equivalent_number(argument: object) -> bool:
     """
     Is true when ``argument`` is a number and ``argument`` is equivalent to an
     integer.
@@ -843,9 +845,9 @@ def is_integer_equivalent_number(argument) -> bool:
         True
 
     """
-    if int(argument) == argument:
-        return True
-    return False
+    if not isinstance(argument, int | float | fractions.Fraction):
+        return False
+    return int(argument) == argument
 
 
 def is_nonnegative_integer(argument) -> bool:
@@ -1234,43 +1236,34 @@ def sign(n) -> int:
     return (type(n)(0) < n) - (n < type(n)(0))
 
 
-class SupportsAbsAdd(typing.Protocol):
-
-    def __abs__(self) -> typing.Self:
-        pass
-
-    def __add__(self, other: typing.Self, /) -> typing.Self:
-        pass
+T = typing.TypeVar("T")
 
 
-T = typing.TypeVar("T", bound=SupportsAbsAdd)
-
-
-# def weight(sequence, start=0) -> int:
 def weight(sequence: typing.Sequence[T], *, start: T) -> T:
     """
-    Gets weight of ``sequence``.
-
-    Defined equal to sum of the absolute value of items in ``sequence``.
+    Gets weight of ``sequence``. Weight defined equal to the sum of the
+    absolute value of items in ``sequence``. Types of items in ``sequence``
+    must be homogeneous and must equal the type of ``start``.
 
     ..  container:: example
 
         >>> abjad.math.weight([-1, -2, 3, 4, 5], start=0)
         15
 
-    ..  container:: example
-
         >>> abjad.math.weight([], start=0)
         0
-
-    ..  container:: example
 
         >>> durations = abjad.duration.durations([(1, 8), (2, 8), (3, 8)])
         >>> abjad.math.weight(durations, start=abjad.Duration(0))
         Duration(numerator=3, denominator=4)
 
     """
-    return sum([abs(_) for _ in sequence], start=start)
+    assert all(isinstance(_, type(start)) for _ in sequence), repr(sequence)
+    total = start
+    for item in sequence:
+        total = total + abs(item)  # type: ignore[arg-type, operator]
+    assert isinstance(total, type(start)), repr(sequence)
+    return total
 
 
 def yield_all_compositions_of_integer(n: int) -> typing.Iterator[tuple[int, ...]]:

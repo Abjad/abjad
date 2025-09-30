@@ -7322,8 +7322,8 @@ class TimeSignature:
     def __post_init__(self):
         assert isinstance(self.pair, tuple), repr(self.pair)
         assert len(self.pair) == 2, repr(self.pair)
-        assert isinstance(self.pair[0], int)
-        assert isinstance(self.pair[1], int)
+        assert isinstance(self.pair[0], int), repr(self.pair)
+        assert isinstance(self.pair[1], int), repr(self.pair)
         if self.partial is not None:
             assert isinstance(self.partial, _duration.Duration), repr(self.partial)
 
