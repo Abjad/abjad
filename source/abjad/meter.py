@@ -2040,7 +2040,7 @@ class Meter:
             assert all(isinstance(_, _duration.Offset) for _ in boundary_offsets)
             offsets = _get_offsets_at_depth(depth, offset_inventory)
             durations = [_._get_preprolated_duration() for _ in logical_tie]
-            logical_tie_duration = sum(durations)
+            logical_tie_duration = sum(durations, start=_duration.Duration(0))
             logical_tie_timespan = _get.timespan(logical_tie)
             logical_tie_start_offset = logical_tie_timespan.start_offset
             assert isinstance(logical_tie_start_offset, _duration.Offset)
@@ -2067,14 +2067,17 @@ class Meter:
                     split_offset_fraction = (
                         split_offset.fraction - logical_tie_start_offset.fraction
                     )
-                    # split_offset_duration = _duration.Duration(split_offset_fraction)
                     split_offset_duration = _duration.Duration(
                         *split_offset_fraction.as_integer_ratio()
                     )
                     assert isinstance(split_offset_duration, _duration.Duration)
                     shards = _mutate.split(logical_tie[:], [split_offset_duration])
-                    logical_ties = [list(_) for _ in shards]
-                    for logical_tie in logical_ties:
+                    for shard in shards:
+                        assert all(isinstance(_, _score.Leaf) for _ in shard)
+                        logical_tie = []
+                        for component in shard:
+                            assert isinstance(component, _score.Leaf)
+                            logical_tie.append(component)
                         recurse(
                             logical_tie,
                             boundary_depth=boundary_depth,
@@ -2107,8 +2110,11 @@ class Meter:
                 fraction = split_offset.fraction - logical_tie_start_offset.fraction
                 split_offset_duration = _duration.Duration(*fraction.as_integer_ratio())
                 shards = _mutate.split(logical_tie[:], [split_offset_duration])
-                logical_ties = [list(shard) for shard in shards]
-                for logical_tie in logical_ties:
+                for shard in shards:
+                    logical_tie = []
+                    for component in shard:
+                        assert isinstance(component, _score.Leaf)
+                        logical_tie.append(component)
                     recurse(
                         logical_tie,
                         boundary_depth=boundary_depth,
@@ -2124,7 +2130,6 @@ class Meter:
                 nongrace_components.append(component)
         first_start_offset = nongrace_components[0]._get_timespan().start_offset
         last_start_offset = nongrace_components[-1]._get_timespan().start_offset
-        # difference = last_start_offset - first_start_offset + initial_offset.fraction
         difference = last_start_offset - first_start_offset + initial_offset.duration()
         assert difference < self.implied_time_signature().duration()
         # build offset inventory, adjusted for initial offset and prolation

@@ -42,7 +42,6 @@ def _list_all_classes():
 
 
 classes = _list_all_classes()
-classes.remove(abjad.math.SupportsAbsAdd)
 
 
 class_to_default_values = {

@@ -264,7 +264,9 @@ def color_note_heads(argument, color_map=pc_number_to_color) -> None:
                     _tweaks.tweak(note_head, rf"\tweak color {color}")
         elif isinstance(leaf, _score.Note):
             note_head = leaf.note_head()
-            number = note_head.written_pitch().number()
+            written_pitch = note_head.written_pitch()
+            assert isinstance(written_pitch, _pitch.NamedPitch), repr(written_pitch)
+            number = written_pitch.number()
             pc = _pitch.NumberedPitchClass(number)
             color = color_map[pc.number()]
             if color is not None:
