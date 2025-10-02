@@ -5,7 +5,6 @@ import inspect
 import os
 import pathlib
 import shutil
-import subprocess
 import typing
 
 import docutils
@@ -15,7 +14,6 @@ import uqbar.apis
 from uqbar.book.extensions import Extension
 
 from .. import configuration as _configuration
-from .. import contextmanagers as _contextmanagers
 from .. import format as _format
 from .. import illustrators as _illustrators
 from .. import io as _io
@@ -323,52 +321,6 @@ class HiddenDoctestDirective(docutils.parsers.rst.Directive):
         """Executes the directive."""
         self.assert_has_content()
         return []
-
-
-class ShellDirective(docutils.parsers.rst.Directive):
-    """
-    Shell directive.
-
-    Represents a shell session.
-
-    Generates a docutils ``literal_block`` node.
-    """
-
-    ### CLASS VARIABLES ###
-
-    __documentation_ignore_inherited__ = True
-
-    has_content = True
-    required_arguments = 0
-    optional_arguments = 0
-    final_argument_whitespace = False
-    option_spec: dict[str, str] = {}
-
-    ### PUBLIC METHODS ###
-
-    def run(self):
-        self.assert_has_content()
-        result = []
-        # with _contextmanagers.TemporaryDirectoryChange(
-        with _contextmanagers.temporary_directory_change(
-            configuration.abjad_install_directory()
-        ):
-            cwd = pathlib.Path.cwd()
-            for line in self.content:
-                result.append(f"{cwd.name}$ {line}")
-                completed_process = subprocess.run(
-                    line,
-                    shell=True,
-                    stdout=subprocess.PIPE,
-                    stderr=subprocess.STDOUT,
-                    text=True,
-                )
-                result.append(completed_process.stdout)
-        code = "\n".join(result)
-        literal = docutils.nodes.literal_block(code, code)
-        literal["language"] = "console"
-        sphinx.util.nodes.set_source_info(self, literal)
-        return [literal]
 
 
 class ThumbnailDirective(docutils.parsers.rst.Directive):
@@ -703,7 +655,6 @@ def setup(app):
     app.connect("html-collect-pages", on_html_collect_pages)
     app.add_css_file("abjad.css")
     app.add_directive("docs", HiddenDoctestDirective)
-    app.add_directive("shell", ShellDirective)
     app.add_directive("thumbnail", ThumbnailDirective)
     app.add_js_file("ga.js")
     app.add_node(

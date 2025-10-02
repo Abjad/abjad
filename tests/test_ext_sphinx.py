@@ -15,8 +15,6 @@ def rm_dirs(app):
 
 def _assert_no_unexpected_warnings(warning_output: str):
     for line in warning_output.splitlines():
-        if "directive 'shell' is already registered" in line:
-            continue
         assert False, f"Unexpected warning: {line}"
 
 
