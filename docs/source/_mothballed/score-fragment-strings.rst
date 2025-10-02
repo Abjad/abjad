@@ -117,16 +117,17 @@ strings start with some rests, and use a long-short pattern for their rhythms:
     ...     voice_names = ["Violin_1", "Violin_2", "Viola", "Cello", "Bass"]
     ...     voice_to_descents = {}
     ...     for i, voice_name in enumerate(voice_names):
-    ...         long_duration = abjad.Duration(1, 2) * (2 ** i)
+    ...         long_duration = (2 ** i) * abjad.Duration(1, 2)
     ...         short_duration = long_duration / 2
     ...         rest_duration = abjad.Fraction(3, 2) * long_duration
-    ...         div = rest_duration // abjad.Duration(3, 2)
-    ...         mod = abjad.Duration(rest_duration % abjad.Duration(3, 2))
+    ...         div = rest_duration.as_fraction() // abjad.Fraction(3, 2)
+    ...         foo = rest_duration.as_fraction() % abjad.Fraction(3, 2)
+    ...         mod = abjad.Duration(*foo.as_integer_ratio())
     ...         initial_rest = []
     ...         for i in range(div):
     ...             rest = abjad.MultimeasureRest("R1.")
     ...             initial_rest.append(rest)
-    ...         if mod:
+    ...         if mod != abjad.Duration(0):
     ...             rest = abjad.Rest.from_duration(mod)
     ...             initial_rest.append(rest)
     ...         chord_descents = [tuple(initial_rest)]
