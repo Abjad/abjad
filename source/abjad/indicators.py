@@ -308,6 +308,14 @@ class BeamCount:
 
     site: typing.ClassVar[str] = "before"
 
+    def _before_attach(self, deactivate, component):
+        for indicator in component._get_indicators():
+            if isinstance(indicator, type(self)) and indicator.site == self.site:
+                classname = type(component).__name__
+                message = f"can not attach {self!r} to {classname}:"
+                message += f"\n    {indicator!r} is already attached to {classname}."
+                raise Exception(message)
+
     def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()
         site = getattr(contributions, self.site)
@@ -4015,14 +4023,6 @@ class Ottava:
     def __post_init__(self):
         assert isinstance(self.n, int), repr(self.n)
         assert isinstance(self.site, str), repr(self.site)
-
-    def _before_attach(self, deactivate, component):
-        for indicator in component._get_indicators():
-            if isinstance(indicator, type(self)) and indicator.site == self.site:
-                classname = type(component).__name__
-                message = f"can not attach {self!r} to {classname}:"
-                message += f"\n    {indicator!r} is already attached to {classname}."
-                raise Exception(message)
 
     def _get_contributions(self):
         contributions = _contributions.ContributionsBySite()

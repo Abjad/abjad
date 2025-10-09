@@ -32,6 +32,8 @@ def _before_attach(
             message += ", ".join(component._allowable_sites)
             message += " sites."
             raise Exception(message)
+    if hasattr(indicator, "_before_attach"):
+        indicator._before_attach(deactivate, component)
     if not hasattr(indicator, "context"):
         return
     if getattr(indicator, "find_context_on_attach", False) is True:
