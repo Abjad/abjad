@@ -5341,15 +5341,14 @@ class Tuplet(Container):
         self.set_ratio(ratio)
         assert self.ratio().is_normalized()
 
-    def rewrite_dots(self) -> None:
+    def respell_without_dots(self) -> None:
         r"""
-        Rewrites dots of leaves in tuplet.
-
-        Not implemented for multiply nested tuplets.
+        Respells leaves in tuplet without dots. Not implemented for multiply
+        nested tuplets.
 
         ..  container:: example
 
-            Rewrites single dots as 3:2 prolation:
+            Respells single dots as 3:2 prolation:
 
             >>> tuplet = abjad.Tuplet("1:1", "c'8. c'8.")
             >>> abjad.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")
@@ -5366,7 +5365,7 @@ class Tuplet(Container):
                     c'8.
                 }
 
-            >>> tuplet.rewrite_dots()
+            >>> tuplet.respell_without_dots()
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -5382,7 +5381,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Rewrites double dots as 7:4 prolation:
+            Respells double dots as 7:4 prolation:
 
             >>> tuplet = abjad.Tuplet("1:1", "c'8.. c'8..")
             >>> abjad.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")
@@ -5399,7 +5398,7 @@ class Tuplet(Container):
                     c'8..
                 }
 
-            >>> tuplet.rewrite_dots()
+            >>> tuplet.respell_without_dots()
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -5415,7 +5414,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Does nothing when dot counts differ:
+            Respells nothing when dot counts differ:
 
             >>> tuplet = abjad.Tuplet("1:1", "c'8. d'8. e'8")
             >>> abjad.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")
@@ -5433,7 +5432,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> tuplet.rewrite_dots()
+            >>> tuplet.respell_without_dots()
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
@@ -5450,7 +5449,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Does nothing when leaves carry no dots:
+            Respells nothing when leaves carry no dots:
 
             >>> tuplet = abjad.Tuplet("2:3", "c'8 d' e'")
             >>> abjad.tweak(tuplet, r"\tweak text #tuplet-number::calc-fraction-text")
@@ -5468,7 +5467,7 @@ class Tuplet(Container):
                     e'8
                 }
 
-            >>> tuplet.rewrite_dots()
+            >>> tuplet.respell_without_dots()
             >>> abjad.show(tuplet) # doctest: +SKIP
 
             ..  docs::
