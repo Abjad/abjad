@@ -2,6 +2,7 @@
 Illustrators.
 """
 
+import collections
 import copy
 import dataclasses
 import typing
@@ -252,8 +253,8 @@ def attach_markup_struts(lilypond_file):
 
 
 def components(
-    components: typing.Sequence[_score.Component],
-    time_signatures: typing.Sequence[_indicators.TimeSignature] | None = None,
+    components: collections.abc.Iterable[_score.Component],
+    time_signatures: collections.abc.Iterable[_indicators.TimeSignature] | None = None,
     *,
     includes: typing.Sequence[str] | None = None,
 ):
@@ -277,7 +278,6 @@ def components(
         leaves = _select.leaves(components, grace=False)
         durations = [_.duration() for _ in time_signatures]
         parts = _select.partition_by_durations(leaves, durations)
-        assert len(parts) == len(time_signatures)
         previous_time_signature = None
         for time_signature, part in zip(time_signatures, parts, strict=True):
             assert isinstance(time_signature, _indicators.TimeSignature)

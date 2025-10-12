@@ -2,6 +2,7 @@
 On-beat grace container classes.
 """
 
+import collections
 import typing
 
 from . import _indentlib, _iterlib
@@ -288,7 +289,7 @@ class OnBeatGraceContainer(_score.Container):
 
 def on_beat_grace_container(
     grace_leaves: str | typing.Sequence[_score.Leaf],
-    nongrace_leaves: typing.Sequence[_score.Leaf],
+    nongrace_leaves: collections.abc.Iterable[_score.Leaf],
     *,
     do_not_attach_one_voice_command: bool = False,
     do_not_beam: bool = False,
