@@ -2,8 +2,8 @@
 Classes to work with IRCAM-style rhythm trees.
 """
 
+import collections
 import fractions
-import typing
 
 import uqbar.containers
 import uqbar.graphs
@@ -481,7 +481,7 @@ class RhythmTreeContainer(RhythmTreeNode, uqbar.containers.UniqueTreeList):
     def __init__(
         self,
         pair: tuple[int, int],
-        children: typing.Sequence[RhythmTreeNode] = (),
+        children: collections.abc.Sequence[RhythmTreeNode] = (),
         *,
         name: str = "",
     ):

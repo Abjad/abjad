@@ -2,7 +2,7 @@
 Classes to model events that happen at the same time.
 """
 
-import typing
+import collections
 
 from . import duration as _duration
 from . import enumerate as _enumerate
@@ -68,7 +68,7 @@ class VerticalMoment:
 
     def __init__(
         self,
-        components: typing.Sequence[_score.Component],
+        components: collections.abc.Sequence[_score.Component],
         *,
         offset: _duration.Offset | None = None,
     ) -> None:
@@ -505,8 +505,8 @@ def iterate_vertical_moments(components, *, reverse=False):
 
 
 def iterate_leaf_pairs(
-    components: typing.Sequence[_score.Component],
-) -> typing.Iterator:
+    components: collections.abc.Sequence[_score.Component],
+) -> collections.abc.Iterator:
     r"""
     Iterates leaf pairs.
 
@@ -575,8 +575,8 @@ def iterate_leaf_pairs(
 
 
 def iterate_pitch_pairs(
-    components: typing.Sequence[_score.Component],
-) -> typing.Iterator[tuple[_pitch.NamedPitch, _pitch.NamedPitch]]:
+    components: collections.abc.Sequence[_score.Component],
+) -> collections.abc.Iterator[tuple[_pitch.NamedPitch, _pitch.NamedPitch]]:
     r"""
     Iterates pitch pairs.
 

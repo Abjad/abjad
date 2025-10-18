@@ -2,7 +2,7 @@
 Functions to work with spanners.
 """
 
-import typing
+import collections
 
 from . import _iterlib
 from . import bind as _bind
@@ -42,12 +42,12 @@ def _apply_tweaks(argument, tweaks, i=None, total=None):
 
 
 def beam(
-    argument: _score.Component | typing.Sequence[_score.Component],
+    argument: _score.Component | collections.abc.Sequence[_score.Component],
     *,
     beam_lone_notes: bool = False,
     beam_rests: bool | None = True,
     direction: _enums.Vertical | None = None,
-    durations: typing.Sequence[_duration.Duration] | None = None,
+    durations: collections.abc.Sequence[_duration.Duration] | None = None,
     span_beam_count: int | None = None,
     start_beam: _indicators.StartBeam | _tweaks.Bundle | None = None,
     stemlet_length: int | float | None = None,
@@ -1223,7 +1223,7 @@ def glissando(
 
 def hairpin(
     descriptor: str,
-    argument: _score.Component | typing.Sequence[_score.Component],
+    argument: _score.Component | collections.abc.Sequence[_score.Component],
     *,
     direction: _enums.Vertical | None = None,
     tag: _tag.Tag | None = None,
@@ -1377,7 +1377,7 @@ def hairpin(
 
 
 def horizontal_bracket(
-    argument: _score.Component | typing.Sequence[_score.Component],
+    argument: _score.Component | collections.abc.Sequence[_score.Component],
     *,
     start_group: _indicators.StartGroup | _tweaks.Bundle | None = None,
     stop_group: _indicators.StopGroup | None = None,
@@ -1490,7 +1490,7 @@ def horizontal_bracket(
 
 
 def ottava(
-    argument: _score.Component | typing.Sequence[_score.Component],
+    argument: _score.Component | collections.abc.Sequence[_score.Component],
     *,
     start_ottava: _indicators.Ottava = _indicators.Ottava(n=1),
     stop_ottava: _indicators.Ottava = _indicators.Ottava(n=0, site="after"),
@@ -1530,7 +1530,7 @@ def ottava(
 
 
 def phrasing_slur(
-    argument: _score.Component | typing.Sequence[_score.Component],
+    argument: _score.Component | collections.abc.Sequence[_score.Component],
     *,
     direction: _enums.Vertical | None = None,
     start_phrasing_slur: _indicators.StartPhrasingSlur | _tweaks.Bundle | None = None,
@@ -1573,7 +1573,7 @@ def phrasing_slur(
 
 
 def piano_pedal(
-    argument: _score.Component | typing.Sequence[_score.Component],
+    argument: _score.Component | collections.abc.Sequence[_score.Component],
     *,
     context: str | None = None,
     start_piano_pedal: _indicators.StartPianoPedal | _tweaks.Bundle | None = None,
@@ -1621,7 +1621,7 @@ def piano_pedal(
 
 
 def slur(
-    argument: _score.Component | typing.Sequence[_score.Component],
+    argument: _score.Component | collections.abc.Sequence[_score.Component],
     *,
     direction: _enums.Vertical | None = None,
     start_slur: _indicators.StartSlur | _tweaks.Bundle | None = None,
@@ -1662,7 +1662,7 @@ def slur(
 
 
 def text_spanner(
-    argument: _score.Component | typing.Sequence[_score.Component],
+    argument: _score.Component | collections.abc.Sequence[_score.Component],
     *,
     direction: _enums.Vertical | None = None,
     start_text_span: _indicators.StartTextSpan | _tweaks.Bundle | None = None,
@@ -1804,10 +1804,10 @@ def text_spanner(
 
 
 def tie(
-    argument: _score.Component | typing.Sequence[_score.Component],
+    argument: _score.Component | collections.abc.Sequence[_score.Component],
     *,
     direction: _enums.Vertical | None = None,
-    repeat: bool | _duration.Duration | typing.Callable = False,
+    repeat: bool | _duration.Duration | collections.abc.Callable = False,
     tag: _tag.Tag | None = None,
 ) -> None:
     r"""
@@ -2032,7 +2032,7 @@ def tie(
 
 
 def trill_spanner(
-    argument: _score.Component | typing.Sequence[_score.Component],
+    argument: _score.Component | collections.abc.Sequence[_score.Component],
     *,
     start_trill_span: _indicators.StartTrillSpan | _tweaks.Bundle | None = None,
     stop_trill_span: _indicators.StopTrillSpan | None = None,

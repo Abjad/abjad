@@ -48,7 +48,7 @@ class OffsetCounter:
 
     """
 
-    items: typing.Sequence[_duration.Offset | Timespan] = dataclasses.field(
+    items: collections.abc.Sequence[_duration.Offset | Timespan] = dataclasses.field(
         default_factory=list
     )
     sorted_offset_to_count: dict[_duration.Offset, int] = dataclasses.field(

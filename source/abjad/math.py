@@ -1236,10 +1236,7 @@ def sign(n) -> int:
     return (type(n)(0) < n) - (n < type(n)(0))
 
 
-T = typing.TypeVar("T")
-
-
-def weight(sequence: typing.Sequence[T], *, start: T) -> T:
+def weight[T](sequence: collections.abc.Sequence[T], *, start: T) -> T:
     """
     Gets weight of ``sequence``. Weight defined equal to the sum of the
     absolute value of items in ``sequence``. Types of items in ``sequence``
@@ -1266,7 +1263,9 @@ def weight(sequence: typing.Sequence[T], *, start: T) -> T:
     return total
 
 
-def yield_all_compositions_of_integer(n: int) -> typing.Iterator[tuple[int, ...]]:
+def yield_all_compositions_of_integer(
+    n: int,
+) -> collections.abc.Iterator[tuple[int, ...]]:
     """
     Yields all compositions of positive integer ``n``.
 

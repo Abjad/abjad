@@ -4,6 +4,7 @@ Classes to model music pitch.
 
 from __future__ import annotations
 
+import collections
 import copy
 import dataclasses
 import fractions
@@ -11,7 +12,6 @@ import functools
 import math
 import numbers
 import re
-import typing
 
 from . import enums as _enums
 from . import math as _math
@@ -3961,7 +3961,7 @@ class NumberedPitchClass(PitchClass):
 
     def __sub__(
         self, argument
-    ) -> typing.Union["NumberedPitchClass", "NumberedInversionEquivalentIntervalClass"]:
+    ) -> NumberedPitchClass | NumberedInversionEquivalentIntervalClass:
         """
         Subtracts ``argument`` from numbered pitch-class.
 
@@ -5628,7 +5628,7 @@ class StaffPosition:
         assert isinstance(self.number, int), repr(self.number)
 
 
-def pitches(items: typing.Sequence[float | str]) -> list[NamedPitch]:
+def pitches(items: collections.abc.Sequence[float | str]) -> list[NamedPitch]:
     """
     Changes ``items`` to pitches.
     """

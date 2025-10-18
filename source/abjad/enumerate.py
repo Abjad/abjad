@@ -2,9 +2,9 @@
 Enumeration functions.
 """
 
+import collections
 import functools
 import itertools
-import typing
 
 from . import math as _math
 from . import sequence as _sequence
@@ -82,7 +82,7 @@ def _partition_by_rgf(sequence, rgf: list[int]) -> list[list]:
     return partition
 
 
-def _yield_restricted_growth_functions(length) -> typing.Iterator[list[int]]:
+def _yield_restricted_growth_functions(length) -> collections.abc.Iterator[list[int]]:
     """
     Yields restricted growth functions of ``length`` in lex order.
 
@@ -203,7 +203,7 @@ def outer_product(argument):
 
 def yield_combinations(
     argument, minimum_length=None, maximum_length=None
-) -> typing.Iterator:
+) -> collections.abc.Iterator:
     """
     Yields combinations of sequence items in binary string order.
 
@@ -324,7 +324,7 @@ def yield_combinations(
                 yield type(argument)(sublist)
 
 
-def yield_pairs(argument) -> typing.Iterator:
+def yield_pairs(argument) -> collections.abc.Iterator:
     """
     Yields pairs sequence items.
 
@@ -377,7 +377,7 @@ def yield_pairs(argument) -> typing.Iterator:
             yield type(argument)(pair)
 
 
-def yield_partitions(argument) -> typing.Iterator:
+def yield_partitions(argument) -> collections.abc.Iterator:
     """
     Yields partitions of sequence.
 
@@ -423,7 +423,7 @@ def yield_partitions(argument) -> typing.Iterator:
         yield partition
 
 
-def yield_permutations(argument) -> typing.Iterator:
+def yield_permutations(argument) -> collections.abc.Iterator:
     """
     Yields permutations of sequence.
 
@@ -447,7 +447,7 @@ def yield_permutations(argument) -> typing.Iterator:
         yield _sequence.permute(argument, permutation)
 
 
-def yield_set_partitions(sequence) -> typing.Iterator[list[list]]:
+def yield_set_partitions(sequence) -> collections.abc.Iterator[list[list]]:
     """
     Yields set partitions of ``sequence`` in order of restricted growth function.
 
@@ -482,7 +482,7 @@ def yield_set_partitions(sequence) -> typing.Iterator[list[list]]:
 
 def yield_subsequences(
     sequence, minimum_length=0, maximum_length=None
-) -> typing.Iterator:
+) -> collections.abc.Iterator:
     """
     Yields subsequences of ``sequence``.
 

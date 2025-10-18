@@ -1,3 +1,4 @@
+import collections
 import copy
 import enum
 import hashlib
@@ -5,7 +6,6 @@ import inspect
 import os
 import pathlib
 import shutil
-import typing
 
 import docutils
 import sphinx
@@ -203,10 +203,10 @@ class AbjadModuleDocumenter(uqbar.apis.documenters.ModuleDocumenter):
     @property
     def member_documenters_by_section(
         self,
-    ) -> typing.Sequence[
-        tuple[str, typing.Sequence[uqbar.apis.documenters.MemberDocumenter]]
+    ) -> collections.abc.Sequence[
+        tuple[str, collections.abc.Sequence[uqbar.apis.documenters.MemberDocumenter]]
     ]:
-        result: typing.MutableMapping[
+        result: collections.abc.MutableMapping[
             str, list[uqbar.apis.documenters.MemberDocumenter]
         ] = {}
         for documenter in self.member_documenters:

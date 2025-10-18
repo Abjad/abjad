@@ -854,7 +854,7 @@ def partition_by_proportion_of_weights(sequence, weights: tuple[int, ...]) -> li
 
 def partition_by_weights(
     sequence,
-    weights: typing.Sequence[int | fractions.Fraction | _duration.Duration],
+    weights: collections.abc.Sequence[int | fractions.Fraction | _duration.Duration],
     *,
     cyclic: bool = False,
     overhang: bool = False,
@@ -1120,7 +1120,7 @@ def partition_by_weights(
 
 def split(
     sequence,
-    weights: typing.Sequence[int | fractions.Fraction | _duration.Duration],
+    weights: collections.abc.Sequence[int | fractions.Fraction | _duration.Duration],
     *,
     cyclic: bool = False,
     overhang: bool = False,
@@ -1258,7 +1258,7 @@ def split(
     return result
 
 
-def filter(sequence, predicate: typing.Callable | None = None):
+def filter(sequence, predicate: collections.abc.Callable | None = None):
     """
     Filters ``sequence`` by callable ``predicate``.
 
@@ -1311,7 +1311,10 @@ def _flatten_helper(sequence, classes, depth):
 
 
 def flatten(
-    sequence, *, classes: typing.Sequence[typing.Type] | None = None, depth: int = 1
+    sequence,
+    *,
+    classes: collections.abc.Sequence[type] | None = None,
+    depth: int = 1,
 ):
     r"""
     Flattens ``sequence``.
@@ -1351,7 +1354,7 @@ def flatten(
     return type(sequence)(items)
 
 
-def group_by(sequence, predicate: typing.Callable | None = None) -> list:
+def group_by(sequence, predicate: collections.abc.Callable | None = None) -> list:
     """
     Groups ``sequence`` items by value of items.
 
@@ -1607,7 +1610,7 @@ def join(sequence):
 
 def nwise(
     sequence, n: int = 2, *, cyclic: bool = False, wrapped: bool = False
-) -> typing.Iterator:
+) -> collections.abc.Iterator:
     """
     Iterates ``sequence`` ``n`` items at a time.
 
@@ -1787,7 +1790,7 @@ def nwise(
                 item_buffer.pop(0)
 
 
-def permute(sequence, permutation: typing.Sequence[int]):
+def permute(sequence, permutation: collections.abc.Sequence[int]):
     r"""
     Permutes ``sequence`` by ``permutation``.
 
@@ -2279,7 +2282,7 @@ def rotate(sequence, n: int = 0):
     return type(sequence)(items)
 
 
-def sum_by_sign(sequence, *, sign: typing.Sequence[int] = (-1, 0, 1)):
+def sum_by_sign(sequence, *, sign: collections.abc.Sequence[int] = (-1, 0, 1)):
     """
     Sums consecutive ``sequence`` items by ``sign``.
 

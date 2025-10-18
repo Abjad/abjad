@@ -3,7 +3,6 @@ On-beat grace container classes.
 """
 
 import collections
-import typing
 
 from . import _indentlib, _iterlib
 from . import bind as _bind
@@ -120,7 +119,7 @@ class OnBeatGraceContainer(_score.Container):
 
     def __init__(
         self,
-        components: str | typing.Sequence[_score.Leaf] = (),
+        components: str | collections.abc.Sequence[_score.Leaf] = (),
         *,
         grace_leaf_duration: _duration.Duration | None = None,
         identifier: str | None = None,
@@ -288,7 +287,7 @@ class OnBeatGraceContainer(_score.Container):
 
 
 def on_beat_grace_container(
-    grace_leaves: str | typing.Sequence[_score.Leaf],
+    grace_leaves: str | collections.abc.Sequence[_score.Leaf],
     nongrace_leaves: collections.abc.Iterable[_score.Leaf],
     *,
     do_not_attach_one_voice_command: bool = False,

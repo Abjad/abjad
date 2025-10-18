@@ -2,8 +2,8 @@
 Functions to iterate pitched components.
 """
 
+import collections
 import dataclasses
-import typing
 
 from . import _getlib
 from . import bind as _bind
@@ -16,7 +16,7 @@ from . import pitch as _pitch
 from . import score as _score
 
 
-def iterate_out_of_range(argument) -> typing.Iterator[_score.Leaf]:
+def iterate_out_of_range(argument) -> collections.abc.Iterator[_score.Leaf]:
     r"""
     Iterates out-of-range notes and chords in ``argument``.
 

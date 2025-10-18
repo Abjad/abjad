@@ -2,6 +2,8 @@
 Indicators.
 """
 
+from __future__ import annotations
+
 import collections
 import dataclasses
 import fractions
@@ -1168,7 +1170,7 @@ class ColorFingering:
     def _get_contributions(self, *, wrapper=None):
         return self.markup()._get_contributions(wrapper=wrapper)
 
-    def markup(self) -> typing.Optional["Markup"]:
+    def markup(self) -> "Markup" | None:
         """
         Gets markup of color fingering.
         """
@@ -2529,7 +2531,7 @@ class InstrumentName:
 
     """
 
-    markup: typing.Union[str, "Markup"]
+    markup: str | Markup
     _: dataclasses.KW_ONLY
     context: str = "Staff"
 
@@ -4461,7 +4463,7 @@ class ShortInstrumentName:
 
     """
 
-    markup: typing.Union[str, Markup]
+    markup: str | Markup
     _: dataclasses.KW_ONLY
     context: str = "Staff"
     site: str = "before"

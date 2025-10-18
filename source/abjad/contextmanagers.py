@@ -2,6 +2,7 @@
 Context managers.
 """
 
+import collections
 import contextlib
 import filecmp
 import os
@@ -260,7 +261,7 @@ class RedirectedStreams:
 
     def __exit__(
         self,
-        exc_type: typing.Type[BaseException] | None,
+        exc_type: type[BaseException] | None,
         exc_value: BaseException | None,
         traceback: types.TracebackType | None,
     ) -> None:
@@ -289,7 +290,9 @@ class RedirectedStreams:
 
 
 @contextlib.contextmanager
-def temporary_directory_change(directory: str | os.PathLike) -> typing.Iterator[None]:
+def temporary_directory_change(
+    directory: str | os.PathLike,
+) -> collections.abc.Iterator[None]:
     """
     Temporary directory change context manager.
     """
