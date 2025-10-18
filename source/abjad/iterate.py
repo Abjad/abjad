@@ -2,6 +2,7 @@
 Functions to iterate Abjad components.
 """
 
+import collections
 import typing
 
 from . import _iterlib
@@ -18,43 +19,43 @@ def components(
     exclude=None,
     grace=None,
     reverse=None,
-) -> typing.Iterator[_score.Component]:
+) -> collections.abc.Iterator[_score.Component]:
     pass
 
 
 @typing.overload
 def components(
     argument,
-    prototype: typing.Type[_score.Tuplet],
+    prototype: type[_score.Tuplet],
     *,
     exclude=None,
     grace=None,
     reverse=None,
-) -> typing.Iterator[_score.Tuplet]:
+) -> collections.abc.Iterator[_score.Tuplet]:
     pass
 
 
 @typing.overload
 def components(
     argument,
-    prototype: typing.Type[_score.Container],
+    prototype: type[_score.Container],
     *,
     exclude=None,
     grace=None,
     reverse=None,
-) -> typing.Iterator[_score.Container]:
+) -> collections.abc.Iterator[_score.Container]:
     pass
 
 
 @typing.overload
 def components(
     argument,
-    prototype: typing.Type[_score.Leaf],
+    prototype: type[_score.Leaf],
     *,
     exclude=None,
     grace=None,
     reverse=None,
-) -> typing.Iterator[_score.Leaf]:
+) -> collections.abc.Iterator[_score.Leaf]:
     pass
 
 
@@ -244,7 +245,7 @@ def leaves(
     grace=None,
     pitched=None,
     reverse=None,
-) -> typing.Iterator:
+) -> collections.abc.Iterator:
     r"""
     Iterates leaves in ``argument``.
 
@@ -486,7 +487,7 @@ def logical_ties(
     nontrivial=None,
     pitched=None,
     reverse=None,
-) -> typing.Iterator[list[_score.Leaf]]:
+) -> collections.abc.Iterator[list[_score.Leaf]]:
     r"""
     Iterates logical ties in ``argument``.
 
@@ -839,7 +840,7 @@ def logical_ties(
     )
 
 
-def pitches(argument) -> typing.Iterator[_pitch.NamedPitch]:
+def pitches(argument) -> collections.abc.Iterator[_pitch.NamedPitch]:
     r"""
     Iterates pitches in ``argument``.
 

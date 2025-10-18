@@ -33,7 +33,7 @@ class CyclicTuple:
 
     """
 
-    items: typing.Sequence = ()
+    items: collections.abc.Sequence = ()
 
     def __post_init__(self):
         self.items = tuple(self.items)
@@ -90,7 +90,7 @@ class CyclicTuple:
         argument = argument % len(self)
         return self.items.__getitem__(argument)
 
-    def __iter__(self) -> typing.Iterator:
+    def __iter__(self) -> collections.abc.Iterator:
         """
         Iterates cyclic tuple.
 

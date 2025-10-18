@@ -2,8 +2,10 @@
 Classes to work with Abjad tags.
 """
 
+from __future__ import annotations
+
+import collections
 import dataclasses
-import typing
 
 from . import _indentlib
 from . import string as _string
@@ -160,7 +162,7 @@ class Tag:
                 result.append(Tag(word))
         return result
 
-    def only_edition(self) -> typing.Optional["Tag"]:
+    def only_edition(self) -> "Tag" | None:
         """
         Gets only-edition tag in tag.
 
@@ -248,7 +250,7 @@ def _match_line(line, tag, current_tags):
     return False
 
 
-def activate(text: str, tag: Tag | typing.Callable) -> tuple[str, int, int]:
+def activate(text: str, tag: Tag | collections.abc.Callable) -> tuple[str, int, int]:
     r"""
     Activates ``tag`` in ``text``.
 
@@ -398,7 +400,7 @@ def activate(text: str, tag: Tag | typing.Callable) -> tuple[str, int, int]:
 
 def deactivate(
     text: str,
-    tag: Tag | typing.Callable,
+    tag: Tag | collections.abc.Callable,
     prepend_empty_chord: bool = False,
 ) -> tuple[str, int, int]:
     r"""

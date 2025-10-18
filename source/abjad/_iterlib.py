@@ -1,6 +1,5 @@
 import collections
 import enum
-import typing
 
 from . import _getlib
 from . import indicators as _indicators
@@ -361,7 +360,7 @@ def iterate_logical_ties(
     nontrivial=None,
     pitched=None,
     reverse=None,
-) -> typing.Iterator[list[_score.Leaf]]:
+) -> collections.abc.Iterator[list[_score.Leaf]]:
     yielded_logical_ties = set()
     for leaf in public_iterate_leaves(
         argument, exclude=exclude, grace=grace, pitched=pitched, reverse=reverse

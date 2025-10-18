@@ -3,6 +3,7 @@ IO.
 """
 
 import cProfile
+import collections
 import datetime
 import hashlib
 import io
@@ -15,7 +16,6 @@ import subprocess
 import sys
 import tempfile
 import traceback
-import typing
 
 import uqbar
 import uqbar.graphs
@@ -155,7 +155,7 @@ class LilyPondIO:
 
     def migrate_assets(
         self, render_prefix, render_directory, output_directory
-    ) -> typing.Sequence[pathlib.Path]:
+    ) -> collections.abc.Sequence[pathlib.Path]:
         """
         Migrates assets.
         """
@@ -175,8 +175,8 @@ class LilyPondIO:
         open_file(str(output_path))
 
     def openable_paths(
-        self, output_paths: typing.Iterable[pathlib.Path]
-    ) -> typing.Iterator[pathlib.Path]:
+        self, output_paths: collections.abc.Iterable[pathlib.Path]
+    ) -> collections.abc.Iterator[pathlib.Path]:
         """
         Gets openable paths.
         """
@@ -264,7 +264,7 @@ class Illustrator(LilyPondIO):
     Illustrator.
     """
 
-    def openable_paths(self, output_paths) -> typing.Iterator[pathlib.Path]:
+    def openable_paths(self, output_paths) -> collections.abc.Iterator[pathlib.Path]:
         """
         Gets openable paths.
         """
@@ -279,7 +279,7 @@ class Player(LilyPondIO):
     Player.
     """
 
-    def openable_paths(self, output_paths) -> typing.Iterator[pathlib.Path]:
+    def openable_paths(self, output_paths) -> collections.abc.Iterator[pathlib.Path]:
         """
         Gets openable paths.
         """

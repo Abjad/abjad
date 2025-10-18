@@ -2265,7 +2265,7 @@ class PatternTuple:
 
     """
 
-    items: typing.Sequence = ()
+    items: collections.abc.Sequence = ()
 
     def __post_init__(self):
         self.items = tuple(self.items or [])

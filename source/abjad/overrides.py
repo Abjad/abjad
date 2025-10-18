@@ -2,6 +2,7 @@
 Classes to model LilyPond overrides.
 """
 
+import collections
 import copy
 import dataclasses
 import typing
@@ -89,7 +90,7 @@ class LilyPondOverride:
     grob_name: str = "NoteHead"
     once: bool = False
     is_revert: bool = False
-    property_path: str | typing.Sequence[str] = "color"
+    property_path: str | collections.abc.Sequence[str] = "color"
     value: bool | int | float | str = "#red"
 
     format_leaf_children: typing.ClassVar[bool] = False

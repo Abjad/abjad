@@ -46,7 +46,7 @@ class PitchClassSegment:
 
     """
 
-    items: typing.Sequence = ()
+    items: collections.abc.Sequence = ()
 
     def __post_init__(self):
         self.items = tuple(_pitch.NumberedPitchClass(_) for _ in self.items or [])
@@ -1178,7 +1178,7 @@ class PitchSegment:
 
     """
 
-    items: typing.Sequence = ()
+    items: collections.abc.Sequence = ()
 
     def __post_init__(self):
         self.items = tuple(_pitch.NumberedPitch(_) for _ in self.items or [])
@@ -3228,7 +3228,7 @@ def make_interval_class_vector(pitches):
 
 
 def voice_horizontally(
-    pcs: typing.Sequence[_pitch.NamedPitchClass],
+    pcs: collections.abc.Sequence[_pitch.NamedPitchClass],
     initial_octave: _pitch.Octave = _pitch.Octave(4),
 ) -> tuple[_pitch.NamedPitch, ...]:
     r"""
@@ -3284,7 +3284,7 @@ def voice_horizontally(
 
 
 def voice_vertically(
-    pcs: typing.Sequence[_pitch.NamedPitchClass],
+    pcs: collections.abc.Sequence[_pitch.NamedPitchClass],
     initial_octave: _pitch.Octave = _pitch.Octave(4),
 ) -> tuple[_pitch.NamedPitch, ...]:
     r"""

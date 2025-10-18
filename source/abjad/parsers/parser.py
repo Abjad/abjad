@@ -1,8 +1,8 @@
+import collections
 import copy
 import fractions
 import itertools
 import sys
-import typing
 
 import ply
 from ply import lex
@@ -225,7 +225,7 @@ class GuileProxy:
 
     ### CLASS VARIABLES ###
 
-    _function_name_mapping: dict[str, typing.Callable] = {}
+    _function_name_mapping: dict[str, collections.abc.Callable] = {}
 
     ### INITIALIZER ###
 

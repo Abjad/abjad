@@ -2,8 +2,8 @@
 Functions to check the wellformedness of Abjad scores.
 """
 
+import collections
 import enum
-import typing
 
 from . import duration as _duration
 from . import get as _get
@@ -346,7 +346,7 @@ def check_orphaned_dependent_wrappers(argument) -> tuple[list, int]:
 
 
 def check_out_of_range_pitches(
-    argument, *, allow_indicators: typing.Sequence[str | enum.Enum] = ()
+    argument, *, allow_indicators: collections.abc.Sequence[str | enum.Enum] = ()
 ) -> tuple[list, int]:
     r"""
     Checks out-of-range notes.

@@ -2,6 +2,7 @@
 Functions to label score components.
 """
 
+import collections
 import dataclasses
 import typing
 
@@ -134,7 +135,7 @@ def color_leaves(argument, color="#red", *, deactivate=False, tag=None) -> None:
         for leaf in _iterate.leaves(argument):
             _color_leaf(leaf, color, deactivate=deactivate, tag=tag)
     else:
-        assert isinstance(color, typing.Sequence)
+        assert isinstance(color, collections.abc.Sequence)
         colors = _cyclictuple.CyclicTuple(color)
         for i, item in enumerate(argument):
             color = colors[i]

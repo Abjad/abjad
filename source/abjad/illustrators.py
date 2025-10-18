@@ -5,7 +5,6 @@ Illustrators.
 import collections
 import copy
 import dataclasses
-import typing
 
 from . import bind as _bind
 from . import duration as _duration
@@ -256,7 +255,7 @@ def components(
     components: collections.abc.Iterable[_score.Component],
     time_signatures: collections.abc.Iterable[_indicators.TimeSignature] | None = None,
     *,
-    includes: typing.Sequence[str] | None = None,
+    includes: collections.abc.Sequence[str] | None = None,
 ):
     """
     Wraps ``components`` in LilyPond file for doc examples.
@@ -303,7 +302,9 @@ def components(
     return lilypond_file
 
 
-def components_to_score_markup_string(components: typing.Sequence[_score.Component]):
+def components_to_score_markup_string(
+    components: collections.abc.Sequence[_score.Component],
+):
     """
     Changes ``components`` to score markup string.
     """

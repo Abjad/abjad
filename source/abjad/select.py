@@ -2,6 +2,7 @@
 Functions to select score components.
 """
 
+import collections
 import enum
 import itertools
 import typing
@@ -19,9 +20,7 @@ from . import pcollections as _pcollections
 from . import score as _score
 from . import sequence as _sequence
 
-Exclude: typing.TypeAlias = typing.Union[
-    str | enum.Enum | typing.Sequence[str | enum.Enum]
-]
+type Exclude = str | enum.Enum | collections.abc.Sequence[str | enum.Enum]
 
 
 def _head_filter_subresult(result, head):
@@ -335,7 +334,7 @@ T = typing.TypeVar("T", bound=_score.Component)
 
 def components(
     argument,
-    prototype: typing.Type[T] | tuple[typing.Type[T], ...] | None = None,
+    prototype: type[T] | tuple[type[T], ...] | None = None,
     *,
     exclude: Exclude | None = None,
     grace: bool | None = None,
@@ -718,7 +717,9 @@ def components(
 _components_alias = components
 
 
-def exclude(argument, indices: typing.Sequence[int], period: int | None = None) -> list:
+def exclude(
+    argument, indices: collections.abc.Sequence[int], period: int | None = None
+) -> list:
     r"""
     Excludes items at ``indices`` by ``period``.
 
@@ -1115,7 +1116,7 @@ def flatten(argument, depth: int = 1) -> list:
 
 def get(
     argument,
-    indices: typing.Sequence[int] | tuple[list[int], int] | _pattern.Pattern,
+    indices: collections.abc.Sequence[int] | tuple[list[int], int] | _pattern.Pattern,
     period: int | None = None,
     *,
     invert: bool = False,
@@ -2419,9 +2420,7 @@ def leaf(
 
 def leaves(
     argument,
-    prototype: (
-        typing.Type[_score.Leaf] | tuple[typing.Type[_score.Leaf], ...] | None
-    ) = None,
+    prototype: type[_score.Leaf] | tuple[type[_score.Leaf], ...] | None = None,
     *,
     exclude: Exclude | None = None,
     grace: bool | None = None,

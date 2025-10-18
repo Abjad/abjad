@@ -7,7 +7,6 @@ from __future__ import annotations
 import bisect
 import collections
 import fractions
-import typing
 
 import uqbar.graphs
 
@@ -429,7 +428,9 @@ class Meter:
         """
         return super().__hash__()
 
-    def __iter__(self) -> typing.Iterator[tuple[tuple[int, int], tuple[int, int]]]:
+    def __iter__(
+        self,
+    ) -> collections.abc.Iterator[tuple[tuple[int, int], tuple[int, int]]]:
         """
         Iterates meter.
 
@@ -779,7 +780,7 @@ class Meter:
     @staticmethod
     def fit_meters(
         offset_counter: _timespan.OffsetCounter,
-        meters: typing.Sequence["Meter"],
+        meters: collections.abc.Sequence["Meter"],
         denominator: int = 32,
         maximum_run_length: int | None = None,
     ) -> list["Meter"]:
@@ -903,7 +904,7 @@ class Meter:
 
     def rewrite(
         self,
-        components: typing.Sequence[_score.Component],
+        components: collections.abc.Sequence[_score.Component],
         *,
         boundary_depth: int | None = None,
         do_not_rewrite_tuplets: bool = False,
@@ -2269,8 +2270,8 @@ def _is_boundary_crossing_logical_tie(
 
 
 def _iterate_rewrite_inputs(
-    argument: typing.Sequence[_score.Component],
-) -> typing.Iterator[list[_score.Leaf] | _score.Container]:
+    argument: collections.abc.Sequence[_score.Component],
+) -> collections.abc.Iterator[list[_score.Leaf] | _score.Container]:
     r"""
     Iterates topmost masked logical ties, rest groups and containers in
     ``argument``, masked by ``argument``.
@@ -2849,7 +2850,7 @@ class _MeterFittingSession:
         self,
         kernel_denominator: int = 32,
         maximum_run_length: int | None = None,
-        meters: typing.Sequence[Meter] = (),
+        meters: collections.abc.Sequence[Meter] = (),
         offset_counter: _timespan.OffsetCounter = _timespan.OffsetCounter(),
     ) -> None:
         assert isinstance(kernel_denominator, int), repr(kernel_denominator)
@@ -3294,7 +3295,7 @@ def make_best_guess_rtc(
 
     def recurse(
         rtc: _rhythmtrees.RhythmTreeContainer,
-        factors: typing.Sequence[int],
+        factors: collections.abc.Sequence[int],
         denominator: int,
         *,
         increase_monotonic: bool = False,

@@ -930,7 +930,7 @@ class Container(Component):
             return self._named_children.__getitem__(argument)[0]
         raise ValueError(f"can not get container at {argument!r}.")
 
-    def __iter__(self) -> typing.Iterator:
+    def __iter__(self) -> collections.abc.Iterator:
         """
         Iterates container.
 
@@ -2528,7 +2528,7 @@ class Chord(Leaf):
     @staticmethod
     def from_duration_and_note_heads(
         duration: _duration.Duration,
-        note_heads: typing.Sequence[NoteHead],
+        note_heads: collections.abc.Sequence[NoteHead],
         *,
         dmp: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
@@ -2579,7 +2579,7 @@ class Chord(Leaf):
     @staticmethod
     def from_duration_and_pitches(
         duration: _duration.Duration,
-        pitches: typing.Sequence[_pitch.NamedPitch | str],
+        pitches: collections.abc.Sequence[_pitch.NamedPitch | str],
         *,
         dmp: tuple[int, int] | None = None,
         tag: _tag.Tag | None = None,
@@ -2626,7 +2626,7 @@ class Chord(Leaf):
         """
         return self._note_heads
 
-    def set_note_heads(self, note_heads: typing.Sequence[NoteHead]) -> None:
+    def set_note_heads(self, note_heads: collections.abc.Sequence[NoteHead]) -> None:
         """
         Sets note-heads in chord.
 
@@ -2663,7 +2663,7 @@ class Chord(Leaf):
         Leaf.set_written_duration(self, duration)
 
     def set_written_pitches(
-        self, pitches: typing.Sequence[_pitch.NamedPitch | str]
+        self, pitches: collections.abc.Sequence[_pitch.NamedPitch | str]
     ) -> None:
         """
         Sets written pitches of chord.
