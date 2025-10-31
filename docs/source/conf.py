@@ -49,7 +49,7 @@ html_theme_options = {
     "navigation_depth": 1,
     "sticky_navigation": False,
     "style_external_links": True,
-    "style_nav_header_background": "#880088",
+    "style_nav_header_background": "#BB2299",
 }
 
 intersphinx_mapping = {
@@ -82,14 +82,10 @@ templates_path = ["_templates"]
 todo_include_todos = True
 
 uqbar_api_member_documenter_classes = [
-    # "uqbar.apis.FunctionDocumenter",
     "abjad.ext.sphinx.AbjadFunctionDocumenter",
-    # "uqbar.apis.SummarizingClassDocumenter",
     "abjad.ext.sphinx.AbjadClassDocumenter",
 ]
-# uqbar_api_module_documenter_class = "uqbar.apis.SummarizingModuleDocumenter"
 uqbar_api_module_documenter_class = "abjad.ext.sphinx.AbjadModuleDocumenter"
-# uqbar_api_root_documenter_class = "uqbar.apis.SummarizingRootDocumenter"
 uqbar_api_root_documenter_class = "abjad.ext.sphinx.AbjadRootDocumenter"
 uqbar_api_source_paths = ["abjad"]
 uqbar_api_title = "Abjad API"
