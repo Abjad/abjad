@@ -82,7 +82,7 @@ def test_makers_make_notes_01():
     tag = abjad.Tag("note_maker")
     notes = abjad.makers.make_notes(pitches, durations, tag=tag)
     staff = abjad.Staff(notes)
-    string = abjad.lilypond(staff, tags=True)
+    string = abjad.lilypond(staff, keep_tags=True)
 
     assert string == abjad.string.normalize(
         r"""

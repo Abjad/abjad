@@ -395,7 +395,7 @@ def attach(
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff, tags=True)
+            >>> string = abjad.lilypond(staff, keep_tags=True)
             >>> print(string)
             \new Staff
             {
@@ -438,7 +438,7 @@ def attach(
 
         ..  docs::
 
-            >>> string = abjad.lilypond(staff, tags=True)
+            >>> string = abjad.lilypond(staff, keep_tags=True)
             >>> print(string)
             \new Staff
             {
@@ -571,7 +571,7 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff, tags=True)
+        >>> string = abjad.lilypond(staff, keep_tags=True)
         >>> print(string)
         \new Staff
         {
@@ -601,7 +601,7 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
 
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff, tags=True)
+        >>> string = abjad.lilypond(staff, keep_tags=True)
         >>> print(string)
         \new Staff
         {
@@ -634,7 +634,7 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
         ... )
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff, tags=True)
+        >>> string = abjad.lilypond(staff, keep_tags=True)
         >>> print(string)
         \new Staff
         {
@@ -661,7 +661,7 @@ def detach(indicator, component: _score.Component, *, by_id: bool = False) -> tu
 
         >>> abjad.show(staff) # doctest: +SKIP
 
-        >>> string = abjad.lilypond(staff, tags=True)
+        >>> string = abjad.lilypond(staff, keep_tags=True)
         >>> print(string)
         \new Staff
         {

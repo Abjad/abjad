@@ -127,7 +127,7 @@ def test_Voice_tag_01():
 
     voice = abjad.Voice("c'4 d'4 e'4 f'4", tag=abjad.Tag("RED"))
 
-    assert abjad.lilypond(voice, tags=True) == abjad.string.normalize(
+    assert abjad.lilypond(voice, keep_tags=True) == abjad.string.normalize(
         r"""
           %! RED
         \new Voice

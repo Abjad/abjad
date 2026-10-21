@@ -54,7 +54,7 @@ def test_MultimeasureRest___init___03():
 
     rest = abjad.MultimeasureRest("R1", tag=abjad.Tag("GLOBAL_MULTIMEASURE_REST"))
 
-    assert abjad.lilypond(rest, tags=True) == abjad.string.normalize(
+    assert abjad.lilypond(rest, keep_tags=True) == abjad.string.normalize(
         """
           %! GLOBAL_MULTIMEASURE_REST
         R1
