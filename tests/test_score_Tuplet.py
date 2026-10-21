@@ -83,7 +83,7 @@ def test_Tuplet_tag_01():
     """
 
     tuplet = abjad.Tuplet("3:2", "c'4 d' e'", tag=abjad.Tag("RED"))
-    assert abjad.lilypond(tuplet, tags=True) == abjad.string.normalize(
+    assert abjad.lilypond(tuplet, keep_tags=True) == abjad.string.normalize(
         r"""
           %! RED
         \tuplet 3/2

@@ -3404,7 +3404,7 @@ class NoteHead:
             >>> note.note_head().set_alternative(triple)
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(note, tags=True)
+            >>> string = abjad.lilypond(note, keep_tags=True)
             >>> print(string)
             %! +PARTS
             c''4
@@ -3417,7 +3417,7 @@ class NoteHead:
             >>> note.set_written_pitch(pitch)
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(note, tags=True)
+            >>> string = abjad.lilypond(note, keep_tags=True)
             >>> print(string)
             %! +PARTS
             d''4
@@ -3429,7 +3429,7 @@ class NoteHead:
             >>> note.note_head().set_alternative(None)
             >>> abjad.show(note) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(note, tags=True)
+            >>> string = abjad.lilypond(note, keep_tags=True)
             >>> print(string)
             d''4
 
@@ -3442,7 +3442,7 @@ class NoteHead:
             >>> chord.note_heads()[0].set_alternative(triple)
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(chord, tags=True)
+            >>> string = abjad.lilypond(chord, keep_tags=True)
             >>> print(string)
             <
                 %! +PARTS
@@ -3458,7 +3458,7 @@ class NoteHead:
             >>> chord.note_heads()[0].set_written_pitch(abjad.NamedPitch("B3"))
             >>> abjad.show(chord) # doctest: +SKIP
 
-            >>> string = abjad.lilypond(chord, tags=True)
+            >>> string = abjad.lilypond(chord, keep_tags=True)
             >>> print(string)
             <
                 %! +PARTS
@@ -3472,7 +3472,7 @@ class NoteHead:
             Clear with none:
 
             >>> chord.note_heads()[0].set_alternative(None)
-            >>> string = abjad.lilypond(chord, tags=True)
+            >>> string = abjad.lilypond(chord, keep_tags=True)
             >>> print(string)
             <b d' bf''>4
 

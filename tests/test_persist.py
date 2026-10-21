@@ -19,7 +19,7 @@ def test_persist_as_ly_01():
     with abjad.contextmanagers.FilesystemState(remove=[ly_path]):
         result = abjad.persist.as_ly(note, ly_path)
         assert os.path.isfile(ly_path)
-        assert isinstance(result, tuple)
+        assert isinstance(result, float)
 
 
 def test_persist_as_ly_02():
@@ -30,7 +30,7 @@ def test_persist_as_ly_02():
     note = abjad.Note("c'4")
     with abjad.contextmanagers.FilesystemState(remove=[ly_path]):
         result = abjad.persist.as_ly(note, ly_path)
-        assert isinstance(result, tuple)
+        assert isinstance(result, float)
         assert os.path.isfile(ly_path)
         abjad.persist.as_ly(note, ly_path)
         assert os.path.isfile(ly_path)
@@ -45,7 +45,7 @@ def test_persist_as_pdf_01():
     with abjad.contextmanagers.FilesystemState(remove=paths):
         result = abjad.persist.as_pdf(note, pdf_path)
         assert os.path.isfile(pdf_path)
-        assert isinstance(result, tuple)
+        assert len(result) == 3
 
 
 def test_persist_as_pdf_02():
@@ -57,7 +57,7 @@ def test_persist_as_pdf_02():
     with abjad.contextmanagers.FilesystemState(remove=paths):
         result = abjad.persist.as_pdf(note, pdf_path)
         assert os.path.isfile(pdf_path)
-        assert isinstance(result, tuple)
+        assert len(result) == 3
         os.remove(ly_path)
         abjad.persist.as_pdf(note, pdf_path)
         assert os.path.isfile(pdf_path)

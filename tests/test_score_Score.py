@@ -9,7 +9,7 @@ def test_Score_tag():
     staff = abjad.Staff("c'4 d'4 e'4 f'4")
     score = abjad.Score([staff], tag=abjad.Tag("RED"))
 
-    assert abjad.lilypond(score, tags=True) == abjad.string.normalize(
+    assert abjad.lilypond(score, keep_tags=True) == abjad.string.normalize(
         r"""
           %! RED
         \new Score

@@ -93,7 +93,7 @@ def test_Skip_tag_01():
 
     skip = abjad.Skip("s8.", tag=abjad.Tag("GLOBAL_SKIP"))
 
-    assert abjad.lilypond(skip, tags=True) == abjad.string.normalize(
+    assert abjad.lilypond(skip, keep_tags=True) == abjad.string.normalize(
         """
           %! GLOBAL_SKIP
         s8.
